@@ -23,6 +23,10 @@ class Block {
 	char* bytes;
 	// amount of records in the block
 	int recordCount;
+	// position relative to the beggining of the block
+	int position;
+
+	// -------------------METHODS-------------------
 public:
 	Block(int size);
 	char* getBytes();

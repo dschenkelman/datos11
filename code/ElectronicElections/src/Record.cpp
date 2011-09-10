@@ -8,7 +8,7 @@
 #include "Record.h"
 #include <string.h>
 
-Record::Record()
+Record::Record() : size(0)
 {
 	this->bytes = NULL;
 }
@@ -29,11 +29,45 @@ void Record::setBytes(char* value, int len)
 	this->bytes = new char[len];
 	memset(this->bytes, 0, len);
 	memcpy(this->bytes, value, len);
+	this->size = len;
 }
 
 char *Record::getBytes()
 {
 	return this->bytes;
+}
+
+Record& Record::operator =(const Record & other)
+{
+	if (this == &other)
+	{
+		return *this;
+	}
+
+	this->size = other.size;
+	if (other.bytes != NULL)
+	{
+		this->setBytes(other.bytes, this->size);
+	}
+	else
+	{
+		this->bytes = NULL;
+	}
+
+	return *this;
+}
+
+Record::Record(Record& other)
+{
+	this->size = other.size;
+	if (other.bytes != NULL)
+	{
+		this->setBytes(other.bytes, this->size);
+	}
+	else
+	{
+		this->bytes = NULL;
+	}
 }
 
 Record::~Record()

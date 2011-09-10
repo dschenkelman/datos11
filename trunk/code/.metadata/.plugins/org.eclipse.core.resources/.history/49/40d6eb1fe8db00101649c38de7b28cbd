@@ -1,0 +1,20 @@
+/*
+ * BlockFile.h
+ *
+ *  Created on: Sep 10, 2011
+ *      Author: damian
+ */
+
+#ifndef BLOCKFILE_H_
+#define BLOCKFILE_H_
+
+class BlockFile
+{
+	// size of each block in bytes
+	static const int DEFAULT_BLOCK_SIZE = 512;
+public:
+	BlockFile();
+	virtual ~BlockFile();
+};
+
+#endif /* BLOCKFILE_H_ */

@@ -1,0 +1,17 @@
+/*
+ * BlockFile.h
+ *
+ *  Created on: Sep 10, 2011
+ *      Author: damian
+ */
+
+#ifndef BLOCKFILE_H_
+#define BLOCKFILE_H_
+
+class BlockFile {
+public:
+	BlockFile();
+	virtual ~BlockFile();
+};
+
+#endif /* BLOCKFILE_H_ */

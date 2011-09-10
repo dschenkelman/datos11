@@ -11,8 +11,8 @@ using namespace std;
 
 BlockFile::BlockFile(string fileName, int bSize):blockSize(bSize)
 {
-	this->dataFile.open(fileName.c_str(), ios::binary | ios::in | ios::out);
 	this->currentBlock = new Block(this->blockSize);
+	this->dataFile.open(fileName.c_str(), ios::binary | ios::in | ios::out);
 }
 
 void BlockFile::loadBlock(int blockNumber)

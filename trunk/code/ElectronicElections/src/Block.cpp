@@ -9,7 +9,7 @@
 #include <string.h>
 #include <exception>
 
-Block::Block(int size) : maxSize(size)
+Block::Block(int size) : maxSize(size), position(0)
 {
 	this->bytes = new char[this->maxSize];
 	memset(this->bytes, 0, this->maxSize);
@@ -57,10 +57,14 @@ void Block::forceInsert(Record *rec)
 {
     int recSize = rec->getSize();
     int occupiedSpace = this->maxSize - this->freeSpace;
-    // update block data
+    // add record size
+    memcpy(this->bytes + occupiedSpace, &recSize, 4);
+
+    // add record data
     memcpy(this->bytes + occupiedSpace, rec->getBytes(), recSize);
+
     // update block size
-    occupiedSpace += recSize;
+    occupiedSpace += (recSize + 4);
     memcpy(this->bytes, &occupiedSpace, 4);
 }
 

@@ -23,12 +23,15 @@ class Block {
 	char* bytes;
 	// amount of records in the block
 	int recordCount;
-	// position relative to the beggining of the block
+	// position relative to the beginning of the block
 	int position;
+    void copyBlock(const Block & other);
 
 	// -------------------METHODS-------------------
 public:
 	Block(int size);
+	Block(Block& other);
+	Block& operator=(const Block& other);
 	char* getBytes();
 	int getFreeSpace();
 	int getRecordCount();

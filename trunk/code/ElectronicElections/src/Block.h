@@ -31,7 +31,7 @@ class Block {
 
 	// -------------------METHODS-------------------
     bool hasNextRecord();
-    Record getNextRecord();
+    Record* getNextRecord(Record* r);
     inline int getOccupiedSize();
 public:
 	Block(int size, RecordComparer* comparer);
@@ -43,6 +43,8 @@ public:
 	// calculates the amount of records in the block
 	// and the amount of free space available in it
 	void updateInformation();
+	bool findRecord(char* key);
+	void clear();
 	bool canInsertRecord(Record* rec);
 	void insertRecord(Record* rec);
 	virtual ~Block();

@@ -16,6 +16,23 @@ Block::Block(int size) : maxSize(size), position(0)
 	this->freeSpace = this->maxSize;
 }
 
+Block& Block::operator =(const Block & other)
+{
+	if (this == &other)
+	{
+		return *this;
+	}
+
+	this->copyBlock(other);
+
+	return *this;
+}
+
+Block::Block(Block& other)
+{
+    this->copyBlock(other);
+}
+
 char* Block::getBytes()
 {
 	return this->bytes;
@@ -82,6 +99,17 @@ void Block::insertRecord(Record *rec)
 bool Block::canInsertRecord(Record *rec)
 {
 	return this->freeSpace >= rec->getSize();
+}
+
+void Block::copyBlock(const Block & other)
+{
+    this->freeSpace = other.freeSpace;
+    this->maxSize = other.maxSize;
+    this->recordCount = other.recordCount;
+    this->position = other.position;
+    this->bytes = new char[this->maxSize];
+    memset(this->bytes, 0, this->maxSize);
+    memcpy(this->bytes, other.bytes, this->maxSize);
 }
 
 Block::~Block()

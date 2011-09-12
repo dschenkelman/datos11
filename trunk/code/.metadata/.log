@@ -903,3 +903,18 @@ org.eclipse.core.runtime.AssertionFailedException: unknown saveable: org.eclipse
 
 !ENTRY org.eclipse.osgi 2 1 2011-09-10 17:51:57.308
 !MESSAGE NLS missing message: PreviewGenerationNotPossible in: org.eclipse.cdt.internal.ui.refactoring.implementmethod.messages
+!SESSION 2011-09-11 21:31:44.878 -----------------------------------------------
+eclipse.buildId=M20100211-1343
+java.version=1.6.0_20
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=linux, ARCH=x86, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86
+
+!ENTRY org.eclipse.core.resources 2 10035 2011-09-11 21:31:49.474
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.osgi 2 1 2011-09-11 21:32:59.796
+!MESSAGE NLS unused message: ImplementMethodRefactoring_MethodDefinition in: org.eclipse.cdt.internal.ui.refactoring.implementmethod.messages
+
+!ENTRY org.eclipse.osgi 2 1 2011-09-11 21:32:59.797
+!MESSAGE NLS missing message: PreviewGenerationNotPossible in: org.eclipse.cdt.internal.ui.refactoring.implementmethod.messages

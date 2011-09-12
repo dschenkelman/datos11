@@ -9,11 +9,15 @@
 #define BLOCKFILE_H_
 
 #include "Block.h"
+#include "RecordComparer.h"
 #include <string.h>
 #include <fstream>
 
 class BlockFile
 {
+	// object used to compare records
+	// the BlockFile instance deletes in the destructor
+	RecordComparer* recordComparer;
 	// file that holds the data
 	std::fstream dataFile;
 	// size of each block [bytes]
@@ -21,7 +25,7 @@ class BlockFile
 	// block being pointed to
 	Block* currentBlock;
 public:
-	BlockFile(std::string fileName, int bSize);
+	BlockFile(std::string fileName, int bSize, RecordComparer* comparer);
 	// loads the current block from the file
 	void loadBlock(int blockNumber);
 	// saves the current block to the file

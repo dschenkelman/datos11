@@ -9,11 +9,12 @@
 #include <string.h>
 #include <exception>
 
-Block::Block(int size) : maxSize(size), position(0)
+Block::Block(int size, RecordComparer* comparer) : maxSize(size), position(4)
 {
 	this->bytes = new char[this->maxSize];
 	memset(this->bytes, 0, this->maxSize);
 	this->freeSpace = this->maxSize;
+	this->recordComparer = comparer;
 }
 
 Block& Block::operator =(const Block & other)
@@ -70,10 +71,37 @@ int Block::getFreeSpace()
 	return this->freeSpace;
 }
 
+inline int Block::getOccupiedSize()
+{
+	return this->maxSize - this->freeSpace;
+}
+
+bool Block::hasNextRecord()
+{
+	return this->position == this->getOccupiedSize();
+}
+
+Record Block::getNextRecord()
+{
+	if (!this->hasNextRecord())
+	{
+		throw std::exception();
+	}
+
+	Record r;
+	int recordSize;
+	memcpy(&recordSize, this->bytes + this->position, 4);
+	this->position += 4;
+	r.setBytes(this->bytes + this->position, recordSize);
+	this->position += recordSize;
+
+	return r;
+}
+
 void Block::forceInsert(Record *rec)
 {
     int recSize = rec->getSize();
-    int occupiedSpace = this->maxSize - this->freeSpace;
+    int occupiedSpace = this->getOccupiedSize();
     // add record size
     memcpy(this->bytes + occupiedSpace, &recSize, 4);
 
@@ -110,6 +138,7 @@ void Block::copyBlock(const Block & other)
     this->bytes = new char[this->maxSize];
     memset(this->bytes, 0, this->maxSize);
     memcpy(this->bytes, other.bytes, this->maxSize);
+    this->recordComparer = other.recordComparer;
 }
 
 Block::~Block()

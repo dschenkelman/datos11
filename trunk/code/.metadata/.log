@@ -935,3 +935,269 @@ org.eclipse.equinox.internal.provisional.p2.core.ProvisionException: No reposito
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
 !SUBENTRY 1 org.eclipse.equinox.p2.metadata.repository 4 1000 2011-09-11 23:28:39.214
 !MESSAGE No repository found at http://www.ubuntuupdates.org/eclipse-cdt.
+
+!ENTRY org.eclipse.debug.core 4 125 2011-09-12 00:53:06.435
+!MESSAGE Error logged from Debug Core: 
+!STACK 0
+java.io.IOException: read error
+	at org.eclipse.cdt.utils.spawner.SpawnerInputStream.read0(Native Method)
+	at org.eclipse.cdt.utils.spawner.SpawnerInputStream.read(SpawnerInputStream.java:66)
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:273)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:334)
+	at java.io.FilterInputStream.read(FilterInputStream.java:107)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.read(OutputStreamMonitor.java:144)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.access$1(OutputStreamMonitor.java:134)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor$1.run(OutputStreamMonitor.java:207)
+	at java.lang.Thread.run(Thread.java:636)
+
+!ENTRY org.eclipse.cdt.dsf 0 10005 2011-09-12 00:55:16.935
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.RequestMonitor@15993bf): Status OK: org.eclipse.core.runtime code=0 OK null' resulted in a rejected execution exception.
+!SUBENTRY 1 org.eclipse.core.runtime 0 0 2011-09-12 00:55:16.936
+!MESSAGE OK
+
+!ENTRY org.eclipse.cdt.dsf 0 10005 2011-09-12 00:57:00.371
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.RequestMonitor@104f5d0): Status OK: org.eclipse.core.runtime code=0 OK null' resulted in a rejected execution exception.
+!SUBENTRY 1 org.eclipse.core.runtime 0 0 2011-09-12 00:57:00.371
+!MESSAGE OK
+
+!ENTRY org.eclipse.cdt.dsf 0 10005 2011-09-12 00:58:50.447
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.RequestMonitor@6b6f21): Status OK: org.eclipse.core.runtime code=0 OK null' resulted in a rejected execution exception.
+!SUBENTRY 1 org.eclipse.core.runtime 0 0 2011-09-12 00:58:50.447
+!MESSAGE OK
+
+!ENTRY org.eclipse.cdt.dsf 0 10005 2011-09-12 01:00:01.976
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.RequestMonitor@1aec4cb): Status OK: org.eclipse.core.runtime code=0 OK null' resulted in a rejected execution exception.
+!SUBENTRY 1 org.eclipse.core.runtime 0 0 2011-09-12 01:00:01.977
+!MESSAGE OK
+
+!ENTRY org.eclipse.cdt.dsf 0 10005 2011-09-12 01:03:04.513
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.RequestMonitor@1ca253b): Status OK: org.eclipse.core.runtime code=0 OK null' resulted in a rejected execution exception.
+!SUBENTRY 1 org.eclipse.core.runtime 0 0 2011-09-12 01:03:04.513
+!MESSAGE OK
+
+!ENTRY org.eclipse.cdt.dsf 4 0 2011-09-12 01:03:28.757
+!MESSAGE Breakpoint already removed
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10005 2011-09-12 01:03:28.757
+!MESSAGE Breakpoint already removed
+
+!ENTRY org.eclipse.cdt.dsf 4 0 2011-09-12 01:03:31.685
+!MESSAGE Breakpoint already removed
+!SUBENTRY 1 org.eclipse.cdt.dsf.gdb 4 10005 2011-09-12 01:03:31.685
+!MESSAGE Breakpoint already removed
+
+!ENTRY org.eclipse.cdt.dsf 0 10005 2011-09-12 01:11:47.612
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.RequestMonitor@1436057): Status OK: org.eclipse.core.runtime code=0 OK null' resulted in a rejected execution exception.
+!SUBENTRY 1 org.eclipse.core.runtime 0 0 2011-09-12 01:11:47.612
+!MESSAGE OK
+
+!ENTRY org.eclipse.cdt.dsf 0 10005 2011-09-12 01:12:39.698
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.RequestMonitor@5d11c9): Status OK: org.eclipse.core.runtime code=0 OK null' resulted in a rejected execution exception.
+!SUBENTRY 1 org.eclipse.core.runtime 0 0 2011-09-12 01:12:39.698
+!MESSAGE OK
+
+!ENTRY org.eclipse.cdt.dsf 0 10005 2011-09-12 01:13:51.854
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.RequestMonitor@fd4cfb): Status OK: org.eclipse.core.runtime code=0 OK null' resulted in a rejected execution exception.
+!SUBENTRY 1 org.eclipse.core.runtime 0 0 2011-09-12 01:13:51.854
+!MESSAGE OK
+
+!ENTRY org.eclipse.cdt.dsf 0 10005 2011-09-12 01:25:49.630
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.RequestMonitor@892326): Status OK: org.eclipse.core.runtime code=0 OK null' resulted in a rejected execution exception.
+!SUBENTRY 1 org.eclipse.core.runtime 0 0 2011-09-12 01:25:49.630
+!MESSAGE OK
+
+!ENTRY org.eclipse.equinox.p2.ui 4 0 2011-09-12 01:31:46.716
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2011-09-12 01:31:46.716
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2011-09-12 01:31:46.716
+!MESSAGE Software being installed: Mylyn Bridge: C/C++ Development 5.1.0.201002161416 (org.eclipse.cdt.mylyn.feature.group 5.1.0.201002161416)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2011-09-12 01:31:46.716
+!MESSAGE Missing requirement: Mylyn Bridge: C/C++ Development 5.1.0.201002161416 (org.eclipse.cdt.mylyn.feature.group 5.1.0.201002161416) requires 'org.eclipse.mylyn.context.core 3.0.0' but it could not be found
+
+!ENTRY org.eclipse.equinox.p2.ui 4 0 2011-09-12 01:31:46.716
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2011-09-12 01:31:46.716
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2011-09-12 01:31:46.716
+!MESSAGE Software being installed: Mylyn Bridge: C/C++ Development 5.1.0.201002161416 (org.eclipse.cdt.mylyn.feature.group 5.1.0.201002161416)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2011-09-12 01:31:46.716
+!MESSAGE Missing requirement: Mylyn Bridge: C/C++ Development 5.1.0.201002161416 (org.eclipse.cdt.mylyn.feature.group 5.1.0.201002161416) requires 'org.eclipse.mylyn.context.core 3.0.0' but it could not be found
+
+!ENTRY org.eclipse.equinox.p2.ui 4 0 2011-09-12 01:31:46.738
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2011-09-12 01:31:46.738
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2011-09-12 01:31:46.738
+!MESSAGE Software being installed: Mylyn Bridge: C/C++ Development 5.1.0.201002161416 (org.eclipse.cdt.mylyn.feature.group 5.1.0.201002161416)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2011-09-12 01:31:46.738
+!MESSAGE Missing requirement: Mylyn Bridge: C/C++ Development 5.1.0.201002161416 (org.eclipse.cdt.mylyn.feature.group 5.1.0.201002161416) requires 'org.eclipse.mylyn.context.core 3.0.0' but it could not be found
+
+!ENTRY org.eclipse.equinox.p2.ui 4 0 2011-09-12 01:31:53.257
+!MESSAGE Operation details
+!SUBENTRY 1 org.eclipse.equinox.p2.director 4 1 2011-09-12 01:31:53.258
+!MESSAGE Cannot complete the install because one or more required items could not be found.
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2011-09-12 01:31:53.258
+!MESSAGE Software being installed: Mylyn Bridge: C/C++ Development 5.1.0.201002161416 (org.eclipse.cdt.mylyn.feature.group 5.1.0.201002161416)
+!SUBENTRY 2 org.eclipse.equinox.p2.director 4 0 2011-09-12 01:31:53.258
+!MESSAGE Missing requirement: Mylyn Bridge: C/C++ Development 5.1.0.201002161416 (org.eclipse.cdt.mylyn.feature.group 5.1.0.201002161416) requires 'org.eclipse.mylyn.context.core 3.0.0' but it could not be found
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 10004 2011-09-12 01:33:00.290
+!MESSAGE Process terminate failed
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 10004 2011-09-12 01:33:05.349
+!MESSAGE Process terminate failed
+
+!ENTRY org.eclipse.cdt.dsf.gdb 4 10004 2011-09-12 01:33:10.379
+!MESSAGE Process terminate failed
+!SESSION 2011-09-12 01:33:11.557 -----------------------------------------------
+eclipse.buildId=M20100211-1343
+java.version=1.6.0_20
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=linux, ARCH=x86, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86
+
+!ENTRY org.eclipse.debug.core 4 125 2011-09-12 01:43:48.828
+!MESSAGE Error logged from Debug Core: 
+!STACK 0
+java.io.IOException: read error
+	at org.eclipse.cdt.utils.spawner.SpawnerInputStream.read0(Native Method)
+	at org.eclipse.cdt.utils.spawner.SpawnerInputStream.read(SpawnerInputStream.java:66)
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:273)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:334)
+	at java.io.FilterInputStream.read(FilterInputStream.java:107)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.read(OutputStreamMonitor.java:144)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.access$1(OutputStreamMonitor.java:134)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor$1.run(OutputStreamMonitor.java:207)
+	at java.lang.Thread.run(Thread.java:636)
+
+!ENTRY org.eclipse.debug.core 4 125 2011-09-12 02:02:36.512
+!MESSAGE Error logged from Debug Core: 
+!STACK 0
+java.io.IOException: read error
+	at org.eclipse.cdt.utils.spawner.SpawnerInputStream.read0(Native Method)
+	at org.eclipse.cdt.utils.spawner.SpawnerInputStream.read(SpawnerInputStream.java:66)
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:273)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:334)
+	at java.io.FilterInputStream.read(FilterInputStream.java:107)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.read(OutputStreamMonitor.java:144)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.access$1(OutputStreamMonitor.java:134)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor$1.run(OutputStreamMonitor.java:207)
+	at java.lang.Thread.run(Thread.java:636)
+
+!ENTRY org.eclipse.debug.core 4 125 2011-09-12 02:02:52.870
+!MESSAGE Error logged from Debug Core: 
+!STACK 0
+java.io.IOException: read error
+	at org.eclipse.cdt.utils.spawner.SpawnerInputStream.read0(Native Method)
+	at org.eclipse.cdt.utils.spawner.SpawnerInputStream.read(SpawnerInputStream.java:66)
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:273)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:334)
+	at java.io.FilterInputStream.read(FilterInputStream.java:107)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.read(OutputStreamMonitor.java:144)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.access$1(OutputStreamMonitor.java:134)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor$1.run(OutputStreamMonitor.java:207)
+	at java.lang.Thread.run(Thread.java:636)
+
+!ENTRY org.eclipse.debug.core 4 125 2011-09-12 02:03:10.924
+!MESSAGE Error logged from Debug Core: 
+!STACK 0
+java.io.IOException: read error
+	at org.eclipse.cdt.utils.spawner.SpawnerInputStream.read0(Native Method)
+	at org.eclipse.cdt.utils.spawner.SpawnerInputStream.read(SpawnerInputStream.java:66)
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:273)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:334)
+	at java.io.FilterInputStream.read(FilterInputStream.java:107)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.read(OutputStreamMonitor.java:144)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.access$1(OutputStreamMonitor.java:134)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor$1.run(OutputStreamMonitor.java:207)
+	at java.lang.Thread.run(Thread.java:636)
+
+!ENTRY org.eclipse.debug.core 4 125 2011-09-12 02:03:25.198
+!MESSAGE Error logged from Debug Core: 
+!STACK 0
+java.io.IOException: read error
+	at org.eclipse.cdt.utils.spawner.SpawnerInputStream.read0(Native Method)
+	at org.eclipse.cdt.utils.spawner.SpawnerInputStream.read(SpawnerInputStream.java:66)
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:273)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:334)
+	at java.io.FilterInputStream.read(FilterInputStream.java:107)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.read(OutputStreamMonitor.java:144)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.access$1(OutputStreamMonitor.java:134)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor$1.run(OutputStreamMonitor.java:207)
+	at java.lang.Thread.run(Thread.java:636)
+
+!ENTRY org.eclipse.debug.core 4 125 2011-09-12 02:03:47.338
+!MESSAGE Error logged from Debug Core: 
+!STACK 0
+java.io.IOException: read error
+	at org.eclipse.cdt.utils.spawner.SpawnerInputStream.read0(Native Method)
+	at org.eclipse.cdt.utils.spawner.SpawnerInputStream.read(SpawnerInputStream.java:66)
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:273)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:334)
+	at java.io.FilterInputStream.read(FilterInputStream.java:107)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.read(OutputStreamMonitor.java:144)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.access$1(OutputStreamMonitor.java:134)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor$1.run(OutputStreamMonitor.java:207)
+	at java.lang.Thread.run(Thread.java:636)
+
+!ENTRY org.eclipse.cdt.dsf 0 10005 2011-09-12 02:05:42.757
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.RequestMonitor@1f5c2e8): Status OK: org.eclipse.core.runtime code=0 OK null' resulted in a rejected execution exception.
+!SUBENTRY 1 org.eclipse.core.runtime 0 0 2011-09-12 02:05:42.757
+!MESSAGE OK
+
+!ENTRY org.eclipse.cdt.dsf 0 10005 2011-09-12 02:09:55.610
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.RequestMonitor@cf0b4d): Status OK: org.eclipse.core.runtime code=0 OK null' resulted in a rejected execution exception.
+!SUBENTRY 1 org.eclipse.core.runtime 0 0 2011-09-12 02:09:55.610
+!MESSAGE OK
+
+!ENTRY org.eclipse.debug.core 4 125 2011-09-12 02:12:27.103
+!MESSAGE Error logged from Debug Core: 
+!STACK 0
+java.io.IOException: read error
+	at org.eclipse.cdt.utils.spawner.SpawnerInputStream.read0(Native Method)
+	at org.eclipse.cdt.utils.spawner.SpawnerInputStream.read(SpawnerInputStream.java:66)
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:273)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:334)
+	at java.io.FilterInputStream.read(FilterInputStream.java:107)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.read(OutputStreamMonitor.java:144)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.access$1(OutputStreamMonitor.java:134)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor$1.run(OutputStreamMonitor.java:207)
+	at java.lang.Thread.run(Thread.java:636)
+
+!ENTRY org.eclipse.debug.core 4 125 2011-09-12 02:12:36.399
+!MESSAGE Error logged from Debug Core: 
+!STACK 0
+java.io.IOException: read error
+	at org.eclipse.cdt.utils.spawner.SpawnerInputStream.read0(Native Method)
+	at org.eclipse.cdt.utils.spawner.SpawnerInputStream.read(SpawnerInputStream.java:66)
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:273)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:334)
+	at java.io.FilterInputStream.read(FilterInputStream.java:107)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.read(OutputStreamMonitor.java:144)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.access$1(OutputStreamMonitor.java:134)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor$1.run(OutputStreamMonitor.java:207)
+	at java.lang.Thread.run(Thread.java:636)
+
+!ENTRY org.eclipse.cdt.dsf 0 10005 2011-09-12 02:13:12.990
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.RequestMonitor@1292def): Status OK: org.eclipse.core.runtime code=0 OK null' resulted in a rejected execution exception.
+!SUBENTRY 1 org.eclipse.core.runtime 0 0 2011-09-12 02:13:12.990
+!MESSAGE OK
+
+!ENTRY org.eclipse.cdt.dsf 0 10005 2011-09-12 02:14:22.668
+!MESSAGE Request for monitor: 'RequestMonitor (org.eclipse.cdt.dsf.concurrent.RequestMonitor@1fc1d97): Status OK: org.eclipse.core.runtime code=0 OK null' resulted in a rejected execution exception.
+!SUBENTRY 1 org.eclipse.core.runtime 0 0 2011-09-12 02:14:22.668
+!MESSAGE OK
+
+!ENTRY org.eclipse.debug.core 4 125 2011-09-12 02:14:56.071
+!MESSAGE Error logged from Debug Core: 
+!STACK 0
+java.io.IOException: read error
+	at org.eclipse.cdt.utils.spawner.SpawnerInputStream.read0(Native Method)
+	at org.eclipse.cdt.utils.spawner.SpawnerInputStream.read(SpawnerInputStream.java:66)
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:273)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:334)
+	at java.io.FilterInputStream.read(FilterInputStream.java:107)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.read(OutputStreamMonitor.java:144)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor.access$1(OutputStreamMonitor.java:134)
+	at org.eclipse.debug.internal.core.OutputStreamMonitor$1.run(OutputStreamMonitor.java:207)
+	at java.lang.Thread.run(Thread.java:636)

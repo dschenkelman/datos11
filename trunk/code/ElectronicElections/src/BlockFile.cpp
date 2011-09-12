@@ -9,18 +9,30 @@
 
 using namespace std;
 
-BlockFile::BlockFile(string fileName, int bSize, RecordComparer* comparer):blockSize(bSize)
+BlockFile::BlockFile(string& name, int bSize, RecordComparer* comparer, bool createNew):blockSize(bSize)
 {
+	this->fileName = name;
 	this->recordComparer = comparer;
 	this->currentBlock = new Block(this->blockSize, this->recordComparer);
-	this->dataFile.open(fileName.c_str(), ios::binary | ios::in | ios::out);
+	if (createNew)
+	{
+		this->dataFile.open(this->fileName.c_str(), ios::binary | ios::in | ios::out | ios::trunc);
+		char initialValue[512];
+		memset(initialValue, 0, 512);
+		this->dataFile.write(initialValue, 512);
+	}
+	else
+	{
+		this->dataFile.open(this->fileName.c_str(), ios::binary | ios::in | ios::out);
+	}
 }
 
-bool BlockFile::insertRecord(char* key, Record *record)
+bool BlockFile::insertRecord(char* key, char* recordBytes, int size)
 {
 	int blockNumber = 1;
 	int blockToInsert = -1;
 
+	this->positionAtBlock(0);
 	while(!this->dataFile.eof())
 	{
 		this->loadBlock(blockNumber);
@@ -30,7 +42,7 @@ bool BlockFile::insertRecord(char* key, Record *record)
 			return false;
 		}
 
-		if (this->currentBlock->canInsertRecord(record) && blockToInsert == -1)
+		if (this->currentBlock->canInsertRecord(size) && blockToInsert == -1)
 		{
 			// first available place to put record
 			blockToInsert = blockNumber;
@@ -50,8 +62,11 @@ bool BlockFile::insertRecord(char* key, Record *record)
 		this->currentBlock->clear();
 	}
 
+	Record* record = new Record();
+	record->setBytes(recordBytes, size);
 	this->currentBlock->insertRecord(record);
-			this->saveBlock();
+	this->saveBlock();
+	delete record;
 
 	return true;
 }
@@ -60,7 +75,7 @@ void BlockFile::positionAtBlock(int blockNumber)
 {
     long position = blockNumber * this->blockSize;
     this->dataFile.seekg(position, ios::beg);
-    this->dataFile.seekp(position, ios::end);
+    this->dataFile.seekp(position, ios::beg);
 }
 
 void BlockFile::loadBlock(int blockNumber)

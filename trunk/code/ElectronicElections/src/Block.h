@@ -45,7 +45,7 @@ public:
 	void updateInformation();
 	bool findRecord(char* key);
 	void clear();
-	bool canInsertRecord(Record* rec);
+	bool canInsertRecord(int size);
 	void insertRecord(Record* rec);
 	virtual ~Block();
     void forceInsert(Record *rec);

@@ -16,14 +16,15 @@
 
 class BlockFile
 {
+	std::string fileName;
     RecordComparer *recordComparer;
     std::fstream dataFile;
     long blockSize;
     Block *currentBlock;
     void positionAtBlock(int blockNumber);
 public:
-    BlockFile(std::string fileName, int bSize, RecordComparer *comparer);
-    bool insertRecord(char *key, Record *record);
+    BlockFile(std::string& fileName, int bSize, RecordComparer *comparer, bool createNew);
+    bool insertRecord(char *key, char* recordBytes, int size);
     void loadBlock(int blockNumber);
     void saveBlock();
 	virtual ~BlockFile();

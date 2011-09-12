@@ -138,7 +138,7 @@ void Block::forceInsert(Record *rec)
 
 void Block::insertRecord(Record *rec)
 {
-	if (!this->canInsertRecord(rec))
+	if (!this->canInsertRecord(rec->getSize()))
 	{
 		throw std::exception();
 	}
@@ -146,9 +146,9 @@ void Block::insertRecord(Record *rec)
     this->forceInsert(rec);
 }
 
-bool Block::canInsertRecord(Record *rec)
+bool Block::canInsertRecord(int size)
 {
-	return this->freeSpace >= rec->getSize();
+	return this->freeSpace >= size;
 }
 
 void Block::copyBlock(const Block & other)

@@ -81,21 +81,44 @@ bool Block::hasNextRecord()
 	return this->position == this->getOccupiedSize();
 }
 
-Record Block::getNextRecord()
+Record* Block::getNextRecord(Record* r)
 {
 	if (!this->hasNextRecord())
 	{
-		throw std::exception();
+		return NULL;
 	}
 
-	Record r;
 	int recordSize;
 	memcpy(&recordSize, this->bytes + this->position, 4);
 	this->position += 4;
-	r.setBytes(this->bytes + this->position, recordSize);
+	r->setBytes(this->bytes + this->position, recordSize);
 	this->position += recordSize;
 
 	return r;
+}
+
+bool Block::findRecord(char* key)
+{
+	this->position = 4;
+	Record* record = new Record();
+	while(this->getNextRecord(record) != NULL)
+	{
+		if (this->recordComparer->compare(key, record->getBytes()) == 0)
+		{
+			delete record;
+			return true;
+		}
+	}
+
+	delete record;
+	return false;
+}
+
+void Block::clear()
+{
+	memset(this->bytes, 0, this->maxSize);
+	this->position = 4;
+	this->freeSpace = this->maxSize;
 }
 
 void Block::forceInsert(Record *rec)
@@ -120,7 +143,6 @@ void Block::insertRecord(Record *rec)
 		throw std::exception();
 	}
 
-	//TODO: Check that the record is unique
     this->forceInsert(rec);
 }
 

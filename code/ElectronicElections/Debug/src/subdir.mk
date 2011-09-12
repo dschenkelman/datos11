@@ -6,18 +6,21 @@
 CPP_SRCS += \
 ../src/Block.cpp \
 ../src/BlockFile.cpp \
+../src/CustomerComparer.cpp \
 ../src/ElectronicElections.cpp \
 ../src/Record.cpp 
 
 OBJS += \
 ./src/Block.o \
 ./src/BlockFile.o \
+./src/CustomerComparer.o \
 ./src/ElectronicElections.o \
 ./src/Record.o 
 
 CPP_DEPS += \
 ./src/Block.d \
 ./src/BlockFile.d \
+./src/CustomerComparer.d \
 ./src/ElectronicElections.d \
 ./src/Record.d 
 

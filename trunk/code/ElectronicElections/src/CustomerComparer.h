@@ -20,6 +20,7 @@ class CustomerComparer
 public:
     CustomerComparer(int compType);
     int compare(Customer c1, Customer c2);
+    void comparingBy(int type); //set
 };
 
 #endif /* CUSTOMERCOMPARER_H_ */

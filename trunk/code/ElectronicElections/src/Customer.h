@@ -8,20 +8,17 @@
 #ifndef CUSTOMER_H_
 #define CUSTOMER_H_
 
-#include "CustomerComparer.h"
-
 class Customer
 {
-	CustomerComparer *customerComparer;
     char* fName;
     char* lName;
-    long balance;
+    long bal;
 
 public:
-    Customer(char* firstName, char* lastName, CustomerComparer *comparer);
+    Customer(char* firstName, char* lastName);
     char* firstName();
     char* lastName();
-    int compare(Customer c1, Customer c2);
+    long balance();
 };
 
 #endif /* CUSTOMER_H_ */

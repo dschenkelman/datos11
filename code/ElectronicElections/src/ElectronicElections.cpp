@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <stdlib.h>
+#include <string>
 #include "Customer.h"
 #include "Blocks/BlockFile.h"
 #include "CustomerMethods.h"
@@ -59,6 +60,7 @@ int main()
 	testInsertion(firstNames, lastNames, file);
 
 	// replace name of one customer
+	// testUpdate(file);
 
 	delete file;
 

@@ -112,7 +112,7 @@ int Block::findRecord(char* key, Record* rec)
 		}
 		delete record;
 		record = new Record();
-		int foundPosition = this->position;
+		foundPosition = this->position;
 	}
 
 	delete record;
@@ -142,19 +142,24 @@ void Block::printContent()
 
 bool Block::updateRecord(char* key, Record* rec)
 {
-	Record* r;
+	Record* r = NULL;
 	int startPosition = this->findRecord(key, r);
 
-	if (r < 0)
+	if (startPosition < 0)
 	{
-		delete r;
+		if (r != NULL)
+		{
+			delete r;
+		}
 		return false;
 	}
 
 	int sizeDifference = rec->getSize() - r->getSize();
+	int occupiedSpace = this->getOccupiedSize();
 
 	if (this->canInsertRecord(sizeDifference))
 	{
+		occupiedSpace += sizeDifference;
 		// there is enough space to perform the update
 		// in the current block
 		int bufferSize = this->maxSize - this->position;
@@ -164,20 +169,30 @@ bool Block::updateRecord(char* key, Record* rec)
 		memcpy(buffer, this->bytes + this->position, bufferSize);
 
 		// update record
-		memcpy(this->bytes + position, rec->getBytes(), rec->getSize());
+		memcpy(this->bytes + startPosition, rec->getBytes(), rec->getSize());
 
 		// add
-		memcpy(this->bytes + position + rec->getSize(), buffer, bufferSize);
+		memcpy(this->bytes + startPosition + rec->getSize(), buffer, bufferSize);
+
+		// update block size
+		memcpy(this->bytes, &occupiedSpace, 4);
+
 		delete[] buffer;
 	}
 	else
 	{
 		// move to another block
-		delete r;
+		if (r != NULL)
+		{
+			delete r;
+		}
 		return false;
 	}
 
-	delete r;
+	if (r != NULL)
+	{
+		delete r;
+	}
 	return true;
 }
 

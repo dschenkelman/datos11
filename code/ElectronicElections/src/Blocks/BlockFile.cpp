@@ -93,6 +93,30 @@ bool BlockFile::insertRecord(char* key, char* recordBytes, int size)
 	return result;
 }
 
+bool BlockFile::updateRecord(char *key, char *recordBytes, int size)
+{
+	int blockNumber = 1;
+
+	this->positionAtBlock(0);
+	Record* r = new Record();
+	r->setBytes(recordBytes, size);
+
+	while(!this->isAtEOF())
+	{
+		this->loadBlock(blockNumber);
+
+		if (this->currentBlock->updateRecord(key, r))
+		{
+			delete r;
+			this->saveBlock();
+			return true;
+		}
+	}
+
+	delete r;
+	return false;
+}
+
 void BlockFile::positionAtBlock(int blockNumber)
 {
     long position = blockNumber * this->blockSize;

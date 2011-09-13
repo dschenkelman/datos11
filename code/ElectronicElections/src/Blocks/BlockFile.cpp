@@ -48,9 +48,20 @@ bool BlockFile::insertRecord(char* key, char* recordBytes, int size)
 	{
 		this->loadBlock(blockNumber);
 		this->currentBlock->updateInformation();
-		if (this->currentBlock->findRecord(key))
+		Record* r = NULL;
+		if (this->currentBlock->findRecord(key, r) >= 0)
 		{
+			if (r != NULL)
+			{
+				delete r;
+			}
+
 			return false;
+		}
+
+		if (r != NULL)
+		{
+			delete r;
 		}
 
 		if (this->currentBlock->canInsertRecord(size) && blockToInsert == -1)
@@ -75,11 +86,11 @@ bool BlockFile::insertRecord(char* key, char* recordBytes, int size)
 
 	Record* record = new Record();
 	record->setBytes(recordBytes, size);
-	this->currentBlock->insertRecord(record);
+	bool result = this->currentBlock->insertRecord(record);
 	this->saveBlock();
 	delete record;
 
-	return true;
+	return result;
 }
 
 void BlockFile::positionAtBlock(int blockNumber)

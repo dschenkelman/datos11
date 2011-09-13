@@ -9,14 +9,14 @@
 #define BLOCK_H_
 
 #include "Record.h"
-#include "RecordComparer.h"
+#include "RecordMethods.h"
 
 // represents a block. format:
 // BLOCK(contentSize(4 bytes), (registerSize(4 bytes), registerContent)*)
 class Block {
 	// -------------------FIELDS-------------------
 	// object used to compare records
-	RecordComparer* recordComparer;
+	RecordMethods* recordMethods;
 	// max size of the block [bytes]
 	int maxSize;
 	// occupied size of the block [bytes]
@@ -34,7 +34,7 @@ class Block {
     Record* getNextRecord(Record* r);
     inline int getOccupiedSize();
 public:
-	Block(int size, RecordComparer* comparer);
+	Block(int size, RecordMethods* methods);
 	Block(Block& other);
 	Block& operator=(const Block& other);
 	char* getBytes();
@@ -47,6 +47,7 @@ public:
 	void clear();
 	bool canInsertRecord(int size);
 	void insertRecord(Record* rec);
+	void printContent();
 	virtual ~Block();
     void forceInsert(Record *rec);
 };

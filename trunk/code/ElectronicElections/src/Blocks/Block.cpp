@@ -9,12 +9,12 @@
 #include <string.h>
 #include <exception>
 
-Block::Block(int size, RecordComparer* comparer) : maxSize(size), position(4)
+Block::Block(int size, RecordMethods* methods) : maxSize(size), position(4)
 {
 	this->bytes = new char[this->maxSize];
 	memset(this->bytes, 0, this->maxSize);
 	this->freeSpace = this->maxSize;
-	this->recordComparer = comparer;
+	this->recordMethods = methods;
 }
 
 Block& Block::operator =(const Block & other)
@@ -103,12 +103,14 @@ bool Block::findRecord(char* key)
 	Record* record = new Record();
 	while(this->getNextRecord(record) != NULL)
 	{
-		if (this->recordComparer->compare(key,
+		if (this->recordMethods->compare(key,
 				record->getBytes(), record->getSize()) == 0)
 		{
 			delete record;
 			return true;
 		}
+		delete record;
+		record = new Record();
 	}
 
 	delete record;
@@ -120,6 +122,20 @@ void Block::clear()
 	memset(this->bytes, 0, this->maxSize);
 	this->position = 4;
 	this->freeSpace = this->maxSize;
+}
+
+void Block::printContent()
+{
+	this->position = 4;
+	Record* record = new Record();
+	while(this->getNextRecord(record) != NULL)
+	{
+		this->recordMethods->print(record->getBytes(), record->getSize());
+		delete record;
+		record = new Record();
+	}
+
+	delete record;
 }
 
 void Block::forceInsert(Record *rec)
@@ -168,7 +184,7 @@ void Block::copyBlock(const Block & other)
     this->bytes = new char[this->maxSize];
     memset(this->bytes, 0, this->maxSize);
     memcpy(this->bytes, other.bytes, this->maxSize);
-    this->recordComparer = other.recordComparer;
+    this->recordMethods = other.recordMethods;
 }
 
 Block::~Block()

@@ -1,26 +1,24 @@
 /*
  * CustomerComparer.h
  *
- *  Created on: 12/09/2011
- *      Author: gabriel
+ *  Created on: Sep 12, 2011
+ *      Author: damian
  */
 
 #ifndef CUSTOMERCOMPARER_H_
 #define CUSTOMERCOMPARER_H_
 
+#include "Blocks/RecordComparer.h"
 #include "Customer.h"
-#define FIRSTNAME_TYPE 1
-#define LASTNAME_TYPE 2
-#define BALANCE_TYPE 3
 
-class CustomerComparer
+class CustomerComparer: public RecordComparer
 {
-	int compareType;
-
+private:
+    Customer* getCustomerFromRecord(const char *recordBytes, int recordSize);
 public:
-    CustomerComparer(int compType);
-    int compare(Customer c1, Customer c2);
-    void comparingBy(int type); //set
+	CustomerComparer();
+	virtual int compare(const char* key, const char* recordBytes, int recordSize);
+	virtual ~CustomerComparer();
 };
 
 #endif /* CUSTOMERCOMPARER_H_ */

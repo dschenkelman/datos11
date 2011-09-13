@@ -9,11 +9,11 @@
 
 using namespace std;
 
-BlockFile::BlockFile(string& name, int bSize, RecordComparer* comparer, bool createNew):blockSize(bSize)
+BlockFile::BlockFile(string& name, int bSize, RecordMethods* methods, bool createNew):blockSize(bSize)
 {
 	this->fileName = name;
-	this->recordComparer = comparer;
-	this->currentBlock = new Block(this->blockSize, this->recordComparer);
+	this->recordMethods = methods;
+	this->currentBlock = new Block(this->blockSize, this->recordMethods);
 	if (createNew)
 	{
 		this->dataFile.open(this->fileName.c_str(), ios::binary | ios::in | ios::out | ios::trunc);
@@ -24,6 +24,17 @@ BlockFile::BlockFile(string& name, int bSize, RecordComparer* comparer, bool cre
 	else
 	{
 		this->dataFile.open(this->fileName.c_str(), ios::binary | ios::in | ios::out);
+	}
+}
+void BlockFile::printContent()
+{
+	int blockNumber = 1;
+	this->positionAtBlock(0);
+	while(!this->isAtEOF())
+	{
+		this->loadBlock(blockNumber);
+		this->currentBlock->printContent();
+		blockNumber++;
 	}
 }
 
@@ -112,5 +123,5 @@ void BlockFile::saveBlock()
 BlockFile::~BlockFile() {
 	this->dataFile.close();
 	delete this->currentBlock;
-	delete this->recordComparer;
+	delete this->recordMethods;
 }

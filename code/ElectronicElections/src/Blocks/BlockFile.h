@@ -9,7 +9,7 @@
 #define BLOCKFILE_H_
 
 #include "Block.h"
-#include "RecordComparer.h"
+#include "RecordMethods.h"
 #include "Record.h"
 #include <string.h>
 #include <fstream>
@@ -17,14 +17,15 @@
 class BlockFile
 {
 	std::string fileName;
-    RecordComparer *recordComparer;
+	RecordMethods *recordMethods;
     std::fstream dataFile;
     long blockSize;
     Block *currentBlock;
     void positionAtBlock(int blockNumber);
     bool isAtEOF();
 public:
-    BlockFile(std::string& fileName, int bSize, RecordComparer *comparer, bool createNew);
+    BlockFile(std::string& fileName, int bSize, RecordMethods *methods, bool createNew);
+    void printContent();
     bool insertRecord(char *key, char* recordBytes, int size);
     void loadBlock(int blockNumber);
     void saveBlock();

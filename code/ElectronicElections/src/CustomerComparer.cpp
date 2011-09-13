@@ -33,3 +33,7 @@ int CustomerComparer::compare(Customer c1, Customer c2)
 	}
 }
 
+void CustomerComparer::comparing(int type)
+{
+	this->compareType = type;
+}

@@ -9,13 +9,11 @@
 
 using namespace std;
 
-Customer::Customer(char* firstName, char* lastName, customerComparer *comparer)
+Customer::Customer(char* firstName, char* lastName, long balance)
 {
 	strncpy(this->fName, firstName, strlen(firstName) );
 	strncpy(this->lName, lastName, strlen(lastName) );
-	//What comparer is for?
-	//ToImplement
-	this->customerComparer = comparer;
+	this->bal = balance;
 }
 
 char* Customer::firstName()
@@ -28,10 +26,9 @@ char* Customer::lastName()
 	return this->lName;
 }
 
-int Customer::compare(Customer c1, Customer c2)
+long Customer::balance()
 {
-	//Comparing by fName, lName or balance
-	return this->customerComparer->compare(c1, c2); //To compare by 'comparingType'
+	return this->bal;
 }
 
 

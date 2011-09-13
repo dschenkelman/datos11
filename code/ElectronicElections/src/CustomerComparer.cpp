@@ -1,39 +1,60 @@
 /*
  * CustomerComparer.cpp
  *
- *  Created on: 12/09/2011
- *      Author: gabriel
+ *  Created on: Sep 12, 2011
+ *      Author: damian
  */
 
 #include "CustomerComparer.h"
+#include "Customer.h"
+#include <string.h>
 
-CustomerComparer::CustomerComparer(int compType)
+CustomerComparer::CustomerComparer()
 {
-	this->compareType = compType;
 }
 
-int CustomerComparer::compare(Customer c1, Customer c2)
+Customer* CustomerComparer::getCustomerFromRecord(const char *recordBytes, int recordSize)
 {
-	switch(this->compareType)
-	{
-		case FIRSTNAME_TYPE:
-		{
-			return ( strcmp(c1.firstName(), c2.firstName() ));
-		}
-		case LASTNAME_TYPE:
-		{
-			return ( strcmp(c1.lastName(), c2.lastName() ));
-		}
-		case BALANCE_TYPE:
-		{
-			if (c1.balance()< c2.balance() ) return -1;
-			else if(c1.balance() == c2.balance() ) return 0; //Same balance
-			else return 1;
-		}
-	}
+    int position = 0;
+    Customer* c = new Customer;
+    int fieldSize;
+    memcpy(&fieldSize, recordBytes + position, 4);
+    position += 4;
+    c->firstName = new char[fieldSize];
+    memcpy(c->firstName, recordBytes + position, fieldSize);
+    position += fieldSize;
+    memcpy(&fieldSize, recordBytes + position, 4);
+    position += 4;
+    c->lastName = new char[fieldSize];
+    memcpy(c->lastName, recordBytes + position, fieldSize);
+    position += fieldSize;
+    memcpy(&fieldSize, recordBytes + position, 4);
+    position += 4;
+    memcpy(&c->balance, recordBytes + position, fieldSize);
+    position += fieldSize;
+
+    return c;
 }
 
-void CustomerComparer::comparing(int type)
+int CustomerComparer::compare(const char* key, const char* recordBytes, int recordSize)
 {
-	this->compareType = type;
+    Customer* c = this->getCustomerFromRecord(recordBytes, recordSize);
+
+    int l1 = strlen(c->firstName);
+    int l2 = strlen(c->lastName);
+    char* recordKey = new char[l1 + l2 - 1];
+    strcat(recordKey, c->firstName);
+    strcat(recordKey, c->lastName);
+    int cmpResult = strcmp(key, recordKey);
+
+    delete[] recordKey;
+    delete[] c->firstName;
+    delete[] c->lastName;
+    delete c;
+
+    return cmpResult;
+}
+
+CustomerComparer::~CustomerComparer()
+{
 }

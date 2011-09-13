@@ -1,24 +1,18 @@
 /*
  * Customer.h
  *
- *  Created on: 12/09/2011
- *      Author: gabriel
+ *  Created on: Sep 12, 2011
+ *      Author: damian
  */
 
 #ifndef CUSTOMER_H_
 #define CUSTOMER_H_
 
-class Customer
+struct Customer
 {
-    char* fName;
-    char* lName;
-    long bal;
-
-public:
-    Customer(char* firstName, char* lastName);
-    char* firstName();
-    char* lastName();
-    long balance();
+	char* firstName;
+	char* lastName;
+	long balance;
 };
 
 #endif /* CUSTOMER_H_ */

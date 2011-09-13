@@ -97,24 +97,26 @@ Record* Block::getNextRecord(Record* r)
 	return r;
 }
 
-bool Block::findRecord(char* key)
+int Block::findRecord(char* key, Record* rec)
 {
 	this->position = 4;
 	Record* record = new Record();
+	int foundPosition = this->position;
 	while(this->getNextRecord(record) != NULL)
 	{
 		if (this->recordMethods->compare(key,
 				record->getBytes(), record->getSize()) == 0)
 		{
-			delete record;
-			return true;
+			rec = record;
+			return foundPosition;
 		}
 		delete record;
 		record = new Record();
+		int foundPosition = this->position;
 	}
 
 	delete record;
-	return false;
+	return -1;
 }
 
 void Block::clear()
@@ -136,6 +138,47 @@ void Block::printContent()
 	}
 
 	delete record;
+}
+
+bool Block::updateRecord(char* key, Record* rec)
+{
+	Record* r;
+	int startPosition = this->findRecord(key, r);
+
+	if (r < 0)
+	{
+		delete r;
+		return false;
+	}
+
+	int sizeDifference = rec->getSize() - r->getSize();
+
+	if (this->canInsertRecord(sizeDifference))
+	{
+		// there is enough space to perform the update
+		// in the current block
+		int bufferSize = this->maxSize - this->position;
+		char* buffer = new char[bufferSize];
+
+		// copy bytes that are after record
+		memcpy(buffer, this->bytes + this->position, bufferSize);
+
+		// update record
+		memcpy(this->bytes + position, rec->getBytes(), rec->getSize());
+
+		// add
+		memcpy(this->bytes + position + rec->getSize(), buffer, bufferSize);
+		delete[] buffer;
+	}
+	else
+	{
+		// move to another block
+		delete r;
+		return false;
+	}
+
+	delete r;
+	return true;
 }
 
 void Block::forceInsert(Record *rec)
@@ -160,14 +203,15 @@ void Block::forceInsert(Record *rec)
     memcpy(this->bytes, &occupiedSpace, 4);
 }
 
-void Block::insertRecord(Record *rec)
+bool Block::insertRecord(Record *rec)
 {
 	if (!this->canInsertRecord(rec->getSize()))
 	{
-		throw std::exception();
+		return false;
 	}
 
     this->forceInsert(rec);
+    return true;
 }
 
 bool Block::canInsertRecord(int size)

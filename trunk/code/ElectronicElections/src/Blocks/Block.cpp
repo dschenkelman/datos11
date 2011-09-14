@@ -172,10 +172,10 @@ bool Block::updateRecord(const char* key, Record* rec)
 		// update record
 		int recordSize = rec->getSize();
 		memcpy(this->bytes + startPosition, &recordSize, 4);
-		memcpy(this->bytes + startPosition + 4, rec->getBytes(), rec->getSize());
+		memcpy(this->bytes + (startPosition + 4), rec->getBytes(), recordSize);
 
 		// add
-		memcpy(this->bytes + startPosition + rec->getSize(), buffer, bufferSize);
+		memcpy(this->bytes + (startPosition + 4 + recordSize), buffer, bufferSize);
 
 		// update block size
 		memcpy(this->bytes, &occupiedSpace, 4);

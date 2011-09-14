@@ -134,6 +134,7 @@ int main()
 	testRemove(firstNames, lastNames, removeFile);
 
 	delete file;
+	delete removeFile;
 
 	return 0;
 }

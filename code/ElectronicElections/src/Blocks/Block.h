@@ -49,6 +49,7 @@ public:
 	bool insertRecord(Record* rec);
 	bool updateRecord(const char* key, Record* rec);
 	void printContent();
+	bool removeRecord(const char* key);
 	virtual ~Block();
     void forceInsert(Record *rec);
 };

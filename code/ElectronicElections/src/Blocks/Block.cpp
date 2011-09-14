@@ -249,6 +249,51 @@ void Block::copyBlock(const Block & other)
     this->recordMethods = other.recordMethods;
 }
 
+bool Block::removeRecord(const char* key)
+{
+	Record* r = NULL;
+	int startPosition = this->findRecord(key, &r);
+
+	if (startPosition < 0)
+	{
+		if (r != NULL)
+		{
+			delete r;
+		}
+		return false;
+	}
+
+	int recordSize = this->position - startPosition;
+	int occupiedSpace = this->getOccupiedSize();
+	occupiedSpace -= recordSize;
+
+	// there is enough space to perform the update
+	// in the current block
+	int bufferSize = this->maxSize - this->position;
+	char* buffer = new char[bufferSize];
+	memset(buffer, 0, bufferSize);
+
+	// copy bytes that are after record
+	memcpy(buffer, this->bytes + this->position, bufferSize);
+
+	// free space of record from end
+	memset(this->bytes + this->position, 0, bufferSize);
+
+	// remove record
+	memcpy(this->bytes + startPosition, buffer, bufferSize);
+
+	// update block size
+	memcpy(this->bytes, &occupiedSpace, 4);
+
+	this->updateInformation();
+	delete[] buffer;
+	if (r != NULL)
+	{
+		delete r;
+	}
+	return true;
+}
+
 Block::~Block()
 {
 	delete[] this->bytes;

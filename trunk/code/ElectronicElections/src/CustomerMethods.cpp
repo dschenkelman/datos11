@@ -9,6 +9,7 @@
 #include "Customer.h"
 #include <string.h>
 #include <iostream>
+#include "Blocks/Constants.h"
 
 using namespace std;
 
@@ -21,18 +22,18 @@ Customer* CustomerMethods::getCustomerFromRecord(const char *recordBytes, int re
     int position = 0;
     Customer* c = new Customer;
     int fieldSize;
-    memcpy(&fieldSize, recordBytes + position, 4);
-    position += 4;
+    memcpy(&fieldSize, recordBytes + position, Constants::FIELD_HEADER_SIZE);
+    position += Constants::FIELD_HEADER_SIZE;
     c->firstName = new char[fieldSize];
     memcpy(c->firstName, recordBytes + position, fieldSize);
     position += fieldSize;
-    memcpy(&fieldSize, recordBytes + position, 4);
-    position += 4;
+    memcpy(&fieldSize, recordBytes + position, Constants::FIELD_HEADER_SIZE);
+    position += Constants::FIELD_HEADER_SIZE;
     c->lastName = new char[fieldSize];
     memcpy(c->lastName, recordBytes + position, fieldSize);
     position += fieldSize;
-    memcpy(&fieldSize, recordBytes + position, 4);
-    position += 4;
+    memcpy(&fieldSize, recordBytes + position, Constants::FIELD_HEADER_SIZE);
+    position += Constants::FIELD_HEADER_SIZE;
     memcpy(&c->balance, recordBytes + position, fieldSize);
     position += fieldSize;
 

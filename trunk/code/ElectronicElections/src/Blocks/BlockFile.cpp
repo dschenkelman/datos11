@@ -17,9 +17,9 @@ BlockFile::BlockFile(string& name, int bSize, RecordMethods* methods, bool creat
 	if (createNew)
 	{
 		this->dataFile.open(this->fileName.c_str(), ios::binary | ios::in | ios::out | ios::trunc);
-		char initialValue[512];
-		memset(initialValue, 0, 512);
-		this->dataFile.write(initialValue, 512);
+		char initialValue[bSize];
+		memset(initialValue, 0, bSize);
+		this->dataFile.write(initialValue, bSize);
 	}
 	else
 	{
@@ -38,7 +38,8 @@ void BlockFile::printContent()
 	}
 }
 
-bool BlockFile::insertRecord(const char* key, const char* recordBytes, int size)
+bool BlockFile::internalInsertRecord(const char* key,
+		const char* recordBytes, int size, bool force)
 {
 	int blockNumber = 1;
 	int blockToInsert = -1;
@@ -47,20 +48,23 @@ bool BlockFile::insertRecord(const char* key, const char* recordBytes, int size)
 	while(!this->isAtEOF())
 	{
 		this->loadBlock(blockNumber);
-		Record* r = NULL;
-		if (this->currentBlock->findRecord(key, &r) >= 0)
+		if(!force)
 		{
+			Record* r = NULL;
+			if (this->currentBlock->findRecord(key, &r) >= 0)
+			{
+				if (r != NULL)
+				{
+					delete r;
+				}
+
+				return false;
+			}
+
 			if (r != NULL)
 			{
 				delete r;
 			}
-
-			return false;
-		}
-
-		if (r != NULL)
-		{
-			delete r;
 		}
 
 		if (this->currentBlock->canInsertRecord(size) && blockToInsert == -1)
@@ -92,6 +96,11 @@ bool BlockFile::insertRecord(const char* key, const char* recordBytes, int size)
 	return result;
 }
 
+bool BlockFile::insertRecord(const char* key, const char* recordBytes, int size)
+{
+	return this->internalInsertRecord(key, recordBytes, size, false);
+}
+
 bool BlockFile::updateRecord(const char *key, const char *recordBytes, int size)
 {
 	int blockNumber = 1;
@@ -113,7 +122,7 @@ bool BlockFile::updateRecord(const char *key, const char *recordBytes, int size)
 				break;
 			case INSUFFICIENT_SPACE:
 				// deleted from block, should insert in another block
-
+				this->internalInsertRecord(key, recordBytes, size, true);
 			case NOT_FOUND:
 			default:
 				break;

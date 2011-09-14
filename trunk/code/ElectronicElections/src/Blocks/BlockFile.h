@@ -28,6 +28,7 @@ public:
     void printContent();
     bool insertRecord(const char *key, const char* recordBytes, int size);
     bool updateRecord(const char *key, const char* recordBytes, int size);
+    bool removeRecord(const char *key);
     void loadBlock(int blockNumber);
     void saveBlock();
 	virtual ~BlockFile();

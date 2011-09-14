@@ -118,6 +118,37 @@ bool BlockFile::updateRecord(const char *key, const char *recordBytes, int size)
 	return false;
 }
 
+bool BlockFile::removeRecord(const char* key)
+{
+	int blockNumber = 1;
+	bool keyfound = false;
+
+	this->positionAtBlock(0);
+	while(!this->isAtEOF())
+	{
+		this->loadBlock(blockNumber);
+		Record* r = NULL;
+		if (this->currentBlock->findRecord(key, &r) == 0)
+		{
+			delete r;
+			keyfound = true;
+			break;
+		}
+		if (r != NULL)
+		{
+			delete r;
+		}
+		blockNumber++;
+	}
+	if(keyfound)
+	{
+		bool result = this->currentBlock->removeRecord(key);
+		this->saveBlock();
+		return result;
+	}
+	return false;
+}
+
 void BlockFile::positionAtBlock(int blockNumber)
 {
     long position = blockNumber * this->blockSize;

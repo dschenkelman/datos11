@@ -71,6 +71,47 @@ void testUpdate(BlockFile*& file)
 	file->printContent();
 }
 
+void testRemove(char firstNames[5][5], char lastNames[5][10], BlockFile*& file)
+{
+	for(long i = 0;i < 5;++i){
+		Customer c;
+		c.firstName = firstNames[i];
+		c.lastName = lastNames[i];
+		c.balance = i;
+		int l1 = strlen(c.firstName) + 1;
+		int l2 = strlen(c.lastName) + 1;
+		int size = l1 + l2 + sizeof (long ) + (4 * 3);
+		char *recordKey = new char[l1 + l2 - 1];
+		memset(recordKey, 0, l1 + l2 - 1);
+		strcat(recordKey, c.firstName);
+		strcat(recordKey, c.lastName);
+		char *recordBytes = new char[size];
+		memset(recordBytes, 0, size);
+		memcpy(recordBytes, &l1, 4);
+		memcpy(recordBytes + 4, c.firstName, l1);
+		memcpy(recordBytes + 4 + l1, &l2, 4);
+		memcpy(recordBytes + (8 + l1), c.lastName, l2);
+		int balanceSize = sizeof (long );
+		memcpy(recordBytes + (8 + l1 + l2), &balanceSize, 4);
+		memcpy(recordBytes + (12 + l1 + l2), &c.balance, sizeof (long ));
+		file->insertRecord(recordKey, recordBytes, size);
+		delete [] recordBytes;
+		delete [] recordKey;
+	}
+
+	string key = "JohnConnor";
+	long balance = 0;
+	string firstName = "John";
+	int l1 = 5;
+	string lastName = "Connor";
+	int l2 = 7;
+	if(!file->removeRecord(key.c_str()) )
+		{
+		file->printContent();
+		}
+}
+
+
 int main()
 {
 	srand (time(NULL));
@@ -84,8 +125,13 @@ int main()
 	// 25 customers should be printed
 	testInsertion(firstNames, lastNames, file);
 
-	// John Connor => John Copperfield 5000
+	// replace name of one customer
 	testUpdate(file);
+
+	//remove name of John Connor
+	string fileremoving = "removeTest";
+	BlockFile* removeFile = new BlockFile(fileremoving, 512, new CustomerMethods, true);
+	testRemove(firstNames, lastNames, removeFile);
 
 	delete file;
 

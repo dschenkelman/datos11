@@ -11,6 +11,8 @@
 #include "Record.h"
 #include "RecordMethods.h"
 
+enum UpdateResult { NOT_FOUND, UPDATED, INSUFFICIENT_SPACE };
+
 // represents a block. format:
 // BLOCK(contentSize(4 bytes), (registerSize(4 bytes), registerContent)*)
 class Block {
@@ -47,7 +49,7 @@ public:
 	void clear();
 	bool canInsertRecord(int size);
 	bool insertRecord(Record* rec);
-	bool updateRecord(const char* key, Record* rec);
+	UpdateResult updateRecord(const char* key, Record* rec);
 	void printContent();
 	bool removeRecord(const char* key);
 	virtual ~Block();

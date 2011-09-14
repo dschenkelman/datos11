@@ -104,11 +104,19 @@ bool BlockFile::updateRecord(const char *key, const char *recordBytes, int size)
 	{
 		this->loadBlock(blockNumber);
 
-		if (this->currentBlock->updateRecord(key, r))
-		{
-			delete r;
-			this->saveBlock();
-			return true;
+		UpdateResult result = this->currentBlock->updateRecord(key, r);
+		switch (result) {
+			case UPDATED:
+				delete r;
+				this->saveBlock();
+				return true;
+				break;
+			case INSUFFICIENT_SPACE:
+				// deleted from block, should insert in another block
+
+			case NOT_FOUND:
+			default:
+				break;
 		}
 
 		blockNumber++;

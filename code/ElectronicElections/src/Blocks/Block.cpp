@@ -8,8 +8,10 @@
 #include "Block.h"
 #include <string.h>
 #include <exception>
+#include "Constants.h"
 
-Block::Block(int size, RecordMethods* methods) : maxSize(size), position(4)
+Block::Block(int size, RecordMethods* methods) : maxSize(size),
+position(Constants::BLOCK_HEADER_SIZE)
 {
 	this->bytes = new char[this->maxSize];
 	memset(this->bytes, 0, this->maxSize);
@@ -47,19 +49,19 @@ int Block::getRecordCount()
 void Block::updateInformation()
 {
 	int occupiedSize;
-	memcpy(&occupiedSize, this->bytes, 4);
+	memcpy(&occupiedSize, this->bytes, Constants::BLOCK_HEADER_SIZE);
 	this->freeSpace = this->maxSize - occupiedSize;
 
     // first four bytes in each record represent record size
 
 	// ignore the first four bytes
-	int sum = 4;
+	int sum = Constants::BLOCK_HEADER_SIZE;
 	int records = 0;
 	while(sum < occupiedSize)
 	{
 		int recordSize;
-		memcpy(&recordSize, this->bytes + sum, 4);
-		sum += (recordSize + 4);
+		memcpy(&recordSize, this->bytes + sum, Constants::RECORD_HEADER_SIZE);
+		sum += (recordSize + Constants::RECORD_HEADER_SIZE);
 		records++;
 	}
 
@@ -89,8 +91,8 @@ Record* Block::getNextRecord(Record* r)
 	}
 
 	int recordSize;
-	memcpy(&recordSize, this->bytes + this->position, 4);
-	this->position += 4;
+	memcpy(&recordSize, this->bytes + this->position, Constants::RECORD_HEADER_SIZE);
+	this->position += Constants::RECORD_HEADER_SIZE;
 	r->setBytes(this->bytes + this->position, recordSize);
 	this->position += recordSize;
 
@@ -99,7 +101,7 @@ Record* Block::getNextRecord(Record* r)
 
 int Block::findRecord(const char* key, Record** rec)
 {
-	this->position = 4;
+	this->position = Constants::BLOCK_HEADER_SIZE;
 	Record* record = new Record();
 	int foundPosition = this->position;
 	while(this->getNextRecord(record) != NULL)
@@ -122,13 +124,13 @@ int Block::findRecord(const char* key, Record** rec)
 void Block::clear()
 {
 	memset(this->bytes, 0, this->maxSize);
-	this->position = 4;
+	this->position = Constants::BLOCK_HEADER_SIZE;
 	this->freeSpace = this->maxSize;
 }
 
 void Block::printContent()
 {
-	this->position = 4;
+	this->position = Constants::BLOCK_HEADER_SIZE;
 	Record* record = new Record();
 	while(this->getNextRecord(record) != NULL)
 	{
@@ -171,14 +173,14 @@ UpdateResult Block::updateRecord(const char* key, Record* rec)
 
 		// update record
 		int recordSize = rec->getSize();
-		memcpy(this->bytes + startPosition, &recordSize, 4);
-		memcpy(this->bytes + (startPosition + 4), rec->getBytes(), recordSize);
+		memcpy(this->bytes + startPosition, &recordSize, Constants::RECORD_HEADER_SIZE);
+		memcpy(this->bytes + (startPosition + Constants::RECORD_HEADER_SIZE), rec->getBytes(), recordSize);
 
 		// add
-		memcpy(this->bytes + (startPosition + 4 + recordSize), buffer, bufferSize);
+		memcpy(this->bytes + (startPosition + Constants::RECORD_HEADER_SIZE + recordSize), buffer, bufferSize);
 
 		// update block size
-		memcpy(this->bytes, &occupiedSpace, 4);
+		memcpy(this->bytes, &occupiedSpace, Constants::BLOCK_HEADER_SIZE);
 
 		delete[] buffer;
 	}
@@ -264,9 +266,9 @@ bool Block::removeRecord(const char* key)
 		return false;
 	}
 
-	int recordSize = this->position - (startPosition + 4);
+	int recordSize = this->position - (startPosition + Constants::RECORD_HEADER_SIZE);
 	int occupiedSpace = this->getOccupiedSize();
-	occupiedSpace -= (recordSize + 4);
+	occupiedSpace -= (recordSize + Constants::RECORD_HEADER_SIZE);
 
 	int bufferSize = this->maxSize - this->position;
 	char* buffer = new char[bufferSize];
@@ -280,7 +282,7 @@ bool Block::removeRecord(const char* key)
 	memcpy(this->bytes + startPosition, buffer, bufferSize);
 
 	// update block size
-	memcpy(this->bytes, &occupiedSpace, 4);
+	memcpy(this->bytes, &occupiedSpace, Constants::BLOCK_HEADER_SIZE);
 
 	this->updateInformation();
 	delete[] buffer;

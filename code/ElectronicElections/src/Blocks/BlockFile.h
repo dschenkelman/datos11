@@ -22,6 +22,8 @@ class BlockFile
     long blockSize;
     Block *currentBlock;
     void positionAtBlock(int blockNumber);
+    bool internalInsertRecord(const char* key,
+    		const char* recordBytes, int size, bool force);
     bool isAtEOF();
 public:
     BlockFile(std::string& fileName, int bSize, RecordMethods *methods, bool createNew);

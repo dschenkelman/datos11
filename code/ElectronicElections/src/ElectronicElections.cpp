@@ -12,6 +12,8 @@
 #include "Customer.h"
 #include "Blocks/BlockFile.h"
 #include "CustomerMethods.h"
+#include "Blocks/Constants.h"
+
 using namespace std;
 
 void testInsertion(char firstNames[5][5], char lastNames[5][10], BlockFile *& file)
@@ -25,19 +27,19 @@ void testInsertion(char firstNames[5][5], char lastNames[5][10], BlockFile *& fi
 		c.balance = i;
 		int l1 = strlen(c.firstName) + 1;
 		int l2 = strlen(c.lastName) + 1;
-		int size = l1 + l2 + sizeof (long ) + (4 * 3);
+		int size = l1 + l2 + sizeof (long ) + (Constants::FIELD_HEADER_SIZE * 3);
 		char *recordKey = new char[l1 + l2 - 1];
 		memset(recordKey, 0, l1 + l2 - 1);
 		strcat(recordKey, c.firstName);
 		strcat(recordKey, c.lastName);
 		char *recordBytes = new char[size];
 		memset(recordBytes, 0, size);
-		memcpy(recordBytes, &l1, 4);
+		memcpy(recordBytes, &l1, Constants::FIELD_HEADER_SIZE);
 		memcpy(recordBytes + 4, c.firstName, l1);
-		memcpy(recordBytes + 4 + l1, &l2, 4);
+		memcpy(recordBytes + 4 + l1, &l2, Constants::FIELD_HEADER_SIZE);
 		memcpy(recordBytes + (8 + l1), c.lastName, l2);
 		int balanceSize = sizeof (long );
-		memcpy(recordBytes + (8 + l1 + l2), &balanceSize, 4);
+		memcpy(recordBytes + (8 + l1 + l2), &balanceSize, Constants::FIELD_HEADER_SIZE);
 		memcpy(recordBytes + (12 + l1 + l2), &c.balance, sizeof (long ));
 		file->insertRecord(recordKey, recordBytes, size);
 		delete [] recordBytes;
@@ -57,16 +59,16 @@ void testUpdate(BlockFile*& file)
 	string lastName = "Copperfield";
 	int l2 = 12;
 
-	int size = 5 + 12 + 4 + 4 * 3;
+	int size = 5 + 12 + 4 + Constants::FIELD_HEADER_SIZE * 3;
 	char* buffer = new char[size];
 
-	memcpy(buffer, &l1, 4);
-	memcpy(buffer + 4, firstName.c_str(), l1);
-	memcpy(buffer + 4 + l1, &l2, 4);
-	memcpy(buffer + (8 + l1), lastName.c_str(), l2);
+	memcpy(buffer, &l1, Constants::FIELD_HEADER_SIZE);
+	memcpy(buffer + Constants::FIELD_HEADER_SIZE, firstName.c_str(), l1);
+	memcpy(buffer + Constants::FIELD_HEADER_SIZE + l1, &l2, Constants::FIELD_HEADER_SIZE);
+	memcpy(buffer + (Constants::FIELD_HEADER_SIZE * 2 + l1), lastName.c_str(), l2);
 	int balanceSize = sizeof(long);
-	memcpy(buffer + (8 + l1 + l2), &balanceSize, 4);
-	memcpy(buffer + (12 + l1 + l2), &balance, balanceSize);
+	memcpy(buffer + (Constants::FIELD_HEADER_SIZE * 2 + l1 + l2), &balanceSize, Constants::FIELD_HEADER_SIZE);
+	memcpy(buffer + (Constants::FIELD_HEADER_SIZE * 3 + l1 + l2), &balance, balanceSize);
 	file->updateRecord(key.c_str(), buffer, size);
 	file->printContent();
 }
@@ -80,7 +82,7 @@ void testRemove(char firstNames[5][5], char lastNames[5][10], BlockFile*& file)
 		c.balance = i;
 		int l1 = strlen(c.firstName) + 1;
 		int l2 = strlen(c.lastName) + 1;
-		int size = l1 + l2 + sizeof (long ) + (4 * 3);
+		int size = l1 + l2 + sizeof (long ) + (Constants::FIELD_HEADER_SIZE * 3);
 		char *recordKey = new char[l1 + l2 - 1];
 		memset(recordKey, 0, l1 + l2 - 1);
 		strcat(recordKey, c.firstName);
@@ -88,12 +90,12 @@ void testRemove(char firstNames[5][5], char lastNames[5][10], BlockFile*& file)
 		char *recordBytes = new char[size];
 		memset(recordBytes, 0, size);
 		memcpy(recordBytes, &l1, 4);
-		memcpy(recordBytes + 4, c.firstName, l1);
-		memcpy(recordBytes + 4 + l1, &l2, 4);
-		memcpy(recordBytes + (8 + l1), c.lastName, l2);
+		memcpy(recordBytes + Constants::FIELD_HEADER_SIZE, c.firstName, l1);
+		memcpy(recordBytes + Constants::FIELD_HEADER_SIZE + l1, &l2, Constants::FIELD_HEADER_SIZE);
+		memcpy(recordBytes + (Constants::FIELD_HEADER_SIZE * 2 + l1), c.lastName, l2);
 		int balanceSize = sizeof (long );
-		memcpy(recordBytes + (8 + l1 + l2), &balanceSize, 4);
-		memcpy(recordBytes + (12 + l1 + l2), &c.balance, sizeof (long ));
+		memcpy(recordBytes + (Constants::FIELD_HEADER_SIZE * 2 + l1 + l2), &balanceSize, 4);
+		memcpy(recordBytes + (Constants::FIELD_HEADER_SIZE * 3 + l1 + l2), &c.balance, sizeof (long ));
 		file->insertRecord(recordKey, recordBytes, size);
 		delete [] recordBytes;
 		delete [] recordKey;
@@ -131,7 +133,7 @@ int main()
 	//remove name of John Connor
 	string fileremoving = "removeTest";
 	BlockFile* removeFile = new BlockFile(fileremoving, 512, new CustomerMethods, true);
-	testRemove(firstNames, lastNames, removeFile);
+	//testRemove(firstNames, lastNames, removeFile);
 
 	delete file;
 	delete removeFile;

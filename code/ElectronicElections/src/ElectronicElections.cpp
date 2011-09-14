@@ -17,8 +17,8 @@ using namespace std;
 void testInsertion(char firstNames[5][5], char lastNames[5][10], BlockFile *& file)
 {
 	for(long i = 0;i < 500;++i){
-		int fn = rand() % 1;
-		int ln = rand() % 1;
+		int fn = rand() % 5;
+		int ln = rand() % 5;
 		Customer c;
 		c.firstName = firstNames[fn];
 		c.lastName = lastNames[ln];
@@ -84,7 +84,7 @@ int main()
 	// 25 customers should be printed
 	testInsertion(firstNames, lastNames, file);
 
-	// replace name of one customer
+	// John Connor => John Copperfield 5000
 	testUpdate(file);
 
 	delete file;

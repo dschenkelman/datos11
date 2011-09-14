@@ -18,7 +18,7 @@ int Record::getSize()
 	return this->size;
 }
 
-void Record::setBytes(char* value, int len)
+void Record::setBytes(const char* value, int len)
 {
 	if (this->bytes != NULL)
 	{

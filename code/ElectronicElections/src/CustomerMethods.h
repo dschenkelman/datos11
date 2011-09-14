@@ -5,20 +5,21 @@
  *      Author: damian
  */
 
-#ifndef CUSTOMERCOMPARER_H_
-#define CUSTOMERCOMPARER_H_
+#ifndef CUSTOMERMETHODS_H_
+#define CUSTOMERMETHODS_H_
 
-#include "Blocks/RecordComparer.h"
+#include "Blocks/RecordMethods.h"
 #include "Customer.h"
 
-class CustomerComparer: public RecordComparer
+class CustomerMethods: public RecordMethods
 {
 private:
     Customer* getCustomerFromRecord(const char *recordBytes, int recordSize);
 public:
-	CustomerComparer();
+    CustomerMethods();
 	virtual int compare(const char* key, const char* recordBytes, int recordSize);
-	virtual ~CustomerComparer();
+	virtual void print(const char* recordBytes, int recordSize);
+	virtual ~CustomerMethods();
 };
 
-#endif /* CUSTOMERCOMPARER_H_ */
+#endif /* CUSTOMERMETHODS_H_ */

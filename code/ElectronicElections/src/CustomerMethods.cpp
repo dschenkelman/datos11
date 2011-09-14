@@ -5,15 +5,18 @@
  *      Author: damian
  */
 
-#include "CustomerComparer.h"
+#include "CustomerMethods.h"
 #include "Customer.h"
 #include <string.h>
+#include <iostream>
 
-CustomerComparer::CustomerComparer()
+using namespace std;
+
+CustomerMethods::CustomerMethods()
 {
 }
 
-Customer* CustomerComparer::getCustomerFromRecord(const char *recordBytes, int recordSize)
+Customer* CustomerMethods::getCustomerFromRecord(const char *recordBytes, int recordSize)
 {
     int position = 0;
     Customer* c = new Customer;
@@ -36,7 +39,7 @@ Customer* CustomerComparer::getCustomerFromRecord(const char *recordBytes, int r
     return c;
 }
 
-int CustomerComparer::compare(const char* key, const char* recordBytes, int recordSize)
+int CustomerMethods::compare(const char* key, const char* recordBytes, int recordSize)
 {
     Customer* c = this->getCustomerFromRecord(recordBytes, recordSize);
 
@@ -55,6 +58,19 @@ int CustomerComparer::compare(const char* key, const char* recordBytes, int reco
     return cmpResult;
 }
 
-CustomerComparer::~CustomerComparer()
+void CustomerMethods::print(const char *recordBytes, int recordSize)
+{
+	Customer* c = this->getCustomerFromRecord(recordBytes, recordSize);
+
+	cout << c->firstName << " ";
+	cout << c->lastName << " ";
+	cout << c->balance << endl;
+
+	delete[] c->firstName;
+	delete[] c->lastName;
+	delete c;
+}
+
+CustomerMethods::~CustomerMethods()
 {
 }

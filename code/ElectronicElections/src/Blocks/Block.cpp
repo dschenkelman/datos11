@@ -97,7 +97,7 @@ Record* Block::getNextRecord(Record* r)
 	return r;
 }
 
-int Block::findRecord(char* key, Record* rec)
+int Block::findRecord(const char* key, Record** rec)
 {
 	this->position = 4;
 	Record* record = new Record();
@@ -107,7 +107,7 @@ int Block::findRecord(char* key, Record* rec)
 		if (this->recordMethods->compare(key,
 				record->getBytes(), record->getSize()) == 0)
 		{
-			rec = record;
+			*rec = record;
 			return foundPosition;
 		}
 		delete record;
@@ -140,10 +140,10 @@ void Block::printContent()
 	delete record;
 }
 
-bool Block::updateRecord(char* key, Record* rec)
+bool Block::updateRecord(const char* key, Record* rec)
 {
 	Record* r = NULL;
-	int startPosition = this->findRecord(key, r);
+	int startPosition = this->findRecord(key, &r);
 
 	if (startPosition < 0)
 	{
@@ -162,14 +162,17 @@ bool Block::updateRecord(char* key, Record* rec)
 		occupiedSpace += sizeDifference;
 		// there is enough space to perform the update
 		// in the current block
-		int bufferSize = this->maxSize - this->position;
+		int bufferSize = (this->maxSize - this->position) - sizeDifference;
 		char* buffer = new char[bufferSize];
+		memset(buffer, 0, bufferSize);
 
 		// copy bytes that are after record
 		memcpy(buffer, this->bytes + this->position, bufferSize);
 
 		// update record
-		memcpy(this->bytes + startPosition, rec->getBytes(), rec->getSize());
+		int recordSize = rec->getSize();
+		memcpy(this->bytes + startPosition, &recordSize, 4);
+		memcpy(this->bytes + startPosition + 4, rec->getBytes(), rec->getSize());
 
 		// add
 		memcpy(this->bytes + startPosition + rec->getSize(), buffer, bufferSize);

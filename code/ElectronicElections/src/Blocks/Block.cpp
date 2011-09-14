@@ -278,7 +278,7 @@ bool Block::removeRecord(const char* key)
 	memcpy(buffer, this->bytes + this->position, bufferSize);
 
 	// free space of record from end and remove record
-	memset(this->bytes + startPosition, 0, bufferSize + recordSize);
+	memset(this->bytes + startPosition, 0, bufferSize + recordSize + Constants::RECORD_HEADER_SIZE);
 	memcpy(this->bytes + startPosition, buffer, bufferSize);
 
 	// update block size

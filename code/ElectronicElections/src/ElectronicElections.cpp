@@ -102,15 +102,10 @@ void testRemove(char firstNames[5][5], char lastNames[5][10], BlockFile*& file)
 	}
 
 	string key = "JohnConnor";
-	long balance = 0;
 	string firstName = "John";
-	int l1 = 5;
 	string lastName = "Connor";
-	int l2 = 7;
-	if(!file->removeRecord(key.c_str()) )
-		{
-		file->printContent();
-		}
+	file->removeRecord(key.c_str());
+	file->printContent();
 }
 
 

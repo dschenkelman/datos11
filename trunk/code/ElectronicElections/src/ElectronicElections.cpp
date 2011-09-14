@@ -133,7 +133,7 @@ int main()
 	//remove name of John Connor
 	string fileremoving = "removeTest";
 	BlockFile* removeFile = new BlockFile(fileremoving, 512, new CustomerMethods, true);
-	//testRemove(firstNames, lastNames, removeFile);
+	testRemove(firstNames, lastNames, removeFile);
 
 	delete file;
 	delete removeFile;

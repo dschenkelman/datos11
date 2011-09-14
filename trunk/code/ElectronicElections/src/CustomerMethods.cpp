@@ -44,9 +44,10 @@ int CustomerMethods::compare(const char* key, const char* recordBytes, int recor
 {
     Customer* c = this->getCustomerFromRecord(recordBytes, recordSize);
 
-    int l1 = strlen(c->firstName);
-    int l2 = strlen(c->lastName);
+    int l1 = strlen(c->firstName) + 1;
+    int l2 = strlen(c->lastName) + 1;
     char* recordKey = new char[l1 + l2 - 1];
+    memset(recordKey, 0, l1 + l2 - 1);
     strcat(recordKey, c->firstName);
     strcat(recordKey, c->lastName);
     int cmpResult = strcmp(key, recordKey);

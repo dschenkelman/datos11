@@ -26,8 +26,8 @@ class BlockFile
 public:
     BlockFile(std::string& fileName, int bSize, RecordMethods *methods, bool createNew);
     void printContent();
-    bool insertRecord(char *key, char* recordBytes, int size);
-    bool updateRecord(char *key, char* recordBytes, int size);
+    bool insertRecord(const char *key, const char* recordBytes, int size);
+    bool updateRecord(const char *key, const char* recordBytes, int size);
     void loadBlock(int blockNumber);
     void saveBlock();
 	virtual ~BlockFile();

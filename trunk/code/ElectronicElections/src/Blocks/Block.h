@@ -43,11 +43,11 @@ public:
 	// calculates the amount of records in the block
 	// and the amount of free space available in it
 	void updateInformation();
-	int findRecord(char* key, Record* rec);
+	int findRecord(const char* key, Record** rec);
 	void clear();
 	bool canInsertRecord(int size);
 	bool insertRecord(Record* rec);
-	bool updateRecord(char* key, Record* rec);
+	bool updateRecord(const char* key, Record* rec);
 	void printContent();
 	virtual ~Block();
     void forceInsert(Record *rec);

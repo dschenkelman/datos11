@@ -17,7 +17,7 @@ public:
 	Record(Record& other);
 	Record& operator=(const Record& other);
 	char* getBytes();
-	void setBytes(char* value, int len);
+	void setBytes(const char* value, int len);
 	int getSize();
 	virtual ~Record();
 };

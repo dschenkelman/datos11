@@ -17,8 +17,8 @@ using namespace std;
 void testInsertion(char firstNames[5][5], char lastNames[5][10], BlockFile *& file)
 {
 	for(long i = 0;i < 500;++i){
-		int fn = rand() % 5;
-		int ln = rand() % 5;
+		int fn = rand() % 1;
+		int ln = rand() % 1;
 		Customer c;
 		c.firstName = firstNames[fn];
 		c.lastName = lastNames[ln];
@@ -46,11 +46,36 @@ void testInsertion(char firstNames[5][5], char lastNames[5][10], BlockFile *& fi
 	file->printContent();
 }
 
+void testUpdate(BlockFile*& file)
+{
+	string key = "JohnConnor";
+	long balance = 5000;
+
+	string firstName = "John";
+	int l1 = 5;
+
+	string lastName = "Copperfield";
+	int l2 = 12;
+
+	int size = 5 + 12 + 4 + 4 * 3;
+	char* buffer = new char[size];
+
+	memcpy(buffer, &l1, 4);
+	memcpy(buffer + 4, firstName.c_str(), l1);
+	memcpy(buffer + 4 + l1, &l2, 4);
+	memcpy(buffer + (8 + l1), lastName.c_str(), l2);
+	int balanceSize = sizeof(long);
+	memcpy(buffer + (8 + l1 + l2), &balanceSize, 4);
+	memcpy(buffer + (12 + l1 + l2), &balance, balanceSize);
+	file->updateRecord(key.c_str(), buffer, size);
+	file->printContent();
+}
+
 int main()
 {
 	srand (time(NULL));
 
-	char firstNames[5][5] = {"Mike", "John", "Tony", "Rick", "Josh"};
+	char firstNames[5][5] = {"John", "Mike", "Tony", "Rick", "Josh"};
 	char lastNames[5][10] = {"Connor", "Sparano", "Lewis", "Pittino", "Smith"};
 
 	string f = "test";
@@ -60,7 +85,7 @@ int main()
 	testInsertion(firstNames, lastNames, file);
 
 	// replace name of one customer
-	// testUpdate(file);
+	testUpdate(file);
 
 	delete file;
 

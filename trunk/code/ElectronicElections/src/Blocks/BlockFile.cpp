@@ -38,7 +38,7 @@ void BlockFile::printContent()
 	}
 }
 
-bool BlockFile::insertRecord(char* key, char* recordBytes, int size)
+bool BlockFile::insertRecord(const char* key, const char* recordBytes, int size)
 {
 	int blockNumber = 1;
 	int blockToInsert = -1;
@@ -47,9 +47,8 @@ bool BlockFile::insertRecord(char* key, char* recordBytes, int size)
 	while(!this->isAtEOF())
 	{
 		this->loadBlock(blockNumber);
-		this->currentBlock->updateInformation();
 		Record* r = NULL;
-		if (this->currentBlock->findRecord(key, r) >= 0)
+		if (this->currentBlock->findRecord(key, &r) >= 0)
 		{
 			if (r != NULL)
 			{
@@ -75,7 +74,7 @@ bool BlockFile::insertRecord(char* key, char* recordBytes, int size)
 	if (blockToInsert != -1)
 	{
 		this->loadBlock(blockToInsert);
-		this->currentBlock->updateInformation();
+
 	}
 	else
 	{
@@ -93,7 +92,7 @@ bool BlockFile::insertRecord(char* key, char* recordBytes, int size)
 	return result;
 }
 
-bool BlockFile::updateRecord(char *key, char *recordBytes, int size)
+bool BlockFile::updateRecord(const char *key, const char *recordBytes, int size)
 {
 	int blockNumber = 1;
 
@@ -111,6 +110,8 @@ bool BlockFile::updateRecord(char *key, char *recordBytes, int size)
 			this->saveBlock();
 			return true;
 		}
+
+		blockNumber++;
 	}
 
 	delete r;
@@ -147,12 +148,14 @@ void BlockFile::loadBlock(int blockNumber)
     	memset(this->currentBlock->getBytes(), 0, this->blockSize);
     }
 
+    this->currentBlock->updateInformation();
     this->positionAtBlock(blockNumber);
 }
 
 void BlockFile::saveBlock()
 {
 	this->dataFile.write(this->currentBlock->getBytes(), this->blockSize);
+	this->currentBlock->updateInformation();
 }
 
 BlockFile::~BlockFile() {

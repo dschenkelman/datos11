@@ -31,6 +31,7 @@ public:
     bool insertRecord(const char *key, const char* recordBytes, int size);
     bool updateRecord(const char *key, const char* recordBytes, int size);
     bool removeRecord(const char *key);
+    bool getRecord(const char* key, Record** rec);
     void loadBlock(int blockNumber);
     void saveBlock();
 	virtual ~BlockFile();

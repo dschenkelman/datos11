@@ -73,6 +73,21 @@ void testUpdate(BlockFile*& file)
 	file->printContent();
 }
 
+void testGet(BlockFile*& file)
+{
+	string key = "JohnCopperfield";
+
+	Record* rec = NULL;
+	if (file->getRecord(key.c_str(), &rec))
+	{
+		CustomerMethods cm;
+		cm.print(rec->getBytes(), rec->getSize());
+	}
+
+
+	delete rec;
+}
+
 void testRemove(char firstNames[5][5], char lastNames[5][10], BlockFile*& file)
 {
 	for(long i = 0;i < 5;++i){
@@ -124,6 +139,9 @@ int main()
 
 	// replace name of one customer
 	testUpdate(file);
+
+	// print john connor
+	testGet(file);
 
 	//remove name of John Connor
 	string fileremoving = "removeTest";

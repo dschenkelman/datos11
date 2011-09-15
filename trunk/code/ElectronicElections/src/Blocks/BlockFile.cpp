@@ -159,6 +159,25 @@ bool BlockFile::removeRecord(const char* key)
 	return false;
 }
 
+bool BlockFile::getRecord(const char *key, Record** rec)
+{
+	int blockNumber = 1;
+
+	this->positionAtBlock(0);
+	while(!this->isAtEOF())
+	{
+		this->loadBlock(blockNumber);
+		if (this->currentBlock->findRecord(key, rec) >= 0)
+		{
+			return true;
+		}
+
+		blockNumber++;
+	}
+
+	return false;
+}
+
 void BlockFile::positionAtBlock(int blockNumber)
 {
     long position = blockNumber * this->blockSize;

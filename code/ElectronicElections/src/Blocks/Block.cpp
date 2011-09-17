@@ -37,10 +37,10 @@ Block::Block(Block& other)
     //this->copyBlock(other);
 }
 
-/*char* Block::getBytes()
+char* Block::getBytes()
 {
 	return this->bytes;
-}*/
+}
 
 bool Block::isOverflowed()
 {
@@ -179,9 +179,9 @@ void Block::printContent()
 }
 
 //SHOULD THIS METHOD BE ERASED?
-/*UpdateResult Block::updateRecord(const char* key, Record* rec)
+UpdateResult Block::updateRecord(const char* key, Record* rec)
 {
-	Record* r = NULL;
+/*	Record* r = NULL;
 	int startPosition = this->findRecord(key, &r);
 
 	if (startPosition < 0)
@@ -237,8 +237,9 @@ void Block::printContent()
 		delete r;
 	}
 	return UPDATED;
-}
 */
+}
+
 //SHOULD THIS METHOD BE ERASED?
 /* void Block::forceInsert(Record *rec)
 {

@@ -23,5 +23,9 @@ C_UPPER_DEPS :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
+src/Voting \
 src \
+src/Database \
+src/BlocksTests \
+src/Blocks \
 

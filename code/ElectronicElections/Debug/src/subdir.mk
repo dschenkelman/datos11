@@ -4,25 +4,13 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../src/Block.cpp \
-../src/BlockFile.cpp \
-../src/CustomerComparer.cpp \
-../src/ElectronicElections.cpp \
-../src/Record.cpp 
+../src/ElectronicElections.cpp 
 
 OBJS += \
-./src/Block.o \
-./src/BlockFile.o \
-./src/CustomerComparer.o \
-./src/ElectronicElections.o \
-./src/Record.o 
+./src/ElectronicElections.o 
 
 CPP_DEPS += \
-./src/Block.d \
-./src/BlockFile.d \
-./src/CustomerComparer.d \
-./src/ElectronicElections.d \
-./src/Record.d 
+./src/ElectronicElections.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

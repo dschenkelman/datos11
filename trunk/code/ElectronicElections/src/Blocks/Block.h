@@ -31,6 +31,8 @@ class Block {
 	int recordSize;
 	// position relative to the beginning of the block
 	int currentRecord;
+
+	bool overflow;
     
 	//void copyBlock(const Block & other);
 
@@ -38,8 +40,9 @@ class Block {
 public:
     bool hasNextRecord();
     Record* getNextRecord(Record* r);
-	Record* Block::getRecord(Record* r);
+	Record* getRecord(Record* r);
     inline int getOccupiedSize();
+    inline int getOccupiedRecordNumbers();
 	//Block knows if it gets overflowed
 	bool isOverflowed();
 	void getsOverflow();
@@ -50,10 +53,13 @@ public:
 	bool isEmpty();
 	bool isFull();
 	int getRecordCount();
-	//char* getBytes();
+	void seekRecord(int recordNumber);
+
+	char* getBytes();
 	// calculates the amount of records in the block
 	// and the amount of free space available in it
 	void updateInformation();
+	bool canInsertRecord(int size);
 	int findRecord(const char* key, Record** rec);
 	void clear();
 	// position to nay record on the block, and then you may insert the record in there.

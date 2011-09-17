@@ -10,9 +10,9 @@
 #include <exception>
 #include "Constants.h"
 
-Block::Block(int blockSize, recordSize, RecordMethods* methods) : maxSize(blockSize),
-position(Constants::BLOCK_HEADER_SIZE), recordSize(recordSize)
+Block::Block(int blockSize, int recordSize, RecordMethods* methods) : maxSize(blockSize)
 {
+	this->recordSize = recordSize;
 	this->bytes = new char[this->maxSize];
 	memset(this->bytes, 0, this->maxSize);
 	this->occupiedRecords = 0;
@@ -27,14 +27,14 @@ Block& Block::operator =(const Block & other)
 		return *this;
 	}
 
-	this->copyBlock(other);
+	//this->copyBlock(other);
 
 	return *this;
 }
 
 Block::Block(Block& other)
 {
-    this->copyBlock(other);
+    //this->copyBlock(other);
 }
 
 /*char* Block::getBytes()
@@ -62,7 +62,7 @@ void Block::updateInformation() //ESTO SIRVE?
 {
 	int occupiedSize;
 	memcpy(&occupiedSize, this->bytes, Constants::BLOCK_HEADER_SIZE);
-	this->freeSpace = this->maxSize - occupiedSize;
+	//this->freeSpace = this->maxSize - occupiedSize;
 
     // first four bytes in each record represent record size
 
@@ -80,11 +80,11 @@ void Block::updateInformation() //ESTO SIRVE?
 	this->recordCount = records;
 }
 
-bool isEmpty()
+bool Block::isEmpty()
 {
 	return (this->occupiedRecords == 0);
 }
-bool isFull()
+bool Block::isFull()
 {
 	return (this->occupiedRecords == this->recordCount);
 }
@@ -128,12 +128,16 @@ Record* Block::getRecord(Record* r)
 	*/
 	return r;
 }
+void Block::seekRecord(int recordNumber)
+{
+	this->currentRecord = recordNumber;
+}
 
 int Block::findRecord(const char* key, Record** rec)
 {
 	//this->position = Constants::BLOCK_HEADER_SIZE;  VERIFICAR LOS PRIMEROS FLAGS??
 	Record* record = new Record();
-	this->seek(0); //comienzo del 1er registro a buscar
+	this->seekRecord(0); //comienzo del 1er registro a buscar
 	int foundRecord = this->currentRecord;
 	while(this->getNextRecord(record) != NULL)
 	{
@@ -141,11 +145,11 @@ int Block::findRecord(const char* key, Record** rec)
 				record->getBytes(), record->getSize()) == 0)
 		{
 			*rec = record;
-			return foundPosition;
+			return foundRecord;
 		}
 		delete record;
 		record = new Record();
-		foundPosition = this->currentRecord;
+		foundRecord = this->currentRecord;
 	}
 
 	delete record;
@@ -162,7 +166,7 @@ void Block::clear()
 
 void Block::printContent()
 {
-	this->seek(0);
+	this->seekRecord(0);
 	Record* record = new Record();
 	while(this->getNextRecord(record) != NULL)
 	{
@@ -293,7 +297,7 @@ bool Block::canInsertRecord(int size)
 bool Block::removeRecord(const char* key)
 	//remove the current record where stand
 {
-	if(! this->currentRecord->isFree()) return false;
+	//if(! this->currentRecord.isFree()) return false;
 	//SET 'ERASED' RECORD
 	
 	if(!this->isEmpty()) this->recordCount--;

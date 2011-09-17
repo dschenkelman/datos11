@@ -21,48 +21,39 @@ class Block {
 	RecordMethods* recordMethods;
 	// max size of the block [bytes]
 	int maxSize;
-	// number of records occupied
-	int occupiedRecords;
+	// occupied size of the block [bytes]
+	int freeSpace;
 	// content of the block
 	char* bytes;
 	// amount of records in the block
 	int recordCount;
-	// max size of the records
-	int recordSize;
 	// position relative to the beginning of the block
-	int currentRecord;
-    
-	//void copyBlock(const Block & other);
+	int position;
+    void copyBlock(const Block & other);
 
 	// -------------------METHODS-------------------
-public:
     bool hasNextRecord();
     Record* getNextRecord(Record* r);
-	Record* Block::getRecord(Record* r);
     inline int getOccupiedSize();
-
-	Block(int size, int recordSize, RecordMethods* methods);
+public:
+	Block(int size, RecordMethods* methods);
 	Block(Block& other);
 	Block& operator=(const Block& other);
-	
-	bool isEmpty();
-	bool isFull();
+	char* getBytes();
+	int getFreeSpace();
 	int getRecordCount();
-	//char* getBytes();
 	// calculates the amount of records in the block
 	// and the amount of free space available in it
 	void updateInformation();
 	int findRecord(const char* key, Record** rec);
 	void clear();
-	// position to nay record on the block, and then you may insert the record in there.
-	void positionToRecord();
+	bool canInsertRecord(int size);
 	bool insertRecord(Record* rec);
 	UpdateResult updateRecord(const char* key, Record* rec);
-	bool removeRecord(const char* key);
-	
 	void printContent();
+	bool removeRecord(const char* key);
 	virtual ~Block();
-    //void forceInsert(Record *rec);
+    void forceInsert(Record *rec);
 };
 
 #endif /* BLOCK_H_ */

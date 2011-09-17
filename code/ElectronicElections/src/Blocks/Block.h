@@ -40,7 +40,9 @@ public:
     Record* getNextRecord(Record* r);
 	Record* Block::getRecord(Record* r);
     inline int getOccupiedSize();
-
+	//Block knows if it gets overflowed
+	bool isOverflowed();
+	void getsOverflow();
 	Block(int size, int recordSize, RecordMethods* methods);
 	Block(Block& other);
 	Block& operator=(const Block& other);

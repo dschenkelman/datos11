@@ -42,6 +42,15 @@ Block::Block(Block& other)
 	return this->bytes;
 }*/
 
+bool Block::isOverflowed()
+{
+	return this->overflow;
+}
+void Block::getsOverflow()
+{
+	this->overflow = true;
+}
+
 int Block::getRecordCount()
 {
 	return this->recordCount;

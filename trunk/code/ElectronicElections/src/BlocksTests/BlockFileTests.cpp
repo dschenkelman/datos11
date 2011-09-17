@@ -18,9 +18,9 @@ using namespace std;
 BlockFileTests::BlockFileTests()
 {
 	string f = "test";
-	this->file = new BlockFile(f, 512, new CustomerMethods, true);
+	this->file = new BlockFile(f, 512, 20, new CustomerMethods, true);
 	string fileremoving = "removeTest";
-	this->removeFile = new BlockFile(fileremoving, 512, new CustomerMethods, true);
+	this->removeFile = new BlockFile(fileremoving, 512, 20, new CustomerMethods, true);
 }
 
 void BlockFileTests::testInsert()

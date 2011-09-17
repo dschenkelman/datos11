@@ -9,14 +9,14 @@
 #define RAWTABLE_H_
 
 #include <string>
-#include "RawTableRow.h"
+#include "../Blocks/Record.h"
 using namespace std;
 
 class RawTable {
 public:
 	RawTable(string name);
 	bool insert(char* key, int key_size, char* value, int value_size);
-	RawTableRow select(char* key, int key_size);
+	Record select(char* key, int key_size);
 	virtual ~RawTable();
 };
 

@@ -26,7 +26,7 @@ class BlockFile
     		const char* recordBytes, int size, bool force);
     bool isAtEOF();
 public:
-    BlockFile(std::string& fileName, int bSize, RecordMethods *methods, bool createNew);
+    BlockFile(std::string& fileName, int bSize, int rSize, RecordMethods *methods, bool createNew);
     void printContent();
     bool insertRecord(const char *key, const char* recordBytes, int size);
     bool updateRecord(const char *key, const char* recordBytes, int size);

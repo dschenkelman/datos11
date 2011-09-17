@@ -9,11 +9,11 @@
 
 using namespace std;
 
-BlockFile::BlockFile(string& name, int bSize, RecordMethods* methods, bool createNew):blockSize(bSize)
+BlockFile::BlockFile(string& name, int bSize, int rSize, RecordMethods* methods, bool createNew):blockSize(bSize)
 {
 	this->fileName = name;
 	this->recordMethods = methods;
-	this->currentBlock = new Block(this->blockSize, this->recordMethods);
+	this->currentBlock = new Block(this->blockSize, rSize, this->recordMethods);
 	if (createNew)
 	{
 		this->dataFile.open(this->fileName.c_str(), ios::binary | ios::in | ios::out | ios::trunc);

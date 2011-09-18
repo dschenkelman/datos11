@@ -11,6 +11,8 @@
 Record::Record() : size(0)
 {
 	this->bytes = NULL;
+	this->free = true;
+	this->erased = false;
 }
 
 int Record::getSize()
@@ -35,6 +37,25 @@ void Record::setBytes(const char* value, int len)
 char *Record::getBytes()
 {
 	return this->bytes;
+}
+
+bool Record::isFree()
+{
+	return this->free;
+}
+
+/* this method tells if the record is erased and consequently free.
+ * It is worthless if the record is erased but occupied.
+ */
+bool Record::isErased()
+{
+	return ( this->free && this->erased );
+}
+
+void Record::setRecordStatus(bool freeRecord, bool erasedRecord)
+{
+	this->free = freeRecord;
+	this->erased = erasedRecord;
 }
 
 Record& Record::operator =(const Record & other)

@@ -21,19 +21,15 @@ Customer* CustomerMethods::getCustomerFromRecord(const char *recordBytes, int re
 {
     int position = 0;
     Customer* c = new Customer;
-    int fieldSize;
-    memcpy(&fieldSize, recordBytes + position, Constants::FIELD_HEADER_SIZE);
-    position += Constants::FIELD_HEADER_SIZE;
+    int fieldSize = 5;
     c->firstName = new char[fieldSize];
     memcpy(c->firstName, recordBytes + position, fieldSize);
     position += fieldSize;
-    memcpy(&fieldSize, recordBytes + position, Constants::FIELD_HEADER_SIZE);
-    position += Constants::FIELD_HEADER_SIZE;
+    fieldSize = 7;
     c->lastName = new char[fieldSize];
     memcpy(c->lastName, recordBytes + position, fieldSize);
     position += fieldSize;
-    memcpy(&fieldSize, recordBytes + position, Constants::FIELD_HEADER_SIZE);
-    position += Constants::FIELD_HEADER_SIZE;
+    fieldSize = 4;
     memcpy(&c->balance, recordBytes + position, fieldSize);
     position += fieldSize;
 

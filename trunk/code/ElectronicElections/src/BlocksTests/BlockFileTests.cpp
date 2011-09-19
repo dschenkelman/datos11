@@ -51,6 +51,7 @@ void BlockFileTests::testInsert()
 		Block* block = file->getCurrentBlock();
 		if (block->isFull())
 		{
+			file->saveBlock();
 			blockNumber++;
 			file->loadBlock(blockNumber);
 			block = file->getCurrentBlock();
@@ -59,8 +60,8 @@ void BlockFileTests::testInsert()
 		delete [] recordBytes;
 		delete [] recordKey;
 	}
+	file->saveBlock();
 	file->printContent();
-
 }
 
 void BlockFileTests::testGet()

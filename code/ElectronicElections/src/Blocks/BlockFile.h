@@ -20,6 +20,7 @@ class BlockFile
 	RecordMethods *recordMethods;
     std::fstream dataFile;
     long blockSize;
+    int currentBlockNumber;
     Block *currentBlock;
     void positionAtBlock(int blockNumber);
     bool isAtEOF();

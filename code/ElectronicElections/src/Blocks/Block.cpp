@@ -57,7 +57,7 @@ bool Block::isFull()
 
 bool Block::hasNextRecord()
 {
-	return this->currentRecord < this->recordCount;
+	return this->currentRecord < this->occupiedRecords;
 }
 
 Record* Block::getNextRecord(Record* r)
@@ -67,13 +67,14 @@ Record* Block::getNextRecord(Record* r)
 		return NULL;
 	}
 
+	this->getRecord(r);
 	this->currentRecord++;
-	return this->getRecord(r);
+	return r;
 }
 Record* Block::getRecord(Record* r)
 {
 	short flagByte = (this->currentRecord * 2) / 8;
-	int startingPosition = this->currentRecord * this->recordSize;
+	int startingPosition = this->currentRecord * this->recordSize + this->flagBytes;
 	char deletedBitIndex = (this->currentRecord % 4) * 2;
 	r->setBytes(this->bytes + startingPosition);
 	r->setWasDeleted(
@@ -138,7 +139,7 @@ bool Block::updateRecord(const char* key, char* b)
 	}
 
 	// update record bytes
-	memcpy(this->bytes + recordIndex * recordSize, b, this->recordSize);
+	memcpy(this->bytes + recordIndex * recordSize + this->flagBytes, b, this->recordSize);
 	return true;
 }
 
@@ -147,7 +148,7 @@ bool Block::insertRecord(char* key, char* b)
 	// 	verify that it is unique
 {
 	Record r(this->recordSize);
-	if (!this->canInsertRecord() || this->findRecord(key, &r) > 0)
+	if (!this->canInsertRecord() || this->findRecord(key, &r) >= 0)
 	{
 		return false;
 	}
@@ -155,7 +156,7 @@ bool Block::insertRecord(char* key, char* b)
 	int recordIndex = this->findFirstFreeRecord();
 	short flagIndex = this->getFlagByteFromRecordIndex(recordIndex);
 	// update record bytes
-	memcpy(this->bytes + recordIndex * recordSize, b, this->recordSize);
+	memcpy(this->bytes + recordIndex * recordSize + this->flagBytes, b, this->recordSize);
 	// update empty control flag
 	char emptyBitIndex = (recordIndex % 4) * 2 + 1;
 	ByteOperators::setBit(this->bytes + flagIndex, emptyBitIndex, 1);
@@ -201,7 +202,7 @@ int Block::findFirstFreeRecord()
 		char bit = 1;
 		while (bit < 8)
 		{
-			if (ByteOperators::isBitOne(currentByte, bit))
+			if (!ByteOperators::isBitOne(currentByte, bit))
 			{
 				return (int)byteIndex * 4 + (int) bit / 2;
 			}

@@ -22,16 +22,11 @@ class BlockFile
     long blockSize;
     Block *currentBlock;
     void positionAtBlock(int blockNumber);
-    bool internalInsertRecord(const char* key,
-    		const char* recordBytes, int size, bool force);
     bool isAtEOF();
 public:
     BlockFile(std::string& fileName, int bSize, int rSize, RecordMethods *methods, bool createNew);
     void printContent();
-    bool insertRecord(const char *key, const char* recordBytes, int size);
-    bool updateRecord(const char *key, const char* recordBytes, int size);
-    bool removeRecord(const char *key);
-    bool getRecord(const char* key, Record** rec);
+    Block* getCurrentBlock();
     void loadBlock(int blockNumber);
     void saveBlock();
 	virtual ~BlockFile();

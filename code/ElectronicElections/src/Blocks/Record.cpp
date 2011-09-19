@@ -8,11 +8,10 @@
 #include "Record.h"
 #include <string.h>
 
-Record::Record() : size(0)
+Record::Record(int s) : size(s), isEmpty(true), wasDeleted(false)
 {
-	this->bytes = NULL;
-	this->free = true;
-	this->erased = false;
+	this->bytes = new char[this->size];
+	memset(this->bytes, 0, this->size);
 }
 
 int Record::getSize()
@@ -20,18 +19,9 @@ int Record::getSize()
 	return this->size;
 }
 
-void Record::setBytes(const char* value, int len)
+void Record::setBytes(const char* value)
 {
-	if (this->bytes != NULL)
-	{
-		// need to free memory
-		delete[] this->bytes;
-	}
-
-	this->bytes = new char[len];
-	memset(this->bytes, 0, len);
-	memcpy(this->bytes, value, len);
-	this->size = len;
+	memcpy(this->bytes, value, this->size);
 }
 
 char *Record::getBytes()
@@ -39,63 +29,28 @@ char *Record::getBytes()
 	return this->bytes;
 }
 
-bool Record::isFree()
+bool Record::getIsEmpty()
 {
-	return this->free;
+	return this->isEmpty;
 }
 
-/* this method tells if the record is erased and consequently free.
- * It is worthless if the record is erased but occupied.
- */
-bool Record::isErased()
+bool Record::getWasDeleted()
 {
-	return ( this->free && this->erased );
+	return this->wasDeleted;
 }
 
-void Record::setRecordStatus(bool freeRecord, bool erasedRecord)
+void Record::setWasDeleted(bool value)
 {
-	this->free = freeRecord;
-	this->erased = erasedRecord;
+	this->wasDeleted = value;
 }
 
-Record& Record::operator =(const Record & other)
+void Record::setIsEmpty(bool value)
 {
-	if (this == &other)
-	{
-		return *this;
-	}
-
-	this->size = other.size;
-	if (other.bytes != NULL)
-	{
-		this->setBytes(other.bytes, this->size);
-	}
-	else
-	{
-		this->bytes = NULL;
-	}
-
-	return *this;
-}
-
-Record::Record(Record& other)
-{
-	this->size = other.size;
-	if (other.bytes != NULL)
-	{
-		this->setBytes(other.bytes, this->size);
-	}
-	else
-	{
-		this->bytes = NULL;
-	}
+	this->isEmpty = value;
 }
 
 Record::~Record()
 {
-	if (this->bytes != NULL)
-	{
-		// need to free memory
-		delete[] this->bytes;
-	}
+	// need to free memory
+	delete[] this->bytes;
 }

@@ -12,20 +12,21 @@ class Record
 {
 	int size;
 	char* bytes;
-	bool free;
-	bool erased;
-
+	bool isEmpty;
+	bool wasDeleted;
 public:
-	Record();
+	Record(int size);
 	Record(Record& other);
 	Record& operator=(const Record& other);
 	char* getBytes();
-	void setBytes(const char* value, int len);
+	void setBytes(const char* value);
+	void setIsEmpty(bool value);
+	void setWasDeleted(bool value);
+	bool getIsEmpty();
+	bool getWasDeleted();
 	int getSize();
-	bool isFree();
-	bool isErased();
-	void setRecordStatus(bool freeRecord, bool erasedRecord);
 	virtual ~Record();
 };
 
 #endif /* RECORD_H_ */
+

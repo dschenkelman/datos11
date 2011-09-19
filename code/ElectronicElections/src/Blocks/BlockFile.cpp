@@ -69,7 +69,7 @@ void BlockFile::loadBlock(int blockNumber)
     }
     else
     {
-    	memset(this->currentBlock->getBytes(), 0, this->blockSize);
+    	this->currentBlock->clear();
     }
 }
 

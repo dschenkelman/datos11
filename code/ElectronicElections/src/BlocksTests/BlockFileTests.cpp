@@ -18,15 +18,16 @@ using namespace std;
 BlockFileTests::BlockFileTests()
 {
 	string f = "test";
-	this->file = new BlockFile(f, 512, 20, new CustomerMethods, true);
+	this->file = new BlockFile(f, 512, 16, new CustomerMethods, true);
 	string fileremoving = "removeTest";
-	this->removeFile = new BlockFile(fileremoving, 512, 20, new CustomerMethods, true);
+	this->removeFile = new BlockFile(fileremoving, 512, 16, new CustomerMethods, true);
 }
 
 void BlockFileTests::testInsert()
 {
 	char firstNames[5][5] = {"John", "Mike", "Tony", "Rick", "Josh"};
-	char lastNames[5][10] = {"Connor", "Sparano", "Lewis", "Pittino", "Smith"};
+	char lastNames[5][7] = {"Connor", "Potter", "Wesley", "Mordor", "Gondor"};
+	int blockNumber = 1;
 	for(long i = 0;i < 500;++i)
 	{
 		int fn = rand() % 5;
@@ -37,104 +38,108 @@ void BlockFileTests::testInsert()
 		c.balance = i;
 		int l1 = strlen(c.firstName) + 1;
 		int l2 = strlen(c.lastName) + 1;
-		int size = l1 + l2 + sizeof (long ) + (Constants::FIELD_HEADER_SIZE * 3);
+		// size = 16
+		int size = l1 + l2 + sizeof (long);
 		char *recordKey = new char[l1 + l2 - 1];
 		memset(recordKey, 0, l1 + l2 - 1);
 		strcat(recordKey, c.firstName);
 		strcat(recordKey, c.lastName);
 		char *recordBytes = new char[size];
-		memset(recordBytes, 0, size);
-		memcpy(recordBytes, &l1, Constants::FIELD_HEADER_SIZE);
-		memcpy(recordBytes + 4, c.firstName, l1);
-		memcpy(recordBytes + 4 + l1, &l2, Constants::FIELD_HEADER_SIZE);
-		memcpy(recordBytes + (8 + l1), c.lastName, l2);
-		int balanceSize = sizeof (long );
-		memcpy(recordBytes + (8 + l1 + l2), &balanceSize, Constants::FIELD_HEADER_SIZE);
-		memcpy(recordBytes + (12 + l1 + l2), &c.balance, sizeof (long ));
-		file->insertRecord(recordKey, recordBytes, size);
+		memcpy(recordBytes, c.firstName, l1);
+		memcpy(recordBytes + l1, c.lastName, l2);
+		memcpy(recordBytes + (l1+l2), &c.balance, sizeof(long));
+		Block* block = file->getCurrentBlock();
+		if (block->isFull())
+		{
+			blockNumber++;
+			file->loadBlock(blockNumber);
+			block = file->getCurrentBlock();
+		}
+		block->insertRecord(recordKey, recordBytes);
 		delete [] recordBytes;
 		delete [] recordKey;
 	}
 	file->printContent();
+
 }
 
 void BlockFileTests::testGet()
 {
-	string key = "JohnCopperfield";
-
-	Record* rec = NULL;
-	if (file->getRecord(key.c_str(), &rec))
-	{
-		CustomerMethods cm;
-		cm.print(rec->getBytes(), rec->getSize());
-	}
-
-
-	delete rec;
+//	string key = "JohnCopperfield";
+//
+//	Record* rec = NULL;
+//	if (file->getRecord(key.c_str(), &rec))
+//	{
+//		CustomerMethods cm;
+//		cm.print(rec->getBytes(), rec->getSize());
+//	}
+//
+//
+//	delete rec;
 }
 
 void BlockFileTests::testRemove()
 {
-	char firstNames[5][5] = {"John", "Mike", "Tony", "Rick", "Josh"};
-	char lastNames[5][10] = {"Connor", "Sparano", "Lewis", "Pittino", "Smith"};
-
-	for(long i = 0;i < 5;++i)
-	{
-		Customer c;
-		c.firstName = firstNames[i];
-		c.lastName = lastNames[i];
-		c.balance = i;
-		int l1 = strlen(c.firstName) + 1;
-		int l2 = strlen(c.lastName) + 1;
-		int size = l1 + l2 + sizeof (long ) + (Constants::FIELD_HEADER_SIZE * 3);
-		char *recordKey = new char[l1 + l2 - 1];
-		memset(recordKey, 0, l1 + l2 - 1);
-		strcat(recordKey, c.firstName);
-		strcat(recordKey, c.lastName);
-		char *recordBytes = new char[size];
-		memset(recordBytes, 0, size);
-		memcpy(recordBytes, &l1, 4);
-		memcpy(recordBytes + Constants::FIELD_HEADER_SIZE, c.firstName, l1);
-		memcpy(recordBytes + Constants::FIELD_HEADER_SIZE + l1, &l2, Constants::FIELD_HEADER_SIZE);
-		memcpy(recordBytes + (Constants::FIELD_HEADER_SIZE * 2 + l1), c.lastName, l2);
-		int balanceSize = sizeof (long );
-		memcpy(recordBytes + (Constants::FIELD_HEADER_SIZE * 2 + l1 + l2), &balanceSize, 4);
-		memcpy(recordBytes + (Constants::FIELD_HEADER_SIZE * 3 + l1 + l2), &c.balance, sizeof (long ));
-		removeFile->insertRecord(recordKey, recordBytes, size);
-		delete [] recordBytes;
-		delete [] recordKey;
-	}
-
-	string key = "JohnConnor";
-	string firstName = "John";
-	string lastName = "Connor";
-	removeFile->removeRecord(key.c_str());
-	removeFile->printContent();
+//	char firstNames[5][5] = {"John", "Mike", "Tony", "Rick", "Josh"};
+//	char lastNames[5][10] = {"Connor", "Sparano", "Lewis", "Pittino", "Smith"};
+//
+//	for(long i = 0;i < 5;++i)
+//	{
+//		Customer c;
+//		c.firstName = firstNames[i];
+//		c.lastName = lastNames[i];
+//		c.balance = i;
+//		int l1 = strlen(c.firstName) + 1;
+//		int l2 = strlen(c.lastName) + 1;
+//		int size = l1 + l2 + sizeof (long ) + (Constants::FIELD_HEADER_SIZE * 3);
+//		char *recordKey = new char[l1 + l2 - 1];
+//		memset(recordKey, 0, l1 + l2 - 1);
+//		strcat(recordKey, c.firstName);
+//		strcat(recordKey, c.lastName);
+//		char *recordBytes = new char[size];
+//		memset(recordBytes, 0, size);
+//		memcpy(recordBytes, &l1, 4);
+//		memcpy(recordBytes + Constants::FIELD_HEADER_SIZE, c.firstName, l1);
+//		memcpy(recordBytes + Constants::FIELD_HEADER_SIZE + l1, &l2, Constants::FIELD_HEADER_SIZE);
+//		memcpy(recordBytes + (Constants::FIELD_HEADER_SIZE * 2 + l1), c.lastName, l2);
+//		int balanceSize = sizeof (long );
+//		memcpy(recordBytes + (Constants::FIELD_HEADER_SIZE * 2 + l1 + l2), &balanceSize, 4);
+//		memcpy(recordBytes + (Constants::FIELD_HEADER_SIZE * 3 + l1 + l2), &c.balance, sizeof (long ));
+//		removeFile->insertRecord(recordKey, recordBytes, size);
+//		delete [] recordBytes;
+//		delete [] recordKey;
+//	}
+//
+//	string key = "JohnConnor";
+//	string firstName = "John";
+//	string lastName = "Connor";
+//	removeFile->removeRecord(key.c_str());
+//	removeFile->printContent();
 }
 
 void BlockFileTests::testUpdate()
 {
-	string key = "JohnConnor";
-	long balance = 5000;
-
-	string firstName = "John";
-	int l1 = 5;
-
-	string lastName = "Copperfield";
-	int l2 = 12;
-
-	int size = 5 + 12 + 4 + Constants::FIELD_HEADER_SIZE * 3;
-	char* buffer = new char[size];
-
-	memcpy(buffer, &l1, Constants::FIELD_HEADER_SIZE);
-	memcpy(buffer + Constants::FIELD_HEADER_SIZE, firstName.c_str(), l1);
-	memcpy(buffer + Constants::FIELD_HEADER_SIZE + l1, &l2, Constants::FIELD_HEADER_SIZE);
-	memcpy(buffer + (Constants::FIELD_HEADER_SIZE * 2 + l1), lastName.c_str(), l2);
-	int balanceSize = sizeof(long);
-	memcpy(buffer + (Constants::FIELD_HEADER_SIZE * 2 + l1 + l2), &balanceSize, Constants::FIELD_HEADER_SIZE);
-	memcpy(buffer + (Constants::FIELD_HEADER_SIZE * 3 + l1 + l2), &balance, balanceSize);
-	file->updateRecord(key.c_str(), buffer, size);
-	file->printContent();
+//	string key = "JohnConnor";
+//	long balance = 5000;
+//
+//	string firstName = "John";
+//	int l1 = 5;
+//
+//	string lastName = "Copperfield";
+//	int l2 = 12;
+//
+//	int size = 5 + 12 + 4 + Constants::FIELD_HEADER_SIZE * 3;
+//	char* buffer = new char[size];
+//
+//	memcpy(buffer, &l1, Constants::FIELD_HEADER_SIZE);
+//	memcpy(buffer + Constants::FIELD_HEADER_SIZE, firstName.c_str(), l1);
+//	memcpy(buffer + Constants::FIELD_HEADER_SIZE + l1, &l2, Constants::FIELD_HEADER_SIZE);
+//	memcpy(buffer + (Constants::FIELD_HEADER_SIZE * 2 + l1), lastName.c_str(), l2);
+//	int balanceSize = sizeof(long);
+//	memcpy(buffer + (Constants::FIELD_HEADER_SIZE * 2 + l1 + l2), &balanceSize, Constants::FIELD_HEADER_SIZE);
+//	memcpy(buffer + (Constants::FIELD_HEADER_SIZE * 3 + l1 + l2), &balance, balanceSize);
+//	file->updateRecord(key.c_str(), buffer, size);
+//	file->printContent();
 }
 
 void BlockFileTests::run()

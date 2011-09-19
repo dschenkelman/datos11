@@ -139,7 +139,7 @@ bool Block::updateRecord(const char* key, char* b)
 	}
 
 	// update record bytes
-	memcpy(this->bytes + recordIndex * recordSize + this->flagBytes, b, this->recordSize);
+	memcpy(this->bytes + (recordIndex * this->recordSize + this->flagBytes), b, this->recordSize);
 	return true;
 }
 
@@ -156,7 +156,7 @@ bool Block::insertRecord(char* key, char* b)
 	int recordIndex = this->findFirstFreeRecord();
 	short flagIndex = this->getFlagByteFromRecordIndex(recordIndex);
 	// update record bytes
-	memcpy(this->bytes + recordIndex * recordSize + this->flagBytes, b, this->recordSize);
+	memcpy(this->bytes + (recordIndex * this->recordSize + this->flagBytes), b, this->recordSize);
 	// update empty control flag
 	char emptyBitIndex = (recordIndex % 4) * 2 + 1;
 	ByteOperators::setBit(this->bytes + flagIndex, emptyBitIndex, 1);

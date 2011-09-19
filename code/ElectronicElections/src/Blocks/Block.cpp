@@ -67,11 +67,14 @@ Record* Block::getNextRecord(Record* r)
 		return NULL;
 	}
 
-	this->getRecord(r);
-	this->currentRecord++;
+	do
+	{
+		this->getCurrentRecord(r);
+		this->currentRecord++;
+	} while(r->getIsEmpty());
 	return r;
 }
-Record* Block::getRecord(Record* r)
+Record* Block::getCurrentRecord(Record* r)
 {
 	short flagByte = (this->currentRecord * 2) / 8;
 	int startingPosition = this->currentRecord * this->recordSize + this->flagBytes;
@@ -80,8 +83,8 @@ Record* Block::getRecord(Record* r)
 	r->setWasDeleted(
 			ByteOperators::isBitOne
 				(this->bytes[flagByte], deletedBitIndex));
-	r->setWasDeleted(
-			ByteOperators::isBitOne
+	r->setIsEmpty(
+			!ByteOperators::isBitOne
 				(this->bytes[flagByte], deletedBitIndex + 1));
 
 	return r;
@@ -122,7 +125,10 @@ void Block::printContent()
 	Record* record = new Record(this->recordSize);
 	while(this->getNextRecord(record) != NULL)
 	{
-		this->recordMethods->print(record->getBytes(), record->getSize());
+		if (!record->getIsEmpty())
+		{
+			this->recordMethods->print(record->getBytes(), record->getSize());
+		}
 	}
 
 	delete record;
@@ -188,6 +194,7 @@ bool Block::removeRecord(const char* key)
 		// mark record as free
 		ByteOperators::setBit(this->bytes + flagIndex, deleteBitIndex + 1, 0);
 		this->occupiedRecords--;
+		return true;
 	}
 
 	return false;

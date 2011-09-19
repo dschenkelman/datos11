@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include "BlockFileTests.h"
 #include <string>
+#include <iostream>
 #include "Customer.h"
 #include "./../Blocks/BlockFile.h"
 #include "CustomerMethods.h"
@@ -19,12 +20,14 @@ BlockFileTests::BlockFileTests()
 {
 	string f = "test";
 	this->file = new BlockFile(f, 512, 16, new CustomerMethods, true);
-	string fileremoving = "removeTest";
-	this->removeFile = new BlockFile(fileremoving, 512, 16, new CustomerMethods, true);
 }
 
 void BlockFileTests::testInsert()
 {
+	std::cout << "==================================" << std::endl;
+	std::cout << "Insert Test" << std::endl;
+	std::cout << "==================================" << std::endl;
+
 	char firstNames[5][5] = {"John", "Mike", "Tony", "Rick", "Josh"};
 	char lastNames[5][7] = {"Connor", "Potter", "Wesley", "Mordor", "Gondor"};
 	int blockNumber = 0;
@@ -66,60 +69,42 @@ void BlockFileTests::testInsert()
 
 void BlockFileTests::testGet()
 {
-//	string key = "JohnCopperfield";
-//
-//	Record* rec = NULL;
-//	if (file->getRecord(key.c_str(), &rec))
-//	{
-//		CustomerMethods cm;
-//		cm.print(rec->getBytes(), rec->getSize());
-//	}
-//
-//
-//	delete rec;
+	string key = "JohnKratos";
+
+	Record rec(16);
+	file->loadBlock(0);
+	std::cout << "==================================" << std::endl;
+	std::cout << "Get Test" << std::endl;
+	std::cout << "==================================" << std::endl;
+	if (file->getCurrentBlock()->findRecord(key.c_str(), &rec) >= 0)
+	{
+		CustomerMethods cm;
+		cm.print(rec.getBytes(), rec.getSize());
+	}
 }
 
 void BlockFileTests::testRemove()
 {
-//	char firstNames[5][5] = {"John", "Mike", "Tony", "Rick", "Josh"};
-//	char lastNames[5][10] = {"Connor", "Sparano", "Lewis", "Pittino", "Smith"};
-//
-//	for(long i = 0;i < 5;++i)
-//	{
-//		Customer c;
-//		c.firstName = firstNames[i];
-//		c.lastName = lastNames[i];
-//		c.balance = i;
-//		int l1 = strlen(c.firstName) + 1;
-//		int l2 = strlen(c.lastName) + 1;
-//		int size = l1 + l2 + sizeof (long ) + (Constants::FIELD_HEADER_SIZE * 3);
-//		char *recordKey = new char[l1 + l2 - 1];
-//		memset(recordKey, 0, l1 + l2 - 1);
-//		strcat(recordKey, c.firstName);
-//		strcat(recordKey, c.lastName);
-//		char *recordBytes = new char[size];
-//		memset(recordBytes, 0, size);
-//		memcpy(recordBytes, &l1, 4);
-//		memcpy(recordBytes + Constants::FIELD_HEADER_SIZE, c.firstName, l1);
-//		memcpy(recordBytes + Constants::FIELD_HEADER_SIZE + l1, &l2, Constants::FIELD_HEADER_SIZE);
-//		memcpy(recordBytes + (Constants::FIELD_HEADER_SIZE * 2 + l1), c.lastName, l2);
-//		int balanceSize = sizeof (long );
-//		memcpy(recordBytes + (Constants::FIELD_HEADER_SIZE * 2 + l1 + l2), &balanceSize, 4);
-//		memcpy(recordBytes + (Constants::FIELD_HEADER_SIZE * 3 + l1 + l2), &c.balance, sizeof (long ));
-//		removeFile->insertRecord(recordKey, recordBytes, size);
-//		delete [] recordBytes;
-//		delete [] recordKey;
-//	}
-//
-//	string key = "JohnConnor";
-//	string firstName = "John";
-//	string lastName = "Connor";
-//	removeFile->removeRecord(key.c_str());
-//	removeFile->printContent();
+	string key = "JohnKratos";
+
+	Record rec(16);
+	file->loadBlock(0);
+	std::cout << "==================================" << std::endl;
+	std::cout << "Remove Test" << std::endl;
+	std::cout << "==================================" << std::endl;
+	while (file->getCurrentBlock()->removeRecord(key.c_str()))
+	{
+		file->saveBlock();
+		file->printContent();
+	}
 }
 
 void BlockFileTests::testUpdate()
 {
+	std::cout << "==================================" << std::endl;
+	std::cout << "Update Test" << std::endl;
+	std::cout << "==================================" << std::endl;
+
 	string key1 = "JohnConnor";
 	string key2 = "MikeGondor";
 	long balance = 5000;
@@ -155,5 +140,4 @@ void BlockFileTests::run()
 BlockFileTests::~BlockFileTests()
 {
 	delete this->file;
-	delete this->removeFile;
 }

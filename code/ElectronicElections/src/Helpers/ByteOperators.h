@@ -11,7 +11,7 @@
 class ByteOperators
 {
 public:
-	static bool isBitOne(char,int);
+	static bool isBitOne(char,char);
 	static void setBit(char*, char, char);
 };
 

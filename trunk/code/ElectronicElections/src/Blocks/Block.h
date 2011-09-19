@@ -52,7 +52,7 @@ public:
 	void clear();
 	void printContent();
 	Record* getNextRecord(Record* r);
-	Record* getRecord(Record* r);
+	Record* getCurrentRecord(Record* r);
 	bool insertRecord(char* key, char* bytes);
 	bool updateRecord(const char* key, char* bytes);
 	bool removeRecord(const char* key);

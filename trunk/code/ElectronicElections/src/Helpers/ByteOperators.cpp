@@ -8,25 +8,27 @@
 #include "ByteOperators.h"
 
 
-void ByteOperators::setBit(char* byte, char bit, char value)
+void ByteOperators::setBit(char* byte, char position, char value)
 {
-	if (bit <0 || bit > 7)
+	// bit 0 is the left most
+	if (position <0 || position > 7)
 		return;
 	if (value == 1)
 	{
-		*byte |= 1 << bit;
+		*byte |= 1 << (7- position);
 	}
 	else if (value == 0)
 	{
-		*byte &= ~(1 << bit);
+		*byte &= ~(1 << (7 - position));
 	}
 }
 
-bool ByteOperators::isBitOne(char byte, int position)
+bool ByteOperators::isBitOne(char byte, char position)
 {
+	// bit 0 is the left most
 	if (position < 0 || position > 7)
 		return false;
-	return byte & (1 << position);
+	return byte & (1 << (7 - position));
 }
 
 

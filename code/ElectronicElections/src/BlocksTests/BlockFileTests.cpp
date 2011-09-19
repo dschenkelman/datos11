@@ -120,27 +120,28 @@ void BlockFileTests::testRemove()
 
 void BlockFileTests::testUpdate()
 {
-//	string key = "JohnConnor";
-//	long balance = 5000;
-//
-//	string firstName = "John";
-//	int l1 = 5;
-//
-//	string lastName = "Copperfield";
-//	int l2 = 12;
-//
-//	int size = 5 + 12 + 4 + Constants::FIELD_HEADER_SIZE * 3;
-//	char* buffer = new char[size];
-//
-//	memcpy(buffer, &l1, Constants::FIELD_HEADER_SIZE);
-//	memcpy(buffer + Constants::FIELD_HEADER_SIZE, firstName.c_str(), l1);
-//	memcpy(buffer + Constants::FIELD_HEADER_SIZE + l1, &l2, Constants::FIELD_HEADER_SIZE);
-//	memcpy(buffer + (Constants::FIELD_HEADER_SIZE * 2 + l1), lastName.c_str(), l2);
-//	int balanceSize = sizeof(long);
-//	memcpy(buffer + (Constants::FIELD_HEADER_SIZE * 2 + l1 + l2), &balanceSize, Constants::FIELD_HEADER_SIZE);
-//	memcpy(buffer + (Constants::FIELD_HEADER_SIZE * 3 + l1 + l2), &balance, balanceSize);
-//	file->updateRecord(key.c_str(), buffer, size);
-//	file->printContent();
+	string key1 = "JohnConnor";
+	string key2 = "MikeGondor";
+	long balance = 5000;
+
+	string firstName = "John";
+	int l1 = 5;
+
+	string lastName = "Kratos";
+	int l2 = 7;
+
+	int size = 16;
+	char buffer[size];
+
+	memcpy(buffer, firstName.c_str(), l1);
+	memcpy(buffer + l1, lastName.c_str(), l2);
+	memcpy(buffer + (l1+l2), &balance, 4);
+
+	file->loadBlock(0);
+	file->getCurrentBlock()->updateRecord(key1.c_str(), buffer);
+	file->getCurrentBlock()->updateRecord(key2.c_str(), buffer);
+	file->saveBlock();
+	file->printContent();
 }
 
 void BlockFileTests::run()

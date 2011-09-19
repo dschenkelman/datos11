@@ -27,7 +27,7 @@ void BlockFileTests::testInsert()
 {
 	char firstNames[5][5] = {"John", "Mike", "Tony", "Rick", "Josh"};
 	char lastNames[5][7] = {"Connor", "Potter", "Wesley", "Mordor", "Gondor"};
-	int blockNumber = 1;
+	int blockNumber = 0;
 	for(long i = 0;i < 500;++i)
 	{
 		int fn = rand() % 5;

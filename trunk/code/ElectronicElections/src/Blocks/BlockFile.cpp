@@ -1,3 +1,5 @@
+
+
 /*
  * BlockFile.cpp
  *
@@ -9,7 +11,7 @@
 
 using namespace std;
 
-BlockFile::BlockFile(string& name, int bSize, int rSize, RecordMethods* methods, bool createNew):blockSize(bSize)
+BlockFile::BlockFile(string & name, int bSize, int rSize, RecordMethods *methods, bool createNew)
 {
 	this->fileName = name;
 	this->recordMethods = methods;
@@ -38,144 +40,9 @@ void BlockFile::printContent()
 	}
 }
 
-bool BlockFile::internalInsertRecord(const char* key,
-		const char* recordBytes, int size, bool force)
+Block* BlockFile::getCurrentBlock()
 {
-	int blockNumber = 1;
-	int blockToInsert = -1;
-
-	this->positionAtBlock(0);
-	while(!this->isAtEOF())
-	{
-		this->loadBlock(blockNumber);
-		if(!force)
-		{
-			Record* r = NULL;
-			if (this->currentBlock->findRecord(key, &r) >= 0)
-			{
-				if (r != NULL)
-				{
-					delete r;
-				}
-
-				return false;
-			}
-
-			if (r != NULL)
-			{
-				delete r;
-			}
-		}
-
-		if (this->currentBlock->canInsertRecord(size) && blockToInsert == -1)
-		{
-			// first available place to put record
-			blockToInsert = blockNumber;
-		}
-		blockNumber++;
-	}
-
-	if (blockToInsert != -1)
-	{
-		this->loadBlock(blockToInsert);
-
-	}
-	else
-	{
-		// file is full, new block is required
-		this->positionAtBlock(blockNumber);
-		this->currentBlock->clear();
-	}
-
-	Record* record = new Record();
-	record->setBytes(recordBytes, size);
-	bool result = this->currentBlock->insertRecord(record);
-	this->saveBlock();
-	delete record;
-
-	return result;
-}
-
-bool BlockFile::insertRecord(const char* key, const char* recordBytes, int size)
-{
-	return this->internalInsertRecord(key, recordBytes, size, false);
-}
-
-bool BlockFile::updateRecord(const char *key, const char *recordBytes, int size)
-{
-	int blockNumber = 1;
-
-	this->positionAtBlock(0);
-	Record* r = new Record();
-	r->setBytes(recordBytes, size);
-
-	while(!this->isAtEOF())
-	{
-		this->loadBlock(blockNumber);
-
-		UpdateResult result = this->currentBlock->updateRecord(key, r);
-		switch (result) {
-			case UPDATED:
-				delete r;
-				this->saveBlock();
-				return true;
-				break;
-			case INSUFFICIENT_SPACE:
-				// deleted from block, should insert in another block
-				this->internalInsertRecord(key, recordBytes, size, true);
-			case NOT_FOUND:
-			default:
-				break;
-		}
-
-		blockNumber++;
-	}
-
-	delete r;
-	return false;
-}
-
-bool BlockFile::removeRecord(const char* key)
-{
-	int blockNumber = 1;
-
-	this->positionAtBlock(0);
-	while(!this->isAtEOF())
-	{
-		this->loadBlock(blockNumber);
-		Record* r = NULL;
-		if (this->currentBlock->removeRecord(key) )
-		{
-			delete r;
-			this->saveBlock();
-			return true;
-		}
-		if (r != NULL)
-		{
-			delete r;
-		}
-		blockNumber++;
-	}
-	return false;
-}
-
-bool BlockFile::getRecord(const char *key, Record** rec)
-{
-	int blockNumber = 1;
-
-	this->positionAtBlock(0);
-	while(!this->isAtEOF())
-	{
-		this->loadBlock(blockNumber);
-		if (this->currentBlock->findRecord(key, rec) >= 0)
-		{
-			return true;
-		}
-
-		blockNumber++;
-	}
-
-	return false;
+	return this->currentBlock;
 }
 
 void BlockFile::positionAtBlock(int blockNumber)
@@ -208,14 +75,12 @@ void BlockFile::loadBlock(int blockNumber)
     	memset(this->currentBlock->getBytes(), 0, this->blockSize);
     }
 
-    this->currentBlock->updateInformation();
     this->positionAtBlock(blockNumber);
 }
 
 void BlockFile::saveBlock()
 {
 	this->dataFile.write(this->currentBlock->getBytes(), this->blockSize);
-	this->currentBlock->updateInformation();
 }
 
 BlockFile::~BlockFile() {

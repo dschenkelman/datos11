@@ -6,35 +6,24 @@
  */
 
 #include "Block.h"
+#include <math.h>
 #include <string.h>
-#include <exception>
 #include "Constants.h"
+#include "../Helpers/ByteOperators.h"
 
-Block::Block(int blockSize, int recordSize, RecordMethods* methods) : maxSize(blockSize)
+Block::Block(int bs, int rs, RecordMethods* methods)
+: maxSize(bs), occupiedRecords(0),recordSize(rs)
 {
-	this->recordSize = recordSize;
+	this->recordCount = this->maxSize / this->recordSize;
+	this->flagBytes = ceil((this->recordCount) / 4.0);
+
+	while ((flagBytes + this->recordCount * this->recordSize) > this->maxSize)
+	{
+		this->recordCount--;
+	}
 	this->bytes = new char[this->maxSize];
 	memset(this->bytes, 0, this->maxSize);
-	this->occupiedRecords = 0;
 	this->recordMethods = methods;
-	this->recordCount = this->maxSize;
-}
-
-Block& Block::operator =(const Block & other)
-{
-	if (this == &other)
-	{
-		return *this;
-	}
-
-	//this->copyBlock(other);
-
-	return *this;
-}
-
-Block::Block(Block& other)
-{
-    //this->copyBlock(other);
 }
 
 char* Block::getBytes()
@@ -56,42 +45,14 @@ int Block::getRecordCount()
 	return this->recordCount;
 }
 
-void Block::updateInformation() //ESTO SIRVE? 
-	//A LA HORA DE INSERTAR O BORRAR, SE ACTUALIZAN LOS FLAGS 
-	//DE CONTEO Y LISTO.
-{
-	int occupiedSize;
-	memcpy(&occupiedSize, this->bytes, Constants::BLOCK_HEADER_SIZE);
-	//this->freeSpace = this->maxSize - occupiedSize;
-
-    // first four bytes in each record represent record size
-
-	// ignore the first four bytes
-	int sum = Constants::BLOCK_HEADER_SIZE;
-	int records = 0;
-	while(sum < occupiedSize)
-	{
-		int recordSize;
-		memcpy(&recordSize, this->bytes + sum, Constants::RECORD_HEADER_SIZE);
-		sum += (recordSize + Constants::RECORD_HEADER_SIZE);
-		records++;
-	}
-
-	this->recordCount = records;
-}
-
 bool Block::isEmpty()
 {
 	return (this->occupiedRecords == 0);
 }
+
 bool Block::isFull()
 {
 	return (this->occupiedRecords == this->recordCount);
-}
-
-inline int Block::getOccupiedRecordNumbers()
-{
-	return this->occupiedRecords;
 }
 
 bool Block::hasNextRecord()
@@ -106,203 +67,156 @@ Record* Block::getNextRecord(Record* r)
 		return NULL;
 	}
 
-	//ME OLVIDE COMO HACER EL JUEGO DE LOS FLAGS DE LOS RECORDS,
-	//	SACANDO ESE OFFSET
-	/*int recordSize;
-	memcpy(&recordSize, this->bytes + this->position, Constants::RECORD_HEADER_SIZE);
-	this->position += Constants::RECORD_HEADER_SIZE;
-	r->setBytes(this->bytes + this->position, recordSize);
-	this->position += recordSize;
-	*/
-	return r;
+	this->currentRecord++;
+	return this->getRecord(r);
 }
 Record* Block::getRecord(Record* r)
 {
-	//ME OLVIDE COMO HACER EL JUEGO DE LOS FLAGS DE LOS RECORDS,
-	//	SACANDO ESE OFFSET
-	/*int recordSize;
-	memcpy(&recordSize, this->bytes + this->position, Constants::RECORD_HEADER_SIZE);
-	this->position += Constants::RECORD_HEADER_SIZE;
-	r->setBytes(this->bytes + this->position, recordSize);
-	this->position += recordSize;
-	*/
+	short flagByte = (this->currentRecord * 2) / 8;
+	int startingPosition = this->currentRecord * this->recordSize;
+	char deletedBitIndex = (this->currentRecord % 4) * 2;
+	r->setBytes(this->bytes + startingPosition);
+	r->setWasDeleted(
+			ByteOperators::isBitOne
+				(this->bytes[flagByte], deletedBitIndex));
+	r->setWasDeleted(
+			ByteOperators::isBitOne
+				(this->bytes[flagByte], deletedBitIndex + 1));
+
 	return r;
 }
+
 void Block::seekRecord(int recordNumber)
 {
 	this->currentRecord = recordNumber;
 }
 
-int Block::findRecord(const char* key, Record** rec)
+int Block::findRecord(const char* key, Record* rec)
 {
-	//this->position = Constants::BLOCK_HEADER_SIZE;  VERIFICAR LOS PRIMEROS FLAGS??
-	Record* record = new Record();
 	this->seekRecord(0); //comienzo del 1er registro a buscar
 	int foundRecord = this->currentRecord;
-	while(this->getNextRecord(record) != NULL)
+	while(this->getNextRecord(rec) != NULL)
 	{
 		if (this->recordMethods->compare(key,
-				record->getBytes(), record->getSize()) == 0)
+				rec->getBytes(), rec->getSize()) == 0)
 		{
-			*rec = record;
 			return foundRecord;
 		}
-		delete record;
-		record = new Record();
 		foundRecord = this->currentRecord;
 	}
 
-	delete record;
 	return -1;
 }
 
 void Block::clear()
 {
 	memset(this->bytes, 0, this->maxSize);
-	// FALTA SETEO DE FLAGS QUE ESTANDO TODO EN 0 NO SE SI HACE FALTA
-	//this->position = Constants::BLOCK_HEADER_SIZE;
 	this->occupiedRecords = 0;
+	this->currentRecord = 0;
 }
 
 void Block::printContent()
 {
 	this->seekRecord(0);
-	Record* record = new Record();
+	Record* record = new Record(this->recordSize);
 	while(this->getNextRecord(record) != NULL)
 	{
 		this->recordMethods->print(record->getBytes(), record->getSize());
-		delete record;
-		record = new Record();
 	}
 
 	delete record;
 }
 
-//SHOULD THIS METHOD BE ERASED?
-UpdateResult Block::updateRecord(const char* key, Record* rec)
+bool Block::updateRecord(const char* key, char* b)
 {
-/*	Record* r = NULL;
-	int startPosition = this->findRecord(key, &r);
+	Record r(this->recordSize);
+	int recordIndex = this->findRecord(key, &r);
 
-	if (startPosition < 0)
-	{
-		if (r != NULL)
-		{
-			delete r;
-		}
-		return NOT_FOUND;
-	}
-
-	int sizeDifference = rec->getSize() - r->getSize();
-	int occupiedSpace = this->getOccupiedSize();
-
-	if (this->canInsertRecord(sizeDifference))
-	{
-		occupiedSpace += sizeDifference;
-		// there is enough space to perform the update
-		// in the current block
-		int bufferSize = (this->maxSize - this->position) - sizeDifference;
-		char* buffer = new char[bufferSize];
-		memset(buffer, 0, bufferSize);
-
-		// copy bytes that are after record
-		memcpy(buffer, this->bytes + this->position, bufferSize);
-
-		// update record
-		int recordSize = rec->getSize();
-		memcpy(this->bytes + startPosition, &recordSize, Constants::RECORD_HEADER_SIZE);
-		memcpy(this->bytes + (startPosition + Constants::RECORD_HEADER_SIZE), rec->getBytes(), recordSize);
-
-		// add
-		memcpy(this->bytes + (startPosition + Constants::RECORD_HEADER_SIZE + recordSize), buffer, bufferSize);
-
-		// update block size
-		memcpy(this->bytes, &occupiedSpace, Constants::BLOCK_HEADER_SIZE);
-
-		delete[] buffer;
-	}
-	else
-	{
-		// move to another block
-		this->removeRecord(key);
-		if (r != NULL)
-		{
-			delete r;
-		}
-		return INSUFFICIENT_SPACE;
-	}
-
-	if (r != NULL)
-	{
-		delete r;
-	}
-	return UPDATED;
-*/
-}
-
-//SHOULD THIS METHOD BE ERASED?
-/* void Block::forceInsert(Record *rec)
-{
-    int recSize = rec->getSize();
-    int occupiedSpace = this->getOccupiedSize();
-
-    if (occupiedSpace == 0)
-    {
-    	occupiedSpace += 4;
-    }
-
-    // add record size
-    memcpy(this->bytes + occupiedSpace, &recSize, 4);
-    occupiedSpace += 4;
-
-    // add record data
-    memcpy(this->bytes + occupiedSpace, rec->getBytes(), recSize);
-    occupiedSpace += recSize;
-
-    // update block size
-    memcpy(this->bytes, &occupiedSpace, 4);
-}
-*/
-
-bool Block::insertRecord(Record *rec)
-	//	insert record in the current position.
-{
-	if (!this->canInsertRecord(rec->getSize()))
+	if (recordIndex < 0)
 	{
 		return false;
 	}
 
-    // add record data. this->bytes should always point to the first record.
-    memcpy(this->bytes + this->currentRecord * recordSize, rec->getBytes(), rec->getSize() );
+	// update record bytes
+	memcpy(this->bytes + recordIndex * recordSize, b, this->recordSize);
+	return true;
+}
+
+bool Block::insertRecord(char* key, char* b)
+	//	insert record in the first available position.
+	// 	verify that it is unique
+{
+	Record r(this->recordSize);
+	if (!this->canInsertRecord() || this->findRecord(key, &r) > 0)
+	{
+		return false;
+	}
+
+	int recordIndex = this->findFirstFreeRecord();
+	short flagIndex = this->getFlagByteFromRecordIndex(recordIndex);
+	// update record bytes
+	memcpy(this->bytes + recordIndex * recordSize, b, this->recordSize);
+	// update empty control flag
+	char emptyBitIndex = (recordIndex % 4) * 2 + 1;
+	ByteOperators::setBit(this->bytes + flagIndex, emptyBitIndex, 1);
+
 	this->occupiedRecords++;
     return true;
 }
 
-bool Block::canInsertRecord(int size)
+bool Block::canInsertRecord()
 {
-	return this->recordSize >= size;
+	return this->occupiedRecords < this->recordCount;
 }
 
-/*void Block::copyBlock(const Block & other)
-{
-    this->freeSpace = other.freeSpace;
-    this->maxSize = other.maxSize;
-    this->recordCount = other.recordCount;
-    this->position = other.position;
-    this->bytes = new char[this->maxSize];
-    memset(this->bytes, 0, this->maxSize);
-    memcpy(this->bytes, other.bytes, this->maxSize);
-    this->recordMethods = other.recordMethods;
-}*/
-
 bool Block::removeRecord(const char* key)
-	//remove the current record where stand
+	//remove the record that matches the key
 {
-	//if(! this->currentRecord.isFree()) return false;
-	//SET 'ERASED' RECORD
-	
-	if(!this->isEmpty()) this->recordCount--;
-	return true;
+	if(!this->isEmpty())
+	{
+		Record rec(this->recordSize);
+		int recordIndex = this->findRecord(key, &rec);
+		if (recordIndex < 0)
+		{
+			return false;
+		}
+		short flagIndex = this->getFlagByteFromRecordIndex(recordIndex);
+		char deleteBitIndex = (recordIndex % 4) * 2;
+		// mark record as deleted
+		ByteOperators::setBit(this->bytes + flagIndex, deleteBitIndex, 1);
+		// mark record as free
+		ByteOperators::setBit(this->bytes + flagIndex, deleteBitIndex + 1, 0);
+		this->occupiedRecords--;
+	}
+
+	return false;
+}
+
+int Block::findFirstFreeRecord()
+{
+	short byteIndex = 0;
+	while (byteIndex < this->flagBytes)
+	{
+		char currentByte = this->bytes[byteIndex];
+		char bit = 1;
+		while (bit < 8)
+		{
+			if (ByteOperators::isBitOne(currentByte, bit))
+			{
+				return (int)byteIndex * 4 + (int) bit / 2;
+			}
+			bit += 2;
+		}
+
+		byteIndex++;
+	}
+
+	return -1;
+}
+
+short Block::getFlagByteFromRecordIndex(int recordIndex)
+{
+	return (short)(recordIndex * 2) / 8;
 }
 
 Block::~Block()

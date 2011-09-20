@@ -15,29 +15,30 @@
 // BLOCK(contentSize(4 bytes), (registerSize(4 bytes), registerContent)*)
 class Block {
 	// -------------------FIELDS-------------------
-	// object used to compare records
-	RecordMethods* recordMethods;
-	// number of records occupied
-	int occupiedRecords;
 	// amount of records in the block
 	int recordCount;
-	// max size of the records
-	int recordSize;
-	// position relative to the beginning of the block
-	int currentRecord;
-	// amount of bytes used to the status of records
-	short flagBytes;
+
 	// whether the block has overflown or not
 	bool overflow;
-	// -------------------METHODS-------------------
-	int findFirstFreeRecord();
-	short getFlagByteFromRecordIndex(int recordIndex);
 protected:
+	// amount of bytes used to the status of records
+	short flagBytes;
+	// max size of the block [bytes]
+	int maxSize;
+	// number of records occupied
+	int occupiedRecords;
+	// size of the records
+	int recordSize;
+	// object used to compare records
+	RecordMethods* recordMethods;
 	char nextBlockBytes;
 	// content of the block
 	char* bytes;
-	// max size of the block [bytes]
-	int maxSize;
+	// position relative to the beginning of the block
+	int currentRecord;
+	// -------------------METHODS-------------------
+	int findFirstFreeRecord();
+	short getFlagByteFromRecordIndex(int recordIndex);
 public:
     bool hasNextRecord();
 	//Block knows if it gets overflowed

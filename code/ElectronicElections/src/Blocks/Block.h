@@ -17,12 +17,8 @@ class Block {
 	// -------------------FIELDS-------------------
 	// object used to compare records
 	RecordMethods* recordMethods;
-	// max size of the block [bytes]
-	int maxSize;
 	// number of records occupied
 	int occupiedRecords;
-	// content of the block
-	char* bytes;
 	// amount of records in the block
 	int recordCount;
 	// max size of the records
@@ -33,15 +29,21 @@ class Block {
 	short flagBytes;
 	// whether the block has overflown or not
 	bool overflow;
+	// -------------------METHODS-------------------
 	int findFirstFreeRecord();
 	short getFlagByteFromRecordIndex(int recordIndex);
-	// -------------------METHODS-------------------
+protected:
+	char nextBlockBytes;
+	// content of the block
+	char* bytes;
+	// max size of the block [bytes]
+	int maxSize;
 public:
     bool hasNextRecord();
 	//Block knows if it gets overflowed
 	bool isOverflowed();
 	void getsOverflow();
-	Block(int size, int recordSize, RecordMethods* methods);
+	Block(int size, int recordSize, RecordMethods* methods, char nextBlockBytes = 0);
 	bool isEmpty();
 	bool isFull();
 	int getRecordCount();
@@ -53,7 +55,7 @@ public:
 	void printContent();
 	Record* getNextRecord(Record* r);
 	Record* getCurrentRecord(Record* r);
-	bool insertRecord(char* key, char* bytes);
+	virtual bool insertRecord(char* key, char* bytes);
 	bool updateRecord(const char* key, char* bytes);
 	bool removeRecord(const char* key);
 	virtual ~Block();

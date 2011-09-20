@@ -11,13 +11,14 @@
 #include "Constants.h"
 #include "../Helpers/ByteOperators.h"
 
-Block::Block(int bs, int rs, RecordMethods* methods)
-: maxSize(bs), occupiedRecords(0),recordSize(rs)
+Block::Block(int bs, int rs, RecordMethods* methods, char nextBlockBytes)
+: maxSize(bs), occupiedRecords(0),recordSize(rs), nextBlockBytes(nextBlockBytes)
 {
 	this->recordCount = this->maxSize / this->recordSize;
 	this->flagBytes = ceil((this->recordCount) / 4.0);
 
-	while ((flagBytes + this->recordCount * this->recordSize) > this->maxSize)
+	while ((flagBytes + this->nextBlockBytes
+			+ this->recordCount * this->recordSize) > this->maxSize)
 	{
 		this->recordCount--;
 	}

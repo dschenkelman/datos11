@@ -14,7 +14,7 @@ BlockFile::BlockFile(string & name, int bSize, int rSize, RecordMethods *methods
 {
 	this->fileName = name;
 	this->recordMethods = methods;
-	this->currentBlock = new Block(this->blockSize, rSize, this->recordMethods);
+	this->currentBlock =  new Block(this->blockSize, rSize, this->recordMethods);
 	if (createNew)
 	{
 		this->dataFile.open(this->fileName.c_str(), ios::binary | ios::in | ios::out | ios::trunc);
@@ -32,7 +32,7 @@ void BlockFile::printContent()
 	while(!this->isAtEOF())
 	{
 		this->loadBlock(blockNumber);
-		this->currentBlock->printContent();
+		this->getCurrentBlock()->printContent();
 		blockNumber++;
 	}
 }
@@ -65,18 +65,18 @@ void BlockFile::loadBlock(int blockNumber)
 	this->positionAtBlock(this->currentBlockNumber);
     if (!this->isAtEOF())
     {
-    	this->dataFile.read(this->currentBlock->getBytes(), this->blockSize);
+    	this->dataFile.read(this->getCurrentBlock()->getBytes(), this->blockSize);
     }
     else
     {
-    	this->currentBlock->clear();
+    	this->getCurrentBlock()->clear();
     }
 }
 
 void BlockFile::saveBlock()
 {
 	this->positionAtBlock(this->currentBlockNumber);
-	this->dataFile.write(this->currentBlock->getBytes(), this->blockSize);
+	this->dataFile.write(this->getCurrentBlock()->getBytes(), this->blockSize);
 }
 
 BlockFile::~BlockFile()

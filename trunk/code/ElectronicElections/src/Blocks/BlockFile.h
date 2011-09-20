@@ -27,7 +27,7 @@ class BlockFile
 public:
     BlockFile(std::string& fileName, int bSize, int rSize, RecordMethods *methods, bool createNew);
     void printContent();
-    Block* getCurrentBlock();
+    virtual Block* getCurrentBlock();
     void loadBlock(int blockNumber);
     void saveBlock();
 	virtual ~BlockFile();

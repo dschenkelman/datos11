@@ -59,6 +59,7 @@ public:
 	virtual bool insertRecord(char* key, char* bytes);
 	bool updateRecord(const char* key, char* bytes);
 	bool removeRecord(const char* key);
+	int getOccupiedRecords();
 	virtual ~Block();
 };
 

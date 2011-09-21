@@ -228,6 +228,11 @@ short Block::getFlagByteFromRecordIndex(int recordIndex)
 	return (short)(recordIndex * 2) / 8;
 }
 
+int Block::getOccupiedRecords()
+{
+	return this->occupiedRecords;
+}
+
 Block::~Block()
 {
 	delete[] this->bytes;

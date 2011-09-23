@@ -8,7 +8,7 @@
 #ifndef TREEBLOCKFILETESTS_H_
 #define TREEBLOCKFILETESTS_H_
 
-#include "./../Blocks/TreeBlockFile.h"
+#include "./../BPlusTree/TreeBlockFile.h"
 
 class TreeBlockFileTests
 {

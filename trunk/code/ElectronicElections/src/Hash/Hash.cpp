@@ -1,6 +1,8 @@
 #include "Hash.h"
+#include "HashBlock.h"
 
-Hash::Hash(BlockFile* file, int blockAmount)
+
+Hash::Hash(HashBlockFile* file, int blockAmount)
 {
 	this->file = file;
 	this->blockAmount = blockAmount;
@@ -33,7 +35,7 @@ bool Hash::insertRecord(char* key, Record* record)
 	}
 	
 	file->loadBlock(blockNumber);
-	Block* block = file->getCurrentBlock();
+	HashBlock* block = file->getCurrentBlock();
 	if( block->findRecord(key, record) >= 0)	//the record was found
 	{
 		return false; 

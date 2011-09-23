@@ -10,13 +10,14 @@
 #include <string>
 #include <iostream>
 #include <stdlib.h>
+#include "../Hash/HashBlockFile.h"
 
 using namespace std;
 
 HashTest::HashTest()
 {
 	string f = "hashtest";
-	this->file = new BlockFile(f, 512, 16, new CustomerMethods, true);
+	this->file = new HashBlockFile(f, 512, 16, new CustomerMethods, true);
 	this->hash = new Hash(file, 20);
 }
 

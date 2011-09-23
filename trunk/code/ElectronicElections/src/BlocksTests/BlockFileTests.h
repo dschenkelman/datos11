@@ -10,18 +10,18 @@
 
 #include "./../Blocks/BlockFile.h"
 
-class BlockFileTests
+class HashBlockFileTests
 {
 	BlockFile* file;
 	BlockFile* removeFile;
 public:
-	BlockFileTests();
+	HashBlockFileTests();
 	void testInsert();
 	void testUpdate();
 	void testRemove();
 	void testGet();
 	void run();
-	virtual ~BlockFileTests();
+	virtual ~HashBlockFileTests();
 };
 
 #endif /* BLOCKFILETESTS_H_ */

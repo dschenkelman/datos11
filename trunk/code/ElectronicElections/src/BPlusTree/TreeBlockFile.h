@@ -8,7 +8,7 @@
 #ifndef TREEBLOCKFILE_H_
 #define TREEBLOCKFILE_H_
 
-#include "BlockFile.h"
+#include "../Blocks/BlockFile.h"
 #include <string>
 #include "TreeBlock.h"
 

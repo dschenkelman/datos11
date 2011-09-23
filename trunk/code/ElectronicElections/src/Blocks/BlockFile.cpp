@@ -14,7 +14,6 @@ BlockFile::BlockFile(string & name, int bSize, int rSize, RecordMethods *methods
 {
 	this->fileName = name;
 	this->recordMethods = methods;
-	this->currentBlock =  new Block(this->blockSize, rSize, this->recordMethods);
 	if (createNew)
 	{
 		this->dataFile.open(this->fileName.c_str(), ios::binary | ios::in | ios::out | ios::trunc);
@@ -35,11 +34,6 @@ void BlockFile::printContent()
 		this->getCurrentBlock()->printContent();
 		blockNumber++;
 	}
-}
-
-Block* BlockFile::getCurrentBlock()
-{
-	return this->currentBlock;
 }
 
 void BlockFile::positionAtBlock(int blockNumber)
@@ -82,6 +76,5 @@ void BlockFile::saveBlock()
 BlockFile::~BlockFile()
 {
 	this->dataFile.close();
-	delete this->currentBlock;
 	delete this->recordMethods;
 }

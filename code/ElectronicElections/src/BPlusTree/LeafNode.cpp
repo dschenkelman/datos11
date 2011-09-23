@@ -21,7 +21,7 @@ LeafNode::LeafNode(TreeBlock* tb)
 
 int LeafNode::getMinimunNumberOfRecordsPerBlock()
 {
-	return ceil(this->treeBlock->getRecordCount() / 2);
+	return this->treeBlock->getRecordCount() / 2;
 }
 
 LeafNode::~LeafNode()

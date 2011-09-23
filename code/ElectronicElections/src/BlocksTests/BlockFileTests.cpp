@@ -10,19 +10,19 @@
 #include <string>
 #include <iostream>
 #include "Customer.h"
-#include "./../Blocks/BlockFile.h"
+#include "./../Hash/HashBlockFile.h"
 #include "CustomerMethods.h"
 #include "./../Blocks/Constants.h"
 
 using namespace std;
 
-BlockFileTests::BlockFileTests()
+HashBlockFileTests::HashBlockFileTests()
 {
 	string f = "test";
-	this->file = new BlockFile(f, 512, 16, new CustomerMethods, true);
+	this->file = new HashBlockFile(f, 512, 16, new CustomerMethods, true);
 }
 
-void BlockFileTests::testInsert()
+void HashBlockFileTests::testInsert()
 {
 	std::cout << "==================================" << std::endl;
 	std::cout << "Insert Test" << std::endl;
@@ -67,7 +67,7 @@ void BlockFileTests::testInsert()
 	file->printContent();
 }
 
-void BlockFileTests::testGet()
+void HashBlockFileTests::testGet()
 {
 	string key = "JohnKratos";
 
@@ -83,7 +83,7 @@ void BlockFileTests::testGet()
 	}
 }
 
-void BlockFileTests::testRemove()
+void HashBlockFileTests::testRemove()
 {
 	string key = "JohnKratos";
 
@@ -99,7 +99,7 @@ void BlockFileTests::testRemove()
 	}
 }
 
-void BlockFileTests::testUpdate()
+void HashBlockFileTests::testUpdate()
 {
 	std::cout << "==================================" << std::endl;
 	std::cout << "Update Test" << std::endl;
@@ -129,7 +129,7 @@ void BlockFileTests::testUpdate()
 	file->printContent();
 }
 
-void BlockFileTests::run()
+void HashBlockFileTests::run()
 {
 	this->testInsert();
 	this->testUpdate();
@@ -137,7 +137,7 @@ void BlockFileTests::run()
 	this->testRemove();
 }
 
-BlockFileTests::~BlockFileTests()
+HashBlockFileTests::~HashBlockFileTests()
 {
 	delete this->file;
 }

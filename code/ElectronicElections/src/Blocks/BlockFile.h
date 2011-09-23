@@ -21,13 +21,12 @@ class BlockFile
     std::fstream dataFile;
     long blockSize;
     int currentBlockNumber;
-    Block *currentBlock;
     void positionAtBlock(int blockNumber);
     bool isAtEOF();
 public:
     BlockFile(std::string& fileName, int bSize, int rSize, RecordMethods *methods, bool createNew);
     void printContent();
-    virtual Block* getCurrentBlock();
+    virtual Block* getCurrentBlock() = 0;
     void loadBlock(int blockNumber);
     void saveBlock();
 	virtual ~BlockFile();

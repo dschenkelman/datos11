@@ -9,12 +9,12 @@
 #define HASHTEST_H_
 
 #include "./../Hash/Hash.h"
-#include "../Blocks/BlockFile.h"
+#include "../Hash/HashBlockFile.h"
 
 class HashTest
 {
 	Hash* hash;
-	BlockFile* file;
+	HashBlockFile* file;
 
 public:
 	HashTest();

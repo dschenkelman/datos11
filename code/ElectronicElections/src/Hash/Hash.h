@@ -13,6 +13,7 @@
 #include <iostream>
 #include "../Blocks/BlockFile.h"
 #include "../Blocks/Block.h"
+#include "HashBlockFile.h"
 //#include "../Blocks/RecordMethods.h"
 
 using namespace std;
@@ -20,12 +21,12 @@ using namespace std;
 class Hash
 {
 	int blockAmount;
-	BlockFile* file;
+	HashBlockFile* file;
 	Hash();
 
 	public:
 
-	Hash(BlockFile* file,int blockAmount);
+	Hash(HashBlockFile* file,int blockAmount);
 	int hashFunction(char* key);
 
 	//primitives. blockNumber comes from the hash function.

@@ -17,7 +17,7 @@ using namespace std;
 int main()
 {
 	srand (time(NULL));
-	BlockFileTests blockTests;
+	HashBlockFileTests blockTests;
 	blockTests.run();
 	TreeBlockFileTests treeBlocktests;
 	treeBlocktests.run();

@@ -25,8 +25,10 @@ C_UPPER_DEPS :=
 SUBDIRS := \
 src/Voting \
 src/Helpers \
+src/Hash \
 src \
 src/Database \
 src/BlocksTests \
 src/Blocks \
+src/BPlusTree \
 

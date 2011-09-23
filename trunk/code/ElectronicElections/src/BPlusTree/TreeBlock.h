@@ -18,8 +18,6 @@ class TreeBlock: public Block
 	static const int RECORDS_OFFSET =
 			BLOCK_POINTER_SIZE + COUNT_SIZE + LEVEL_SIZE;
 	char nextBlockBytes;
-	short level;
-	int nextBlock;
 	void updateOccupiedRecords(char diff);
 	int retrieveOccupiedRecords();
 	void loadMetadata();

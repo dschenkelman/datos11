@@ -44,6 +44,7 @@ public:
 	int getRecordCount();
 	void seekRecord(int recordNumber);
 	char* getBytes();
+	int getRecordSize();
 	bool canInsertRecord();
 	int findRecord(const char* key, Record* rec);
 	void clear();

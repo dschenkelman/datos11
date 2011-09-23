@@ -129,7 +129,6 @@ bool TreeBlock::removeRecord(const char *key)
 
 void TreeBlock::setNextBlock(int blockNumber)
 {
-	this->nextBlock = blockNumber;
 	memcpy(this->bytes, &blockNumber, BLOCK_POINTER_SIZE);
 }
 
@@ -143,7 +142,6 @@ int TreeBlock::getNextBlock()
 
 void TreeBlock::setLevel(short value)
 {
-	this->level = value;
 	memcpy(this->bytes + BLOCK_POINTER_SIZE, &value, LEVEL_SIZE);
 }
 
@@ -172,8 +170,6 @@ int TreeBlock::retrieveOccupiedRecords()
 void TreeBlock::loadMetadata()
 {
 	this->occupiedRecords = this->retrieveOccupiedRecords();
-	this->level = this->getLevel();
-	this->nextBlock = this->getNextBlock();
 }
 
 

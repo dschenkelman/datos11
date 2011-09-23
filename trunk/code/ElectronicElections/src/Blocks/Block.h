@@ -57,6 +57,7 @@ public:
 	Record* getNextRecord(Record* r);
 	Record* getCurrentRecord(Record* r);
 	virtual bool insertRecord(char* key, char* bytes);
+	bool insertInCurrentRecord(char* key, char* bytes);
 	bool updateRecord(const char* key, char* bytes);
 	bool removeRecord(const char* key);
 	int getOccupiedRecords();

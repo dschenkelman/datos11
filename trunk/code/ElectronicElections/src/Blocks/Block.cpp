@@ -172,6 +172,27 @@ bool Block::insertRecord(char* key, char* b)
     return true;
 }
 
+bool Block::insertInCurrentRecord(char* key, char* b)
+	//	insert record in the first Current Record.
+{
+	Record* rec = new Record(16);
+	if (! this->getCurrentRecord(rec)->getIsEmpty() )
+	{
+		delete [] rec;
+		return false;
+	}
+	short flagIndex = this->getFlagByteFromRecordIndex(this->currentRecord);
+	// update record bytes
+	memcpy(this->bytes + (this->currentRecord * this->recordSize + this->flagBytes), b, this->recordSize);
+	// update empty control flag
+	char emptyBitIndex = (this->currentRecord % 4) * 2 + 1;
+	ByteOperators::setBit(this->bytes + flagIndex, emptyBitIndex, 1);
+
+	this->occupiedRecords++;
+	delete [] rec;
+    return true;
+}
+
 bool Block::canInsertRecord()
 {
 	return this->occupiedRecords < this->recordCount;

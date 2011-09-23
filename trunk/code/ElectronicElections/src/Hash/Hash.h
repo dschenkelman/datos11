@@ -19,20 +19,17 @@ using namespace std;
 
 class Hash
 {
-	long blockAmount;
+	int blockAmount;
 	BlockFile* file;
-	//Block* currentBlock;
-
-	bool internalInsertRecord(int blockNumber, Record* record);
 	Hash();
 
 	public:
 
-	Hash(BlockFile* file,long blockAmount);
-	int hashFunction(long);
+	Hash(BlockFile* file,int blockAmount);
+	int hashFunction(char* key);
 
 	//primitives. blockNumber comes from the hash function.
-	bool insertRecord(long key, Record* record);
+	bool insertRecord(char* key, Record* record);
 
 	//bool removeRecord(BlockFile* file, int blockNumber, Record* record);
 	//void updateRecord(BlockFile* file, int blockNumber, Record* record);

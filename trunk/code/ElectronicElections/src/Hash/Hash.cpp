@@ -25,7 +25,7 @@ bool Hash::insertRecord(char* key, Record* record)
 	
 	//If the block does not exist, Blockfile must creates it
 	
-	if ( blockNumber != 0 )
+	if ( blockNumber == 0 )
 	{
 		lastBlockToCheck = blockAmount;
 	}

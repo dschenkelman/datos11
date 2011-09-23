@@ -18,11 +18,12 @@ class BlockFile
 {
 	std::string fileName;
 	RecordMethods *recordMethods;
-    std::fstream dataFile;
-    long blockSize;
     int currentBlockNumber;
     void positionAtBlock(int blockNumber);
     bool isAtEOF();
+protected:
+    std::fstream dataFile;
+    long blockSize;
 public:
     BlockFile(std::string& fileName, int bSize, int rSize, RecordMethods *methods, bool createNew);
     void printContent();

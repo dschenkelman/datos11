@@ -14,9 +14,11 @@
 class HashBlockFile: public BlockFile
 {
 	HashBlock* currentBlock;
+	void initializefile();
+	int blockAmount;
 public:
 	HashBlockFile(std::string& fileName, int bSize,
-			int rSize, RecordMethods *methods, bool createNew);
+			int rSize, RecordMethods *methods, bool createNew, int blockAmount);
 	virtual HashBlock* getCurrentBlock();
 	virtual ~HashBlockFile();
 };

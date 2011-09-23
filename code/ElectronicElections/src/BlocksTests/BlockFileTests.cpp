@@ -19,7 +19,7 @@ using namespace std;
 HashBlockFileTests::HashBlockFileTests()
 {
 	string f = "test";
-	this->file = new HashBlockFile(f, 512, 16, new CustomerMethods, true);
+	this->file = new HashBlockFile(f, 512, 16, new CustomerMethods, true, 40);
 }
 
 void HashBlockFileTests::testInsert()

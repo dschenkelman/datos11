@@ -6,7 +6,7 @@
  */
 
 #include "HashTest.h"
-#include "CustomerMethods.h"
+#include "../BlocksTests/CustomerMethods.h"
 #include <string>
 #include <iostream>
 #include <stdlib.h>
@@ -17,8 +17,9 @@ using namespace std;
 HashTest::HashTest()
 {
 	string f = "hashtest";
-	this->file = new HashBlockFile(f, 512, 16, new CustomerMethods, true);
-	this->hash = new Hash(file, 20);
+	int blockAmount = 20;
+	this->file = new HashBlockFile(f, 512, 16, new CustomerMethods, true, blockAmount);
+	this->hash = new Hash(file, blockAmount);
 }
 
 void HashTest::testInsert()

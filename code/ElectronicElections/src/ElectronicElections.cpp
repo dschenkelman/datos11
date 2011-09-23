@@ -11,6 +11,7 @@
 #include <string>
 #include "BlocksTests/BlockFileTests.h"
 #include "BlocksTests/TreeBlockFileTests.h"
+#include "BPlusTreeTests/LeafNodeTests.h"
 
 using namespace std;
 
@@ -21,5 +22,9 @@ int main()
 	blockTests.run();
 	TreeBlockFileTests treeBlocktests;
 	treeBlocktests.run();
+
+	LeafNodeTests leafTests;
+	leafTests.run();
+
 	return 0;
 }

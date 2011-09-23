@@ -91,6 +91,11 @@ int Block::findRecord(const char* key, Record* rec)
 	return -1;
 }
 
+int Block::getRecordSize()
+{
+	return this->recordSize;
+}
+
 void Block::clear()
 {
 	memset(this->bytes, 0, this->maxSize);

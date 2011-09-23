@@ -30,5 +30,6 @@ src \
 src/Database \
 src/BlocksTests \
 src/Blocks \
+src/BPlusTreeTests \
 src/BPlusTree \
 

@@ -8,7 +8,8 @@ src/ElectronicElections.d src/ElectronicElections.o: \
  ../src/BlocksTests/./../BPlusTree/TreeBlockFile.h \
  ../src/BlocksTests/./../BPlusTree/../Blocks/BlockFile.h \
  ../src/BlocksTests/./../BPlusTree/TreeBlock.h \
- ../src/BlocksTests/./../BPlusTree/../Blocks/Block.h
+ ../src/BlocksTests/./../BPlusTree/../Blocks/Block.h \
+ ../src/BPlusTreeTests/LeafNodeTests.h
 
 ../src/BlocksTests/BlockFileTests.h:
 
@@ -29,3 +30,5 @@ src/ElectronicElections.d src/ElectronicElections.o: \
 ../src/BlocksTests/./../BPlusTree/TreeBlock.h:
 
 ../src/BlocksTests/./../BPlusTree/../Blocks/Block.h:
+
+../src/BPlusTreeTests/LeafNodeTests.h:

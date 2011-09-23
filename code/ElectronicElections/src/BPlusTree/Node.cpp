@@ -7,12 +7,11 @@
 
 #include "Node.h"
 
-Node::Node() {
-	// TODO Auto-generated constructor stub
-
+Node::Node(TreeBlock* tb, RecordMethods* methods) : recordMethods(methods), treeBlock(tb)
+{
 }
 
-Node::~Node() {
-	// TODO Auto-generated destructor stub
+Node::~Node()
+{
 }
 

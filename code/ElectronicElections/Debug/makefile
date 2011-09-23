@@ -16,6 +16,7 @@ RM := rm -rf
 -include src/Database/subdir.mk
 -include src/BlocksTests/subdir.mk
 -include src/Blocks/subdir.mk
+-include src/BPlusTreeTests/subdir.mk
 -include src/BPlusTree/subdir.mk
 -include objects.mk
 

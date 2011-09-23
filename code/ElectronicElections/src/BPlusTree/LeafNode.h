@@ -14,12 +14,13 @@
 class LeafNode: public Node
 {
 private:
-	TreeBlock* treeBlock;
-	int minimunNumberOfRecordsPerBlock;
-	int currentRecords;
-	int getMinimunNumberOfRecordsPerBlock();
+	int minimumRecords;
+	int recordCount;
+	int getMinimumRecords();
 public:
-	LeafNode(TreeBlock* tb);
+	LeafNode(TreeBlock* tb, RecordMethods* methods);
+	OpResult insert(char* key, Record* r);
+	void print();
 	virtual ~LeafNode();
 };
 

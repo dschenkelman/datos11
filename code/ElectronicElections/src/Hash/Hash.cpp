@@ -1,83 +1,98 @@
 #include "Hash.h"
 
-Hash::Hash(BlockFile* file, long blockAmount)
+Hash::Hash(BlockFile* file, int blockAmount)
 {
 	this->file = file;
 	this->blockAmount = blockAmount;
 }
 
-int Hash::hashFunction(long key)
+int Hash::hashFunction(char* key)
 {
 	// This will change
-	int hash = key % blockAmount;
-	return hash;
+	//int hash = atoi(key) % blockAmount;
+	//return hash;
+	return 0;
 }
 
-bool Hash::insertRecord(long key, Record* record)
+bool Hash::insertRecord(char* key, Record* record)
 {
-    int blockNumber = this->hashFunction(key);
+	int blockNumber = this->hashFunction(key);
+	int firstErasedRecordPtr[2];	// [BlockNumber, RecordNumber]
+	bool firstErasedFound = false;
+	int lastBlockToCheck;
+	
 	//If the block does not exist, Blockfile must creates it
-
-	return internalInsertRecord(blockNumber,record);
-}
-
-bool Hash::internalInsertRecord(int blockNumber, Record* record)
-{
-	//If the block does not exist, Blockfile must creates it
-	//Block* loadedBlock =
+	
+	if ( blockNumber != 0 )
+	{
+		lastBlockToCheck = blockAmount;
+	}
+	else
+	{
+		lastBlockToCheck = blockNumber - 1;
+	}
+	
 	file->loadBlock(blockNumber);
 	Block* block = file->getCurrentBlock();
-
-
-
-	if( block->isFull() )
+	if( block->findRecord(key, record) >= 0)	//the record was found
 	{
-		//Block is already full
-		if (blockNumber == blockAmount)
+		return false; 
+	}
+	
+	while (blockNumber != lastBlockToCheck)
+	{
+		file->loadBlock(blockNumber);
+		block = file->getCurrentBlock();
+		if( block->findRecord(key, record) >= 0)	//the record was found
 		{
-			//The current block is the last one
-			int firstBlockNumber = 1;
-			return internalInsertRecord(firstBlockNumber,record);
+			return false; 
 		}
-		return internalInsertRecord(blockNumber+1,record);
-	}/*
-	else if( block->isEmpty() )
-	{
-		block->insertRecord(record);
-		file->saveBlock();
-		return true;
+		//the record is not in the current block
+		else if (block->isFull() || block->isOverflowed())
+		{
+			if (block->isFull())
+			{
+				block->getsOverflow();
+				file->saveBlock();
+			}
+			else if ( !firstErasedFound )
+			{
+				//Save first erased record
+				firstErasedFound = true;
+				int occupiedRecords = 0;
+				block->seekRecord(occupiedRecords);
+				Record* currentRecord = block->getCurrentRecord(currentRecord);
+				while( !currentRecord->getWasDeleted() && block->hasNextRecord())
+				{
+					currentRecord = block->getNextRecord(currentRecord);
+					occupiedRecords++;
+				}
+				if (currentRecord->getWasDeleted())
+				{
+					firstErasedRecordPtr[0] = blockNumber;
+					firstErasedRecordPtr[1] = occupiedRecords;
+				}
+			}
+		}
+		//the current block has a free record
+		else
+		{
+			if (firstErasedFound)
+			{
+				file->loadBlock(firstErasedRecordPtr[0]);
+				block = file->getCurrentBlock();
+				block->seekRecord(firstErasedRecordPtr[1]);
+				block->insertInCurrentRecord(key,record->getBytes());
+			}
+			else
+				block->insertRecord(key,record->getBytes());
+			file->saveBlock();
+			return true;
+		}
+		blockNumber++;
+		if (blockNumber == blockAmount)
+			blockNumber = 0;
 	}
-
-	//The loaded block is empty
-	block->seek(0);
-	int erasedRecord = 0;
-	bool firstErasedFound = false;
-	Record* currentRecord = block->getRecord();
-	if( currentRecord->getWasDeleted() )
-	{
-		firstErasedFound = true;
-	}
-	while( block->hasNextRecord() )
-	{
-		if( !firstErasedFound ) erasedRecord++;
-
-		currentRecord = block->getNextRecord();
-		if( currentRecord->getIsEmpty() ) break;
-
-		if( currentRecord->getWasDeleted() && !firstErasedFound ) firstErasedFound = true;
-	}
-	if( firstErasedFound )
-	{
-		block->seek(erasedRecord);
-		block->insertRecord(record);
-	}
-	else block->insertRecord(record);
-	if( block->isFull() )
-	{
-		//Block gets OVERFLOW!!
-		block->getsOverflow();
-	}
-	file->saveBlock();
-*/
-	return true;
+	//No more space in blockFile!!
+	return false;
 }

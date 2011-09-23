@@ -11,10 +11,12 @@ RM := rm -rf
 -include subdir.mk
 -include src/Voting/subdir.mk
 -include src/Helpers/subdir.mk
+-include src/Hash/subdir.mk
 -include src/subdir.mk
 -include src/Database/subdir.mk
 -include src/BlocksTests/subdir.mk
 -include src/Blocks/subdir.mk
+-include src/BPlusTree/subdir.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)

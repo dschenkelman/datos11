@@ -18,6 +18,7 @@ Block::Block(int bs, int rs, RecordMethods* methods)
 	this->bytes = new char[this->maxSize];
 	memset(this->bytes, 0, this->maxSize);
 	this->recordMethods = methods;
+	this->overflow = false;
 }
 
 char* Block::getBytes()
@@ -78,16 +79,17 @@ int Block::findRecord(const char* key, Record* rec)
 {
 	this->seekRecord(0); //comienzo del 1er registro a buscar
 	int foundRecord = this->currentRecord;
-	while(this->getNextRecord(rec) != NULL)
+	Record* nextRecord = new Record(this->recordSize);
+	while(this->getNextRecord(nextRecord) != NULL)
 	{
 		if (this->recordMethods->compare(key,
-				rec->getBytes(), rec->getSize()) == 0)
+				nextRecord->getBytes(), nextRecord->getSize()) == 0)
 		{
 			return foundRecord;
 		}
 		foundRecord = this->currentRecord;
 	}
-
+	delete nextRecord;
 	return -1;
 }
 
@@ -109,7 +111,7 @@ void Block::printContent()
 	Record* record = new Record(this->recordSize);
 	while(this->getNextRecord(record) != NULL)
 	{
-		if (!record->getIsEmpty())
+		if (!record->getIsEmpty() || this->occupiedRecords == 0)
 		{
 			this->recordMethods->print(record->getBytes(), record->getSize());
 		}

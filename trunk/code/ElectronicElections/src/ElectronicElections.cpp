@@ -19,20 +19,10 @@ using namespace std;
 int main()
 {
 	srand (time(NULL));
-	/*HashBlockFileTests blockTests;
-	blockTests.run();
 	TreeBlockFileTests treeBlocktests;
 	treeBlocktests.run();
-
 	LeafNodeTests leafTests;
 	leafTests.run();
-	char* bytes = new char[50];
-	memset(bytes,32,20);
-	char* addThisbytes = new char[10];
-	strcpy(addThisbytes,"HelloWorld");
-	memcpy(bytes + 8, addThisbytes, 10);
-	cout << bytes;
-*/
 	HashTest hash;
 	hash.run();
 

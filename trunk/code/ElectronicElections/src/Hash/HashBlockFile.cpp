@@ -29,7 +29,7 @@ HashBlockFile::~HashBlockFile()
 void HashBlockFile::initializefile()
 {
 	char* block = new char [blockSize];
-	memset(block,32,blockSize);
+	memset(block,0,blockSize);
 	for (int i= 0; i < blockAmount; i++)
 	{
 		this->dataFile.seekp(i*blockSize);

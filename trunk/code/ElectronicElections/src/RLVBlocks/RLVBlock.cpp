@@ -210,26 +210,22 @@ void RLVBlock::forceInsert(VariableRecord *rec)
     {
     	occupiedSpace += 4;
     }
-
     // add record size
     memcpy(this->bytes + occupiedSpace, &recSize, 4);
     occupiedSpace += 4;
-
     // add record data
     memcpy(this->bytes + occupiedSpace, rec->getBytes(), recSize);
     occupiedSpace += recSize;
-
     // update block size
     memcpy(this->bytes, &occupiedSpace, 4);
 }
 
-bool RLVBlock::insertRecord(VariableRecord *rec)
+bool RLVBlock::insertRecord(const char* key, VariableRecord *rec)
 {
-	if (!this->canInsertRecord(rec->getSize()))
+	if (!this->canInsertRecord(rec->getSize()) || this->findRecord(key, &rec) >= 0)
 	{
 		return false;
 	}
-
     this->forceInsert(rec);
     this->updateInformation();
     return true;

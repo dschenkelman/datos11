@@ -50,7 +50,7 @@ public:
 	int findRecord(const char* key, VariableRecord** rec);
 	void clear();
 	bool canInsertRecord(int size);
-	bool insertRecord(VariableRecord* rec);
+	bool insertRecord(const char* key, VariableRecord* rec);
 	UpdateResult updateRecord(const char* key, VariableRecord* rec);
 	void printContent();
 	bool removeRecord(const char* key);

@@ -9,7 +9,11 @@ src/ElectronicElections.d src/ElectronicElections.o: \
  ../src/BlocksTests/./../BPlusTree/../Blocks/BlockFile.h \
  ../src/BlocksTests/./../BPlusTree/TreeBlock.h \
  ../src/BlocksTests/./../BPlusTree/../Blocks/Block.h \
- ../src/BPlusTreeTests/LeafNodeTests.h
+ ../src/BPlusTreeTests/LeafNodeTests.h ../src/Hash/HashTest.h \
+ ../src/Hash/./../Hash/Hash.h ../src/Hash/./../Hash/../Blocks/BlockFile.h \
+ ../src/Hash/./../Hash/../Blocks/Block.h \
+ ../src/Hash/./../Hash/HashBlockFile.h ../src/Hash/./../Hash/HashBlock.h \
+ ../src/Hash/../Hash/HashBlockFile.h
 
 ../src/BlocksTests/BlockFileTests.h:
 
@@ -32,3 +36,17 @@ src/ElectronicElections.d src/ElectronicElections.o: \
 ../src/BlocksTests/./../BPlusTree/../Blocks/Block.h:
 
 ../src/BPlusTreeTests/LeafNodeTests.h:
+
+../src/Hash/HashTest.h:
+
+../src/Hash/./../Hash/Hash.h:
+
+../src/Hash/./../Hash/../Blocks/BlockFile.h:
+
+../src/Hash/./../Hash/../Blocks/Block.h:
+
+../src/Hash/./../Hash/HashBlockFile.h:
+
+../src/Hash/./../Hash/HashBlock.h:
+
+../src/Hash/../Hash/HashBlockFile.h:

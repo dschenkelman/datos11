@@ -33,8 +33,8 @@ void HashTest::testInsert()
 	int blockNumber;
 	for(long i = 0;i < 5;++i)
 	{
-		int fn = rand() % 5;
-		int ln = rand() % 5;
+		int fn = i;
+		int ln = i;
 		Customer c;
 		c.firstName = firstNames[fn];
 		c.lastName = lastNames[ln];
@@ -50,17 +50,17 @@ void HashTest::testInsert()
 		char *recordBytes = new char[size];
 		memcpy(recordBytes, c.firstName, l1);
 		memcpy(recordBytes + l1, c.lastName, l2);
-		memcpy(recordBytes + (l1+l2), &c.balance, sizeof(long));
+		memcpy(recordBytes + (l1+l2-1), &(c.balance), sizeof(long));
 		
 		//blockNumber = hasingName(recordKey);
-		blockNumber = atoi(recordKey) % 5;
+		blockNumber = i;
 		Record* record = new Record(16);
 		record->setBytes(recordBytes);
 		this->hash->insertRecord(recordKey, record);
 		
 		delete [] recordBytes;
 		delete [] recordKey;
-		delete [] record;
+
 	}
 	this->file->printContent();
 }
@@ -109,9 +109,10 @@ void HashTest::testRemove()
 void HashTest::run()
 {
 	this->testInsert();
-	this->testGetRecord();
-	this->testRemove();
-	std::cout << "Remove Successful" << endl;
+	std::cout << "Inserted Hash successful" << std::endl;
+	//this->testGetRecord();
+	//this->testRemove();
+	//std::cout << "Remove Successful" << endl;
 }
 
 HashTest::~HashTest()

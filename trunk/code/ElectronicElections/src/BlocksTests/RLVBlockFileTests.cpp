@@ -75,18 +75,33 @@ void RLVBlockFileTests::testInsert()
 
 void RLVBlockFileTests::testGet()
 {
-	/*string key = "JohnKratos";
+	string key = "JohnKratos";
 
-	VariableRecord rec(16);
+	VariableRecord* rec = new VariableRecord();
 	file->loadBlock(0);
 	std::cout << "==================================" << std::endl;
-	std::cout << "Get Test" << std::endl;
+	std::cout << "Get RLVTest" << std::endl;
 	std::cout << "==================================" << std::endl;
-	if (file->getCurrentBlock()->findRecord(key.c_str(), &rec) >= 0)
+	if (file->getRecord(key.c_str(), &rec))
 	{
 		CustomerMethods cm;
-		cm.print(rec.getBytes(), rec.getSize());
-	}*/
+		cm.print(rec->getBytes(), rec->getSize());
+	}
+	else
+	{
+		std::cout << key << "--> was not found in file" << std::endl;
+	}
+	char* trueKey = "JohnConnor";
+	if (file->getRecord(trueKey, &rec))
+	{
+		CustomerMethods cm;
+		cm.print(rec->getBytes(), rec->getSize());
+	}
+	else
+	{
+		std::cout << key << "--> was not found in file" << std::endl;
+	}
+
 }
 
 void RLVBlockFileTests::testRemove()
@@ -139,7 +154,7 @@ void RLVBlockFileTests::run()
 {
 	this->testInsert();
 	//this->testUpdate();
-	//this->testGet();
+	this->testGet();
 	//this->testRemove();
 }
 

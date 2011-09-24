@@ -1,12 +1,16 @@
 src/ElectronicElections.d src/ElectronicElections.o: \
- ../src/ElectronicElections.cpp ../src/BlocksTests/BlockFileTests.h \
- ../src/BlocksTests/./../Blocks/BlockFile.h \
- ../src/BlocksTests/./../Blocks/Block.h \
- ../src/BlocksTests/./../Blocks/Record.h \
- ../src/BlocksTests/./../Blocks/RecordMethods.h \
+ ../src/ElectronicElections.cpp ../src/BlocksTests/RLVBlockFileTests.h \
+ ../src/BlocksTests/./../RLVBlocks/RLVBlockFile.h \
+ ../src/BlocksTests/./../RLVBlocks/RLVBlock.h \
+ ../src/BlocksTests/./../RLVBlocks/VariableRecord.h \
+ ../src/BlocksTests/./../RLVBlocks/./../Blocks/RecordMethods.h \
+ ../src/BlocksTests/./../RLVBlocks/./../Blocks/Constants.h \
  ../src/BlocksTests/TreeBlockFileTests.h \
  ../src/BlocksTests/./../BPlusTree/TreeBlockFile.h \
  ../src/BlocksTests/./../BPlusTree/../Blocks/BlockFile.h \
+ ../src/BlocksTests/./../BPlusTree/../Blocks/Block.h \
+ ../src/BlocksTests/./../BPlusTree/../Blocks/Record.h \
+ ../src/BlocksTests/./../BPlusTree/../Blocks/RecordMethods.h \
  ../src/BlocksTests/./../BPlusTree/TreeBlock.h \
  ../src/BlocksTests/./../BPlusTree/../Blocks/Block.h \
  ../src/BPlusTreeTests/LeafNodeTests.h ../src/Hash/HashTest.h \
@@ -15,21 +19,29 @@ src/ElectronicElections.d src/ElectronicElections.o: \
  ../src/Hash/./../Hash/HashBlockFile.h ../src/Hash/./../Hash/HashBlock.h \
  ../src/Hash/../Hash/HashBlockFile.h
 
-../src/BlocksTests/BlockFileTests.h:
+../src/BlocksTests/RLVBlockFileTests.h:
 
-../src/BlocksTests/./../Blocks/BlockFile.h:
+../src/BlocksTests/./../RLVBlocks/RLVBlockFile.h:
 
-../src/BlocksTests/./../Blocks/Block.h:
+../src/BlocksTests/./../RLVBlocks/RLVBlock.h:
 
-../src/BlocksTests/./../Blocks/Record.h:
+../src/BlocksTests/./../RLVBlocks/VariableRecord.h:
 
-../src/BlocksTests/./../Blocks/RecordMethods.h:
+../src/BlocksTests/./../RLVBlocks/./../Blocks/RecordMethods.h:
+
+../src/BlocksTests/./../RLVBlocks/./../Blocks/Constants.h:
 
 ../src/BlocksTests/TreeBlockFileTests.h:
 
 ../src/BlocksTests/./../BPlusTree/TreeBlockFile.h:
 
 ../src/BlocksTests/./../BPlusTree/../Blocks/BlockFile.h:
+
+../src/BlocksTests/./../BPlusTree/../Blocks/Block.h:
+
+../src/BlocksTests/./../BPlusTree/../Blocks/Record.h:
+
+../src/BlocksTests/./../BPlusTree/../Blocks/RecordMethods.h:
 
 ../src/BlocksTests/./../BPlusTree/TreeBlock.h:
 

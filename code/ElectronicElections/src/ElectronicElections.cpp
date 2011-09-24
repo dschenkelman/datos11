@@ -9,7 +9,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <string>
-#include "BlocksTests/BlockFileTests.h"
+#include "BlocksTests/RLVBlockFileTests.h"
 #include "BlocksTests/TreeBlockFileTests.h"
 #include "BPlusTreeTests/LeafNodeTests.h"
 #include "Hash/HashTest.h"

@@ -29,7 +29,6 @@ void RLVBlockFileTests::testInsert()
 
 	char firstNames[5][5] = {"John", "Mike", "Tony", "Rick", "Josh"};
 	char lastNames[5][7] = {"Connor", "Potter", "Wesley", "Mordor", "Gondor"};
-	int blockNumber = 0;
 	for(long i = 0;i < 50;++i)
 	{
 		int fn = rand() % 5;
@@ -50,7 +49,12 @@ void RLVBlockFileTests::testInsert()
 		memcpy(recordBytes, c.firstName, l1);
 		memcpy(recordBytes + l1, c.lastName, l2);
 		memcpy(recordBytes + (l1+l2), &c.balance, sizeof(long));
-		RLVBlock* block = file->getCurrentBlock();
+		file->insertRecord(recordKey, recordBytes, size);
+
+
+		//No need to handle Blocks or Records.
+		//we should use the blockFile to insert with the most basic logic.
+		/*RLVBlock* block = file->getCurrentBlock();
 		if (! block->canInsertRecord(size) )
 		{
 			file->saveBlock();
@@ -60,10 +64,10 @@ void RLVBlockFileTests::testInsert()
 		}
 		VariableRecord* record = new VariableRecord();
 		record->setBytes(recordBytes, size);
-		block->insertRecord(recordKey, record);
+		block->insertRecord(recordKey, record);*/
+
 		delete [] recordBytes;
 		delete [] recordKey;
-		delete record;
 	}
 	file->saveBlock();
 	file->printContent();

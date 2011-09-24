@@ -41,7 +41,7 @@ void RLVBlockFile::printContent()
 bool RLVBlockFile::internalInsertRecord(const char* key,
 		const char* recordBytes, int size, bool force)
 {
-	int blockNumber = 1;
+	int blockNumber = 0;
 	int blockToInsert = -1;
 
 	this->positionAtBlock(0);
@@ -78,7 +78,6 @@ bool RLVBlockFile::internalInsertRecord(const char* key,
 	if (blockToInsert != -1)
 	{
 		this->loadBlock(blockToInsert);
-
 	}
 	else
 	{

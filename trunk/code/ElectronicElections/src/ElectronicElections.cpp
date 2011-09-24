@@ -19,12 +19,13 @@ using namespace std;
 int main()
 {
 	srand (time(NULL));
-	TreeBlockFileTests treeBlocktests;
+	/*TreeBlockFileTests treeBlocktests;
 	treeBlocktests.run();
 	LeafNodeTests leafTests;
 	leafTests.run();
 	HashTest hash;
-	hash.run();
-
+	hash.run();*/
+	RLVBlockFileTests rlvTest;
+	rlvTest.run();
 	return 0;
 }

@@ -231,6 +231,7 @@ bool RLVBlock::insertRecord(VariableRecord *rec)
 	}
 
     this->forceInsert(rec);
+    this->updateInformation();
     return true;
 }
 

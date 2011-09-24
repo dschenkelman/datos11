@@ -17,7 +17,7 @@ using namespace std;
 
 RLVBlockFileTests::RLVBlockFileTests()
 {
-	string f = "test";
+	string f = "RLVtest";
 	this->file = new RLVBlockFile(f, 512, new CustomerMethods, true);
 }
 
@@ -30,7 +30,7 @@ void RLVBlockFileTests::testInsert()
 	char firstNames[5][5] = {"John", "Mike", "Tony", "Rick", "Josh"};
 	char lastNames[5][7] = {"Connor", "Potter", "Wesley", "Mordor", "Gondor"};
 	int blockNumber = 0;
-	for(long i = 0;i < 500;++i)
+	for(long i = 0;i < 5;++i)
 	{
 		int fn = rand() % 5;
 		int ln = rand() % 5;
@@ -51,7 +51,7 @@ void RLVBlockFileTests::testInsert()
 		memcpy(recordBytes + l1, c.lastName, l2);
 		memcpy(recordBytes + (l1+l2), &c.balance, sizeof(long));
 		RLVBlock* block = file->getCurrentBlock();
-		if (! block->canInsertRecord(strlen(recordBytes)) )
+		if (! block->canInsertRecord(size) )
 		{
 			file->saveBlock();
 			blockNumber++;

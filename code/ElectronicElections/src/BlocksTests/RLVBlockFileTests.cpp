@@ -30,7 +30,7 @@ void RLVBlockFileTests::testInsert()
 	char firstNames[5][5] = {"John", "Mike", "Tony", "Rick", "Josh"};
 	char lastNames[5][7] = {"Connor", "Potter", "Wesley", "Mordor", "Gondor"};
 	int blockNumber = 0;
-	for(long i = 0;i < 5;++i)
+	for(long i = 0;i < 50;++i)
 	{
 		int fn = rand() % 5;
 		int ln = rand() % 5;
@@ -60,7 +60,7 @@ void RLVBlockFileTests::testInsert()
 		}
 		VariableRecord* record = new VariableRecord();
 		record->setBytes(recordBytes, size);
-		block->insertRecord(record);
+		block->insertRecord(recordKey, record);
 		delete [] recordBytes;
 		delete [] recordKey;
 		delete record;

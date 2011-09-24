@@ -89,7 +89,7 @@ bool RLVBlockFile::internalInsertRecord(const char* key,
 
 	VariableRecord* record = new VariableRecord();
 	record->setBytes(recordBytes, size);
-	bool result = this->currentBlock->insertRecord(record);
+	bool result = this->currentBlock->insertRecord(key, record);
 	this->saveBlock();
 	delete record;
 

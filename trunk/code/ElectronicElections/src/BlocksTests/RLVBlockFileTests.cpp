@@ -1,31 +1,30 @@
 /*
- * BlockFileTests.cpp
+ * RLVBlockFileTests.cpp
  *
  *  Created on: Sep 15, 2011
  *      Author: damian
  */
 
 #include <stdlib.h>
-#include "BlockFileTests.h"
+#include "RLVBlockFileTests.h"
 #include <string>
 #include <iostream>
 #include "Customer.h"
-#include "./../Hash/HashBlockFile.h"
 #include "CustomerMethods.h"
 #include "./../Blocks/Constants.h"
 
 using namespace std;
 
-HashBlockFileTests::HashBlockFileTests()
+RLVBlockFileTests::RLVBlockFileTests()
 {
 	string f = "test";
-	this->file = new HashBlockFile(f, 512, 16, new CustomerMethods, true, 40);
+	this->file = new RLVBlockFile(f, 512, new CustomerMethods, true);
 }
 
-void HashBlockFileTests::testInsert()
+void RLVBlockFileTests::testInsert()
 {
 	std::cout << "==================================" << std::endl;
-	std::cout << "Insert Test" << std::endl;
+	std::cout << "Insert RLV Test" << std::endl;
 	std::cout << "==================================" << std::endl;
 
 	char firstNames[5][5] = {"John", "Mike", "Tony", "Rick", "Josh"};
@@ -51,27 +50,30 @@ void HashBlockFileTests::testInsert()
 		memcpy(recordBytes, c.firstName, l1);
 		memcpy(recordBytes + l1, c.lastName, l2);
 		memcpy(recordBytes + (l1+l2), &c.balance, sizeof(long));
-		Block* block = file->getCurrentBlock();
-		if (block->isFull())
+		RLVBlock* block = file->getCurrentBlock();
+		if (! block->canInsertRecord(strlen(recordBytes)) )
 		{
 			file->saveBlock();
 			blockNumber++;
 			file->loadBlock(blockNumber);
 			block = file->getCurrentBlock();
 		}
-		block->insertRecord(recordKey, recordBytes);
+		VariableRecord* record = new VariableRecord();
+		record->setBytes(recordBytes, size);
+		block->insertRecord(record);
 		delete [] recordBytes;
 		delete [] recordKey;
+		delete record;
 	}
 	file->saveBlock();
 	file->printContent();
 }
 
-void HashBlockFileTests::testGet()
+void RLVBlockFileTests::testGet()
 {
-	string key = "JohnKratos";
+	/*string key = "JohnKratos";
 
-	Record rec(16);
+	VariableRecord rec(16);
 	file->loadBlock(0);
 	std::cout << "==================================" << std::endl;
 	std::cout << "Get Test" << std::endl;
@@ -80,14 +82,14 @@ void HashBlockFileTests::testGet()
 	{
 		CustomerMethods cm;
 		cm.print(rec.getBytes(), rec.getSize());
-	}
+	}*/
 }
 
-void HashBlockFileTests::testRemove()
+void RLVBlockFileTests::testRemove()
 {
-	string key = "JohnKratos";
+	/*string key = "JohnKratos";
 
-	Record rec(16);
+	VariableRecord rec(16);
 	file->loadBlock(0);
 	std::cout << "==================================" << std::endl;
 	std::cout << "Remove Test" << std::endl;
@@ -96,12 +98,12 @@ void HashBlockFileTests::testRemove()
 	{
 		file->saveBlock();
 		file->printContent();
-	}
+	}*/
 }
 
-void HashBlockFileTests::testUpdate()
+void RLVBlockFileTests::testUpdate()
 {
-	std::cout << "==================================" << std::endl;
+	/*std::cout << "==================================" << std::endl;
 	std::cout << "Update Test" << std::endl;
 	std::cout << "==================================" << std::endl;
 
@@ -126,18 +128,18 @@ void HashBlockFileTests::testUpdate()
 	file->getCurrentBlock()->updateRecord(key1.c_str(), buffer);
 	file->getCurrentBlock()->updateRecord(key2.c_str(), buffer);
 	file->saveBlock();
-	file->printContent();
+	file->printContent();*/
 }
 
-void HashBlockFileTests::run()
+void RLVBlockFileTests::run()
 {
 	this->testInsert();
-	this->testUpdate();
-	this->testGet();
-	this->testRemove();
+	//this->testUpdate();
+	//this->testGet();
+	//this->testRemove();
 }
 
-HashBlockFileTests::~HashBlockFileTests()
+RLVBlockFileTests::~RLVBlockFileTests()
 {
 	delete this->file;
 }

@@ -28,7 +28,7 @@ RLVBlockFile::RLVBlockFile(string& name, int bSize, RecordMethods* methods, bool
 }
 void RLVBlockFile::printContent()
 {
-	int blockNumber = 1;
+	int blockNumber = 0;
 	this->positionAtBlock(0);
 	while(!this->isAtEOF())
 	{
@@ -102,7 +102,7 @@ bool RLVBlockFile::insertRecord(const char* key, const char* recordBytes, int si
 
 bool RLVBlockFile::updateRecord(const char *key, const char *recordBytes, int size)
 {
-	int blockNumber = 1;
+	int blockNumber = 0;
 
 	this->positionAtBlock(0);
 	VariableRecord* r = new VariableRecord();
@@ -136,7 +136,7 @@ bool RLVBlockFile::updateRecord(const char *key, const char *recordBytes, int si
 
 bool RLVBlockFile::removeRecord(const char* key)
 {
-	int blockNumber = 1;
+	int blockNumber = 0;
 
 	this->positionAtBlock(0);
 	while(!this->isAtEOF())
@@ -160,7 +160,7 @@ bool RLVBlockFile::removeRecord(const char* key)
 
 bool RLVBlockFile::getRecord(const char *key, VariableRecord** rec)
 {
-	int blockNumber = 1;
+	int blockNumber = 0;
 
 	this->positionAtBlock(0);
 	while(!this->isAtEOF())

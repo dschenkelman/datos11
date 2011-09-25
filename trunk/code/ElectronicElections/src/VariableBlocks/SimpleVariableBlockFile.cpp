@@ -20,13 +20,13 @@ SimpleVariableBlockFile::SimpleVariableBlockFile(string& name, int bSize, Record
 	if (createNew)
 	{
 		this->dataFile.open(this->fileName.c_str(), ios::binary | ios::in | ios::out | ios::trunc);
-		char* initialValue= new char[bSize];
-		memset(initialValue, 0, bSize);
+		char* initialValue= new char[bSize * 2]; //to start with an empty block
+		memset(initialValue, 0, bSize *2);
 		memset(this->positionToDataBlocks, 0, bSize-4);
 		this->blockAmount = 1;
 		memcpy(initialValue, &blockAmount, sizeof(long));
 		this->dataFile.seekp(0, ios::beg);
-		this->dataFile.write(initialValue, this->blockSize);
+		this->dataFile.write(initialValue, this->blockSize * 2);
 		delete [] initialValue;
 	}
 	else

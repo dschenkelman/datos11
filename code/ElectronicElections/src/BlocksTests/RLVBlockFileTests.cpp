@@ -28,11 +28,11 @@ void RLVBlockFileTests::testInsert()
 	std::cout << "==================================" << std::endl;
 
 	int insertedRecords = 0;
-	char firstNames[5][5] = {"John", "Mike", "Tony", "Rick", "Josh"};
+	char firstNames[10][5] = {"John", "Mike", "Tony", "Rick", "Josh", "AleT", "Juan", "Gaby", "Dami", "Gonz"};
 	char lastNames[5][7] = {"Connor", "Potter", "Wesley", "Mordor", "Gondor"};
 	for(long i = 0;i < 100;++i)
 	{
-		int fn = rand() % 5;
+		int fn = rand() % 10;
 		int ln = rand() % 5;
 		Customer c;
 		c.firstName = firstNames[fn];
@@ -41,15 +41,18 @@ void RLVBlockFileTests::testInsert()
 		int l1 = strlen(c.firstName) + 1;
 		int l2 = strlen(c.lastName) + 1;
 		// size = 16
-		int size = l1 + l2 + sizeof (long);
+		int size = l1+1 + l2+1 + sizeof (long); //sumo 2 bytes para cada tamaño del nombre y apellido
 		char *recordKey = new char[l1 + l2 - 1];
 		memset(recordKey, 0, l1 + l2 - 1);
 		strcat(recordKey, c.firstName);
 		strcat(recordKey, c.lastName);
 		char *recordBytes = new char[size];
-		memcpy(recordBytes, c.firstName, l1);
-		memcpy(recordBytes + l1, c.lastName, l2);
-		memcpy(recordBytes + (l1+l2), &c.balance, sizeof(long));
+		memcpy(recordBytes, &l1, sizeof(char));
+		memcpy(recordBytes + 1 , c.firstName, l1);
+		memcpy(recordBytes +1+ l1, &l2, sizeof(char));
+		memcpy(recordBytes +1+ l1 + 1, c.lastName, l2);
+
+		memcpy(recordBytes +2+ (l1+l2), &c.balance, sizeof(long));
 		if(file->insertRecord(recordKey, recordBytes, size) )
 		{
 			insertedRecords++;
@@ -116,18 +119,29 @@ void RLVBlockFileTests::testRemove()
 
 	string key = "JohnConnor";
 	VariableRecord* rec();
-	file->loadBlock(0);
+	//file->loadBlock(0);
 	std::cout << "Removing key: " << key << std::endl;
 	if (file->removeRecord(key.c_str()))
 	{
 		file->saveBlock();
 		std::cout << key << "--> key removed!" << std::endl;
-		file->printContent();
 	}
 	else
 	{
 		std::cout << key << "--> couldn't remove key" << std::endl;
 	}
+	string key2 = "GabyConnor";
+	std::cout << "Removing key: " << key2 << std::endl;
+	if (file->removeRecord(key2.c_str()))
+	{
+		file->saveBlock();
+		std::cout << key2 << "--> key removed!" << std::endl;
+	}
+	else
+	{
+		std::cout << key2 << "--> couldn't remove key" << std::endl;
+	}
+	file->printContent();
 }
 
 void RLVBlockFileTests::testUpdate()

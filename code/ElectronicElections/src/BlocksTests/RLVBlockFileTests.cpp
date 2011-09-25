@@ -15,13 +15,13 @@
 
 using namespace std;
 
-RLVBlockFileTests::RLVBlockFileTests()
+SimpleVariableBlockFileTests::SimpleVariableBlockFileTests()
 {
 	string f = "RLVtest";
-	this->file = new RLVBlockFile(f, 512, new CustomerMethods, true);
+	this->file = new SimpleVariableBlockFile(f, 512, new CustomerMethods, true);
 }
 
-void RLVBlockFileTests::testInsert()
+void SimpleVariableBlockFileTests::testInsert()
 {
 	std::cout << "==================================" << std::endl;
 	std::cout << "Insert RLV Test" << std::endl;
@@ -80,7 +80,7 @@ void RLVBlockFileTests::testInsert()
 	std::cout << "CountInserted: " << insertedRecords << std::endl;
 }
 
-void RLVBlockFileTests::testGet()
+void SimpleVariableBlockFileTests::testGet()
 {
 	string key = "JohnKratos";
 
@@ -111,7 +111,7 @@ void RLVBlockFileTests::testGet()
 
 }
 
-void RLVBlockFileTests::testRemove()
+void SimpleVariableBlockFileTests::testRemove()
 {
 	std::cout << "==================================" << std::endl;
 	std::cout << "Remove Test" << std::endl;
@@ -144,7 +144,7 @@ void RLVBlockFileTests::testRemove()
 	file->printContent();
 }
 
-void RLVBlockFileTests::testUpdate()
+void SimpleVariableBlockFileTests::testUpdate()
 {
 	/*std::cout << "==================================" << std::endl;
 	std::cout << "Update Test" << std::endl;
@@ -174,7 +174,7 @@ void RLVBlockFileTests::testUpdate()
 	file->printContent();*/
 }
 
-void RLVBlockFileTests::run()
+void SimpleVariableBlockFileTests::run()
 {
 	this->testInsert();
 	//this->testUpdate();
@@ -182,7 +182,7 @@ void RLVBlockFileTests::run()
 	this->testRemove();
 }
 
-RLVBlockFileTests::~RLVBlockFileTests()
+SimpleVariableBlockFileTests::~SimpleVariableBlockFileTests()
 {
 	delete this->file;
 }

@@ -25,7 +25,7 @@ int main()
 	leafTests.run();
 	HashTest hash;
 	hash.run();*/
-	RLVBlockFileTests rlvTest;
+	SimpleVariableBlockFileTests rlvTest;
 	rlvTest.run();
 	return 0;
 }

@@ -8,20 +8,20 @@
 #ifndef RLVBLOCKFILETESTS_H_
 #define RLVBLOCKFILETESTS_H_
 
-#include "./../RLVBlocks/RLVBlockFile.h"
+#include "./../VariableBlocks/SimpleVariableBlockFile.h"
 
-class RLVBlockFileTests
+class SimpleVariableBlockFileTests
 {
-	RLVBlockFile* file;
-	RLVBlockFile* removeFile;
+	SimpleVariableBlockFile* file;
+	SimpleVariableBlockFile* removeFile;
 public:
-	RLVBlockFileTests();
+	SimpleVariableBlockFileTests();
 	void testInsert();
 	void testUpdate();
 	void testRemove();
 	void testGet();
 	void run();
-	virtual ~RLVBlockFileTests();
+	virtual ~SimpleVariableBlockFileTests();
 };
 
 #endif /* RLVBLOCKFILETESTS_H_ */

@@ -246,10 +246,9 @@ void SimpleVariableBlockFile::saveBlock()
 {
 	this->positionAtBlock(this->loadedBlockNumber);
 	int occupiedSpace = this->blockSize - this->currentBlock->getFreeSpace();
-	memcpy(this->positionToDataBlocks + (this->loadedBlockNumber-1) * this->blockSize,
+	memcpy(this->positionToDataBlocks + (this->loadedBlockNumber-1) * 4,
 			&occupiedSpace, 4);
 	this->dataFile.write(this->currentBlock->getBytes(), this->blockSize);
-	this->currentBlock->updateInformation();
 }
 
 SimpleVariableBlockFile::~SimpleVariableBlockFile() {
@@ -257,6 +256,7 @@ SimpleVariableBlockFile::~SimpleVariableBlockFile() {
 	this->dataFile.seekg(0, ios::beg);
 	this->dataFile.seekp(0, ios::beg);
 	char* bytes = new char[this->blockSize];
+	memset(bytes, 0, this->blockSize);
 	memcpy(bytes, &this->blockAmount, 4);
 	memcpy(bytes, this->positionToDataBlocks, this->blockSize -4);
 	this->dataFile.write(bytes, this->blockSize);

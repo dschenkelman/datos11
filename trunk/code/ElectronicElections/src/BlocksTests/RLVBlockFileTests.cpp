@@ -60,17 +60,6 @@ void SimpleVariableBlockFileTests::testInsert()
 
 		//No need to handle Blocks or Records.
 		//we should use the blockFile to insert with the most basic logic.
-		/*RLVBlock* block = file->getCurrentBlock();
-		if (! block->canInsertRecord(size) )
-		{
-			file->saveBlock();
-			blockNumber++;
-			file->loadBlock(blockNumber);
-			block = file->getCurrentBlock();
-		}
-		VariableRecord* record = new VariableRecord();
-		record->setBytes(recordBytes, size);
-		block->insertRecord(recordKey, record);*/
 
 		delete [] recordBytes;
 		delete [] recordKey;
@@ -145,32 +134,29 @@ void SimpleVariableBlockFileTests::testRemove()
 
 void SimpleVariableBlockFileTests::testUpdate()
 {
-	/*std::cout << "==================================" << std::endl;
+	std::cout << "==================================" << std::endl;
 	std::cout << "Update Test" << std::endl;
 	std::cout << "==================================" << std::endl;
 
 	string key1 = "JohnConnor";
 	string key2 = "MikeGondor";
 	long balance = 5000;
-
 	string firstName = "John";
 	int l1 = 5;
-
 	string lastName = "Kratos";
 	int l2 = 7;
-
-	int size = 16;
+	int size = 18; //2 bytes for names lenght and 4 bytes for reg size
 	char buffer[size];
 
-	memcpy(buffer, firstName.c_str(), l1);
-	memcpy(buffer + l1, lastName.c_str(), l2);
-	memcpy(buffer + (l1+l2), &balance, 4);
-
-	file->loadBlock(0);
-	file->getCurrentBlock()->updateRecord(key1.c_str(), buffer);
-	file->getCurrentBlock()->updateRecord(key2.c_str(), buffer);
+	memcpy(buffer, &l1, sizeof(char));
+	memcpy(buffer +1, firstName.c_str(), l1);
+	memcpy(buffer + l1+1, &l2, sizeof(char));
+	memcpy(buffer + l1+2, lastName.c_str(), l2);
+	memcpy(buffer + (l1+l2)+2, &balance, 4);
+	file->updateRecord(key1.c_str(), buffer, size);
+	file->updateRecord(key2.c_str(), buffer, size);
 	file->saveBlock();
-	file->printContent();*/
+	file->printContent();
 }
 
 void SimpleVariableBlockFileTests::run()
@@ -180,7 +166,7 @@ void SimpleVariableBlockFileTests::run()
 	this->testInsert();
 	firstEmptyBlock = this->file->getFirstFreeEmptyBlock();
 	std::cout << "First Free Block: " << firstEmptyBlock << endl;
-	//this->testUpdate();
+	this->testUpdate();
 	this->testGet();
 	this->testRemove();
 }

@@ -11,24 +11,50 @@ using namespace std;
 
 RLVBlockFile::RLVBlockFile(string& name, int bSize, RecordMethods* methods, bool createNew):blockSize(bSize)
 {
+	//first block in file:
+	//long for blocksize, long for blockamount, all longs for occupied space in each block.
 	this->fileName = name;
 	this->recordMethods = methods;
+	this->positionToDataBlocks = new char[bSize];
 	this->currentBlock = new RLVBlock(this->blockSize, this->recordMethods);
 	if (createNew)
 	{
 		this->dataFile.open(this->fileName.c_str(), ios::binary | ios::in | ios::out | ios::trunc);
-		char initialValue[bSize];
+		char* initialValue= new char[bSize];
 		memset(initialValue, 0, bSize);
-		this->dataFile.write(initialValue, bSize);
+		memset(this->positionToDataBlocks, 0, bSize-4);
+		this->blockAmount = 1;
+		memcpy(initialValue, &blockAmount, sizeof(long));
+		delete [] initialValue;
 	}
 	else
 	{
 		this->dataFile.open(this->fileName.c_str(), ios::binary | ios::in | ios::out);
+		char* bytes = new char[this->blockSize];
+		this->dataFile.read(bytes, this->blockSize);
+		memcpy(&this->blockAmount, bytes, 4);
+		memcpy(this->positionToDataBlocks, bytes, this->blockSize - 4);
+		delete [] bytes;
 	}
 }
+
+int RLVBlockFile::getFirstFreeEmptyBlock()
+{
+	//it returns -1 if there are no empty blocks
+	int occupiedSize;
+	for(int i=0; i <
+	this->blockAmount; i++)
+	{
+		memcpy(&occupiedSize, this->positionToDataBlocks + i*4, 4);
+		if(occupiedSize == 0) return i+1;
+
+	}
+	return -1;
+}
+
 void RLVBlockFile::printContent()
 {
-	int blockNumber = 0;
+	int blockNumber = 1;
 	this->positionAtBlock(0);
 	while(!this->isAtEOF())
 	{
@@ -41,7 +67,7 @@ void RLVBlockFile::printContent()
 bool RLVBlockFile::internalInsertRecord(const char* key,
 		const char* recordBytes, int size, bool force)
 {
-	int blockNumber = 0;
+	int blockNumber = 1;
 	int blockToInsert = -1;
 
 	this->positionAtBlock(0);
@@ -102,7 +128,7 @@ bool RLVBlockFile::insertRecord(const char* key, const char* recordBytes, int si
 
 bool RLVBlockFile::updateRecord(const char *key, const char *recordBytes, int size)
 {
-	int blockNumber = 0;
+	int blockNumber = 1;
 
 	this->positionAtBlock(0);
 	VariableRecord* r = new VariableRecord();
@@ -136,7 +162,7 @@ bool RLVBlockFile::updateRecord(const char *key, const char *recordBytes, int si
 
 bool RLVBlockFile::removeRecord(const char* key)
 {
-	int blockNumber = 0;
+	int blockNumber = 1;
 
 	this->positionAtBlock(0);
 	while(!this->isAtEOF())
@@ -160,7 +186,7 @@ bool RLVBlockFile::removeRecord(const char* key)
 
 bool RLVBlockFile::getRecord(const char *key, VariableRecord** rec)
 {
-	int blockNumber = 0;
+	int blockNumber = 1;
 
 	this->positionAtBlock(0);
 	while(!this->isAtEOF())
@@ -220,12 +246,24 @@ RLVBlock* RLVBlockFile::getCurrentBlock()
 void RLVBlockFile::saveBlock()
 {
 	this->positionAtBlock(this->loadedBlockNumber);
+	int occupiedSpace = this->blockSize - this->currentBlock->getFreeSpace();
+	memcpy(this->positionToDataBlocks + this->loadedBlockNumber * this->blockSize,
+			&occupiedSpace, 4);
 	this->dataFile.write(this->currentBlock->getBytes(), this->blockSize);
 	this->currentBlock->updateInformation();
 }
 
 RLVBlockFile::~RLVBlockFile() {
+	//writing updated occupied block bytes
+	this->dataFile.seekg(0, ios::beg);
+	this->dataFile.seekp(0, ios::beg);
+	char* bytes = new char[this->blockSize];
+	memcpy(bytes, &this->blockAmount, 4);
+	memcpy(bytes, this->positionToDataBlocks, this->blockSize -4);
+	this->dataFile.write(bytes, this->blockSize);
 	this->dataFile.close();
 	delete this->currentBlock;
 	delete this->recordMethods;
+	delete this->positionToDataBlocks;
+	delete [] bytes;
 }

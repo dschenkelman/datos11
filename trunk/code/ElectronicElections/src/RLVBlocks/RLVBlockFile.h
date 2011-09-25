@@ -22,6 +22,8 @@ class RLVBlockFile
     long blockSize;
     RLVBlock *currentBlock;
     int loadedBlockNumber;
+    int blockAmount;
+    char* positionToDataBlocks;
     void positionAtBlock(int blockNumber);
     bool internalInsertRecord(const char* key,
     		const char* recordBytes, int size, bool force);
@@ -29,6 +31,7 @@ class RLVBlockFile
 public:
     RLVBlockFile(std::string& fileName, int bSize, RecordMethods *methods, bool createNew);
     void printContent();
+    int getFirstFreeEmptyBlock();
     bool insertRecord(const char *key, const char* recordBytes, int size);
     bool updateRecord(const char *key, const char* recordBytes, int size);
     bool removeRecord(const char *key);

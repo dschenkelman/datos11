@@ -5,18 +5,18 @@
  *      Author: damian
  */
 
-#include "RLVBlockFile.h"
+#include "SimpleVariableBlockFile.h"
 
 using namespace std;
 
-RLVBlockFile::RLVBlockFile(string& name, int bSize, RecordMethods* methods, bool createNew):blockSize(bSize)
+SimpleVariableBlockFile::SimpleVariableBlockFile(string& name, int bSize, RecordMethods* methods, bool createNew):blockSize(bSize)
 {
 	//first block in file:
 	//long for blocksize, long for blockamount, all longs for occupied space in each block.
 	this->fileName = name;
 	this->recordMethods = methods;
 	this->positionToDataBlocks = new char[bSize];
-	this->currentBlock = new RLVBlock(this->blockSize, this->recordMethods);
+	this->currentBlock = new SimpleVariableBlock(this->blockSize, this->recordMethods);
 	if (createNew)
 	{
 		this->dataFile.open(this->fileName.c_str(), ios::binary | ios::in | ios::out | ios::trunc);
@@ -38,7 +38,7 @@ RLVBlockFile::RLVBlockFile(string& name, int bSize, RecordMethods* methods, bool
 	}
 }
 
-int RLVBlockFile::getFirstFreeEmptyBlock()
+int SimpleVariableBlockFile::getFirstFreeEmptyBlock()
 {
 	//it returns -1 if there are no empty blocks
 	int occupiedSize;
@@ -52,7 +52,7 @@ int RLVBlockFile::getFirstFreeEmptyBlock()
 	return -1;
 }
 
-void RLVBlockFile::printContent()
+void SimpleVariableBlockFile::printContent()
 {
 	int blockNumber = 1;
 	this->positionAtBlock(0);
@@ -64,7 +64,7 @@ void RLVBlockFile::printContent()
 	}
 }
 
-bool RLVBlockFile::internalInsertRecord(const char* key,
+bool SimpleVariableBlockFile::internalInsertRecord(const char* key,
 		const char* recordBytes, int size, bool force)
 {
 	int blockNumber = 1;
@@ -121,12 +121,12 @@ bool RLVBlockFile::internalInsertRecord(const char* key,
 	return result;
 }
 
-bool RLVBlockFile::insertRecord(const char* key, const char* recordBytes, int size)
+bool SimpleVariableBlockFile::insertRecord(const char* key, const char* recordBytes, int size)
 {
 	return this->internalInsertRecord(key, recordBytes, size, false);
 }
 
-bool RLVBlockFile::updateRecord(const char *key, const char *recordBytes, int size)
+bool SimpleVariableBlockFile::updateRecord(const char *key, const char *recordBytes, int size)
 {
 	int blockNumber = 1;
 
@@ -160,7 +160,7 @@ bool RLVBlockFile::updateRecord(const char *key, const char *recordBytes, int si
 	return false;
 }
 
-bool RLVBlockFile::removeRecord(const char* key)
+bool SimpleVariableBlockFile::removeRecord(const char* key)
 {
 	int blockNumber = 1;
 
@@ -184,7 +184,7 @@ bool RLVBlockFile::removeRecord(const char* key)
 	return false;
 }
 
-bool RLVBlockFile::getRecord(const char *key, VariableRecord** rec)
+bool SimpleVariableBlockFile::getRecord(const char *key, VariableRecord** rec)
 {
 	int blockNumber = 1;
 
@@ -203,7 +203,7 @@ bool RLVBlockFile::getRecord(const char *key, VariableRecord** rec)
 	return false;
 }
 
-void RLVBlockFile::positionAtBlock(int blockNumber)
+void SimpleVariableBlockFile::positionAtBlock(int blockNumber)
 {
     long position = blockNumber * this->blockSize;
     this->dataFile.clear();
@@ -211,7 +211,7 @@ void RLVBlockFile::positionAtBlock(int blockNumber)
     this->dataFile.seekp(position, ios::beg);
 }
 
-bool RLVBlockFile::isAtEOF()
+bool SimpleVariableBlockFile::isAtEOF()
 {
 	long position = this->dataFile.tellg();
 	this->dataFile.seekg(0, ios::end);
@@ -220,7 +220,7 @@ bool RLVBlockFile::isAtEOF()
 	return position == size;
 }
 
-void RLVBlockFile::loadBlock(int blockNumber)
+void SimpleVariableBlockFile::loadBlock(int blockNumber)
 {
 	this->loadedBlockNumber = blockNumber;
     this->positionAtBlock(blockNumber);
@@ -238,12 +238,12 @@ void RLVBlockFile::loadBlock(int blockNumber)
     this->positionAtBlock(blockNumber);
 }
 
-RLVBlock* RLVBlockFile::getCurrentBlock()
+SimpleVariableBlock* SimpleVariableBlockFile::getCurrentBlock()
 {
 	return this->currentBlock;
 }
 
-void RLVBlockFile::saveBlock()
+void SimpleVariableBlockFile::saveBlock()
 {
 	this->positionAtBlock(this->loadedBlockNumber);
 	int occupiedSpace = this->blockSize - this->currentBlock->getFreeSpace();
@@ -253,7 +253,7 @@ void RLVBlockFile::saveBlock()
 	this->currentBlock->updateInformation();
 }
 
-RLVBlockFile::~RLVBlockFile() {
+SimpleVariableBlockFile::~SimpleVariableBlockFile() {
 	//writing updated occupied block bytes
 	this->dataFile.seekg(0, ios::beg);
 	this->dataFile.seekp(0, ios::beg);

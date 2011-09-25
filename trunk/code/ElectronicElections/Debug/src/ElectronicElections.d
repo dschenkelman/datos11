@@ -1,10 +1,12 @@
 src/ElectronicElections.d src/ElectronicElections.o: \
  ../src/ElectronicElections.cpp ../src/BlocksTests/RLVBlockFileTests.h \
- ../src/BlocksTests/./../RLVBlocks/RLVBlockFile.h \
- ../src/BlocksTests/./../RLVBlocks/RLVBlock.h \
- ../src/BlocksTests/./../RLVBlocks/VariableRecord.h \
- ../src/BlocksTests/./../RLVBlocks/./../Blocks/RecordMethods.h \
- ../src/BlocksTests/./../RLVBlocks/./../Blocks/Constants.h \
+ ../src/BlocksTests/./../VariableBlocks/SimpleVariableBlockFile.h \
+ ../src/BlocksTests/./../VariableBlocks/SimpleVariableBlock.h \
+ ../src/BlocksTests/./../VariableBlocks/VariableRecord.h \
+ ../src/BlocksTests/./../VariableBlocks/./../Blocks/RecordMethods.h \
+ ../src/BlocksTests/./../VariableBlocks/./../Blocks/Constants.h \
+ ../src/BlocksTests/./../VariableBlocks/BaseVariableBlock.h \
+ ../src/BlocksTests/./../VariableBlocks/../Blocks/RecordMethods.h \
  ../src/BlocksTests/TreeBlockFileTests.h \
  ../src/BlocksTests/./../BPlusTree/TreeBlockFile.h \
  ../src/BlocksTests/./../BPlusTree/../Blocks/BlockFile.h \
@@ -21,15 +23,19 @@ src/ElectronicElections.d src/ElectronicElections.o: \
 
 ../src/BlocksTests/RLVBlockFileTests.h:
 
-../src/BlocksTests/./../RLVBlocks/RLVBlockFile.h:
+../src/BlocksTests/./../VariableBlocks/SimpleVariableBlockFile.h:
 
-../src/BlocksTests/./../RLVBlocks/RLVBlock.h:
+../src/BlocksTests/./../VariableBlocks/SimpleVariableBlock.h:
 
-../src/BlocksTests/./../RLVBlocks/VariableRecord.h:
+../src/BlocksTests/./../VariableBlocks/VariableRecord.h:
 
-../src/BlocksTests/./../RLVBlocks/./../Blocks/RecordMethods.h:
+../src/BlocksTests/./../VariableBlocks/./../Blocks/RecordMethods.h:
 
-../src/BlocksTests/./../RLVBlocks/./../Blocks/Constants.h:
+../src/BlocksTests/./../VariableBlocks/./../Blocks/Constants.h:
+
+../src/BlocksTests/./../VariableBlocks/BaseVariableBlock.h:
+
+../src/BlocksTests/./../VariableBlocks/../Blocks/RecordMethods.h:
 
 ../src/BlocksTests/TreeBlockFileTests.h:
 

@@ -5,47 +5,16 @@
  *      Author: damian
  */
 
-#include "RLVBlock.h"
+#include "SimpleVariableBlock.h"
 #include <string.h>
 #include <exception>
 
-RLVBlock::RLVBlock(int size, RecordMethods* methods) : maxSize(size),
-position(Constants::BLOCK_HEADER_SIZE)
+SimpleVariableBlock::SimpleVariableBlock(int size, RecordMethods* methods) :
+BaseVariableBlock(size, Constants::BLOCK_HEADER_SIZE, Constants::BLOCK_HEADER_SIZE, methods)
 {
-	this->bytes = new char[this->maxSize];
-	memset(this->bytes, 0, this->maxSize);
-	this->freeSpace = this->maxSize;
-	this->recordMethods = methods;
 }
 
-RLVBlock& RLVBlock::operator =(const RLVBlock & other)
-{
-	if (this == &other)
-	{
-		return *this;
-	}
-
-	this->copyBlock(other);
-
-	return *this;
-}
-
-RLVBlock::RLVBlock(RLVBlock& other)
-{
-    this->copyBlock(other);
-}
-
-char* RLVBlock::getBytes()
-{
-	return this->bytes;
-}
-
-int RLVBlock::getRecordCount()
-{
-	return this->recordCount;
-}
-
-void RLVBlock::updateInformation()
+void SimpleVariableBlock::updateInformation()
 {
 	int occupiedSize;
 	memcpy(&occupiedSize, this->bytes, Constants::BLOCK_HEADER_SIZE);
@@ -67,22 +36,17 @@ void RLVBlock::updateInformation()
 	this->recordCount = records;
 }
 
-int RLVBlock::getFreeSpace()
-{
-	return this->freeSpace;
-}
-
-inline int RLVBlock::getOccupiedSize()
+inline int SimpleVariableBlock::getOccupiedSize()
 {
 	return this->maxSize - this->freeSpace;
 }
 
-bool RLVBlock::hasNextRecord()
+bool SimpleVariableBlock::hasNextRecord()
 {
 	return this->position < this->getOccupiedSize();
 }
 
-VariableRecord* RLVBlock::getNextRecord(VariableRecord* r)
+VariableRecord* SimpleVariableBlock::getNextRecord(VariableRecord* r)
 {
 	if (!this->hasNextRecord())
 	{
@@ -98,36 +62,14 @@ VariableRecord* RLVBlock::getNextRecord(VariableRecord* r)
 	return r;
 }
 
-int RLVBlock::findRecord(const char* key, VariableRecord** rec)
-{
-	this->position = Constants::BLOCK_HEADER_SIZE;
-	VariableRecord* record = new VariableRecord();
-	int foundPosition = this->position;
-	while(this->getNextRecord(record) != NULL)
-	{
-		if (this->recordMethods->compare(key,
-				record->getBytes(), record->getSize()) == 0)
-		{
-			*rec = record;
-			return foundPosition;
-		}
-		delete record;
-		record = new VariableRecord();
-		foundPosition = this->position;
-	}
-
-	delete record;
-	return -1;
-}
-
-void RLVBlock::clear()
+void SimpleVariableBlock::clear()
 {
 	memset(this->bytes, 0, this->maxSize);
 	this->position = Constants::BLOCK_HEADER_SIZE;
 	this->freeSpace = this->maxSize;
 }
 
-void RLVBlock::printContent()
+void SimpleVariableBlock::printContent()
 {
 	this->position = Constants::BLOCK_HEADER_SIZE;
 	VariableRecord* record = new VariableRecord();
@@ -141,7 +83,7 @@ void RLVBlock::printContent()
 	delete record;
 }
 
-UpdateResult RLVBlock::updateRecord(const char* key, VariableRecord* rec)
+UpdateResult SimpleVariableBlock::updateRecord(const char* key, VariableRecord* rec)
 {
 	VariableRecord* r = NULL;
 	int startPosition = this->findRecord(key, &r);
@@ -201,7 +143,7 @@ UpdateResult RLVBlock::updateRecord(const char* key, VariableRecord* rec)
 	return UPDATED;
 }
 
-void RLVBlock::forceInsert(VariableRecord *rec)
+void SimpleVariableBlock::forceInsert(VariableRecord *rec)
 {
     int recSize = rec->getSize();
     int occupiedSpace = this->getOccupiedSize();
@@ -220,7 +162,7 @@ void RLVBlock::forceInsert(VariableRecord *rec)
     memcpy(this->bytes, &occupiedSpace, 4);
 }
 
-bool RLVBlock::insertRecord(const char* key, VariableRecord *rec)
+bool SimpleVariableBlock::insertRecord(const char* key, VariableRecord *rec)
 {
 	if (!this->canInsertRecord(rec->getSize()) || this->findRecord(key, &rec) >= 0)
 	{
@@ -231,24 +173,12 @@ bool RLVBlock::insertRecord(const char* key, VariableRecord *rec)
     return true;
 }
 
-bool RLVBlock::canInsertRecord(int size)
+bool SimpleVariableBlock::canInsertRecord(int size)
 {
 	return this->freeSpace >= size;
 }
 
-void RLVBlock::copyBlock(const RLVBlock & other)
-{
-    this->freeSpace = other.freeSpace;
-    this->maxSize = other.maxSize;
-    this->recordCount = other.recordCount;
-    this->position = other.position;
-    this->bytes = new char[this->maxSize];
-    memset(this->bytes, 0, this->maxSize);
-    memcpy(this->bytes, other.bytes, this->maxSize);
-    this->recordMethods = other.recordMethods;
-}
-
-bool RLVBlock::removeRecord(const char* key)
+bool SimpleVariableBlock::removeRecord(const char* key)
 {
 	VariableRecord* r = NULL;
 	int startPosition = this->findRecord(key, &r);
@@ -289,7 +219,9 @@ bool RLVBlock::removeRecord(const char* key)
 	return true;
 }
 
-RLVBlock::~RLVBlock()
+SimpleVariableBlock::~SimpleVariableBlock()
 {
 	delete[] this->bytes;
 }
+
+

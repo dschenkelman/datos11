@@ -15,7 +15,7 @@ SimpleVariableBlockFile::SimpleVariableBlockFile(string& name, int bSize, Record
 	//long for blocksize, long for blockamount, all longs for occupied space in each block.
 	this->fileName = name;
 	this->recordMethods = methods;
-	this->positionToDataBlocks = new char[bSize];
+	this->positionToDataBlocks = new char[bSize-4];
 	this->currentBlock = new SimpleVariableBlock(this->blockSize, this->recordMethods);
 	if (createNew)
 	{
@@ -25,6 +25,8 @@ SimpleVariableBlockFile::SimpleVariableBlockFile(string& name, int bSize, Record
 		memset(this->positionToDataBlocks, 0, bSize-4);
 		this->blockAmount = 1;
 		memcpy(initialValue, &blockAmount, sizeof(long));
+		this->dataFile.seekp(0, ios::beg);
+		this->dataFile.write(initialValue, this->blockSize);
 		delete [] initialValue;
 	}
 	else
@@ -33,7 +35,7 @@ SimpleVariableBlockFile::SimpleVariableBlockFile(string& name, int bSize, Record
 		char* bytes = new char[this->blockSize];
 		this->dataFile.read(bytes, this->blockSize);
 		memcpy(&this->blockAmount, bytes, 4);
-		memcpy(this->positionToDataBlocks, bytes, this->blockSize - 4);
+		memcpy(this->positionToDataBlocks, bytes + 4, this->blockSize - 4);
 		delete [] bytes;
 	}
 }
@@ -245,12 +247,21 @@ SimpleVariableBlock* SimpleVariableBlockFile::getCurrentBlock()
 
 void SimpleVariableBlockFile::saveBlock()
 {
+
 	this->positionAtBlock(this->loadedBlockNumber);
 	int occupiedSpace = this->blockSize - this->currentBlock->getFreeSpace();
-	memcpy(this->positionToDataBlocks + (this->loadedBlockNumber-1) * 4,
-			&occupiedSpace, 4);
 	this->dataFile.write(this->currentBlock->getBytes(), this->blockSize);
+	//writing occupied size of all blocks in first block
+	memcpy(this->positionToDataBlocks + (this->loadedBlockNumber-1) * 4,
+				&occupiedSpace, 4);
 	this->updateBlockAmount();
+	this->dataFile.seekp(0, ios::beg);
+	char* dataBlocks = new char[this->blockSize];
+	memset(dataBlocks, 0, this->blockSize);
+	memcpy(dataBlocks, &this->blockAmount, 4);
+	memcpy(dataBlocks + 4, this->positionToDataBlocks, this->blockSize-4);
+	this->dataFile.write(dataBlocks, this->blockSize);
+	delete [] dataBlocks;
 }
 void SimpleVariableBlockFile::updateBlockAmount()
 {
@@ -259,18 +270,18 @@ void SimpleVariableBlockFile::updateBlockAmount()
 	this->blockAmount = size / this->blockSize - 1; //less 1 for the first block that it doesn't count
 }
 
-SimpleVariableBlockFile::~SimpleVariableBlockFile() {
-	//writing updated occupied block bytes
-	this->dataFile.seekg(0, ios::beg);
+SimpleVariableBlockFile::~SimpleVariableBlockFile()
+{
+	//writing occupied size of all blocks in first block
 	this->dataFile.seekp(0, ios::beg);
-	char* bytes = new char[this->blockSize];
-	memset(bytes, 0, this->blockSize);
-	memcpy(bytes, &this->blockAmount, 4);
-	memcpy(bytes +4, this->positionToDataBlocks, this->blockSize -4);
-	this->dataFile.write(bytes, this->blockSize);
+	char* dataBlocks = new char[this->blockSize];
+	memset(dataBlocks, 0, this->blockSize);
+	memcpy(dataBlocks, &this->blockAmount, 4);
+	memcpy(dataBlocks + 4, this->positionToDataBlocks, this->blockSize-4);
+	this->dataFile.write(dataBlocks, this->blockSize);
+	delete [] dataBlocks;
 	this->dataFile.close();
 	delete this->currentBlock;
 	delete this->recordMethods;
 	delete this->positionToDataBlocks;
-	delete [] bytes;
 }

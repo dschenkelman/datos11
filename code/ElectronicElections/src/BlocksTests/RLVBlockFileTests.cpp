@@ -169,6 +169,8 @@ void SimpleVariableBlockFileTests::run()
 	this->testUpdate();
 	this->testGet();
 	this->testRemove();
+	firstEmptyBlock = this->file->getFirstFreeEmptyBlock();
+	std::cout << "First Free Block: " << firstEmptyBlock << endl;
 }
 
 SimpleVariableBlockFileTests::~SimpleVariableBlockFileTests()

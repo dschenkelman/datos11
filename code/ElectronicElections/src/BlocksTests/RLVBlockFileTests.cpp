@@ -27,9 +27,10 @@ void RLVBlockFileTests::testInsert()
 	std::cout << "Insert RLV Test" << std::endl;
 	std::cout << "==================================" << std::endl;
 
+	int insertedRecords = 0;
 	char firstNames[5][5] = {"John", "Mike", "Tony", "Rick", "Josh"};
 	char lastNames[5][7] = {"Connor", "Potter", "Wesley", "Mordor", "Gondor"};
-	for(long i = 0;i < 50;++i)
+	for(long i = 0;i < 100;++i)
 	{
 		int fn = rand() % 5;
 		int ln = rand() % 5;
@@ -49,8 +50,10 @@ void RLVBlockFileTests::testInsert()
 		memcpy(recordBytes, c.firstName, l1);
 		memcpy(recordBytes + l1, c.lastName, l2);
 		memcpy(recordBytes + (l1+l2), &c.balance, sizeof(long));
-		file->insertRecord(recordKey, recordBytes, size);
-
+		if(file->insertRecord(recordKey, recordBytes, size) )
+		{
+			insertedRecords++;
+		}
 
 		//No need to handle Blocks or Records.
 		//we should use the blockFile to insert with the most basic logic.
@@ -71,6 +74,7 @@ void RLVBlockFileTests::testInsert()
 	}
 	file->saveBlock();
 	file->printContent();
+	std::cout << "CountInserted: " << insertedRecords << std::endl;
 }
 
 void RLVBlockFileTests::testGet()
@@ -91,33 +95,39 @@ void RLVBlockFileTests::testGet()
 	{
 		std::cout << key << "--> was not found in file" << std::endl;
 	}
-	char* trueKey = "JohnConnor";
-	if (file->getRecord(trueKey, &rec))
+	string trueKey = "JohnConnor";
+	if (file->getRecord(trueKey.c_str(), &rec))
 	{
 		CustomerMethods cm;
 		cm.print(rec->getBytes(), rec->getSize());
 	}
 	else
 	{
-		std::cout << key << "--> was not found in file" << std::endl;
+		std::cout << trueKey << "--> was not found in file" << std::endl;
 	}
 
 }
 
 void RLVBlockFileTests::testRemove()
 {
-	/*string key = "JohnKratos";
-
-	VariableRecord rec(16);
-	file->loadBlock(0);
 	std::cout << "==================================" << std::endl;
 	std::cout << "Remove Test" << std::endl;
 	std::cout << "==================================" << std::endl;
-	while (file->getCurrentBlock()->removeRecord(key.c_str()))
+
+	string key = "JohnConnor";
+	VariableRecord* rec();
+	file->loadBlock(0);
+	std::cout << "Removing key: " << key << std::endl;
+	if (file->removeRecord(key.c_str()))
 	{
 		file->saveBlock();
+		std::cout << key << "--> key removed!" << std::endl;
 		file->printContent();
-	}*/
+	}
+	else
+	{
+		std::cout << key << "--> couldn't remove key" << std::endl;
+	}
 }
 
 void RLVBlockFileTests::testUpdate()
@@ -155,7 +165,7 @@ void RLVBlockFileTests::run()
 	this->testInsert();
 	//this->testUpdate();
 	this->testGet();
-	//this->testRemove();
+	this->testRemove();
 }
 
 RLVBlockFileTests::~RLVBlockFileTests()

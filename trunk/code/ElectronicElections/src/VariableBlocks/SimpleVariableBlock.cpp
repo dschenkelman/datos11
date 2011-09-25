@@ -221,7 +221,6 @@ bool SimpleVariableBlock::removeRecord(const char* key)
 
 SimpleVariableBlock::~SimpleVariableBlock()
 {
-	delete[] this->bytes;
 }
 
 

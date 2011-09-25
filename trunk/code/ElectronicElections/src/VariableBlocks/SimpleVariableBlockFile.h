@@ -28,6 +28,8 @@ class SimpleVariableBlockFile
     bool internalInsertRecord(const char* key,
     		const char* recordBytes, int size, bool force);
     bool isAtEOF();
+    void updateBlockAmount();
+
 public:
     SimpleVariableBlockFile(std::string& fileName, int bSize, RecordMethods *methods, bool createNew);
     void printContent();

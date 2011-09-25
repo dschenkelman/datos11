@@ -61,6 +61,7 @@ void SimpleVariableBlockFile::printContent()
 		this->currentBlock->printContent();
 		blockNumber++;
 	}
+	this->updateBlockAmount();
 }
 
 bool SimpleVariableBlockFile::internalInsertRecord(const char* key,
@@ -249,6 +250,13 @@ void SimpleVariableBlockFile::saveBlock()
 	memcpy(this->positionToDataBlocks + (this->loadedBlockNumber-1) * 4,
 			&occupiedSpace, 4);
 	this->dataFile.write(this->currentBlock->getBytes(), this->blockSize);
+	this->updateBlockAmount();
+}
+void SimpleVariableBlockFile::updateBlockAmount()
+{
+	this->dataFile.seekg(0, ios::end);
+	long size = this->dataFile.tellg();
+	this->blockAmount = size / this->blockSize - 1; //less 1 for the first block that it doesn't count
 }
 
 SimpleVariableBlockFile::~SimpleVariableBlockFile() {
@@ -258,7 +266,7 @@ SimpleVariableBlockFile::~SimpleVariableBlockFile() {
 	char* bytes = new char[this->blockSize];
 	memset(bytes, 0, this->blockSize);
 	memcpy(bytes, &this->blockAmount, 4);
-	memcpy(bytes, this->positionToDataBlocks, this->blockSize -4);
+	memcpy(bytes +4, this->positionToDataBlocks, this->blockSize -4);
 	this->dataFile.write(bytes, this->blockSize);
 	this->dataFile.close();
 	delete this->currentBlock;

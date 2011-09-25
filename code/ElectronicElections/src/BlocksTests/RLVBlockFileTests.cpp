@@ -30,7 +30,7 @@ void SimpleVariableBlockFileTests::testInsert()
 	int insertedRecords = 0;
 	char firstNames[10][5] = {"John", "Mike", "Tony", "Rick", "Josh", "AleT", "Juan", "Gaby", "Dami", "Gonz"};
 	char lastNames[5][7] = {"Connor", "Potter", "Wesley", "Mordor", "Gondor"};
-	for(long i = 0;i < 20;++i)
+	for(long i = 0;i < 100;++i)
 	{
 		int fn = rand() % 10;
 		int ln = rand() % 5;

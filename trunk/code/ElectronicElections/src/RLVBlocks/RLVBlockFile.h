@@ -21,6 +21,7 @@ class RLVBlockFile
     std::fstream dataFile;
     long blockSize;
     RLVBlock *currentBlock;
+    int loadedBlockNumber;
     void positionAtBlock(int blockNumber);
     bool internalInsertRecord(const char* key,
     		const char* recordBytes, int size, bool force);

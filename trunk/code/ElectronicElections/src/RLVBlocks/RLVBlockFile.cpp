@@ -196,6 +196,7 @@ bool RLVBlockFile::isAtEOF()
 
 void RLVBlockFile::loadBlock(int blockNumber)
 {
+	this->loadedBlockNumber = blockNumber;
     this->positionAtBlock(blockNumber);
 
     if (!this->isAtEOF())
@@ -218,6 +219,7 @@ RLVBlock* RLVBlockFile::getCurrentBlock()
 
 void RLVBlockFile::saveBlock()
 {
+	this->positionAtBlock(this->loadedBlockNumber);
 	this->dataFile.write(this->currentBlock->getBytes(), this->blockSize);
 	this->currentBlock->updateInformation();
 }

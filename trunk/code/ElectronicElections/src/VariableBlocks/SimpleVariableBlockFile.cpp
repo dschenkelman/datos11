@@ -42,8 +42,7 @@ int SimpleVariableBlockFile::getFirstFreeEmptyBlock()
 {
 	//it returns -1 if there are no empty blocks
 	int occupiedSize;
-	for(int i=0; i <
-	this->blockAmount; i++)
+	for(int i=0; i < this->blockAmount; i++)
 	{
 		memcpy(&occupiedSize, this->positionToDataBlocks + i*4, 4);
 		if(occupiedSize == 0) return i+1;
@@ -108,7 +107,7 @@ bool SimpleVariableBlockFile::internalInsertRecord(const char* key,
 	else
 	{
 		// file is full, new block is required
-		this->positionAtBlock(blockNumber);
+		this->loadBlock(blockNumber);
 		this->currentBlock->clear();
 	}
 
@@ -247,7 +246,7 @@ void SimpleVariableBlockFile::saveBlock()
 {
 	this->positionAtBlock(this->loadedBlockNumber);
 	int occupiedSpace = this->blockSize - this->currentBlock->getFreeSpace();
-	memcpy(this->positionToDataBlocks + this->loadedBlockNumber * this->blockSize,
+	memcpy(this->positionToDataBlocks + (this->loadedBlockNumber-1) * this->blockSize,
 			&occupiedSpace, 4);
 	this->dataFile.write(this->currentBlock->getBytes(), this->blockSize);
 	this->currentBlock->updateInformation();

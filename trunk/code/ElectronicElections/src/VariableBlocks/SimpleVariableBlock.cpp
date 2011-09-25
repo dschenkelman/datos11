@@ -173,9 +173,9 @@ bool SimpleVariableBlock::insertRecord(const char* key, VariableRecord *rec)
     return true;
 }
 
-bool SimpleVariableBlock::canInsertRecord(int size)
+bool SimpleVariableBlock::canInsertRecord(int recordSize)
 {
-	return this->freeSpace >= size;
+	return this->freeSpace >= recordSize+4; // 4 bytes for the RegLenght.
 }
 
 bool SimpleVariableBlock::removeRecord(const char* key)

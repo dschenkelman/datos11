@@ -30,7 +30,7 @@ void SimpleVariableBlockFileTests::testInsert()
 	int insertedRecords = 0;
 	char firstNames[10][5] = {"John", "Mike", "Tony", "Rick", "Josh", "AleT", "Juan", "Gaby", "Dami", "Gonz"};
 	char lastNames[5][7] = {"Connor", "Potter", "Wesley", "Mordor", "Gondor"};
-	for(long i = 0;i < 100;++i)
+	for(long i = 0;i < 20;++i)
 	{
 		int fn = rand() % 10;
 		int ln = rand() % 5;
@@ -119,7 +119,6 @@ void SimpleVariableBlockFileTests::testRemove()
 
 	string key = "JohnConnor";
 	VariableRecord* rec();
-	//file->loadBlock(0);
 	std::cout << "Removing key: " << key << std::endl;
 	if (file->removeRecord(key.c_str()))
 	{
@@ -176,7 +175,11 @@ void SimpleVariableBlockFileTests::testUpdate()
 
 void SimpleVariableBlockFileTests::run()
 {
+	int firstEmptyBlock = this->file->getFirstFreeEmptyBlock();
+	std::cout << "First Free Block: " << firstEmptyBlock << endl;
 	this->testInsert();
+	firstEmptyBlock = this->file->getFirstFreeEmptyBlock();
+	std::cout << "First Free Block: " << firstEmptyBlock << endl;
 	//this->testUpdate();
 	this->testGet();
 	this->testRemove();

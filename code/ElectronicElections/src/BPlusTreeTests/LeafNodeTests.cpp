@@ -6,6 +6,8 @@
  */
 
 #include "LeafNodeTests.h"
+#include "../BlocksTests/Customer.h"
+#include "../BlocksTests/CustomerMethods.h"
 #include "../BPlusTree/LeafNode.h"
 #include "../BPlusTree/TreeBlock.h"
 #include "../Voting/VoterIndexMethods.h"
@@ -30,23 +32,41 @@ void LeafNodeTests::run()
 
 bool LeafNodeTests::testInsertDuplicatedRecordReturnsCorrectResult()
 {
-	VoterIndexMethods* methods = new VoterIndexMethods();
-	SequenceTreeBlock block(64, methods);
-	LeafNode node(&block, methods);
+	CustomerMethods methods;
+	SequenceTreeBlock block(64, &methods);
+	LeafNode node(&block, &methods);
 
-	VariableRecord* recordOne = new VariableRecord();
-	VariableRecord* recordTwo = new VariableRecord();
-	char* value = new char[2];
-	recordOne->setBytes(value, 2);
-	recordTwo->setBytes(value, 2);
+	VariableRecord recordOne;
+	VariableRecord recordTwo;
+	Customer c;
+	c.firstName = "John";
+	c.lastName = "Connor";
+	c.balance = 100;
+	int l1 = strlen(c.firstName) + 1;
+	int l2 = strlen(c.lastName) + 1;
+	// size = 16
+	int size = l1+1 + l2+1 + sizeof (long); //sumo 2 bytes para cada tamaño del nombre y apellido
+	char *recordKey = new char[l1 + l2 - 1];
+	memset(recordKey, 0, l1 + l2 - 1);
+	strcat(recordKey, c.firstName);
+	strcat(recordKey, c.lastName);
+	char *recordBytes = new char[size];
+	memcpy(recordBytes, &l1, sizeof(char));
+	memcpy(recordBytes + 1 , c.firstName, l1);
+	memcpy(recordBytes +1+ l1, &l2, sizeof(char));
+	memcpy(recordBytes +1+ l1 + 1, c.lastName, l2);
 
-	std::string k = "clave";
-	if(node.insert((char*)k.c_str(), recordOne) != Updated)
+	memcpy(recordBytes +2+ (l1+l2), &c.balance, sizeof(long));
+
+	recordOne.setBytes(recordBytes, size);
+	recordTwo.setBytes(recordBytes, size);
+
+	if(node.insert(recordKey, &recordOne) != Updated)
 	{
 		return false;
 	}
 
-	if(node.insert((char*)k.c_str(), recordTwo) != Duplicated)
+	if(node.insert(recordKey, &recordTwo) != Duplicated)
 	{
 		return false;
 	}
@@ -56,28 +76,27 @@ bool LeafNodeTests::testInsertDuplicatedRecordReturnsCorrectResult()
 
 bool LeafNodeTests::testInsertLessThanFullSizeReturnsCorrectResult()
 {
-//	VoterIndexMethods* methods = new VoterIndexMethods();
-//	TreeBlock block(64, 2 * sizeof(int), methods);
-//	LeafNode node(&block, methods);
-//
-//	bool success = true;
-//	for(long i = 0;i < 6;++i)
-//	{
-//		int n = rand() % 20000000 + 30000000;
-//		VoterIndex v;
-//		v.DNI = n;
-//		v.indexPointer = 0;
-//		VariableRecord r(2 * sizeof(int));
-//		char key[sizeof(int)];
-//		memcpy(&key, &v.DNI, sizeof(int));
-//		r.setBytes(key);
-//		success = success && node.insert(key, &r) == Updated;
-//	}
-//
-//	node.print();
-//
-//	return success;
-	return true;
+	VoterIndexMethods methods;
+	SequenceTreeBlock block(64, &methods);
+	LeafNode node(&block, &methods);
+
+	bool success = true;
+	for(long i = 0;i < 6;++i)
+	{
+		int n = rand() % 20000000 + 30000000;
+		VoterIndex v;
+		v.DNI = n;
+		v.indexPointer = 0;
+		VariableRecord r;
+		char key[sizeof(int)];
+		memcpy(&key, &v.DNI, sizeof(int));
+		r.setBytes(key, 2*sizeof(int));
+		success = success && node.insert(key, &r) == Updated;
+	}
+
+	node.print();
+
+	return success;
 }
 
 LeafNodeTests::~LeafNodeTests()

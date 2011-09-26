@@ -15,7 +15,12 @@ VariableRecord::VariableRecord() : size(0)
 
 VariableRecord::VariableRecord(VariableRecord& other)
 {
-	this->bytes = other.bytes;
+	if (other.size != 0)
+	{
+		this->bytes = new char[other.size];
+		memcpy(this->bytes, other.bytes, other.size);
+	}
+
 	this->size = other.size;
 }
 
@@ -26,7 +31,17 @@ VariableRecord& VariableRecord::operator =(const VariableRecord& other)
 		return *this;
 	}
 
-	this->bytes = other.bytes;
+	if (this->size != 0)
+	{
+		delete[] this->bytes;
+	}
+
+	if (other.size != 0)
+	{
+		this->bytes = new char[other.size];
+		memcpy(this->bytes, other.bytes, other.size);
+	}
+
 	this->size = other.size;
 
 	return *this;

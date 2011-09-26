@@ -13,6 +13,25 @@ VariableRecord::VariableRecord() : size(0)
 	this->bytes = NULL;
 }
 
+VariableRecord::VariableRecord(VariableRecord& other)
+{
+	this->bytes = other.bytes;
+	this->size = other.size;
+}
+
+VariableRecord& VariableRecord::operator =(const VariableRecord& other)
+{
+	if (this == &other)
+	{
+		return *this;
+	}
+
+	this->bytes = other.bytes;
+	this->size = other.size;
+
+	return *this;
+}
+
 short VariableRecord::getSize()
 {
 	return this->size;

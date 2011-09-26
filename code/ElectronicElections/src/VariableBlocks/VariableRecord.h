@@ -14,6 +14,8 @@ class VariableRecord
 	char* bytes;
 public:
 	VariableRecord();
+	VariableRecord(VariableRecord& other);
+	VariableRecord& operator=(const VariableRecord& other);
 	char* getBytes();
 	void setBytes(const char* value, short len);
 	short getSize();

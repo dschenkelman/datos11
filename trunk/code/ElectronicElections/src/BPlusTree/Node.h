@@ -14,7 +14,8 @@ enum OpResult
 {
         Updated,
         Overflow,
-        Underflow
+        Underflow,
+        NotFound
 };
 
 class Node

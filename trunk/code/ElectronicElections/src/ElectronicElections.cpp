@@ -26,6 +26,9 @@ int main()
 	HashTest hash;
 	hash.run();*/
 	SimpleVariableBlockFileTests rlvTest;
-	rlvTest.run();
+	//rlvTest.run();
+	cout << "LEAF NODE TESTS" << endl;
+	LeafNodeTests lnt;
+	lnt.run();
 	return 0;
 }

@@ -28,12 +28,13 @@ void SimpleVariableBlockFileTests::testInsert()
 	std::cout << "==================================" << std::endl;
 
 	int insertedRecords = 0;
-	char firstNames[10][5] = {"John", "Mike", "Tony", "Rick", "Josh", "AleT", "Juan", "Gaby", "Dami", "Gonz"};
+	char firstNames[10][5] = {"John", "Mike", "Tony", "Rick", "Josh",
+			"AleT", "Juan", "Gaby", "Dami", "Gonz"};
 	char lastNames[5][7] = {"Connor", "Potter", "Wesley", "Mordor", "Gondor"};
 	for(long i = 0;i < 100;++i)
 	{
-		int fn = rand() % 10;
-		int ln = rand() % 5;
+		int fn = rand() % 1;
+		int ln = rand() % 1;
 		Customer c;
 		c.firstName = firstNames[fn];
 		c.lastName = lastNames[ln];

@@ -56,6 +56,16 @@ int BaseVariableBlock::findRecord(const char* key, VariableRecord** rec)
 }
 
 
+int BaseVariableBlock::getSize()
+{
+	return this->maxSize;
+}
+
+int BaseVariableBlock::getOccupiedSize()
+{
+	return this->maxSize - this->freeSpace;
+}
+
 BaseVariableBlock::~BaseVariableBlock()
 {
 	delete[] this->bytes;

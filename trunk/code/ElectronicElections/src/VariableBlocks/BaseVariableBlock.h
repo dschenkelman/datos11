@@ -30,9 +30,11 @@ protected:
 	// amount of records in the block
 	int recordCount;
 	virtual bool hasNextRecord() = 0;
+    int getOccupiedSize();
 public:
 	BaseVariableBlock(int size, int pos, int rOffset, RecordMethods* methods);
 	char* getBytes();
+	int getSize();
 	int getFreeSpace();
 	int getRecordCount();
 	int findRecord(const char* key, VariableRecord** rec);

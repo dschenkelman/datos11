@@ -19,8 +19,6 @@ class SimpleVariableBlock: public BaseVariableBlock
 {
 protected:
 	virtual bool hasNextRecord();
-	// -------------------METHODS-------------------
-    inline int getOccupiedSize();
 public:
 	SimpleVariableBlock(int size, RecordMethods* methods);
 	// calculates the amount of records in the block

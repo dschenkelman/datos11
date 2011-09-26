@@ -13,12 +13,12 @@ VariableRecord::VariableRecord() : size(0)
 	this->bytes = NULL;
 }
 
-int VariableRecord::getSize()
+short VariableRecord::getSize()
 {
 	return this->size;
 }
 
-void VariableRecord::setBytes(const char* value, int len)
+void VariableRecord::setBytes(const char* value, short len)
 {
 	if (this->bytes != NULL)
 	{
@@ -35,39 +35,6 @@ void VariableRecord::setBytes(const char* value, int len)
 char *VariableRecord::getBytes()
 {
 	return this->bytes;
-}
-
-VariableRecord& VariableRecord::operator =(const VariableRecord & other)
-{
-	if (this == &other)
-	{
-		return *this;
-	}
-
-	this->size = other.size;
-	if (other.bytes != NULL)
-	{
-		this->setBytes(other.bytes, this->size);
-	}
-	else
-	{
-		this->bytes = NULL;
-	}
-
-	return *this;
-}
-
-VariableRecord::VariableRecord(VariableRecord& other)
-{
-	this->size = other.size;
-	if (other.bytes != NULL)
-	{
-		this->setBytes(other.bytes, this->size);
-	}
-	else
-	{
-		this->bytes = NULL;
-	}
 }
 
 VariableRecord::~VariableRecord()

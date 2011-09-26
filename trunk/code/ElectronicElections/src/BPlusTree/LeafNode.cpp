@@ -8,39 +8,38 @@
 #include "LeafNode.h"
 #include <iostream>
 
-LeafNode::LeafNode(TreeBlock* tb, RecordMethods* methods)
-: Node(tb, methods)
+LeafNode::LeafNode(SequenceTreeBlock* tb, RecordMethods* methods)
+: Node(methods), block(tb)
 {
-	this->minimumRecords = this->getMinimumRecords();
-	this->recordCount = this->treeBlock->getOccupiedRecords();
+	this->minimumSize = this->getMinimumSize();
 }
 
-int LeafNode::getMinimumRecords()
+int LeafNode::getMinimumSize()
 {
-	return this->treeBlock->getRecordCount() / 2;
+	return this->block->getSize() / 2;
 }
 
-OpResult LeafNode::insert(char* key, Record* r)
+OpResult LeafNode::insert(char* key, VariableRecord* r)
 {
-	this->treeBlock->insertRecord(key, r->getBytes());
+	this->block->insertRecord(key, r);
 	return Updated;
 }
 
 void LeafNode::print()
 {
-	Record r(this->treeBlock-> getRecordSize());
-	int i = 0;
-	this->treeBlock->seekRecord(0);
-	std::cout << "Leaf Node:";
-	while(this->treeBlock->getNextRecord(&r) != NULL)
-	{
-		this->recordMethods->print(r.getBytes(), r.getSize());
-		i++;
-		if (i % this->treeBlock->getRecordCount() == 0)
-		{
-			std::cout << "..." << std::endl;
-		}
-	}
+//	Record r(this->treeBlock-> getRecordSize());
+//	int i = 0;
+//	this->treeBlock->seekRecord(0);
+//	std::cout << "Leaf Node:";
+//	while(this->treeBlock->getNextRecord(&r) != NULL)
+//	{
+//		this->recordMethods->print(r.getBytes(), r.getSize());
+//		i++;
+//		if (i % this->treeBlock->getRecordCount() == 0)
+//		{
+//			std::cout << "..." << std::endl;
+//		}
+//	}
 }
 
 LeafNode::~LeafNode()

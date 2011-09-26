@@ -9,7 +9,9 @@
 
 using namespace std;
 
-SimpleVariableBlockFile::SimpleVariableBlockFile(string& name, int bSize, RecordMethods* methods, bool createNew):blockSize(bSize)
+SimpleVariableBlockFile::SimpleVariableBlockFile
+(string& name, int bSize, RecordMethods* methods, bool createNew):
+BaseVariableBlockFile(name, bSize, methods)
 {
 	//first block in file:
 	//long for blocksize, long for blockamount, all longs for occupied space in each block.
@@ -67,7 +69,7 @@ void SimpleVariableBlockFile::printContent()
 }
 
 bool SimpleVariableBlockFile::internalInsertRecord(const char* key,
-		const char* recordBytes, int size, bool force)
+		const char* recordBytes, short size, bool force)
 {
 	int blockNumber = 1;
 	int blockToInsert = -1;
@@ -123,12 +125,12 @@ bool SimpleVariableBlockFile::internalInsertRecord(const char* key,
 	return result;
 }
 
-bool SimpleVariableBlockFile::insertRecord(const char* key, const char* recordBytes, int size)
+bool SimpleVariableBlockFile::insertRecord(const char* key, const char* recordBytes, short size)
 {
 	return this->internalInsertRecord(key, recordBytes, size, false);
 }
 
-bool SimpleVariableBlockFile::updateRecord(const char *key, const char *recordBytes, int size)
+bool SimpleVariableBlockFile::updateRecord(const char *key, const char *recordBytes, short size)
 {
 	int blockNumber = 1;
 
@@ -224,7 +226,7 @@ bool SimpleVariableBlockFile::isAtEOF()
 
 void SimpleVariableBlockFile::loadBlock(int blockNumber)
 {
-	this->loadedBlockNumber = blockNumber;
+	this->currentBlockNumber = blockNumber;
     this->positionAtBlock(blockNumber);
 
     if (!this->isAtEOF())
@@ -248,11 +250,11 @@ SimpleVariableBlock* SimpleVariableBlockFile::getCurrentBlock()
 void SimpleVariableBlockFile::saveBlock()
 {
 
-	this->positionAtBlock(this->loadedBlockNumber);
+	this->positionAtBlock(this->currentBlockNumber);
 	int occupiedSpace = this->blockSize - this->currentBlock->getFreeSpace();
 	this->dataFile.write(this->currentBlock->getBytes(), this->blockSize);
 	//writing occupied size of all blocks in first block
-	memcpy(this->positionToDataBlocks + (this->loadedBlockNumber-1) * 4,
+	memcpy(this->positionToDataBlocks + (this->currentBlockNumber-1) * 4,
 				&occupiedSpace, 4);
 	this->updateBlockAmount();
 	this->dataFile.seekp(0, ios::beg);

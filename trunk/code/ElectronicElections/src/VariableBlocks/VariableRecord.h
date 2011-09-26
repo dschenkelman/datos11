@@ -10,15 +10,13 @@
 
 class VariableRecord
 {
-	int size;
+	short size;
 	char* bytes;
 public:
 	VariableRecord();
-	VariableRecord(VariableRecord& other);
-	VariableRecord& operator=(const VariableRecord& other);
 	char* getBytes();
-	void setBytes(const char* value, int len);
-	int getSize();
+	void setBytes(const char* value, short len);
+	short getSize();
 	virtual ~VariableRecord();
 };
 

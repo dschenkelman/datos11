@@ -7,7 +7,7 @@
 
 #include "Node.h"
 
-Node::Node(TreeBlock* tb, RecordMethods* methods) : recordMethods(methods), treeBlock(tb)
+Node::Node(RecordMethods* methods) : recordMethods(methods)
 {
 }
 

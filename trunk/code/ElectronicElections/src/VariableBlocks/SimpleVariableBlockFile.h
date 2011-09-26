@@ -9,37 +9,34 @@
 #define RLVBLOCKFILE_H_
 
 #include "SimpleVariableBlock.h"
+#include "BaseVariableBlockFile.h"
 #include "./../Blocks/RecordMethods.h"
 #include "VariableRecord.h"
 #include <string.h>
 #include <fstream>
 
-class SimpleVariableBlockFile
+class SimpleVariableBlockFile: public BaseVariableBlockFile
 {
 	std::string fileName;
-	RecordMethods *recordMethods;
     std::fstream dataFile;
-    long blockSize;
     SimpleVariableBlock *currentBlock;
-    int loadedBlockNumber;
     int blockAmount;
     char* positionToDataBlocks;
     void positionAtBlock(int blockNumber);
     bool internalInsertRecord(const char* key,
-    		const char* recordBytes, int size, bool force);
+    		const char* recordBytes, short size, bool force);
     bool isAtEOF();
     void updateBlockAmount();
-
 public:
     SimpleVariableBlockFile(std::string& fileName, int bSize, RecordMethods *methods, bool createNew);
     void printContent();
     int getFirstFreeEmptyBlock();
-    bool insertRecord(const char *key, const char* recordBytes, int size);
-    bool updateRecord(const char *key, const char* recordBytes, int size);
+    bool insertRecord(const char *key, const char* recordBytes, short size);
+    bool updateRecord(const char *key, const char* recordBytes, short size);
     bool removeRecord(const char *key);
     bool getRecord(const char* key, VariableRecord** rec);
-    void loadBlock(int blockNumber);
-    SimpleVariableBlock* getCurrentBlock();
+    virtual void loadBlock(int blockNumber);
+    virtual SimpleVariableBlock* getCurrentBlock();
     void saveBlock();
 	virtual ~SimpleVariableBlockFile();
 };

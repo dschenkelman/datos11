@@ -8,16 +8,20 @@
 #ifndef TREEBLOCKFILE_H_
 #define TREEBLOCKFILE_H_
 
-#include "../Blocks/BlockFile.h"
+#include "../VariableBlocks/BaseVariableBlockFile.h"
 #include <string>
 #include "TreeBlock.h"
 
-class TreeBlockFile: public BlockFile
+class TreeBlockFile: public BaseVariableBlockFile
 {
 	TreeBlock* currentBlock;
 public:
-	TreeBlockFile(std::string& fileName, int bSize, int rSize, RecordMethods *methods, bool createNew);
+	TreeBlockFile(std::string& fileName, int bSize,
+			RecordMethods *methods, bool createNew);
 	virtual TreeBlock* getCurrentBlock();
+	virtual void printContent();
+	virtual void loadBlock(int blockNumber);
+	virtual void saveBlock();
 	virtual ~TreeBlockFile();
 };
 

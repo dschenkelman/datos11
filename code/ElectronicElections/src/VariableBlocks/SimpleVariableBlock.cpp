@@ -27,18 +27,13 @@ void SimpleVariableBlock::updateInformation()
 	int records = 0;
 	while(sum < occupiedSize)
 	{
-		int recordSize;
+		short recordSize;
 		memcpy(&recordSize, this->bytes + sum, Constants::RECORD_HEADER_SIZE);
 		sum += (recordSize + Constants::RECORD_HEADER_SIZE);
 		records++;
 	}
 
 	this->recordCount = records;
-}
-
-inline int SimpleVariableBlock::getOccupiedSize()
-{
-	return this->maxSize - this->freeSpace;
 }
 
 bool SimpleVariableBlock::hasNextRecord()
@@ -53,7 +48,7 @@ VariableRecord* SimpleVariableBlock::getNextRecord(VariableRecord* r)
 		return NULL;
 	}
 
-	int recordSize;
+	short recordSize;
 	memcpy(&recordSize, this->bytes + this->position, Constants::RECORD_HEADER_SIZE);
 	this->position += Constants::RECORD_HEADER_SIZE;
 	r->setBytes(this->bytes + this->position, recordSize);
@@ -97,7 +92,7 @@ UpdateResult SimpleVariableBlock::updateRecord(const char* key, VariableRecord* 
 		return NOT_FOUND;
 	}
 
-	int sizeDifference = rec->getSize() - r->getSize();
+	short sizeDifference = rec->getSize() - r->getSize();
 	int occupiedSpace = this->getOccupiedSize();
 
 	if (this->canInsertRecord(sizeDifference))
@@ -106,14 +101,14 @@ UpdateResult SimpleVariableBlock::updateRecord(const char* key, VariableRecord* 
 		// there is enough space to perform the update
 		// in the current block
 		int bufferSize = (this->maxSize - this->position) - sizeDifference;
-		char* buffer = new char[bufferSize];
+		char buffer[bufferSize];
 		memset(buffer, 0, bufferSize);
 
 		// copy bytes that are after record
 		memcpy(buffer, this->bytes + this->position, bufferSize);
 
 		// update record
-		int recordSize = rec->getSize();
+		short recordSize = rec->getSize();
 		memcpy(this->bytes + startPosition, &recordSize, Constants::RECORD_HEADER_SIZE);
 		memcpy(this->bytes + (startPosition + Constants::RECORD_HEADER_SIZE), rec->getBytes(), recordSize);
 
@@ -122,8 +117,6 @@ UpdateResult SimpleVariableBlock::updateRecord(const char* key, VariableRecord* 
 
 		// update block size
 		memcpy(this->bytes, &occupiedSpace, Constants::BLOCK_HEADER_SIZE);
-
-		delete[] buffer;
 	}
 	else
 	{
@@ -145,21 +138,21 @@ UpdateResult SimpleVariableBlock::updateRecord(const char* key, VariableRecord* 
 
 void SimpleVariableBlock::forceInsert(VariableRecord *rec)
 {
-    int recSize = rec->getSize();
+    short recSize = rec->getSize();
     int occupiedSpace = this->getOccupiedSize();
 
     if (occupiedSpace == 0)
     {
-    	occupiedSpace += 4;
+    	occupiedSpace += Constants::BLOCK_HEADER_SIZE;
     }
     // add record size
-    memcpy(this->bytes + occupiedSpace, &recSize, 4);
-    occupiedSpace += 4;
+    memcpy(this->bytes + occupiedSpace, &recSize, Constants::RECORD_HEADER_SIZE);
+    occupiedSpace += Constants::RECORD_HEADER_SIZE;
     // add record data
     memcpy(this->bytes + occupiedSpace, rec->getBytes(), recSize);
     occupiedSpace += recSize;
     // update block size
-    memcpy(this->bytes, &occupiedSpace, 4);
+    memcpy(this->bytes, &occupiedSpace, Constants::BLOCK_HEADER_SIZE);
 }
 
 bool SimpleVariableBlock::insertRecord(const char* key, VariableRecord *rec)
@@ -175,7 +168,7 @@ bool SimpleVariableBlock::insertRecord(const char* key, VariableRecord *rec)
 
 bool SimpleVariableBlock::canInsertRecord(int recordSize)
 {
-	return this->freeSpace >= recordSize+4; // 4 bytes for the RegLenght.
+	return this->freeSpace >= recordSize + Constants::FIELD_HEADER_SIZE;
 }
 
 bool SimpleVariableBlock::removeRecord(const char* key)
@@ -192,12 +185,12 @@ bool SimpleVariableBlock::removeRecord(const char* key)
 		return false;
 	}
 
-	int recordSize = this->position - (startPosition + Constants::RECORD_HEADER_SIZE);
+	short recordSize = this->position - (startPosition + Constants::RECORD_HEADER_SIZE);
 	int occupiedSpace = this->getOccupiedSize();
 	occupiedSpace -= (recordSize + Constants::RECORD_HEADER_SIZE);
 
 	int bufferSize = this->maxSize - this->position;
-	char* buffer = new char[bufferSize];
+	char buffer[bufferSize];
 	memset(buffer, 0, bufferSize);
 
 	// copy bytes that are after record
@@ -211,7 +204,6 @@ bool SimpleVariableBlock::removeRecord(const char* key)
 	memcpy(this->bytes, &occupiedSpace, Constants::BLOCK_HEADER_SIZE);
 
 	this->updateInformation();
-	delete[] buffer;
 	if (r != NULL)
 	{
 		delete r;
@@ -222,5 +214,3 @@ bool SimpleVariableBlock::removeRecord(const char* key)
 SimpleVariableBlock::~SimpleVariableBlock()
 {
 }
-
-

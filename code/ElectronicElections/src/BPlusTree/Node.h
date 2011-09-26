@@ -12,18 +12,17 @@
 
 enum OpResult
 {
-	Updated,
-	Overflow,
-	Underflow
+        Updated,
+        Overflow,
+        Underflow
 };
 
 class Node
 {
 protected:
 	RecordMethods* recordMethods;
-	TreeBlock* treeBlock;
 public:
-	Node(TreeBlock* tb, RecordMethods* methods);
+	Node(RecordMethods* methods);
 	virtual ~Node();
 };
 

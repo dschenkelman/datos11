@@ -1,37 +1,37 @@
 /*
  * TreeBlock.h
  *
- *  Created on: Sep 20, 2011
+ *  Created on: Sep 25, 2011
  *      Author: damian
  */
 
 #ifndef TREEBLOCK_H_
 #define TREEBLOCK_H_
 
-#include "../Blocks/Block.h"
+#include "../VariableBlocks/BaseVariableBlock.h"
 
-class TreeBlock: public Block
+class TreeBlock: public BaseVariableBlock
 {
-	static const int BLOCK_POINTER_SIZE = sizeof(int);
-	static const int COUNT_SIZE = sizeof(int);
-	static const int LEVEL_SIZE = sizeof(short);
-	static const int RECORDS_OFFSET =
-			BLOCK_POINTER_SIZE + COUNT_SIZE + LEVEL_SIZE;
-	char nextBlockBytes;
-	void updateOccupiedRecords(char diff);
-	int retrieveOccupiedRecords();
-	void loadMetadata();
-	Record* getPreviousRecord(Record *r);
+protected:
+	virtual bool hasNextRecord() = 0;
+	short level;
 public:
-	TreeBlock(int size, int recordSize, RecordMethods* methods);
-	void setNextBlock(int blockNumber);
-	int getNextBlock();
+	static const char LEVEL_SIZE = sizeof(short);
+	static const char FREE_SPACE_SIZE = sizeof(int);
+	TreeBlock(int size,  int pos, int rOffset, RecordMethods* methods);
 	short getLevel();
 	void setLevel(short value);
-	virtual bool updateRecord(const char* key, char* bytes);
-	virtual Record* getCurrentRecord(Record* r);
-	virtual bool insertRecord(char* key, char* bytes);
-	virtual bool removeRecord(const char* key);
+	virtual void updateInformation() = 0;
+	virtual void clear() = 0;
+	virtual bool canInsertRecord(int size) = 0;
+	virtual bool insertRecord(const char* key, VariableRecord* rec) = 0;
+	virtual bool insertSeparator(const char* key, short len) = 0;
+	virtual UpdateResult updateRecord(const char* key, VariableRecord* rec) = 0;
+	virtual void printContent() = 0;
+	virtual bool removeRecord(const char* key) = 0;
+	virtual bool removeSeparator(const char* key) = 0;
+	virtual void forceInsert(VariableRecord *rec) = 0;
+	virtual VariableRecord* getNextRecord(VariableRecord* r) = 0;
 	virtual ~TreeBlock();
 };
 

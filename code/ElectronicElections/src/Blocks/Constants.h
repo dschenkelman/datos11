@@ -11,9 +11,9 @@
 class Constants
 {
 public:
-	static const int BLOCK_HEADER_SIZE = 4;
-	static const int RECORD_HEADER_SIZE = 4;
-	static const int FIELD_HEADER_SIZE = 4;
+	static const int BLOCK_HEADER_SIZE = sizeof(int);
+	static const int RECORD_HEADER_SIZE = sizeof(short);
+	static const int FIELD_HEADER_SIZE = sizeof(char);
 };
 
 #endif /* CONSTANTS_H_ */

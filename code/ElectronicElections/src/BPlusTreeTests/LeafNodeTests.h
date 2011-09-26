@@ -16,6 +16,7 @@ class LeafNodeTests
 public:
 	LeafNodeTests();
 	bool testInsertLessThanFullSizeReturnsCorrectResult();
+	bool testInsertDuplicatedRecordReturnsCorrectResult();
 	void run();
 	virtual ~LeafNodeTests();
 };

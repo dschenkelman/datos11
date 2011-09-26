@@ -27,8 +27,6 @@ protected:
 	int freeSpace;
 	// content of the block
 	char* bytes;
-	// amount of records in the block
-	int recordCount;
 	virtual bool hasNextRecord() = 0;
     int getOccupiedSize();
 public:

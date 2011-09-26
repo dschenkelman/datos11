@@ -23,11 +23,6 @@ char* BaseVariableBlock::getBytes()
 	return this->bytes;
 }
 
-int BaseVariableBlock::getRecordCount()
-{
-	return this->recordCount;
-}
-
 int BaseVariableBlock::getFreeSpace()
 {
 	return this->freeSpace;

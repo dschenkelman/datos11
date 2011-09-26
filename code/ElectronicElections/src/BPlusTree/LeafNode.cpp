@@ -16,12 +16,24 @@ LeafNode::LeafNode(TreeBlock* tb, RecordMethods* methods)
 
 int LeafNode::getMinimumSize()
 {
-	return this->block->getSize() / 2;
+	return (this->block->getSize() - SequenceTreeBlock::RECORD_OFFSET) / 2;
 }
 
 OpResult LeafNode::insert(char* key, VariableRecord* r)
 {
 	this->block->insertRecord(key, r);
+	return Updated;
+}
+
+OpResult LeafNode::remove(char *key)
+{
+	if (this->block->removeRecord(key) &&
+			this->block->getFreeSpace() > this->minimumSize)
+	{
+		return Overflow;
+	}
+
+	// either not found and occupied size did not change, or the occupied size is OK
 	return Updated;
 }
 

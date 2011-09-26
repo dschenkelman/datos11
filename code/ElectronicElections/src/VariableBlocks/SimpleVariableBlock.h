@@ -32,6 +32,7 @@ public:
 	virtual bool removeRecord(const char* key);
 	virtual void forceInsert(VariableRecord *rec);
 	virtual VariableRecord* getNextRecord(VariableRecord* r);
+	virtual void positionAtBegin();
 	virtual ~SimpleVariableBlock();
 };
 

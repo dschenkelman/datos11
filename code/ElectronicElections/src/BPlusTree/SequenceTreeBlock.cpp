@@ -209,6 +209,11 @@ bool SequenceTreeBlock::removeSeparator(const char *key)
 	return false;
 }
 
+void SequenceTreeBlock::positionAtBegin()
+{
+	this->position = this->RECORD_OFFSET;
+}
+
 SequenceTreeBlock::~SequenceTreeBlock()
 {
 }

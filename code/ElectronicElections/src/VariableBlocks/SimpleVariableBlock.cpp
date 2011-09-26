@@ -196,6 +196,11 @@ bool SimpleVariableBlock::removeRecord(const char* key)
 	return true;
 }
 
+void SimpleVariableBlock::positionAtBegin()
+{
+	this->position = Constants::BLOCK_HEADER_SIZE;
+}
+
 SimpleVariableBlock::~SimpleVariableBlock()
 {
 }

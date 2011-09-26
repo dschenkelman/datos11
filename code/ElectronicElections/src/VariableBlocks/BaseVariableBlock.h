@@ -45,6 +45,7 @@ public:
 	virtual bool removeRecord(const char* key) = 0;
 	virtual void forceInsert(VariableRecord *rec) = 0;
 	virtual VariableRecord* getNextRecord(VariableRecord* r) = 0;
+	virtual void positionAtBegin();
 	virtual ~BaseVariableBlock();
 };
 

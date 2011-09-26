@@ -26,6 +26,11 @@ short TreeBlock::getLevel()
 	return value;
 }
 
+void TreeBlock::positionAtBegin()
+{
+	this->position = this->recordsOffset;
+}
+
 TreeBlock::~TreeBlock()
 {
 }

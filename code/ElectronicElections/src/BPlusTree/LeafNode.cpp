@@ -25,12 +25,41 @@ OpResult LeafNode::insert(char* key, VariableRecord* r)
 	return Updated;
 }
 
+OpResult LeafNode::update(char *key, VariableRecord* r)
+{
+	VariableRecord* rec = new VariableRecord();
+	int position = this->block->findRecord(key, &rec);
+	if (position < 0)
+	{
+		return NotFound;
+	}
+
+	short dif = r->getSize() - rec->getSize();
+
+	if (dif < 0 || this->block->getFreeSpace() > dif)
+	{
+		this->block->updateRecord(key, r);
+		return Updated;
+	}
+	else
+	{
+		// should assign middle record to *r
+		return Overflow;
+	}
+
+	delete red;
+}
+
 OpResult LeafNode::remove(char *key)
 {
-	if (this->block->removeRecord(key) &&
-			this->block->getFreeSpace() > this->minimumSize)
+	if (this->block->removeRecord(key))
 	{
-		return Overflow;
+		if (this->block->getFreeSpace() > this->minimumSize)
+		{
+			return Underflow;
+		}
+
+		return NotFound;
 	}
 
 	// either not found and occupied size did not change, or the occupied size is OK

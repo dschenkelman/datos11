@@ -47,7 +47,7 @@ OpResult LeafNode::update(char *key, VariableRecord* r)
 		return Overflow;
 	}
 
-	delete red;
+	delete rec;
 }
 
 OpResult LeafNode::remove(char *key)

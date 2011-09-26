@@ -21,6 +21,28 @@ int LeafNode::getMinimumSize()
 
 OpResult LeafNode::insert(char* key, VariableRecord* r)
 {
+	VariableRecord** variableRec;
+	if(this->block->findRecord(key, variableRec) == -1)
+	{
+		return Duplicated;
+	}
+
+	if(!this->block->canInsertRecord(r->getSize()))
+	{
+		VariableRecord* vr;
+		int bytes = 0;
+		this->block->positionAtBegin();
+
+		while (bytes < this->block->getSize()/2)
+		{
+			vr = this->block->getNextRecord(r);
+			bytes += vr->getSize();
+		}
+
+		*r = *vr;
+		return Overflow;
+	}
+
 	this->block->insertRecord(key, r);
 	return Updated;
 }

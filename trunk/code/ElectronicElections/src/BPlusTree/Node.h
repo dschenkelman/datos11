@@ -15,7 +15,8 @@ enum OpResult
         Updated,
         Overflow,
         Underflow,
-        NotFound
+        NotFound,
+        Duplicated
 };
 
 class Node

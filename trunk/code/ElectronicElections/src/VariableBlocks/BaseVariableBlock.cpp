@@ -61,6 +61,11 @@ int BaseVariableBlock::getOccupiedSize()
 	return this->maxSize - this->freeSpace;
 }
 
+void BaseVariableBlock::positionAtBegin()
+{
+	this->position = this->recordsOffset;
+}
+
 BaseVariableBlock::~BaseVariableBlock()
 {
 	delete[] this->bytes;

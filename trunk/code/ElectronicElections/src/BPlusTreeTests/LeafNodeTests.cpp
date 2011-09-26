@@ -25,6 +25,33 @@ void LeafNodeTests::printResult(std::string testName, bool result)
 void LeafNodeTests::run()
 {
 	printResult("testInsertLessThanFullSizeReturnsCorrectResult", testInsertLessThanFullSizeReturnsCorrectResult());
+	printResult("testInsertDuplicatedRecordReturnsCorrectResult", testInsertDuplicatedRecordReturnsCorrectResult());
+}
+
+bool LeafNodeTests::testInsertDuplicatedRecordReturnsCorrectResult()
+{
+	VoterIndexMethods* methods = new VoterIndexMethods();
+	SequenceTreeBlock block(64, methods);
+	LeafNode node(&block, methods);
+
+	VariableRecord* recordOne = new VariableRecord();
+	VariableRecord* recordTwo = new VariableRecord();
+	char* value = new char[2];
+	recordOne->setBytes(value, 2);
+	recordTwo->setBytes(value, 2);
+
+	std::string k = "clave";
+	if(node.insert((char*)k.c_str(), recordOne) != Updated)
+	{
+		return false;
+	}
+
+	if(node.insert((char*)k.c_str(), recordTwo) != Duplicated)
+	{
+		return false;
+	}
+
+	return true;
 }
 
 bool LeafNodeTests::testInsertLessThanFullSizeReturnsCorrectResult()

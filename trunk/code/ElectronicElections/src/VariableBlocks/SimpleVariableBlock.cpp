@@ -19,21 +19,6 @@ void SimpleVariableBlock::updateInformation()
 	int occupiedSize;
 	memcpy(&occupiedSize, this->bytes, Constants::BLOCK_HEADER_SIZE);
 	this->freeSpace = this->maxSize - occupiedSize;
-
-    // first four bytes in each record represent record size
-
-	// ignore the first four bytes
-	int sum = Constants::BLOCK_HEADER_SIZE;
-	int records = 0;
-	while(sum < occupiedSize)
-	{
-		short recordSize;
-		memcpy(&recordSize, this->bytes + sum, Constants::RECORD_HEADER_SIZE);
-		sum += (recordSize + Constants::RECORD_HEADER_SIZE);
-		records++;
-	}
-
-	this->recordCount = records;
 }
 
 bool SimpleVariableBlock::hasNextRecord()

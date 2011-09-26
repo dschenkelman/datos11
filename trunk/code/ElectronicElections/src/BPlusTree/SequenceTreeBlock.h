@@ -15,13 +15,13 @@ class SequenceTreeBlock : public TreeBlock
 private:
     void updateFreeSpace(int space);
 protected:
-	static const char NEXT_NODE_SIZE = sizeof(int);
-	static const char RECORD_OFFSET =
-			NEXT_NODE_SIZE +
-			TreeBlock::LEVEL_SIZE +
-			TreeBlock::FREE_SPACE_SIZE;
 	virtual bool hasNextRecord();
 public:
+	static const char NEXT_NODE_SIZE = sizeof(int);
+	static const char RECORD_OFFSET =
+				NEXT_NODE_SIZE +
+				TreeBlock::LEVEL_SIZE +
+				TreeBlock::FREE_SPACE_SIZE;
 	SequenceTreeBlock(int size, RecordMethods* methods);
 	virtual void updateInformation();
 	virtual void clear();

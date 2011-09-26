@@ -20,6 +20,7 @@ private:
 public:
 	LeafNode(TreeBlock* tb, RecordMethods* methods);
 	OpResult insert(char* key, VariableRecord* r);
+	OpResult remove(char* key);
 	void print();
 	virtual ~LeafNode();
 };

@@ -8,8 +8,8 @@
 #include "LeafNode.h"
 #include <iostream>
 
-LeafNode::LeafNode(SequenceTreeBlock* tb, RecordMethods* methods)
-: Node(methods), block(tb)
+LeafNode::LeafNode(TreeBlock* tb, RecordMethods* methods)
+: Node(tb, methods)
 {
 	this->minimumSize = this->getMinimumSize();
 }

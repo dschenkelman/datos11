@@ -15,11 +15,10 @@
 class LeafNode: public Node
 {
 private:
-	SequenceTreeBlock* block;
 	int minimumSize;
 	int getMinimumSize();
 public:
-	LeafNode(SequenceTreeBlock* tb, RecordMethods* methods);
+	LeafNode(TreeBlock* tb, RecordMethods* methods);
 	OpResult insert(char* key, VariableRecord* r);
 	void print();
 	virtual ~LeafNode();

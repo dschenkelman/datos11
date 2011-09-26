@@ -20,9 +20,10 @@ enum OpResult
 class Node
 {
 protected:
+	TreeBlock* block;
 	RecordMethods* recordMethods;
 public:
-	Node(RecordMethods* methods);
+	Node(TreeBlock* b, RecordMethods* methods);
 	virtual ~Node();
 };
 

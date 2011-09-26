@@ -8,6 +8,9 @@
 #include "SequenceTreeBlock.h"
 #include <string.h>
 #include "../Blocks/Constants.h"
+#include <vector>
+
+using namespace std;
 
 SequenceTreeBlock::SequenceTreeBlock(int size, RecordMethods *methods)
 : TreeBlock(size,RECORD_OFFSET, RECORD_OFFSET, methods)
@@ -115,7 +118,38 @@ bool SequenceTreeBlock::insertRecord(const char *key, VariableRecord *rec)
 	{
 		return false;
 	}
-    this->forceInsert(rec);
+
+	vector<int> recordPositions;
+
+	this->position = RECORD_OFFSET;
+	while(this->position < this->getOccupiedSize())
+	{
+		recordPositions.push_back(this->position);
+		short recordSize;
+		memcpy(&recordSize, this->bytes + this->position, Constants::RECORD_HEADER_SIZE);
+		this->position += Constants::RECORD_HEADER_SIZE + recordSize;
+	}
+
+	this->forceInsert(rec);
+
+    // order
+    VariableRecord aux;
+
+    while(this->recordMethods->compare(key,aux.getBytes(), aux.getSize()) < 0)
+    {
+    	// swap
+    	memcpy(this->bytes + recordPositions.at(recordPositions.size())
+    			+ rec->size(), aux.getBytes(), aux.getSize());
+
+    	memcpy(this->bytes + recordPositions.at(recordPositions.size())
+    			, rec->getBytes(), rec->getSize());
+
+		// change to previous record
+    	recordPositions.pop_back();
+		this->position = recordPositions.at(recordPositions.size());
+		this->getNextRecord(&aux);
+	}
+
     this->updateInformation();
     return true;
 }

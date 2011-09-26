@@ -66,6 +66,7 @@ OpResult LeafNode::update(char *key, VariableRecord* r)
 	else
 	{
 		// should assign middle record to *r
+		*r = *rec;
 		return Overflow;
 	}
 

@@ -15,13 +15,13 @@ using namespace std;
 SequenceTreeBlock::SequenceTreeBlock(int size, RecordMethods *methods)
 : TreeBlock(size,RECORD_OFFSET, RECORD_OFFSET, methods)
 {
-	this->updateFreeSpace(RECORD_OFFSET);
+	this->updateFreeSpace(size - RECORD_OFFSET);
 	this->recordsOffset = RECORD_OFFSET;
 }
 
 void SequenceTreeBlock::updateInformation()
 {
-	memcpy(&this->freeSpace, this->bytes, Constants::BLOCK_HEADER_SIZE);
+	memcpy(&this->freeSpace, this->bytes + TreeBlock::LEVEL_SIZE, Constants::BLOCK_HEADER_SIZE);
 	this->level = this->getLevel();
 }
 
@@ -133,22 +133,32 @@ bool SequenceTreeBlock::insertRecord(const char *key, VariableRecord *rec)
 	this->forceInsert(rec);
 
     // order
-    VariableRecord aux;
-
-    while(this->recordMethods->compare(key,aux.getBytes(), aux.getSize()) < 0)
+    if (this->getOccupiedSize() > RECORD_OFFSET + rec->getSize() + Constants::RECORD_HEADER_SIZE)
     {
-    	// swap
-    	memcpy(this->bytes + recordPositions.at(recordPositions.size())
-    			+ rec->size(), aux.getBytes(), aux.getSize());
-
-    	memcpy(this->bytes + recordPositions.at(recordPositions.size())
-    			, rec->getBytes(), rec->getSize());
-
-		// change to previous record
-    	recordPositions.pop_back();
-		this->position = recordPositions.at(recordPositions.size());
+		VariableRecord aux;
+		this->position = recordPositions.at(recordPositions.size() - 1);
 		this->getNextRecord(&aux);
-	}
+
+		while(this->recordMethods->compare(key,aux.getBytes(), aux.getSize()) < 0)
+		{
+			// swap
+			memcpy(this->bytes + recordPositions.at(recordPositions.size() - 1)
+					+ rec->getSize(), aux.getBytes(), aux.getSize());
+
+			memcpy(this->bytes + recordPositions.at(recordPositions.size() - 1)
+					, rec->getBytes(), rec->getSize());
+
+			// change to previous record
+			recordPositions.pop_back();
+			if (recordPositions.size() == 0)
+			{
+				break;
+			}
+
+			this->position = recordPositions.at(recordPositions.size() - 1);
+			this->getNextRecord(&aux);
+		}
+    }
 
     this->updateInformation();
     return true;

@@ -10,7 +10,6 @@
 
 #include "VariableRecord.h"
 #include "RecordMethods.h"
-#include "Constants.h"
 #include "BaseVariableBlock.h"
 
 // represents a block. format:
@@ -25,7 +24,6 @@ public:
 	// and the amount of free space available in it
 	virtual void updateInformation();
 	virtual void clear();
-	virtual bool canInsertRecord(int size);
 	virtual bool insertRecord(const char* key, VariableRecord* rec);
 	virtual UpdateResult updateRecord(const char* key, VariableRecord* rec);
 	virtual void printContent();

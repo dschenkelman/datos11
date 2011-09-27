@@ -17,7 +17,7 @@ BaseVariableBlock(size, Constants::BLOCK_HEADER_SIZE, Constants::BLOCK_HEADER_SI
 void SimpleVariableBlock::updateInformation()
 {
 	int occupiedSize;
-	memcpy(&occupiedSize, this->bytes, Constants::BLOCK_HEADER_SIZE);
+	memcpy(&occupiedSize, this->bytes, this->recordsOffset);
 	this->freeSpace = this->maxSize - occupiedSize;
 }
 
@@ -34,8 +34,8 @@ VariableRecord* SimpleVariableBlock::getNextRecord(VariableRecord* r)
 	}
 
 	short recordSize;
-	memcpy(&recordSize, this->bytes + this->position, Constants::RECORD_HEADER_SIZE);
-	this->position += Constants::RECORD_HEADER_SIZE;
+	memcpy(&recordSize, this->bytes + this->position, sizeof(short));
+	this->position += sizeof(short);
 	r->setBytes(this->bytes + this->position, recordSize);
 	this->position += recordSize;
 
@@ -45,13 +45,13 @@ VariableRecord* SimpleVariableBlock::getNextRecord(VariableRecord* r)
 void SimpleVariableBlock::clear()
 {
 	memset(this->bytes, 0, this->maxSize);
-	this->position = Constants::BLOCK_HEADER_SIZE;
+	this->position = this->recordsOffset;
 	this->freeSpace = this->maxSize;
 }
 
 void SimpleVariableBlock::printContent()
 {
-	this->position = Constants::BLOCK_HEADER_SIZE;
+	this->position = this->recordsOffset;
 	VariableRecord* record = new VariableRecord();
 	while(this->getNextRecord(record) != NULL)
 	{
@@ -149,11 +149,6 @@ bool SimpleVariableBlock::insertRecord(const char* key, VariableRecord *rec)
     this->forceInsert(rec);
     this->updateInformation();
     return true;
-}
-
-bool SimpleVariableBlock::canInsertRecord(int recordSize)
-{
-	return this->freeSpace >= recordSize + Constants::FIELD_HEADER_SIZE;
 }
 
 bool SimpleVariableBlock::removeRecord(const char* key)

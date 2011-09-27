@@ -103,19 +103,15 @@ OpResult LeafNode::remove(char *key)
 
 void LeafNode::print()
 {
-//	Record r(this->treeBlock-> getRecordSize());
-//	int i = 0;
-//	this->treeBlock->seekRecord(0);
-//	std::cout << "Leaf Node:";
-//	while(this->treeBlock->getNextRecord(&r) != NULL)
-//	{
-//		this->recordMethods->print(r.getBytes(), r.getSize());
-//		i++;
-//		if (i % this->treeBlock->getRecordCount() == 0)
-//		{
-//			std::cout << "..." << std::endl;
-//		}
-//	}
+	VariableRecord r;
+	int i = 0;
+	this->block->positionAtBegin();
+	std::cout << "Leaf Node:";
+	while(this->block->getNextRecord(&r) != NULL)
+	{
+		this->recordMethods->print(r.getBytes(), r.getSize());
+		i++;
+	}
 }
 
 LeafNode::~LeafNode()

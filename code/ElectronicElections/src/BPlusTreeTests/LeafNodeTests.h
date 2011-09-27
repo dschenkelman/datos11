@@ -17,6 +17,7 @@ public:
 	LeafNodeTests();
 	bool testInsertLessThanFullSizeReturnsCorrectResult();
 	bool testInsertDuplicatedRecordReturnsCorrectResult();
+	bool testInsertRecordInFullBlockReturnsOverflow();
 	void run();
 	virtual ~LeafNodeTests();
 };

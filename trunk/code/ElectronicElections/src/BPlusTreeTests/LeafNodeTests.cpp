@@ -11,7 +11,7 @@
 #include "../BPlusTree/LeafNode.h"
 #include "../BPlusTree/TreeBlock.h"
 #include "../Voting/VoterIndexMethods.h"
-#include  <iostream>
+#include <iostream>
 #include <string.h>
 #include <stdlib.h>
 
@@ -29,6 +29,7 @@ void LeafNodeTests::run()
 	printResult("testInsertLessThanFullSizeReturnsCorrectResult", testInsertLessThanFullSizeReturnsCorrectResult());
 	printResult("testInsertDuplicatedRecordReturnsCorrectResult", testInsertDuplicatedRecordReturnsCorrectResult());
 	printResult("testUpdateNonExistentRecordReturnsNotFound", testUpdateNonExistentRecordReturnsNotFound());
+	printResult("testUpdateShouldReturnOverflowIfRecordDoesNotFitNode", testUpdateShouldReturnOverflowIfRecordDoesNotFitNode());
 	printResult("testInsertRecordInFullBlockReturnsOverflow",testInsertRecordInFullBlockReturnsOverflow());
 	printResult("testInsertarRegistroEnBloqueLlenoColocaRegistroDelMedioEnPuntero", testInsertarRegistroEnBloqueLlenoColocaRegistroDelMedioEnPuntero());
 }
@@ -49,11 +50,11 @@ bool LeafNodeTests::testInsertDuplicatedRecordReturnsCorrectResult()
 	int l2 = strlen(c.lastName) + 1;
 	// size = 16
 	int size = l1+1 + l2+1 + sizeof (long); //sumo 2 bytes para cada tamaño del nombre y apellido
-	char *recordKey = new char[l1 + l2 - 1];
+	char recordKey[l1 + l2 - 1];
 	memset(recordKey, 0, l1 + l2 - 1);
 	strcat(recordKey, c.firstName);
 	strcat(recordKey, c.lastName);
-	char *recordBytes = new char[size];
+	char recordBytes[size];
 	memcpy(recordBytes, &l1, sizeof(char));
 	memcpy(recordBytes + 1 , c.firstName, l1);
 	memcpy(recordBytes +1+ l1, &l2, sizeof(char));
@@ -244,6 +245,39 @@ bool LeafNodeTests::testUpdateNonExistentRecordReturnsNotFound()
 	memcpy(&key, &v.DNI, sizeof(int));
 	r.setBytes(key, 2*sizeof(int));
 	return node.update(key, &r) == NotFound;
+}
+
+bool LeafNodeTests::testUpdateShouldReturnOverflowIfRecordDoesNotFitNode()
+{
+	CustomerMethods methods;
+	SequenceTreeBlock block(32, &methods);
+	LeafNode node(&block, &methods);
+
+	VariableRecord recordOne;
+	VariableRecord recordTwo;
+	Customer c;
+	c.firstName = "John";
+	c.lastName = "Connor";
+	c.balance = 100;
+	int l1 = strlen(c.firstName) + 1;
+	int l2 = strlen(c.lastName) + 1;
+	// size = 16
+	int size = l1+1 + l2+1 + sizeof (long); //sumo 2 bytes para cada tamaño del nombre y apellido
+	char recordKey[l1 + l2 - 1];
+	memset(recordKey, 0, l1 + l2 - 1);
+	strcat(recordKey, c.firstName);
+	strcat(recordKey, c.lastName);
+	char recordBytes[size];
+	memcpy(recordBytes, &l1, sizeof(char));
+	memcpy(recordBytes + 1 , c.firstName, l1);
+	memcpy(recordBytes +1+ l1, &l2, sizeof(char));
+	memcpy(recordBytes +1+ l1 + 1, c.lastName, l2);
+
+	recordOne.setBytes(recordBytes, size);
+	recordTwo.setBytes(recordBytes, 100);
+
+	node.insert(recordKey, &recordOne);
+	return node.update(recordKey, &recordTwo) == Overflow;
 }
 
 LeafNodeTests::~LeafNodeTests()

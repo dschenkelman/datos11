@@ -15,32 +15,26 @@ VoterIndexMethods::VoterIndexMethods()
 
 void VoterIndexMethods::print(const char *recordBytes, int recordSize)
 {
-	VoterIndex* voter = this->getVoterIndexFromRecord(recordBytes, recordSize);
-	std::cout << "(" << voter->DNI << ")";
-
-	delete voter;
+	VoterIndex voter = this->getVoterIndexFromRecord(recordBytes, recordSize);
+	std::cout << "(" << voter.DNI << ")";
 }
 
-VoterIndex *VoterIndexMethods::getVoterIndexFromRecord(const char *recordBytes,
+VoterIndex VoterIndexMethods::getVoterIndexFromRecord(const char *recordBytes,
 		int recordSize)
 {
-	VoterIndex* voter = new VoterIndex;
-	memcpy(voter, recordBytes, recordSize);
+	VoterIndex voter;
+	memcpy(&voter, recordBytes, recordSize);
 	return voter;
 }
 
 int VoterIndexMethods::compare(const char *key,
 		const char *recordBytes, int recordSize)
 {
-	VoterIndex* voter = this->getVoterIndexFromRecord(recordBytes, recordSize);
+	VoterIndex voter = this->getVoterIndexFromRecord(recordBytes, recordSize);
 	int keyDni;
 	memcpy(&keyDni, key, sizeof(int));
 
-	int dni = voter->DNI;
-
-	delete voter;
-
-	return keyDni - dni;
+	return keyDni - voter.DNI;
 }
 
 VoterIndexMethods::~VoterIndexMethods()

@@ -26,7 +26,7 @@ void LeafNodeTests::printResult(std::string testName, bool result)
 
 void LeafNodeTests::run()
 {
-	//printResult("testInsertLessThanFullSizeReturnsCorrectResult", testInsertLessThanFullSizeReturnsCorrectResult());
+	printResult("testInsertLessThanFullSizeReturnsCorrectResult", testInsertLessThanFullSizeReturnsCorrectResult());
 	printResult("testInsertDuplicatedRecordReturnsCorrectResult", testInsertDuplicatedRecordReturnsCorrectResult());
 	printResult("testInsertRecordInFullBlockReturnsOverflow",testInsertRecordInFullBlockReturnsOverflow());
 	printResult("testInsertarRegistroEnBloqueLlenoColocaRegistroDelMedioEnPuntero", testInsertarRegistroEnBloqueLlenoColocaRegistroDelMedioEnPuntero());
@@ -131,7 +131,7 @@ bool LeafNodeTests::testInsertLessThanFullSizeReturnsCorrectResult()
 	LeafNode node(&block, &methods);
 
 	bool success = true;
-	for(long i = 0;i < 6;++i)
+	for(long i = 0;i < 5;++i)
 	{
 		int n = rand() % 20000000 + 30000000;
 		VoterIndex v;

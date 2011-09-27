@@ -29,6 +29,7 @@ void LeafNodeTests::run()
 	//printResult("testInsertLessThanFullSizeReturnsCorrectResult", testInsertLessThanFullSizeReturnsCorrectResult());
 	printResult("testInsertDuplicatedRecordReturnsCorrectResult", testInsertDuplicatedRecordReturnsCorrectResult());
 	printResult("testInsertRecordInFullBlockReturnsOverflow",testInsertRecordInFullBlockReturnsOverflow());
+	printResult("testInsertarRegistroEnBloqueLlenoColocaRegistroDelMedioEnPuntero", testInsertarRegistroEnBloqueLlenoColocaRegistroDelMedioEnPuntero());
 }
 
 bool LeafNodeTests::testInsertDuplicatedRecordReturnsCorrectResult()
@@ -90,7 +91,7 @@ bool LeafNodeTests::testInsertRecordInFullBlockReturnsOverflow()
     int l1 = strlen(c.firstName) + 1;
     int l2 = strlen(c.lastName) + 1;
     // size = 16
-    int size = l1+1 + l2+1 + sizeof (long); //sumo 2 bytes para cada tamaño del nombre y apellido
+    int size = l1+1 + l2+1 + sizeof (long);
     char *recordKey = new char[l1 + l2 - 1];
     memset(recordKey, 0, l1 + l2 - 1);
     strcat(recordKey, c.firstName);
@@ -146,6 +147,85 @@ bool LeafNodeTests::testInsertLessThanFullSizeReturnsCorrectResult()
 	node.print();
 
 	return success;
+}
+
+// pasar a ingles!!
+bool LeafNodeTests::testInsertarRegistroEnBloqueLlenoColocaRegistroDelMedioEnPuntero()
+{
+	CustomerMethods methods;
+    SequenceTreeBlock block(70, &methods);
+    LeafNode node(&block, &methods);
+
+    VariableRecord recordOne;
+    VariableRecord recordTwo;
+    Customer c;
+    c.firstName = "John";
+    c.lastName = "Connor";
+    c.balance = 100;
+    int l1 = strlen(c.firstName) + 1;
+    int l2 = strlen(c.lastName) + 1;
+    // size = 16
+    int size = l1+1 + l2+1 + sizeof (long);
+    char *recordKey = new char[l1 + l2 - 1];
+    memset(recordKey, 0, l1 + l2 - 1);
+    strcat(recordKey, c.firstName);
+    strcat(recordKey, c.lastName);
+    char *recordBytes = new char[size];
+    memcpy(recordBytes, &l1, sizeof(char));
+    memcpy(recordBytes + 1 , c.firstName, l1);
+    memcpy(recordBytes +1+ l1, &l2, sizeof(char));
+    memcpy(recordBytes +1+ l1 + 1, c.lastName, l2);
+
+    memcpy(recordBytes +2+ (l1+l2), &c.balance, sizeof(long));
+
+    recordOne.setBytes(recordBytes, size);
+    recordTwo.setBytes(recordBytes, size);
+
+	VariableRecord recordThree;
+	Customer cust;
+	cust.firstName = "John";
+	cust.lastName = "Riquelme";
+	cust.balance = 102;
+	int lCust1 = strlen(cust.firstName) + 1; // 5
+	int lCust2 = strlen(cust.lastName) + 1; // 9
+	int sizeCust = lCust1 + 1 + lCust2 + 1 + sizeof(long); // 5 + 1 + 9 + 1 + 4
+	char* custRecordKey = new char[sizeCust];
+	memset(custRecordKey, 0, lCust1 + lCust2 - 1);
+    strcat(custRecordKey, cust.firstName);
+    strcat(custRecordKey, cust.lastName);
+	char *custRecordBytes = new char[sizeCust];
+    memcpy(custRecordBytes, &lCust1, sizeof(char));
+    memcpy(custRecordBytes + 1 , cust.firstName, lCust1);
+    memcpy(custRecordBytes +1+ lCust1, &lCust2, sizeof(char));
+    memcpy(custRecordBytes +1+ lCust1 + 1, cust.lastName, lCust2);
+	memcpy(custRecordBytes +2+ (lCust1+lCust2), &cust.balance, sizeof(long));
+
+	recordThree.setBytes(custRecordBytes, sizeCust);
+
+	if(!node.insert(recordKey, &recordOne) == Updated)
+	{
+		return false;
+	}
+
+	std::string key = "keyTwo";
+
+	if(!node.insert((char*)key.c_str(), &recordTwo) == Updated)
+	{
+		return false;
+	}
+
+	if(!node.insert(custRecordKey, &recordThree) == Overflow)
+	{
+		return false;
+	}
+
+	if(recordThree.getSize() != 22)
+	{
+		return false;
+	}
+
+	// falta verificar que los bytes los traiga bien!
+	return true;
 }
 
 LeafNodeTests::~LeafNodeTests()

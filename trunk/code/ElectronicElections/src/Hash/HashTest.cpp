@@ -3,7 +3,7 @@
  *
  *  Created on: Sep 20, 2011
  *      Author: gabriel
- */
+ *
 
 #include "HashTest.h"
 #include "../BlocksTests/CustomerMethods.h"
@@ -120,3 +120,4 @@ HashTest::~HashTest()
 	delete this->hash;
 	delete this->file;
 }
+*/

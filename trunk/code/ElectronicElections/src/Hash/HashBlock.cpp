@@ -9,17 +9,14 @@
 #include "../Helpers/ByteOperators.h"
 #include <math.h>
 #include <string.h>
-
-HashBlock::HashBlock(int size, int recordSize, RecordMethods* methods)
-: Block(size, recordSize, methods)
+/*
+HashBlock::HashBlock(int size, RecordMethods* methods)
+: SimpleVariableBlock(size,methods)
 {
-	this->flagBytes = ceil((this->recordCount) / 4.0);
-
-	while ((flagBytes + this->recordCount * this->recordSize) > this->maxSize)
-	{
-		this->recordCount--;
-	}
+	this->recordsOffset = 5;
+	this->overflowBlockPointer = -1;
 }
+
 
 bool HashBlock::insertRecord(char* key, char* b)
 	//	insert record in the first available position.
@@ -84,6 +81,49 @@ bool HashBlock::removeRecord(const char* key)
 
 	return false;
 }
+*/
+/*
+bool SimpleVariableBlock::removeRecord(const char* key)
+{
+	VariableRecord* r = NULL;
+	int startPosition = this->findRecord(key, &r);
+
+	if (startPosition < 0)
+	{
+		if (r != NULL)
+		{
+			delete r;
+		}
+		return false;
+	}
+
+	int recordSize = this->position - (startPosition + Constants::RECORD_HEADER_SIZE);
+	int occupiedSpace = this->getOccupiedSize();
+	occupiedSpace -= (recordSize + Constants::RECORD_HEADER_SIZE);
+
+	int bufferSize = this->maxSize - this->position;
+	char* buffer = new char[bufferSize];
+	memset(buffer, 0, bufferSize);
+
+	// copy bytes that are after record
+	memcpy(buffer, this->bytes + this->position, bufferSize);
+
+	// free space of record from end and remove record
+	memset(this->bytes + startPosition, 0, bufferSize + recordSize + Constants::RECORD_HEADER_SIZE);
+	memcpy(this->bytes + startPosition, buffer, bufferSize);
+
+	// update block size
+	memcpy(this->bytes, &occupiedSpace, Constants::BLOCK_HEADER_SIZE);
+
+	this->updateInformation();
+	delete[] buffer;
+	if (r != NULL)
+	{
+		delete r;
+	}
+	return true;
+}
+
 
 Record* HashBlock::getCurrentRecord(Record* r)
 {
@@ -156,3 +196,4 @@ short HashBlock::getFlagByteFromRecordIndex(int recordIndex)
 HashBlock::~HashBlock()
 {
 }
+*/

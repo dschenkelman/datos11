@@ -9,7 +9,7 @@
 #define BASEVARIABLEBLOCK_H_
 
 #include "VariableRecord.h"
-#include "../Blocks/RecordMethods.h"
+#include "RecordMethods.h"
 
 enum UpdateResult { NOT_FOUND, UPDATED, INSUFFICIENT_SPACE };
 

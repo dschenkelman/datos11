@@ -10,7 +10,7 @@
 
 #include "SimpleVariableBlock.h"
 #include "BaseVariableBlockFile.h"
-#include "./../Blocks/RecordMethods.h"
+#include "RecordMethods.h"
 #include "VariableRecord.h"
 #include <string.h>
 #include <fstream>

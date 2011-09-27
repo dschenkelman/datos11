@@ -7,7 +7,7 @@
 
 #ifndef NODE_H_
 #define NODE_H_
-#include "../Blocks/RecordMethods.h"
+#include "../VariableBlocks/RecordMethods.h"
 #include "TreeBlock.h"
 
 enum OpResult

@@ -8,7 +8,7 @@
 #ifndef CUSTOMERMETHODS_H_
 #define CUSTOMERMETHODS_H_
 
-#include "./../Blocks/RecordMethods.h"
+#include "../VariableBlocks/RecordMethods.h"
 #include "Customer.h"
 
 class CustomerMethods: public RecordMethods

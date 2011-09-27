@@ -8,7 +8,7 @@
 #ifndef VOTERINDEXMETHODS_H_
 #define VOTERINDEXMETHODS_H_
 
-#include "../Blocks/RecordMethods.h"
+#include "../VariableBlocks/RecordMethods.h"
 #include "VoterIndex.h"
 
 class VoterIndexMethods: public RecordMethods

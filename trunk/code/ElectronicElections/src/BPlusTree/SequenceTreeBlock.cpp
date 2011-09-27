@@ -7,7 +7,7 @@
 
 #include "SequenceTreeBlock.h"
 #include <string.h>
-#include "../Blocks/Constants.h"
+#include "../VariableBlocks/Constants.h"
 #include <vector>
 
 using namespace std;

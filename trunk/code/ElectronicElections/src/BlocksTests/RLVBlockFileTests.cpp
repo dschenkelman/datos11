@@ -11,7 +11,7 @@
 #include <iostream>
 #include "Customer.h"
 #include "CustomerMethods.h"
-#include "./../Blocks/Constants.h"
+#include "./../VariableBlocks/Constants.h"
 
 using namespace std;
 

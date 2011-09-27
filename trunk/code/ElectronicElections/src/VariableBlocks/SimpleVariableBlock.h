@@ -9,8 +9,8 @@
 #define SIMPLEVARIABLEBLOCK_H_
 
 #include "VariableRecord.h"
-#include "./../Blocks/RecordMethods.h"
-#include "./../Blocks/Constants.h"
+#include "RecordMethods.h"
+#include "Constants.h"
 #include "BaseVariableBlock.h"
 
 // represents a block. format:

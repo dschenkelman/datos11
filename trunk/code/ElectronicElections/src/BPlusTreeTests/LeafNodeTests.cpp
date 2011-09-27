@@ -11,7 +11,7 @@
 #include "../BPlusTree/LeafNode.h"
 #include "../BPlusTree/TreeBlock.h"
 #include "../Voting/VoterIndexMethods.h"
-#include <iostream>
+#include  <iostream>
 #include <string.h>
 #include <stdlib.h>
 
@@ -28,6 +28,7 @@ void LeafNodeTests::run()
 {
 	printResult("testInsertLessThanFullSizeReturnsCorrectResult", testInsertLessThanFullSizeReturnsCorrectResult());
 	printResult("testInsertDuplicatedRecordReturnsCorrectResult", testInsertDuplicatedRecordReturnsCorrectResult());
+	printResult("testUpdateNonExistentRecordReturnsNotFound", testUpdateNonExistentRecordReturnsNotFound());
 	printResult("testInsertRecordInFullBlockReturnsOverflow",testInsertRecordInFullBlockReturnsOverflow());
 	printResult("testInsertarRegistroEnBloqueLlenoColocaRegistroDelMedioEnPuntero", testInsertarRegistroEnBloqueLlenoColocaRegistroDelMedioEnPuntero());
 }
@@ -226,6 +227,23 @@ bool LeafNodeTests::testInsertarRegistroEnBloqueLlenoColocaRegistroDelMedioEnPun
 
 	// falta verificar que los bytes los traiga bien!
 	return true;
+}
+
+bool LeafNodeTests::testUpdateNonExistentRecordReturnsNotFound()
+{
+	VoterIndexMethods methods;
+	SequenceTreeBlock block(64, &methods);
+	LeafNode node(&block, &methods);
+
+	int n = rand() % 20000000 + 30000000;
+	VoterIndex v;
+	v.DNI = n;
+	v.indexPointer = 0;
+	VariableRecord r;
+	char key[sizeof(int)];
+	memcpy(&key, &v.DNI, sizeof(int));
+	r.setBytes(key, 2*sizeof(int));
+	return node.update(key, &r) == NotFound;
 }
 
 LeafNodeTests::~LeafNodeTests()

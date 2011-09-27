@@ -20,6 +20,7 @@ protected:
 	int maxSize;
 	// position relative to the beginning of the block
 	int position;
+	// position of the first record relative to the beginning of the block
 	int recordsOffset;
 	// object used to compare records
 	RecordMethods* recordMethods;

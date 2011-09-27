@@ -8,18 +8,27 @@
 #ifndef HASHBLOCKFILE_H_
 #define HASHBLOCKFILE_H_
 
-#include "../Blocks/BlockFile.h"
+#include "../VariableBlocks/SimpleVariableBlockFile.h"
 #include "HashBlock.h"
 
-class HashBlockFile: public BlockFile
+class HashBlockFile
 {
 	HashBlock* currentBlock;
-	void initializefile();
+	SimpleVariableBlockFile* overflowFile;
+	std::string fileName;
+	RecordMethods *recordMethods;
+	std::fstream dataFile;
+	long blockSize;
+	SimpleVariableBlock *currentBlock;
+	int loadedBlockNumber;
 	int blockAmount;
 public:
-	HashBlockFile(std::string& fileName, int bSize,
-			int rSize, RecordMethods *methods, bool createNew, int blockAmount);
+	HashBlockFile(string& name, int bSize, RecordMethods* methods, int blockamount, bool createNew);
 	virtual HashBlock* getCurrentBlock();
+	int hashFunction(char* key);
+	bool insertRecord(char* key, VariableRecord* record);
+	//bool removeRecord(BlockFile* file, int blockNumber, Record* record);
+	//void updateRecord(BlockFile* file, int blockNumber, Record* record);
 	virtual ~HashBlockFile();
 };
 

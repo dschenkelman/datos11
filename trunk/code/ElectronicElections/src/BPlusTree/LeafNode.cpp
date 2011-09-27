@@ -62,21 +62,27 @@ OpResult LeafNode::update(char *key, VariableRecord* r)
 
 	short dif = r->getSize() - rec->getSize();
 
+	delete rec;
+
 	if (dif < 0 || this->block->getFreeSpace() > dif)
 	{
 		this->block->updateRecord(key, r);
-		delete rec;
+
 		return Updated;
 	}
-	else
+	//else
+
+	VariableRecord aux;
+	int bytes = 0;
+	this->block->positionAtBegin();
+
+	while (bytes < this->minimumSize && this->block->getNextRecord(&aux) != NULL)
 	{
-		//|TODO: assign middle record to *r
-		*r = *rec;
-		delete rec;
-		return Overflow;
+		bytes += aux.getSize();
+		*r = aux;
 	}
 
-	delete rec;
+	return Overflow;
 }
 
 OpResult LeafNode::remove(char *key)
@@ -88,11 +94,10 @@ OpResult LeafNode::remove(char *key)
 			return Underflow;
 		}
 
-		return NotFound;
+		return Updated;
 	}
 
-	// either not found and occupied size did not change, or the occupied size is OK
-	return Updated;
+	return NotFound;
 }
 
 void LeafNode::print()

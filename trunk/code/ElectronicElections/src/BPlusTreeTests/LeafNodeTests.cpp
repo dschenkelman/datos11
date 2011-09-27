@@ -28,11 +28,14 @@ void LeafNodeTests::run()
 {
 	printResult("testInsertLessThanFullSizeReturnsCorrectResult", testInsertLessThanFullSizeReturnsCorrectResult());
 	printResult("testInsertDuplicatedRecordReturnsCorrectResult", testInsertDuplicatedRecordReturnsCorrectResult());
+	printResult("testInsertRecordInFullBlockReturnsOverflow",testInsertRecordInFullBlockReturnsOverflow());
+	printResult("testInsertingWithOverflowPutsMiddleRecordInPassedParameter", testInsertingWithOverflowPutsMiddleRecordInPassedParameter());
 	printResult("testUpdateNonExistentRecordReturnsNotFound", testUpdateNonExistentRecordReturnsNotFound());
 	printResult("testUpdateShouldReturnOverflowIfRecordDoesNotFitNode", testUpdateShouldReturnOverflowIfRecordDoesNotFitNode());
 	printResult("testUpdateShouldUpdateRecordAndReturnUpdated", testUpdateShouldUpdateRecordAndReturnUpdated());
-	printResult("testInsertRecordInFullBlockReturnsOverflow",testInsertRecordInFullBlockReturnsOverflow());
-	printResult("testInsertingWithOverflowPutsMiddleRecordInPassedParameter", testInsertingWithOverflowPutsMiddleRecordInPassedParameter());
+	printResult("testDeleteReturnsNotFoundIfKeyIsNotPresent", testDeleteReturnsNotFoundIfKeyIsNotPresent());
+	printResult("testDeleteReturnsUnderflowIfOccupiedSizeIsLessThanMinimum", testDeleteReturnsUnderflowIfOccupiedSizeIsLessThanMinimum());
+	printResult("testDeleteReturnsUpdatedIfOccupiedSizeIsMoreThanMinimumAndRecordWasDeleted", testDeleteReturnsUpdatedIfOccupiedSizeIsMoreThanMinimumAndRecordWasDeleted());
 }
 
 bool LeafNodeTests::testInsertDuplicatedRecordReturnsCorrectResult()
@@ -310,6 +313,112 @@ bool LeafNodeTests::testUpdateShouldUpdateRecordAndReturnUpdated()
 	node.insert(recordKey, &recordOne);
 	bool success = node.update(recordKey, &recordTwo) == Updated;
 
+	node.print();
+
+	return success;
+}
+
+bool LeafNodeTests::testDeleteReturnsNotFoundIfKeyIsNotPresent()
+{
+	CustomerMethods methods;
+	SequenceTreeBlock block(32, &methods);
+	LeafNode node(&block, &methods);
+
+	return node.remove("NotValid") == NotFound;
+}
+
+bool LeafNodeTests::testDeleteReturnsUnderflowIfOccupiedSizeIsLessThanMinimum()
+{
+	CustomerMethods methods;
+	SequenceTreeBlock block(32, &methods);
+	LeafNode node(&block, &methods);
+
+	VariableRecord recordOne;
+	VariableRecord recordTwo;
+	Customer c;
+	c.firstName = "John";
+	c.lastName = "Connor";
+	c.balance = 100;
+	int l1 = strlen(c.firstName) + 1;
+	int l2 = strlen(c.lastName) + 1;
+	// size = 16
+	int size = l1+1 + l2+1 + sizeof (long); //sumo 2 bytes para cada tamaño del nombre y apellido
+	char recordKey[l1 + l2 - 1];
+	memset(recordKey, 0, l1 + l2 - 1);
+	strcat(recordKey, c.firstName);
+	strcat(recordKey, c.lastName);
+	char recordBytes[size];
+	memcpy(recordBytes, &l1, sizeof(char));
+	memcpy(recordBytes + 1 , c.firstName, l1);
+	memcpy(recordBytes +1+ l1, &l2, sizeof(char));
+	memcpy(recordBytes +1+ l1 + 1, c.lastName, l2);
+	memcpy(recordBytes +2+ (l1+l2), &c.balance, sizeof(long));
+
+	recordOne.setBytes(recordBytes, size);
+	node.insert(recordKey, &recordOne);
+
+	node.print();
+	bool success = node.remove(recordKey) == Underflow;
+	node.print();
+	std::cout << std::endl;
+
+	return success;
+}
+
+bool LeafNodeTests::testDeleteReturnsUpdatedIfOccupiedSizeIsMoreThanMinimumAndRecordWasDeleted()
+{
+	CustomerMethods methods;
+	SequenceTreeBlock block(42, &methods);
+	LeafNode node(&block, &methods);
+
+	VariableRecord recordOne;
+	Customer c;
+	c.firstName = "John";
+	c.lastName = "Connor";
+	c.balance = 100;
+	int l1 = strlen(c.firstName) + 1;
+	int l2 = strlen(c.lastName) + 1;
+	// size = 16
+	int size = l1+1 + l2+1 + sizeof (long); //sumo 2 bytes para cada tamaño del nombre y apellido
+	char recordKey[l1 + l2 - 1];
+	memset(recordKey, 0, l1 + l2 - 1);
+	strcat(recordKey, c.firstName);
+	strcat(recordKey, c.lastName);
+	char recordBytes[size];
+	memcpy(recordBytes, &l1, sizeof(char));
+	memcpy(recordBytes + 1 , c.firstName, l1);
+	memcpy(recordBytes +1+ l1, &l2, sizeof(char));
+	memcpy(recordBytes +1+ l1 + 1, c.lastName, l2);
+	memcpy(recordBytes +2+ (l1+l2), &c.balance, sizeof(long));
+
+	recordOne.setBytes(recordBytes, size);
+	node.insert(recordKey, &recordOne);
+
+	VariableRecord recordTwo;
+	Customer cust;
+	cust.firstName = "R";
+	cust.lastName = "P";
+	cust.balance = 102;
+	int lCust1 = strlen(cust.firstName) + 1; // 2
+	int lCust2 = strlen(cust.lastName) + 1; // 2
+	int sizeCust = lCust1 + 1 + lCust2 + 1 + sizeof(long); // 2 + 1 + 2 + 1 + 4
+	char custRecordKey[sizeCust];
+	memset(custRecordKey, 0, lCust1 + lCust2 - 1);
+	strcat(custRecordKey, cust.firstName);
+	strcat(custRecordKey, cust.lastName);
+	char custRecordBytes[sizeCust];
+	memcpy(custRecordBytes, &lCust1, sizeof(char));
+	memcpy(custRecordBytes + 1 , cust.firstName, lCust1);
+	memcpy(custRecordBytes +1+ lCust1, &lCust2, sizeof(char));
+	memcpy(custRecordBytes +1+ lCust1 + 1, cust.lastName, lCust2);
+	memcpy(custRecordBytes +2+ (lCust1+lCust2), &cust.balance, sizeof(long));
+
+	recordTwo.setBytes(custRecordBytes, sizeCust);
+
+	bool success = true;
+	success = success && node.insert(custRecordKey, &recordTwo) == Updated;
+	node.print();
+	success = success && node.remove(custRecordKey) == Updated;
 	node.print();
 
 	return success;

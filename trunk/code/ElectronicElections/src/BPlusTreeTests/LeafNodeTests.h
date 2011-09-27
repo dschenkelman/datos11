@@ -18,10 +18,13 @@ public:
 	bool testInsertLessThanFullSizeReturnsCorrectResult();
 	bool testInsertDuplicatedRecordReturnsCorrectResult();
 	bool testInsertRecordInFullBlockReturnsOverflow();
-	bool testInsertingWithOverflowPutsMiddleRecordInPassedParameter(); // mi ingles es nulo, que alguien lo traduzca!!
+	bool testInsertingWithOverflowPutsMiddleRecordInPassedParameter();
 	bool testUpdateNonExistentRecordReturnsNotFound();
 	bool testUpdateShouldReturnOverflowIfRecordDoesNotFitNode();
 	bool testUpdateShouldUpdateRecordAndReturnUpdated();
+	bool testDeleteReturnsNotFoundIfKeyIsNotPresent();
+	bool testDeleteReturnsUnderflowIfOccupiedSizeIsLessThanMinimum();
+	bool testDeleteReturnsUpdatedIfOccupiedSizeIsMoreThanMinimumAndRecordWasDeleted();
 	void run();
 	virtual ~LeafNodeTests();
 };

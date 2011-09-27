@@ -40,7 +40,7 @@ public:
 	int findRecord(const char* key, VariableRecord** rec);
 	virtual void updateInformation() = 0;
 	virtual void clear() = 0;
-	bool canInsertRecord(int recordSize);
+	virtual bool canInsertRecord(int recordSize);
 	virtual bool insertRecord(const char* key, VariableRecord* rec) = 0;
 	virtual UpdateResult updateRecord(const char* key, VariableRecord* rec) = 0;
 	virtual void printContent() = 0;

@@ -18,6 +18,7 @@ public:
 	bool testInsertLessThanFullSizeReturnsCorrectResult();
 	bool testInsertDuplicatedRecordReturnsCorrectResult();
 	bool testInsertRecordInFullBlockReturnsOverflow();
+	bool testInsertarRegistroEnBloqueLlenoColocaRegistroDelMedioEnPuntero(); // mi ingles es nulo, que alguien lo traduzca!!
 	void run();
 	virtual ~LeafNodeTests();
 };

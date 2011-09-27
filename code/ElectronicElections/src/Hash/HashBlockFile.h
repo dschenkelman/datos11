@@ -15,13 +15,13 @@ class HashBlockFile
 {
 	HashBlock* currentBlock;
 	SimpleVariableBlockFile* overflowFile;
-	std::string fileName;
-	RecordMethods *recordMethods;
+	//std::string fileName;
+	//RecordMethods *recordMethods;
 	std::fstream dataFile;
-	long blockSize;
-	SimpleVariableBlock *currentBlock;
-	int loadedBlockNumber;
+	//long blockSize;
+	SimpleVariableBlock *overflowedBlock;
 	int blockAmount;
+
 public:
 	HashBlockFile(string& name, int bSize, RecordMethods* methods, int blockamount, bool createNew);
 	virtual HashBlock* getCurrentBlock();
@@ -29,6 +29,9 @@ public:
 	bool insertRecord(char* key, VariableRecord* record);
 	//bool removeRecord(BlockFile* file, int blockNumber, Record* record);
 	//void updateRecord(BlockFile* file, int blockNumber, Record* record);
+	virtual void printContent();
+	virtual void loadBlock(int blockNumber);
+	virtual void saveBlock();
 	virtual ~HashBlockFile();
 };
 

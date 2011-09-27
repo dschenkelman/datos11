@@ -15,7 +15,12 @@ BaseVariableBlock::BaseVariableBlock(int size, int pos,
 {
 	this->bytes = new char[this->maxSize];
 	memset(this->bytes, 0, this->maxSize);
-	this->freeSpace = this->maxSize;
+	this->freeSpace = this->maxSize - recordsOffset;
+}
+
+bool BaseVariableBlock::canInsertRecord(int recordSize)
+{
+	return this->freeSpace >= recordSize + Constants::FIELD_HEADER_SIZE;
 }
 
 char* BaseVariableBlock::getBytes()

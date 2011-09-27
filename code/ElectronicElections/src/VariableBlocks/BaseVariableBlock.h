@@ -10,6 +10,7 @@
 
 #include "VariableRecord.h"
 #include "RecordMethods.h"
+#include "Constants.h"
 
 enum UpdateResult { NOT_FOUND, UPDATED, INSUFFICIENT_SPACE };
 
@@ -30,16 +31,16 @@ protected:
 	char* bytes;
 	virtual bool hasNextRecord() = 0;
     int getOccupiedSize();
+
 public:
 	BaseVariableBlock(int size, int pos, int rOffset, RecordMethods* methods);
 	char* getBytes();
 	int getSize();
 	int getFreeSpace();
-	int getRecordCount();
 	int findRecord(const char* key, VariableRecord** rec);
 	virtual void updateInformation() = 0;
 	virtual void clear() = 0;
-	virtual bool canInsertRecord(int size) = 0;
+	bool canInsertRecord(int recordSize);
 	virtual bool insertRecord(const char* key, VariableRecord* rec) = 0;
 	virtual UpdateResult updateRecord(const char* key, VariableRecord* rec) = 0;
 	virtual void printContent() = 0;

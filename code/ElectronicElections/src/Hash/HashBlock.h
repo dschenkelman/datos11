@@ -8,24 +8,25 @@
 #ifndef HASHBLOCK_H_
 #define HASHBLOCK_H_
 
-#include "../VariableBlocks/SimpleVariableBlock.h"
+#include "../VariableBlocks/BaseVariableBlock.h"
 
-class HashBlock: public SimpleVariableBlock
+class HashBlock: public BaseVariableBlock
 {
-	// indicates if the block is overflow and gives the overflow block address in the overflow file
-	char overflowBlockPointer;
 	// -------------------METHODS-------------------
-	int findFirstFreeRecord();
-	short getFlagByteFromRecordIndex(int recordIndex);
+	virtual bool hasNextRecord();
+
 public:
-	HashBlock(int size, int recordSize, RecordMethods* methods);
-	virtual VariableRecord* getCurrentRecord(VariableRecord* r);
-	/*
-	virtual bool insertRecord(char* key, char* bytes);
+	HashBlock(int size, RecordMethods* methods);
+	virtual void updateInformation();
+	virtual VariableRecord* getNextRecord(VariableRecord* r);
+	virtual void clear();
+	virtual void printContent();
+	int getOverflowedBlock();
+	virtual void forceInsert(VariableRecord *rec);
+	virtual bool insertRecord(const char* key, VariableRecord* record);
 	virtual bool removeRecord(const char* key);
-	virtual bool updateRecord(const char* key, char* bytes);
-	*/
-	bool insertInCurrentRecord(char* key, char* bytes);
+	virtual UpdateResult updateRecord(const char* key, VariableRecord* record);
+
 	virtual ~HashBlock();
 };
 

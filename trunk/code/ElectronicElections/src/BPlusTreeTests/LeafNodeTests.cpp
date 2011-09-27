@@ -26,8 +26,9 @@ void LeafNodeTests::printResult(std::string testName, bool result)
 
 void LeafNodeTests::run()
 {
-	printResult("testInsertLessThanFullSizeReturnsCorrectResult", testInsertLessThanFullSizeReturnsCorrectResult());
+	//printResult("testInsertLessThanFullSizeReturnsCorrectResult", testInsertLessThanFullSizeReturnsCorrectResult());
 	printResult("testInsertDuplicatedRecordReturnsCorrectResult", testInsertDuplicatedRecordReturnsCorrectResult());
+	printResult("testInsertRecordInFullBlockReturnsOverflow",testInsertRecordInFullBlockReturnsOverflow());
 }
 
 bool LeafNodeTests::testInsertDuplicatedRecordReturnsCorrectResult()
@@ -72,6 +73,54 @@ bool LeafNodeTests::testInsertDuplicatedRecordReturnsCorrectResult()
 	}
 
 	return true;
+}
+
+bool LeafNodeTests::testInsertRecordInFullBlockReturnsOverflow()
+{
+	CustomerMethods methods;
+    SequenceTreeBlock block(40, &methods);
+    LeafNode node(&block, &methods);
+
+    VariableRecord recordOne;
+    VariableRecord recordTwo;
+    Customer c;
+    c.firstName = "John";
+    c.lastName = "Connor";
+    c.balance = 100;
+    int l1 = strlen(c.firstName) + 1;
+    int l2 = strlen(c.lastName) + 1;
+    // size = 16
+    int size = l1+1 + l2+1 + sizeof (long); //sumo 2 bytes para cada tamaño del nombre y apellido
+    char *recordKey = new char[l1 + l2 - 1];
+    memset(recordKey, 0, l1 + l2 - 1);
+    strcat(recordKey, c.firstName);
+    strcat(recordKey, c.lastName);
+    char *recordBytes = new char[size];
+    memcpy(recordBytes, &l1, sizeof(char));
+    memcpy(recordBytes + 1 , c.firstName, l1);
+    memcpy(recordBytes +1+ l1, &l2, sizeof(char));
+    memcpy(recordBytes +1+ l1 + 1, c.lastName, l2);
+
+    memcpy(recordBytes +2+ (l1+l2), &c.balance, sizeof(long));
+
+    recordOne.setBytes(recordBytes, size);
+    recordTwo.setBytes(recordBytes, size);
+
+    std::string key = "keyTwo";
+
+	bool success = true;
+
+	if(node.insert(recordKey, &recordOne) != Updated)
+	{
+		success = false;
+	}
+
+	else if(node.insert((char*) key.c_str(), &recordTwo) != Overflow)
+	{
+		success = false;
+	}
+
+	return success;
 }
 
 bool LeafNodeTests::testInsertLessThanFullSizeReturnsCorrectResult()

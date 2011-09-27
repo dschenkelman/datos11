@@ -24,22 +24,28 @@ OpResult LeafNode::insert(char* key, VariableRecord* r)
 	VariableRecord* variableRec = new VariableRecord;
 	if(this->block->findRecord(key, &variableRec) != -1)
 	{
+		delete variableRec;
 		return Duplicated;
 	}
 
 	if(!this->block->canInsertRecord(r->getSize()))
 	{
-		VariableRecord* vr;
 		int bytes = 0;
 		this->block->positionAtBegin();
 
 		while (bytes < this->block->getSize()/2)
 		{
-			vr = this->block->getNextRecord(r);
-			bytes += vr->getSize();
+			variableRec = this->block->getNextRecord(r);
+
+			if(variableRec == NULL)
+			{
+				break; // no debería asignar el *r = *variableRec
+			}
+
+			bytes += variableRec->getSize();
 		}
 
-		*r = *vr;
+		*r = *variableRec;
 		return Overflow;
 	}
 

@@ -18,9 +18,10 @@ public:
 	bool testInsertLessThanFullSizeReturnsCorrectResult();
 	bool testInsertDuplicatedRecordReturnsCorrectResult();
 	bool testInsertRecordInFullBlockReturnsOverflow();
-	bool testInsertarRegistroEnBloqueLlenoColocaRegistroDelMedioEnPuntero(); // mi ingles es nulo, que alguien lo traduzca!!
+	bool testInsertingWithOverflowPutsMiddleRecordInPassedParameter(); // mi ingles es nulo, que alguien lo traduzca!!
 	bool testUpdateNonExistentRecordReturnsNotFound();
 	bool testUpdateShouldReturnOverflowIfRecordDoesNotFitNode();
+	bool testUpdateShouldUpdateRecordAndReturnUpdated();
 	void run();
 	virtual ~LeafNodeTests();
 };

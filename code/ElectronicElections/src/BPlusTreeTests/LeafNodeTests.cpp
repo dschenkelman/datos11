@@ -21,7 +21,7 @@ LeafNodeTests::LeafNodeTests()
 
 void LeafNodeTests::printResult(std::string testName, bool result)
 {
-	std::cout << (testName.append(result ? ": Passed\n" : ": Failed!!!\n"));
+	std::cout << (testName.append(result ? ": \033[1;32mpassed\n\033[0m" : ": \033[1;31mFAILED!!!\n\033[0m"));
 }
 
 void LeafNodeTests::run()

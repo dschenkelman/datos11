@@ -21,7 +21,7 @@ int LeafNode::getMinimumSize()
 
 OpResult LeafNode::insert(char* key, VariableRecord* r)
 {
-	VariableRecord* variableRec = new VariableRecord;
+	VariableRecord* variableRec = new VariableRecord();
 	if(this->block->findRecord(key, &variableRec) != -1)
 	{
 		delete variableRec;
@@ -39,14 +39,18 @@ OpResult LeafNode::insert(char* key, VariableRecord* r)
 
 			if(variableRec == NULL)
 			{
-				break; // no debería asignar el *r = *variableRec
+				break;
 			}
 
 			bytes += variableRec->getSize();
+			*r = *variableRec;
 		}
 
-		*r = *variableRec;
-		delete variableRec;
+		if(variableRec != NULL)
+		{
+			delete variableRec;
+		}
+
 		return Overflow;
 	}
 

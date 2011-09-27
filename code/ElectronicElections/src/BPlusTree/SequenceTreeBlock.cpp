@@ -142,11 +142,21 @@ bool SequenceTreeBlock::insertRecord(const char *key, VariableRecord *rec)
 		while(this->recordMethods->compare(key,aux.getBytes(), aux.getSize()) < 0)
 		{
 			// swap
-			memcpy(this->bytes + recordPositions.at(recordPositions.size() - 1)
-					+ rec->getSize(), aux.getBytes(), aux.getSize());
+			short auxSize = aux.getSize();
+			short recSize = rec->getSize();
 
 			memcpy(this->bytes + recordPositions.at(recordPositions.size() - 1)
-					, rec->getBytes(), rec->getSize());
+								+ rec->getSize() + Constants::RECORD_HEADER_SIZE, &auxSize,
+								Constants::RECORD_HEADER_SIZE);
+
+			memcpy(this->bytes + recordPositions.at(recordPositions.size() - 1)
+					+ rec->getSize() + 2 * Constants::RECORD_HEADER_SIZE, aux.getBytes(), auxSize);
+
+			memcpy(this->bytes + recordPositions.at(recordPositions.size() - 1)
+					, &recSize, Constants::RECORD_HEADER_SIZE);
+
+			memcpy(this->bytes + recordPositions.at(recordPositions.size() - 1) + Constants::RECORD_HEADER_SIZE
+								, rec->getBytes(), recSize);
 
 			// change to previous record
 			recordPositions.pop_back();

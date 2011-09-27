@@ -46,8 +46,11 @@ OpResult LeafNode::insert(char* key, VariableRecord* r)
 		}
 
 		*r = *variableRec;
+		delete variableRec;
 		return Overflow;
 	}
+
+	delete variableRec;
 
 	this->block->insertRecord(key, r);
 	return Updated;
@@ -59,6 +62,7 @@ OpResult LeafNode::update(char *key, VariableRecord* r)
 	int position = this->block->findRecord(key, &rec);
 	if (position < 0)
 	{
+		delete rec;
 		return NotFound;
 	}
 
@@ -67,12 +71,14 @@ OpResult LeafNode::update(char *key, VariableRecord* r)
 	if (dif < 0 || this->block->getFreeSpace() > dif)
 	{
 		this->block->updateRecord(key, r);
+		delete rec;
 		return Updated;
 	}
 	else
 	{
 		// should assign middle record to *r
 		*r = *rec;
+		delete rec;
 		return Overflow;
 	}
 

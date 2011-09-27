@@ -13,7 +13,7 @@
 
 class VoterIndexMethods: public RecordMethods
 {
-	VoterIndex* getVoterIndexFromRecord(const char *recordBytes, int recordSize);
+	VoterIndex getVoterIndexFromRecord(const char *recordBytes, int recordSize);
 public:
 	VoterIndexMethods();
 	virtual int compare(const char* key, const char* recordBytes, int recordSize);

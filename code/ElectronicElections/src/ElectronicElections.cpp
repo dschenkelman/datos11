@@ -13,6 +13,7 @@
 #include "BlocksTests/TreeBlockFileTests.h"
 #include "BPlusTreeTests/LeafNodeTests.h"
 #include "Hash/HashTest.h"
+#include "EntitiesTests/DistrictTests.h"
 
 using namespace std;
 
@@ -34,5 +35,8 @@ int main()
 	cout << "LEAF NODE TESTS" << endl;
 	LeafNodeTests leafTests;
 	leafTests.run();
+	cout << "DISTRICT TESTS" << endl;
+	DistrictTests districtTests;
+	districtTests.run();
 	return 0;
 }

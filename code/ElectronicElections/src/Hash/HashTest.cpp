@@ -3,23 +3,22 @@
  *
  *  Created on: Sep 20, 2011
  *      Author: gabriel
- *
+ */
 
 #include "HashTest.h"
 #include "../BlocksTests/CustomerMethods.h"
 #include <string>
 #include <iostream>
 #include <stdlib.h>
-#include "../Hash/HashBlockFile.h"
+#include "HashBlockFile.h"
 
 using namespace std;
 
 HashTest::HashTest()
 {
 	string f = "hashtest";
-	int blockAmount = 20;
-	this->file = new HashBlockFile(f, 512, 16, new CustomerMethods, true, blockAmount);
-	this->hash = new Hash(file, blockAmount);
+	int blockAmount = 10;
+	this->file = new HashBlockFile(f, 512, new CustomerMethods, blockAmount, true);
 }
 
 void HashTest::testInsert()
@@ -42,29 +41,27 @@ void HashTest::testInsert()
 		int l1 = strlen(c.firstName) + 1;
 		int l2 = strlen(c.lastName) + 1;
 		// size = 16
-		int size = l1 + l2 + sizeof (long);
+		int size = l1+1 + l2+1 + sizeof (long); //sumo 2 bytes para cada tamaño del nombre y apellido
 		char *recordKey = new char[l1 + l2 - 1];
 		memset(recordKey, 0, l1 + l2 - 1);
 		strcat(recordKey, c.firstName);
 		strcat(recordKey, c.lastName);
 		char *recordBytes = new char[size];
-		memcpy(recordBytes, c.firstName, l1);
-		memcpy(recordBytes + l1, c.lastName, l2);
-		memcpy(recordBytes + (l1+l2-1), &(c.balance), sizeof(long));
+		memcpy(recordBytes, &l1, sizeof(char));
+		memcpy(recordBytes + 1 , c.firstName, l1);
+		memcpy(recordBytes +1+ l1, &l2, sizeof(char));
+		memcpy(recordBytes +1+ l1 + 1, c.lastName, l2);
+		memcpy(recordBytes +2+ (l1+l2), &c.balance, sizeof(long));
 		
 		//blockNumber = hasingName(recordKey);
-		blockNumber = i;
-		Record* record = new Record(16);
-		record->setBytes(recordBytes);
-		this->hash->insertRecord(recordKey, record);
+		this->file->insertRecord(recordKey, recordBytes, size);
 		
 		delete [] recordBytes;
 		delete [] recordKey;
-
 	}
 	this->file->printContent();
 }
-
+/*
 void HashTest::testGetRecord()
 {
 	Customer c;
@@ -105,7 +102,7 @@ void HashTest::testRemove()
 	
 	delete [] recordKey;
 }
-
+*/
 void HashTest::run()
 {
 	this->testInsert();
@@ -117,7 +114,5 @@ void HashTest::run()
 
 HashTest::~HashTest()
 {
-	delete this->hash;
 	delete this->file;
 }
-*/

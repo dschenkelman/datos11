@@ -26,7 +26,7 @@ public:
 	virtual BaseVariableBlock* getCurrentBlock() = 0;
 	virtual void saveBlock() = 0;
 	bool isAtEOF();
-	void positionAtBlock(int blockNumber);
+	virtual void positionAtBlock(int blockNumber);
 	virtual ~BaseVariableBlockFile();
 };
 

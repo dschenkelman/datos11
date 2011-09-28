@@ -3,49 +3,48 @@
  *
  *  Created on: Sep 22, 2011
  *      Author: Gaby+JM
- *
+ */
 
 #include "HashBlockFile.h"
 
-HashBlockFile::HashBlockFile(std::string& fileName, int bSize,
-		int rSize, RecordMethods *methods, bool createNew, int blockAmount)
-: BlockFile (fileName, bSize, rSize, methods, createNew)
-{
-	this->blockAmount = blockAmount;
-	this->currentBlock = new HashBlock(bSize, methods);
-	this->initializefile();
-}
+using namespace std;
 
-HashBlockFile::HashBlockFile(string& name, int bSize, RecordMethods* methods, int blockamount, bool createNew)
-			:blockSize(bSize), blockAmount(blockamount)
+HashBlockFile::HashBlockFile(std::string fileName, int bSize, RecordMethods *methods, int blockAmount, bool createNew)
+: BaseVariableBlockFile (fileName, bSize, methods)
 {
-	//first block in file:
-	//long for blocksize, long for blockamount, all longs for occupied space in each block.
-	this->fileName = name;
-	this->recordMethods = methods;
-	this->positionToDataBlocks = new char[bSize-4];
-	this->currentBlock = new HashBlock(this->blockSize, this->recordMethods);
-	if (createNew)
+	this->ovflowBlockUsed = false;
+	this->hashBlockUsed = false;
+	this->totalBlocks = blockAmount;
+	this->currentBlock = new HashBlock(bSize, methods);
+	if( createNew)
 	{
-		this->dataFile.open(this->fileName.c_str(), ios::binary | ios::in | ios::out | ios::trunc);
-		char* initialValue= new char[bSize * 2]; //to start with an empty block
-		memset(initialValue, 0, bSize *2);
-		memset(this->positionToDataBlocks, 0, bSize-4);
-		this->blockAmount = 1;
-		memcpy(initialValue, &blockAmount, sizeof(long));
-		this->dataFile.seekp(0, ios::beg);
-		this->dataFile.write(initialValue, this->blockSize * 2);
-		delete [] initialValue;
+		this->initializefile();
 	}
 	else
 	{
 		this->dataFile.open(this->fileName.c_str(), ios::binary | ios::in | ios::out);
-		char* bytes = new char[this->blockSize];
-		this->dataFile.read(bytes, this->blockSize);
-		memcpy(&this->blockAmount, bytes, 4);
-		memcpy(this->positionToDataBlocks, bytes + 4, this->blockSize - 4);
-		delete [] bytes;
 	}
+	string ovflw = "ovflow";
+	//const int ovflwFileLen = strlen(fileName.c_str()) + 7;
+	//char ovflwFile[ovflwFileLen];
+	//strcat(ovflwFile, fileName.c_str());
+	//strcat(ovflwFile, ovflw);
+	this->overflowFile = new SimpleVariableBlockFile(ovflw, bSize, methods, createNew);
+}
+
+void HashBlockFile::initializefile()
+{
+	this->dataFile.open(this->fileName.c_str(), ios::binary | ios::in | ios::out | ios::trunc);
+	char* block = new char[blockSize];
+	memset(block,0,blockSize);
+	char overflowBlock = -1;
+	memcpy(block,&overflowBlock,sizeof(char));
+	for (int i= 0; i < totalBlocks; i++)
+	{
+		this->positionAtBlock(i);
+		this->dataFile.write(block,blockSize);
+	}
+	delete [] block;
 }
 
 HashBlock* HashBlockFile::getCurrentBlock()
@@ -53,114 +52,120 @@ HashBlock* HashBlockFile::getCurrentBlock()
 	return this->currentBlock;
 }
 
-HashBlockFile::~HashBlockFile()
-{
-	delete this->currentBlock;
-}
-
-void HashBlockFile::initializefile()
-{
-	char* block = new char [blockSize];
-	memset(block,0,blockSize);
-	memcpy(block,&(-1),sizeof(char));
-	for (int i= 0; i < blockAmount; i++)
-	{
-		this->dataFile.seekp(i*blockSize);
-		this->dataFile.write(block,blockSize);
-	}
-
-}
-
-
-bool HashBlockFile::insertRecord(char* key, VariableRecord* record)
-{
-	int blockNumber = this->hashFunction(key);
-	int firstErasedRecordPtr[2];	// [BlockNumber, RecordNumber]
-	bool firstErasedFound = false;
-	int lastBlockToCheck;
-
-	//If the block does not exist, Blockfile must creates it
-
-	if ( blockNumber == 0 )
-	{
-		lastBlockToCheck = blockAmount;
-	}
-	else
-	{
-		lastBlockToCheck = blockNumber - 1;
-	}
-
-	file->loadBlock(blockNumber);
-	HashBlock* block = file->getCurrentBlock();
-	if( block->findRecord(key, record) >= 0)	//the record was found
-	{
-		return false;
-	}
-
-	while (blockNumber != lastBlockToCheck)
-	{
-		file->loadBlock(blockNumber);
-		block = file->getCurrentBlock();
-		if( block->findRecord(key, record) >= 0)	//the record was found
-		{
-			return false;
-		}
-		//the record is not in the current block
-		else if (block->isFull() || block->isOverflowed())
-		{
-			if (block->isFull())
-			{
-				block->getsOverflow();
-				file->saveBlock();
-			}
-			else if ( !firstErasedFound )
-			{
-				//Save first erased record
-				firstErasedFound = true;
-				int occupiedRecords = 0;
-				block->seekRecord(occupiedRecords);
-				Record* currentRecord = block->getCurrentRecord(currentRecord);
-				while( !currentRecord->getWasDeleted() && block->hasNextRecord())
-				{
-					currentRecord = block->getNextRecord(currentRecord);
-					occupiedRecords++;
-				}
-				if (currentRecord->getWasDeleted())
-				{
-					firstErasedRecordPtr[0] = blockNumber;
-					firstErasedRecordPtr[1] = occupiedRecords;
-				}
-			}
-		}
-		//the current block has a free record
-		else
-		{
-			if (firstErasedFound)
-			{
-				file->loadBlock(firstErasedRecordPtr[0]);
-				block = file->getCurrentBlock();
-				block->seekRecord(firstErasedRecordPtr[1]);
-				block->insertInCurrentRecord(key,record->getBytes());
-			}
-			else
-				block->insertRecord(key,record->getBytes());
-			file->saveBlock();
-			return true;
-		}
-		blockNumber++;
-		if (blockNumber == blockAmount)
-			blockNumber = 0;
-	}
-	//No more space in blockFile!!
-	return false;
-}
-
-
 int HashBlockFile::hashFunction(char* key)
 {
 	// This will change
 	//int hash = atoi(key) % blockAmount;
-	//return hash;
-	return 0;
+	return 2;
 }
-*/
+
+void HashBlockFile::printContent()
+{
+	int blockNumber = 0;
+	this->positionAtBlock(0);
+	while(!this->isAtEOF())
+	{
+		this->loadBlock(blockNumber);
+		this->currentBlock->printContent();
+		blockNumber++;
+	}
+}
+
+bool HashBlockFile::internalInsertRecord(const char* key,
+		const char* recordBytes, short size, bool force)
+{
+	return true;
+}
+
+bool HashBlockFile::insertRecord(const char* key, const char* recordBytes, short size)
+{
+	int blockNumber = 2;
+	if(blockNumber >= totalBlocks)
+		return false; //out of bounds. It should never happen!!
+
+	int ovflowBlock;
+	this->loadBlock(blockNumber);
+	this->currentBlock = this->getCurrentBlock();
+	VariableRecord* record = new VariableRecord();
+	record->setBytes(recordBytes, size);
+	if(this->currentBlock->findRecord(key, &record))
+	{
+		//ERROR, KEY ALREADY INSERTED
+		if( record!= NULL) delete record;
+		return false;
+	}
+	if(this->currentBlock->canInsertRecord(size) )
+	{
+		if( (ovflowBlock = this->currentBlock->getOverflowedBlock()) != -1)
+		{
+			this->overflowFile->loadBlock(ovflowBlock);
+			if(this->overflowFile->getRecord(key, &record) )
+			{
+				if( record!= NULL) delete record;
+				return false;
+			}
+		}
+		this->hashBlockUsed = true;
+		this->currentBlock->insertRecord(key, record);
+		this->saveBlock();
+		if( record!= NULL) delete record;
+		return true;
+	}
+	//no space in block, overflow!
+	if((ovflowBlock = this->currentBlock->getOverflowedBlock()) != -1)
+	{
+		this->overflowFile->loadBlock(ovflowBlock);
+		if(!this->overflowFile->insertRecord(key, recordBytes, size) )
+		{
+			if( record!= NULL) delete record;
+			return false;
+		}
+		this->ovflowBlockUsed = true;
+		this->saveBlock();
+		return true;
+	}
+	//it wasn't overflowed. now it is
+	this->hashBlockUsed = true;
+	this->ovflowBlockUsed = true;
+	ovflowBlock = this->overflowFile->getFirstFreeEmptyBlock();
+	this->currentBlock->becomesOverflow(ovflowBlock);
+	this->overflowFile->loadBlock(ovflowBlock);
+	this->overflowFile->insertRecord(key, recordBytes, size);
+	this->saveBlock();
+	return true;
+}
+
+
+void HashBlockFile::loadBlock(int blockNumber)
+{
+	// It is supposed that the hash function gives a blockNumber
+	// in a valid range for the file.
+	this->currentBlockNumber = blockNumber;
+    this->positionAtBlock(blockNumber);
+    this->dataFile.read(this->currentBlock->getBytes(), this->blockSize);
+}
+
+void HashBlockFile::saveBlock()
+{
+	if(hashBlockUsed)
+	{
+		this->positionAtBlock(this->currentBlockNumber);
+		this->dataFile.write(this->currentBlock->getBytes(), this->blockSize);
+		hashBlockUsed = false;
+	}
+	if( ovflowBlockUsed )
+	{
+		int ovflwBlock = this->currentBlock->getOverflowedBlock();
+		overflowFile->positionAtBlock(ovflwBlock);
+		overflowFile->saveBlock();
+		ovflowBlockUsed = false;
+	}
+}
+
+HashBlockFile::~HashBlockFile()
+{
+	delete this->currentBlock;
+	delete this->overflowFile;
+	this->dataFile.close();
+}
+

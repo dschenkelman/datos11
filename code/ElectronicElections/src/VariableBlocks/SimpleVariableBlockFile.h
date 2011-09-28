@@ -22,7 +22,7 @@ class SimpleVariableBlockFile: public BaseVariableBlockFile
     SimpleVariableBlock *currentBlock;
     int blockAmount;
     char* positionToDataBlocks;
-    void positionAtBlock(int blockNumber);
+protected:
     bool internalInsertRecord(const char* key,
     		const char* recordBytes, short size, bool force);
     bool isAtEOF();
@@ -30,6 +30,7 @@ class SimpleVariableBlockFile: public BaseVariableBlockFile
 public:
     SimpleVariableBlockFile(std::string& fileName, int bSize, RecordMethods *methods, bool createNew);
     void printContent();
+    void positionAtBlock(int blockNumber);
     int getFirstFreeEmptyBlock();
     bool insertRecord(const char *key, const char* recordBytes, short size);
     bool updateRecord(const char *key, const char* recordBytes, short size);

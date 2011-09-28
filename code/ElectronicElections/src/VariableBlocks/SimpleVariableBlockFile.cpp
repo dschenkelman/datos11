@@ -46,13 +46,15 @@ int SimpleVariableBlockFile::getFirstFreeEmptyBlock()
 {
 	//it returns -1 if there are no empty blocks
 	int occupiedSize;
-	for(int i=0; i < this->blockAmount; i++)
+	int i;
+	for(i=0; i < this->blockAmount; i++)
 	{
 		memcpy(&occupiedSize, this->positionToDataBlocks + i*4, 4);
 		if(occupiedSize == 0) return i+1;
 
 	}
-	return -1;
+	blockAmount++;
+	return blockAmount; //all occupied. returns a new one.
 }
 
 void SimpleVariableBlockFile::printContent()

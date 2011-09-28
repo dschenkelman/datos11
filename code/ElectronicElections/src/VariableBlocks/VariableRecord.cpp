@@ -15,6 +15,7 @@ VariableRecord::VariableRecord() : size(0)
 
 VariableRecord::VariableRecord(const char* value, short len)
 {
+	this->bytes = NULL;
 	this->setBytes(value,len);
 }
 

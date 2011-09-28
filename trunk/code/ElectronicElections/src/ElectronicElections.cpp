@@ -23,6 +23,8 @@ int main()
 	TreeBlockFileTests treeBlocktests;
 	treeBlocktests.run();
 	*/
+	HashTest hashTests;
+	hashTests.run();
 	LeafNodeTests leafTests;
 	leafTests.run();
 	//SimpleVariableBlockFileTests rlvTest;

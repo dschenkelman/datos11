@@ -26,6 +26,8 @@ public:
 	int hashingDistrict(char* keyRecord);
 	int hashingElection(char* keyRecord);
 	
+	// generic functions
+	static long hashString(char* string);
 };
 
 #endif /* HASHINGFUNCTIONS_H_ */

@@ -26,7 +26,7 @@ public:
 	virtual void updateInformation();
 	virtual void clear();
 	virtual bool canInsertRecord(int size);
-	virtual bool insertRecord(const char* key, VariableRecord* rec);
+	virtual bool insertRecord(VariableRecord* keyRecord, VariableRecord* dataRecord);
 	virtual bool insertSeparator(const char* key, short len);
 	virtual UpdateResult updateRecord(const char* key, VariableRecord* rec);
 	virtual void printContent();

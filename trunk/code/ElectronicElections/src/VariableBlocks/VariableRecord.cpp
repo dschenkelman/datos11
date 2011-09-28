@@ -13,6 +13,11 @@ VariableRecord::VariableRecord() : size(0)
 	this->bytes = NULL;
 }
 
+VariableRecord::VariableRecord(const char* value, short len)
+{
+	this->setBytes(value,len);
+}
+
 VariableRecord::VariableRecord(VariableRecord& other)
 {
 	if (other.size != 0)

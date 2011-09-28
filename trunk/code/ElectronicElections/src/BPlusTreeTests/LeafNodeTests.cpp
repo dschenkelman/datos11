@@ -46,6 +46,7 @@ bool LeafNodeTests::testInsertDuplicatedRecordReturnsCorrectResult()
 
 	VariableRecord recordOne;
 	VariableRecord recordTwo;
+	VariableRecord key;
 	Customer c;
 	c.firstName = "John";
 	c.lastName = "Connor";
@@ -68,13 +69,14 @@ bool LeafNodeTests::testInsertDuplicatedRecordReturnsCorrectResult()
 
 	recordOne.setBytes(recordBytes, size);
 	recordTwo.setBytes(recordBytes, size);
+	key.setBytes(recordKey, l1 + l2 - 1);
 
-	if(node.insert(recordKey, &recordOne) != Updated)
+	if(node.insert(&key, &recordOne) != Updated)
 	{
 		return false;
 	}
 
-	if(node.insert(recordKey, &recordTwo) != Duplicated)
+	if(node.insert(&key, &recordTwo) != Duplicated)
 	{
 		return false;
 	}
@@ -90,6 +92,7 @@ bool LeafNodeTests::testInsertRecordInFullBlockReturnsOverflow()
 
     VariableRecord recordOne;
     VariableRecord recordTwo;
+    VariableRecord keyRecord;
     Customer c;
     c.firstName = "John";
     c.lastName = "Connor";
@@ -112,17 +115,19 @@ bool LeafNodeTests::testInsertRecordInFullBlockReturnsOverflow()
 
     recordOne.setBytes(recordBytes, size);
     recordTwo.setBytes(recordBytes, size);
+    keyRecord.setBytes(recordKey, l1 + l2 - 1);
 
-    std::string key = "keyTwo";
+    //std::string key = "keyTwo";
+    VariableRecord keyTwo("keyTwo",strlen("keyTwo"));
 
 	bool success = true;
 
-	if(node.insert(recordKey, &recordOne) != Updated)
+	if(node.insert(&keyRecord, &recordOne) != Updated)
 	{
 		success = false;
 	}
 
-	else if(node.insert((char*) key.c_str(), &recordTwo) != Overflow)
+	else if(node.insert(&keyTwo, &recordTwo) != Overflow)
 	{
 		success = false;
 	}
@@ -145,9 +150,10 @@ bool LeafNodeTests::testInsertLessThanFullSizeReturnsCorrectResult()
 		v.indexPointer = 0;
 		VariableRecord r;
 		char key[sizeof(int)];
-		memcpy(&key, &v.DNI, sizeof(int));
-		r.setBytes(key, 2*sizeof(int));
-		success = success && node.insert(key, &r) == Updated;
+		memcpy(&key,&v.DNI,sizeof(int));
+		VariableRecord keyRecord(key,sizeof(int));
+		r.setBytes(keyRecord.getBytes(), 2*sizeof(int));
+		success = success && node.insert(&keyRecord, &r) == Updated;
 	}
 
 	node.print();
@@ -155,7 +161,7 @@ bool LeafNodeTests::testInsertLessThanFullSizeReturnsCorrectResult()
 	return success;
 }
 
-// pasar a ingles!!
+
 bool LeafNodeTests::testInsertingWithOverflowPutsMiddleRecordInPassedParameter()
 {
 	CustomerMethods methods;
@@ -163,6 +169,7 @@ bool LeafNodeTests::testInsertingWithOverflowPutsMiddleRecordInPassedParameter()
     LeafNode node(&block, &methods);
 
     VariableRecord recordOne;
+    VariableRecord key;
 
     Customer c;
     c.firstName = "John";
@@ -185,8 +192,10 @@ bool LeafNodeTests::testInsertingWithOverflowPutsMiddleRecordInPassedParameter()
     memcpy(recordBytes +2+ (l1+l2), &c.balance, sizeof(long));
 
     recordOne.setBytes(recordBytes, size);
+    key.setBytes(recordKey, l1 + l2 - 1);
 
     VariableRecord recordTwo;
+    VariableRecord custKey;
 	Customer cust;
 	cust.firstName = "John";
 	cust.lastName = "Riquelme";
@@ -206,13 +215,14 @@ bool LeafNodeTests::testInsertingWithOverflowPutsMiddleRecordInPassedParameter()
 	memcpy(custRecordBytes +2+ (lCust1+lCust2), &cust.balance, sizeof(long));
 
 	recordTwo.setBytes(custRecordBytes, sizeCust);
+	custKey.setBytes(custRecordKey, sizeCust);
 
-	if(!(node.insert(recordKey, &recordOne) == Updated))
+	if(!(node.insert(&key, &recordOne) == Updated))
 	{
 		return false;
 	}
 
-	if(!(node.insert(custRecordKey, &recordTwo) == Overflow))
+	if(!(node.insert(&custKey, &recordTwo) == Overflow))
 	{
 		return false;
 	}
@@ -251,6 +261,7 @@ bool LeafNodeTests::testUpdateShouldReturnOverflowIfRecordDoesNotFitNode()
 
 	VariableRecord recordOne;
 	VariableRecord recordTwo;
+	VariableRecord key;
 	Customer c;
 	c.firstName = "John";
 	c.lastName = "Connor";
@@ -272,8 +283,9 @@ bool LeafNodeTests::testUpdateShouldReturnOverflowIfRecordDoesNotFitNode()
 
 	recordOne.setBytes(recordBytes, size);
 	recordTwo.setBytes(recordBytes, 100);
+	key.setBytes(recordKey, l1 + l2 - 1);
 
-	node.insert(recordKey, &recordOne);
+	node.insert(&key, &recordOne);
 	return node.update(recordKey, &recordTwo) == Overflow;
 }
 
@@ -285,6 +297,7 @@ bool LeafNodeTests::testUpdateShouldUpdateRecordAndReturnUpdated()
 
 	VariableRecord recordOne;
 	VariableRecord recordTwo;
+	VariableRecord key;
 	Customer c;
 	c.firstName = "John";
 	c.lastName = "Connor";
@@ -305,12 +318,13 @@ bool LeafNodeTests::testUpdateShouldUpdateRecordAndReturnUpdated()
 	memcpy(recordBytes +2+ (l1+l2), &c.balance, sizeof(long));
 
 	recordOne.setBytes(recordBytes, size);
+	key.setBytes(recordKey, l1 + l2 - 1);
 
 	c.balance = -1;
 	memcpy(recordBytes +2+ (l1+l2), &c.balance, sizeof(long));
 	recordTwo.setBytes(recordBytes, size);
 
-	node.insert(recordKey, &recordOne);
+	node.insert(&key, &recordOne);
 	bool success = node.update(recordKey, &recordTwo) == Updated;
 
 	node.print();
@@ -335,6 +349,7 @@ bool LeafNodeTests::testDeleteReturnsUnderflowIfOccupiedSizeIsLessThanMinimum()
 
 	VariableRecord recordOne;
 	VariableRecord recordTwo;
+	VariableRecord key;
 	Customer c;
 	c.firstName = "John";
 	c.lastName = "Connor";
@@ -355,7 +370,8 @@ bool LeafNodeTests::testDeleteReturnsUnderflowIfOccupiedSizeIsLessThanMinimum()
 	memcpy(recordBytes +2+ (l1+l2), &c.balance, sizeof(long));
 
 	recordOne.setBytes(recordBytes, size);
-	node.insert(recordKey, &recordOne);
+	key.setBytes(recordKey,l1 + l2 - 1);
+	node.insert(&key, &recordOne);
 
 	node.print();
 	bool success = node.remove(recordKey) == Underflow;
@@ -372,6 +388,7 @@ bool LeafNodeTests::testDeleteReturnsUpdatedIfOccupiedSizeIsMoreThanMinimumAndRe
 	LeafNode node(&block, &methods);
 
 	VariableRecord recordOne;
+	VariableRecord key;
 	Customer c;
 	c.firstName = "John";
 	c.lastName = "Connor";
@@ -392,9 +409,11 @@ bool LeafNodeTests::testDeleteReturnsUpdatedIfOccupiedSizeIsMoreThanMinimumAndRe
 	memcpy(recordBytes +2+ (l1+l2), &c.balance, sizeof(long));
 
 	recordOne.setBytes(recordBytes, size);
-	node.insert(recordKey, &recordOne);
+	key.setBytes(recordBytes, size);
+	node.insert(&key, &recordOne);
 
 	VariableRecord recordTwo;
+	VariableRecord custKey;
 	Customer cust;
 	cust.firstName = "R";
 	cust.lastName = "P";
@@ -414,9 +433,10 @@ bool LeafNodeTests::testDeleteReturnsUpdatedIfOccupiedSizeIsMoreThanMinimumAndRe
 	memcpy(custRecordBytes +2+ (lCust1+lCust2), &cust.balance, sizeof(long));
 
 	recordTwo.setBytes(custRecordBytes, sizeCust);
+	custKey.setBytes(custRecordKey, sizeCust);
 
 	bool success = true;
-	success = success && node.insert(custRecordKey, &recordTwo) == Updated;
+	success = success && node.insert(&custKey, &recordTwo) == Updated;
 	node.print();
 	success = success && node.remove(custRecordKey) == Updated;
 	node.print();

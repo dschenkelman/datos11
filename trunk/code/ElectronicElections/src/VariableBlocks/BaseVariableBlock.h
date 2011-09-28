@@ -41,7 +41,6 @@ public:
 	virtual void updateInformation() = 0;
 	virtual void clear() = 0;
 	virtual bool canInsertRecord(int recordSize);
-	virtual bool insertRecord(const char* key, VariableRecord* rec) = 0;
 	virtual UpdateResult updateRecord(const char* key, VariableRecord* rec) = 0;
 	virtual void printContent() = 0;
 	virtual bool removeRecord(const char* key) = 0;

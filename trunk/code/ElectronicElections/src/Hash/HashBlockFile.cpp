@@ -35,7 +35,7 @@ HashBlockFile::HashBlockFile(std::string fileName, int bSize, RecordMethods *met
 void HashBlockFile::initializefile()
 {
 	this->dataFile.open(this->fileName.c_str(), ios::binary | ios::in | ios::out | ios::trunc);
-	char* block = new char[blockSize];
+	char block[blockSize];
 	memset(block,0,blockSize);
 	char overflowBlock = -1;
 	memcpy(block,&overflowBlock,sizeof(char));
@@ -44,7 +44,6 @@ void HashBlockFile::initializefile()
 		this->positionAtBlock(i);
 		this->dataFile.write(block,blockSize);
 	}
-	delete [] block;
 }
 
 HashBlock* HashBlockFile::getCurrentBlock()
@@ -66,7 +65,10 @@ void HashBlockFile::printContent()
 	while(!this->isAtEOF())
 	{
 		this->loadBlock(blockNumber);
-		this->currentBlock->printContent();
+		if(!this->currentBlock->isEmpty() )
+		{
+			this->currentBlock->printContent();
+		}
 		blockNumber++;
 	}
 }
@@ -88,7 +90,7 @@ bool HashBlockFile::insertRecord(const char* key, const char* recordBytes, short
 	this->currentBlock = this->getCurrentBlock();
 	VariableRecord* record = new VariableRecord();
 	record->setBytes(recordBytes, size);
-	if(this->currentBlock->findRecord(key, &record))
+	if(this->currentBlock->findRecord(key, &record) >= 0)
 	{
 		//ERROR, KEY ALREADY INSERTED
 		if( record!= NULL) delete record;
@@ -122,6 +124,7 @@ bool HashBlockFile::insertRecord(const char* key, const char* recordBytes, short
 		}
 		this->ovflowBlockUsed = true;
 		this->saveBlock();
+		delete record;
 		return true;
 	}
 	//it wasn't overflowed. now it is
@@ -132,6 +135,7 @@ bool HashBlockFile::insertRecord(const char* key, const char* recordBytes, short
 	this->overflowFile->loadBlock(ovflowBlock);
 	this->overflowFile->insertRecord(key, recordBytes, size);
 	this->saveBlock();
+	delete record;
 	return true;
 }
 
@@ -143,6 +147,7 @@ void HashBlockFile::loadBlock(int blockNumber)
 	this->currentBlockNumber = blockNumber;
     this->positionAtBlock(blockNumber);
     this->dataFile.read(this->currentBlock->getBytes(), this->blockSize);
+    this->currentBlock->updateInformation();
 }
 
 void HashBlockFile::saveBlock()

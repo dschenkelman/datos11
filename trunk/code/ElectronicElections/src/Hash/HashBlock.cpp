@@ -15,6 +15,11 @@ HashBlock::HashBlock(int size, RecordMethods* methods)
 {
 }
 
+bool HashBlock::isEmpty()
+{
+	return this->maxSize == this->freeSpace;
+}
+
 int HashBlock::getOverflowedBlock()
 {
 	char overflowedBlock;
@@ -57,9 +62,9 @@ void HashBlock::clear()
 {
 	memset(this->bytes, 0, this->maxSize);
 	char nonOverflowReference = -1;
-	memcpy(this->bytes, &nonOverflowReference, sizeof(short));
+	memcpy(this->bytes, &nonOverflowReference, sizeof(char));
 	this->position = this->recordsOffset;
-	this->freeSpace = this->maxSize;
+	this->freeSpace = this->maxSize - this->recordsOffset;
 }
 
 void HashBlock::printContent()
@@ -72,7 +77,6 @@ void HashBlock::printContent()
 		delete record;
 		record = new VariableRecord();
 	}
-
 	delete record;
 }
 
@@ -109,7 +113,7 @@ bool HashBlock::insertRecord(const char* key, VariableRecord *rec)
 
 UpdateResult HashBlock::updateRecord(const char* key, VariableRecord* rec)
 {
-	VariableRecord* r = NULL;
+	VariableRecord* r = new VariableRecord();
 	int startPosition = this->findRecord(key, &r);
 
 	if (startPosition < 0)
@@ -121,7 +125,7 @@ UpdateResult HashBlock::updateRecord(const char* key, VariableRecord* rec)
 		return NOT_FOUND;
 	}
 
-	short sizeDifference = rec->getSize() - r->getSize();
+	int sizeDifference = rec->getSize() - r->getSize();
 	int occupiedSpace = this->getOccupiedSize();
 
 	if (this->canInsertRecord(sizeDifference))
@@ -167,7 +171,7 @@ UpdateResult HashBlock::updateRecord(const char* key, VariableRecord* rec)
 
 bool HashBlock::removeRecord(const char* key)
 {
-	VariableRecord* r = NULL;
+	VariableRecord* r = new VariableRecord();
 	int startPosition = this->findRecord(key, &r);
 	if (startPosition < 0)
 	{

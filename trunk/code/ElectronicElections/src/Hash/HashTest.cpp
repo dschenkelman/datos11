@@ -29,7 +29,6 @@ void HashTest::testInsert()
 
 	char firstNames[5][5] = {"John", "Mike", "Tony", "Rick", "Josh"};
 	char lastNames[5][7] = {"Connor", "Potter", "Wesley", "Mordor", "Gondor"};
-	int blockNumber;
 	for(long i = 0;i < 5;++i)
 	{
 		int fn = i;
@@ -41,7 +40,7 @@ void HashTest::testInsert()
 		int l1 = strlen(c.firstName) + 1;
 		int l2 = strlen(c.lastName) + 1;
 		// size = 16
-		int size = l1+1 + l2+1 + sizeof (long); //sumo 2 bytes para cada tamaño del nombre y apellido
+		int size = l1+1 + l2+1 + sizeof (int); //sumo 2 bytes para cada tamaño del nombre y apellido
 		char *recordKey = new char[l1 + l2 - 1];
 		memset(recordKey, 0, l1 + l2 - 1);
 		strcat(recordKey, c.firstName);
@@ -51,7 +50,7 @@ void HashTest::testInsert()
 		memcpy(recordBytes + 1 , c.firstName, l1);
 		memcpy(recordBytes +1+ l1, &l2, sizeof(char));
 		memcpy(recordBytes +1+ l1 + 1, c.lastName, l2);
-		memcpy(recordBytes +2+ (l1+l2), &c.balance, sizeof(long));
+		memcpy(recordBytes +2+ (l1+l2), &c.balance, sizeof(int));
 		
 		//blockNumber = hasingName(recordKey);
 		this->file->insertRecord(recordKey, recordBytes, size);

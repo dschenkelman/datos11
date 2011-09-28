@@ -19,12 +19,15 @@ using namespace std;
 int main()
 {
 	srand (time(NULL));
+	//SimpleVariableBlockFileTests rlvTest;
+	//rlvTest.run();
+
 	/* Does not work yet
 	TreeBlockFileTests treeBlocktests;
 	treeBlocktests.run();
-	*/
-	//SimpleVariableBlockFileTests rlvTest;
-	//rlvTest.run();
+	LeafNodeTests leafTests;
+	leafTests.run();*/
+
 	cout << "HASH TESTS" << endl;
 	HashTest hashTests;
 	hashTests.run();

@@ -19,6 +19,7 @@ protected:
 public:
 	HashBlock(int size, RecordMethods* methods);
 	virtual void updateInformation();
+	bool isEmpty();
 	virtual VariableRecord* getNextRecord(VariableRecord* r);
 	virtual void clear();
 	virtual void printContent();

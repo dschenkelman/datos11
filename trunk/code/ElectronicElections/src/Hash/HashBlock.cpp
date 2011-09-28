@@ -22,6 +22,11 @@ int HashBlock::getOverflowedBlock()
 	return overflowedBlock;
 }
 
+void HashBlock::becomesOverflow(char ovflowBlock)
+{
+	memcpy(this->bytes, &ovflowBlock, sizeof(char));
+}
+
 void HashBlock::updateInformation()
 {
 	int occupiedSize;

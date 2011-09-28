@@ -12,6 +12,7 @@
 
 class HashBlock: public BaseVariableBlock
 {
+protected:
 	// -------------------METHODS-------------------
 	virtual bool hasNextRecord();
 
@@ -22,6 +23,7 @@ public:
 	virtual void clear();
 	virtual void printContent();
 	int getOverflowedBlock();
+	void becomesOverflow(char ovflowBlock);
 	virtual void forceInsert(VariableRecord *rec);
 	virtual bool insertRecord(const char* key, VariableRecord* record);
 	virtual bool removeRecord(const char* key);

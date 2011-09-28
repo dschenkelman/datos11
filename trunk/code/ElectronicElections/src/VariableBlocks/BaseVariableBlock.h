@@ -25,7 +25,7 @@ protected:
 	int recordsOffset;
 	// object used to compare records
 	RecordMethods* recordMethods;
-	// occupied size of the block [bytes]
+	// free space remaining in the block [bytes]
 	int freeSpace;
 	// content of the block
 	char* bytes;

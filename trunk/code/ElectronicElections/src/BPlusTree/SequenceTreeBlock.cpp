@@ -16,6 +16,7 @@ SequenceTreeBlock::SequenceTreeBlock(int size, RecordMethods *methods)
 : TreeBlock(size,RECORD_OFFSET, RECORD_OFFSET, methods)
 {
 	this->updateFreeSpace(size - RECORD_OFFSET);
+	// JM: The next line is redundant (see BaseVariableBlock constructor)
 	this->recordsOffset = RECORD_OFFSET;
 }
 

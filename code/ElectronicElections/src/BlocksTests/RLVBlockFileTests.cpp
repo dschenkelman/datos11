@@ -154,10 +154,13 @@ void SimpleVariableBlockFileTests::testUpdate()
 	memcpy(buffer + l1+1, &l2, sizeof(char));
 	memcpy(buffer + l1+2, lastName.c_str(), l2);
 	memcpy(buffer + (l1+l2)+2, &balance, 4);
+
+	std::cout << "--Replacing " << key1 << "and" << key2 << "with John Kratos.."<< std::endl;
 	file->updateRecord(key1.c_str(), buffer, size);
 	file->updateRecord(key2.c_str(), buffer, size);
 	file->saveBlock();
 	file->printContent();
+	std::cout << "NOTE: keys remains as JohnConnor & MikeGondor!" << std::endl;
 }
 
 void SimpleVariableBlockFileTests::run()

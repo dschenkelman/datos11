@@ -23,14 +23,13 @@ int main()
 	TreeBlockFileTests treeBlocktests;
 	treeBlocktests.run();
 	*/
-	HashTest hashTests;
-	hashTests.run();
-	LeafNodeTests leafTests;
-	leafTests.run();
 	//SimpleVariableBlockFileTests rlvTest;
 	//rlvTest.run();
+	cout << "HASH TESTS" << endl;
+	HashTest hashTests;
+	hashTests.run();
 	cout << "LEAF NODE TESTS" << endl;
-	//LeafNodeTests lnt;
-	//lnt.run();
+	LeafNodeTests leafTests;
+	leafTests.run();
 	return 0;
 }

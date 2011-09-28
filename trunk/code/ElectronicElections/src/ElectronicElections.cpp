@@ -19,16 +19,16 @@ using namespace std;
 int main()
 {
 	srand (time(NULL));
-	/*TreeBlockFileTests treeBlocktests;
+	/* Does not work yet
+	TreeBlockFileTests treeBlocktests;
 	treeBlocktests.run();
+	*/
 	LeafNodeTests leafTests;
 	leafTests.run();
-	HashTest hash;
-	hash.run();*/
 	//SimpleVariableBlockFileTests rlvTest;
 	//rlvTest.run();
 	cout << "LEAF NODE TESTS" << endl;
-	LeafNodeTests lnt;
-	lnt.run();
+	//LeafNodeTests lnt;
+	//lnt.run();
 	return 0;
 }

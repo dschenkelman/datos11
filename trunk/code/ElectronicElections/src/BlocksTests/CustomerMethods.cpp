@@ -17,6 +17,13 @@ CustomerMethods::CustomerMethods()
 {
 }
 
+//~ Customer Definition:
+//~ char first_name_size
+//~ char[first_name_size] first_name
+//~ char last_name_size
+//~ char[last_name_size] last_name
+//~ long balance
+
 Customer* CustomerMethods::getCustomerFromRecord(const char *recordBytes, int recordSize)
 {
     int position = 0;

@@ -112,9 +112,9 @@ bool SequenceTreeBlock::canInsertRecord(int size)
 	return this->freeSpace >= size + Constants::RECORD_HEADER_SIZE;
 }
 
-bool SequenceTreeBlock::insertRecord(const char *key, VariableRecord *rec)
+bool SequenceTreeBlock::insertRecord(VariableRecord* keyRecord, VariableRecord* dataRecord)
 {
-	if (!this->canInsertRecord(rec->getSize()) || this->findRecord(key, &rec) >= 0)
+	if (!this->canInsertRecord(dataRecord->getSize()) || this->findRecord(keyRecord->getBytes(), &dataRecord) >= 0)
 	{
 		return false;
 	}
@@ -130,33 +130,33 @@ bool SequenceTreeBlock::insertRecord(const char *key, VariableRecord *rec)
 		this->position += Constants::RECORD_HEADER_SIZE + recordSize;
 	}
 
-	this->forceInsert(rec);
+	this->forceInsert(dataRecord);
 
     // order
-    if (this->getOccupiedSize() > RECORD_OFFSET + rec->getSize() + Constants::RECORD_HEADER_SIZE)
+    if (this->getOccupiedSize() > RECORD_OFFSET + dataRecord->getSize() + Constants::RECORD_HEADER_SIZE)
     {
 		VariableRecord aux;
 		this->position = recordPositions.at(recordPositions.size() - 1);
 		this->getNextRecord(&aux);
 
-		while(this->recordMethods->compare(key,aux.getBytes(), aux.getSize()) < 0)
+		while(this->recordMethods->compare(keyRecord->getBytes(),aux.getBytes(), aux.getSize()) < 0)
 		{
 			// swap
 			short auxSize = aux.getSize();
-			short recSize = rec->getSize();
+			short recSize = dataRecord->getSize();
 
 			memcpy(this->bytes + recordPositions.at(recordPositions.size() - 1)
-								+ rec->getSize() + Constants::RECORD_HEADER_SIZE, &auxSize,
+								+ dataRecord->getSize() + Constants::RECORD_HEADER_SIZE, &auxSize,
 								Constants::RECORD_HEADER_SIZE);
 
 			memcpy(this->bytes + recordPositions.at(recordPositions.size() - 1)
-					+ rec->getSize() + 2 * Constants::RECORD_HEADER_SIZE, aux.getBytes(), auxSize);
+					+ dataRecord->getSize() + 2 * Constants::RECORD_HEADER_SIZE, aux.getBytes(), auxSize);
 
 			memcpy(this->bytes + recordPositions.at(recordPositions.size() - 1)
 					, &recSize, Constants::RECORD_HEADER_SIZE);
 
 			memcpy(this->bytes + recordPositions.at(recordPositions.size() - 1) + Constants::RECORD_HEADER_SIZE
-								, rec->getBytes(), recSize);
+								, dataRecord->getBytes(), recSize);
 
 			// change to previous record
 			recordPositions.pop_back();

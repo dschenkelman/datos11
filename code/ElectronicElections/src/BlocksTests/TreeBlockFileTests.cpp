@@ -63,9 +63,10 @@ void TreeBlockFileTests::testInsert()
 //			block = file->getCurrentBlock();
 //		}
 
-		VariableRecord r;
+		VariableRecord r,key;
 		r.setBytes(recordBytes, size);
-		block->insertRecord(recordKey, &r);
+		key.setBytes(recordKey, l1 + l2 - 1);
+		block->insertRecord(&key, &r);
 	}
 	file->saveBlock();
 	file->printContent();

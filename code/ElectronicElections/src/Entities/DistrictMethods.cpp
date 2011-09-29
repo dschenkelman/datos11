@@ -13,16 +13,19 @@
 
 
 DistrictMethods::DistrictMethods() {
-	// TODO Auto-generated constructor stub
 
 }
 
 DistrictMethods::~DistrictMethods() {
-	// TODO Auto-generated destructor stub
 }
 
-District* DistrictMethods::getObject(VariableRecord record) {
-	char* bytes = record.getBytes();
+District* DistrictMethods::getObject(VariableRecord* record) {
+	char* bytes = record->getBytes();
 	District* ret = new District(bytes+Constants::FIELD_HEADER_SIZE);
 	return ret;
+}
+
+VariableRecord* DistrictMethods::getVariableRecord(District* district) {
+	// en este caso la serializacion esta definida en la entidad
+	return new VariableRecord(district->getBytes(), district->getSize());
 }

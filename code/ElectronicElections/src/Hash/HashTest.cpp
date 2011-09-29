@@ -11,6 +11,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include "HashBlockFile.h"
+#include "../Entities/District.h"
 
 using namespace std;
 

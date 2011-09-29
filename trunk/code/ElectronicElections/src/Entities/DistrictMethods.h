@@ -19,7 +19,8 @@ class DistrictMethods: public RecordMethods {
 public:
 	DistrictMethods();
 	virtual ~DistrictMethods();
-	static District* getObject(VariableRecord record);
+	static District* getObject(VariableRecord* record);
+	static VariableRecord* getVariableRecord(District* district);
 };
 
 #endif /* DISTRICTMETHODS_H_ */

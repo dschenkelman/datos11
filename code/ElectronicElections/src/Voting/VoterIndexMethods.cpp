@@ -37,6 +37,11 @@ int VoterIndexMethods::compare(const char *key,
 	return keyDni - voter.DNI;
 }
 
+void VoterIndexMethods::printKey(const char* key, int recordSize)
+{
+
+}
+
 VoterIndexMethods::~VoterIndexMethods()
 {
 }

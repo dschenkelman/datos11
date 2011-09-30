@@ -19,6 +19,7 @@ public:
     CustomerMethods();
 	virtual int compare(const char* key, const char* recordBytes, int recordSize);
 	virtual void print(const char* recordBytes, int recordSize);
+	virtual void printKey(const char* key, int recordSize);
 	virtual ~CustomerMethods();
 };
 

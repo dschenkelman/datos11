@@ -15,7 +15,9 @@ using namespace std;
 
 TreeBlockFile::TreeBlockFile(std::string& fileName, int bSize,
 		RecordMethods *methods, bool createNew) :
-		BaseVariableBlockFile(fileName, bSize, methods), isLeaf(false)
+		BaseVariableBlockFile(fileName, bSize, methods),
+		freeBlockManager(fileName.replace(fileName.length() - 4, 4, ".adm"), createNew),
+		isLeaf(false)
 {
 	this->currentBlock = NULL;
 	if (createNew)
@@ -94,6 +96,11 @@ void TreeBlockFile::saveBlock()
 bool TreeBlockFile::isCurrentLeaf()
 {
 	return isLeaf;
+}
+
+FreeBlockManager& TreeBlockFile::getFreeBlockManager()
+{
+	return this->freeBlockManager;
 }
 
 TreeBlockFile::~TreeBlockFile()

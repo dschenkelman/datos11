@@ -19,7 +19,7 @@ int LeafNode::getMinimumSize()
 	return (this->block->getSize() - SequenceTreeBlock::RECORD_OFFSET) / 2;
 }
 
-OpResult LeafNode::insert(VariableRecord* keyRecord, VariableRecord* dataRecord)
+OpResult LeafNode::insert(VariableRecord* keyRecord, VariableRecord* dataRecord, VariableRecord* middleRecord)
 {
 	//Check uniqueness
 	VariableRecord* variableRec = new VariableRecord();
@@ -32,7 +32,6 @@ OpResult LeafNode::insert(VariableRecord* keyRecord, VariableRecord* dataRecord)
 	delete variableRec;
 
 	VariableRecord aux;
-
 
 	if(this->block->canInsertRecord(dataRecord->getSize()))
 	{
@@ -47,7 +46,7 @@ OpResult LeafNode::insert(VariableRecord* keyRecord, VariableRecord* dataRecord)
 	while (bytes < this->minimumSize && this->block->getNextRecord(&aux) != NULL)
 	{
 		bytes += aux.getSize();
-		*dataRecord = aux;
+		*middleRecord = aux;
 	}
 
 	return Overflow;

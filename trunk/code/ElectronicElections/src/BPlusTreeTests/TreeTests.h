@@ -17,6 +17,7 @@ public:
 	TreeTests();
 	void run();
 	bool testInsertInEmptyTreeWorksCorrectly();
+	bool testInsertInRootWithOverflowCreatesTwoLeafs();
 	virtual ~TreeTests();
 };
 

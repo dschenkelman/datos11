@@ -20,7 +20,7 @@ Tree::Tree(string fileName, int blockSize, RecordMethods* methods, bool createNe
 	}
 
 	this->file = new TreeBlockFile(fileName, blockSize, methods, createNew);
-// load root
+	// load root
 	this->file->loadBlock(0);
 	if (createNew)
 	{
@@ -42,7 +42,19 @@ Tree::Tree(string fileName, int blockSize, RecordMethods* methods, bool createNe
 
 OpResult Tree::insert(VariableRecord *keyRecord, VariableRecord *dataRecord)
 {
-	OpResult result = this->root->insert(keyRecord, dataRecord);
+	VariableRecord middleRecord;
+	OpResult result = this->root->insert(keyRecord, dataRecord, &middleRecord);
+
+	// overflow in root, split
+	if (this->file->isCurrentLeaf())
+	{
+		int newBlock = this->file->getFreeBlockManager().getNextBlock();
+	}
+	else
+	{
+
+	}
+
 	this->file->saveBlock();
 	return result;
 }

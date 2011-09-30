@@ -40,7 +40,7 @@ void DistrictMethods::print(const char* recordBytes, int recordSize)
 	District district("district");
 	district.setBytes((char*) recordBytes);
 
-	cout << district.getName() << endl;
+	cout <<"(" <<  district.getName() << ")";
 }
 
 void DistrictMethods::printKey(const char* key, int recordSize)

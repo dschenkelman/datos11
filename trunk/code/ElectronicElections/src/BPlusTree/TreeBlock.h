@@ -13,6 +13,7 @@
 class TreeBlock: public BaseVariableBlock
 {
 protected:
+	void updateFreeSpace(int space);
 	virtual bool hasNextRecord() = 0;
 	short level;
 public:
@@ -31,8 +32,11 @@ public:
 	virtual bool removeRecord(const char* key) = 0;
 	virtual bool removeSeparator(const char* key) = 0;
 	virtual void forceInsert(VariableRecord *rec) = 0;
-	virtual VariableRecord* getNextRecord(VariableRecord* r) = 0;
+	VariableRecord* getNextRecord(VariableRecord* r);
 	virtual void positionAtBegin();
+	virtual void insertNodePointer(int index, int node) = 0;
+	virtual void updateNodePointer(int index, int node) = 0;
+	virtual void removeNodePointer(int index) = 0;
 	virtual ~TreeBlock();
 };
 

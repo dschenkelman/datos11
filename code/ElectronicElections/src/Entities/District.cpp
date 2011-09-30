@@ -27,7 +27,8 @@ int District::getKeySize()
 
 int District::getSize()
 {
-	return this->name.size() + Constants::RECORD_HEADER_SIZE + 1;
+	return this->name.size() + Constants::RECORD_HEADER_SIZE +
+			Constants::FIELD_HEADER_SIZE + 1;
 }
 
 char* District::getKey()
@@ -48,8 +49,12 @@ char* District::getBytes()
 
 	size -= Constants::RECORD_HEADER_SIZE;
 
-	memcpy(this->bytes, &size, Constants::RECORD_HEADER_SIZE);
-	memcpy(this->bytes + Constants::RECORD_HEADER_SIZE, (char*)this->name.c_str(), size);
+	int i = 0;
+
+	memcpy(this->bytes, &size, Constants::RECORD_HEADER_SIZE); i += Constants::RECORD_HEADER_SIZE;
+	char len = this->name.size() + 1; // 1 por el /0
+	memcpy(this->bytes + i, &len, Constants::FIELD_HEADER_SIZE); i += Constants::FIELD_HEADER_SIZE;
+	memcpy(this->bytes + i, (char*)this->name.c_str(), len);
 
 	return this->bytes;
 }
@@ -57,7 +62,7 @@ char* District::getBytes()
 void District::setBytes(char* bytes)
 {
 	this->name = "";
-	this->name.append(bytes+Constants::RECORD_HEADER_SIZE);
+	this->name.append(bytes + Constants::RECORD_HEADER_SIZE + Constants::FIELD_HEADER_SIZE);
 }
 
 District::~District()

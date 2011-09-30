@@ -62,4 +62,8 @@ void District::setBytes(char* bytes)
 
 District::~District()
 {
+	if(this->bytes != NULL)
+	{
+		delete this->bytes;
+	}
 }

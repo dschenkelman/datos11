@@ -78,6 +78,11 @@ void CustomerMethods::print(const char *recordBytes, int recordSize)
 	delete c;
 }
 
+void CustomerMethods::printKey(const char* key, int recordSize)
+{
+
+}
+
 CustomerMethods::~CustomerMethods()
 {
 }

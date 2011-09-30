@@ -29,7 +29,7 @@ bool DistrictTests::testGetSizeReturnsCorrectValue()
 {
 	District dis("Rosario");
 
-	if(dis.getSize() != 10)
+	if(dis.getSize() != 11)
 	{
 		return false;
 	}
@@ -46,9 +46,11 @@ bool DistrictTests::testGetBytesReturnsCorrectValue()
 	District dis(name);
 
 	char bytes[dis.getSize()];
-	short size = 8;
+	short size = 9;
 	memcpy(bytes, &size, Constants::RECORD_HEADER_SIZE);
-	memcpy(bytes+Constants::RECORD_HEADER_SIZE, name.c_str(), size);
+	char len = name.size() + 1;
+	memcpy(bytes+Constants::RECORD_HEADER_SIZE, &len, Constants::FIELD_HEADER_SIZE);
+	memcpy(bytes+Constants::RECORD_HEADER_SIZE+Constants::FIELD_HEADER_SIZE, name.c_str(), len);
 
 	if(strcmp(bytes, dis.getBytes()) != 0)
 	{
@@ -65,11 +67,13 @@ bool DistrictTests::testSetBytes()
 {
 	District dis("Rosario");
 
-	char bytes[13];
-	short size = 11;
+	char bytes[14]; //tam del registro cuando el nombre sea Corrientes
+	short size = 12; //tam del registro sin contar el campo "longitud del registro"
 	memcpy(bytes, &size, Constants::RECORD_HEADER_SIZE);
 	std::string name = "Corrientes";
-	memcpy(bytes+Constants::RECORD_HEADER_SIZE, name.c_str(), size);
+	char len = name.size() + 1; // por el /0
+	memcpy(bytes+Constants::RECORD_HEADER_SIZE, &len, Constants::FIELD_HEADER_SIZE);
+	memcpy(bytes+Constants::RECORD_HEADER_SIZE+Constants::FIELD_HEADER_SIZE, name.c_str(), len);
 
 	dis.setBytes(bytes);
 

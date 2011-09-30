@@ -22,6 +22,7 @@ Tree::Tree(string fileName, int blockSize, RecordMethods* methods, bool createNe
 	this->file = new TreeBlockFile(fileName, blockSize, methods, createNew);
 	// load root
 	this->file->loadBlock(0);
+	this->file->pushBlock();
 	if (createNew)
 	{
 		this->root = new LeafNode(this->file->getCurrentBlock(), methods);
@@ -49,6 +50,7 @@ OpResult Tree::insert(VariableRecord *keyRecord, VariableRecord *dataRecord)
 	if (this->file->isCurrentLeaf())
 	{
 		int newBlock = this->file->getFreeBlockManager().getNextBlock();
+
 	}
 	else
 	{

@@ -12,17 +12,21 @@
 #include <string>
 #include "TreeBlock.h"
 #include "FreeBlockManager.h"
+#include <stack>
 
 class TreeBlockFile: public BaseVariableBlockFile
 {
 	FreeBlockManager freeBlockManager;
 	TreeBlock* currentBlock;
 	bool isLeaf;
+	std::stack<TreeBlock*> blockStack;
 public:
 	TreeBlockFile(std::string& fileName, int bSize,
 			RecordMethods *methods, bool createNew);
 	FreeBlockManager& getFreeBlockManager();
 	bool isCurrentLeaf();
+	void pushBlock();
+	void popBlock();
 	virtual TreeBlock* getCurrentBlock();
 	virtual void printContent();
 	virtual void loadBlock(int blockNumber);

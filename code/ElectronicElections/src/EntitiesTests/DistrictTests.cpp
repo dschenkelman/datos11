@@ -15,7 +15,7 @@ DistrictTests::DistrictTests()
 void DistrictTests::run()
 {
 	printResult("testGetSizeReturnsCorrectValue", testGetSizeReturnsCorrectValue());
-	//printResult("testGetBytesReturnsCorrectValue", testGetBytesReturnsCorrectValue());
+	printResult("testGetBytesReturnsCorrectValue", testGetBytesReturnsCorrectValue());
 	printResult("testSetBytes", testSetBytes());
 }
 
@@ -48,8 +48,6 @@ bool DistrictTests::testGetBytesReturnsCorrectValue()
 	memcpy(bytes, &size, 1);
 	std::string name = "Rosario";
 	memcpy(bytes+1, name.c_str(), size);
-
-	cout << bytes << "|" << dis.getBytes() << endl;
 
 	if(strcmp(bytes, dis.getBytes()) != 0)
 	{

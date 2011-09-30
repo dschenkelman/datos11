@@ -15,6 +15,7 @@ using namespace std;
 class District {
 private:
 	std::string name;
+	char* bytes;
 public:
 	District(std::string name);
 	char* getBytes();

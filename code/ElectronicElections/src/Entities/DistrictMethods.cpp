@@ -34,3 +34,8 @@ void DistrictMethods::print(const char* recordBytes, int recordSize)
 
 	cout << district.getName() << endl;
 }
+
+void DistrictMethods::printKey(const char* key, int recordSize)
+{
+	cout << key << endl;
+}

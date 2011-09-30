@@ -297,6 +297,15 @@ void IndexTreeBlock::removeNodePointer(int index)
 	this->updateFreeSpace(this->freeSpace);
 }
 
+int IndexTreeBlock::getNodePointer(int index)
+{
+	int value;
+	int startPosition = this->nodesPosition + NODE_POINTER_SIZE * index;
+	memcpy(this->bytes + startPosition, &value, NODE_POINTER_SIZE);
+
+	return value;
+}
+
 IndexTreeBlock::~IndexTreeBlock()
 {
 }

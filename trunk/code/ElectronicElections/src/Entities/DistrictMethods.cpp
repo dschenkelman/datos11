@@ -6,11 +6,15 @@
  */
 
 #include "DistrictMethods.h"
+#include <string.h>
+#include <iostream>
+#include "../VariableBlocks/Constants.h"
+
+using namespace std;
 
 //DEFINITION:
 //char[FIELD_HEADER_SIZE] name_size
 //char[name_size] name // ending with \0
-
 
 DistrictMethods::DistrictMethods() {
 
@@ -24,7 +28,11 @@ int DistrictMethods::compare(const char* key, const char* recordBytes, int recor
 	District district("district");
 	district.setBytes((char*)recordBytes);
 
-	return strcmp(key, district.getKey());
+	int size = strlen(key + Constants::FIELD_HEADER_SIZE) + 1;
+	char name[size];
+	memcpy(name, key + Constants::FIELD_HEADER_SIZE, size);
+
+	return strcmp(name, district.getName().c_str());
 }
 
 void DistrictMethods::print(const char* recordBytes, int recordSize)

@@ -46,10 +46,10 @@ char* District::getBytes()
 
 	this->bytes = new char[size];
 
-	size -= Constants::FIELD_HEADER_SIZE;
+	size -= Constants::RECORD_HEADER_SIZE;
 
-	memcpy(this->bytes, &size, sizeof(short));
-	memcpy(this->bytes, (char*)this->name.c_str(), size);
+	memcpy(this->bytes, &size, Constants::RECORD_HEADER_SIZE);
+	memcpy(this->bytes + Constants::RECORD_HEADER_SIZE, (char*)this->name.c_str(), size);
 
 	return this->bytes;
 }

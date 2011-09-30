@@ -50,8 +50,6 @@ bool DistrictTests::testGetBytesReturnsCorrectValue()
 	memcpy(bytes, &size, Constants::RECORD_HEADER_SIZE);
 	memcpy(bytes+Constants::RECORD_HEADER_SIZE, name.c_str(), size);
 
-	cout << bytes << "|" << dis.getBytes() << endl;
-
 	if(strcmp(bytes, dis.getBytes()) != 0)
 	{
 		return false;

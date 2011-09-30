@@ -19,8 +19,8 @@ class DistrictMethods: public RecordMethods {
 public:
 	DistrictMethods();
 	virtual ~DistrictMethods();
-	static District* getObject(VariableRecord* record);
-	static VariableRecord* getVariableRecord(District* district);
+	virtual int compare(const char* key, const char* recordBytes, int recordSize) = 0;
+	virtual void print(const char* recordBytes, int recordSize) = 0;
 };
 
 #endif /* DISTRICTMETHODS_H_ */

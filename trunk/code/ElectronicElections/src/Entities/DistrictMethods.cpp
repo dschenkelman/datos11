@@ -19,13 +19,18 @@ DistrictMethods::DistrictMethods() {
 DistrictMethods::~DistrictMethods() {
 }
 
-District* DistrictMethods::getObject(VariableRecord* record) {
-	char* bytes = record->getBytes();
-	District* ret = new District(bytes+Constants::FIELD_HEADER_SIZE);
-	return ret;
+int DistrictMethods::compare(const char* key, const char* recordBytes, int recordSize)
+{
+	District district("district");
+	district.setBytes((char*)recordBytes);
+
+	return strcmp(key, district.getKey());
 }
 
-VariableRecord* DistrictMethods::getVariableRecord(District* district) {
-	// en este caso la serializacion esta definida en la entidad
-	return new VariableRecord(district->getBytes(), district->getSize());
+void DistrictMethods::print(const char* recordBytes, int recordSize)
+{
+	District district("district");
+	district.setBytes((char*) recordBytes);
+
+	cout << district.getName() << endl;
 }

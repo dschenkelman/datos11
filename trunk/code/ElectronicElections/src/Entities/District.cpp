@@ -27,7 +27,7 @@ int District::getKeySize()
 
 int District::getSize()
 {
-	return this->name.size() + Constants::RECORD_HEADER_SIZE +
+	return this->name.size() +
 			Constants::FIELD_HEADER_SIZE + 1;
 }
 
@@ -38,7 +38,7 @@ char* District::getKey()
 
 char* District::getBytes()
 {
-	short size = this->getSize();
+	short size = this->getSize() + Constants::RECORD_HEADER_SIZE;
 
 	if(this->bytes != NULL)
 	{

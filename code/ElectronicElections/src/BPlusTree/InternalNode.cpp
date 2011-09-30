@@ -33,14 +33,10 @@ OpResult InternalNode::insert(VariableRecord *keyRecord, VariableRecord *dataRec
 		index++;
 	}
 
-	// save block status
-	int currentBlock = this->file->getCurrentBlockNumber();
-	int blockSize = this->block->getSize();
-	char buffer[blockSize];
-	memcpy(buffer, this->block->getBytes(), blockSize);
 
 	int blockPointer = this->block->getNodePointer(index);
 	this->file->loadBlock(blockPointer);
+	this->file->pushBlock();
 
 	if (this->file->isCurrentLeaf())
 	{
@@ -54,9 +50,7 @@ OpResult InternalNode::insert(VariableRecord *keyRecord, VariableRecord *dataRec
 	}
 
 	// restore block
-	this->file->positionAtBlock(currentBlock);
-	memcpy(this->file->getCurrentBlock()->getBytes(), buffer, blockSize);
-	this->block->updateInformation();
+	this->file->popBlock();
 
 	return Updated;
 }
@@ -77,10 +71,6 @@ void InternalNode::print()
 
 	nodes.push_back(i);
 	cout << this->block->getNodePointer(i) << endl;
-	int currentBlock = this->file->getCurrentBlockNumber();
-	int blockSize = this->block->getSize();
-	char buffer[blockSize];
-	memcpy(buffer, this->block->getBytes(), blockSize);
 
 	while(nodes.size() != 0)
 	{
@@ -88,6 +78,7 @@ void InternalNode::print()
 		nodes.pop_back();
 		int blockPointer = this->block->getNodePointer(index);
 		this->file->loadBlock(blockPointer);
+		this->file->pushBlock();
 		if (this->file->isCurrentLeaf())
 		{
 			LeafNode node(this->file->getCurrentBlock(), this->recordMethods);
@@ -98,11 +89,9 @@ void InternalNode::print()
 			InternalNode node(this->file, this->file->getCurrentBlock(), this->recordMethods);
 			node.print();
 		}
-	}
 
-	this->file->positionAtBlock(currentBlock);
-	memcpy(this->file->getCurrentBlock()->getBytes(), buffer, blockSize);
-	this->block->updateInformation();
+		this->file->popBlock();
+	}
 }
 
 OpResult InternalNode::remove(char *key)

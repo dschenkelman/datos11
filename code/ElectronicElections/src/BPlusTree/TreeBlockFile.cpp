@@ -32,7 +32,12 @@ TreeBlockFile::TreeBlockFile(std::string& fileName, int bSize,
 
 TreeBlock* TreeBlockFile::getCurrentBlock()
 {
-	return this->currentBlock;
+	if  (this->blockStack.empty())
+	{
+		return NULL;
+	}
+
+	return this->blockStack.top();
 }
 
 void TreeBlockFile::printContent()
@@ -42,7 +47,9 @@ void TreeBlockFile::printContent()
 	while(!this->isAtEOF())
 	{
 		this->loadBlock(blockNumber);
+		this->pushBlock();
 		this->currentBlock->printContent();
+		this->popBlock();
 		blockNumber++;
 	}
 }
@@ -66,7 +73,6 @@ void TreeBlockFile::loadBlock(int blockNumber)
 		}
 	}
 
-	delete this->currentBlock;
 	if (level == 0)
 	{
 		// assign SequenceTreeBlock;
@@ -101,6 +107,18 @@ bool TreeBlockFile::isCurrentLeaf()
 FreeBlockManager& TreeBlockFile::getFreeBlockManager()
 {
 	return this->freeBlockManager;
+}
+
+void TreeBlockFile::popBlock()
+{
+	delete this->currentBlock;
+	this->currentBlock = this->blockStack.top();
+	this->blockStack.pop();
+}
+
+void TreeBlockFile::pushBlock()
+{
+	this->blockStack.push(this->currentBlock);
 }
 
 TreeBlockFile::~TreeBlockFile()

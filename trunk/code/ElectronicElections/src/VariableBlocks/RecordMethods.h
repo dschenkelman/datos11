@@ -17,6 +17,7 @@ public:
 	// < 0 => if key in recordBytes is greater than key
 	virtual int compare(const char* key, const char* recordBytes, int recordSize) = 0;
 	virtual void print(const char* recordBytes, int recordSize) = 0;
+	virtual void printKey(const char* recordBytes, int recordSize) = 0;
 };
 
 #endif /* RECORDMETHODS_H_ */

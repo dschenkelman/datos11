@@ -15,9 +15,11 @@
 class TreeBlockFile: public BaseVariableBlockFile
 {
 	TreeBlock* currentBlock;
+	bool isLeaf;
 public:
 	TreeBlockFile(std::string& fileName, int bSize,
 			RecordMethods *methods, bool createNew);
+	bool isCurrentLeaf();
 	virtual TreeBlock* getCurrentBlock();
 	virtual void printContent();
 	virtual void loadBlock(int blockNumber);

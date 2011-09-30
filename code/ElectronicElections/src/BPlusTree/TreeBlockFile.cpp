@@ -15,7 +15,7 @@ using namespace std;
 
 TreeBlockFile::TreeBlockFile(std::string& fileName, int bSize,
 		RecordMethods *methods, bool createNew) :
-		BaseVariableBlockFile(fileName, bSize, methods)
+		BaseVariableBlockFile(fileName, bSize, methods), isLeaf(false)
 {
 	this->currentBlock = NULL;
 	if (createNew)
@@ -50,28 +50,32 @@ void TreeBlockFile::loadBlock(int blockNumber)
 	char buffer[this->blockSize];
 	this->currentBlockNumber = blockNumber;
 	this->positionAtBlock(this->currentBlockNumber);
+	short level = 0;
 	if (!this->isAtEOF())
 	{
 		this->dataFile.read(buffer, this->blockSize);
+		memcpy(&level, buffer, TreeBlock::LEVEL_SIZE);
 	}
 	else
 	{
-		this->getCurrentBlock()->clear();
+		if (this->getCurrentBlock() != NULL)
+		{
+			this->getCurrentBlock()->clear();
+		}
 	}
-
-	short level;
-	memcpy(&level, buffer, TreeBlock::LEVEL_SIZE);
 
 	delete this->currentBlock;
 	if (level == 0)
 	{
 		// assign SequenceTreeBlock;
 		this->currentBlock = new SequenceTreeBlock(this->blockSize, this->recordMethods);
+		this->isLeaf = true;
 	}
 	else
 	{
 		// assign IndexTreeBlock;
 		this->currentBlock = new IndexTreeBlock(this->blockSize, this->recordMethods);
+		this->isLeaf = false;
 	}
 
 	if (!this->isAtEOF())
@@ -84,7 +88,12 @@ void TreeBlockFile::loadBlock(int blockNumber)
 void TreeBlockFile::saveBlock()
 {
 	this->positionAtBlock(this->currentBlockNumber);
-	//this->dataFile.write(this->getCurrentBlock()->getBytes(), this->blockSize);
+	this->dataFile.write(this->getCurrentBlock()->getBytes(), this->blockSize);
+}
+
+bool TreeBlockFile::isCurrentLeaf()
+{
+	return isLeaf;
 }
 
 TreeBlockFile::~TreeBlockFile()

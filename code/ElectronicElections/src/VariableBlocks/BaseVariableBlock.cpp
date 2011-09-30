@@ -6,7 +6,6 @@
  */
 
 #include "BaseVariableBlock.h"
-#include <cstddef>
 #include <string.h>
 
 BaseVariableBlock::BaseVariableBlock(int size, int pos,

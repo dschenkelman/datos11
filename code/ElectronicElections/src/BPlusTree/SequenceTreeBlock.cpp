@@ -247,6 +247,11 @@ void SequenceTreeBlock::removeNodePointer(int index)
 {
 }
 
+int SequenceTreeBlock::getNodePointer(int index)
+{
+	return -1;
+}
+
 SequenceTreeBlock::~SequenceTreeBlock()
 {
 }

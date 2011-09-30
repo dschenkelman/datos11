@@ -30,7 +30,7 @@ VariableRecord* TreeBlock::getNextRecord(VariableRecord *r)
 {
 	if (!this->hasNextRecord())
 	{
-			return NULL;
+		return NULL;
 	}
 
 	short recordSize;

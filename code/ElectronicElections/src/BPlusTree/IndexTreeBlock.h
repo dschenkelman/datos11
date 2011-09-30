@@ -38,6 +38,7 @@ public:
 	virtual void insertNodePointer(int index, int node);
 	virtual void updateNodePointer(int index, int node);
 	virtual void removeNodePointer(int index);
+	virtual int getNodePointer(int index);
 	virtual ~IndexTreeBlock();
 };
 

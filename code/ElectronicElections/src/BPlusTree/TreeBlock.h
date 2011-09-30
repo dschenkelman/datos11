@@ -35,6 +35,7 @@ public:
 	virtual void insertNodePointer(int index, int node) = 0;
 	virtual void updateNodePointer(int index, int node) = 0;
 	virtual void removeNodePointer(int index) = 0;
+	virtual int getNodePointer(int index) = 0;
 	virtual ~TreeBlock();
 };
 

@@ -10,7 +10,7 @@
 using namespace std;
 
 BaseVariableBlockFile::BaseVariableBlockFile(string name, int bSize, RecordMethods* methods)
-:fileName(name), blockSize(bSize), recordMethods(methods)
+:fileName(name), blockSize(bSize), currentBlockNumber(0), recordMethods(methods)
 {
 }
 
@@ -29,6 +29,11 @@ bool BaseVariableBlockFile::isAtEOF()
 	long size = this->dataFile.tellg();
 	this->dataFile.seekg(position, ios::beg);
 	return position == size;
+}
+
+int BaseVariableBlockFile::getCurrentBlockNumber()
+{
+	return this->currentBlockNumber;
 }
 
 BaseVariableBlockFile::~BaseVariableBlockFile()

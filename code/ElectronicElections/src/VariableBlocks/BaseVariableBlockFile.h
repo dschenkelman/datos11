@@ -24,6 +24,7 @@ public:
 	virtual void printContent() = 0;
 	virtual void loadBlock(int blockNumber) = 0;
 	virtual BaseVariableBlock* getCurrentBlock() = 0;
+	int getCurrentBlockNumber();
 	virtual void saveBlock() = 0;
 	bool isAtEOF();
 	virtual void positionAtBlock(int blockNumber);

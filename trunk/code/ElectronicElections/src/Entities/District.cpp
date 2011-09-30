@@ -12,6 +12,7 @@
 District::District(std::string name)
 {
 	this->name = name;
+	this->bytes = NULL;
 }
 
 std::string District::getName()
@@ -37,14 +38,20 @@ char* District::getKey()
 char* District::getBytes()
 {
 	int size = this->getSize();
-	char bytes[size];
+
+	if(this->bytes != NULL)
+	{
+		delete this->bytes;
+	}
+
+	this->bytes = new char[size];
 
 	size -= Constants::FIELD_HEADER_SIZE;
 
-	memcpy(bytes, &size, sizeof(char));
-	memcpy(bytes+1, this->name.c_str(), size);
+	memcpy(this->bytes, &size, sizeof(char));
+	memcpy(this->bytes+1, (char*)this->name.c_str(), size);
 
-	return bytes;
+	return this->bytes;
 }
 
 void District::setBytes(char* bytes)

@@ -26,11 +26,9 @@ public:
 	virtual void clear() = 0;
 	virtual bool canInsertRecord(int size) = 0;
 	virtual bool insertRecord(VariableRecord* keyRecord, VariableRecord* dataRecord) = 0;
-	virtual bool insertSeparator(const char* key, short len) = 0;
 	virtual UpdateResult updateRecord(const char* key, VariableRecord* rec) = 0;
 	virtual void printContent() = 0;
 	virtual bool removeRecord(const char* key) = 0;
-	virtual bool removeSeparator(const char* key) = 0;
 	virtual void forceInsert(VariableRecord *rec) = 0;
 	VariableRecord* getNextRecord(VariableRecord* r);
 	virtual void positionAtBegin();

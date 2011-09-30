@@ -230,16 +230,6 @@ bool SequenceTreeBlock::hasNextRecord()
 	return this->position < this->getOccupiedSize();
 }
 
-bool SequenceTreeBlock::insertSeparator(const char *key, short  len)
-{
-	return false;
-}
-
-bool SequenceTreeBlock::removeSeparator(const char *key)
-{
-	return false;
-}
-
 void SequenceTreeBlock::positionAtBegin()
 {
 	this->position = this->RECORD_OFFSET;

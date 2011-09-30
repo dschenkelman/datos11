@@ -9,6 +9,7 @@
 #include <iostream>
 #include <string.h>
 #include "SequenceTreeBlock.h"
+#include "IndexTreeBlock.h"
 
 using namespace std;
 
@@ -70,6 +71,13 @@ void TreeBlockFile::loadBlock(int blockNumber)
 	else
 	{
 		// assign IndexTreeBlock;
+		this->currentBlock = new IndexTreeBlock(this->blockSize, this->recordMethods);
+	}
+
+	if (!this->isAtEOF())
+	{
+		memcpy(this->currentBlock->getBytes(), buffer, this->blockSize);
+		this->currentBlock->updateInformation();
 	}
 }
 

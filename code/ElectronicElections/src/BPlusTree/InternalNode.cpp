@@ -17,7 +17,7 @@ InternalNode::InternalNode(TreeBlockFile* f, TreeBlock* b, RecordMethods* method
 {
 }
 
-OpResult InternalNode::insert(VariableRecord *keyRecord, VariableRecord *dataRecord)
+OpResult InternalNode::insert(VariableRecord *keyRecord, VariableRecord *dataRecord, VariableRecord* middleRecord)
 {
 	VariableRecord aux;
 	this->block->positionAtBegin();
@@ -45,12 +45,12 @@ OpResult InternalNode::insert(VariableRecord *keyRecord, VariableRecord *dataRec
 	if (this->file->isCurrentLeaf())
 	{
 		LeafNode node(this->file->getCurrentBlock(), this->recordMethods);
-		node.insert(keyRecord, dataRecord);
+		node.insert(keyRecord, dataRecord, middleRecord);
 	}
 	else
 	{
 		InternalNode node(this->file, this->file->getCurrentBlock(), this->recordMethods);
-		node.insert(keyRecord, dataRecord);
+		node.insert(keyRecord, dataRecord, middleRecord);
 	}
 
 	// restore block

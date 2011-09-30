@@ -26,7 +26,7 @@ protected:
 	RecordMethods* recordMethods;
 public:
 	Node(TreeBlock* b, RecordMethods* methods);
-	virtual OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord) = 0;
+	virtual OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord, VariableRecord* middleRecord) = 0;
 	virtual OpResult update(char* key, VariableRecord* r) = 0;
 	virtual OpResult remove(char* key) = 0;
 	virtual void print() = 0;

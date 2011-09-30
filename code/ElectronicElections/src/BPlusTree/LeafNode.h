@@ -19,7 +19,7 @@ private:
 	int getMinimumSize();
 public:
 	LeafNode(TreeBlock* tb, RecordMethods* methods);
-	virtual OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord);
+	virtual OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord, VariableRecord* middleRecord);
 	virtual OpResult update(char* key, VariableRecord* r);
 	virtual OpResult remove(char* key);
 	void print();

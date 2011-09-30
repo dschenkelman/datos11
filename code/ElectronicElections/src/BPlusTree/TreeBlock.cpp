@@ -26,6 +26,29 @@ short TreeBlock::getLevel()
 	return value;
 }
 
+VariableRecord* TreeBlock::getNextRecord(VariableRecord *r)
+{
+	if (!this->hasNextRecord())
+	{
+			return NULL;
+	}
+
+	short recordSize;
+	memcpy(&recordSize, this->bytes + this->position, Constants::RECORD_HEADER_SIZE);
+	this->position += Constants::RECORD_HEADER_SIZE;
+	r->setBytes(this->bytes + this->position, recordSize);
+	this->position += recordSize;
+
+	return r;
+}
+
+
+void TreeBlock::updateFreeSpace(int space)
+{
+    this->freeSpace = space;
+    memcpy(this->bytes + TreeBlock::LEVEL_SIZE, &this->freeSpace, TreeBlock::FREE_SPACE_SIZE);
+}
+
 void TreeBlock::positionAtBegin()
 {
 	this->position = this->recordsOffset;

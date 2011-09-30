@@ -12,8 +12,6 @@
 
 class SequenceTreeBlock : public TreeBlock
 {
-private:
-    void updateFreeSpace(int space);
 protected:
 	virtual bool hasNextRecord();
 public:
@@ -33,8 +31,10 @@ public:
 	virtual bool removeRecord(const char* key);
 	virtual bool removeSeparator(const char* key);
 	virtual void forceInsert(VariableRecord *rec);
-	virtual VariableRecord* getNextRecord(VariableRecord* r);
 	virtual void positionAtBegin();
+	virtual void insertNodePointer(int index, int node);
+	virtual void updateNodePointer(int index, int node);
+	virtual void removeNodePointer(int index);
 	virtual ~SequenceTreeBlock();
 };
 

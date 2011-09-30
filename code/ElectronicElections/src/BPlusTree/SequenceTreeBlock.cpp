@@ -16,8 +16,6 @@ SequenceTreeBlock::SequenceTreeBlock(int size, RecordMethods *methods)
 : TreeBlock(size,RECORD_OFFSET, RECORD_OFFSET, methods)
 {
 	this->updateFreeSpace(size - RECORD_OFFSET);
-	// JM: The next line is redundant (see BaseVariableBlock constructor)
-	this->recordsOffset = RECORD_OFFSET;
 }
 
 void SequenceTreeBlock::updateInformation()
@@ -38,12 +36,6 @@ void SequenceTreeBlock::printContent()
 	}
 
 	delete record;
-}
-
-void SequenceTreeBlock::updateFreeSpace(int space)
-{
-    this->freeSpace = space;
-    memcpy(this->bytes + TreeBlock::LEVEL_SIZE, &this->freeSpace, TreeBlock::FREE_SPACE_SIZE);
 }
 
 void SequenceTreeBlock::clear()
@@ -233,22 +225,6 @@ UpdateResult SequenceTreeBlock::updateRecord(const char *key, VariableRecord *re
 	return UPDATED;
 }
 
-VariableRecord *SequenceTreeBlock::getNextRecord(VariableRecord *r)
-{
-	if (!this->hasNextRecord())
-	{
-		return NULL;
-	}
-
-	short recordSize;
-	memcpy(&recordSize, this->bytes + this->position, Constants::RECORD_HEADER_SIZE);
-	this->position += Constants::RECORD_HEADER_SIZE;
-	r->setBytes(this->bytes + this->position, recordSize);
-	this->position += recordSize;
-
-	return r;
-}
-
 bool SequenceTreeBlock::hasNextRecord()
 {
 	return this->position < this->getOccupiedSize();
@@ -267,6 +243,18 @@ bool SequenceTreeBlock::removeSeparator(const char *key)
 void SequenceTreeBlock::positionAtBegin()
 {
 	this->position = this->RECORD_OFFSET;
+}
+
+void SequenceTreeBlock::insertNodePointer(int index, int node)
+{
+}
+
+void SequenceTreeBlock::updateNodePointer(int index, int node)
+{
+}
+
+void SequenceTreeBlock::removeNodePointer(int index)
+{
 }
 
 SequenceTreeBlock::~SequenceTreeBlock()

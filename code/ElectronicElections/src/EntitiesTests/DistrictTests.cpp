@@ -29,7 +29,7 @@ bool DistrictTests::testGetSizeReturnsCorrectValue()
 {
 	District dis("Rosario");
 
-	if(dis.getSize() != 11)
+	if(dis.getSize() != 9)
 	{
 		return false;
 	}
@@ -45,7 +45,7 @@ bool DistrictTests::testGetBytesReturnsCorrectValue()
 	std::string name = "Rosario";
 	District dis(name);
 
-	char bytes[dis.getSize()];
+	char bytes[dis.getSize() + Constants::RECORD_HEADER_SIZE];
 	short size = 9;
 	memcpy(bytes, &size, Constants::RECORD_HEADER_SIZE);
 	char len = name.size() + 1;

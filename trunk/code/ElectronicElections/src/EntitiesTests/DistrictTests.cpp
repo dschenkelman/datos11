@@ -7,6 +7,7 @@
 
 #include "DistrictTests.h"
 #include "../Entities/District.h"
+#include "../VariableBlocks/Constants.h"
 
 DistrictTests::DistrictTests()
 {
@@ -28,7 +29,7 @@ bool DistrictTests::testGetSizeReturnsCorrectValue()
 {
 	District dis("Rosario");
 
-	if(dis.getSize() != 9)
+	if(dis.getSize() != 10)
 	{
 		return false;
 	}
@@ -41,13 +42,15 @@ bool DistrictTests::testGetSizeReturnsCorrectValue()
 
 bool DistrictTests::testGetBytesReturnsCorrectValue()
 {
-	District dis("Rosario");
+	std::string name = "Rosario";
+	District dis(name);
 
 	char bytes[dis.getSize()];
-	int size = 8;
-	memcpy(bytes, &size, 1);
-	std::string name = "Rosario";
-	memcpy(bytes+1, name.c_str(), size);
+	short size = 8;
+	memcpy(bytes, &size, Constants::RECORD_HEADER_SIZE);
+	memcpy(bytes+Constants::RECORD_HEADER_SIZE, name.c_str(), size);
+
+	cout << bytes << "|" << dis.getBytes() << endl;
 
 	if(strcmp(bytes, dis.getBytes()) != 0)
 	{
@@ -64,11 +67,11 @@ bool DistrictTests::testSetBytes()
 {
 	District dis("Rosario");
 
-	char bytes[12];
-	int size = 11;
-	memcpy(bytes, &size, 1);
+	char bytes[13];
+	short size = 11;
+	memcpy(bytes, &size, Constants::RECORD_HEADER_SIZE);
 	std::string name = "Corrientes";
-	memcpy(bytes+1, name.c_str(), size);
+	memcpy(bytes+Constants::RECORD_HEADER_SIZE, name.c_str(), size);
 
 	dis.setBytes(bytes);
 

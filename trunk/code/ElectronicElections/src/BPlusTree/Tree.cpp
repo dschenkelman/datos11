@@ -13,6 +13,7 @@
 using namespace std;
 
 Tree::Tree(string fileName, int blockSize, RecordMethods* methods, bool createNew = false)
+: methods(methods)
 {
 	if (!createNew && !ifstream(fileName.c_str(), ifstream::in))
 	{
@@ -41,16 +42,84 @@ Tree::Tree(string fileName, int blockSize, RecordMethods* methods, bool createNe
 	}
 }
 
+void Tree::handleOverflowInLeafRoot(VariableRecord *keyRecord, VariableRecord& middleRecord, VariableRecord *dataRecord)
+{
+    TreeBlock *currentBlock = this->file->getCurrentBlock();
+    bool blockOne = true;
+    if(this->methods->compare(keyRecord->getBytes(), middleRecord.getBytes(), middleRecord.getSize()) > 0){
+        blockOne = false;
+    }
+    int newBlock1 = this->file->getFreeBlockManager().getNextBlock();
+    int newBlock2 = this->file->getFreeBlockManager().getNextBlock();
+    this->file->loadBlock(newBlock1);
+    this->file->pushBlock();
+    this->file->getCurrentBlock()->setNextNode(newBlock2);
+    this->file->getCurrentBlock()->setLevel(0);
+    VariableRecord aux;
+    currentBlock->positionAtBegin();
+    while(currentBlock->getNextRecord(&aux) != NULL)
+	{
+		int result = this->methods->compare(middleRecord.getBytes(), aux.getBytes(), aux.getSize());
+		if (result > 0)
+		{
+			// first leaf
+			this->file->getCurrentBlock()->forceInsert(&aux);
+		}
+		else if (result == 0)
+		{
+			if (blockOne)
+			{
+				this->file->getCurrentBlock()->insertRecord(keyRecord, dataRecord);
+			}
+
+			// second leaf
+			this->file->saveBlock();
+			this->file->popBlock();
+			this->file->loadBlock(newBlock2);
+			this->file->pushBlock();
+			this->file->getCurrentBlock()->forceInsert(&aux);
+			this->file->getCurrentBlock()->setNextNode(0);
+			this->file->getCurrentBlock()->setLevel(0);
+		}
+		else
+		{
+			this->file->getCurrentBlock()->forceInsert(&aux);
+		}
+	}
+
+    if(!blockOne)
+    {
+        this->file->getCurrentBlock()->insertRecord(keyRecord, dataRecord);
+    }
+    this->file->saveBlock();
+    this->file->popBlock();
+
+    this->file->swapBlockKind();
+    this->file->getCurrentBlock()->insertNodePointer(0, newBlock1);
+    VariableRecord* middleKeyRecord =
+    		this->methods->getKeyRecord(middleRecord.getBytes(), middleRecord.getSize());
+    this->file->getCurrentBlock()->insertRecord(middleKeyRecord, middleKeyRecord);
+    this->file->getCurrentBlock()->insertNodePointer(1, newBlock2);
+    this->file->getCurrentBlock()->setLevel(1);
+
+    delete middleKeyRecord;
+
+    this->file->saveBlock();
+
+    delete this->root;
+    this->root = new InternalNode(this->file,
+    		this->file->getCurrentBlock(), this->methods);
+}
+
 OpResult Tree::insert(VariableRecord *keyRecord, VariableRecord *dataRecord)
 {
 	VariableRecord middleRecord;
 	OpResult result = this->root->insert(keyRecord, dataRecord, &middleRecord);
 
 	// overflow in root, split
-	if (this->file->isCurrentLeaf())
+	if (result == Overflow && this->file->isCurrentLeaf())
 	{
-		int newBlock = this->file->getFreeBlockManager().getNextBlock();
-
+	    this->handleOverflowInLeafRoot(keyRecord, middleRecord, dataRecord);
 	}
 	else
 	{

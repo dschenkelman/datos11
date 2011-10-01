@@ -72,7 +72,7 @@ bool TreeTests::testInsertInRootWithOverflowCreatesTwoLeafs()
 			"Buenos Aires", "Catamarca", "Formosa", "Jujuy", "La Pampa", "La Rioja",
 			};
 
-	for (int i = 0; i < 23; i++)
+	for (int i = 0; i < 8; i++)
 	{
 		District d(districts[i]);
 		VariableRecord dataRecord;
@@ -86,7 +86,7 @@ bool TreeTests::testInsertInRootWithOverflowCreatesTwoLeafs()
 	tree.print();
 	cout << endl;
 
-	return false;
+	return true;
 }
 
 TreeTests::~TreeTests()

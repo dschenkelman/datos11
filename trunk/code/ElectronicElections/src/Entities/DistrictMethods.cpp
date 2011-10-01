@@ -45,5 +45,19 @@ void DistrictMethods::print(const char* recordBytes, int recordSize)
 
 void DistrictMethods::printKey(const char* key, int recordSize)
 {
-	cout << key << endl;
+	char len;
+	memcpy(&len, key, Constants::FIELD_HEADER_SIZE);
+	char buffer[len];
+	memcpy(&buffer, key + Constants::FIELD_HEADER_SIZE, len);
+	cout << buffer;
 }
+
+VariableRecord *DistrictMethods::getKeyRecord(const char *recordBytes, int recordSize)
+{
+	VariableRecord* record = new VariableRecord();
+	record->setBytes(recordBytes, recordSize);
+
+	return record;
+}
+
+

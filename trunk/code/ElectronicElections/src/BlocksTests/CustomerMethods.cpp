@@ -104,6 +104,10 @@ void CustomerMethods::printKey(const char* key, int recordSize)
 
 }
 
+VariableRecord *CustomerMethods::getKeyRecord(const char *recordBytes, int recordSize)
+{
+}
+
 CustomerMethods::~CustomerMethods()
 {
 }

@@ -8,6 +8,8 @@
 #ifndef RECORDMETHODS_H_
 #define RECORDMETHODS_H_
 
+#include "VariableRecord.h"
+
 // used to compare records by primary key
 class RecordMethods
 {
@@ -18,6 +20,7 @@ public:
 	virtual int compare(const char* key, const char* recordBytes, int recordSize) = 0;
 	virtual void print(const char* recordBytes, int recordSize) = 0;
 	virtual void printKey(const char* recordBytes, int recordSize) = 0;
+	virtual VariableRecord* getKeyRecord(const char* recordBytes, int recordSize) = 0;
 };
 
 #endif /* RECORDMETHODS_H_ */

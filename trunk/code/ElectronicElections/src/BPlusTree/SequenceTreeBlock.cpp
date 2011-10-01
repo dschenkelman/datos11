@@ -12,15 +12,18 @@
 
 using namespace std;
 
-SequenceTreeBlock::SequenceTreeBlock(int size, RecordMethods *methods)
-: TreeBlock(size,RECORD_OFFSET, RECORD_OFFSET, methods)
+SequenceTreeBlock::SequenceTreeBlock(int size, RecordMethods *methods, bool existing)
+: TreeBlock(size,RECORD_OFFSET, RECORD_OFFSET, methods), nextNode(0)
 {
-	this->updateFreeSpace(size - RECORD_OFFSET);
+	if (!existing)
+	{
+		this->updateFreeSpace(size - RECORD_OFFSET);
+	}
 }
 
 void SequenceTreeBlock::updateInformation()
 {
-	memcpy(&this->freeSpace, this->bytes + TreeBlock::LEVEL_SIZE, Constants::BLOCK_HEADER_SIZE);
+	memcpy(&this->freeSpace, this->bytes + TreeBlock::LEVEL_SIZE, TreeBlock::FREE_SPACE_SIZE);
 	this->level = this->getLevel();
 }
 
@@ -250,6 +253,18 @@ void SequenceTreeBlock::removeNodePointer(int index)
 int SequenceTreeBlock::getNodePointer(int index)
 {
 	return -1;
+}
+
+int SequenceTreeBlock::getNextNode()
+{
+	memcpy(&this->nextNode, this->bytes + TreeBlock::FREE_SPACE_SIZE + TreeBlock::LEVEL_SIZE, NEXT_NODE_SIZE);
+	return this->nextNode;
+}
+
+void SequenceTreeBlock::setNextNode(int node)
+{
+	this->nextNode = node;
+	memcpy(this->bytes + TreeBlock::FREE_SPACE_SIZE + TreeBlock::LEVEL_SIZE, &this->nextNode, NEXT_NODE_SIZE);
 }
 
 SequenceTreeBlock::~SequenceTreeBlock()

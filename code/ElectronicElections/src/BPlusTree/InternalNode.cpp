@@ -49,6 +49,9 @@ OpResult InternalNode::insert(VariableRecord *keyRecord, VariableRecord *dataRec
 		node.insert(keyRecord, dataRecord, middleRecord);
 	}
 
+	// save block
+
+
 	// restore block
 	this->file->popBlock();
 
@@ -96,10 +99,62 @@ void InternalNode::print()
 
 OpResult InternalNode::remove(char *key)
 {
+	VariableRecord aux;
+	OpResult result;
+	this->block->positionAtBegin();
+	int index;
+	while(this->block->getNextRecord(&aux) != NULL)
+	{
+		if(this->recordMethods->compare
+				(key, aux.getBytes(), aux.getSize()) < 0)
+		{
+			break;
+		}
+
+		index++;
+	}
+
+
+	int blockPointer = this->block->getNodePointer(index);
+	this->file->loadBlock(blockPointer);
+	this->file->pushBlock();
+
+	if (this->file->isCurrentLeaf())
+	{
+		LeafNode node(this->file->getCurrentBlock(), this->recordMethods);
+		result = node.remove(key);
+	}
+	else
+	{
+		InternalNode node(this->file, this->file->getCurrentBlock(), this->recordMethods);
+		result = node.remove(key);
+	}
+
+	if (result == Underflow)
+	{
+		if (this->file->isCurrentLeaf())
+		{
+			// Leaf in Underflow
+			// Preguntar si sobran records en las hojas vecinas
+		}
+		else
+		{
+			// InternalNode in Underflow
+		}
+	}
+
+	// save block
+	this->file->saveBlock();
+
+	// restore block
+	this->file->popBlock();
+
+	return result;
 }
 
 OpResult InternalNode::update(char *key, VariableRecord *r)
 {
+	return Updated;
 }
 
 InternalNode::~InternalNode()

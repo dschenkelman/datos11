@@ -47,10 +47,9 @@ bool ElectionsListTests::testGetBytes()
 	std::string charge = "Intendente";
 	ElectionsList list(name, 18, 04, 2009, charge);
 
-	char bytes[27];
+	char bytes[25];
 
 	int i = 0, size = 25;
-	memcpy(bytes, &size, Constants::RECORD_HEADER_SIZE); i += Constants::RECORD_HEADER_SIZE;
 
 	short year = 2009;
 	memcpy(bytes+i, &year, sizeof(short)); i += sizeof(short);
@@ -103,6 +102,7 @@ bool ElectionsListTests::testSetBytes()
 	ElectionsList electionsList("Lista1", 11, 11, 2000, "Gobernador");
 	electionsList.setBytes(bytes);
 
+	// faltan implementar getters y setters para los atributos
 	return true;
 }
 

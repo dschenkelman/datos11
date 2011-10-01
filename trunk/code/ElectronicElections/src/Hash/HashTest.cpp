@@ -10,7 +10,6 @@
 #include <string>
 #include <iostream>
 #include <stdlib.h>
-#include "HashBlockFile.h"
 #include "../Entities/District.h"
 
 using namespace std;
@@ -28,12 +27,12 @@ void HashTest::testInsert()
 	std::cout << "Insert Hash " << std::endl;
 	std::cout << "==================================" << std::endl;
 
-	char firstNames[5][5] = {"John", "Mike", "Tony", "Rick", "Josh"};
+	char firstNames[9][5] = {"John", "Mike", "Tony", "Rick", "Josh","gaby","dami", "juan","aleT"};
 	char lastNames[5][7] = {"Connor", "Potter", "Wesley", "Mordor", "Gondor"};
-	for(long i = 0;i < 5;++i)
+	for(long i = 0;i < 70;++i)
 	{
-		int fn = i;
-		int ln = i;
+		int fn = rand() % 9;
+		int ln = rand() % 5;
 		Customer c;
 		c.firstName = firstNames[fn];
 		c.lastName = lastNames[ln];
@@ -75,41 +74,65 @@ void HashTest::testGetRecord()
 	strcat(recordKey, c.lastName);
 	
 	Record* gotRecord = new Record(16);
-	//*gotRecord = this->hash->getRecord(recordKey, gotRecord);
+	//gotRecord = this->hash->getRecord(recordKey, gotRecord);
 	std::cout << gotRecord->getBytes() << endl;
 	
 	delete [] recordKey;
-}
+}*/
 
 void HashTest::testRemove()
 {
-	Customer c;
-	c.firstName = "Mike"; //char= 5
-	c.lastName = "Wesley"; //char= 7
-	c.balance = 3; //not relevant
-	int keySize = 5 + 7 - 1;
-	char *recordKey = new char[keySize];
-	memset(recordKey, 0, keySize);
-	strcat(recordKey, c.firstName);
-	strcat(recordKey, c.lastName);
-	
-	Record* gotRecord = new Record(16);
-	//if( this->hash->getRecord(recordKey, gotRecord) != NULL)
+	std::cout << "==================================" << std::endl;
+	std::cout << "Remove Hash " << std::endl;
+	std::cout << "==================================" << std::endl;
+
+	char firstNames[9][5] = {"John", "Mike", "Tony", "Rick", "Josh","gaby","dami", "juan","aleT"};
+	char lastNames[5][7] = {"Connor", "Potter", "Wesley", "Mordor", "Gondor"};
+	for(long i = 0;i < 200;++i)
 	{
-		//this->hash->removeRecord(recordKey);
+		int fn = rand() % 9;
+		int ln = rand() % 5;
+		Customer c;
+		c.firstName = firstNames[fn];
+		c.lastName = lastNames[ln];
+		c.balance = i;
+		int keySize = 5 + 7 - 1;
+		char *recordKey = new char[keySize];
+		memset(recordKey, 0, keySize);
+		strcat(recordKey, c.firstName);
+		strcat(recordKey, c.lastName);
+		VariableRecord* gotRecord = new VariableRecord();
+		if(this->file->removeRecord(recordKey) )
+			std::cout << "key: " << recordKey << endl;
+		else std::cout << "couldn't remove key: " << recordKey << endl;
+
+		delete [] recordKey;
+		delete gotRecord;
 	}
-	std::cout << gotRecord->getBytes() << endl;
-	
-	delete [] recordKey;
+	this->file->printContent();
 }
-*/
+
+void HashTest::testEmptyBlock(int blockNumber)
+{
+	std::cout << "Empty hash block number 2?" << std::endl;
+	this->file->loadBlock(blockNumber);
+	if(this->file->getCurrentBlock()->isEmpty())
+		std::cout << "YES!" << std::endl;
+	else std::cout << "NOO" << std::endl;
+
+	if(this->file->getCurrentBlock()->getOverflowedBlock() == -1)
+		std::cout << "Block became DES-overflowed!! :D" << std::endl;
+}
+
 void HashTest::run()
 {
+	this->testEmptyBlock(2);
 	this->testInsert();
 	std::cout << "Inserted Hash successful" << std::endl;
 	//this->testGetRecord();
-	//this->testRemove();
-	//std::cout << "Remove Successful" << endl;
+	this->testRemove();
+	this->testEmptyBlock(2);
+	std::cout << "Remove Successful" << endl;
 }
 
 HashTest::~HashTest()

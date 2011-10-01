@@ -17,7 +17,9 @@ HashBlock::HashBlock(int size, RecordMethods* methods)
 
 bool HashBlock::isEmpty()
 {
-	return this->maxSize == this->freeSpace;
+	int occupiedSize;
+	memcpy(&occupiedSize, this->bytes + 1, sizeof(int));
+	return this->maxSize == (this->freeSpace);
 }
 
 int HashBlock::getOverflowedBlock()
@@ -25,6 +27,12 @@ int HashBlock::getOverflowedBlock()
 	char overflowedBlock;
 	memcpy(&overflowedBlock, this->bytes, sizeof(char));
 	return overflowedBlock;
+}
+
+void HashBlock::setNoOverflow()
+{
+	char noOverflow = -1;
+	memcpy(this->bytes, &noOverflow, sizeof(char));
 }
 
 void HashBlock::becomesOverflow(char ovflowBlock)
@@ -197,7 +205,9 @@ bool HashBlock::removeRecord(const char* key)
 	memcpy(this->bytes + startPosition, buffer, bufferSize);
 
 	// update block size
-	memcpy(this->bytes, &occupiedSpace, Constants::BLOCK_HEADER_SIZE);
+	if(occupiedSpace == this->recordsOffset) //block is empty!
+		occupiedSpace = 0;
+	memcpy(this->bytes +1, &occupiedSpace, Constants::BLOCK_HEADER_SIZE);
 
 	this->updateInformation();
 	if (r != NULL)

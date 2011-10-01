@@ -17,10 +17,10 @@ class HashTest
 public:
 	HashTest();
 	void testInsert();
+	void testEmptyBlock(int blockNumber);
 	//void testGetRecord();
-	//void testRemove();
+	void testRemove();
 	void run();
 	virtual ~HashTest();
 };
-
 #endif HASHTEST_H

@@ -30,18 +30,17 @@ int main()
 	LeafNodeTests leafTests;
 	leafTests.run();*/
 
-//	cout << "HASH TESTS" << endl;
-//	HashTest hashTests;
-//	hashTests.run();
-//	cout << "LEAF NODE TESTS" << endl;
-//	LeafNodeTests leafTests;
-//	leafTests.run();
-//	cout << "DISTRICT TESTS" << endl;
-//	DistrictTests districtTests;
-//	districtTests.run();
+	cout << "HASH TESTS" << endl;
+	HashTest hashTests;
+	hashTests.run();
+	cout << "LEAF NODE TESTS" << endl;
+	LeafNodeTests leafTests;
+	leafTests.run();
+	cout << "DISTRICT TESTS" << endl;
+	DistrictTests districtTests;
+	districtTests.run();
 
 	TreeTests treeTests;
 	treeTests.run();
-
 	return 0;
 }

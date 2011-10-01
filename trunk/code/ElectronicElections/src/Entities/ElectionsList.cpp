@@ -30,7 +30,7 @@ int ElectionsList::getSize()
 
 char* ElectionsList::getBytes()
 {
-	int size = this->getSize() + Constants::RECORD_HEADER_SIZE;
+	int size = this->getSize();
 
 	if(this->bytes != NULL)
 	{
@@ -39,10 +39,8 @@ char* ElectionsList::getBytes()
 
 	this->bytes = new char[size];
 
-	size -= Constants::RECORD_HEADER_SIZE;
 	int i = 0;
 
-	memcpy(this->bytes, &size, Constants::RECORD_HEADER_SIZE); i += Constants::RECORD_HEADER_SIZE;
 	memcpy(this->bytes+i, &(this->year), sizeof(short)); i += sizeof(short);
 	memcpy(this->bytes+i, &(this->month), sizeof(char)); i += sizeof(char);
 	memcpy(this->bytes+i, &(this->day), sizeof(char)); i += sizeof(char);
@@ -61,7 +59,7 @@ char* ElectionsList::getBytes()
 }
 
 void ElectionsList::setBytes(char* bytes)
-{
+{/*
 	int i = 0;
 	i += Constants::RECORD_HEADER_SIZE;
 
@@ -78,7 +76,7 @@ void ElectionsList::setBytes(char* bytes)
 	char nameLen = bytes + i;
 	char* auxName;
 	strncpy(auxName, bytes, nameLen);
-	this->name.clear(); this->name.append(auxName);
+	this->name.clear(); this->name.append(auxName);*/
 }
 
 ElectionsList::~ElectionsList()

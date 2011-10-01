@@ -113,6 +113,7 @@ void TreeBlockFile::popBlock()
 {
 	delete this->currentBlock;
 	this->currentBlock = this->blockStack.top();
+	this->isLeaf = this->currentBlock->getLevel() == 0;
 	this->blockStack.pop();
 }
 

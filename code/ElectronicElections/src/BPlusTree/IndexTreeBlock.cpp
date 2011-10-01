@@ -11,10 +11,13 @@
 
 using namespace std;
 
-IndexTreeBlock::IndexTreeBlock(int size, RecordMethods* methods)
+IndexTreeBlock::IndexTreeBlock(int size, RecordMethods* methods, bool existing)
 : TreeBlock(size,RECORD_OFFSET,RECORD_OFFSET,methods), nodesPosition(RECORD_OFFSET)
 {
-	this->updateFreeSpace(this->freeSpace - RECORD_OFFSET);
+	if (!existing)
+	{
+		this->updateFreeSpace(this->freeSpace - RECORD_OFFSET);
+	}
 }
 
 void IndexTreeBlock::clear()
@@ -50,7 +53,7 @@ void IndexTreeBlock::forceInsert(VariableRecord *rec)
 	// add record data
 	memcpy(this->bytes + this->nodesPosition, rec->getBytes(), recSize);
 	this->freeSpace -= recSize;
-	this->nodesPosition += Constants::RECORD_HEADER_SIZE;
+	this->nodesPosition += recSize;
 
 	// restore node pointers
 	memcpy(this->bytes + this->nodesPosition, buffer,
@@ -85,7 +88,7 @@ bool IndexTreeBlock::insertRecord(VariableRecord* keyRecord, VariableRecord* dat
 	this->forceInsert(dataRecord);
 
     // order
-    if (this->nodesPosition != RECORD_OFFSET)
+    if (recordPositions.size() > 0)
     {
 		VariableRecord aux;
 		this->position = recordPositions.at(recordPositions.size() - 1);
@@ -299,11 +302,20 @@ void IndexTreeBlock::removeNodePointer(int index)
 
 int IndexTreeBlock::getNodePointer(int index)
 {
-	int value;
+	int value = 0;
 	int startPosition = this->nodesPosition + NODE_POINTER_SIZE * index;
-	memcpy(this->bytes + startPosition, &value, NODE_POINTER_SIZE);
+	memcpy(&value, this->bytes + startPosition, NODE_POINTER_SIZE);
 
 	return value;
+}
+
+void IndexTreeBlock::setNextNode(int node)
+{
+}
+
+int IndexTreeBlock::getNextNode()
+{
+	return -1;
 }
 
 IndexTreeBlock::~IndexTreeBlock()

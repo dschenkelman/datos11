@@ -14,6 +14,7 @@ class SequenceTreeBlock : public TreeBlock
 {
 private:
 	static const char NEXT_NODE_SIZE = sizeof(int);
+	int nextNode;
 protected:
 	virtual bool hasNextRecord();
 public:
@@ -21,7 +22,7 @@ public:
 						NEXT_NODE_SIZE +
 						TreeBlock::LEVEL_SIZE +
 						TreeBlock::FREE_SPACE_SIZE;
-	SequenceTreeBlock(int size, RecordMethods* methods);
+	SequenceTreeBlock(int size, RecordMethods* methods, bool existing);
 	virtual void updateInformation();
 	virtual void clear();
 	virtual bool canInsertRecord(int size);
@@ -35,6 +36,8 @@ public:
 	virtual void updateNodePointer(int index, int node);
 	virtual void removeNodePointer(int index);
 	virtual int getNodePointer(int index);
+	virtual void setNextNode(int node);
+	virtual int getNextNode();
 	virtual ~SequenceTreeBlock();
 };
 

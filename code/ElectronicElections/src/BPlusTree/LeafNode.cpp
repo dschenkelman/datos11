@@ -12,6 +12,7 @@ LeafNode::LeafNode(TreeBlock* tb, RecordMethods* methods)
 : Node(tb, methods)
 {
 	this->minimumSize = this->getMinimumSize();
+	this->block->updateInformation();
 }
 
 int LeafNode::getMinimumSize()

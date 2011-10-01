@@ -20,6 +20,7 @@ class TreeBlockFile: public BaseVariableBlockFile
 	TreeBlock* currentBlock;
 	bool isLeaf;
 	std::stack<TreeBlock*> blockStack;
+	std::stack<int> blockNumberStack;
 public:
 	TreeBlockFile(std::string& fileName, int bSize,
 			RecordMethods *methods, bool createNew);
@@ -31,6 +32,7 @@ public:
 	virtual void printContent();
 	virtual void loadBlock(int blockNumber);
 	virtual void saveBlock();
+	void swapBlockKind();
 	virtual ~TreeBlockFile();
 };
 

@@ -41,7 +41,7 @@ void LeafNodeTests::run()
 bool LeafNodeTests::testInsertDuplicatedRecordReturnsCorrectResult()
 {
 	CustomerMethods methods;
-	SequenceTreeBlock block(64, &methods);
+	SequenceTreeBlock block(64, &methods, false);
 	LeafNode node(&block, &methods);
 
 	VariableRecord recordOne;
@@ -88,7 +88,7 @@ bool LeafNodeTests::testInsertDuplicatedRecordReturnsCorrectResult()
 bool LeafNodeTests::testInsertRecordInFullBlockReturnsOverflow()
 {
 	CustomerMethods methods;
-    SequenceTreeBlock block(40, &methods);
+    SequenceTreeBlock block(40, &methods, false);
     LeafNode node(&block, &methods);
 
     VariableRecord recordOne;
@@ -141,7 +141,7 @@ bool LeafNodeTests::testInsertRecordInFullBlockReturnsOverflow()
 bool LeafNodeTests::testInsertLessThanFullSizeReturnsCorrectResult()
 {
 	VoterIndexMethods methods;
-	SequenceTreeBlock block(64, &methods);
+	SequenceTreeBlock block(64, &methods, false);
 	LeafNode node(&block, &methods);
 	VariableRecord middleRecord;
 
@@ -169,7 +169,7 @@ bool LeafNodeTests::testInsertLessThanFullSizeReturnsCorrectResult()
 bool LeafNodeTests::testInsertingWithOverflowPutsMiddleRecordInPassedParameter()
 {
 	CustomerMethods methods;
-    SequenceTreeBlock block(32, &methods);
+    SequenceTreeBlock block(32, &methods, false);
     LeafNode node(&block, &methods);
 
     VariableRecord recordOne;
@@ -245,7 +245,7 @@ bool LeafNodeTests::testInsertingWithOverflowPutsMiddleRecordInPassedParameter()
 bool LeafNodeTests::testUpdateNonExistentRecordReturnsNotFound()
 {
 	VoterIndexMethods methods;
-	SequenceTreeBlock block(64, &methods);
+	SequenceTreeBlock block(64, &methods, false);
 	LeafNode node(&block, &methods);
 
 	int n = rand() % 20000000 + 30000000;
@@ -262,7 +262,7 @@ bool LeafNodeTests::testUpdateNonExistentRecordReturnsNotFound()
 bool LeafNodeTests::testUpdateShouldReturnOverflowIfRecordDoesNotFitNode()
 {
 	CustomerMethods methods;
-	SequenceTreeBlock block(32, &methods);
+	SequenceTreeBlock block(32, &methods, false);
 	LeafNode node(&block, &methods);
 
 	VariableRecord recordOne;
@@ -299,7 +299,7 @@ bool LeafNodeTests::testUpdateShouldReturnOverflowIfRecordDoesNotFitNode()
 bool LeafNodeTests::testUpdateShouldUpdateRecordAndReturnUpdated()
 {
 	CustomerMethods methods;
-	SequenceTreeBlock block(32, &methods);
+	SequenceTreeBlock block(32, &methods, false);
 	LeafNode node(&block, &methods);
 
 	VariableRecord recordOne;
@@ -343,7 +343,7 @@ bool LeafNodeTests::testUpdateShouldUpdateRecordAndReturnUpdated()
 bool LeafNodeTests::testDeleteReturnsNotFoundIfKeyIsNotPresent()
 {
 	CustomerMethods methods;
-	SequenceTreeBlock block(32, &methods);
+	SequenceTreeBlock block(32, &methods, false);
 	LeafNode node(&block, &methods);
 
 	return node.remove("NotValid") == NotFound;
@@ -352,7 +352,7 @@ bool LeafNodeTests::testDeleteReturnsNotFoundIfKeyIsNotPresent()
 bool LeafNodeTests::testDeleteReturnsUnderflowIfOccupiedSizeIsLessThanMinimum()
 {
 	CustomerMethods methods;
-	SequenceTreeBlock block(32, &methods);
+	SequenceTreeBlock block(32, &methods, false);
 	LeafNode node(&block, &methods);
 
 	VariableRecord recordOne;
@@ -393,7 +393,7 @@ bool LeafNodeTests::testDeleteReturnsUnderflowIfOccupiedSizeIsLessThanMinimum()
 bool LeafNodeTests::testDeleteReturnsUpdatedIfOccupiedSizeIsMoreThanMinimumAndRecordWasDeleted()
 {
 	CustomerMethods methods;
-	SequenceTreeBlock block(42, &methods);
+	SequenceTreeBlock block(42, &methods, false);
 	LeafNode node(&block, &methods);
 
 	VariableRecord recordOne;

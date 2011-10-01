@@ -52,13 +52,14 @@ void FreeBlockManager::loadFreeBlocks()
 int FreeBlockManager::getNextBlock()
 {
 	int value = this->blocks.at(this->blocks.size() - 1);
+	int value2 = value;
 	if (this->blocks.size() != 1)
 	{
 		this->blocks.pop_back();
 	}
 	else
 	{
-		this->blocks[this->blocks.size() - 1] = ++value;
+		this->blocks[this->blocks.size() - 1] = ++value2;
 	}
 
 	this->file.clear();

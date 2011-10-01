@@ -42,6 +42,10 @@ void VoterIndexMethods::printKey(const char* key, int recordSize)
 
 }
 
+VariableRecord *VoterIndexMethods::getKeyRecord(const char *recordBytes, int recordSize)
+{
+}
+
 VoterIndexMethods::~VoterIndexMethods()
 {
 }

@@ -24,6 +24,7 @@ public:
 	virtual int compare(const char* key, const char* recordBytes, int recordSize);
 	virtual void print(const char* recordBytes, int recordSize);
 	virtual void printKey(const char* key, int recordSize);
+	virtual VariableRecord* getKeyRecord(const char* recordBytes, int recordSize);
 };
 
 #endif /* DISTRICTMETHODS_H_ */

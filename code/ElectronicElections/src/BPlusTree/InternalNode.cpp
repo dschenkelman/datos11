@@ -21,7 +21,7 @@ OpResult InternalNode::insert(VariableRecord *keyRecord, VariableRecord *dataRec
 {
 	VariableRecord aux;
 	this->block->positionAtBegin();
-	int index;
+	int index = 0;
 	while(this->block->getNextRecord(&aux) != NULL)
 	{
 		if(this->recordMethods->compare
@@ -32,7 +32,6 @@ OpResult InternalNode::insert(VariableRecord *keyRecord, VariableRecord *dataRec
 
 		index++;
 	}
-
 
 	int blockPointer = this->block->getNodePointer(index);
 	this->file->loadBlock(blockPointer);
@@ -67,9 +66,11 @@ void InternalNode::print()
 	while(this->block->getNextRecord(&aux) != NULL)
 	{
 		nodes.push_back(i);
-		cout << this->block->getNodePointer(i) << endl;
+		cout << this->block->getNodePointer(i);
 		i++;
+		cout << "(";
 		this->recordMethods->printKey(aux.getBytes(), aux.getSize());
+		cout << ")";
 	}
 
 	nodes.push_back(i);
@@ -86,11 +87,13 @@ void InternalNode::print()
 		{
 			LeafNode node(this->file->getCurrentBlock(), this->recordMethods);
 			node.print();
+			cout << endl;
 		}
 		else
 		{
 			InternalNode node(this->file, this->file->getCurrentBlock(), this->recordMethods);
 			node.print();
+			cout << endl;
 		}
 
 		this->file->popBlock();

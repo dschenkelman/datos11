@@ -26,7 +26,7 @@ class IndexTreeBlock: public TreeBlock
 protected:
 	virtual bool hasNextRecord();
 public:
-	IndexTreeBlock(int size, RecordMethods* methods);
+	IndexTreeBlock(int size, RecordMethods* methods, bool existing);
 	virtual void updateInformation();
 	virtual void clear();
 	virtual bool canInsertRecord(int size);
@@ -39,6 +39,8 @@ public:
 	virtual void updateNodePointer(int index, int node);
 	virtual void removeNodePointer(int index);
 	virtual int getNodePointer(int index);
+	virtual void setNextNode(int node);
+	virtual int getNextNode();
 	virtual ~IndexTreeBlock();
 };
 

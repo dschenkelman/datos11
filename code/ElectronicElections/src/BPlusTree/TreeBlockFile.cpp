@@ -48,7 +48,7 @@ void TreeBlockFile::printContent()
 	{
 		this->loadBlock(blockNumber);
 		this->pushBlock();
-		this->currentBlock->printContent();
+		this->getCurrentBlock()->printContent();
 		this->popBlock();
 		blockNumber++;
 	}
@@ -60,33 +60,27 @@ void TreeBlockFile::loadBlock(int blockNumber)
 	this->currentBlockNumber = blockNumber;
 	this->positionAtBlock(this->currentBlockNumber);
 	short level = 0;
-	if (!this->isAtEOF())
+	bool existing = !this->isAtEOF();
+	if (existing)
 	{
 		this->dataFile.read(buffer, this->blockSize);
 		memcpy(&level, buffer, TreeBlock::LEVEL_SIZE);
-	}
-	else
-	{
-		if (this->getCurrentBlock() != NULL)
-		{
-			this->getCurrentBlock()->clear();
-		}
 	}
 
 	if (level == 0)
 	{
 		// assign SequenceTreeBlock;
-		this->currentBlock = new SequenceTreeBlock(this->blockSize, this->recordMethods);
+		this->currentBlock = new SequenceTreeBlock(this->blockSize, this->recordMethods, existing);
 		this->isLeaf = true;
 	}
 	else
 	{
 		// assign IndexTreeBlock;
-		this->currentBlock = new IndexTreeBlock(this->blockSize, this->recordMethods);
+		this->currentBlock = new IndexTreeBlock(this->blockSize, this->recordMethods, existing);
 		this->isLeaf = false;
 	}
 
-	if (!this->isAtEOF())
+	if (existing)
 	{
 		memcpy(this->currentBlock->getBytes(), buffer, this->blockSize);
 		this->currentBlock->updateInformation();
@@ -95,7 +89,7 @@ void TreeBlockFile::loadBlock(int blockNumber)
 
 void TreeBlockFile::saveBlock()
 {
-	this->positionAtBlock(this->currentBlockNumber);
+	this->positionAtBlock(this->blockNumberStack.top());
 	this->dataFile.write(this->getCurrentBlock()->getBytes(), this->blockSize);
 }
 
@@ -111,14 +105,40 @@ FreeBlockManager& TreeBlockFile::getFreeBlockManager()
 
 void TreeBlockFile::popBlock()
 {
-	delete this->currentBlock;
-	this->currentBlock = this->blockStack.top();
+	TreeBlock* block = this->blockStack.top();
 	this->isLeaf = this->currentBlock->getLevel() == 0;
 	this->blockStack.pop();
+	this->blockNumberStack.pop();
+	delete block;
+	this->currentBlock = this->blockStack.top();
 }
 
 void TreeBlockFile::pushBlock()
 {
+	this->blockStack.push(this->currentBlock);
+	this->blockNumberStack.push(this->currentBlockNumber);
+	this->isLeaf = this->currentBlock->getLevel() == 0;
+}
+
+void TreeBlockFile::swapBlockKind()
+{
+	int level = this->getCurrentBlock()->getLevel();
+
+	TreeBlock* block = this->blockStack.top();
+	this->blockStack.pop();
+	delete block;
+
+	if (level == 0)
+	{
+		this->currentBlock = new IndexTreeBlock(this->blockSize, this->recordMethods, false);
+		this->isLeaf = false;
+	}
+	else
+	{
+		this->currentBlock = new SequenceTreeBlock(this->blockSize, this->recordMethods, false);
+		this->isLeaf = true;
+	}
+
 	this->blockStack.push(this->currentBlock);
 }
 

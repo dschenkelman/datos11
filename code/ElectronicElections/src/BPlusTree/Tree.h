@@ -10,13 +10,14 @@
 
 #include <string>
 #include "../VariableBlocks/RecordMethods.h"
-#include "TreeBlockFile.h"this->getCurrentBlock()->clear();
+#include "TreeBlockFile.h"
 #include "Node.h"
 
 class Tree {
 	Node* root;
 	RecordMethods* methods;
 	TreeBlockFile* file;
+    void handleOverflowInLeafRoot(VariableRecord *keyRecord, VariableRecord& middleRecord, VariableRecord *dataRecord);
 public:
 	Tree(std::string fileName, int blockSize, RecordMethods* methods, bool createNew);
 	OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord);

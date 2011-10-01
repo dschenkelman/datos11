@@ -24,6 +24,7 @@ public:
 	// and the amount of free space available in it
 	virtual void updateInformation();
 	virtual void clear();
+	bool isEmpty();
 	virtual bool insertRecord(const char* key, VariableRecord* rec);
 	virtual UpdateResult updateRecord(const char* key, VariableRecord* rec);
 	virtual void printContent();

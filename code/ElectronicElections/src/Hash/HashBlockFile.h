@@ -21,15 +21,15 @@ class HashBlockFile : BaseVariableBlockFile
 	bool hashBlockUsed;
 	int totalBlocks;
 	void initializefile();
+	int hashFunction(const char* key);
 
 public:
 	HashBlockFile(std::string name, int bSize, RecordMethods* methods, int blockamount, bool createNew);
 	virtual HashBlock* getCurrentBlock();
-	int hashFunction(char* key);
 	bool insertRecord(const char* key, const char* recordBytes, short size);
 	bool internalInsertRecord(const char* key, const char* recordBytes,
 			short size, bool force);
-	//bool removeRecord(BlockFile* file, int blockNumber, Record* record);
+	bool removeRecord(const char* key);
 	//void updateRecord(BlockFile* file, int blockNumber, Record* record);
 	virtual void printContent();
 	virtual void loadBlock(int blockNumber);

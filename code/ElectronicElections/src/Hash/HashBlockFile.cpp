@@ -25,10 +25,6 @@ HashBlockFile::HashBlockFile(std::string fileName, int bSize, RecordMethods *met
 		this->dataFile.open(this->fileName.c_str(), ios::binary | ios::in | ios::out);
 	}
 	string ovflw = "ovflow";
-	//const int ovflwFileLen = strlen(fileName.c_str()) + 7;
-	//char ovflwFile[ovflwFileLen];
-	//strcat(ovflwFile, fileName.c_str());
-	//strcat(ovflwFile, ovflw);
 	this->overflowFile = new SimpleVariableBlockFile(ovflw, bSize, methods, createNew);
 }
 
@@ -51,7 +47,7 @@ HashBlock* HashBlockFile::getCurrentBlock()
 	return this->currentBlock;
 }
 
-int HashBlockFile::hashFunction(char* key)
+int HashBlockFile::hashFunction(const char* key)
 {
 	// This will change
 	//int hash = atoi(key) % blockAmount;
@@ -61,6 +57,7 @@ int HashBlockFile::hashFunction(char* key)
 void HashBlockFile::printContent()
 {
 	int blockNumber = 0;
+	int ovflwBlock;
 	this->positionAtBlock(0);
 	while(!this->isAtEOF())
 	{
@@ -69,19 +66,19 @@ void HashBlockFile::printContent()
 		{
 			this->currentBlock->printContent();
 		}
+		if( (ovflwBlock = this->currentBlock->getOverflowedBlock()) != -1)
+		{
+			this->overflowFile->loadBlock(ovflwBlock);
+			this->overflowFile->getCurrentBlock()->printContent();
+		}
 		blockNumber++;
 	}
-}
 
-bool HashBlockFile::internalInsertRecord(const char* key,
-		const char* recordBytes, short size, bool force)
-{
-	return true;
 }
 
 bool HashBlockFile::insertRecord(const char* key, const char* recordBytes, short size)
 {
-	int blockNumber = 2;
+	int blockNumber = this->hashFunction(key);
 	if(blockNumber >= totalBlocks)
 		return false; //out of bounds. It should never happen!!
 
@@ -139,6 +136,42 @@ bool HashBlockFile::insertRecord(const char* key, const char* recordBytes, short
 	return true;
 }
 
+bool HashBlockFile::removeRecord(const char* key)
+{
+	int blockNumber = this->hashFunction(key);
+	if(blockNumber >= totalBlocks)
+		return false; //out of bounds. It should never happen!!
+	int ovflowBlock;
+	this->loadBlock(blockNumber);
+	this->currentBlock = this->getCurrentBlock();
+	if(!this->currentBlock->isEmpty() )
+	{
+		if(this->currentBlock->removeRecord(key) )
+		{
+			this->hashBlockUsed = true;
+			this->saveBlock();
+			return true;
+		}
+	}
+
+	if((ovflowBlock = this->currentBlock->getOverflowedBlock()) != -1)
+	{
+		this->overflowFile->loadBlock(ovflowBlock);
+		if(this->overflowFile->getCurrentBlock()->removeRecord(key))
+		{
+			this->ovflowBlockUsed = true;
+			if(this->overflowFile->getCurrentBlock()->isEmpty())
+			{
+				this->currentBlock->setNoOverflow();
+				this->hashBlockUsed = true;
+
+			}
+			this->saveBlock();
+			return true;
+		}
+	}
+	return false;
+}
 
 void HashBlockFile::loadBlock(int blockNumber)
 {

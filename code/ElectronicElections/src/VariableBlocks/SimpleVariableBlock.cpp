@@ -21,6 +21,13 @@ void SimpleVariableBlock::updateInformation()
 	this->freeSpace = this->maxSize - occupiedSize;
 }
 
+bool SimpleVariableBlock::isEmpty()
+{
+	int occupiedSize;
+	memcpy(&occupiedSize, this->bytes, this->recordsOffset);
+	return this->freeSpace == this->maxSize;
+}
+
 bool SimpleVariableBlock::hasNextRecord()
 {
 	return this->position < this->getOccupiedSize();
@@ -181,6 +188,8 @@ bool SimpleVariableBlock::removeRecord(const char* key)
 	memcpy(this->bytes + startPosition, buffer, bufferSize);
 
 	// update block size
+	if(occupiedSpace == Constants::BLOCK_HEADER_SIZE) //block is empty!
+		occupiedSpace = 0;
 	memcpy(this->bytes, &occupiedSpace, Constants::BLOCK_HEADER_SIZE);
 
 	this->updateInformation();

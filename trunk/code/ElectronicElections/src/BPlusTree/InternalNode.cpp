@@ -17,6 +17,70 @@ InternalNode::InternalNode(TreeBlockFile* f, TreeBlock* b, RecordMethods* method
 {
 }
 
+void InternalNode::handleLeafOverflow(VariableRecord* keyRecord, VariableRecord* dataRecord, VariableRecord* middleRecord)
+{
+    TreeBlock *oldLeafBlock = this->file->getCurrentBlock();
+    bool blockOne = true;
+    if(this->recordMethods->compare(keyRecord->getBytes(),
+    		middleRecord->getBytes(), middleRecord->getSize()) > 0)
+    {
+        blockOne = false;
+    }
+    int newBlock = this->file->getFreeBlockManager().getNextBlock();
+    int newNextNode = this->file->getCurrentBlock()->getNextNode();
+    this->file->getCurrentBlock()->setNextNode(newBlock);
+    this->file->loadBlock(newBlock);
+    this->file->pushBlock();
+    this->file->getCurrentBlock()->setNextNode(newNextNode);
+    this->file->getCurrentBlock()->setLevel(0);
+    VariableRecord aux;
+    stack<VariableRecord*> toRemove;
+    oldLeafBlock->positionAtBegin();
+    while(oldLeafBlock->getNextRecord(&aux) != NULL)
+	{
+		int result = this->recordMethods->compare
+				(middleRecord->getBytes(), aux.getBytes(), aux.getSize());
+		if (result <= 0)
+		{
+			this->file->getCurrentBlock()->forceInsert(&aux);
+
+			VariableRecord* auxKeyRecord =
+					this->recordMethods->getKeyRecord(aux.getBytes(), aux.getSize());
+			toRemove.push(auxKeyRecord);
+		}
+	}
+
+    while (!toRemove.empty())
+    {
+    	VariableRecord* auxKeyRecord = toRemove.top();
+    	toRemove.pop();
+    	oldLeafBlock->removeRecord(auxKeyRecord->getBytes());
+    	delete auxKeyRecord;
+    }
+    if(blockOne)
+    {
+        oldLeafBlock->insertRecord(keyRecord, dataRecord);
+    }
+    else
+    {
+        this->file->getCurrentBlock()->insertRecord(keyRecord, dataRecord);
+    }
+    this->file->saveBlock();
+    this->file->popBlock();
+    this->file->saveBlock();
+
+    this->block->insertRecord(middleRecord, middleRecord);
+    this->block->positionAtBegin();
+    int index = 1;
+    while(this->block->getNextRecord(&aux) != NULL && this->recordMethods->compare
+			(middleRecord->getBytes(), aux.getBytes(), aux.getSize()) != 0)
+    {
+    	index++;
+    }
+
+    this->block->insertNodePointer(index, newBlock);
+}
+
 OpResult InternalNode::insert(VariableRecord *keyRecord, VariableRecord *dataRecord, VariableRecord* middleRecord)
 {
 	VariableRecord aux;
@@ -37,22 +101,32 @@ OpResult InternalNode::insert(VariableRecord *keyRecord, VariableRecord *dataRec
 	this->file->loadBlock(blockPointer);
 	this->file->pushBlock();
 
+	OpResult result;
+
 	if (this->file->isCurrentLeaf())
 	{
 		LeafNode node(this->file->getCurrentBlock(), this->recordMethods);
-		node.insert(keyRecord, dataRecord, middleRecord);
+		result = node.insert(keyRecord, dataRecord, middleRecord);
+
+		if (result == Updated)
+		{
+			this->file->saveBlock();
+		}
+
+		if (result == Overflow)
+		{
+		    this->handleLeafOverflow(keyRecord, dataRecord, middleRecord);
+		}
 	}
 	else
 	{
 		InternalNode node(this->file, this->file->getCurrentBlock(), this->recordMethods);
-		node.insert(keyRecord, dataRecord, middleRecord);
+		result = node.insert(keyRecord, dataRecord, middleRecord);
 	}
-
-	// save block
-
 
 	// restore block
 	this->file->popBlock();
+	this->file->saveBlock();
 
 	return Updated;
 }
@@ -62,10 +136,8 @@ void InternalNode::print()
 	VariableRecord aux;
 	this->block->positionAtBegin();
 	int i = 0;
-	vector<int> nodes;
 	while(this->block->getNextRecord(&aux) != NULL)
 	{
-		nodes.push_back(i);
 		cout << this->block->getNodePointer(i);
 		i++;
 		cout << "(";
@@ -73,14 +145,11 @@ void InternalNode::print()
 		cout << ")";
 	}
 
-	nodes.push_back(i);
 	cout << this->block->getNodePointer(i) << endl;
 
-	while(nodes.size() != 0)
+	for (int j = 0; j <= i; j++)
 	{
-		int index = nodes.at(nodes.size()  - 1);
-		nodes.pop_back();
-		int blockPointer = this->block->getNodePointer(index);
+		int blockPointer = this->block->getNodePointer(j);
 		this->file->loadBlock(blockPointer);
 		this->file->pushBlock();
 		if (this->file->isCurrentLeaf())

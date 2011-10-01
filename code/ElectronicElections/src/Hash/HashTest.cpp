@@ -25,7 +25,6 @@ void HashTest::testInsert()
 {
 	std::cout << "==================================" << std::endl;
 	std::cout << "Insert Hash " << std::endl;
-	std::cout << "==================================" << std::endl;
 
 	char firstNames[9][5] = {"John", "Mike", "Tony", "Rick", "Josh","gaby","dami", "juan","aleT"};
 	char lastNames[5][7] = {"Connor", "Potter", "Wesley", "Mordor", "Gondor"};
@@ -60,9 +59,13 @@ void HashTest::testInsert()
 	}
 	this->file->printContent();
 }
-/*
+
 void HashTest::testGetRecord()
 {
+	std::cout << "==================================" << std::endl;
+	std::cout << "Get Record from Hash.." << std::endl;
+
+	CustomerMethods* cm;
 	Customer c;
 	c.firstName = "John"; //char= 5
 	c.lastName = "Connor"; //char= 7
@@ -73,22 +76,54 @@ void HashTest::testGetRecord()
 	strcat(recordKey, c.firstName);
 	strcat(recordKey, c.lastName);
 	
-	Record* gotRecord = new Record(16);
-	//gotRecord = this->hash->getRecord(recordKey, gotRecord);
-	std::cout << gotRecord->getBytes() << endl;
-	
+	VariableRecord* gotRecord = new VariableRecord();
+	if( this->file->getRecord(recordKey, &gotRecord))
+	{
+		c = *(cm->getCustomerFromRecord(gotRecord->getBytes(), gotRecord->getSize()));
+		std::cout << c.firstName << c.lastName << c.balance << endl;
+	}
+
+	else std::cout << "couldn't find key: " << recordKey << endl;
 	delete [] recordKey;
-}*/
+	delete gotRecord;
+	std::cout << "GetRecord Successful!" << endl;
+	std::cout << "==================================" << std::endl;
+}
+
+void HashTest::testUpdateRecord()
+{
+	std::cout << "==================================" << std::endl;
+	std::cout << "UPDATE JohnConnor from Hash.." << std::endl;
+
+	CustomerMethods* cm;
+	Customer c;
+	c.firstName = "John"; //char= 5
+	c.lastName = "Connor"; //char= 7
+	c.balance = 2; //not relevant
+	int keySize = 5 + 7 - 1;
+	char *recordKey = new char[keySize];
+	memset(recordKey, 0, keySize);
+	strcat(recordKey, c.firstName);
+	strcat(recordKey, c.lastName);
+	VariableRecord* gotRecord = cm->getRecordFromCustomer(&c);
+	if( this->file->updateRecord(recordKey, gotRecord))
+		std::cout << "Record UPDATED!" << endl;
+	else std::cout << "couldn't find or insert new key: " << recordKey << endl;
+
+	delete [] recordKey;
+	delete gotRecord;
+	std::cout << "UPDATE Hash Successful!" << endl;
+	std::cout << "==================================" << std::endl;
+}
 
 void HashTest::testRemove()
 {
 	std::cout << "==================================" << std::endl;
-	std::cout << "Remove Hash " << std::endl;
-	std::cout << "==================================" << std::endl;
+	std::cout << "REMOVE Hash.." << std::endl;
 
 	char firstNames[9][5] = {"John", "Mike", "Tony", "Rick", "Josh","gaby","dami", "juan","aleT"};
 	char lastNames[5][7] = {"Connor", "Potter", "Wesley", "Mordor", "Gondor"};
-	for(long i = 0;i < 200;++i)
+	for(long i = 0;i < 10;++i)
 	{
 		int fn = rand() % 9;
 		int ln = rand() % 5;
@@ -129,10 +164,13 @@ void HashTest::run()
 	this->testEmptyBlock(2);
 	this->testInsert();
 	std::cout << "Inserted Hash successful" << std::endl;
-	//this->testGetRecord();
+	std::cout << "==================================" << std::endl;
+	this->testGetRecord();
+	this->testUpdateRecord();
 	this->testRemove();
 	this->testEmptyBlock(2);
 	std::cout << "Remove Successful" << endl;
+	std::cout << "==================================" << std::endl;
 }
 
 HashTest::~HashTest()

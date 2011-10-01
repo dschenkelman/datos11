@@ -18,7 +18,8 @@ public:
 	HashTest();
 	void testInsert();
 	void testEmptyBlock(int blockNumber);
-	//void testGetRecord();
+	void testGetRecord();
+	void testUpdateRecord();
 	void testRemove();
 	void run();
 	virtual ~HashTest();

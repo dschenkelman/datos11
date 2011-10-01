@@ -12,8 +12,9 @@ src/ElectronicElections.d src/ElectronicElections.o: \
  ../src/BlocksTests/./../BPlusTree/../VariableBlocks/BaseVariableBlockFile.h \
  ../src/BlocksTests/./../BPlusTree/TreeBlock.h \
  ../src/BlocksTests/./../BPlusTree/../VariableBlocks/BaseVariableBlock.h \
- ../src/BPlusTreeTests/LeafNodeTests.h ../src/Hash/HashTest.h \
- ../src/Hash/HashBlockFile.h \
+ ../src/BlocksTests/./../BPlusTree/FreeBlockManager.h \
+ ../src/BPlusTreeTests/LeafNodeTests.h ../src/BPlusTreeTests/TreeTests.h \
+ ../src/Hash/HashTest.h ../src/Hash/HashBlockFile.h \
  ../src/Hash/../VariableBlocks/SimpleVariableBlockFile.h \
  ../src/Hash/HashBlock.h \
  ../src/Hash/../VariableBlocks/BaseVariableBlock.h \
@@ -45,7 +46,11 @@ src/ElectronicElections.d src/ElectronicElections.o: \
 
 ../src/BlocksTests/./../BPlusTree/../VariableBlocks/BaseVariableBlock.h:
 
+../src/BlocksTests/./../BPlusTree/FreeBlockManager.h:
+
 ../src/BPlusTreeTests/LeafNodeTests.h:
+
+../src/BPlusTreeTests/TreeTests.h:
 
 ../src/Hash/HashTest.h:
 

@@ -46,21 +46,21 @@ Customer* CustomerMethods::getCustomerFromRecord(const char *recordBytes, int re
 }
 
 VariableRecord* CustomerMethods::getRecordFromCustomer(Customer* customer) {
-	int totalsize = sizeof(char) + strlen(customer->firstName) + sizeof(char) + strlen(customer->lastName) + 4;
+	int totalsize = sizeof(char) + strlen(customer->firstName)+1 + sizeof(char) + strlen(customer->lastName)+1 + 4;
 	char* bytes = new char[totalsize];
 	int position = 0;
-	memset(bytes+position,0,totalsize);
+	memset(bytes,0,totalsize);
 	char len;
 	len = strlen(customer->firstName)+1;
 	memcpy(bytes+position, &len, sizeof(char));
 	position++;
-	memcpy(bytes+position, customer->firstName, strlen(customer->firstName));
-	position+=strlen(customer->firstName)+1;
+	memcpy(bytes+position, customer->firstName, len);
+	position+= len;
 	len = strlen(customer->lastName)+1;
 	memcpy(bytes+position, &len, sizeof(char));
 	position++;
-	memcpy(bytes+position, customer->lastName, strlen(customer->lastName));
-	position+=strlen(customer->lastName)+1;
+	memcpy(bytes+position, customer->lastName, len);
+	position+= len;
 	memcpy(bytes+position, &customer->balance, 4);
 	position+=4;
 	return new VariableRecord(bytes, position);

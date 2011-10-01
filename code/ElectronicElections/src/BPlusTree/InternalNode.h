@@ -14,6 +14,7 @@
 class InternalNode: public Node
 {
 	TreeBlockFile* file;
+    void handleLeafOverflow(VariableRecord* keyRecord, VariableRecord* dataRecord, VariableRecord* middleRecord);
 public:
 	InternalNode(TreeBlockFile* file, TreeBlock* b, RecordMethods* methods);
 	virtual OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord, VariableRecord* middleRecord);

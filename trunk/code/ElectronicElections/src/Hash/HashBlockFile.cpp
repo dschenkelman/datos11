@@ -136,12 +136,77 @@ bool HashBlockFile::insertRecord(const char* key, const char* recordBytes, short
 	return true;
 }
 
+bool HashBlockFile::getRecord(const char* key, VariableRecord** record)
+{
+	int blockNumber = this->hashFunction(key);
+	int overflwBlock;
+	this->loadBlock(blockNumber);
+	if(this->currentBlock->findRecord(key, record) != -1)
+		return true;
+	if((overflwBlock = this->currentBlock->getOverflowedBlock() ) != -1)
+	{
+		this->overflowFile->loadBlock(overflwBlock);
+		if(this->overflowFile->getCurrentBlock()->findRecord(key, record) != -1)
+			return true;
+	}
+	return false;
+}
+
+bool HashBlockFile::updateRecord(const char *key, VariableRecord* record)
+{
+	int blockNumber = this->hashFunction(key);
+	if(blockNumber >= totalBlocks)
+		return false; //out of bounds. It should never happen!!
+	this->loadBlock(blockNumber);
+	this->currentBlock = this->getCurrentBlock();
+	int ovflwBlock = this->currentBlock->getOverflowedBlock();
+	if(!this->currentBlock->isEmpty() )
+	{
+		UpdateResult result = this->currentBlock->updateRecord(key, record);
+		switch (result) {
+			case UPDATED:
+				this->hashBlockUsed = true;
+				this->saveBlock();
+				return true;
+				break;
+			case INSUFFICIENT_SPACE:
+				// deleted from block, should insert in another block
+				this->hashBlockUsed = true;
+				this->overflowFile->loadBlock(ovflwBlock);
+				if(this->overflowFile->insertRecord(key, record->getBytes(),record->getSize()))
+				{
+					this->ovflowBlockUsed = true;
+					this->saveBlock();
+					return true;
+					break;
+				}
+				//Should NEVER enter here. it was removed from block 1,
+				//and not inserted on block 2!
+				this->saveBlock();
+				return false;
+				break;
+			case NOT_FOUND:
+				break; //search on overflowed block below
+			default:
+				break;
+		}
+	}
+	this->overflowFile->loadBlock(ovflwBlock);
+	this->ovflowBlockUsed = true;
+	if(this->overflowFile->updateRecord(key, record->getBytes(), record->getSize()))
+	{
+		this->saveBlock();
+		return true;
+	}
+	this->saveBlock();
+	return false;
+}
+
 bool HashBlockFile::removeRecord(const char* key)
 {
 	int blockNumber = this->hashFunction(key);
 	if(blockNumber >= totalBlocks)
 		return false; //out of bounds. It should never happen!!
-	int ovflowBlock;
 	this->loadBlock(blockNumber);
 	this->currentBlock = this->getCurrentBlock();
 	if(!this->currentBlock->isEmpty() )
@@ -153,7 +218,7 @@ bool HashBlockFile::removeRecord(const char* key)
 			return true;
 		}
 	}
-
+	int ovflowBlock;
 	if((ovflowBlock = this->currentBlock->getOverflowedBlock()) != -1)
 	{
 		this->overflowFile->loadBlock(ovflowBlock);

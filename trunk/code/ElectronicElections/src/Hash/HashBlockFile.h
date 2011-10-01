@@ -30,7 +30,8 @@ public:
 	bool internalInsertRecord(const char* key, const char* recordBytes,
 			short size, bool force);
 	bool removeRecord(const char* key);
-	//void updateRecord(BlockFile* file, int blockNumber, Record* record);
+	bool getRecord(const char* key, VariableRecord** record);
+	bool updateRecord(const char* key, VariableRecord* record);
 	virtual void printContent();
 	virtual void loadBlock(int blockNumber);
 	virtual void saveBlock();

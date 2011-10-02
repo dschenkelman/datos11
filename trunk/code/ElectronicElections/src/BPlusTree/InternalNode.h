@@ -10,17 +10,21 @@
 
 #include "Node.h"
 #include "TreeBlockFile.h"
+#include "OverflowParameter.h"
 
 class InternalNode: public Node
 {
 	TreeBlockFile* file;
-    void handleLeafOverflow(VariableRecord* keyRecord, VariableRecord* dataRecord, VariableRecord* middleRecord);
+    OpResult handleLeafOverflow(VariableRecord* keyRecord, VariableRecord* dataRecord,
+    		VariableRecord* middleRecord, OverflowParameter& overflowParameter);
 public:
 	InternalNode(TreeBlockFile* file, TreeBlock* b, RecordMethods* methods);
-	virtual OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord, VariableRecord* middleRecord);
+	virtual OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord,
+			VariableRecord* middleRecord, OverflowParameter& overflowParameter);
 	virtual OpResult update(char* key, VariableRecord* r);
 	virtual OpResult remove(char* key);
 	virtual void print();
+	virtual int getMaxSize();
 	virtual ~InternalNode();
 };
 

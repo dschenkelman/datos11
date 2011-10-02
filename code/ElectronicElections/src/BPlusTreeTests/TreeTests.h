@@ -19,6 +19,7 @@ public:
 	bool testInsertInEmptyTreeWorksCorrectly();
 	bool testInsertInRootWithOverflowCreatesTwoLeafs();
 	bool testInsertInLeafWithOverflowIsSplitByParent();
+	bool testInsertInInternalRootWithOverflowIsSplit();
 	virtual ~TreeTests();
 };
 

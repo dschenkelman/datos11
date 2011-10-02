@@ -12,13 +12,8 @@
 
 class IndexTreeBlock: public TreeBlock
 {
-	static const char NODE_POINTER_SIZE = sizeof(int);
 	static const char FIRST_POINTER_POSITION = sizeof(int);
 	static const char SEPARATOR_HEADER_SIZE = sizeof(short);
-	static const char RECORD_OFFSET =
-			FIRST_POINTER_POSITION +
-				TreeBlock::LEVEL_SIZE +
-				TreeBlock::FREE_SPACE_SIZE;
 	// Position of the first pointer (to a child node) relative to the beginning of the block
 	int nodesPosition;
 	void storeNodesPosition();
@@ -26,6 +21,11 @@ class IndexTreeBlock: public TreeBlock
 protected:
 	virtual bool hasNextRecord();
 public:
+	static const char NODE_POINTER_SIZE = sizeof(int);
+	static const char RECORD_OFFSET =
+			FIRST_POINTER_POSITION +
+				TreeBlock::LEVEL_SIZE +
+				TreeBlock::FREE_SPACE_SIZE;
 	IndexTreeBlock(int size, RecordMethods* methods, bool existing);
 	virtual void updateInformation();
 	virtual void clear();

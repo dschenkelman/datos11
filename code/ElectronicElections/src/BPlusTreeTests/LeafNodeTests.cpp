@@ -14,6 +14,7 @@
 #include <iostream>
 #include <string.h>
 #include <stdlib.h>
+#include "../BPlusTree/OverflowParameter.h"
 
 LeafNodeTests::LeafNodeTests()
 {
@@ -72,12 +73,13 @@ bool LeafNodeTests::testInsertDuplicatedRecordReturnsCorrectResult()
 	recordTwo.setBytes(recordBytes, size);
 	key.setBytes(recordKey, l1 + l2 - 1);
 
-	if(node.insert(&key, &recordOne, &middleRecord) != Updated)
+	OverflowParameter parameter;
+	if(node.insert(&key, &recordOne, &middleRecord, parameter) != Updated)
 	{
 		return false;
 	}
 
-	if(node.insert(&key, &recordTwo, &middleRecord) != Duplicated)
+	if(node.insert(&key, &recordTwo, &middleRecord, parameter) != Duplicated)
 	{
 		return false;
 	}
@@ -124,13 +126,13 @@ bool LeafNodeTests::testInsertRecordInFullBlockReturnsOverflow()
 	bool success = true;
 
 	VariableRecord middleRecord;
-
-	if(node.insert(&keyRecord, &recordOne, &middleRecord) != Updated)
+	OverflowParameter parameter;
+	if(node.insert(&keyRecord, &recordOne, &middleRecord, parameter) != Updated)
 	{
 		success = false;
 	}
 
-	else if(node.insert(&keyTwo, &recordTwo, &middleRecord) != Overflow)
+	else if(node.insert(&keyTwo, &recordTwo, &middleRecord, parameter) != Overflow)
 	{
 		success = false;
 	}
@@ -157,7 +159,8 @@ bool LeafNodeTests::testInsertLessThanFullSizeReturnsCorrectResult()
 		memcpy(&key,&v.DNI,sizeof(int));
 		VariableRecord keyRecord(key,sizeof(int));
 		r.setBytes(keyRecord.getBytes(), 2*sizeof(int));
-		success = success && node.insert(&keyRecord, &r, &middleRecord) == Updated;
+		OverflowParameter parameter;
+		success = success && node.insert(&keyRecord, &r, &middleRecord, parameter) == Updated;
 	}
 
 	node.print();
@@ -223,12 +226,13 @@ bool LeafNodeTests::testInsertingWithOverflowPutsMiddleRecordInPassedParameter()
 
 	VariableRecord middleRecord;
 
-	if(!(node.insert(&key, &recordOne, &middleRecord) == Updated))
+	OverflowParameter parameter;
+	if(!(node.insert(&key, &recordOne, &middleRecord, parameter) == Updated))
 	{
 		return false;
 	}
 
-	if(!(node.insert(&custKey, &recordTwo, &middleRecord) == Overflow))
+	if(!(node.insert(&custKey, &recordTwo, &middleRecord, parameter) == Overflow))
 	{
 		return false;
 	}
@@ -292,7 +296,8 @@ bool LeafNodeTests::testUpdateShouldReturnOverflowIfRecordDoesNotFitNode()
 	key.setBytes(recordKey, l1 + l2 - 1);
 
 	VariableRecord middleRecord;
-	node.insert(&key, &recordOne, &middleRecord);
+	OverflowParameter parameter;
+	node.insert(&key, &recordOne, &middleRecord, parameter);
 	return node.update(recordKey, &recordTwo) == Overflow;
 }
 
@@ -332,7 +337,8 @@ bool LeafNodeTests::testUpdateShouldUpdateRecordAndReturnUpdated()
 	recordTwo.setBytes(recordBytes, size);
 
 	VariableRecord middleRecord;
-	node.insert(&key, &recordOne, &middleRecord);
+	OverflowParameter parameter;
+	node.insert(&key, &recordOne, &middleRecord, parameter);
 	bool success = node.update(recordKey, &recordTwo) == Updated;
 
 	node.print();
@@ -380,7 +386,8 @@ bool LeafNodeTests::testDeleteReturnsUnderflowIfOccupiedSizeIsLessThanMinimum()
 	recordOne.setBytes(recordBytes, size);
 	key.setBytes(recordKey,l1 + l2 - 1);
 	VariableRecord middleRecord;
-	node.insert(&key, &recordOne, &middleRecord);
+	OverflowParameter parameter;
+	node.insert(&key, &recordOne, &middleRecord, parameter);
 
 	node.print();
 	bool success = node.remove(recordKey) == Underflow;
@@ -420,7 +427,8 @@ bool LeafNodeTests::testDeleteReturnsUpdatedIfOccupiedSizeIsMoreThanMinimumAndRe
 	recordOne.setBytes(recordBytes, size);
 	key.setBytes(recordBytes, size);
 	VariableRecord middleRecord;
-	node.insert(&key, &recordOne, &middleRecord);
+	OverflowParameter parameter;
+	node.insert(&key, &recordOne, &middleRecord, parameter);
 
 	VariableRecord recordTwo;
 	VariableRecord custKey;
@@ -446,7 +454,7 @@ bool LeafNodeTests::testDeleteReturnsUpdatedIfOccupiedSizeIsMoreThanMinimumAndRe
 	custKey.setBytes(custRecordKey, sizeCust);
 
 	bool success = true;
-	success = success && node.insert(&custKey, &recordTwo, &middleRecord) == Updated;
+	success = success && node.insert(&custKey, &recordTwo, &middleRecord, parameter) == Updated;
 	node.print();
 	success = success && node.remove(custRecordKey) == Updated;
 	node.print();

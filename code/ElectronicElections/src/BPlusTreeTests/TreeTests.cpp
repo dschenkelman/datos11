@@ -28,7 +28,8 @@ void TreeTests::run()
 {
 	this->printResult("testInsertInEmptyTreeWorksCorrectly", testInsertInEmptyTreeWorksCorrectly());
 	this->printResult("testInsertInRootWithOverflowCreatesTwoLeafs", testInsertInRootWithOverflowCreatesTwoLeafs());
-	this->printResult("testInsertInLeafWithOverflowAndEnoughSpaceInBrotherBalances", testInsertInLeafWithOverflowIsSplitByParent());
+	this->printResult("testInsertInLeafWithOverflowIsSplitByParent", testInsertInLeafWithOverflowIsSplitByParent());
+	this->printResult("testInsertInInternalRootWithOverflowIsSplit", testInsertInInternalRootWithOverflowIsSplit());
 }
 
 bool TreeTests::testInsertInEmptyTreeWorksCorrectly()
@@ -117,8 +118,35 @@ bool TreeTests::testInsertInLeafWithOverflowIsSplitByParent()
 	tree.print();
 	cout << endl;
 
+	return true;
+}
+
+bool TreeTests::testInsertInInternalRootWithOverflowIsSplit()
+{
+	DistrictMethods districtMethods;
+	Tree tree("treeTests.dat", 64, &districtMethods, true);
+
+	// approximately 223 chars
+	string districts[] = {"Salta", "San Luis", "Santa Cruz", "Santa Fe", "Corrientes",
+			"Chaco", "Chubut", "Jujuy", "La Pampa",};
+
+	for (int i = 0; i < 9; i++)
+	{
+		District d(districts[i]);
+		VariableRecord dataRecord;
+		VariableRecord keyRecord;
+		dataRecord.setBytes(d.getBytes(), d.getSize());
+		keyRecord.setBytes(d.getKey(), d.getKeySize());
+
+		tree.insert(&keyRecord, &dataRecord);
+	}
+
+	tree.print();
+	cout << endl;
+
 	return false;
 }
+
 
 TreeTests::~TreeTests()
 {

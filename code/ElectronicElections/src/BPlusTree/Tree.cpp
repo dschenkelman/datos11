@@ -9,6 +9,7 @@
 #include <fstream>
 #include "LeafNode.h"
 #include "InternalNode.h"
+#include "IndexTreeBlock.h"
 
 using namespace std;
 
@@ -114,16 +115,115 @@ void Tree::handleOverflowInLeafRoot(VariableRecord *keyRecord, VariableRecord& m
 OpResult Tree::insert(VariableRecord *keyRecord, VariableRecord *dataRecord)
 {
 	VariableRecord middleRecord;
-	OpResult result = this->root->insert(keyRecord, dataRecord, &middleRecord);
+	OverflowParameter overflowParameter;
+	overflowParameter.newBlock = -1;
+	overflowParameter.overflowBlock = -1;
+	OpResult result = this->root->insert(keyRecord, dataRecord, &middleRecord, overflowParameter);
 
 	// overflow in root, split
-	if (result == Overflow && this->file->isCurrentLeaf())
+	if (result == Overflow)
 	{
-	    this->handleOverflowInLeafRoot(keyRecord, middleRecord, dataRecord);
-	}
-	else
-	{
+		if (this->file->isCurrentLeaf())
+		{
+			this->handleOverflowInLeafRoot(keyRecord, middleRecord, dataRecord);
+		}
+		else
+		{
+			TreeBlock* rootBlock = this->file->getCurrentBlock();
+			int newBlock1 = this->file->getFreeBlockManager().getNextBlock();
+			int newBlock2 = this->file->getFreeBlockManager().getNextBlock();
+			this->file->loadBlock(newBlock1);
+			this->file->pushBlock();
+			this->file->swapBlockKind();
+			//TODO: this->file->getCurrentBlock()->setLevel(one less than root);
 
+			int size = 0;
+			int index = 0;
+			VariableRecord aux;
+			int nodePointer = -1;
+			int extra = 0;
+			bool overflowBlockIncluded = false;
+
+			rootBlock->positionAtBegin();
+			while (rootBlock->getNextRecord(&aux) != NULL)
+			{
+				nodePointer = rootBlock->getNodePointer(index);
+				this->file->getCurrentBlock()->insertNodePointer(index + extra, nodePointer);
+				index++;
+				if (nodePointer == overflowParameter.overflowBlock)
+				{
+					this->file->getCurrentBlock()->forceInsert(&middleRecord);
+					overflowBlockIncluded = true;
+					size += middleRecord.getSize() + Constants::RECORD_HEADER_SIZE + IndexTreeBlock::NODE_POINTER_SIZE;
+
+					if (size > this->root->getMaxSize() / 2)
+					{
+						break;
+					}
+
+					this->file->getCurrentBlock()->insertNodePointer(index, overflowParameter.newBlock);
+					extra = 1;
+				}
+				this->file->getCurrentBlock()->forceInsert(&aux);
+				size += aux.getSize() + IndexTreeBlock::NODE_POINTER_SIZE + Constants::RECORD_HEADER_SIZE;
+				if (size > this->root->getMaxSize() / 2)
+				{
+					break;
+				}
+			}
+
+			// skip middle record
+			VariableRecord keepInParent;
+
+			if (overflowBlockIncluded && extra == 0)
+			{
+				// included block but not initial record
+				nodePointer = overflowParameter.newBlock;
+				this->file->getCurrentBlock()->insertNodePointer(index, nodePointer);
+				keepInParent = aux;
+			}
+			else
+			{
+				nodePointer = rootBlock->getNodePointer(index);
+				this->file->getCurrentBlock()->insertNodePointer(index, nodePointer);
+				rootBlock->getNextRecord(&keepInParent);
+				index++;
+			}
+
+			this->file->saveBlock();
+			this->file->popBlock();
+			this->file->loadBlock(newBlock2);
+			this->file->pushBlock();
+			this->file->swapBlockKind();
+
+			int index2 = 0;
+
+			while (rootBlock->getNextRecord(&aux) != NULL)
+			{
+				int nodePointer = rootBlock->getNodePointer(index);
+				this->file->getCurrentBlock()->insertNodePointer(index2, nodePointer);
+				if (nodePointer == overflowParameter.overflowBlock)
+				{
+					this->file->getCurrentBlock()->forceInsert(&middleRecord);
+					this->file->getCurrentBlock()->insertNodePointer(++index2, overflowParameter.newBlock);
+				}
+				this->file->getCurrentBlock()->forceInsert(&aux);
+				index++;
+				index2++;
+			}
+
+			nodePointer = rootBlock->getNodePointer(index);
+			this->file->getCurrentBlock()->insertNodePointer(index2, nodePointer);
+			this->file->saveBlock();
+			this->file->popBlock();
+
+			//TODO: Keep middle element;
+			rootBlock->clear();
+			rootBlock->insertNodePointer(0, newBlock1);
+			rootBlock->insertNodePointer(1, newBlock2);
+			rootBlock->forceInsert(&keepInParent);
+			this->file->saveBlock();
+		}
 	}
 
 	this->file->saveBlock();

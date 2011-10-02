@@ -106,11 +106,11 @@ FreeBlockManager& TreeBlockFile::getFreeBlockManager()
 void TreeBlockFile::popBlock()
 {
 	TreeBlock* block = this->blockStack.top();
-	this->isLeaf = this->currentBlock->getLevel() == 0;
 	this->blockStack.pop();
 	this->blockNumberStack.pop();
 	delete block;
 	this->currentBlock = this->blockStack.top();
+	this->isLeaf = this->currentBlock->getLevel() == 0;
 }
 
 void TreeBlockFile::pushBlock()

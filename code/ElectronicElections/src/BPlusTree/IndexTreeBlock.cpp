@@ -22,7 +22,7 @@ IndexTreeBlock::IndexTreeBlock(int size, RecordMethods* methods, bool existing)
 
 void IndexTreeBlock::clear()
 {
-	memset(this->bytes + this->RECORD_OFFSET, 0, this->maxSize);
+	memset(this->bytes + this->RECORD_OFFSET, 0, this->maxSize - this->RECORD_OFFSET);
 	this->position = RECORD_OFFSET;
     this->updateFreeSpace(this->maxSize - this->RECORD_OFFSET);
 }

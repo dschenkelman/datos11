@@ -129,33 +129,34 @@ void Tree::handleOverflowInInternalRoot(VariableRecord *keyRecord,
 	VariableRecord aux;
 	int nodePointer = -1;
 	int extra = 0;
-	bool overflowBlockIncluded = false;
+	bool overflowBlockIncludedLast = false;
 
 	rootBlock->positionAtBegin();
 	while (rootBlock->getNextRecord(&aux) != NULL)
 	{
 		size += aux.getSize() + IndexTreeBlock::NODE_POINTER_SIZE + Constants::RECORD_HEADER_SIZE;
-		if (size > this->root->getMaxSize() / 2)
+		nodePointer = rootBlock->getNodePointer(index);
+		if (size > this->root->getMaxSize() / 2 &&
+				nodePointer != overflowParameter.overflowBlock)
 		{
 			break;
 		}
 
-		nodePointer = rootBlock->getNodePointer(index);
 		this->file->getCurrentBlock()->insertNodePointer(index + extra, nodePointer);
 		index++;
 		if (nodePointer == overflowParameter.overflowBlock)
 		{
 			size += middleRecord.getSize() + Constants::RECORD_HEADER_SIZE + IndexTreeBlock::NODE_POINTER_SIZE;
 
-			if (size > this->root->getMaxSize() / 2)
-			{
-				break;
-			}
-
 			this->file->getCurrentBlock()->insertNodePointer(index, overflowParameter.newBlock);
 			extra = 1;
 			this->file->getCurrentBlock()->forceInsert(&middleRecord);
-			overflowBlockIncluded = true;
+
+			if (size > this->root->getMaxSize() / 2)
+			{
+				overflowBlockIncludedLast = true;
+				break;
+			}
 		}
 
 		this->file->getCurrentBlock()->forceInsert(&aux);
@@ -163,10 +164,16 @@ void Tree::handleOverflowInInternalRoot(VariableRecord *keyRecord,
 
 	// skip middle record
 	VariableRecord keepInParent = aux;
-	nodePointer = rootBlock->getNodePointer(index);
-	this->file->getCurrentBlock()->insertNodePointer(index + extra, nodePointer);
+
+	if (!overflowBlockIncludedLast)
+	{
+		nodePointer = rootBlock->getNodePointer(index);
+		this->file->getCurrentBlock()->insertNodePointer(index + extra, nodePointer);
+
+		index++;
+	}
+
 	rootBlock->getNextRecord(&aux);
-	index++;
 
 	this->file->saveBlock();
 	this->file->popBlock();

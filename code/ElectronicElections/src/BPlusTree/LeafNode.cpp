@@ -45,11 +45,12 @@ OpResult LeafNode::insert(VariableRecord* keyRecord, VariableRecord* dataRecord,
 	int bytes = 0;
 	this->block->positionAtBegin();
 
-	while (bytes < this->minimumSize && this->block->getNextRecord(&aux) != NULL)
+	while (this->block->getNextRecord(&aux) != NULL && bytes < this->minimumSize)
 	{
 		bytes += aux.getSize() + Constants::RECORD_HEADER_SIZE;
-		*middleRecord = aux;
 	}
+
+	*middleRecord = aux;
 
 	return Overflow;
 }

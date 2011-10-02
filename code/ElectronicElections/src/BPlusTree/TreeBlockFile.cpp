@@ -139,6 +139,8 @@ void TreeBlockFile::swapBlockKind()
 		this->isLeaf = true;
 	}
 
+	this->currentBlock->clear();
+
 	this->blockStack.push(this->currentBlock);
 }
 

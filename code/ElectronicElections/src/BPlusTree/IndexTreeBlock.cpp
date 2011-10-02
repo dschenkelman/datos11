@@ -16,15 +16,17 @@ IndexTreeBlock::IndexTreeBlock(int size, RecordMethods* methods, bool existing)
 {
 	if (!existing)
 	{
-		this->updateFreeSpace(this->freeSpace - RECORD_OFFSET);
+		this->updateFreeSpace(this->freeSpace);
 	}
 }
 
 void IndexTreeBlock::clear()
 {
-	memset(this->bytes + this->RECORD_OFFSET, 0, this->maxSize - this->RECORD_OFFSET);
+	memset(this->bytes + this->RECORD_OFFSET, 0, this->maxSize - RECORD_OFFSET);
 	this->position = RECORD_OFFSET;
-    this->updateFreeSpace(this->maxSize - this->RECORD_OFFSET);
+    this->updateFreeSpace(this->maxSize - RECORD_OFFSET);
+    this->nodesPosition = RECORD_OFFSET;
+    this->storeNodesPosition();
 }
 
 bool IndexTreeBlock::canInsertRecord(int size)

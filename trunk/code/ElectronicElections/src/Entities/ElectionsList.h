@@ -27,6 +27,12 @@ public:
 	char* getBytes();
 	void setBytes(char* bytes);
 	virtual ~ElectionsList();
+	// getters para tests. no se si son necesarios
+	char getDay();
+	char getMonth();
+	short getYear();
+	std::string getName();
+	std::string getCharge();
 };
 
 #endif /* ELECTIONSLIST_H_ */

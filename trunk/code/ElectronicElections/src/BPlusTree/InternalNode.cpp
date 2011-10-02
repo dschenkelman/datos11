@@ -184,7 +184,6 @@ void InternalNode::print()
 		{
 			InternalNode node(this->file, this->file->getCurrentBlock(), this->recordMethods);
 			node.print();
-			cout << endl;
 		}
 
 		this->file->popBlock();

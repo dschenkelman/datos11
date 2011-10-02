@@ -124,13 +124,19 @@ bool TreeTests::testInsertInLeafWithOverflowIsSplitByParent()
 bool TreeTests::testInsertInInternalRootWithOverflowIsSplit()
 {
 	DistrictMethods districtMethods;
-	Tree tree("treeTests.dat", 64, &districtMethods, true);
+	Tree tree("treeTests.dat", 80, &districtMethods, true);
 
 	// approximately 223 chars
-	string districts[] = {"Salta", "San Luis", "Santa Cruz", "Santa Fe", "Corrientes",
-			"Chaco", "Chubut", "Jujuy", "La Pampa",};
+	string districts[] = {"San Luis", "Santa Cruz", "Santa Fe", "Santiago del Estero",
+				"Corrientes", "Entre Rios",
+				"Chaco", "Chubut", "Cordoba",
+				"Mendoza", "Misiones", "Neuquen",
+				"Tierra del Fuego", "Tucuman",
+				"Rio Negro", "Salta", "San Juan",
+				"Buenos Aires", "Catamarca", "Formosa", "Jujuy", "La Pampa", "La Rioja",
+				};
 
-	for (int i = 0; i < 9; i++)
+	for (int i = 0; i < 15; i++)
 	{
 		District d(districts[i]);
 		VariableRecord dataRecord;

@@ -27,7 +27,7 @@ public:
 	char* getBytes();
 	void setBytes(char* bytes);
 	virtual ~ElectionsList();
-	// getters para tests. no se si son necesarios
+	// getters
 	char getDay();
 	char getMonth();
 	short getYear();

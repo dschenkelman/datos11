@@ -63,11 +63,7 @@ void ElectionsList::setBytes(char* bytes)
 {
 	int i = 0;
 
-	short* yearAux = new short;
-	memcpy(yearAux, bytes, sizeof(short)); i += sizeof(short);
-
-	this->year = *yearAux;
-	delete yearAux;
+	memcpy(&(this->year), bytes, sizeof(short)); i+= sizeof(short);
 	this->month = (bytes+i)[0]; i += sizeof(char);
 	this->day = (bytes+i)[0]; i += sizeof(char);
 
@@ -82,6 +78,16 @@ void ElectionsList::setBytes(char* bytes)
 	memcpy(nameAux, bytes+i, len); i+= len;
 	this->name.clear();
 	this->name.append(nameAux);
+}
+
+char* ElectionsList::getKey()
+{
+	return this->getBytes();
+}
+
+int ElectionsList::getKeySize()
+{
+	return this->getSize();
 }
 
 char ElectionsList::getDay()

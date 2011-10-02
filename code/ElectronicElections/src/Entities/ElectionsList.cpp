@@ -6,6 +6,7 @@
  */
 
 #include "ElectionsList.h"
+#include <stdlib.h>
 
 ElectionsList::ElectionsList(std::string name, char day, char month, short year, std::string charge)
 {
@@ -59,24 +60,53 @@ char* ElectionsList::getBytes()
 }
 
 void ElectionsList::setBytes(char* bytes)
-{/*
+{
 	int i = 0;
-	i += Constants::RECORD_HEADER_SIZE;
 
-	this->year = bytes + i; i += sizeof(short);
-	this->month = bytes + i; i += sizeof(char);
-	this->day = bytes + i; i += sizeof(char);
+	short* yearAux = new short;
+	memcpy(yearAux, bytes, sizeof(short)); i += sizeof(short);
 
-	char chargeLen = bytes + i;
-	char* auxCharge;
-	strncpy(auxCharge, bytes, chargeLen);
-	this->charge.clear(); this->charge.append(auxCharge);
-	i += Constants::FIELD_HEADER_SIZE + this->charge.size() + 1;
+	this->year = *yearAux;
+	delete yearAux;
+	this->month = (bytes+i)[0]; i += sizeof(char);
+	this->day = (bytes+i)[0]; i += sizeof(char);
 
-	char nameLen = bytes + i;
-	char* auxName;
-	strncpy(auxName, bytes, nameLen);
-	this->name.clear(); this->name.append(auxName);*/
+	char len = (bytes+i)[0]; i+= sizeof(char);
+	char chargeAux[len];
+	memcpy(chargeAux, bytes+i, len); i += len;
+	this->charge.clear();
+	this->charge.append(chargeAux);
+
+	len = (bytes+i)[0]; i += sizeof(char);
+	char nameAux[len];
+	memcpy(nameAux, bytes+i, len); i+= len;
+	this->name.clear();
+	this->name.append(nameAux);
+}
+
+char ElectionsList::getDay()
+{
+	return this->day;
+}
+
+char ElectionsList::getMonth()
+{
+	return this->month;
+}
+
+short ElectionsList::getYear()
+{
+	return this->year;
+}
+
+std::string ElectionsList::getName()
+{
+	return this->name;
+}
+
+std::string ElectionsList::getCharge()
+{
+	return this->charge;
 }
 
 ElectionsList::~ElectionsList()

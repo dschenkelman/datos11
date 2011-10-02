@@ -22,6 +22,7 @@ void ElectionsListTests::run()
 {
 	printResult("testGetSize", testGetSize());
 	printResult("testGetBytes", testGetBytes());
+	printResult("testSetBytes", testSetBytes());
 }
 
 bool ElectionsListTests::testGetSize()
@@ -79,10 +80,9 @@ bool ElectionsListTests::testSetBytes()
 	std::string name = "Lista19";
 	std::string charge = "Intendente";
 
-	char bytes[27];
+	char bytes[25];
 
 	int i = 0, size = 25;
-	memcpy(bytes, &size, Constants::RECORD_HEADER_SIZE); i += Constants::RECORD_HEADER_SIZE;
 
 	short year = 2009;
 	memcpy(bytes+i, &year, sizeof(short)); i += sizeof(short);
@@ -102,7 +102,31 @@ bool ElectionsListTests::testSetBytes()
 	ElectionsList electionsList("Lista1", 11, 11, 2000, "Gobernador");
 	electionsList.setBytes(bytes);
 
-	// faltan implementar getters y setters para los atributos
+	if(electionsList.getDay() != day)
+	{
+		return false;
+	}
+
+	if(electionsList.getMonth() != month)
+	{
+		return false;
+	}
+
+	if(electionsList.getYear() != year)
+	{
+		return false;
+	}
+
+	if(electionsList.getName() != name)
+	{
+		return false;
+	}
+
+	if(electionsList.getCharge() != charge)
+	{
+		return false;
+	}
+
 	return true;
 }
 

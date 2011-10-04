@@ -9,6 +9,8 @@
 #include "../Entities/ElectionsList.h"
 #include <iostream>
 
+using namespace std;
+
 ElectionsListTests::ElectionsListTests()
 {
 }
@@ -50,7 +52,7 @@ bool ElectionsListTests::testGetBytes()
 
 	char bytes[25];
 
-	int i = 0, size = 25;
+	int i = 0;
 
 	short year = 2009;
 	memcpy(bytes+i, &year, sizeof(short)); i += sizeof(short);
@@ -72,6 +74,34 @@ bool ElectionsListTests::testGetBytes()
 		return false;
 	}
 
+	ElectionsList listTwo("L20", 11, 11, 2003, "Alcalde");
+	listTwo.setBytes(list.getBytes());
+
+	if(list.getDay() != listTwo.getDay())
+	{
+		return false;
+	}
+
+	if(list.getMonth() != listTwo.getMonth())
+	{
+		return false;
+	}
+
+	if(list.getYear() != listTwo.getYear())
+	{
+		return false;
+	}
+
+	if(list.getName() != listTwo.getName())
+	{
+		return false;
+	}
+
+	if(list.getCharge() != listTwo.getCharge())
+	{
+		return false;
+	}
+
 	return true;
 }
 
@@ -82,7 +112,7 @@ bool ElectionsListTests::testSetBytes()
 
 	char bytes[25];
 
-	int i = 0, size = 25;
+	int i = 0;
 
 	short year = 2009;
 	memcpy(bytes+i, &year, sizeof(short)); i += sizeof(short);

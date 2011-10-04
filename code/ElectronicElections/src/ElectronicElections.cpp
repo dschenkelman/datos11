@@ -15,6 +15,8 @@
 #include "BPlusTreeTests/TreeTests.h"
 #include "Hash/HashTest.h"
 #include "EntitiesTests/DistrictTests.h"
+#include "EntitiesTests/ElectionsListTests.h"
+#include "EntitiesTests/CandidateTests.h"
 
 using namespace std;
 
@@ -30,17 +32,29 @@ int main()
 	LeafNodeTests leafTests;
 	leafTests.run();*/
 
-//	cout << "HASH TESTS" << endl;
-//	HashTest hashTests;
-//	hashTests.run();
-//	cout << "LEAF NODE TESTS" << endl;
-//	LeafNodeTests leafTests;
-//	leafTests.run();
-//	cout << "DISTRICT TESTS" << endl;
-//	DistrictTests districtTests;
-//	districtTests.run();
+	/*cout << "Hash Tests" << endl;
+	HashTest hashTests;
+	hashTests.run();
 
+	cout << "Leaf Node Tests" << endl;
+	LeafNodeTests leafTests;
+	leafTests.run();
+
+	cout << "District Tests" << endl;
+	DistrictTests districtTests;
+	districtTests.run();
+
+	cout << "Tree Tests" << endl;
 	TreeTests treeTests;
 	treeTests.run();
+
+	cout << "Elections List Tests" << endl;
+	ElectionsListTests electionTests;
+	electionTests.run();
+
+	cout << "Candidate Tests" << endl;
+	CandidateTests ct;
+	ct.run();*/
+
 	return 0;
 }

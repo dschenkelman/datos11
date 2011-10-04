@@ -6,6 +6,7 @@
  */
 
 #include "ElectionsListMethods.h"
+#include "ElectionsList.h"
 #include <iostream>
 #include <stdlib.h>
 

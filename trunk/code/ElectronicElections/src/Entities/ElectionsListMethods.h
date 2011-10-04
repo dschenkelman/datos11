@@ -8,7 +8,8 @@
 #ifndef ELECTIONSLISTMETHODS_H_
 #define ELECTIONSLISTMETHODS_H_
 
-#include "RecordMethods.h"
+#include "../VariableBlocks/RecordMethods.h"
+#include "../VariableBlocks/Constants.h"
 
 class ElectionsListMethods: public RecordMethods {
 public:

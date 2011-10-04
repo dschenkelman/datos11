@@ -22,6 +22,9 @@ public:
 	SimpleVariableBlock(int size, RecordMethods* methods);
 	// calculates the amount of records in the block
 	// and the amount of free space available in it
+	int getOverflowedBlock();
+	void setNoOverflow();
+	void becomesOverflow(char ovflowBlock);
 	virtual void updateInformation();
 	virtual void clear();
 	bool isEmpty();

@@ -73,7 +73,40 @@ void HashBlockFile::printContent()
 		}
 		blockNumber++;
 	}
+}
 
+int HashBlockFile::getAvailableOverflowBlock(const char* key, VariableRecord* record)
+{
+	SimpleVariableBlock* block = this->overflowFile->getCurrentBlock();
+	int freeSpace = block->getFreeSpace();
+	int ovflwBlock;
+	bool foundRecord = false;
+	while(freeSpace < record->getSize()+2)
+	{
+		if(block->findRecord(key, &record))
+		{
+			foundRecord = true;
+			break;
+		}
+		ovflwBlock = block->getOverflowedBlock();
+		if(ovflwBlock == -1)
+			break;
+		this->overflowFile->loadBlock(ovflwBlock);
+		block = this->overflowFile->getCurrentBlock();
+		freeSpace = block->getFreeSpace();
+	}
+	if(foundRecord)
+		return -1;//error number. value found!
+	if( ovflwBlock == -1)
+	{
+		int freeBlock = this->overflowFile->getFirstFreeEmptyBlock();
+		this->overflowFile->getCurrentBlock()->becomesOverflow(freeBlock);
+		this->ovflowBlockUsed = true;
+		this->saveBlock();
+		return ovflwBlock;
+	}
+	//enough space in block. insert
+	return ovflwBlock;
 }
 
 bool HashBlockFile::insertRecord(const char* key, const char* recordBytes, short size)
@@ -116,8 +149,11 @@ bool HashBlockFile::insertRecord(const char* key, const char* recordBytes, short
 		this->overflowFile->loadBlock(ovflowBlock);
 		if(!this->overflowFile->insertRecord(key, recordBytes, size) )
 		{
-			if( record!= NULL) delete record;
-			return false;
+			//overflow block is full. insert in another
+			if((ovflowBlock = this->getAvailableOverflowBlock(key, record)) == -1)
+				return false; //key was found
+			this->overflowFile->loadBlock(ovflowBlock);
+			this->overflowFile->insertRecord(key, recordBytes, size);
 		}
 		this->ovflowBlockUsed = true;
 		this->saveBlock();
@@ -219,22 +255,32 @@ bool HashBlockFile::removeRecord(const char* key)
 		}
 	}
 	int ovflowBlock;
+	VariableRecord* record;
 	if((ovflowBlock = this->currentBlock->getOverflowedBlock()) != -1)
-	{
+	{//to put it in a method for get, update and remove
 		this->overflowFile->loadBlock(ovflowBlock);
-		if(this->overflowFile->getCurrentBlock()->removeRecord(key))
+		SimpleVariableBlock* block = this->overflowFile->getCurrentBlock();
+		while(!block->findRecord(key, &record))
+		{
+			ovflowBlock = block->getOverflowedBlock();
+			if(ovflowBlock == -1)
+				return false; //key was not found
+			this->overflowFile->loadBlock(ovflowBlock);
+			block = this->overflowFile->getCurrentBlock();
+		}
+		if(block->removeRecord(key))
 		{
 			this->ovflowBlockUsed = true;
 			if(this->overflowFile->getCurrentBlock()->isEmpty())
 			{
 				this->currentBlock->setNoOverflow();
 				this->hashBlockUsed = true;
-
 			}
 			this->saveBlock();
 			return true;
 		}
 	}
+	//it doesn't get here
 	return false;
 }
 

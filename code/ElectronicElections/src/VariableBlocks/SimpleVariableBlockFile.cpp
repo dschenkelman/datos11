@@ -24,6 +24,8 @@ BaseVariableBlockFile(name, bSize, methods)
 		this->dataFile.open(this->fileName.c_str(), ios::binary | ios::in | ios::out | ios::trunc);
 		char* initialValue= new char[bSize * 2]; //to start with an empty block
 		memset(initialValue, 0, bSize *2);
+		char noOverflow = -1;
+		memcpy(initialValue+bSize, &noOverflow, sizeof(char));
 		memset(this->positionToDataBlocks, 0, bSize-4);
 		this->blockAmount = 1;
 		memcpy(initialValue, &blockAmount, sizeof(long));

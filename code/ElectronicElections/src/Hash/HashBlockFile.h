@@ -22,6 +22,7 @@ class HashBlockFile : BaseVariableBlockFile
 	int totalBlocks;
 	void initializefile();
 	int hashFunction(const char* key);
+	int getAvailableOverflowBlock(const char* key, VariableRecord* record);
 
 public:
 	HashBlockFile(std::string name, int bSize, RecordMethods* methods, int blockamount, bool createNew);

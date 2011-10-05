@@ -9,6 +9,7 @@
 #include "Administrator.h"
 #include "../VariableBlocks/Constants.h"
 #include <iostream>
+#include <cstring>
 
 using namespace std;
 
@@ -49,8 +50,8 @@ void AdministratorMethods::printKey(const char* key, int recordSize)
 
 VariableRecord* AdministratorMethods::getKeyRecord(const char* recordBytes, int recordSize)
 {
-	VariableRecord record = new VariableRecord();
-	record.setBytes(recordBytes, recordSize);
+	VariableRecord* record = new VariableRecord();
+	record->setBytes(recordBytes, recordSize);
 
 	return record;
 }

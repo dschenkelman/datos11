@@ -17,6 +17,7 @@
 #include "EntitiesTests/DistrictTests.h"
 #include "EntitiesTests/ElectionsListTests.h"
 #include "EntitiesTests/CandidateTests.h"
+#include "EntitiesTests/AdministratorTests.h"
 
 using namespace std;
 
@@ -56,5 +57,8 @@ int main()
 	CandidateTests ct;
 	ct.run();*/
 
+	cout << "Administrator Tests" << endl;
+	AdministratorTests at;
+	at.run();
 	return 0;
 }

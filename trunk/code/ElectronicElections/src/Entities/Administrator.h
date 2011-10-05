@@ -17,6 +17,7 @@ private:
 	std::string name;
 	std::string password;
 	char* bytes;
+	char* key;
 public:
 	Administrator(std::string name, std::string password);
 	char* getBytes();

@@ -32,10 +32,12 @@ int main()
 	TreeBlockFileTests treeBlocktests;
 	treeBlocktests.run();*/
 
-//	cout << "LEAF NODE TESTS" << endl;
+//	cout << "LeafNode Tests" << endl;
 //	LeafNodeTests leafTests;
 //	leafTests.run();
-//	cout << "DISTRICT TESTS" << endl;
+
+
+//	cout << "District Tests" << endl;
 //	DistrictTests districtTests;
 //	districtTests.run();
 
@@ -59,6 +61,7 @@ int main()
 	AdministratorTests at;
 	at.run();*/
 
+	cout << "Count Tests" << endl;
 	CountTests ct;
 	ct.run();
 

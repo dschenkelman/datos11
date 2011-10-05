@@ -22,6 +22,7 @@ class HashBlockFile : BaseVariableBlockFile
 	int totalBlocks;
 	void initializefile();
 	int hashFunction(const char* key);
+	int findInOverflowBlocks(const char* key, VariableRecord** record, bool getFlag);
 	int getAvailableOverflowBlock(const char* key, VariableRecord* record);
 
 public:

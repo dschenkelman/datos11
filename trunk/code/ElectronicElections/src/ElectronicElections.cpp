@@ -18,6 +18,7 @@
 #include "EntitiesTests/ElectionsListTests.h"
 #include "EntitiesTests/CandidateTests.h"
 #include "EntitiesTests/AdministratorTests.h"
+#include "EntitiesTests/CountTests.h"
 
 using namespace std;
 
@@ -37,7 +38,8 @@ int main()
 //	cout << "DISTRICT TESTS" << endl;
 //	DistrictTests districtTests;
 //	districtTests.run();
-	cout << "Hash Tests" << endl;
+
+/*	cout << "Hash Tests" << endl;
 	HashTest hashTests;
 	hashTests.run();
 
@@ -55,6 +57,10 @@ int main()
 
 	cout << "Administrator Tests" << endl;
 	AdministratorTests at;
-	at.run();
+	at.run();*/
+
+	CountTests ct;
+	ct.run();
+
 	return 0;
 }

@@ -34,8 +34,8 @@ void CandidateMethods::printKey(const char* key, int recordSize)
 	Candidate c(12, 12, 2000, "Invalid", "Invalid", 10101010);
 	c.setBytes((char*)key);
 
-	cout << "(" << c.getYear() << "-" << c.getMonth() << "-" << c.getDay() << " " << c.getCharge() <<
-			" " << c.getName() << " " << c.getDni() << ")" << endl;
+	cout << "(" << c.getYear() << ", " << c.getMonth() << ", " << c.getDay() << ", " << c.getCharge() <<
+			", " << c.getName() << ", " << c.getDni() << ")" << endl;
 }
 
 VariableRecord* CandidateMethods::getKeyRecord(const char* recordBytes, int recordSize)

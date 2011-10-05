@@ -53,7 +53,7 @@ bool AdministratorTests::testGetKeySize()
 	std::string pass = "123456";
 	Administrator adm(name, pass);
 
-	int size = name.size() + 1;
+	int size = name.size() + 1 + Constants::FIELD_HEADER_SIZE;
 
 	return size == adm.getKeySize();
 }
@@ -115,7 +115,13 @@ bool AdministratorTests::testGetKey()
 	std::string pass = "123456";
 	Administrator adm(name, pass);
 
-	if(strcmp(adm.getKey(), name.c_str()) != 0)
+	int size = adm.getKeySize();
+
+	char key[size];
+	memcpy(key, &size, Constants::FIELD_HEADER_SIZE);
+	memcpy(key+Constants::FIELD_HEADER_SIZE, name.c_str(), size);
+
+	if(strcmp(adm.getKey(), key) != 0)
 	{
 		return false;
 	}

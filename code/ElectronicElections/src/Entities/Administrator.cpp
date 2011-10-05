@@ -14,6 +14,7 @@ Administrator::Administrator(std::string name, std::string password)
 	this->name = name;
 	this->password.append(password, 0, PASSWORD_SIZE);
 	this->bytes = NULL;
+	this->key = NULL;
 }
 
 int Administrator::getSize()
@@ -28,7 +29,7 @@ int Administrator::getSize()
 
 int Administrator::getKeySize()
 {
-	return this->name.size() + 1; // + Constants::FIELD_HEADER_SIZE ??
+	return this->name.size() + 1 + Constants::FIELD_HEADER_SIZE;
 }
 
 char* Administrator::getBytes()
@@ -75,7 +76,18 @@ void Administrator::setBytes(char* bytes)
 
 char* Administrator::getKey()
 {
-	return (char*)this->name.c_str();
+	if(this->key != NULL)
+	{
+		delete this->key;
+	}
+
+	int size = getKeySize();
+	this->key = new char[size];
+
+	memcpy(key, &size, Constants::FIELD_HEADER_SIZE);
+	memcpy(key+Constants::FIELD_HEADER_SIZE, this->name.c_str(), size);
+
+	return this->key;
 }
 
 std::string Administrator::getPassword()
@@ -93,6 +105,11 @@ Administrator::~Administrator()
 	if(this->bytes != NULL)
 	{
 		delete this->bytes;
+	}
+
+	if(this->key != NULL)
+	{
+		delete this->key;
 	}
 }
 

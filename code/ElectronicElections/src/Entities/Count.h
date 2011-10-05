@@ -13,6 +13,7 @@
 class Count {
 private:
 	char* bytes;
+	char* key;
 	short year;
 	char month;
 	char day;
@@ -28,6 +29,14 @@ public:
 	int getKeySize();
 	void setBytes(char* bytes);
 	virtual ~Count();
+	//getters
+	short getYear();
+	char getMonth();
+	char getDay();
+	std::string getCharge();
+	std::string getListName();
+	std::string getDistrict();
+	unsigned int getQuantity();
 };
 
 #endif /* COUNT_H_ */

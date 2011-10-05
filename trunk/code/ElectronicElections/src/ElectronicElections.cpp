@@ -29,21 +29,17 @@ int main()
 
 	/* Does not work yet
 	TreeBlockFileTests treeBlocktests;
-	treeBlocktests.run();
-	LeafNodeTests leafTests;
-	leafTests.run();*/
+	treeBlocktests.run();*/
 
-	/*cout << "Hash Tests" << endl;
+//	cout << "LEAF NODE TESTS" << endl;
+//	LeafNodeTests leafTests;
+//	leafTests.run();
+//	cout << "DISTRICT TESTS" << endl;
+//	DistrictTests districtTests;
+//	districtTests.run();
+	cout << "Hash Tests" << endl;
 	HashTest hashTests;
 	hashTests.run();
-
-	cout << "Leaf Node Tests" << endl;
-	LeafNodeTests leafTests;
-	leafTests.run();
-
-	cout << "District Tests" << endl;
-	DistrictTests districtTests;
-	districtTests.run();
 
 	cout << "Tree Tests" << endl;
 	TreeTests treeTests;
@@ -55,7 +51,7 @@ int main()
 
 	cout << "Candidate Tests" << endl;
 	CandidateTests ct;
-	ct.run();*/
+	ct.run();
 
 	cout << "Administrator Tests" << endl;
 	AdministratorTests at;

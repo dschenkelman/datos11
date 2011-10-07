@@ -45,7 +45,7 @@ bool ChargeTests::testGetSize()
 
 	Charge c(charge, vector);
 
-	int size = Constants::FIELD_HEADER_SIZE * 3 + 3 + charge.size() + chargeTwo.size() + chargeThree.size();
+	int size = Constants::FIELD_HEADER_SIZE * 3 + 3 + charge.size() + chargeTwo.size() + chargeThree.size() + Constants::FIELD_HEADER_SIZE;
 
 	if(c.getSize() != size)
 	{

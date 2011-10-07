@@ -21,7 +21,9 @@ TreeTests::TreeTests()
 
 void TreeTests::printResult(string testName, bool result)
 {
-	cout << (testName.append(result ? ": Passed\n" : ": FAILED!!!\n"));
+	cout << (testName.append(result ? ": Passed\n" : ": FAILED!!!\n")) << endl;
+	cout << "========================================================";
+	cout << endl;
 }
 
 void TreeTests::run()
@@ -30,6 +32,8 @@ void TreeTests::run()
 	this->printResult("testInsertInRootWithOverflowCreatesTwoLeafs", testInsertInRootWithOverflowCreatesTwoLeafs());
 	this->printResult("testInsertInLeafWithOverflowIsSplitByParent", testInsertInLeafWithOverflowIsSplitByParent());
 	this->printResult("testInsertInInternalRootWithOverflowIsSplit", testInsertInInternalRootWithOverflowIsSplit());
+	this->printResult("testRemoveWithoutUnderflowWorksCorrectly", testRemoveWithoutUnderflowWorksCorrectly());
+
 }
 
 bool TreeTests::testInsertInEmptyTreeWorksCorrectly()
@@ -155,6 +159,34 @@ bool TreeTests::testInsertInInternalRootWithOverflowIsSplit()
 	return false;
 }
 
+bool TreeTests::testRemoveWithoutUnderflowWorksCorrectly()
+{
+	DistrictMethods districtMethods;
+	Tree tree("treeTests.dat", 416, &districtMethods, true);
+
+	string districts[] = {"San Luis", "Santa Cruz", "Santa Fe", "Santiago del Estero",
+			"Corrientes", "Tierra del Fuego", "Tucuman", "Entre Rios",
+			};
+
+	for (int i = 0; i < 8; i++)
+	{
+		District d(districts[i]);
+		VariableRecord dataRecord;
+		VariableRecord keyRecord;
+		dataRecord.setBytes(d.getBytes(), d.getSize());
+		keyRecord.setBytes(d.getKey(), d.getKeySize());
+		tree.insert(&keyRecord, &dataRecord);
+	}
+	tree.print();
+	cout << endl << "Removing Tierra del Fuego..." << endl;
+	District d("Tierra del Fuego");
+	tree.remove(d.getKey());
+
+	tree.print();
+	cout << endl;
+
+	return true;
+}
 
 TreeTests::~TreeTests()
 {

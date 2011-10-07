@@ -33,16 +33,16 @@ int main()
 	TreeBlockFileTests treeBlocktests;
 	treeBlocktests.run();*/
 
-//	cout << "LeafNode Tests" << endl;
-//	LeafNodeTests leafTests;
-//	leafTests.run();
+	/*
+	cout << "LeafNode Tests" << endl;
+	LeafNodeTests leafTests;
+	leafTests.run();
 
+	cout << "District Tests" << endl;
+	DistrictTests districtTests;
+	districtTests.run();
 
-//	cout << "District Tests" << endl;
-//	DistrictTests districtTests;
-//	districtTests.run();
-
-/*	cout << "Hash Tests" << endl;
+	cout << "Hash Tests" << endl;
 	HashTest hashTests;
 	hashTests.run();
 
@@ -64,10 +64,11 @@ int main()
 
 	cout << "Count Tests" << endl;
 	CountTests ct;
-	ct.run();*/
+	ct.run();
 
 	cout << "Charge Tests" << endl;
 	ChargeTests ct;
 	ct.run();
+	*/
 	return 0;
 }

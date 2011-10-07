@@ -22,6 +22,8 @@ int Charge::getSize()
 	int size = 0;
 	size += Constants::FIELD_HEADER_SIZE + this->charge.size() + 1;
 
+	size += Constants::FIELD_HEADER_SIZE;
+
 	for(int i = 0; i < this->chargeList.size(); i++)
 	{
 		size += Constants::FIELD_HEADER_SIZE + 1 + this->chargeList.at(i).size();
@@ -102,7 +104,7 @@ char* Charge::getBytes()
 
 	for(int j = 0; j < this->chargeList.size(); j++)
 	{
-		len = Constants::FIELD_HEADER_SIZE + 1 + this->chargeList.at(j).size();
+		len = 1 + this->chargeList.at(j).size();
 		memcpy(this->bytes+i, &len, Constants::FIELD_HEADER_SIZE); i += Constants::FIELD_HEADER_SIZE;
 		memcpy(this->bytes+i, this->chargeList.at(j).c_str(), len); i += len;
 	}
@@ -122,5 +124,14 @@ std::vector<std::string> Charge::getChargeList()
 
 Charge::~Charge()
 {
+	if(this->bytes != NULL)
+	{
+		delete this->bytes;
+	}
+
+	if(this->key != NULL)
+	{
+		delete this->key;
+	}
 }
 

@@ -7,8 +7,10 @@
 
 #include "ChargeMethods.h"
 #include "../Entities/Charge.h"
+#include "../VariableBlocks/Constants.h"
 #include <iostream>
 #include <string>
+#include <cstring>
 
 using namespace std;
 

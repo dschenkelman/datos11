@@ -19,6 +19,7 @@
 #include "EntitiesTests/CandidateTests.h"
 #include "EntitiesTests/AdministratorTests.h"
 #include "EntitiesTests/CountTests.h"
+#include "EntitiesTests/ChargeTests.h"
 
 using namespace std;
 
@@ -59,11 +60,14 @@ int main()
 
 	cout << "Administrator Tests" << endl;
 	AdministratorTests at;
-	at.run();*/
+	at.run();
 
 	cout << "Count Tests" << endl;
 	CountTests ct;
-	ct.run();
+	ct.run();*/
 
+	cout << "Charge Tests" << endl;
+	ChargeTests ct;
+	ct.run();
 	return 0;
 }

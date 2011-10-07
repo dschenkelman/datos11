@@ -162,5 +162,14 @@ unsigned int Count::getQuantity()
 
 Count::~Count()
 {
+	if(this->key != NULL)
+	{
+		delete this->key;
+	}
+
+	if(this->bytes != NULL)
+	{
+		delete this->bytes;
+	}
 }
 

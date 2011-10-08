@@ -29,9 +29,9 @@ public:
 	HashBlockFile(std::string name, int bSize, RecordMethods* methods, int blockamount, bool createNew);
 	virtual HashBlock* getCurrentBlock();
 	void loadRecord(const char* key, VariableRecord* record);
-	bool insertRecord(const char* key, const char* recordBytes, short size);
-	bool internalInsertRecord(const char* key, const char* recordBytes,
-			short size, bool force);
+	bool insertRecord(const char* key, VariableRecord* record);
+	//bool internalInsertRecord(const char* key, const char* recordBytes,
+			//short size, bool force);
 	bool removeRecord(const char* key);
 	bool getRecord(const char* key, VariableRecord** record);
 	bool updateRecord(const char* key, VariableRecord* record);

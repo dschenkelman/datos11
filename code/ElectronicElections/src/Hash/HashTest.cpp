@@ -58,6 +58,8 @@ void HashTest::testInsert()
 		delete [] recordKey;
 	}
 	this->file->printContent();
+	std::cout << "Inserted Hash successful" << std::endl;
+	std::cout << "==================================" << std::endl;
 }
 
 void HashTest::testGetRecord()
@@ -97,8 +99,8 @@ void HashTest::testUpdateRecord()
 
 	CustomerMethods* cm;
 	Customer c;
-	c.firstName = "John"; //char= 5
-	c.lastName = "Connor"; //char= 7
+	c.firstName = "dami"; //char= 5
+	c.lastName = "shenke"; //char= 7
 	c.balance = 2; //not relevant
 	int keySize = 5 + 7 - 1;
 	char *recordKey = new char[keySize];
@@ -122,8 +124,8 @@ void HashTest::testRemove()
 	std::cout << "REMOVE Hash.." << std::endl;
 
 	char firstNames[9][5] = {"John", "Mike", "Tony", "Rick", "Josh","gaby","dami", "juan","aleT"};
-	char lastNames[5][7] = {"Connor", "Potter", "Wesley", "Mordor", "Gondor"};
-	for(long i = 0;i < 10;++i)
+	char lastNames[8][7] = {"Connor", "Potter", "Wesley", "Mordor", "Gondor", "shenke", "ostrow", "Durand"};
+	for(long i = 0;i < 180;++i)
 	{
 		int fn = rand() % 9;
 		int ln = rand() % 5;
@@ -145,6 +147,8 @@ void HashTest::testRemove()
 		delete gotRecord;
 	}
 	this->file->printContent();
+	std::cout << "Remove Successful" << endl;
+	std::cout << "==================================" << std::endl;
 }
 
 void HashTest::testEmptyBlock(int blockNumber)
@@ -161,16 +165,13 @@ void HashTest::testEmptyBlock(int blockNumber)
 
 void HashTest::run()
 {
-	this->testEmptyBlock(2);
 	this->testInsert();
-	std::cout << "Inserted Hash successful" << std::endl;
-	std::cout << "==================================" << std::endl;
+
 	this->testGetRecord();
 	this->testUpdateRecord();
-	//this->testRemove();
+	this->testRemove();
 	this->testEmptyBlock(2);
-	std::cout << "Remove Successful" << endl;
-	std::cout << "==================================" << std::endl;
+
 }
 
 HashTest::~HashTest()

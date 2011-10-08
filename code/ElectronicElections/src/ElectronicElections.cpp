@@ -48,12 +48,12 @@ int run_tests()
 
 	cout << "Hash Tests" << endl;
 	HashTest hashTests;
-	hashTests.run();
+	hashTests.run();*/
 
 	cout << "Tree Tests" << endl;
 	TreeTests treeTests;
 	treeTests.run();
-
+	/*
 	cout << "Elections List Tests" << endl;
 	ElectionsListTests electionTests;
 	electionTests.run();
@@ -77,7 +77,14 @@ int run_tests()
 	return 0;
 }
 
-int main() {
+int main()
+{
+	bool debug = true;
+	if (debug)
+	{
+		run_tests();
+		return 0;
+	}
 	option *main = new option[2];
 	main[0].label = "Run main program";
 	main[1].label = "Run tests";

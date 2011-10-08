@@ -21,6 +21,7 @@ class Tree {
     void handleOverflowInLeafRoot(VariableRecord *keyRecord, VariableRecord& middleRecord, VariableRecord *dataRecord);
     void handleOverflowInInternalRoot(VariableRecord *keyRecord, VariableRecord& middleRecord,
     		VariableRecord *dataRecord, OverflowParameter& overflowParameter);
+    void changeBlock(int newBlock2, VariableRecord & middleRecord);
 public:
 	Tree(std::string fileName, int blockSize, RecordMethods* methods, bool createNew);
 	OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord);

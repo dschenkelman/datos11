@@ -13,7 +13,8 @@
 
 enum OpResult
 {
-        Updated,
+		Unchanged,
+		Updated,
         Overflow,
         Underflow,
         NotFound,

@@ -17,7 +17,9 @@ class LeafNode: public Node
 {
 private:
 	int minimumSize;
-	int getMinimumSize();
+	int maximumSize;
+	int calculateMinimumSize();
+	int calculateMaximumSize();
 public:
 	LeafNode(TreeBlock* tb, RecordMethods* methods);
 	virtual OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord,

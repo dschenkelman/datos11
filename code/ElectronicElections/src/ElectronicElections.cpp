@@ -20,11 +20,13 @@
 #include "EntitiesTests/AdministratorTests.h"
 #include "EntitiesTests/CountTests.h"
 #include "EntitiesTests/ChargeTests.h"
+#include "Voting/Menu.h"
 
 using namespace std;
 
-int main()
+int run_tests()
 {
+	cout << "***** RUNNING TESTS *****" << endl;
 	srand (time(NULL));
 	//SimpleVariableBlockFileTests rlvTest;
 	//rlvTest.run();
@@ -70,5 +72,14 @@ int main()
 	ChargeTests ct;
 	ct.run();
 	*/
+	return 0;
+}
+
+int main() {
+	option *opts = new option[2];
+	opts[0].label = "Run main program";
+	opts[1].label = "Run tests";
+
+	if ( Menu(opts,2).ask() ) return run_tests();
 	return 0;
 }

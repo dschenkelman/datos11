@@ -356,12 +356,28 @@ bool HashBlockFile::removeRecord(const char* key)
 		if(this->overflowFile->getCurrentBlock()->removeRecord(key))
 		{
 			this->ovflowBlockUsed = true;
-			if(this->overflowFile->getCurrentBlock()->isEmpty())
-			{
-				this->currentBlock->setNoOverflow();
-				this->hashBlockUsed = true;
-			}
 			this->saveBlock();
+
+			//if empty, check above for pending registers
+			if(this->overflowFile->getCurrentBlock()->isEmpty() &&
+					this->overflowFile->getCurrentBlock()->getOverflowedBlock() == -1)
+			{
+				if(ovflowBlock == foundInBlock) //hash block becomes des-overflow
+				{
+					this->currentBlock->setNoOverflow();
+					this->hashBlockUsed = true;
+					this->saveBlock();
+					return true;
+				}
+				this->overflowFile->loadBlock(ovflowBlock);
+				while((ovflowBlock = this->overflowFile->getCurrentBlock()->getOverflowedBlock() )!= foundInBlock)
+				{
+					this->overflowFile->loadBlock(ovflowBlock);//overflow -1 should not appear!!
+				}
+				this->overflowFile->getCurrentBlock()->setNoOverflow();
+				this->ovflowBlockUsed = true;
+				this->saveBlock();
+			}
 			return true;
 		}
 	}

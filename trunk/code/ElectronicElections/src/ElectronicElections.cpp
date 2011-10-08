@@ -22,13 +22,14 @@
 #include "EntitiesTests/ChargeTests.h"
 #include "Voting/Menu.h"
 #include "Voting.h"
+#include <time.h>
 
 using namespace std;
 
 int run_tests()
 {
 	cout << "***** RUNNING TESTS *****" << endl;
-	srand (time(NULL));
+	srand(time(NULL));
 	//SimpleVariableBlockFileTests rlvTest;
 	//rlvTest.run();
 

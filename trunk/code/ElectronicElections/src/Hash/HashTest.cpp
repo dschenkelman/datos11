@@ -26,12 +26,12 @@ void HashTest::testInsert()
 	std::cout << "==================================" << std::endl;
 	std::cout << "Insert Hash " << std::endl;
 
-	char firstNames[9][5] = {"John", "Mike", "Tony", "Rick", "Josh","gaby","dami", "juan","aleT"};
-	char lastNames[5][7] = {"Connor", "Potter", "Wesley", "Mordor", "Gondor"};
-	for(long i = 0;i < 70;++i)
+	char firstNames[10][5] = {"John", "Mike", "Tony", "Rick", "Josh", "gaby", "dami", "juan","aleT", "gonz"};
+	char lastNames[9][7] = {"Connor", "Potter", "Wesley", "Mordor", "Gondor", "ostrow", "shenke", "Torrad", "Durand"};
+	for(long i = 0;i < 100;++i)
 	{
-		int fn = rand() % 9;
-		int ln = rand() % 5;
+		int fn = rand() % 10;
+		int ln = rand() % 9;
 		Customer c;
 		c.firstName = firstNames[fn];
 		c.lastName = lastNames[ln];
@@ -167,7 +167,7 @@ void HashTest::run()
 	std::cout << "==================================" << std::endl;
 	this->testGetRecord();
 	this->testUpdateRecord();
-	this->testRemove();
+	//this->testRemove();
 	this->testEmptyBlock(2);
 	std::cout << "Remove Successful" << endl;
 	std::cout << "==================================" << std::endl;

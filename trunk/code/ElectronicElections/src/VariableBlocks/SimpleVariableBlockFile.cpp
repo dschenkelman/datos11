@@ -78,7 +78,7 @@ bool SimpleVariableBlockFile::internalInsertRecord(const char* key,
 	int blockNumber = 1;
 	int blockToInsert = -1;
 
-	this->positionAtBlock(0);
+	this->positionAtBlock(1);
 	while(!this->isAtEOF())
 	{
 		this->loadBlock(blockNumber);
@@ -107,6 +107,7 @@ bool SimpleVariableBlockFile::internalInsertRecord(const char* key,
 			blockToInsert = blockNumber;
 		}
 		blockNumber++;
+		this->positionAtBlock(blockNumber);
 	}
 
 	if (blockToInsert != -1)
@@ -255,8 +256,12 @@ void SimpleVariableBlockFile::saveBlock()
 {
 
 	this->positionAtBlock(this->currentBlockNumber);
+	char bytes[this->blockSize];
+	memcpy(bytes, this->currentBlock->getBytes(), this->blockSize);
+	int overflwBlock = this->getCurrentBlock()->getOverflowedBlock();
+	memcpy(bytes, &overflwBlock, sizeof(char));
 	int occupiedSpace = this->blockSize - this->currentBlock->getFreeSpace();
-	this->dataFile.write(this->currentBlock->getBytes(), this->blockSize);
+	this->dataFile.write(bytes, this->blockSize);
 	//writing occupied size of all blocks in first block
 	memcpy(this->positionToDataBlocks + (this->currentBlockNumber-1) * 4,
 				&occupiedSpace, 4);

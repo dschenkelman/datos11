@@ -28,6 +28,7 @@ class HashBlockFile : BaseVariableBlockFile
 public:
 	HashBlockFile(std::string name, int bSize, RecordMethods* methods, int blockamount, bool createNew);
 	virtual HashBlock* getCurrentBlock();
+	void loadRecord(const char* key, VariableRecord* record);
 	bool insertRecord(const char* key, const char* recordBytes, short size);
 	bool internalInsertRecord(const char* key, const char* recordBytes,
 			short size, bool force);

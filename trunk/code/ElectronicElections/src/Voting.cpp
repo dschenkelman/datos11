@@ -1,17 +1,17 @@
 /*
- * VotingDb.cpp
+ * Voting.cpp
  *
- *  Created on: 17/09/2011
+ *  Created on: 08/10/2011
  *      Author: alejandro
  */
 
-#include "VotingDb.h"
+#include "Voting.h"
 
-VotingDb::VotingDb() {
+Voting::Voting() {
 	// TODO Auto-generated constructor stub
 
 }
 
-VotingDb::~VotingDb() {
+Voting::~Voting() {
 	// TODO Auto-generated destructor stub
 }

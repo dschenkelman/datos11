@@ -27,7 +27,7 @@ int Menu::ask() {
 }
 
 string Menu::raw_input(string label) {
-	cout << label << "? " << endl;
+	cout << label << "? ";
 	string ret;
 	cin >> ret;
 	return ret;

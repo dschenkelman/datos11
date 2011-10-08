@@ -70,43 +70,95 @@ void HashBlockFile::printContent()
 		{
 			this->overflowFile->loadBlock(ovflwBlock);
 			this->overflowFile->getCurrentBlock()->printContent();
+			while((ovflwBlock = this->overflowFile->getCurrentBlock()->getOverflowedBlock()) != -1)
+			{
+				this->overflowFile->loadBlock(ovflwBlock);
+				this->overflowFile->getCurrentBlock()->printContent();
+			}
 		}
 		blockNumber++;
 	}
+}
+
+void HashBlockFile::loadRecord(const char* key, VariableRecord* record)
+{
+	int blockNumber = this->hashFunction(key);
+	this->loadBlock(blockNumber);
+	if(this->currentBlock->getFreeSpace() + record->getSize() <= this->blockSize)
+	{
+		this->currentBlock->forceInsert(record);
+		this->hashBlockUsed = true;
+		this->saveBlock();
+		return;
+	}
+	//hay overflow en hash block
+	int overflowBlock;
+	if((overflowBlock = this->currentBlock->getOverflowedBlock()) == -1)
+	{
+		overflowBlock = this->overflowFile->getFirstFreeEmptyBlock();
+		this->hashBlockUsed = true;
+		this->overflowFile->loadBlock(overflowBlock);
+		this->currentBlock->forceInsert(record);
+		this->ovflowBlockUsed = true;
+		this->saveBlock();
+		return;
+	}
+	this->overflowFile->loadBlock(overflowBlock);
+	int freeSpace = this->overflowFile->getCurrentBlock()->getFreeSpace();
+	while(freeSpace + record->getSize() > this->blockSize)
+	{
+		if((overflowBlock = this->currentBlock->getOverflowedBlock()) == -1)
+		{
+			overflowBlock = this->overflowFile->getFirstFreeEmptyBlock();
+			this->ovflowBlockUsed = true;
+			this->saveBlock();
+		}
+		this->overflowFile->loadBlock(overflowBlock);
+		freeSpace = this->overflowFile->getCurrentBlock()->getFreeSpace();
+	}
+	//found available space
+	this->overflowFile->getCurrentBlock()->forceInsert(record);
+	this->ovflowBlockUsed = true;
+	this->saveBlock();
+	return;
 }
 
 int HashBlockFile::getAvailableOverflowBlock(const char* key, VariableRecord* record)
 {
 	SimpleVariableBlock* block = this->overflowFile->getCurrentBlock();
 	int freeSpace = block->getFreeSpace();
-	int ovflwBlock;
+	char ovflwBlock = block->getOverflowedBlock();
 	bool foundRecord = false;
+	char freeBlock = ovflwBlock;
 	while(freeSpace < record->getSize()+2)
 	{
-		if(block->findRecord(key, &record))
+		if(block->findRecord(key, &record) != -1)
 		{
 			foundRecord = true;
 			break;
 		}
-		ovflwBlock = block->getOverflowedBlock();
 		if(ovflwBlock == -1)
+		{
+			freeBlock = this->overflowFile->getFirstFreeEmptyBlock();
+			block->becomesOverflow(freeBlock);
+			this->ovflowBlockUsed = true;
+			this->saveBlock();
+			this->overflowFile->loadBlock(freeBlock);
+			this->overflowFile->getCurrentBlock()->setNoOverflow();
+			this->ovflowBlockUsed = true;
+			this->saveBlock();
 			break;
+		}
 		this->overflowFile->loadBlock(ovflwBlock);
 		block = this->overflowFile->getCurrentBlock();
+		freeBlock = ovflwBlock;
+		ovflwBlock = block->getOverflowedBlock();
 		freeSpace = block->getFreeSpace();
 	}
 	if(foundRecord)
 		return -1;//error number. value found!
-	if( ovflwBlock == -1)
-	{
-		int freeBlock = this->overflowFile->getFirstFreeEmptyBlock();
-		this->overflowFile->getCurrentBlock()->becomesOverflow(freeBlock);
-		this->ovflowBlockUsed = true;
-		this->saveBlock();
-		return ovflwBlock;
-	}
-	//enough space in block. insert
-	return ovflwBlock;
+
+	return freeBlock;
 }
 
 bool HashBlockFile::insertRecord(const char* key, const char* recordBytes, short size)
@@ -131,7 +183,7 @@ bool HashBlockFile::insertRecord(const char* key, const char* recordBytes, short
 		if( (ovflowBlock = this->currentBlock->getOverflowedBlock()) != -1)
 		{
 			this->overflowFile->loadBlock(ovflowBlock);
-			if(this->overflowFile->getRecord(key, &record) )
+			if(this->findInOverflowBlocks(key, &record, false) != -1)
 			{
 				if( record!= NULL) delete record;
 				return false;
@@ -147,13 +199,19 @@ bool HashBlockFile::insertRecord(const char* key, const char* recordBytes, short
 	if((ovflowBlock = this->currentBlock->getOverflowedBlock()) != -1)
 	{
 		this->overflowFile->loadBlock(ovflowBlock);
-		if(!this->overflowFile->insertRecord(key, recordBytes, size) )
+		if(this->findInOverflowBlocks(key, &record, false) != -1)
 		{
-			//overflow block is full. insert in another
+			if( record!= NULL) delete record;
+			return false;
+		}
+		this->overflowFile->loadBlock(ovflowBlock);
+		if(!this->overflowFile->getCurrentBlock()->insertRecord(key, record) )
+		{
+			//overflow block is full. check on overflowed block
 			if((ovflowBlock = this->getAvailableOverflowBlock(key, record)) == -1)
 				return false; //key was found
 			this->overflowFile->loadBlock(ovflowBlock);
-			this->overflowFile->insertRecord(key, recordBytes, size);
+			this->overflowFile->getCurrentBlock()->insertRecord(key, record);
 		}
 		this->ovflowBlockUsed = true;
 		this->saveBlock();
@@ -166,7 +224,7 @@ bool HashBlockFile::insertRecord(const char* key, const char* recordBytes, short
 	ovflowBlock = this->overflowFile->getFirstFreeEmptyBlock();
 	this->currentBlock->becomesOverflow(ovflowBlock);
 	this->overflowFile->loadBlock(ovflowBlock);
-	this->overflowFile->insertRecord(key, recordBytes, size);
+	this->overflowFile->getCurrentBlock()->insertRecord(key, record);
 	this->saveBlock();
 	delete record;
 	return true;
@@ -313,14 +371,17 @@ bool HashBlockFile::removeRecord(const char* key)
 
 int HashBlockFile::findInOverflowBlocks(const char* key, VariableRecord** record, bool getFlag)
 {
-	int ovflowBlock;
+	int ovflowBlock = this->currentBlock->getOverflowedBlock();
 	SimpleVariableBlock* block = this->overflowFile->getCurrentBlock();
 	VariableRecord* rec = new VariableRecord();
 	while(block->findRecord(key, &rec) == -1)
 	{
 		ovflowBlock = block->getOverflowedBlock();
 		if(ovflowBlock == -1)
+		{
+			delete rec;
 			return ovflowBlock; //key was not found
+		}
 		this->overflowFile->loadBlock(ovflowBlock);
 		block = this->overflowFile->getCurrentBlock();
 	}

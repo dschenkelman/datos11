@@ -18,7 +18,11 @@ src/ElectronicElections.d src/ElectronicElections.o: \
  ../src/Hash/../VariableBlocks/SimpleVariableBlockFile.h \
  ../src/Hash/HashBlock.h \
  ../src/Hash/../VariableBlocks/BaseVariableBlock.h \
- ../src/EntitiesTests/DistrictTests.h
+ ../src/EntitiesTests/DistrictTests.h \
+ ../src/EntitiesTests/ElectionsListTests.h \
+ ../src/EntitiesTests/CandidateTests.h \
+ ../src/EntitiesTests/AdministratorTests.h \
+ ../src/EntitiesTests/CountTests.h ../src/EntitiesTests/ChargeTests.h
 
 ../src/BlocksTests/RLVBlockFileTests.h:
 
@@ -63,3 +67,13 @@ src/ElectronicElections.d src/ElectronicElections.o: \
 ../src/Hash/../VariableBlocks/BaseVariableBlock.h:
 
 ../src/EntitiesTests/DistrictTests.h:
+
+../src/EntitiesTests/ElectionsListTests.h:
+
+../src/EntitiesTests/CandidateTests.h:
+
+../src/EntitiesTests/AdministratorTests.h:
+
+../src/EntitiesTests/CountTests.h:
+
+../src/EntitiesTests/ChargeTests.h:

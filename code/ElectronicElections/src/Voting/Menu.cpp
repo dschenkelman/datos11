@@ -26,6 +26,13 @@ int Menu::ask() {
 	return ret_value;
 }
 
+string Menu::raw_input(string label) {
+	cout << label << "? " << endl;
+	string ret;
+	cin >> ret;
+	return ret;
+}
+
 //int menu_usage() {
 //	option *opts = new option[3];
 //	opts[0].label = "opcion uno";

@@ -24,6 +24,7 @@ public:
 	Menu(option *opts, int size);
 	virtual ~Menu();
 	int ask();
+	static string raw_input(string label);
 };
 
 #endif /* MENU_H_ */

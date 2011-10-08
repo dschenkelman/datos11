@@ -22,7 +22,8 @@ src/ElectronicElections.d src/ElectronicElections.o: \
  ../src/EntitiesTests/ElectionsListTests.h \
  ../src/EntitiesTests/CandidateTests.h \
  ../src/EntitiesTests/AdministratorTests.h \
- ../src/EntitiesTests/CountTests.h ../src/EntitiesTests/ChargeTests.h
+ ../src/EntitiesTests/CountTests.h ../src/EntitiesTests/ChargeTests.h \
+ ../src/Voting/Menu.h ../src/Voting.h
 
 ../src/BlocksTests/RLVBlockFileTests.h:
 
@@ -77,3 +78,7 @@ src/ElectronicElections.d src/ElectronicElections.o: \
 ../src/EntitiesTests/CountTests.h:
 
 ../src/EntitiesTests/ChargeTests.h:
+
+../src/Voting/Menu.h:
+
+../src/Voting.h:

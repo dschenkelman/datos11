@@ -44,10 +44,16 @@ void HashTest::testLoadHashwithoutValidation()
 		districtHash->loadRecord(keyRecord.getBytes(), &dataRecord);
 	}
 	districtHash->printContent();
-	delete districtHash;
 	std::cout << "Loaded District Hash successful" << std::endl;
 	std::cout << "==================================" << std::endl;
-
+	std::cout << "Update San Juan Hash.." << std::endl;
+	District dUpdate("Barcelo");
+	District dOld("San Luis");
+	dataRecord.setBytes(dUpdate.getBytes(), dUpdate.getSize());
+	districtHash->updateRecord(dOld.getKey(), &dataRecord);
+	districtHash->printContent();
+	std::cout << "==================================" << std::endl;
+	delete districtHash;
 }
 
 void HashTest::testInsert()
@@ -79,10 +85,10 @@ void HashTest::testInsert()
 		memcpy(recordBytes +1+ l1, &l2, sizeof(char));
 		memcpy(recordBytes +1+ l1 + 1, c.lastName, l2);
 		memcpy(recordBytes +2+ (l1+l2), &c.balance, sizeof(int));
-		VariableRecord* record;
-		record->setBytes(recordBytes, size);
+		VariableRecord record;
+		record.setBytes(recordBytes, size);
 		//blockNumber = hasingName(recordKey);
-		this->file->insertRecord(recordKey, record);
+		this->file->insertRecord(recordKey, &record);
 	}
 	this->file->printContent();
 	std::cout << "Inserted Hash successful" << std::endl;
@@ -150,12 +156,12 @@ void HashTest::testRemove()
 	std::cout << "==================================" << std::endl;
 	std::cout << "REMOVE Hash.." << std::endl;
 
-	char firstNames[9][5] = {"John", "Mike", "Tony", "Rick", "Josh","gaby","dami", "juan","aleT"};
-	char lastNames[8][7] = {"Connor", "Potter", "Wesley", "Mordor", "Gondor", "shenke", "ostrow", "Durand"};
-	for(long i = 0;i < 180;++i)
+	char firstNames[10][5] = {"John", "Mike", "Tony", "Rick", "Josh","gaby","dami", "juan","aleT", "gonz"};
+	char lastNames[9][7] = {"Connor", "Potter", "Wesley", "Mordor", "Gondor", "shenke", "ostrow", "Durand","Torrad"};
+	for(long i = 0;i < 300;++i)
 	{
-		int fn = rand() % 9;
-		int ln = rand() % 5;
+		int fn = rand() % 10;
+		int ln = rand() % 9;
 		Customer c;
 		c.firstName = firstNames[fn];
 		c.lastName = lastNames[ln];
@@ -185,7 +191,6 @@ void HashTest::testEmptyBlock(int blockNumber)
 	if(this->file->getCurrentBlock()->isEmpty())
 		std::cout << "YES!" << std::endl;
 	else std::cout << "NOO" << std::endl;
-
 	if(this->file->getCurrentBlock()->getOverflowedBlock() == -1)
 		std::cout << "Block became DES-overflowed!! :D" << std::endl;
 }
@@ -193,12 +198,12 @@ void HashTest::testEmptyBlock(int blockNumber)
 void HashTest::run()
 {
 	this->testLoadHashwithoutValidation();
-	/*this->testInsert();
+	this->testInsert();
 	this->testGetRecord();
 	this->testUpdateRecord();
 	this->testRemove();
 	this->testEmptyBlock(2);
-*/
+
 }
 
 HashTest::~HashTest()

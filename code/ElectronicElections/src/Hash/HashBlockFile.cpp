@@ -24,7 +24,7 @@ HashBlockFile::HashBlockFile(std::string fileName, int bSize, RecordMethods *met
 	{
 		this->dataFile.open(this->fileName.c_str(), ios::binary | ios::in | ios::out);
 	}
-	string ovflw = "ovflow";
+	string ovflw = fileName + "ovflow";
 	this->overflowFile = new SimpleVariableBlockFile(ovflw, bSize, methods, createNew);
 }
 
@@ -137,15 +137,9 @@ int HashBlockFile::getAvailableOverflowBlock(const char* key, VariableRecord* re
 	SimpleVariableBlock* block = this->overflowFile->getCurrentBlock();
 	int freeSpace = block->getFreeSpace();
 	char ovflwBlock = block->getOverflowedBlock();
-	bool foundRecord = false;
 	char freeBlock = ovflwBlock;
 	while(freeSpace < record->getSize()+2)
 	{
-		if(block->findRecord(key, &record) != -1)
-		{
-			foundRecord = true;
-			break;
-		}
 		if(ovflwBlock == -1)
 		{
 			freeBlock = this->overflowFile->getFirstFreeEmptyBlock();
@@ -164,9 +158,6 @@ int HashBlockFile::getAvailableOverflowBlock(const char* key, VariableRecord* re
 		ovflwBlock = block->getOverflowedBlock();
 		freeSpace = block->getFreeSpace();
 	}
-	if(foundRecord)
-		return -1;//error number. value found!
-
 	return freeBlock;
 }
 
@@ -271,7 +262,7 @@ bool HashBlockFile::updateRecord(const char *key, VariableRecord* record)
 				this->hashBlockUsed = true;
 				this->overflowFile->loadBlock(ovflwBlock);
 				availableBlock = this->getAvailableOverflowBlock(key, record);
-				if(this->overflowFile->insertRecord(key, record->getBytes(),record->getSize()))
+				if(this->overflowFile->getCurrentBlock()->insertRecord(key, record))
 				{
 					this->ovflowBlockUsed = true;
 					this->saveBlock();
@@ -289,6 +280,9 @@ bool HashBlockFile::updateRecord(const char *key, VariableRecord* record)
 				break;
 		}
 	}
+	if(ovflwBlock == -1)
+		return false;//not found in hash and no overflow, stop.
+
 	this->overflowFile->loadBlock(ovflwBlock);
 	int foundInBlock = this->findInOverflowBlocks(key, &record, false);//the block is loaded
 	if(foundInBlock == -1)
@@ -308,7 +302,7 @@ bool HashBlockFile::updateRecord(const char *key, VariableRecord* record)
 		ovflwBlock = this->getCurrentBlock()->getOverflowedBlock();
 		this->overflowFile->loadBlock(ovflwBlock);
 		availableBlock = this->getAvailableOverflowBlock(key, record);
-		if(this->overflowFile->insertRecord(key, record->getBytes(),record->getSize()))
+		if(this->overflowFile->getCurrentBlock()->insertRecord(key, record))
 		{
 			this->ovflowBlockUsed = true;
 			this->saveBlock();

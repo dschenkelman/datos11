@@ -32,8 +32,8 @@ void TreeTests::run()
 	this->printResult("testInsertInRootWithOverflowCreatesTwoLeafs", testInsertInRootWithOverflowCreatesTwoLeafs());
 	this->printResult("testInsertInLeafWithOverflowIsSplitByParent", testInsertInLeafWithOverflowIsSplitByParent());
 	this->printResult("testInsertInInternalRootWithOverflowIsSplit", testInsertInInternalRootWithOverflowIsSplit());
+	//this->printResult("testInsertInInternalNodeWithOverflowIsSplit", testInsertInInternalNodeWithOverflowIsSplit());
 	this->printResult("testRemoveWithoutUnderflowWorksCorrectly", testRemoveWithoutUnderflowWorksCorrectly());
-
 }
 
 bool TreeTests::testInsertInEmptyTreeWorksCorrectly()
@@ -78,7 +78,7 @@ bool TreeTests::testInsertInRootWithOverflowCreatesTwoLeafs()
 			"Buenos Aires", "Catamarca", "Formosa", "Jujuy", "La Pampa", "La Rioja",
 			};
 
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < 7; i++)
 	{
 		District d(districts[i]);
 		VariableRecord dataRecord;
@@ -142,7 +142,41 @@ bool TreeTests::testInsertInInternalRootWithOverflowIsSplit()
 				"Jujuy", "La Pampa", "La Rioja",
 				};
 
-	for (int i = 0; i < 23; i++)
+	for (int i = 0; i < 13; i++)
+	{
+		District d(districts[i]);
+		VariableRecord dataRecord;
+		VariableRecord keyRecord;
+		dataRecord.setBytes(d.getBytes(), d.getSize());
+		keyRecord.setBytes(d.getKey(), d.getKeySize());
+
+		tree.insert(&keyRecord, &dataRecord);
+	}
+
+	tree.print();
+	cout << endl;
+
+	return true;
+}
+
+bool TreeTests::testInsertInInternalNodeWithOverflowIsSplit()
+{
+	DistrictMethods districtMethods;
+	Tree tree("treeTests.dat", 80, &districtMethods, true);
+
+	// approximately 223 chars
+	string districts[] = {"San Luis", "Santa Cruz",
+				"Corrientes", "Entre Rios",
+				"Chaco", "Chubut", "Cordoba",
+				 "Santa Fe", "Santiago del Estero",
+				"Mendoza", "Misiones", "Neuquen",
+				"Tierra del Fuego", "Tucuman",
+				"Rio Negro", "Salta", "San Juan",
+				"Buenos Aires", "Catamarca", "Formosa",
+				"Jujuy", "La Pampa", "La Rioja",
+				};
+
+	for (int i = 0; i < 13; i++)
 	{
 		District d(districts[i]);
 		VariableRecord dataRecord;

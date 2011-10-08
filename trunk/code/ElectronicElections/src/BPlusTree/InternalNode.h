@@ -15,6 +15,8 @@
 class InternalNode: public Node
 {
 	TreeBlockFile* file;
+	int maximumSize;
+	int calculateMaxSize();
     OpResult handleLeafOverflow(VariableRecord* keyRecord, VariableRecord* dataRecord,
     		VariableRecord* middleRecord, OverflowParameter& overflowParameter);
 public:

@@ -11,11 +11,13 @@
 #include <iostream>
 #include <vector>
 #include "IndexTreeBlock.h"
+#include <math.h>
 
 using namespace std;
 
 InternalNode::InternalNode(TreeBlockFile* f, TreeBlock* b, RecordMethods* methods): Node(b, methods), file(f)
 {
+	this->maximumSize = this->calculateMaxSize();
 }
 
 int InternalNode::getMaxSize()
@@ -23,16 +25,15 @@ int InternalNode::getMaxSize()
 	return (this->block->getSize() - IndexTreeBlock::RECORD_OFFSET);
 }
 
+int InternalNode::calculateMaxSize()
+{
+	return floor(this->getMaxSize() * 0.9);
+}
+
 OpResult InternalNode::handleLeafOverflow(VariableRecord* keyRecord, VariableRecord* dataRecord,
 		VariableRecord* middleRecord, OverflowParameter& overflowParameter)
 {
     TreeBlock *oldLeafBlock = this->file->getCurrentBlock();
-    bool blockOne = true;
-    if(this->recordMethods->compare(keyRecord->getBytes(),
-    		middleRecord->getBytes(), middleRecord->getSize()) > 0)
-    {
-        blockOne = false;
-    }
     int newBlock = this->file->getFreeBlockManager().getNextBlock();
     int newNextNode = this->file->getCurrentBlock()->getNextNode();
     this->file->getCurrentBlock()->setNextNode(newBlock);
@@ -40,6 +41,7 @@ OpResult InternalNode::handleLeafOverflow(VariableRecord* keyRecord, VariableRec
     this->file->pushBlock();
     this->file->getCurrentBlock()->setNextNode(newNextNode);
     this->file->getCurrentBlock()->setLevel(0);
+    bool middleInserted = false;
     VariableRecord aux;
     stack<VariableRecord*> toRemove;
     oldLeafBlock->positionAtBegin();
@@ -49,6 +51,11 @@ OpResult InternalNode::handleLeafOverflow(VariableRecord* keyRecord, VariableRec
 				(middleRecord->getBytes(), aux.getBytes(), aux.getSize());
 		if (result <= 0)
 		{
+			if (!middleInserted)
+			{
+				middleInserted = true;
+				this->file->getCurrentBlock()->forceInsert(middleRecord);
+			}
 			this->file->getCurrentBlock()->forceInsert(&aux);
 
 			VariableRecord* auxKeyRecord =
@@ -64,14 +71,6 @@ OpResult InternalNode::handleLeafOverflow(VariableRecord* keyRecord, VariableRec
     	oldLeafBlock->removeRecord(auxKeyRecord->getBytes());
     	delete auxKeyRecord;
     }
-    if(blockOne)
-    {
-        oldLeafBlock->insertRecord(keyRecord, dataRecord);
-    }
-    else
-    {
-        this->file->getCurrentBlock()->insertRecord(keyRecord, dataRecord);
-    }
 
     this->file->getCurrentBlock()->positionAtBegin();
     this->file->getCurrentBlock()->getNextRecord(&aux);
@@ -79,24 +78,72 @@ OpResult InternalNode::handleLeafOverflow(VariableRecord* keyRecord, VariableRec
     this->file->popBlock();
     this->file->saveBlock();
 
-    if (!this->block->canInsertRecord(middleRecord->getSize()))
+    VariableRecord* keyAux;
+
+    keyAux = this->recordMethods->getKeyRecord(middleRecord->getBytes(), middleRecord->getSize());
+    int freeSpace = this->block->getFreeSpace() - (keyAux->getSize() + Constants::RECORD_HEADER_SIZE + IndexTreeBlock::NODE_POINTER_SIZE);
+    if (freeSpace < this->block->getSize() - this->maximumSize)
     {
     	// Not enough space in the block!
-    	overflowParameter.newBlock = newBlock;
+    	int index = 0;
+    	int bytes = IndexTreeBlock::NODE_POINTER_SIZE;
+		bool keyRecordConsidered = false;
+		bool keyIsMiddle = false;
+		this->block->positionAtBegin();
+
+		while (this->block->getNextRecord(&aux) != NULL && bytes < (this->maximumSize / 2))
+		{
+			index++;
+			if (!keyRecordConsidered &&
+					this->recordMethods->compare(keyAux->getBytes(), aux.getBytes(), aux.getSize()) < 0)
+			{
+				keyRecordConsidered = true;
+				bytes += dataRecord->getSize() + Constants::RECORD_HEADER_SIZE + IndexTreeBlock::NODE_POINTER_SIZE;
+				if (bytes >= (this->maximumSize / 2))
+				{
+					keyIsMiddle = true;
+					overflowParameter.newBlock = newBlock;
+					aux = *keyAux;
+					break;
+				}
+			}
+			bytes += aux.getSize() + Constants::RECORD_HEADER_SIZE + IndexTreeBlock::NODE_POINTER_SIZE;
+		}
+
+		if (!keyRecordConsidered &&
+									this->recordMethods->compare(keyRecord->getBytes(), aux.getBytes(), aux.getSize()) < 0)
+		{
+			keyRecordConsidered = true;
+			keyIsMiddle = true;
+			aux = *keyAux;
+		}
+
+		if (!keyIsMiddle)
+		{
+			this->block->removeRecord(aux.getBytes());
+			this->block->insertRecord(keyRecord, dataRecord);
+			overflowParameter.newBlock = this->block->getNodePointer(index);
+			this->block->removeNodePointer(index);
+			this->block->insertNodePointer(index, newBlock);
+		}
+
 		*middleRecord = aux;
+		delete keyAux;
     	return Overflow;
     }
 
-    this->block->insertRecord(middleRecord, middleRecord);
+    this->block->insertRecord(keyAux, keyAux);
     this->block->positionAtBegin();
     int index = 1;
     while(this->block->getNextRecord(&aux) != NULL && this->recordMethods->compare
-			(middleRecord->getBytes(), aux.getBytes(), aux.getSize()) != 0)
+			(keyAux->getBytes(), aux.getBytes(), aux.getSize()) != 0)
     {
     	index++;
     }
 
     this->block->insertNodePointer(index, newBlock);
+
+    delete keyAux;
 
     return Updated;
 }
@@ -132,6 +179,7 @@ OpResult InternalNode::insert(VariableRecord *keyRecord, VariableRecord *dataRec
 		if (result == Updated)
 		{
 			this->file->saveBlock();
+			result = Unchanged;
 		}
 
 		if (result == Overflow)
@@ -144,6 +192,36 @@ OpResult InternalNode::insert(VariableRecord *keyRecord, VariableRecord *dataRec
 	{
 		InternalNode node(this->file, this->file->getCurrentBlock(), this->recordMethods);
 		result = node.insert(keyRecord, dataRecord, middleRecord, overflowParameter);
+
+		if (result == Updated)
+		{
+			this->file->saveBlock();
+			result = Unchanged;
+		}
+
+		if (result == Overflow)
+		{
+			overflowParameter.overflowBlock = blockPointer;
+			TreeBlock* overflowBlock = this->file->getCurrentBlock();
+			int newBlock = this->file->getFreeBlockManager().getNextBlock();
+			this->file->loadBlock(newBlock);
+			this->file->pushBlock();
+			this->file->swapBlockKind();
+			this->file->getCurrentBlock()->setLevel(overflowBlock->getLevel());
+
+			this->block->insertRecord(middleRecord, middleRecord);
+			VariableRecord aux;
+			int index = 0;
+			while (this->block->getNextRecord(&aux) &&
+					this->recordMethods->compare(aux.getBytes(), middleRecord->getBytes(), middleRecord->getSize()) != 0)
+			{
+				index++;
+			}
+
+			this->block->insertNodePointer(index, newBlock);
+
+			result = Updated;
+		}
 	}
 
 	// restore block

@@ -16,6 +16,7 @@ class HashTest
 
 public:
 	HashTest();
+	void testLoadHashwithoutValidation();
 	void testInsert();
 	void testEmptyBlock(int blockNumber);
 	void testGetRecord();

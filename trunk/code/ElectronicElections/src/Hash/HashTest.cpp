@@ -7,6 +7,7 @@
 
 #include "HashTest.h"
 #include "../BlocksTests/CustomerMethods.h"
+#include "../Entities/DistrictMethods.h"
 #include <string>
 #include <iostream>
 #include <stdlib.h>
@@ -19,6 +20,34 @@ HashTest::HashTest()
 	string f = "hashtest";
 	int blockAmount = 10;
 	this->file = new HashBlockFile(f, 512, new CustomerMethods, blockAmount, true);
+}
+
+void HashTest::testLoadHashwithoutValidation()
+{
+	std::cout << "==================================" << std::endl;
+	std::cout << "Load Hash " << std::endl;
+	HashBlockFile* districtHash = new HashBlockFile("districthash", 512, new DistrictMethods, 5, true);
+	string districts[] = {"San Luis", "Santa Cruz", "Santa Fe", "Santiago del Estero",
+			"Corrientes", "Tierra del Fuego", "Tucuman", "Entre Rios",
+			"Chaco", "Chubut", "Cordoba",
+			"Mendoza", "Misiones", "Neuquen", "Rio Negro", "Salta", "San Juan",
+			"Buenos Aires", "Catamarca", "Formosa", "Jujuy", "La Pampa", "La Rioja",
+			};
+	VariableRecord dataRecord;
+	VariableRecord keyRecord;
+	for (int i = 0; i < 90; i++)
+	{
+		District d(districts[i%23]);
+		dataRecord.setBytes(d.getBytes(), d.getSize());
+		keyRecord.setBytes(d.getKey(), d.getKeySize());
+
+		districtHash->loadRecord(keyRecord.getBytes(), &dataRecord);
+	}
+	districtHash->printContent();
+	delete districtHash;
+	std::cout << "Loaded District Hash successful" << std::endl;
+	std::cout << "==================================" << std::endl;
+
 }
 
 void HashTest::testInsert()
@@ -40,22 +69,20 @@ void HashTest::testInsert()
 		int l2 = strlen(c.lastName) + 1;
 		// size = 16
 		int size = l1+1 + l2+1 + sizeof (int); //sumo 2 bytes para cada tamaño del nombre y apellido
-		char *recordKey = new char[l1 + l2 - 1];
+		char recordKey[l1 + l2 - 1];
 		memset(recordKey, 0, l1 + l2 - 1);
 		strcat(recordKey, c.firstName);
 		strcat(recordKey, c.lastName);
-		char *recordBytes = new char[size];
+		char recordBytes[size];
 		memcpy(recordBytes, &l1, sizeof(char));
 		memcpy(recordBytes + 1 , c.firstName, l1);
 		memcpy(recordBytes +1+ l1, &l2, sizeof(char));
 		memcpy(recordBytes +1+ l1 + 1, c.lastName, l2);
 		memcpy(recordBytes +2+ (l1+l2), &c.balance, sizeof(int));
-		
+		VariableRecord* record;
+		record->setBytes(recordBytes, size);
 		//blockNumber = hasingName(recordKey);
-		this->file->insertRecord(recordKey, recordBytes, size);
-		
-		delete [] recordBytes;
-		delete [] recordKey;
+		this->file->insertRecord(recordKey, record);
 	}
 	this->file->printContent();
 	std::cout << "Inserted Hash successful" << std::endl;
@@ -165,13 +192,13 @@ void HashTest::testEmptyBlock(int blockNumber)
 
 void HashTest::run()
 {
-	this->testInsert();
-
+	this->testLoadHashwithoutValidation();
+	/*this->testInsert();
 	this->testGetRecord();
 	this->testUpdateRecord();
 	this->testRemove();
 	this->testEmptyBlock(2);
-
+*/
 }
 
 HashTest::~HashTest()

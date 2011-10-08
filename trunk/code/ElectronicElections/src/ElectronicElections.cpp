@@ -76,10 +76,20 @@ int run_tests()
 }
 
 int main() {
-	option *opts = new option[2];
-	opts[0].label = "Run main program";
-	opts[1].label = "Run tests";
+	option *main = new option[2];
+	main[0].label = "Run main program";
+	main[1].label = "Run tests";
+	if ( Menu(main,2).ask() ) return run_tests();
 
-	if ( Menu(opts,2).ask() ) return run_tests();
+	option *login_type = new option[2];
+	login_type[0].label = "Vote";
+	login_type[1].label = "Admin";
+	int action = Menu(login_type,2).ask();
+	if (action == 0) { // VOTE
+		string dni = Menu::raw_input("DNI");
+	} else if (action == 1) { // ADMIN
+		string user = Menu::raw_input("User");
+		string passwd = Menu::raw_input("Password");
+	}
 	return 0;
 }

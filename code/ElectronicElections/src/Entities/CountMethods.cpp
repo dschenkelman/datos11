@@ -7,9 +7,10 @@
 
 #include "CountMethods.h"
 #include "../Entities/Count.h"
-#include <iostream>
-#include <cstring>
 #include "../VariableBlocks/Constants.h"
+#include <iostream>
+#include <string>
+#include <cstring>
 
 using namespace std;
 
@@ -103,7 +104,7 @@ void CountMethods::printKey(const char* key, int recordSize)
 	Count c(1, 1, 1, "Invalid", "Invalid", "Invalid", 1);
 	c.setBytes(bytes);
 
-	cout << "(" << c.getYear() << ", " << c.getMonth() << ", " << c.getDay() << ", " << c.getCharge() << ", "
+	cout << "(" << c.getYear() << ", " << (int) c.getMonth() << ", " << (int) c.getDay()<< ", " << c.getCharge() << ", "
 			<< c.getListName() << ", " << c.getDistrict() << ")" << endl;
 }
 

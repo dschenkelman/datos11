@@ -334,7 +334,7 @@ bool TreeTests::testRemoveInRightMostLeafWithUnderflowIsBalancedByParentWithLeft
 		tree.insert(&keyRecord, &dataRecord);
 	}
 
-	cout << "District Count" << i + 1 <<endl;
+	cout << "District Count" << i <<endl;
 	tree.print();
 
 	cout << endl << "Remove in the right child 'Tierra del Fuego' => it gets underflow" << endl;
@@ -355,13 +355,13 @@ bool TreeTests::testRemoveInLeafWithUnderflowAndRightBrotherInAnotherParentBalan
 	Tree tree("treeTests.dat", 100, &districtMethods, true);
 
 	// approximately 223 chars
-	string districts[] = {"San Luis", "Santa Cruz",
-				"Corrientes", "Entre Rios",
+	string districts[] = {	"Corrientes", "Entre Rios",
 				"Chaco", "Chubut", "Cordoba",
 				 "Santa Fe", "Santiago del Estero",
 				"Mendoza", "Misiones", "Neuquen",
 				"Tierra del Fuego", "Tucuman",
 				 "Salta", "San Juan",
+				 "San Luis", "Santa Cruz",
 				"Buenos Aires", "Catamarca", "Formosa",
 				"Jujuy", "La Pampa", "La Rioja","Rio Negro",
 				};
@@ -378,8 +378,19 @@ bool TreeTests::testRemoveInLeafWithUnderflowAndRightBrotherInAnotherParentBalan
 		tree.insert(&keyRecord, &dataRecord);
 	}
 
+	cout << "District Count: " << i << endl;
 	tree.print();
 	cout << endl;
+
+	//District d1("San Juan");
+	//District d2("Misiones");
+	//District d3("Entre Rios");
+	//tree.remove(d1.getKey());
+	//tree.remove(d3.getKey());
+
+//	cout << "District Count: " << i - 2 << endl;
+//	tree.print();
+//	cout << endl;
 
 	return false;
 }

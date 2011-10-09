@@ -69,7 +69,7 @@ OpResult LeafNode::insert(VariableRecord* keyRecord, VariableRecord* dataRecord,
 	bool dataIsMiddle = false;
 	this->block->positionAtBegin();
 
-	while (this->block->getNextRecord(&aux) != NULL && bytes < (this->maximumSize / 2))
+	while (bytes < (this->maximumSize / 2) && this->block->getNextRecord(&aux) != NULL)
 	{
 		if (!dataRecordConsidered &&
 				this->recordMethods->compare(keyRecord->getBytes(), aux.getBytes(), aux.getSize()) < 0)

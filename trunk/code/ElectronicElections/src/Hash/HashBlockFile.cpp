@@ -6,6 +6,7 @@
  */
 
 #include "HashBlockFile.h"
+#include <stdlib.h>
 #include <iostream>
 using namespace std;
 
@@ -50,7 +51,7 @@ HashBlock* HashBlockFile::getCurrentBlock()
 int HashBlockFile::hashFunction(const char* key)
 {
 	// This will change
-	//int hash = atoi(key) % blockAmount;
+	int hash = rand() % this->totalBlocks;
 	return 2;
 }
 
@@ -86,6 +87,9 @@ void HashBlockFile::printContent()
 void HashBlockFile::loadRecord(const char* key, VariableRecord* record)
 {
 	int blockNumber = this->hashFunction(key);
+	//to use on each Record Type :D
+	//int blockNumber = this->recordMethods->hashFunction(key, this->totalBlocks);
+
 	this->loadBlock(blockNumber);
 	if(this->currentBlock->getFreeSpace() >= record->getSize() +2)
 	{
@@ -164,6 +168,9 @@ int HashBlockFile::getAvailableOverflowBlock(const char* key, VariableRecord* re
 bool HashBlockFile::insertRecord(const char* key, VariableRecord* record)
 {
 	int blockNumber = this->hashFunction(key);
+	//to use on each Record Type :D
+	//int blockNumber = this->recordMethods->hashFunction(key, this->totalBlocks);
+
 	if(blockNumber >= totalBlocks)
 		return false; //out of bounds. It should never happen!!
 
@@ -225,6 +232,10 @@ bool HashBlockFile::insertRecord(const char* key, VariableRecord* record)
 bool HashBlockFile::getRecord(const char* key, VariableRecord** record)
 {
 	int blockNumber = this->hashFunction(key);
+	//to use on each Record Type :D
+	//int blockNumber = this->recordMethods->hashFunction(key, this->totalBlocks);
+
+
 	int overflwBlock;
 	this->loadBlock(blockNumber);
 	if(this->currentBlock->findRecord(key, record) != -1)
@@ -242,6 +253,9 @@ bool HashBlockFile::updateRecord(const char *key, VariableRecord* record)
 {
 	UpdateResult result;
 	int blockNumber = this->hashFunction(key);
+	//to use on each Record Type :D
+	//int blockNumber = this->recordMethods->hashFunction(key, this->totalBlocks);
+
 	if(blockNumber >= totalBlocks)
 		return false; //out of bounds. It should never happen!!
 	this->loadBlock(blockNumber);
@@ -326,6 +340,9 @@ bool HashBlockFile::updateRecord(const char *key, VariableRecord* record)
 bool HashBlockFile::removeRecord(const char* key)
 {
 	int blockNumber = this->hashFunction(key);
+	//to use on each Record Type :D
+	//int blockNumber = this->recordMethods->hashFunction(key, this->totalBlocks);
+
 	if(blockNumber >= totalBlocks)
 		return false; //out of bounds. It should never happen!!
 	this->loadBlock(blockNumber);

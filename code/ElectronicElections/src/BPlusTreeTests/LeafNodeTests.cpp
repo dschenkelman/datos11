@@ -47,7 +47,6 @@ bool LeafNodeTests::testInsertDuplicatedRecordReturnsCorrectResult()
 
 	VariableRecord recordOne;
 	VariableRecord recordTwo;
-	VariableRecord middleRecord;
 	VariableRecord key;
 	Customer c;
 	c.firstName = "John";
@@ -74,12 +73,12 @@ bool LeafNodeTests::testInsertDuplicatedRecordReturnsCorrectResult()
 	key.setBytes(recordKey, l1 + l2 - 1);
 
 	OverflowParameter parameter;
-	if(node.insert(&key, &recordOne, &middleRecord, parameter) != Updated)
+	if(node.insert(&key, &recordOne, parameter) != Updated)
 	{
 		return false;
 	}
 
-	if(node.insert(&key, &recordTwo, &middleRecord, parameter) != Duplicated)
+	if(node.insert(&key, &recordTwo, parameter) != Duplicated)
 	{
 		return false;
 	}
@@ -127,12 +126,12 @@ bool LeafNodeTests::testInsertRecordInFullBlockReturnsOverflow()
 
 	VariableRecord middleRecord;
 	OverflowParameter parameter;
-	if(node.insert(&keyRecord, &recordOne, &middleRecord, parameter) != Updated)
+	if(node.insert(&keyRecord, &recordOne, parameter) != Updated)
 	{
 		success = false;
 	}
 
-	else if(node.insert(&keyTwo, &recordTwo, &middleRecord, parameter) != Overflow)
+	else if(node.insert(&keyTwo, &recordTwo, parameter) != Overflow)
 	{
 		success = false;
 	}
@@ -145,7 +144,6 @@ bool LeafNodeTests::testInsertLessThanFullSizeReturnsCorrectResult()
 	VoterIndexMethods methods;
 	SequenceTreeBlock block(64, &methods, false);
 	LeafNode node(&block, &methods);
-	VariableRecord middleRecord;
 
 	bool success = true;
 	for(long i = 0;i < 5;++i)
@@ -160,7 +158,7 @@ bool LeafNodeTests::testInsertLessThanFullSizeReturnsCorrectResult()
 		VariableRecord keyRecord(key,sizeof(int));
 		r.setBytes(keyRecord.getBytes(), 2*sizeof(int));
 		OverflowParameter parameter;
-		success = success && node.insert(&keyRecord, &r, &middleRecord, parameter) == Updated;
+		success = success && node.insert(&keyRecord, &r, parameter) == Updated;
 	}
 
 	node.print();
@@ -224,15 +222,13 @@ bool LeafNodeTests::testInsertingWithOverflowPutsMiddleRecordInPassedParameter()
 	recordTwo.setBytes(custRecordBytes, sizeCust);
 	custKey.setBytes(custRecordKey, sizeCust);
 
-	VariableRecord middleRecord;
-
 	OverflowParameter parameter;
-	if(!(node.insert(&key, &recordOne, &middleRecord, parameter) == Updated))
+	if(!(node.insert(&key, &recordOne, parameter) == Updated))
 	{
 		return false;
 	}
 
-	if(!(node.insert(&custKey, &recordTwo, &middleRecord, parameter) == Overflow))
+	if(!(node.insert(&custKey, &recordTwo, parameter) == Overflow))
 	{
 		return false;
 	}
@@ -295,9 +291,8 @@ bool LeafNodeTests::testUpdateShouldReturnOverflowIfRecordDoesNotFitNode()
 	recordTwo.setBytes(recordBytes, 100);
 	key.setBytes(recordKey, l1 + l2 - 1);
 
-	VariableRecord middleRecord;
 	OverflowParameter parameter;
-	node.insert(&key, &recordOne, &middleRecord, parameter);
+	node.insert(&key, &recordOne, parameter);
 	return node.update(recordKey, &recordTwo) == Overflow;
 }
 
@@ -336,9 +331,8 @@ bool LeafNodeTests::testUpdateShouldUpdateRecordAndReturnUpdated()
 	memcpy(recordBytes +2+ (l1+l2), &c.balance, sizeof(long));
 	recordTwo.setBytes(recordBytes, size);
 
-	VariableRecord middleRecord;
 	OverflowParameter parameter;
-	node.insert(&key, &recordOne, &middleRecord, parameter);
+	node.insert(&key, &recordOne, parameter);
 	bool success = node.update(recordKey, &recordTwo) == Updated;
 
 	node.print();
@@ -385,9 +379,8 @@ bool LeafNodeTests::testDeleteReturnsUnderflowIfOccupiedSizeIsLessThanMinimum()
 
 	recordOne.setBytes(recordBytes, size);
 	key.setBytes(recordKey,l1 + l2 - 1);
-	VariableRecord middleRecord;
 	OverflowParameter parameter;
-	node.insert(&key, &recordOne, &middleRecord, parameter);
+	node.insert(&key, &recordOne, parameter);
 
 	node.print();
 	bool success = node.remove(recordKey) == Underflow;
@@ -426,9 +419,8 @@ bool LeafNodeTests::testDeleteReturnsUpdatedIfOccupiedSizeIsMoreThanMinimumAndRe
 
 	recordOne.setBytes(recordBytes, size);
 	key.setBytes(recordBytes, size);
-	VariableRecord middleRecord;
 	OverflowParameter parameter;
-	node.insert(&key, &recordOne, &middleRecord, parameter);
+	node.insert(&key, &recordOne, parameter);
 
 	VariableRecord recordTwo;
 	VariableRecord custKey;
@@ -454,7 +446,7 @@ bool LeafNodeTests::testDeleteReturnsUpdatedIfOccupiedSizeIsMoreThanMinimumAndRe
 	custKey.setBytes(custRecordKey, sizeCust);
 
 	bool success = true;
-	success = success && node.insert(&custKey, &recordTwo, &middleRecord, parameter) == Updated;
+	success = success && node.insert(&custKey, &recordTwo, parameter) == Updated;
 	node.print();
 	success = success && node.remove(custRecordKey) == Updated;
 	node.print();

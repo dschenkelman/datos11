@@ -39,6 +39,7 @@ public:
 	virtual void setNextNode(int node);
 	virtual int getNextNode();
 	virtual VariableRecord* popFirst();
+	virtual VariableRecord* popLast();
 	virtual ~SequenceTreeBlock();
 };
 

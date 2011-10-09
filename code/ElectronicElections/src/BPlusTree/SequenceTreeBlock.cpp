@@ -280,6 +280,19 @@ VariableRecord* SequenceTreeBlock::popFirst()
 	return ret;
 }
 
+VariableRecord *SequenceTreeBlock::popLast()
+{
+	VariableRecord aux;
+	this->positionAtBegin();
+	while (this->getNextRecord(&aux) != NULL){}
+
+	VariableRecord* ret = new VariableRecord;
+	*ret = aux;
+	this->removeRecord(this->recordMethods->getKeyRecord(aux.getBytes(),aux.getSize())->getBytes());
+
+	return ret;
+}
+
 SequenceTreeBlock::~SequenceTreeBlock()
 {
 }

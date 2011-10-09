@@ -18,6 +18,7 @@ class InternalNode: public Node
 	int maximumSize;
 	int calculateMaxSize();
     OpResult handleLeafOverflow(VariableRecord* keyRecord, VariableRecord* dataRecord, OverflowParameter& overflowParameter);
+    void handleOverflowInInternalNode(VariableRecord& aux, VariableRecord* keyAux, VariableRecord *dataRecord, OverflowParameter & overflowParameter, int newBlock);
 public:
 	InternalNode(TreeBlockFile* file, TreeBlock* b, RecordMethods* methods);
 	virtual OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord, OverflowParameter& overflowParameter);

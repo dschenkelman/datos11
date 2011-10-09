@@ -81,8 +81,10 @@ OpResult LeafNode::insert(VariableRecord* keyRecord, VariableRecord* dataRecord,
 
 	if (!dataIsMiddle)
 	{
-		this->block->removeRecord(aux.getBytes());
+		VariableRecord* keyAux = this->recordMethods->getKeyRecord(aux.getBytes(), aux.getSize());
+		this->block->removeRecord(keyAux->getBytes());
 		this->block->insertRecord(keyRecord, dataRecord);
+		delete keyAux;
 	}
 
 	*dataRecord = aux;

@@ -176,7 +176,7 @@ bool TreeTests::testInsertInInternalNodeWithOverflowIsSplit()
 				"Jujuy", "La Pampa", "La Rioja",
 				};
 
-	for (int i = 0; i < 13; i++)
+	for (int i = 0; i < 23; i++)
 	{
 		District d(districts[i]);
 		VariableRecord dataRecord;

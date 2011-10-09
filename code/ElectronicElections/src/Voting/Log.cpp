@@ -12,16 +12,16 @@ Log::Log(string filename) {
 }
 
 Log::Log() {
-	Log("log.txt");
+	this->file.open("log.txt", ios::out | ios::app);
 }
 
 Log::~Log() {
 	this->file.close();
 }
 
-Log* Log::operator <<(const string b) {
-    time_t ltime; /* calendar time */
-    ltime=time(NULL); /* get current cal time */
-    this->file << asctime( localtime(&ltime) ) << b;
-	return this;
-}
+//Log Log::operator& <<(const string b) {
+//    time_t ltime; /* calendar time */
+//    ltime=time(NULL); /* get current cal time */
+//    this->file << asctime( localtime(&ltime) ) << b;
+//	return this;
+//}

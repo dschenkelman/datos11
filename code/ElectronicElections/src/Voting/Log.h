@@ -20,8 +20,17 @@ private:
 public:
 	Log();
 	Log(string filename);
-	Log* operator <<(const string b);
 	virtual ~Log();
+	Log& operator<<(string a) {
+		time_t ltime; /* calendar time */
+		ltime=time(NULL); /* get current cal time */
+		char* timestamp = asctime( localtime(&ltime) );
+		timestamp[string(timestamp).length()-1] = '\0';
+		this->file << timestamp << " " << a << endl;
+		//this->file.is_open() ? cout << "abierto" <<endl : cout << "cerrado" << endl;
+		this->file.flush();
+		return *this;
+	}
 };
 
 #endif /* LOG_H_ */

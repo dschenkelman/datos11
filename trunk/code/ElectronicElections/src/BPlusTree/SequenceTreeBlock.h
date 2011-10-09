@@ -38,6 +38,8 @@ public:
 	virtual int getNodePointer(int index);
 	virtual void setNextNode(int node);
 	virtual int getNextNode();
+	VariableRecord* popFirst();
+	virtual bool isUnderflow();
 	virtual ~SequenceTreeBlock();
 };
 

@@ -38,6 +38,7 @@ public:
 	virtual int getNodePointer(int index) = 0;
 	virtual void setNextNode(int node) = 0;
 	virtual int getNextNode() = 0;
+	virtual bool isUnderflow() = 0;
 	virtual ~TreeBlock();
 };
 

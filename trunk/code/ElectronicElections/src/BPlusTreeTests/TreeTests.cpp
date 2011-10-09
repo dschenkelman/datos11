@@ -222,6 +222,47 @@ bool TreeTests::testRemoveWithoutUnderflowWorksCorrectly()
 	return true;
 }
 
+bool TreeTests::testRemoveInLeafWithUnderflowIsBalancedByParent()
+{
+	DistrictMethods districtMethods;
+	Tree tree("treeTests.dat", 128, &districtMethods, true);
+
+	// approximately 78 chars
+	string districts[] = {"San Luis", "Santa Cruz", "Santa Fe", "Santiago del Estero",
+			"Corrientes", "Tierra del Fuego", "Tucuman"
+			};
+
+	for (int i = 0; i < 7; i++)
+	{
+		District d(districts[i]);
+		VariableRecord dataRecord;
+		VariableRecord keyRecord;
+		dataRecord.setBytes(d.getBytes(), d.getSize());
+		keyRecord.setBytes(d.getKey(), d.getKeySize());
+
+		tree.insert(&keyRecord, &dataRecord);
+	}
+
+	tree.print();
+/*
+	cout << endl << "Remove in the right child => it gets underflow" << endl;
+	District d("Tucuman");
+	tree.remove(d.getKey());
+
+	cout << endl << "The tree is balanced" << endl;
+	tree.print();
+
+	//cout << endl;
+*/
+	return false;
+}
+
+bool TreeTests::testRemoveInLeafWithUnderflowIsMergedByParent()
+{
+	return false;
+}
+
 TreeTests::~TreeTests()
 {
+	cout << endl;
 }

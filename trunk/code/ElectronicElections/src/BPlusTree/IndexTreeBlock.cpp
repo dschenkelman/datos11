@@ -320,6 +320,11 @@ int IndexTreeBlock::getNextNode()
 	return -1;
 }
 
+bool IndexTreeBlock::isUnderflow()
+{
+	return true;
+}
+
 IndexTreeBlock::~IndexTreeBlock()
 {
 }

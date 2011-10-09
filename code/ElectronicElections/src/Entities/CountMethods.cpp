@@ -18,8 +18,69 @@ CountMethods::CountMethods()
 
 int CountMethods::compare(const char* key, const char* recordBytes, int recordSize)
 {
-	// falta implementar
-	return 1;
+	Count c(1, 1, 1, "Invalid", "Invalid", "Invalid", 0);
+	c.setBytes((char*) recordBytes);
+
+	if(strcmp(key, c.getKey()) == 0)
+	{
+		return 0;
+	}
+
+	int i = 0;
+
+	short year;
+	char day, month;
+	memcpy(&year, key+i, sizeof(short)); i += sizeof(short);
+	memcpy(&month, key+i, sizeof(char)); i += sizeof(char);
+	memcpy(&day, key+i, sizeof(char)); i += sizeof(char);
+
+	char len = (key+i)[0]; i += Constants::FIELD_HEADER_SIZE;
+	char charge[len];
+	memcpy(charge, key+i, len);
+
+	if(year > c.getYear())
+	{
+		return 1;
+	}
+
+	else
+	{
+		if(year < c.getYear())
+		{
+			return -1;
+		}
+
+		if(month > c.getMonth())
+		{
+			return 1;
+		}
+
+		else
+		{
+			if(month < c.getMonth())
+			{
+				return -1;
+			}
+
+			if(day > c.getDay())
+			{
+				return 1;
+			}
+
+			else
+			{
+				if(day < c.getDay())
+				{
+					return -1;
+				}
+
+				else
+				{
+					return strcmp(charge, c.getCharge().c_str());
+				}
+			}
+		}
+	}
 }
 
 void CountMethods::print(const char* recordBytes, int recordSize)

@@ -24,7 +24,7 @@ int LeafNode::calculateMaximumSize()
 
 int LeafNode::calculateMinimumSize()
 {
-	return (floor(this->block->getSize() - SequenceTreeBlock::RECORD_OFFSET) / 0.45);
+	return (floor(this->block->getSize() - SequenceTreeBlock::RECORD_OFFSET) * 0.45);
 }
 
 int LeafNode::getMinimumSize()
@@ -35,6 +35,11 @@ int LeafNode::getMinimumSize()
 VariableRecord* LeafNode::popFirst()
 {
 	return this->block->popFirst();
+}
+
+VariableRecord *LeafNode::popLast()
+{
+	return this->block->popLast();
 }
 
 OpResult LeafNode::insert(VariableRecord* keyRecord, VariableRecord* dataRecord, OverflowParameter& overflowParameter)
@@ -170,6 +175,10 @@ int LeafNode::getMaxSize()
 	return (this->block->getSize() - SequenceTreeBlock::RECORD_OFFSET);
 }
 
+int LeafNode::getNextNode()
+{
+	return this->block->getNextNode();
+}
 
 LeafNode::~LeafNode()
 {

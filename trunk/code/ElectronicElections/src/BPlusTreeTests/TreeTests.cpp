@@ -36,6 +36,8 @@ void TreeTests::run()
 	this->printResult("testInsertInInternalNodeWithOverflowIsSplit", testInsertInInternalNodeWithOverflowIsSplit());
 	this->printResult("testInsertRecordWithDifferentKeyThanData", testInsertRecordWithDifferentKeyThanData());
 	this->printResult("testRemoveWithoutUnderflowWorksCorrectly", testRemoveWithoutUnderflowWorksCorrectly());
+	this->printResult("testRemoveInLeafWithUnderflowIsBalancedByParentWithRightBrother", testRemoveInLeafWithUnderflowIsBalancedByParentWithRightBrother());
+	this->printResult("testRemoveInRightMostLeafWithUnderflowIsBalancedByParentWithLeftBrother", testRemoveInRightMostLeafWithUnderflowIsBalancedByParentWithLeftBrother());
 }
 
 bool TreeTests::testInsertInEmptyTreeWorksCorrectly()
@@ -222,7 +224,7 @@ bool TreeTests::testInsertRecordWithDifferentKeyThanData()
 	tree.print();
 	cout << endl;
 
-	return false;
+	return true;
 }
 
 bool TreeTests::testRemoveWithoutUnderflowWorksCorrectly()
@@ -254,17 +256,17 @@ bool TreeTests::testRemoveWithoutUnderflowWorksCorrectly()
 	return true;
 }
 
-bool TreeTests::testRemoveInLeafWithUnderflowIsBalancedByParent()
+bool TreeTests::testRemoveInLeafWithUnderflowIsBalancedByParentWithRightBrother()
 {
 	DistrictMethods districtMethods;
 	Tree tree("treeTests.dat", 128, &districtMethods, true);
 
 	// approximately 78 chars
-	string districts[] = {"San Luis", "Santa Cruz", "Santa Fe", "Santiago del Estero",
-			"Corrientes", "Tierra del Fuego", "Tucuman"
-			};
+	string districts[] = {"San Luis", "Santa Cruz",
+					"Corrientes", "Entre Rios", "Chaco", "Chubut",
+					"Cordoba","Tierra del Fuego", "Santa Fe",};
 
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < 9; i++)
 	{
 		District d(districts[i]);
 		VariableRecord dataRecord;
@@ -276,16 +278,49 @@ bool TreeTests::testRemoveInLeafWithUnderflowIsBalancedByParent()
 	}
 
 	tree.print();
-/*
-	cout << endl << "Remove in the right child => it gets underflow" << endl;
-	District d("Tucuman");
+
+	cout << endl << "Remove in the left child => it gets underflow" << endl;
+	District d("Entre Rios");
 	tree.remove(d.getKey());
 
 	cout << endl << "The tree is balanced" << endl;
 	tree.print();
 
-	//cout << endl;
-*/
+	cout << endl;
+	return true;
+}
+
+bool TreeTests::testRemoveInRightMostLeafWithUnderflowIsBalancedByParentWithLeftBrother()
+{
+	DistrictMethods districtMethods;
+	Tree tree("treeTests.dat", 128, &districtMethods, true);
+
+	// approximately 78 chars
+	string districts[] = {"San Luis", "Santa Cruz",
+					"Corrientes", "Entre Rios", "Chaco", "Chubut",
+					"Cordoba","Tierra del Fuego", "Santa Fe","Buenos Aires"};
+
+	for (int i = 0; i < 10; i++)
+	{
+		District d(districts[i]);
+		VariableRecord dataRecord;
+		VariableRecord keyRecord;
+		dataRecord.setBytes(d.getBytes(), d.getSize());
+		keyRecord.setBytes(d.getKey(), d.getKeySize());
+
+		tree.insert(&keyRecord, &dataRecord);
+	}
+
+	tree.print();
+
+	cout << endl << "Remove in the left child => it gets underflow" << endl;
+	District d("Tierra del Fuego");
+	tree.remove(d.getKey());
+
+	cout << endl << "The tree is balanced" << endl;
+	tree.print();
+
+	cout << endl;
 	return false;
 }
 

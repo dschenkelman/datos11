@@ -27,7 +27,9 @@ public:
 	virtual OpResult remove(char* key);
 	virtual int getMaxSize();
 	virtual int getMinimumSize();
+	int getNextNode();
 	VariableRecord* popFirst();
+	VariableRecord* popLast();
 	void print();
 	virtual ~LeafNode();
 };

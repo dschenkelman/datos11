@@ -326,6 +326,10 @@ VariableRecord* IndexTreeBlock::popFirst()
 	return NULL;
 }
 
+VariableRecord *IndexTreeBlock::popLast()
+{
+	return NULL;
+}
 
 IndexTreeBlock::~IndexTreeBlock()
 {

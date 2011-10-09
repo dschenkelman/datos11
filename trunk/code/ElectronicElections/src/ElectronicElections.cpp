@@ -49,14 +49,14 @@ int run_tests()
 	DistrictTests districtTests;
 	districtTests.run();*/
 
-	cout << "Hash Tests" << endl;
-	HashTest hashTests;
-	hashTests.run();
+//	cout << "Hash Tests" << endl;
+//	HashTest hashTests;
+//	hashTests.run();
 
-	/*cout << "Tree Tests" << endl;
+	cout << "Tree Tests" << endl;
 	TreeTests treeTests;
 	treeTests.run();
-
+	/*
 	cout << "Elections List Tests" << endl;
 	ElectionsListTests electionTests;
 	electionTests.run();
@@ -82,7 +82,7 @@ int run_tests()
 
 int main()
 {
-	bool debug = false;
+	bool debug = true;
 	if (debug)
 	{
 		run_tests();

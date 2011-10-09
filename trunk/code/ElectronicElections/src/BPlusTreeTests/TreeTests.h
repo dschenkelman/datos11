@@ -23,7 +23,8 @@ public:
 	bool testInsertInInternalNodeWithOverflowIsSplit();
 	bool testInsertRecordWithDifferentKeyThanData();
 	bool testRemoveWithoutUnderflowWorksCorrectly();
-	bool testRemoveInLeafWithUnderflowIsBalancedByParent();
+	bool testRemoveInLeafWithUnderflowIsBalancedByParentWithRightBrother();
+	bool testRemoveInRightMostLeafWithUnderflowIsBalancedByParentWithLeftBrother();
 	bool testRemoveInLeafWithUnderflowIsMergedByParent();
 	virtual ~TreeTests();
 };

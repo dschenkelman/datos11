@@ -13,6 +13,7 @@
 #include "../Entities/Count.h"
 #include "../Entities/CountMethods.h"
 #include "../VariableBlocks/VariableRecord.h"
+#include <string.h>
 
 using namespace std;
 
@@ -336,7 +337,7 @@ bool TreeTests::testRemoveInRightMostLeafWithUnderflowIsBalancedByParentWithLeft
 	cout << "District Count" << i + 1 <<endl;
 	tree.print();
 
-	cout << endl << "Remove in the left child => it gets underflow" << endl;
+	cout << endl << "Remove in the right child 'Tierra del Fuego' => it gets underflow" << endl;
 	District d("Tierra del Fuego");
 	tree.remove(d.getKey());
 
@@ -385,6 +386,47 @@ bool TreeTests::testRemoveInLeafWithUnderflowAndRightBrotherInAnotherParentBalan
 
 bool TreeTests::testRemoveInLeafWithUnderflowIsMergedByParent()
 {
+	DistrictMethods districtMethods;
+	Tree tree("treeTests.dat", 96, &districtMethods, true);
+
+	// approximately n chars
+		string districts[] = {"San Luis", "Santa Cruz",
+						"Corrientes", "Entre Rios",
+						"Chaco", "Chubut", "Cordoba",
+						 "Santa Fe", //"Santiago del Estero",
+						"Mendoza", "Misiones"//, "Neuquen"
+						};
+int sad;
+	for (int i = 0; i < 10; i++)
+	{
+		District d(districts[i]);
+		VariableRecord dataRecord;
+		VariableRecord keyRecord;
+		dataRecord.setBytes(d.getBytes(), d.getSize());
+		keyRecord.setBytes(d.getKey(), d.getKeySize());
+		cout << endl;tree.print();cout << endl;
+		/*if (strcmp(districts[i].c_str(),"Chubut") == 0)
+		{
+			tree.insert(&keyRecord, &dataRecord);
+		}
+		else
+		{*/
+			tree.insert(&keyRecord, &dataRecord);
+
+		//cin >> sad;
+	}
+
+	tree.print();
+
+	cout << endl << "Remove in the right child 'Santa Fe' and 'Santa Cruz' => it gets underflow" << endl;
+	District d("Santa Fe");
+	tree.remove(d.getKey());
+
+	cout << endl << "The nodes are merged" << endl;
+	tree.print();
+
+	cout << endl;
+
 	return false;
 }
 

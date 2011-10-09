@@ -9,16 +9,32 @@
 #define LOADDATAFILES_H_
 #include <fstream>
 
+#include "../Hash/HashBlockFile.h"
+#include "../BPlusTree/Tree.h"
+#include "../Hash/VoterHashingFunction.h"
+#include "../Hash/ChargeHashingFunction.h"
+#include "../Entities/ChargeMethods.h"
+#include "../Entities/VoterMethods.h"
+#include "../Entities/DistrictMethods.h"
+
 class LoadDataFiles
 {
-	HashBlockFile* currentBlock;
+	std::string configName;
+	std::ifstream configFile;
+	HashBlockFile* hashVoterFile;
+	HashBlockFile* hashChargeFile;
+	Tree* treeDistrictFile;
 
-	int totalBlocks;
-	void initializefile();
+	//void initializefile();
+	void readDistrictFile();
+	void readVoterFile();
+	void readChargeFile();
+	void createFileType(char* fileType,char** fields);
 
 public:
-	LoadDataFiles();
+	LoadDataFiles(std::string configFileName);
 
+	void readConfigFile();
 	~LoadDataFiles();
 };
 

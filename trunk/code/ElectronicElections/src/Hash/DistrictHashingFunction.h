@@ -10,7 +10,7 @@
 
 #include "HashingFunction.h"
 
-class DistrictHashingFunction : HashingFunction
+class DistrictHashingFunction : public HashingFunction
 {
 
 public:

@@ -10,7 +10,7 @@
 
 #include "HashingFunction.h"
 
-class VoterHashingFunction : HashingFunction
+class VoterHashingFunction : public HashingFunction
 {
 
 public:

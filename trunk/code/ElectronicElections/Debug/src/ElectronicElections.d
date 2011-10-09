@@ -28,7 +28,18 @@ src/ElectronicElections.d src/ElectronicElections.o: \
  ../src/BPlusTree/../VariableBlocks/RecordMethods.h \
  ../src/BPlusTree/TreeBlockFile.h ../src/BPlusTree/Node.h \
  ../src/BPlusTree/TreeBlock.h ../src/BPlusTree/OverflowParameter.h \
- ../src/Voting/Log.h
+ ../src/Voting/Log.h ../src/Voting/LoadDataFiles.h \
+ ../src/Voting/../Hash/HashBlockFile.h ../src/Voting/../BPlusTree/Tree.h \
+ ../src/Voting/../Hash/VoterHashingFunction.h \
+ ../src/Voting/../Hash/HashingFunction.h \
+ ../src/Voting/../Hash/ChargeHashingFunction.h \
+ ../src/Voting/../Entities/ChargeMethods.h \
+ ../src/Voting/../Entities/../VariableBlocks/RecordMethods.h \
+ ../src/Voting/../Entities/VoterMethods.h \
+ ../src/Voting/../Entities/DistrictMethods.h \
+ ../src/Voting/../Entities/../VariableBlocks/VariableRecord.h \
+ ../src/Voting/../Entities/../VariableBlocks/Constants.h \
+ ../src/Voting/../Entities/District.h
 
 ../src/BlocksTests/RLVBlockFileTests.h:
 
@@ -105,3 +116,29 @@ src/ElectronicElections.d src/ElectronicElections.o: \
 ../src/BPlusTree/OverflowParameter.h:
 
 ../src/Voting/Log.h:
+
+../src/Voting/LoadDataFiles.h:
+
+../src/Voting/../Hash/HashBlockFile.h:
+
+../src/Voting/../BPlusTree/Tree.h:
+
+../src/Voting/../Hash/VoterHashingFunction.h:
+
+../src/Voting/../Hash/HashingFunction.h:
+
+../src/Voting/../Hash/ChargeHashingFunction.h:
+
+../src/Voting/../Entities/ChargeMethods.h:
+
+../src/Voting/../Entities/../VariableBlocks/RecordMethods.h:
+
+../src/Voting/../Entities/VoterMethods.h:
+
+../src/Voting/../Entities/DistrictMethods.h:
+
+../src/Voting/../Entities/../VariableBlocks/VariableRecord.h:
+
+../src/Voting/../Entities/../VariableBlocks/Constants.h:
+
+../src/Voting/../Entities/District.h:

@@ -30,12 +30,13 @@ protected:
 	// content of the block
 	char* bytes;
 	virtual bool hasNextRecord() = 0;
-    int getOccupiedSize();
+
 
 public:
 	BaseVariableBlock(int size, int pos, int rOffset, RecordMethods* methods);
 	char* getBytes();
 	int getSize();
+	int getOccupiedSize();
 	int getFreeSpace();
 	int findRecord(const char* key, VariableRecord** rec);
 	virtual void updateInformation() = 0;

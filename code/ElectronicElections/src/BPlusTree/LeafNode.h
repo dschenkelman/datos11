@@ -26,6 +26,8 @@ public:
 	virtual OpResult update(char* key, VariableRecord* r);
 	virtual OpResult remove(char* key);
 	virtual int getMaxSize();
+	virtual int getMinimumSize();
+	VariableRecord* popFirst();
 	void print();
 	virtual ~LeafNode();
 };

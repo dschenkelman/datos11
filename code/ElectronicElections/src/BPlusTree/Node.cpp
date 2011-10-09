@@ -21,6 +21,11 @@ void Node::increaseLevel()
 	return this->block->setLevel(this->block->getLevel() + 1);
 }
 
+int Node::getOccupiedSize()
+{
+	return this->block->getOccupiedSize();
+}
+
 Node::~Node()
 {
 }

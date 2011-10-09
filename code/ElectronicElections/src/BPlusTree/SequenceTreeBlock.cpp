@@ -267,11 +267,6 @@ void SequenceTreeBlock::setNextNode(int node)
 	memcpy(this->bytes + TreeBlock::FREE_SPACE_SIZE + TreeBlock::LEVEL_SIZE, &this->nextNode, NEXT_NODE_SIZE);
 }
 
-bool SequenceTreeBlock::isUnderflow()
-{
-	return true;
-}
-
 VariableRecord* SequenceTreeBlock::popFirst()
 {
 	this->position = RECORD_OFFSET;

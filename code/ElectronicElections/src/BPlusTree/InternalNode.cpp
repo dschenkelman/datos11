@@ -8,6 +8,7 @@
 #include "InternalNode.h"
 #include "LeafNode.h"
 #include <string.h>
+#include <cstdlib>
 #include <iostream>
 #include <vector>
 #include "IndexTreeBlock.h"
@@ -325,7 +326,10 @@ OpResult InternalNode::remove(char *key)
 {
 	VariableRecord aux;
 	OpResult result;
+	bool leafAlreadyBalanced = false;
 	this->block->positionAtBegin();
+
+	// Look for the Leaf
 	int index;
 	while(this->block->getNextRecord(&aux) != NULL)
 	{
@@ -342,6 +346,8 @@ OpResult InternalNode::remove(char *key)
 	int blockPointer = this->block->getNodePointer(index);
 	this->file->loadBlock(blockPointer);
 	this->file->pushBlock();
+	// ======================= //
+
 
 	if (this->file->isCurrentLeaf())
 	{
@@ -350,16 +356,45 @@ OpResult InternalNode::remove(char *key)
 	}
 	else
 	{
+		exit(1);
+		/*	PENDING
 		InternalNode node(this->file, this->file->getCurrentBlock(), this->recordMethods);
-		result = node.remove(key);
+		result = node.remove(key);*/
 	}
 
 	if (result == Underflow)
 	{
+
 		if (this->file->isCurrentLeaf())
 		{
 			// Leaf in Underflow
-			// Preguntar si sobran records en las hojas vecinas
+			LeafNode underflowLeaf(this->file->getCurrentBlock(), this->recordMethods);
+
+			// Look for right brother
+			int nextNodePointer = this->block->getNodePointer(index+1);
+			if (nextNodePointer != -1)
+			{
+				//Have a right brother
+				this->file->loadBlock(nextNodePointer);
+				this->file->pushBlock();
+				LeafNode rightBrother(this->file->getCurrentBlock(), this->recordMethods);
+				leafAlreadyBalanced = this->handleLeafUnderflow(&underflowLeaf,&rightBrother);
+
+			}
+			if (!leafAlreadyBalanced)
+			{
+				//There is not enough records in right brother (or it does not exist)
+				// Look for left brother
+				int nextNodePointer = this->block->getNodePointer(index-1);
+				if (nextNodePointer != -1)
+				{
+					//Have a left brother
+					this->file->loadBlock(nextNodePointer);
+					this->file->pushBlock();
+					LeafNode leftBrother(this->file->getCurrentBlock(), this->recordMethods);
+					leafAlreadyBalanced  = this->handleLeafUnderflow(&leftBrother,&underflowLeaf);
+				}
+			}
 		}
 		else
 		{
@@ -374,6 +409,33 @@ OpResult InternalNode::remove(char *key)
 	this->file->popBlock();
 
 	return result;
+}
+
+bool InternalNode::handleLeafUnderflow(LeafNode* underflowLeaf, LeafNode* brotherLeaf)
+{
+	int totalCapacity = underflowLeaf->getOccupiedSize() + brotherLeaf->getOccupiedSize();
+	OverflowParameter parameter;
+	if ( ((totalCapacity / 2) * 0.9) < underflowLeaf->getMinimumSize() )	// 90% * 50% = Underflow limit at 45%
+	{
+		// There is not enough records to balance the Leafs
+		return false;
+	}
+
+	while (!underflowLeaf->getOccupiedSize() < brotherLeaf->getOccupiedSize())
+	{
+		VariableRecord* dataRecord = brotherLeaf->popFirst();
+		VariableRecord* keyRecord = this->recordMethods->getKeyRecord(dataRecord->getBytes(),dataRecord->getSize());
+		underflowLeaf->insert(keyRecord, dataRecord, parameter);
+	}
+
+
+	return true;
+}
+
+int InternalNode::getMinimumSize()
+{
+	//TODO
+	return 0;
 }
 
 OpResult InternalNode::update(char *key, VariableRecord *r)

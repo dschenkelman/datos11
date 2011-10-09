@@ -320,10 +320,12 @@ int IndexTreeBlock::getNextNode()
 	return -1;
 }
 
-bool IndexTreeBlock::isUnderflow()
+VariableRecord* IndexTreeBlock::popFirst()
 {
-	return true;
+	// TODO if needed
+	return NULL;
 }
+
 
 IndexTreeBlock::~IndexTreeBlock()
 {

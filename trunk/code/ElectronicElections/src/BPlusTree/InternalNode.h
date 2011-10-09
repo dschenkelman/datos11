@@ -11,6 +11,7 @@
 #include "Node.h"
 #include "TreeBlockFile.h"
 #include "OverflowParameter.h"
+#include "LeafNode.h"
 
 class InternalNode: public Node
 {
@@ -19,6 +20,7 @@ class InternalNode: public Node
 	int calculateMaxSize();
     OpResult handleLeafOverflow(VariableRecord* keyRecord, VariableRecord* dataRecord, OverflowParameter& overflowParameter);
     void handleOverflowInInternalNode(VariableRecord& aux, VariableRecord* keyAux, VariableRecord *dataRecord, OverflowParameter & overflowParameter, int newBlock);
+    bool handleLeafUnderflow(LeafNode* leftLeaf, LeafNode* rightLeaf);
 public:
 	InternalNode(TreeBlockFile* file, TreeBlock* b, RecordMethods* methods);
 	virtual OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord, OverflowParameter& overflowParameter);
@@ -26,6 +28,7 @@ public:
 	virtual OpResult remove(char* key);
 	virtual void print();
 	virtual int getMaxSize();
+	virtual int getMinimumSize();
 	virtual ~InternalNode();
 };
 

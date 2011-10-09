@@ -33,6 +33,8 @@ public:
 	virtual OpResult remove(char* key) = 0;
 	virtual void print() = 0;
 	virtual int getMaxSize() = 0;
+	virtual int getOccupiedSize();
+	virtual int getMinimumSize() = 0;
 	short getLevel();
 	void increaseLevel();
 	virtual ~Node();

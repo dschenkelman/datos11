@@ -53,7 +53,8 @@ bool TreeTests::testInsertInEmptyTreeWorksCorrectly()
 			"Buenos Aires", "Catamarca", "Formosa", "Jujuy", "La Pampa", "La Rioja",
 			};
 
-	for (int i = 0; i < 23; i++)
+	int i;
+	for (i = 0; i < 23; i++)
 	{
 		District d(districts[i]);
 		VariableRecord dataRecord;
@@ -64,6 +65,7 @@ bool TreeTests::testInsertInEmptyTreeWorksCorrectly()
 		tree.insert(&keyRecord, &dataRecord);
 	}
 
+	cout << "District Count" << i << endl;
 	tree.print();
 	cout << endl;
 
@@ -83,7 +85,8 @@ bool TreeTests::testInsertInRootWithOverflowCreatesTwoLeafs()
 			"Buenos Aires", "Catamarca", "Formosa", "Jujuy", "La Pampa", "La Rioja",
 			};
 
-	for (int i = 0; i < 7; i++)
+	int i;
+	for (i = 0; i < 7; i++)
 	{
 		District d(districts[i]);
 		VariableRecord dataRecord;
@@ -94,6 +97,7 @@ bool TreeTests::testInsertInRootWithOverflowCreatesTwoLeafs()
 		tree.insert(&keyRecord, &dataRecord);
 	}
 
+	cout << "District Count" << i << endl;
 	tree.print();
 	cout << endl;
 
@@ -113,7 +117,8 @@ bool TreeTests::testInsertInLeafWithOverflowIsSplitByParent()
 			"Buenos Aires", "Catamarca", "Formosa", "Jujuy", "La Pampa", "La Rioja",
 			};
 
-	for (int i = 0; i < 23; i++)
+	int i;
+	for (i = 0; i < 23; i++)
 	{
 		District d(districts[i]);
 		VariableRecord dataRecord;
@@ -124,6 +129,7 @@ bool TreeTests::testInsertInLeafWithOverflowIsSplitByParent()
 		tree.insert(&keyRecord, &dataRecord);
 	}
 
+	cout << "District Count" << i << endl;
 	tree.print();
 	cout << endl;
 
@@ -147,7 +153,8 @@ bool TreeTests::testInsertInInternalRootWithOverflowIsSplit()
 				"Jujuy", "La Pampa", "La Rioja",
 				};
 
-	for (int i = 0; i < 13; i++)
+	int i;
+	for (i = 0; i < 13; i++)
 	{
 		District d(districts[i]);
 		VariableRecord dataRecord;
@@ -158,6 +165,7 @@ bool TreeTests::testInsertInInternalRootWithOverflowIsSplit()
 		tree.insert(&keyRecord, &dataRecord);
 	}
 
+	cout << "District Count" << i << endl;
 	tree.print();
 	cout << endl;
 
@@ -181,7 +189,8 @@ bool TreeTests::testInsertInInternalNodeWithOverflowIsSplit()
 				"Jujuy", "La Pampa", "La Rioja",
 				};
 
-	for (int i = 0; i < 23; i++)
+	int i;
+	for (i = 0; i < 23; i++)
 	{
 		District d(districts[i]);
 		VariableRecord dataRecord;
@@ -191,6 +200,8 @@ bool TreeTests::testInsertInInternalNodeWithOverflowIsSplit()
 
 		tree.insert(&keyRecord, &dataRecord);
 	}
+
+	cout << "District Count" << i << endl;
 
 	tree.print();
 	cout << endl;
@@ -211,7 +222,8 @@ bool TreeTests::testInsertRecordWithDifferentKeyThanData()
 	CountMethods countMethods;
 	Tree tree("treeTests.dat", 128, &countMethods, true);
 
-	for (int i = 0; i < 6; i++)
+	int i;
+	for (i = 0; i < 6; i++)
 	{
 		Count c = counts[i];
 		VariableRecord dataRecord;
@@ -222,6 +234,7 @@ bool TreeTests::testInsertRecordWithDifferentKeyThanData()
 		tree.insert(&keyRecord, &dataRecord);
 	}
 
+	cout << "Counts Count" << i << endl;
 	tree.print();
 	cout << endl;
 
@@ -237,7 +250,8 @@ bool TreeTests::testRemoveWithoutUnderflowWorksCorrectly()
 			"Corrientes", "Tierra del Fuego", "Tucuman", "Entre Rios",
 			};
 
-	for (int i = 0; i < 8; i++)
+	int i;
+	for (i = 0; i < 8; i++)
 	{
 		District d(districts[i]);
 		VariableRecord dataRecord;
@@ -246,11 +260,14 @@ bool TreeTests::testRemoveWithoutUnderflowWorksCorrectly()
 		keyRecord.setBytes(d.getKey(), d.getKeySize());
 		tree.insert(&keyRecord, &dataRecord);
 	}
+
+	cout << "District Count" << i << endl;
 	tree.print();
 	cout << endl << "Removing Tierra del Fuego..." << endl;
 	District d("Tierra del Fuego");
 	tree.remove(d.getKey());
 
+	cout << "District Count" << i - 1 << endl;
 	tree.print();
 	cout << endl;
 
@@ -267,7 +284,8 @@ bool TreeTests::testRemoveInLeafWithUnderflowIsBalancedByParentWithRightBrother(
 					"Corrientes", "Entre Rios", "Chaco", "Chubut",
 					"Cordoba","Tierra del Fuego", "Santa Fe",};
 
-	for (int i = 0; i < 9; i++)
+	int i;
+	for (i = 0; i < 9; i++)
 	{
 		District d(districts[i]);
 		VariableRecord dataRecord;
@@ -278,6 +296,7 @@ bool TreeTests::testRemoveInLeafWithUnderflowIsBalancedByParentWithRightBrother(
 		tree.insert(&keyRecord, &dataRecord);
 	}
 
+	cout << "District Count" << i << endl;
 	tree.print();
 
 	cout << endl << "Remove in the left child => it gets underflow" << endl;
@@ -285,6 +304,7 @@ bool TreeTests::testRemoveInLeafWithUnderflowIsBalancedByParentWithRightBrother(
 	tree.remove(d.getKey());
 
 	cout << endl << "The tree is balanced" << endl;
+	cout << "District Count" << i - 1 << endl;
 	tree.print();
 
 	cout << endl;
@@ -301,7 +321,8 @@ bool TreeTests::testRemoveInRightMostLeafWithUnderflowIsBalancedByParentWithLeft
 					"Corrientes", "Entre Rios", "Chaco", "Chubut",
 					"Cordoba","Tierra del Fuego", "Santa Fe","Buenos Aires"};
 
-	for (int i = 0; i < 10; i++)
+	int i;
+	for (i = 0; i < 10; i++)
 	{
 		District d(districts[i]);
 		VariableRecord dataRecord;
@@ -312,6 +333,7 @@ bool TreeTests::testRemoveInRightMostLeafWithUnderflowIsBalancedByParentWithLeft
 		tree.insert(&keyRecord, &dataRecord);
 	}
 
+	cout << "District Count" << i + 1 <<endl;
 	tree.print();
 
 	cout << endl << "Remove in the left child => it gets underflow" << endl;
@@ -319,6 +341,7 @@ bool TreeTests::testRemoveInRightMostLeafWithUnderflowIsBalancedByParentWithLeft
 	tree.remove(d.getKey());
 
 	cout << endl << "The tree is balanced" << endl;
+	cout << "District Count" << i - 1 << endl;
 	tree.print();
 
 	cout << endl;
@@ -342,7 +365,8 @@ bool TreeTests::testRemoveInLeafWithUnderflowAndRightBrotherInAnotherParentBalan
 				"Jujuy", "La Pampa", "La Rioja","Rio Negro",
 				};
 
-	for (int i = 0; i < 18; i++)
+	int i;
+	for (i = 0; i < 18; i++)
 	{
 		District d(districts[i]);
 		VariableRecord dataRecord;

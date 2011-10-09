@@ -23,6 +23,7 @@
 #include "Voting/Menu.h"
 #include "Voting.h"
 #include "Hash/HashBlockFile.h"
+#include "BPlusTree/Tree.h"
 #include "Voting/Log.h"
 #include <time.h>
 
@@ -134,7 +135,19 @@ int main()
 						break;
 					case 7:
 						cout << "Generando archivo de distritos" << endl;
-						HashBlockFile("District", 512, NULL, 300, true);
+						HashBlockFile("District.dat", 512, NULL, 300, true);
+//						cout << "Generando archivo de votantes" << endl;
+//						HashBlockFile("VO", 512, NULL, 300, true);
+						cout << "Generando archivo de elecciones" << endl;
+						Tree("Election.dat", 512, NULL, true);
+//						cout << "Generando archivo de listas" << endl;
+//						Tree("Lista.dat", 512, NULL, true);
+						cout << "Generando archivo de conteo" << endl;
+						Tree("Count.dat", 512, NULL, true);
+						cout << "Generando archivo de cargos" << endl;
+						HashBlockFile("Charge.dat", 512, NULL, 300, true);
+						cout << "Generando archivo de candidato" << endl;
+						Tree("Candidate.dat", 512, NULL, true);
 						break;
 				}
 				break;

@@ -385,23 +385,24 @@ OpResult InternalNode::remove(char *key)
 			if (nextNode != 0)
 			{
 				//Has a brother
-				TreeBlock* overflowBlock = this->file->getCurrentBlock();
+				TreeBlock* underflowBlock = this->file->getCurrentBlock();
 				this->file->loadBlock(nextNode);
 				this->file->pushBlock();
 				LeafNode brother(this->file->getCurrentBlock(), this->recordMethods);
 				// not considering right-most case, use boolean!
 				if (balanceRight)
 				{
-					leafAlreadyBalanced = this->balanceLeafOverflowRight(&node,&brother, overflowBlock);
+					leafAlreadyBalanced = this->balanceLeafOverflowRight(&node,&brother, underflowBlock);
 				}
 				else
 				{
-					leafAlreadyBalanced = this->balanceLeafOverflowLeft(&brother, &node, overflowBlock);
+					leafAlreadyBalanced = this->balanceLeafOverflowLeft(&brother, &node, underflowBlock);
 				}
 
 				if (!leafAlreadyBalanced)
 				{
 					//TODO: merge
+					cout<<"YEAAHHHHHH";
 				}
 
 				this->file->saveBlock();
@@ -466,6 +467,7 @@ bool InternalNode::balanceLeafOverflowRight(LeafNode* leftLeaf, LeafNode* rightL
 bool InternalNode::balanceLeafOverflowLeft(LeafNode* leftLeaf, LeafNode* rightLeaf, TreeBlock* underflowBlock)
 {
 	int totalCapacity = leftLeaf->getOccupiedSize() + rightLeaf->getOccupiedSize();
+	int amountOfRecordsBalanced = 0;
 	if (totalCapacity / 2 < leftLeaf->getMinimumSize())
 	{
 		// There is not enough records to balance the Leafs
@@ -492,6 +494,7 @@ bool InternalNode::balanceLeafOverflowLeft(LeafNode* leftLeaf, LeafNode* rightLe
 		underflowBlock->insertRecord(keyRecord, dataRecord);
 		delete dataRecord;
 		delete keyRecord;
+		amountOfRecordsBalanced++;
 	}
 
 	dataRecord = rightLeaf->popFirst();
@@ -501,6 +504,7 @@ bool InternalNode::balanceLeafOverflowLeft(LeafNode* leftLeaf, LeafNode* rightLe
 	underflowBlock->removeRecord(keyRecord->getBytes());
 	delete dataRecord;
 	delete keyRecord;
+	amountOfRecordsBalanced--;
 
 	// update internal parent with first child of right node
 	underflowBlock->positionAtBegin();
@@ -509,7 +513,7 @@ bool InternalNode::balanceLeafOverflowLeft(LeafNode* leftLeaf, LeafNode* rightLe
 	this->block->insertRecord(keyAux, keyAux);
 	delete keyAux;
 
-	return true;
+	return amountOfRecordsBalanced != 0;
 }
 
 int InternalNode::getMinimumSize()

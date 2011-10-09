@@ -18,7 +18,7 @@ public:
 	HashingFunction();
 	~HashingFunction();
 	
-	virtual int hashingFuntion(char* keyRecord, int count) =0;
+	virtual int hashingFunction(char* keyRecord, int count) =0;
 	
 	//int hashingDNI(char* keyRecord);
 	//int hashingDistrict(char* keyRecord);

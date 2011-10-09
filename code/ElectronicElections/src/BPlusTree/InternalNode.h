@@ -22,6 +22,7 @@ class InternalNode: public Node
     void handleOverflowInInternalNode(VariableRecord& aux, VariableRecord* keyAux, VariableRecord *dataRecord, OverflowParameter & overflowParameter, int newBlock);
     bool balanceLeafOverflowRight(LeafNode* leftLeaf, LeafNode* rightLeaf, TreeBlock* underflowBlock);
     bool balanceLeafOverflowLeft(LeafNode* leftLeaf, LeafNode* rightLeaf, TreeBlock* underflowBlock);
+    void handleInternalNodeOverflow(OverflowParameter & overflowParameter, int blockPointer, VariableRecord *dataRecord, VariableRecord aux);
 public:
 	InternalNode(TreeBlockFile* file, TreeBlock* b, RecordMethods* methods);
 	virtual OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord, OverflowParameter& overflowParameter);

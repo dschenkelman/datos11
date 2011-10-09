@@ -45,6 +45,9 @@ bool CountTests::testGetSize()
 	size += Constants::FIELD_HEADER_SIZE + list.size() + 1;
 	size += Constants::FIELD_HEADER_SIZE + district.size() +1;
 
+	CountMethods cm;
+	cm.printKey(c.getKey(), c.getSize());
+
 	return c.getSize() == size;
 }
 
@@ -152,6 +155,7 @@ bool CountTests::testSetBytes()
 		return false;
 	}
 
+	cout << c.getDistrict() << endl;
 	if(c.getDistrict() != district)
 	{
 		return false;

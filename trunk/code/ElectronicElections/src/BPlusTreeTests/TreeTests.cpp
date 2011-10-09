@@ -10,8 +10,9 @@
 #include "../BPlusTree/Tree.h"
 #include "../Entities/District.h"
 #include "../Entities/DistrictMethods.h"
+#include "../Entities/Count.h"
+#include "../Entities/CountMethods.h"
 #include "../VariableBlocks/VariableRecord.h"
-
 
 using namespace std;
 
@@ -33,6 +34,7 @@ void TreeTests::run()
 	this->printResult("testInsertInLeafWithOverflowIsSplitByParent", testInsertInLeafWithOverflowIsSplitByParent());
 	this->printResult("testInsertInInternalRootWithOverflowIsSplit", testInsertInInternalRootWithOverflowIsSplit());
 	this->printResult("testInsertInInternalNodeWithOverflowIsSplit", testInsertInInternalNodeWithOverflowIsSplit());
+	this->printResult("testInsertRecordWithDifferentKeyThanData", testInsertRecordWithDifferentKeyThanData());
 	this->printResult("testRemoveWithoutUnderflowWorksCorrectly", testRemoveWithoutUnderflowWorksCorrectly());
 }
 
@@ -183,6 +185,36 @@ bool TreeTests::testInsertInInternalNodeWithOverflowIsSplit()
 		VariableRecord keyRecord;
 		dataRecord.setBytes(d.getBytes(), d.getSize());
 		keyRecord.setBytes(d.getKey(), d.getKeySize());
+
+		tree.insert(&keyRecord, &dataRecord);
+	}
+
+	tree.print();
+	cout << endl;
+
+	return true;
+}
+
+bool TreeTests::testInsertRecordWithDifferentKeyThanData()
+{
+	Count c1(9, 10, 2010, "Presidente", "Lista1", "Cordoba", 500);
+	Count c2(20, 5, 1990, "Presidente", "Lista2", "Cordoba", 500);
+	Count c3(30, 12, 1980, "Presidente", "Lista4", "Cordoba", 500);
+	Count c4(5, 8, 1995, "Presidente", "Lista3", "Cordoba", 500);
+	Count c5(7, 7, 2010, "Presidente", "Lista4", "Cordoba", 500);
+	Count c6(1, 3, 1970, "Presidente", "Lista5", "Cordoba", 500);
+
+	Count counts[] = {c1, c2, c3, c4, c5, c6};
+	CountMethods countMethods;
+	Tree tree("treeTests.dat", 128, &countMethods, true);
+
+	for (int i = 0; i < 6; i++)
+	{
+		Count c = counts[i];
+		VariableRecord dataRecord;
+		VariableRecord keyRecord;
+		dataRecord.setBytes(c.getBytes(), c.getSize());
+		keyRecord.setBytes(c.getKey(), c.getKeySize());
 
 		tree.insert(&keyRecord, &dataRecord);
 	}

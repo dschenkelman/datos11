@@ -29,7 +29,7 @@ int Count::getSize()
 	size += sizeof(this->year) + sizeof(this->month) + sizeof(this->day);
 	size += Constants::FIELD_HEADER_SIZE + this->charge.size() + 1;
 	size += Constants::FIELD_HEADER_SIZE + this->name.size() + 1;
-	size += Constants::FIELD_HEADER_SIZE + this->name.size() + 1;
+	size += Constants::FIELD_HEADER_SIZE + this->district.size() + 1;
 	size += sizeof(this->quantity);
 
 	return size;
@@ -41,7 +41,7 @@ int Count::getKeySize()
 	size += sizeof(this->year) + sizeof(this->month) + sizeof(this->day);
 	size += Constants::FIELD_HEADER_SIZE + this->charge.size() + 1;
 	size += Constants::FIELD_HEADER_SIZE + this->name.size() + 1;
-	size += Constants::FIELD_HEADER_SIZE + this->name.size() + 1;
+	size += Constants::FIELD_HEADER_SIZE + this->district.size() + 1;
 
 	return size;
 }
@@ -58,9 +58,8 @@ char* Count::getBytes()
 	this->bytes = new char[size];
 
 	char* keyAux = this->getKey();
-	memcpy(this->bytes, keyAux, this->getKeySize());
-
 	int i = this->getKeySize();
+	memcpy(this->bytes, keyAux, i);
 
 	memcpy(this->bytes+i, &(this->quantity), sizeof(unsigned int));
 
@@ -73,10 +72,11 @@ char* Count::getKey()
 
 	if(this->key != NULL)
 	{
-		delete this->key;
+		delete[] this->key;
 	}
 
 	this->key = new char[size];
+	memset(this->key, 0, size);
 
 	int i = 0;
 

@@ -28,8 +28,7 @@ protected:
 	RecordMethods* recordMethods;
 public:
 	Node(TreeBlock* b, RecordMethods* methods);
-	virtual OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord,
-			VariableRecord* middleRecord, OverflowParameter& overflowParameter) = 0;
+	virtual OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord, OverflowParameter& overflowParameter) = 0;
 	virtual OpResult update(char* key, VariableRecord* r) = 0;
 	virtual OpResult remove(char* key) = 0;
 	virtual void print() = 0;

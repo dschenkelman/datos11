@@ -22,8 +22,7 @@ private:
 	int calculateMaximumSize();
 public:
 	LeafNode(TreeBlock* tb, RecordMethods* methods);
-	virtual OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord,
-			VariableRecord* middleRecord, OverflowParameter& overflowParameter);
+	virtual OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord, OverflowParameter& overflowParameter);
 	virtual OpResult update(char* key, VariableRecord* r);
 	virtual OpResult remove(char* key);
 	virtual int getMaxSize();

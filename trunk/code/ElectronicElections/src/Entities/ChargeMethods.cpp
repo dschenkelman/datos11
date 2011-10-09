@@ -20,8 +20,16 @@ ChargeMethods::ChargeMethods()
 
 int ChargeMethods::compare(const char* key, const char* recordBytes, int recordSize)
 {
-	// falta implementar
-	return 1;
+	std::vector<std::string> invalidVec;
+	Charge c("Invalid", invalidVec);
+
+	c.setBytes((char*) recordBytes);
+
+	char len = key[0];
+	char chargeAux[len];
+	memcpy(chargeAux, key+1, len);
+
+	return strcmp(chargeAux, c.getCharge().c_str());
 }
 
 void ChargeMethods::print(const char* recordBytes, int recordSize)

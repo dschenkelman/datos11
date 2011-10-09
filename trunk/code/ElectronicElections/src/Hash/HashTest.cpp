@@ -18,7 +18,7 @@ using namespace std;
 HashTest::HashTest()
 {
 	string f = "hashtest";
-	int blockAmount = 10;
+	int blockAmount = 9;
 	this->file = new HashBlockFile(f, 512, new CustomerMethods, blockAmount, true);
 }
 
@@ -197,12 +197,11 @@ void HashTest::testEmptyBlock(int blockNumber)
 
 void HashTest::run()
 {
-	//this->testLoadHashwithoutValidation();
+	this->testLoadHashwithoutValidation();
 	this->testInsert();
 	this->testGetRecord();
 	this->testUpdateRecord();
 	this->testRemove();
-
 }
 
 HashTest::~HashTest()

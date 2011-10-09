@@ -9,6 +9,7 @@
 #include "../Entities/Count.h"
 #include <iostream>
 #include <cstring>
+#include "../VariableBlocks/Constants.h"
 
 using namespace std;
 

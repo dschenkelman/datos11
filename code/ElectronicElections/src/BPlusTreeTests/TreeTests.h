@@ -21,6 +21,7 @@ public:
 	bool testInsertInLeafWithOverflowIsSplitByParent();
 	bool testInsertInInternalRootWithOverflowIsSplit();
 	bool testInsertInInternalNodeWithOverflowIsSplit();
+	bool testInsertRecordWithDifferentKeyThanData();
 	bool testRemoveWithoutUnderflowWorksCorrectly();
 	bool testRemoveInLeafWithUnderflowIsBalancedByParent();
 	bool testRemoveInLeafWithUnderflowIsMergedByParent();

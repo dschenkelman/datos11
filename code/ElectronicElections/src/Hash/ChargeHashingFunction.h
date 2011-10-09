@@ -10,7 +10,7 @@
 
 #include "HashingFunction.h"
 
-class ChargeHashingFunction : HashingFunction
+class ChargeHashingFunction : public HashingFunction
 {
 
 public:

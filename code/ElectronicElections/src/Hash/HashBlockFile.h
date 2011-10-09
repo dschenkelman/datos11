@@ -9,6 +9,7 @@
 #define HASHBLOCKFILE_H_
 
 #include "../VariableBlocks/SimpleVariableBlockFile.h"
+#include "HashingFunction.h"
 #include "HashBlock.h"
 #include <fstream>
 
@@ -20,13 +21,14 @@ class HashBlockFile : BaseVariableBlockFile
 	bool ovflowBlockUsed;
 	bool hashBlockUsed;
 	int totalBlocks;
+	HashingFunction* hashingFunction;
 	void initializefile();
 	int hashFunction(const char* key);
 	int findInOverflowBlocks(const char* key, VariableRecord** record, bool getFlag);
 	int getAvailableOverflowBlock(const char* key, VariableRecord* record);
 
 public:
-	HashBlockFile(std::string name, int bSize, RecordMethods* methods, int blockamount, bool createNew);
+	HashBlockFile(std::string name, int bSize, RecordMethods* methods, HashingFunction* hashFunction, int blockamount, bool createNew);
 	virtual HashBlock* getCurrentBlock();
 	void loadRecord(const char* key, VariableRecord* record);
 	bool insertRecord(const char* key, VariableRecord* record);

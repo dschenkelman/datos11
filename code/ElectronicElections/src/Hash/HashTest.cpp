@@ -19,14 +19,14 @@ HashTest::HashTest()
 {
 	string f = "hashtest";
 	int blockAmount = 9;
-	this->file = new HashBlockFile(f, 512, new CustomerMethods, blockAmount, true);
+	this->file = new HashBlockFile(f, 512, new CustomerMethods, NULL, blockAmount, true);
 }
 
 void HashTest::testLoadHashwithoutValidation()
 {
 	std::cout << "==================================" << std::endl;
 	std::cout << "Load Hash " << std::endl;
-	HashBlockFile* districtHash = new HashBlockFile("districthash", 1024, new DistrictMethods, 1000, true);
+	HashBlockFile* districtHash = new HashBlockFile("districthash", 1024, new DistrictMethods, NULL, 1000, true);
 	string districts[] = {"San Luis", "Santa Cruz", "Santa Fe", "Santiago del Estero",
 			"Corrientes", "Tierra del Fuego", "Tucuman", "Entre Rios",
 			"Chaco", "Chubut", "Cordoba",

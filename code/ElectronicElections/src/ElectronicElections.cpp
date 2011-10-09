@@ -47,16 +47,16 @@ int run_tests()
 
 	cout << "District Tests" << endl;
 	DistrictTests districtTests;
-	districtTests.run();
+	districtTests.run();*/
 
 	cout << "Hash Tests" << endl;
 	HashTest hashTests;
-	hashTests.run();*/
+	hashTests.run();
 
-	cout << "Tree Tests" << endl;
+	/*cout << "Tree Tests" << endl;
 	TreeTests treeTests;
 	treeTests.run();
-	/*
+
 	cout << "Elections List Tests" << endl;
 	ElectionsListTests electionTests;
 	electionTests.run();
@@ -75,8 +75,8 @@ int run_tests()
 
 	cout << "Charge Tests" << endl;
 	ChargeTests ct;
-	ct.run();
-	*/
+	ct.run();*/
+
 	return 0;
 }
 
@@ -93,7 +93,8 @@ int main()
 	option *main = new option[2];
 	main[0].label = "Run main program";
 	main[1].label = "Run tests";
-	if ( Menu(main,2).ask() ) return run_tests();
+	//if ( Menu(main,2).ask() )
+		return run_tests();
 
 	option *login_type = new option[2];
 	login_type[0].label = "Vote";
@@ -135,7 +136,7 @@ int main()
 						break;
 					case 7:
 						cout << "Generando archivo de distritos" << endl;
-						HashBlockFile("District.dat", 512, NULL, 300, true);
+						HashBlockFile("District.dat", 512, NULL, NULL, 300, true);
 //						cout << "Generando archivo de votantes" << endl;
 //						HashBlockFile("VO", 512, NULL, 300, true);
 						cout << "Generando archivo de elecciones" << endl;
@@ -145,7 +146,7 @@ int main()
 						cout << "Generando archivo de conteo" << endl;
 						Tree("Count.dat", 512, NULL, true);
 						cout << "Generando archivo de cargos" << endl;
-						HashBlockFile("Charge.dat", 512, NULL, 300, true);
+						HashBlockFile("Charge.dat", 512, NULL, NULL, 300, true);
 						cout << "Generando archivo de candidato" << endl;
 						Tree("Candidate.dat", 512, NULL, true);
 						break;

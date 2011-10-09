@@ -41,6 +41,7 @@ public:
 	virtual int getNodePointer(int index);
 	virtual void setNextNode(int node);
 	virtual int getNextNode();
+	virtual bool isUnderflow();
 	virtual ~IndexTreeBlock();
 };
 

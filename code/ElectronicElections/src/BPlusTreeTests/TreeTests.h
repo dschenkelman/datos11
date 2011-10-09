@@ -22,6 +22,8 @@ public:
 	bool testInsertInInternalRootWithOverflowIsSplit();
 	bool testInsertInInternalNodeWithOverflowIsSplit();
 	bool testRemoveWithoutUnderflowWorksCorrectly();
+	bool testRemoveInLeafWithUnderflowIsBalancedByParent();
+	bool testRemoveInLeafWithUnderflowIsMergedByParent();
 	virtual ~TreeTests();
 };
 

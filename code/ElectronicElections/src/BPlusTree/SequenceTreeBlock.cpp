@@ -267,6 +267,24 @@ void SequenceTreeBlock::setNextNode(int node)
 	memcpy(this->bytes + TreeBlock::FREE_SPACE_SIZE + TreeBlock::LEVEL_SIZE, &this->nextNode, NEXT_NODE_SIZE);
 }
 
+bool SequenceTreeBlock::isUnderflow()
+{
+	return true;
+}
+
+VariableRecord* SequenceTreeBlock::popFirst()
+{
+	this->position = RECORD_OFFSET;
+	short recordSize;
+	memcpy(&recordSize, this->bytes + this->position, Constants::RECORD_HEADER_SIZE);
+	this->position += Constants::RECORD_HEADER_SIZE;
+	char record[recordSize];
+	memcpy(record, this->bytes + this->position, recordSize);
+	VariableRecord* ret = new VariableRecord(record,recordSize);
+	this->removeRecord(this->recordMethods->getKeyRecord(record,recordSize)->getBytes());
+	return ret;
+}
+
 SequenceTreeBlock::~SequenceTreeBlock()
 {
 }

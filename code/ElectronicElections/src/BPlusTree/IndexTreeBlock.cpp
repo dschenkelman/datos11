@@ -183,7 +183,7 @@ bool IndexTreeBlock::removeRecord(const char *key)
 
 	// update block size
 	this->updateFreeSpace(this->maxSize - occupiedSpace);
-	this->nodesPosition -= recordSize;
+	this->nodesPosition -= (recordSize + Constants::RECORD_HEADER_SIZE);
 	this->storeNodesPosition();
 
 	this->updateInformation();

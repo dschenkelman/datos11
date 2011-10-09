@@ -28,23 +28,55 @@ int ElectionsListMethods::compare(const char* key, const char* recordBytes, int 
 	memcpy(&month, key+i, sizeof(char)); i+= sizeof(char);
 	char day = 0;
 	memcpy(&day, key+i, sizeof(char)); i+= sizeof(char);
+
 	char chargeLen = 0;
 	memcpy(&chargeLen, key+i, Constants::FIELD_HEADER_SIZE); i+= Constants::FIELD_HEADER_SIZE;
 	char charge[chargeLen];
 	memcpy(&charge, key+i, chargeLen); i += chargeLen;
-	char nameLen = 0;
-	memcpy(&nameLen, key+i, Constants::FIELD_HEADER_SIZE); i += Constants::FIELD_HEADER_SIZE;
-	char name[nameLen];
-	memcpy(&name, key+i, nameLen);
 
-	int conditionOne = (year > list.getYear());
-	int conditionTwo = (month > list.getMonth());
-	int conditionThree = (day > list.getDay());
-	int conditionFour = strcmp(charge, list.getCharge().c_str());
-	int conditionFive = strcmp(name, list.getName().c_str());
+	if(year > list.getYear())
+	{
+		return 1;
+	}
 
-	// no estoy nada seguro de que es lo que hay que devolver
-	return conditionOne && conditionTwo && conditionThree && conditionFour && conditionFive;
+	else
+	{
+		if(year < list.getYear())
+		{
+			return -1;
+		}
+
+		if(month > list.getMonth())
+		{
+			return 1;
+		}
+
+		else
+		{
+			if(month < list.getMonth())
+			{
+				return -1;
+			}
+
+			if(day > list.getDay())
+			{
+				return 1;
+			}
+
+			else
+			{
+				if(day < list.getDay())
+				{
+					return -1;
+				}
+
+				else
+				{
+					return strcmp(charge, list.getCharge().c_str());
+				}
+			}
+		}
+	}
 }
 
 void ElectionsListMethods::print(const char* recordBytes, int recordSize)

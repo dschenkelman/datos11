@@ -8,7 +8,7 @@
 #include "TreeTests.h"
 #include <iostream>
 #include "../BPlusTree/Tree.h"
-#include "../Entities/District.h"
+#include"../Entities/District.h"
 #include "../Entities/DistrictMethods.h"
 #include "../Entities/Count.h"
 #include "../Entities/CountMethods.h"
@@ -38,6 +38,7 @@ void TreeTests::run()
 	this->printResult("testRemoveWithoutUnderflowWorksCorrectly", testRemoveWithoutUnderflowWorksCorrectly());
 	this->printResult("testRemoveInLeafWithUnderflowIsBalancedByParentWithRightBrother", testRemoveInLeafWithUnderflowIsBalancedByParentWithRightBrother());
 	this->printResult("testRemoveInRightMostLeafWithUnderflowIsBalancedByParentWithLeftBrother", testRemoveInRightMostLeafWithUnderflowIsBalancedByParentWithLeftBrother());
+	this->printResult("testRemoveInLeafWithUnderflowAndRightBrotherInAnotherParentBalancesCorrectly", testRemoveInLeafWithUnderflowAndRightBrotherInAnotherParentBalancesCorrectly());
 }
 
 bool TreeTests::testInsertInEmptyTreeWorksCorrectly()
@@ -321,6 +322,40 @@ bool TreeTests::testRemoveInRightMostLeafWithUnderflowIsBalancedByParentWithLeft
 	tree.print();
 
 	cout << endl;
+	return true;
+}
+
+bool TreeTests::testRemoveInLeafWithUnderflowAndRightBrotherInAnotherParentBalancesCorrectly()
+{
+	DistrictMethods districtMethods;
+	Tree tree("treeTests.dat", 100, &districtMethods, true);
+
+	// approximately 223 chars
+	string districts[] = {"San Luis", "Santa Cruz",
+				"Corrientes", "Entre Rios",
+				"Chaco", "Chubut", "Cordoba",
+				 "Santa Fe", "Santiago del Estero",
+				"Mendoza", "Misiones", "Neuquen",
+				"Tierra del Fuego", "Tucuman",
+				 "Salta", "San Juan",
+				"Buenos Aires", "Catamarca", "Formosa",
+				"Jujuy", "La Pampa", "La Rioja","Rio Negro",
+				};
+
+	for (int i = 0; i < 18; i++)
+	{
+		District d(districts[i]);
+		VariableRecord dataRecord;
+		VariableRecord keyRecord;
+		dataRecord.setBytes(d.getBytes(), d.getSize());
+		keyRecord.setBytes(d.getKey(), d.getKeySize());
+
+		tree.insert(&keyRecord, &dataRecord);
+	}
+
+	tree.print();
+	cout << endl;
+
 	return false;
 }
 

@@ -39,7 +39,7 @@ void InternalNode::handleOverflowInInternalNode(VariableRecord& aux, VariableRec
     bool keyRecordConsidered = false;
     bool keyIsMiddle = false;
     this->block->positionAtBegin();
-    while (this->block->getNextRecord(&aux) != NULL && ++index &&  bytes < (this->maximumSize / 2))
+    while (bytes < (this->maximumSize / 2) && this->block->getNextRecord(&aux) != NULL && ++index)
 	{
 		if (!keyRecordConsidered &&
 				this->recordMethods->compare(keyAux->getBytes(), aux.getBytes(), aux.getSize()) < 0)
@@ -71,6 +71,17 @@ void InternalNode::handleOverflowInInternalNode(VariableRecord& aux, VariableRec
         this->block->insertRecord(keyAux, keyAux);
         overflowParameter.newBlock = this->block->getNodePointer(index);
         this->block->removeNodePointer(index);
+        index = 0;
+        this->block->positionAtBegin();
+        VariableRecord aux2;
+        while(this->block->getNextRecord(&aux2) != NULL)
+        {
+        	index++;
+        	if (this->recordMethods->compare(keyAux->getBytes(), aux2.getBytes(), aux2.getSize()) == 0)
+        	{
+        		break;
+        	}
+        }
         this->block->insertNodePointer(index, newBlock);
     }
     *dataRecord = aux;
@@ -149,6 +160,72 @@ OpResult InternalNode::handleLeafOverflow(VariableRecord* keyRecord, VariableRec
     return Updated;
 }
 
+void InternalNode::handleInternalNodeOverflow(OverflowParameter& overflowParameter, int blockPointer, VariableRecord *dataRecord, VariableRecord aux)
+{
+    overflowParameter.overflowBlock = blockPointer;
+    TreeBlock *overflowBlock = this->file->getCurrentBlock();
+    int newBlock = this->file->getFreeBlockManager().getNextBlock();
+    this->file->loadBlock(newBlock);
+    this->file->pushBlock();
+    this->file->swapBlockKind();
+    this->file->getCurrentBlock()->setLevel(overflowBlock->getLevel());
+    this->block->insertRecord(dataRecord, dataRecord);
+    int index = 1;
+    this->block->positionAtBegin();
+    while(this->block->getNextRecord(&aux) && this->recordMethods->compare(aux.getBytes(), dataRecord->getBytes(), dataRecord->getSize()) != 0){
+        index++;
+    }
+    this->block->insertNodePointer(index, newBlock);
+    overflowBlock->positionAtBegin();
+    index = 1;
+    int index2 = 0;
+    bool middlePointerAdded = false;
+    stack<VariableRecord*> recordsToDelete;
+    stack<int> nodesToDelete;
+    VariableRecord *aux2;
+    while(overflowBlock->getNextRecord(&aux)){
+        if(this->recordMethods->compare(aux.getBytes(), dataRecord->getBytes(), dataRecord->getSize()) > 0){
+            if(!middlePointerAdded){
+                middlePointerAdded = true;
+                this->file->getCurrentBlock()->insertNodePointer(index2, overflowParameter.newBlock);
+                index2++;
+            }
+            aux2 = new VariableRecord;
+            *aux2 = aux;
+            int nodePointer = -1;
+            nodePointer = overflowBlock->getNodePointer(index);
+            this->file->getCurrentBlock()->insertRecord(aux2, aux2);
+            recordsToDelete.push(aux2);
+            nodesToDelete.push(index);
+            this->file->getCurrentBlock()->insertNodePointer(index2, nodePointer);
+            index2++;
+        }
+
+        index++;
+    }
+
+    int nodePointer = overflowBlock->getNodePointer(index);
+    this->file->getCurrentBlock()->insertNodePointer(index2, nodePointer);
+    nodesToDelete.push(index);
+    while(!recordsToDelete.empty())
+    {
+        aux2 = recordsToDelete.top();
+        recordsToDelete.pop();
+        overflowBlock->removeRecord(aux2->getBytes());
+        index = nodesToDelete.top();
+        nodesToDelete.pop();
+        overflowBlock->removeNodePointer(index);
+    }
+
+    index = nodesToDelete.top();
+    nodesToDelete.pop();
+    overflowBlock->removeNodePointer(index);
+    this->file->saveBlock();
+    this->file->popBlock();
+    this->file->saveBlock();
+    this->block->setLevel(this->block->getLevel() + 1);
+}
+
 OpResult InternalNode::insert(VariableRecord *keyRecord, VariableRecord *dataRecord, OverflowParameter& overflowParameter)
 {
 	VariableRecord aux;
@@ -201,79 +278,7 @@ OpResult InternalNode::insert(VariableRecord *keyRecord, VariableRecord *dataRec
 
 		if (result == Overflow)
 		{
-			overflowParameter.overflowBlock = blockPointer;
-			TreeBlock* overflowBlock = this->file->getCurrentBlock();
-			int newBlock = this->file->getFreeBlockManager().getNextBlock();
-			this->file->loadBlock(newBlock);
-			this->file->pushBlock();
-			this->file->swapBlockKind();
-			this->file->getCurrentBlock()->setLevel(overflowBlock->getLevel());
-
-			this->block->insertRecord(dataRecord, dataRecord);
-			int index = 1;
-			this->block->positionAtBegin();
-			while (this->block->getNextRecord(&aux) &&
-					this->recordMethods->compare(aux.getBytes(), dataRecord->getBytes(), dataRecord->getSize()) != 0)
-			{
-				index++;
-			}
-
-			this->block->insertNodePointer(index, newBlock);
-
-			overflowBlock->positionAtBegin();
-			index = 1;
-			int index2 = 0;
-			bool middlePointerAdded = false;
-			stack<VariableRecord*> recordsToDelete;
-			stack<int> nodesToDelete;
-			VariableRecord* aux2;
-			while(overflowBlock->getNextRecord(&aux))
-			{
-				if (this->recordMethods->compare(aux.getBytes(), dataRecord->getBytes(), dataRecord->getSize()) > 0)
-				{
-					if (!middlePointerAdded)
-					{
-						middlePointerAdded = true;
-						this->file->getCurrentBlock()->insertNodePointer(index2, overflowParameter.newBlock);
-						index2++;
-					}
-
-					aux2 = new VariableRecord;
-					*aux2 = aux;
-					int nodePointer = -1;
-					nodePointer = overflowBlock->getNodePointer(index);
-					this->file->getCurrentBlock()->insertRecord(aux2, aux2);
-					recordsToDelete.push(aux2);
-					nodesToDelete.push(index);
-					this->file->getCurrentBlock()->insertNodePointer(index2, nodePointer);
-					index2++;
-
-				}
-				index++;
-			}
-
-			int nodePointer = overflowBlock->getNodePointer(index);
-			this->file->getCurrentBlock()->insertNodePointer(index2, nodePointer);
-			nodesToDelete.push(index);
-
-			while(!recordsToDelete.empty())
-			{
-				aux2 = recordsToDelete.top();
-				recordsToDelete.pop();
-				overflowBlock->removeRecord(aux2->getBytes());
-				index = nodesToDelete.top();
-				nodesToDelete.pop();
-				overflowBlock->removeNodePointer(index);
-			}
-
-			index = nodesToDelete.top();
-			nodesToDelete.pop();
-			overflowBlock->removeNodePointer(index);
-
-			this->file->saveBlock();
-			this->file->popBlock();
-			this->file->saveBlock();
-			this->block->setLevel(this->block->getLevel() + 1);
+		    this->handleInternalNodeOverflow(overflowParameter, blockPointer, dataRecord, aux);
 			result = Updated;
 		}
 	}

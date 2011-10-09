@@ -293,7 +293,7 @@ void IndexTreeBlock::removeNodePointer(int index)
 	// buffer end of block
 	int bufferSize = this->maxSize - (startPosition + NODE_POINTER_SIZE);
 	char buffer[bufferSize];
-	memcpy(buffer, this->bytes + startPosition, bufferSize);
+	memcpy(buffer, this->bytes + startPosition + NODE_POINTER_SIZE, bufferSize);
 
 	// delete value
 	memset(this->bytes + startPosition, 0, bufferSize + NODE_POINTER_SIZE);

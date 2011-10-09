@@ -82,7 +82,7 @@ int run_tests()
 
 int main()
 {
-	bool debug = true;
+	bool debug = false;
 	if (debug)
 	{
 		run_tests();
@@ -93,17 +93,20 @@ int main()
 	option *main = new option[2];
 	main[0].label = "Run main program";
 	main[1].label = "Run tests";
-	//if ( Menu(main,2).ask() )
-		return run_tests();
+	if ( Menu(main,2).ask() == 1 ) return run_tests();
 
-	option *login_type = new option[2];
+	option *login_type = new option[3];
 	login_type[0].label = "Vote";
 	login_type[1].label = "Admin";
+	login_type[2].label = "Quit";
 	while (1) {
-		int action = Menu(login_type,2).ask();
+		int action = Menu(login_type,3).ask();
 		switch (action) {
 			case 0:
 				cout << "Not available" << endl;
+				break;
+			case 2:
+				return 0;
 				break;
 			case 1:
 				string user = Menu::raw_input("User");
@@ -138,11 +141,11 @@ int main()
 						cout << "Generando archivo de distritos" << endl;
 						HashBlockFile("District.dat", 512, NULL, NULL, 300, true);
 //						cout << "Generando archivo de votantes" << endl;
-//						HashBlockFile("VO", 512, NULL, 300, true);
+//						HashBlockFile("Voter.dat", 1024*10, NULL, NULL, 2800000, true);
 						cout << "Generando archivo de elecciones" << endl;
 						Tree("Election.dat", 512, NULL, true);
-//						cout << "Generando archivo de listas" << endl;
-//						Tree("Lista.dat", 512, NULL, true);
+						cout << "Generando archivo de listas" << endl;
+						Tree("CandidatesList.dat", 512, NULL, true);
 						cout << "Generando archivo de conteo" << endl;
 						Tree("Count.dat", 512, NULL, true);
 						cout << "Generando archivo de cargos" << endl;

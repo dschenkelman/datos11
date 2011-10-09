@@ -22,6 +22,8 @@
 #include "EntitiesTests/ChargeTests.h"
 #include "Voting/Menu.h"
 #include "Voting.h"
+#include "Hash/HashBlockFile.h"
+#include "Voting/Log.h"
 #include <time.h>
 
 using namespace std;
@@ -85,6 +87,8 @@ int main()
 		run_tests();
 		return 0;
 	}
+	Log log;
+	log << "Iniciando sistema";
 	option *main = new option[2];
 	main[0].label = "Run main program";
 	main[1].label = "Run tests";
@@ -95,37 +99,45 @@ int main()
 	login_type[1].label = "Admin";
 	while (1) {
 		int action = Menu(login_type,2).ask();
-		if (action == 0) { // VOTE
-			cout << "Not available";
-		} else if (action == 1) { // ADMIN
-			string user = Menu::raw_input("User");
-			string passwd = Menu::raw_input("Password");
-			// TODO VERIFY LOGIN
-			option *admin_action = new option[7];
-			admin_action[0].label = "Mantener distritos";
-			admin_action[1].label = "Mantener votantes";
-			admin_action[2].label = "Mantener elecciones";
-			admin_action[3].label = "Mantener cargos";
-			admin_action[4].label = "Mantener listas";
-			admin_action[5].label = "Mantener candidatos";
-			admin_action[6].label = "Informar resultados";
-			action = Menu(admin_action,7).ask();
-			switch (action){
-							case 0:
-								break;
-							case 1:
-								break;
-							case 2:
-								break;
-							case 3:
-								break;
-							case 4:
-								break;
-							case 5:
-								break;
-							case 6:
-								break;
-			}
+		switch (action) {
+			case 0:
+				cout << "Not available" << endl;
+				break;
+			case 1:
+				string user = Menu::raw_input("User");
+				string passwd = Menu::raw_input("Password");
+				// TODO VERIFY LOGIN
+				option *admin_action = new option[8];
+				admin_action[0].label = "Mantener distritos";
+				admin_action[1].label = "Mantener votantes";
+				admin_action[2].label = "Mantener elecciones";
+				admin_action[3].label = "Mantener cargos";
+				admin_action[4].label = "Mantener listas";
+				admin_action[5].label = "Mantener candidatos";
+				admin_action[6].label = "Informar resultados";
+				admin_action[7].label = "Generar archivos vacios";
+				action = Menu(admin_action,8).ask();
+				switch (action){
+					case 0:
+						break;
+					case 1:
+						break;
+					case 2:
+						break;
+					case 3:
+						break;
+					case 4:
+						break;
+					case 5:
+						break;
+					case 6:
+						break;
+					case 7:
+						cout << "Generando archivo de distritos" << endl;
+						HashBlockFile("District", 512, NULL, 300, true);
+						break;
+				}
+				break;
 		}
 	}
 	return 0;

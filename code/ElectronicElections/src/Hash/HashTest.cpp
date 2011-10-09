@@ -26,7 +26,7 @@ void HashTest::testLoadHashwithoutValidation()
 {
 	std::cout << "==================================" << std::endl;
 	std::cout << "Load Hash " << std::endl;
-	HashBlockFile* districtHash = new HashBlockFile("districthash", 512, new DistrictMethods, 5, true);
+	HashBlockFile* districtHash = new HashBlockFile("districthash", 1024, new DistrictMethods, 1000, true);
 	string districts[] = {"San Luis", "Santa Cruz", "Santa Fe", "Santiago del Estero",
 			"Corrientes", "Tierra del Fuego", "Tucuman", "Entre Rios",
 			"Chaco", "Chubut", "Cordoba",
@@ -35,7 +35,7 @@ void HashTest::testLoadHashwithoutValidation()
 			};
 	VariableRecord dataRecord;
 	VariableRecord keyRecord;
-	for (int i = 0; i < 90; i++)
+	for (int i = 0; i < 60000; i++)
 	{
 		District d(districts[i%23]);
 		dataRecord.setBytes(d.getBytes(), d.getSize());
@@ -51,7 +51,7 @@ void HashTest::testLoadHashwithoutValidation()
 	District dOld("San Luis");
 	dataRecord.setBytes(dUpdate.getBytes(), dUpdate.getSize());
 	districtHash->updateRecord(dOld.getKey(), &dataRecord);
-	districtHash->printContent();
+	//districtHash->printContent();
 	std::cout << "==================================" << std::endl;
 	delete districtHash;
 }
@@ -186,7 +186,7 @@ void HashTest::testRemove()
 
 void HashTest::testEmptyBlock(int blockNumber)
 {
-	std::cout << "Empty hash block number 2?" << std::endl;
+	std::cout << "Empty hash block?";
 	this->file->loadBlock(blockNumber);
 	if(this->file->getCurrentBlock()->isEmpty())
 		std::cout << "YES!" << std::endl;
@@ -197,12 +197,11 @@ void HashTest::testEmptyBlock(int blockNumber)
 
 void HashTest::run()
 {
-	this->testLoadHashwithoutValidation();
+	//this->testLoadHashwithoutValidation();
 	this->testInsert();
 	this->testGetRecord();
 	this->testUpdateRecord();
 	this->testRemove();
-	this->testEmptyBlock(2);
 
 }
 

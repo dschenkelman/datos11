@@ -18,7 +18,7 @@ public:
 	DistrictHashingFunction();
 	~DistrictHashingFunction();
 
-	virtual int hashingFunction(char* keyRecord, int count);
+	virtual int hashingFunction(const char* keyRecord, int count);
 };
 
 #endif /* DISTRICT_HASHINGFUNCTION_H_ */

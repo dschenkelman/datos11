@@ -87,9 +87,9 @@ void HashBlockFile::printContent()
 
 void HashBlockFile::loadRecord(const char* key, VariableRecord* record)
 {
-	int blockNumber = this->hashFunction(key);
+	//int blockNumber = this->hashFunction(key);
 	//to use on each Record Type :D
-	//int blockNumber = this->hashingFunction(key, this->totalBlocks);
+	int blockNumber = this->hashingFunction->hashingFunction(key, this->totalBlocks);
 
 	this->loadBlock(blockNumber);
 	if(this->currentBlock->getFreeSpace() >= record->getSize() +2)

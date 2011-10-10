@@ -61,7 +61,7 @@ char* Voter::getKey()
 
 	this->key = new char[size];
 
-	memcpy(this->key, &(this->dni), sizeof(int));
+	memcpy(this->key, &(this->dni), size);
 
 	return this->key;
 }
@@ -122,7 +122,7 @@ char* Voter::getBytes()
 {
 	int size = this->getSize();
 
-	if(this->bytes == NULL)
+	if(this->bytes != NULL)
 	{
 		delete this->bytes;
 	}

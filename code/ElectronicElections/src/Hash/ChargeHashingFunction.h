@@ -18,7 +18,7 @@ public:
 	ChargeHashingFunction();
 	~ChargeHashingFunction();
 
-	virtual int hashingFunction(char* keyRecord, int count);
+	virtual int hashingFunction(const char* keyRecord, int count);
 };
 
 #endif /* CHARGEHASHINGFUNCTION_H_ */

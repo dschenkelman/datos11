@@ -9,6 +9,7 @@
 #define VOTERHASHINGFUNCTION_H_
 
 #include "HashingFunction.h"
+#include <cstring>
 
 class VoterHashingFunction : public HashingFunction
 {
@@ -18,6 +19,6 @@ public:
 	VoterHashingFunction();
 	~VoterHashingFunction();
 
-	virtual int hashingFunction(char* keyRecord, int count);
+	virtual int hashingFunction(const char* keyRecord, int count);
 };
 #endif /* VOTERHASHINGFUNCTION_H_ */

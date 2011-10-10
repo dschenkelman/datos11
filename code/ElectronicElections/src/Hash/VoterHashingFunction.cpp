@@ -11,10 +11,11 @@ VoterHashingFunction::VoterHashingFunction()
 {
 }
 
-int VoterHashingFunction::hashingFunction(char* keyRecord, int blockCount)
+int VoterHashingFunction::hashingFunction(const char* keyRecord, int blockCount)
 {
 	// Modulize Dni
-	int dni = atoi(keyRecord);
+	int dni;
+	memcpy(&dni, keyRecord, sizeof(int));
 	return (dni % blockCount);
 }
 

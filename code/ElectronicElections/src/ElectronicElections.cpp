@@ -89,7 +89,7 @@ int run_tests()
 
 int main()
 {
-	bool debug = true;
+	bool debug = false;
 	if (debug)
 	{
 		run_tests();
@@ -161,6 +161,22 @@ int main()
 						hash_voter->getRecord(v.getKey(), &record);
 						v.setBytes(record->getBytes());
 						v.setAddress(Menu::raw_input("Nueva direccion"));
+						record->setBytes(v.getBytes(), v.getSize());
+						hash_voter->updateRecord(v.getKey(), record);
+					} else if (action==2) {
+						VariableRecord *record;
+						Voter v = Voter(atoi(Menu::raw_input("DNI").c_str()), NULL, NULL, NULL, NULL, std::vector<ElectionKey>());
+						hash_voter->getRecord(v.getKey(), &record);
+						v.setBytes(record->getBytes());
+						v.setDistrict(Menu::raw_input("Nuevo distrito"));
+						record->setBytes(v.getBytes(), v.getSize());
+						hash_voter->updateRecord(v.getKey(), record);
+					} else if (action==3) {
+						VariableRecord *record;
+						Voter v = Voter(atoi(Menu::raw_input("DNI").c_str()), NULL, NULL, NULL, NULL, std::vector<ElectionKey>());
+						hash_voter->getRecord(v.getKey(), &record);
+						v.setBytes(record->getBytes());
+						v.setPassword(Menu::raw_input("Nueva contraseña"));
 						record->setBytes(v.getBytes(), v.getSize());
 						hash_voter->updateRecord(v.getKey(), record);
 					}

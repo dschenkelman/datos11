@@ -178,6 +178,10 @@ std::string Voter::getPassword()
 	return this->password;
 }
 
+void Voter::setPassword(std::string password) {
+	this->password = password;
+}
+
 std::string Voter::getAddress()
 {
 	return this->address;
@@ -190,6 +194,10 @@ void Voter::setAddress(std::string address) {
 std::string Voter::getDistrict()
 {
 	return this->district;
+}
+
+void Voter::setDistrict(std::string district) {
+	this->district = district;
 }
 
 std::vector<ElectionKey> Voter::getElectionKeyList()

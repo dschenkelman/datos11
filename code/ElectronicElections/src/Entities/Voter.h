@@ -44,9 +44,11 @@ public:
 	int getDni();
 	std::string getNames();
 	std::string getPassword();
+	void setPassword(std::string password);
 	std::string getAddress();
 	void setAddress(std::string address);
 	std::string getDistrict();
+	void setDistrict(std::string district);
 	std::vector<ElectionKey> getElectionKeyList();
 };
 

@@ -36,22 +36,24 @@ void LoadDataFiles::createFileType(char* fileType, char** fields)
 {
 	int bSize = atoi(fields[1]);
 	int regsCount = atoi(fields[2]);
-	long regsSize = atoi(fields[3]);
+	int regsSize = atoi(fields[3]);
 	if(strcmp(fileType, "District") == 0)
 	{
 		this->treeDistrictFile = new Tree("DistrictTree", bSize, new DistrictMethods, true);
 		this->readDistrictFile(fields[0]);
 	}
-	//hash types..calculate blockamount
-	int eficientBSize = bSize * 4/5; //reserve 20% of free block
-	long blockAmount = regsCount* regsSize /eficientBSize;
-	if(strcmp(fileType, "Voter") == 0)
+	else if(strcmp(fileType, "Voter") == 0)
 	{
+		//hash types..calculate blockamount
+		int eficientBSize = bSize * 4/5; //reserve 20% of free block
+		int blockAmount = regsCount* regsSize /eficientBSize;
+
 		this->hashVoterFile = new HashBlockFile("VoterHash", bSize, new VoterMethods, new VoterHashingFunction, blockAmount, true);
 		this->readVoterFile(fields[0]);
 	}
-	if(strcmp(fileType, "Charge") == 0)
+	else if(strcmp(fileType, "Charge") == 0)
 	{
+		int blockAmount = 9;
 		this->hashChargeFile = new HashBlockFile("ChargeHash", bSize, new ChargeMethods, new ChargeHashingFunction, blockAmount, true);
 		this->readChargeFile(fields[0]);
 	}
@@ -78,6 +80,7 @@ void LoadDataFiles::readVoterFile(char* dataFileName)
 
 	while ( getline(dataFile,line) )
 	{
+		list.clear();
 		char* dni = strdup(line.c_str());
 		strtok(dni, ",");
 		nombre = strtok(NULL, ",");
@@ -105,12 +108,35 @@ void LoadDataFiles::readVoterFile(char* dataFileName)
 		delete voter;
 		delete record;
 	}
-	this->configFile.close();
+	dataFile.close();
 }
 
 void LoadDataFiles::readChargeFile(char* dataFileName)
 {
+	fstream dataFile;
+	dataFile.open(dataFileName, ios::in |  ios::binary);
+	std::string line;
+	char* ppalCharge;
+	std::vector<std::string> list;
+	char* secondCharges;
+	while ( getline(dataFile,line) )
+	{
+		list.clear();
+		char* ppalCharge = strdup(line.c_str());
+		strtok(ppalCharge, ",");
 
+		while((secondCharges = strtok(NULL, ",")) != NULL)
+		{
+			list.push_back(string(secondCharges));
+		}
+		Charge* charge = new Charge(string(ppalCharge), list);
+		VariableRecord* record = new VariableRecord();
+		record->setBytes(charge->getBytes(), charge->getSize());
+		this->hashChargeFile->loadRecord(charge->getKey(), record);
+		delete charge;
+		delete record;
+	}
+	dataFile.close();
 }
 
 LoadDataFiles::~LoadDataFiles()

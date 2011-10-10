@@ -9,6 +9,7 @@
 #define CHARGEHASHINGFUNCTION_H_
 
 #include "HashingFunction.h"
+#include <cstring>
 
 class ChargeHashingFunction : public HashingFunction
 {

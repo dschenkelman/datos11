@@ -44,7 +44,7 @@ char* Charge::getKey()
 
 	if(this->key != NULL)
 	{
-		delete this-> key;
+		delete[] this->key;
 	}
 
 	this->key = new char[keySize];
@@ -88,12 +88,12 @@ char* Charge::getBytes()
 
 	if(this->bytes != NULL)
 	{
-		delete this->bytes;
+		delete[] this->bytes;
 	}
 
 	this->bytes = new char[size];
 
-	char len = Constants::FIELD_HEADER_SIZE + this->charge.size() + 1;
+	char len = this->charge.size() + 1;
 	int i = 0;
 
 	memcpy(this->bytes+i, &len, Constants::FIELD_HEADER_SIZE); i += Constants::FIELD_HEADER_SIZE;
@@ -126,12 +126,12 @@ Charge::~Charge()
 {
 	if(this->bytes != NULL)
 	{
-		delete this->bytes;
+		delete[] this->bytes;
 	}
 
 	if(this->key != NULL)
 	{
-		delete this->key;
+		delete[] this->key;
 	}
 }
 

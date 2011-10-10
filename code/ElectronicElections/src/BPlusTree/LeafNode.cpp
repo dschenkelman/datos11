@@ -17,14 +17,14 @@ LeafNode::LeafNode(TreeBlock* tb, RecordMethods* methods)
 	this->block->updateInformation();
 }
 
-int LeafNode::calculateMaximumSize()
-{
-	return floor((this->block->getSize() - SequenceTreeBlock::RECORD_OFFSET) * 0.9);
-}
-
 int LeafNode::calculateMinimumSize()
 {
 	return (floor(this->block->getSize() - SequenceTreeBlock::RECORD_OFFSET) * 0.45);
+}
+
+int LeafNode::calculateMaximumSize()
+{
+	return floor((this->block->getSize() - SequenceTreeBlock::RECORD_OFFSET) * 0.9);
 }
 
 int LeafNode::getMinimumSize()

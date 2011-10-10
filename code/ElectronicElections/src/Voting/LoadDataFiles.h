@@ -31,6 +31,18 @@ class LoadDataFiles
 	HashBlockFile* hashChargeFile;
 	Tree* treeDistrictFile;
 
+	int bSize;
+	int regsCount;
+	int regsSize;
+
+	// Voter attributes
+	int voterBlockSize;
+	int voterBlockAmount;
+
+	// Charge attributes
+	int chargeBlockSize;
+	int chargeBlockAmount;
+
 	//void initializefile();
 	void readDistrictFile(char* dataFile);
 	void readVoterFile(char* dataFile);

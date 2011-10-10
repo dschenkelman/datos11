@@ -420,7 +420,7 @@ bool TreeTests::testRemoveInLeafWithUnderflowIsMergedByParent()
 	}
 
 	tree.print();
-/*
+
 	cout << endl << "Remove in the right child 'Santa Fe' => underflow => merge" << endl;
 	distric = new District("Santa Fe");
 	tree.remove(distric->getKey());
@@ -430,7 +430,7 @@ bool TreeTests::testRemoveInLeafWithUnderflowIsMergedByParent()
 	cout << endl << "Reinsert 'Santa Fe' => overflow => split" << endl;
 	this->insertInTree(&tree,"Santa Fe");
 	tree.print();
-*/
+
 	cout << endl << "Remove in the middle child 'Entre Rios' => underflow => merge" << endl;
 	distric = new District("Entre Rios");
 	tree.remove(distric->getKey());
@@ -440,7 +440,7 @@ bool TreeTests::testRemoveInLeafWithUnderflowIsMergedByParent()
 	cout << endl << "Reinsert 'Entre Rios' => overflow => split" << endl;
 	this->insertInTree(&tree,"Entre Rios");
 	tree.print();
-/*
+
 	cout << endl << "Remove in the first child 'Cordoba', then 'Corrientes' => underflow => merge" << endl;
 	distric = new District("Cordoba");
 	tree.remove(distric->getKey());
@@ -449,7 +449,7 @@ bool TreeTests::testRemoveInLeafWithUnderflowIsMergedByParent()
 	tree.remove(distric->getKey());
 	delete distric;
 	tree.print();
-*/
+
 	cout << endl;
 
 	return true;

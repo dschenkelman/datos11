@@ -395,7 +395,15 @@ OpResult InternalNode::handleLeafUnderflow(int nextNode, bool balanceRight, bool
 
     if(!leafAlreadyBalanced)
     {
-    	this->mergeLeafNodes(index, this->file->getCurrentBlock(), underflowBlock);
+    	if (balanceRight)
+		{
+    		this->mergeLeafNodes(index, this->file->getCurrentBlock(), underflowBlock);
+		}
+    	else
+    	{
+    		// underflow node is the last (right-sided)
+    		this->mergeLeafNodes(index-1, underflowBlock, this->file->getCurrentBlock());
+    	}
     	return Updated;
     }
     else

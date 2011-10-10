@@ -400,12 +400,12 @@ OpResult InternalNode::handleLeafUnderflow(int nextNode, bool balanceRight, bool
     {
     	if (balanceRight)
 		{
-    		this->mergeLeafNodes(index, this->file->getCurrentBlock(), underflowBlock);
+    		this->mergeLeafNodes(index, this->file->getCurrentBlock(), underflowBlock, key, balanceRight);
 		}
     	else
     	{
     		// underflow node is the last (right-sided)
-    		this->mergeLeafNodes(index-1, underflowBlock, this->file->getCurrentBlock());
+    		this->mergeLeafNodes(index-1, underflowBlock, this->file->getCurrentBlock(), key, balanceRight);
     	}
 
     	if ((this->block->getOccupiedSize() - IndexTreeBlock::RECORD_OFFSET) < this->minimumSize)
@@ -443,7 +443,7 @@ OpResult InternalNode::handleCrossParentBalance(VariableRecord *record, Variable
     return Updated;
 }
 
-void InternalNode::mergeLeafNodes(int index, TreeBlock *brotherBlock, TreeBlock *underflowBlock)
+void InternalNode::mergeLeafNodes(int index, TreeBlock *brotherBlock, TreeBlock *underflowBlock, char* removedKey, bool balanceRight)
 {
     // InternalNode Stuff
 	VariableRecord aux;
@@ -452,7 +452,22 @@ void InternalNode::mergeLeafNodes(int index, TreeBlock *brotherBlock, TreeBlock 
     brotherBlock->positionAtBegin();
     brotherBlock->getNextRecord(&aux);
     keyAux = this->recordMethods->getKeyRecord(aux.getBytes(), aux.getSize());
-    this->block->removeRecord(keyAux->getBytes());
+    if (!balanceRight)
+    {
+    	if (this->recordMethods->compare(removedKey, aux.getBytes(), aux.getSize()) < 0)
+		{
+			this->block->removeRecord(removedKey);
+		}
+		else
+		{
+			this->block->removeRecord(keyAux->getBytes());
+		}
+    }
+    else
+    {
+    	this->block->removeRecord(keyAux->getBytes());
+    }
+
     delete keyAux;
     while(!brotherBlock->isEmpty())
     {

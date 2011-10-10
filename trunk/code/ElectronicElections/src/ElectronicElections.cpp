@@ -31,6 +31,8 @@
 #include "Entities/VoterMethods.h"
 #include "Entities/Administrator.h"
 #include "Entities/AdministratorMethods.h"
+#include "Entities/Election.h"
+#include "Entities/ElectionMethods.h"
 #include "VariableBlocks/VariableRecord.h"
 #include "BPlusTree/Tree.h"
 #include "Voting/Log.h"
@@ -193,6 +195,39 @@ int main()
 							Voter v = Voter(atoi(Menu::raw_input("DNI").c_str()), NULL, NULL, NULL, NULL, std::vector<ElectionKey>());
 							hash_voter->removeRecord(v.getKey());
 						}
+					} else if (action==2) {
+						Tree election_tree ("Election.dat", 512, new ElectionMethods, false);
+						option *election_action = new option[3];
+						election_action[0].label = "Agregar eleccion";
+						election_action[1].label = "Eliminar eleccion";
+						election_action[2].label = "Imprimir arbol de elecciones";
+						action = Menu(election_action,3).ask();
+						if (action==0) {
+							std::vector<string> dist_vector ();
+							while (1) {
+								option *election_district_action = new option[3];
+								election_district_action[0].label = "Asignar distrito";
+								election_district_action[1].label = "Eliminar distrito asignado";
+								election_district_action[2].label = "Ver distritos asignados";
+								election_district_action[3].label = "Seleccion terminada, continuar.";
+								action = Menu(election_district_action,4).ask();
+								if (action==0) {
+									string dist = Menu::raw_input("Distrito");
+//									dist_vector.push_back(&dist);
+								} else if (action==1) {
+								} else if (action==2) {
+//									cout << dist_vector
+								} else if (action==3) {
+									break;
+								}
+							}
+							Election e ((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()), (short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"), std::vector<string>());
+						}
+
+					} else if (action==3) {
+
+					} else if (action==4) {
+
 					} else if (action == 7) {
 						cout << "Generando archivo de distritos" << endl;
 	//					HashBlockFile("District.dat", 512, NULL, NULL, 300, true);

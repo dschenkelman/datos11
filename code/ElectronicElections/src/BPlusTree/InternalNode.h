@@ -32,6 +32,8 @@ class InternalNode: public Node
     		LeafNode& node, VariableRecord* record, char* key, int index);
     OpResult handleCrossParentBalance(VariableRecord *record, VariableRecord & aux);
     void mergeLeafNodes(int index, TreeBlock *brotherBlock, TreeBlock *underflowBlock);
+    void balanceInternalNodeToTheLeft(TreeBlock *underflowBlock, TreeBlock *balancingBlock, VariableRecord & aux);
+    void balanceInternalNodeToTheRight(TreeBlock *balancingBlock, TreeBlock *underflowBlock);
 public:
 	InternalNode(TreeBlockFile* file, TreeBlock* b, RecordMethods* methods);
 	virtual OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord, OverflowParameter& overflowParameter);

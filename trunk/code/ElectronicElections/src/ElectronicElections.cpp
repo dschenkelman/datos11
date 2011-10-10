@@ -38,6 +38,8 @@
 #include "Entities/ChargeMethods.h"
 #include "Entities/ElectionsList.h"
 #include "Entities/ElectionsListMethods.h"
+#include "Entities/Candidate.h"
+#include "Entities/CandidateMethods.h"
 #include "VariableBlocks/VariableRecord.h"
 #include "BPlusTree/Tree.h"
 #include "Voting/Log.h"
@@ -208,7 +210,7 @@ int main()
 						election_action[2].label = "Imprimir arbol de elecciones";
 						action = Menu(election_action,3).ask();
 						if (action==0) {
-							std::vector<string> dist_vector ();
+							std::vector<string> dist_vector;
 							while (1) {
 								option *election_district_action = new option[3];
 								election_district_action[0].label = "Asignar distrito";
@@ -279,6 +281,26 @@ int main()
 						VariableRecord elist_vr (elist.getBytes(), elist.getSize());
 						int res = electionslist_tree.insert(&elistkey_vr, &elist_vr);
 						log.write("Agregando eleccion", res!=5, true);
+					} else if (action==5) {
+						Tree candidate_tree = Tree("Candidate.dat", 512, new CandidateMethods, false);
+						option candidate_action[3];
+						candidate_action[0].label = "Agregar candidato";
+						candidate_action[1].label = "Eliminar candidato";
+						candidate_action[2].label = "Imprimir arbol de candidatos";
+						action = Menu(candidate_action,3).ask();
+						if (action==0) {
+							Candidate cand ((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()), (short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Nombre"), Menu::raw_input("Cargo"), atoi(Menu::raw_input("DNI").c_str()));
+							VariableRecord candkey_vr (cand.getKey(), cand.getKeySize());
+							VariableRecord cand_vr (cand.getBytes(), cand.getSize());
+							int res = candidate_tree (&candkey_vr, &cand_vr);
+							log.write("Agregando candidato", res!=5, true);
+						} else if (action==1) {
+							res = candidate_tree.remove(Menu::raw_input("Nombre").c_str());
+							log.write("Eliminando candidato", res!=4, true);
+						} else if (action==2) {
+							candidate_tree.print();
+						}
+					} else if (action==6) {
 					} else if (action == 7) {
 						cout << "Generando archivo de distritos" << endl;
 	//					HashBlockFile("District.dat", 512, NULL, NULL, 300, true);

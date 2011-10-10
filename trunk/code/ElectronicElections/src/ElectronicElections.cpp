@@ -292,10 +292,11 @@ int main()
 							Candidate cand ((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()), (short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Nombre"), Menu::raw_input("Cargo"), atoi(Menu::raw_input("DNI").c_str()));
 							VariableRecord candkey_vr (cand.getKey(), cand.getKeySize());
 							VariableRecord cand_vr (cand.getBytes(), cand.getSize());
-							int res = candidate_tree (&candkey_vr, &cand_vr);
+							int res = candidate_tree.insert(&candkey_vr, &cand_vr);
 							log.write("Agregando candidato", res!=5, true);
 						} else if (action==1) {
-							res = candidate_tree.remove(Menu::raw_input("Nombre").c_str());
+							Candidate cand ((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()), (short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Nombre"), Menu::raw_input("Cargo"), atoi(Menu::raw_input("DNI").c_str()));
+							int res = candidate_tree.remove(cand.getKey());
 							log.write("Eliminando candidato", res!=4, true);
 						} else if (action==2) {
 							candidate_tree.print();

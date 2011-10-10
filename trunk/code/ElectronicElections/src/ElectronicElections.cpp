@@ -161,7 +161,7 @@ int main()
 						voter_action[2].label = "Cambio de distrito";
 						voter_action[3].label = "Cambio de clave";
 						voter_action[4].label = "Eliminar votante";
-						action = Menu(voter_action,3).ask();
+						action = Menu(voter_action,5).ask();
 						if (action==0) {
 							Voter v = Voter(atoi(Menu::raw_input("DNI").c_str()), Menu::raw_input("Nombre"), Menu::raw_input("Contraseña"), Menu::raw_input("Direccion"), Menu::raw_input("Distrito"), std::vector<ElectionKey>());
 							hash_voter->insertRecord(v.getKey(), new VariableRecord(v.getBytes(), v.getSize())) ? cout << "OK" : cout << "FAILED";
@@ -189,6 +189,9 @@ int main()
 							v.setPassword(Menu::raw_input("Nueva contraseña"));
 							record->setBytes(v.getBytes(), v.getSize());
 							hash_voter->updateRecord(v.getKey(), record);
+						} else if (action==4) {
+							Voter v = Voter(atoi(Menu::raw_input("DNI").c_str()), NULL, NULL, NULL, NULL, std::vector<ElectionKey>());
+							hash_voter->removeRecord(v.getKey());
 						}
 					} else if (action == 7) {
 						cout << "Generando archivo de distritos" << endl;

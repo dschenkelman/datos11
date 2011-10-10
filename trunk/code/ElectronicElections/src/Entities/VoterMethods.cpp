@@ -9,6 +9,7 @@
 #include "Voter.h"
 #include <cstdlib>
 #include <iostream>
+#include <cstring>
 
 using namespace std;
 
@@ -23,19 +24,7 @@ int VoterMethods::compare(const char* key, const char* recordBytes, int recordSi
 
 	v.setBytes((char*) recordBytes);
 
-	int dni = atoi(key+1);
-
-	if(dni > v.getDni())
-	{
-		return 1;
-	}
-
-	else if(dni < v.getDni())
-	{
-		return -1;
-	}
-
-	else return 0;
+	return strcmp(key, v.getKey());
 }
 
 void VoterMethods::print(const char* recordBytes, int recordSize)

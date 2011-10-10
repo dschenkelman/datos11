@@ -370,6 +370,61 @@ bool InternalNode::balanceLeafUnderflowRightWithinDifferentParents(LeafNode& nod
     return true;
 }
 
+OpResult InternalNode::handleLeafUnderflow(int nextNode, bool balanceRight, bool lastChild, bool leafAlreadyBalanced, LeafNode& node, VariableRecord* record)
+{
+    TreeBlock *underflowBlock = this->file->getCurrentBlock();
+    this->file->loadBlock(nextNode);
+    this->file->pushBlock();
+    LeafNode brother(this->file->getCurrentBlock(), this->recordMethods);
+    if(balanceRight)
+    {
+        if(lastChild)
+        {
+            leafAlreadyBalanced = this->balanceLeafUnderflowRightWithinDifferentParents(node, brother, underflowBlock, record);
+        }
+        else
+        {
+            leafAlreadyBalanced = this->balanceLeafUnderflowRightWithinSameParent(node, brother, underflowBlock);
+        }
+    }
+    else
+    {
+        leafAlreadyBalanced = this->balanceLeafUnderflowLeft(brother, node, underflowBlock);
+    }
+
+    if(!leafAlreadyBalanced){
+        cout << "YEAAHHHHHH";
+        return Updated;
+    }
+    else
+    {
+        return Unchanged;
+    }
+}
+
+OpResult InternalNode::handleCrossParentBalance(VariableRecord *record, VariableRecord& aux)
+{
+    VariableRecord aux2;
+    VariableRecord *keyRecord = this->recordMethods->getKeyRecord(record->getBytes(), record->getSize());
+    this->block->positionAtBegin();
+    while (this->block->getNextRecord(&aux) != NULL)
+			{
+				if (this->recordMethods->compare
+						(keyRecord->getBytes(), aux.getBytes(), aux.getSize()) < 0)
+				{
+					break;
+				}
+
+				aux2 = aux;
+			}
+    VariableRecord *keyAux = this->recordMethods->getKeyRecord(aux2.getBytes(), aux2.getSize());
+    this->block->removeRecord(keyAux->getBytes());
+    this->block->insertRecord(keyRecord, record);
+    delete keyAux;
+    delete keyRecord;
+    return Updated;
+}
+
 OpResult InternalNode::remove(char *key, VariableRecord* record)
 {
 	VariableRecord aux;
@@ -410,41 +465,8 @@ OpResult InternalNode::remove(char *key, VariableRecord* record)
 
 			if (nextNode != 0)
 			{
-				//Has a brother
-				TreeBlock* underflowBlock = this->file->getCurrentBlock();
-				this->file->loadBlock(nextNode);
-				this->file->pushBlock();
-				LeafNode brother(this->file->getCurrentBlock(), this->recordMethods);
-				// not considering right-most case, use boolean!
-				if (balanceRight)
-				{
-					if (lastChild)
-					{
-						//TODO: Update parent with middle block!!!
-						leafAlreadyBalanced = this->balanceLeafUnderflowRightWithinDifferentParents(node, brother, underflowBlock, record);
-					}
-					else
-					{
-						leafAlreadyBalanced = this->balanceLeafUnderflowRightWithinSameParent(node,brother, underflowBlock);
-					}
-				}
-				else
-				{
-					leafAlreadyBalanced = this->balanceLeafUnderflowLeft(brother, node, underflowBlock);
-				}
-
-				if (!leafAlreadyBalanced)
-				{
-					//TODO: merge
-					cout<<"YEAAHHHHHH";
-					result = Updated;
-				}
-				else
-				{
-					result = Unchanged;
-				}
-
-				this->file->saveBlock();
+			    result = this->handleLeafUnderflow(nextNode, balanceRight, lastChild, leafAlreadyBalanced, node, record);
+			    this->file->saveBlock();
 				this->file->popBlock();
 			}
 		}
@@ -456,30 +478,8 @@ OpResult InternalNode::remove(char *key, VariableRecord* record)
 
 		if (record->getBytes() != NULL)
 		{
-			// need to replace one record because a cross parent balance has occurred
-			VariableRecord aux2;
-			VariableRecord* keyRecord = this->recordMethods->getKeyRecord(record->getBytes(), record->getSize());
-			this->block->positionAtBegin();
-			while (this->block->getNextRecord(&aux) != NULL)
-			{
-				if (this->recordMethods->compare
-						(keyRecord->getBytes(), aux.getBytes(), aux.getSize()) < 0)
-				{
-					break;
-				}
-
-				aux2 = aux;
-			}
-
-			VariableRecord* keyAux = this->recordMethods->getKeyRecord(aux2.getBytes(), aux2.getSize());
-			this->block->removeRecord(keyAux->getBytes());
-			this->block->insertRecord(keyRecord, record);
-			delete keyAux;
-
-			delete keyRecord;
-			result = Updated;
+		    result = this->handleCrossParentBalance(record, aux);
 		}
-
 	}
 
 	// save block

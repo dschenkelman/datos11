@@ -98,7 +98,7 @@ int main()
 		return 0;
 	}
 	Log log;
-	log << "Iniciando sistema";
+	log.write("Iniciando sistema", true, true);
 	option *main = new option[2];
 	main[0].label = "Run main program";
 	main[1].label = "Run tests";

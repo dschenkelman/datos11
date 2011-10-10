@@ -164,7 +164,7 @@ int main()
 						action = Menu(voter_action,3).ask();
 						if (action==0) {
 							Voter v = Voter(atoi(Menu::raw_input("DNI").c_str()), Menu::raw_input("Nombre"), Menu::raw_input("Contraseña"), Menu::raw_input("Direccion"), Menu::raw_input("Distrito"), std::vector<ElectionKey>());
-							hash_voter->insertRecord(v.getKey(), new VariableRecord(v.getBytes(), v.getSize()));
+							hash_voter->insertRecord(v.getKey(), new VariableRecord(v.getBytes(), v.getSize())) ? cout << "OK" : cout << "FAILED";
 						} else if (action==1) {
 							VariableRecord *record;
 							Voter v = Voter(atoi(Menu::raw_input("DNI").c_str()), NULL, NULL, NULL, NULL, std::vector<ElectionKey>());

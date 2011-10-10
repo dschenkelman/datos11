@@ -7,6 +7,8 @@
 
 #include "ChargeHashingFunction.h"
 
+
+
 ChargeHashingFunction::ChargeHashingFunction()
 {
 }
@@ -15,7 +17,10 @@ int ChargeHashingFunction::hashingFunction(const char* keyRecord, int blockCount
 {
 	// Total blocks for charge are enough with 6 blocks but last 9
 	// to be more intuitive, and have each charge in one block
-	char letter = *keyRecord - 64;
+	int len = strlen(keyRecord);
+	char key[len];
+	memcpy(key, keyRecord+1, len);
+	char letter = *key - 64;
 	return (letter/(blockCount+1) + letter %blockCount);
 }
 

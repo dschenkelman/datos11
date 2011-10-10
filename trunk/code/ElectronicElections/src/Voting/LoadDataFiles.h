@@ -11,12 +11,17 @@
 
 #include "../Hash/HashBlockFile.h"
 #include "../BPlusTree/Tree.h"
+
+#include "../Entities/Voter.h"
 #include "../Hash/VoterHashingFunction.h"
+#include "../Entities/VoterMethods.h"
+
+#include "../Entities/DistrictMethods.h"
+
+#include "../Entities/Charge.h"
 #include "../Hash/ChargeHashingFunction.h"
 #include "../Entities/ChargeMethods.h"
-#include "../Entities/VoterMethods.h"
-#include "../Entities/DistrictMethods.h"
-#include "../Entities/Voter.h"
+
 
 class LoadDataFiles
 {

@@ -16,6 +16,7 @@
 #include "../Entities/ChargeMethods.h"
 #include "../Entities/VoterMethods.h"
 #include "../Entities/DistrictMethods.h"
+#include "../Entities/Voter.h"
 
 class LoadDataFiles
 {
@@ -26,9 +27,9 @@ class LoadDataFiles
 	Tree* treeDistrictFile;
 
 	//void initializefile();
-	void readDistrictFile();
-	void readVoterFile();
-	void readChargeFile();
+	void readDistrictFile(char* dataFile);
+	void readVoterFile(char* dataFile);
+	void readChargeFile(char* dataFile);
 	void createFileType(char* fileType,char** fields);
 
 public:

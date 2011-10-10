@@ -19,6 +19,7 @@ using namespace std;
 InternalNode::InternalNode(TreeBlockFile* f, TreeBlock* b, RecordMethods* methods): Node(b, methods), file(f)
 {
 	this->maximumSize = this->calculateMaxSize();
+	this->minimumSize = this->calculateMinimumSize();
 }
 
 int InternalNode::getMaxSize()
@@ -404,6 +405,11 @@ OpResult InternalNode::handleLeafUnderflow(int nextNode, bool balanceRight, bool
     		// underflow node is the last (right-sided)
     		this->mergeLeafNodes(index-1, underflowBlock, this->file->getCurrentBlock());
     	}
+
+    	if ((this->block->getOccupiedSize() - IndexTreeBlock::RECORD_OFFSET) < this->minimumSize)
+    	{
+    		return Underflow;
+    	}
     	return Updated;
     }
     else
@@ -446,7 +452,8 @@ void InternalNode::mergeLeafNodes(int index, TreeBlock *brotherBlock, TreeBlock 
     keyAux = this->recordMethods->getKeyRecord(aux.getBytes(), aux.getSize());
     this->block->removeRecord(keyAux->getBytes());
     delete keyAux;
-    while(!brotherBlock->isEmpty()){
+    while(!brotherBlock->isEmpty())
+    {
         VariableRecord *record = brotherBlock->popLast();
         VariableRecord *keyAux;
         keyAux = this->recordMethods->getKeyRecord(record->getBytes(), record->getSize());
@@ -502,50 +509,42 @@ OpResult InternalNode::remove(char *key, VariableRecord* record)
 				this->file->popBlock();
 			}
 		}
-		/*
-		if (result == Underflow)
-		{
-			// Look for brother to balance with
-			int nextNode = node.getNextNode();
-			bool balanceRight = nextNode != 0;
-			nextNode = balanceRight ? nextNode : this->block->getNodePointer(index-1);
-
-			if (nextNode != 0)
-			{
-
-				//Has a brother
-				TreeBlock* underflowBlock = this->file->getCurrentBlock();
-				this->file->loadBlock(nextNode);
-				this->file->pushBlock();
-				TreeBlock* brotherBlock = this->file->getCurrentBlock();
-				LeafNode brother(brotherBlock, this->recordMethods);
-				// not considering right-most case, use boolean!
-				if (balanceRight)
-				{
-					leafAlreadyBalanced = this->balanceLeafOverflowRight(&node,&brother, underflowBlock);
-				}
-				else
-				{
-					leafAlreadyBalanced = this->balanceLeafOverflowLeft(&brother, &node, underflowBlock);
-				}
-
-				if (!leafAlreadyBalanced)
-				{
-					// InternalNode Stuff
-				    mergeLeafNodes(index, brotherBlock, aux, underflowBlock);
-
-				}
-
-				this->file->saveBlock();
-
-				this->file->popBlock();
-			}
-		}*/
 	}
 	else
 	{
 		InternalNode node(this->file, this->file->getCurrentBlock(), this->recordMethods);
 		result = node.remove(key, record);
+
+		if (result == Underflow)
+		{
+			int balancingNode = lastChild ? this->block->getNodePointer(index - 1) : this->block->getNodePointer(index + 1);
+			TreeBlock* underflowBlock = this->file->getCurrentBlock();
+			this->file->loadBlock(balancingNode);
+			this->file->pushBlock();
+			TreeBlock* balancingBlock = this->file->getCurrentBlock();
+			int underflowRecordCount = 0;
+			VariableRecord aux2;
+			underflowBlock->positionAtBegin();
+			while (underflowBlock->getNextRecord(&aux2)){ underflowRecordCount++; }
+			while (underflowBlock->getOccupiedSize() < balancingBlock->getOccupiedSize())
+			{
+				underflowBlock->forceInsert(&aux);
+				underflowRecordCount++;
+				this->block->removeRecord(aux.getBytes());
+				balancingBlock->positionAtBegin();
+				balancingBlock->getNextRecord(&aux);
+				int nodePointer = balancingBlock->getNodePointer(0);
+				balancingBlock->removeRecord(aux.getBytes());
+				balancingBlock->removeNodePointer(0);
+				this->block->insertRecord(&aux, &aux);
+				underflowBlock->insertNodePointer(underflowRecordCount, nodePointer);
+			}
+
+			this->file->saveBlock();
+			this->file->popBlock();
+
+			result = Updated;
+		}
 
 		if (record->getBytes() != NULL)
 		{
@@ -680,10 +679,14 @@ bool InternalNode::balanceLeafUnderflowLeft(LeafNode& leftLeaf, LeafNode& rightL
 	return true;
 }
 
+int InternalNode::calculateMinimumSize()
+{
+	return floor((this->block->getSize() - SequenceTreeBlock::RECORD_OFFSET) * 0.45);
+}
+
 int InternalNode::getMinimumSize()
 {
-	//TODO
-	return 0;
+	return this->minimumSize;
 }
 
 OpResult InternalNode::update(char *key, VariableRecord *r)

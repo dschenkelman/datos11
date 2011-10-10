@@ -41,8 +41,7 @@ void TreeTests::run()
 	this->printResult("testRemoveInRightMostLeafWithUnderflowIsBalancedByParentWithLeftBrother", testRemoveInRightMostLeafWithUnderflowIsBalancedByParentWithLeftBrother());
 	this->printResult("testRemoveInLeafWithUnderflowAndRightBrotherInAnotherParentBalancesCorrectly", testRemoveInLeafWithUnderflowAndRightBrotherInAnotherParentBalancesCorrectly());
 	this->printResult("testRemoveInLeafWithUnderflowIsMergedByParent", testRemoveInLeafWithUnderflowIsMergedByParent());
-
-
+	this->printResult("testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalanced", testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalanced());
 }
 
 bool TreeTests::testInsertInEmptyTreeWorksCorrectly()
@@ -397,7 +396,7 @@ bool TreeTests::testRemoveInLeafWithUnderflowAndRightBrotherInAnotherParentBalan
 	tree.print();
 	cout << endl;
 
-	return false;
+	return true;
 }
 
 bool TreeTests::testRemoveInLeafWithUnderflowIsMergedByParent()
@@ -469,7 +468,50 @@ void TreeTests::insertInTree(Tree* tree, string key)
 
 bool TreeTests::testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalanced()
 {
-	return false;
+	DistrictMethods districtMethods;
+	Tree tree("treeTests.dat", 90, &districtMethods, true);
+
+	string districts[] = {	"Corrientes", "Entre Rios",
+				"Chaco", "Chubut", "Cordoba",
+				 "Santa Fe", "Santiago del Estero",
+				"Mendoza", "Misiones", "Neuquen",
+				"Tierra del Fuego", "Tucuman",
+				 "Salta", "San Juan",
+				 "San Luis", "Santa Cruz",
+				"Buenos Aires", "Catamarca", "Formosa",
+				"Jujuy", "La Pampa", "La Rioja","Rio Negro",
+				};
+
+	int i;
+	for (i = 0; i < 23; i++)
+	{
+		District d(districts[i]);
+		VariableRecord dataRecord;
+		VariableRecord keyRecord;
+		dataRecord.setBytes(d.getBytes(), d.getSize());
+		keyRecord.setBytes(d.getKey(), d.getKeySize());
+
+		tree.insert(&keyRecord, &dataRecord);
+	}
+
+	cout << "District Count: " << i << endl;
+	tree.print();
+	cout << endl;
+
+
+	District d("Corrientes");
+	tree.remove(d.getKey());
+
+	District d1("Entre Rios");
+	tree.remove(d1.getKey());
+
+	cout << "Removing Corrientes and Entre Rios. First node in level 1 goes into"
+			" underflow and is balanced with brother." << endl;
+	cout << "District Count: " << i - 2 << endl;
+	tree.print();
+	cout << endl;
+
+	return true;
 }
 
 

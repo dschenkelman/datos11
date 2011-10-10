@@ -146,7 +146,8 @@ OpResult LeafNode::remove(char *key, VariableRecord* record)
 {
 	if (this->block->removeRecord(key))
 	{
-		if (this->block->getFreeSpace() > this->minimumSize)
+		int occupiedSpace = this->block->getOccupiedSize() - SequenceTreeBlock::RECORD_OFFSET;
+		if (occupiedSpace < this->minimumSize)
 		{
 			return Underflow;
 		}

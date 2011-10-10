@@ -39,7 +39,7 @@ src/ElectronicElections.d src/ElectronicElections.o: \
  ../src/Voting/../Entities/DistrictMethods.h \
  ../src/Voting/../Entities/../VariableBlocks/VariableRecord.h \
  ../src/Voting/../Entities/../VariableBlocks/Constants.h \
- ../src/Voting/../Entities/District.h
+ ../src/Voting/../Entities/District.h ../src/Voting/../Entities/Voter.h
 
 ../src/BlocksTests/RLVBlockFileTests.h:
 
@@ -142,3 +142,5 @@ src/ElectronicElections.d src/ElectronicElections.o: \
 ../src/Voting/../Entities/../VariableBlocks/Constants.h:
 
 ../src/Voting/../Entities/District.h:
+
+../src/Voting/../Entities/Voter.h:

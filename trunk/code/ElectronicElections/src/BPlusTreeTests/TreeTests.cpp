@@ -565,7 +565,7 @@ bool TreeTests::testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedWhenR
 bool TreeTests::testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedAcrossParents()
 {
 	DistrictMethods districtMethods;
-	Tree tree("treeTests.dat", 70, &districtMethods, true);
+	Tree tree("treeTests.dat", 128, &districtMethods, true);
 
 	string districts[] = {
 				 "Santa Fe", "Santiago del Estero",
@@ -577,10 +577,22 @@ bool TreeTests::testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedAcros
 				 "Corrientes", "Entre Rios",
 				"Chaco", "Chubut", "Cordoba",
 				"Buenos Aires", "Catamarca", "Formosa",
+				"Artigas", "Canelones", "Cerro Largo",
+				"Colonia", "Durazno", "Flores", "Florida",
+				"Lavalleja", "Maldonado", "Montevideo",
+				"Paysandu", "Rivera", "Rocha", "Salto",
+				"San Jose", "Soriano", "Tacuarembo", "Treinta y Tres",
+				"Acre", "Alagoas", "Amapa", "Amazonas", "Bahia", "Ceara",
+				"Distrito Federal", "Espiritu Santo", "Goias", "Marañao",
+				"Mato Groso", "Mato Groso del Sur", "Minas Gerais", "Para",
+				"Paraiba", "Parana", "Pernambuco", "Piaui",
+				"Rio de Janeiro", "Rio Grande del Norte",
+				"Rio Grande del Sur", "Rondonia", "Roraima",
+				"San Pablo", "Santa Catalina", "Sergipe", "Tocantins"
 				};
 
 	int i;
-	for (i = 0; i < 23; i++)
+	for (i = 0; i < 62; i++)
 	{
 		District d(districts[i]);
 		VariableRecord dataRecord;

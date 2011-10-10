@@ -36,6 +36,8 @@
 #include "Entities/ElectionMethods.h"
 #include "Entities/Charge.h"
 #include "Entities/ChargeMethods.h"
+#include "Entities/ElectionsList.h"
+#include "Entities/ElectionsListMethods.h"
 #include "VariableBlocks/VariableRecord.h"
 #include "BPlusTree/Tree.h"
 #include "Voting/Log.h"
@@ -96,7 +98,7 @@ int run_tests()
 
 int main()
 {
-	bool debug = true;
+	bool debug = false;
 	if (debug)
 	{
 		run_tests();
@@ -231,32 +233,52 @@ int main()
 //						HashBlockFile charge_hash = HashBlockFile("Charge.dat", 512, new ChargeMethods, new ChargeHashingFunction, 300, false);
 						// POR QUE NO ANDA CON LA LINEA DE ARRIBA???
 						HashBlockFile *charge_hash = new HashBlockFile("Charge.dat", 512, new ChargeMethods, new ChargeHashingFunction, 300, false);
-						std::vector<string> subcharges;
-						Menu::raw_input("Primero debera seleccionar los subcargos del cargo, continuar");
-						while (1) {
-							option *charge_subcharge_action = new option[4];
-							charge_subcharge_action[0].label = "Asignar subcargo";
-							charge_subcharge_action[1].label = "Eliminar subcargo asignado";
-							charge_subcharge_action[2].label = "Ver subcargos asignados";
-							charge_subcharge_action[3].label = "Seleccion terminada, continuar.";
-							action = Menu(charge_subcharge_action,4).ask();
-							if (action==0) {
-								subcharges.push_back(Menu::raw_input("Subcargo"));
-							} else if (action==1) {
+						option *charge_action = new option[3];
+						charge_action[0].label = "Agregar cargo";
+						charge_action[1].label = "Eliminar cargo";
+						charge_action[2].label = "Imprimir hash de cargos";
+						action = Menu(charge_action,3).ask();
+						if (action==0) {
+							std::vector<string> subcharges;
+							Menu::raw_input("Primero debera seleccionar los subcargos del cargo, continuar");
+							while (1) {
+								option *charge_subcharge_action = new option[4];
+								charge_subcharge_action[0].label = "Asignar subcargo";
+								charge_subcharge_action[1].label = "Eliminar subcargo asignado";
+								charge_subcharge_action[2].label = "Ver subcargos asignados";
+								charge_subcharge_action[3].label = "Seleccion terminada, continuar.";
+								action = Menu(charge_subcharge_action,4).ask();
+								if (action==0) {
+									subcharges.push_back(Menu::raw_input("Subcargo"));
+								} else if (action==1) {
 
-							} else if (action==2) {
-								for (std::vector<string>::iterator i = subcharges.begin(); i != subcharges.end(); ++i) {
-									cout << *i << " - ";
+								} else if (action==2) {
+									for (std::vector<string>::iterator i = subcharges.begin(); i != subcharges.end(); ++i) {
+										cout << *i << " - ";
+									}
+									cout << endl;
+								} else if (action==3) {
+									break;
 								}
-								cout << endl;
-							} else if (action==3) {
-								break;
 							}
+							Charge c (Menu::raw_input("Nombre del cargo"), subcharges);
+							VariableRecord chargerecord(c.getBytes(), c.getSize());
+							bool res = charge_hash->insertRecord(c.getKey(), &chargerecord);
+							log.write("Agregando cargo", res, true);
+						} else if (action==1) {
+							bool res = charge_hash->removeRecord(Menu::raw_input("Nombre del cargo").c_str());
+							log.write("Eliminando cargo", res, true);
+						} else if (action==2) {
+							charge_hash->printContent();
 						}
-						Charge c (Menu::raw_input("Nombre del cargo"), subcharges);
 						delete charge_hash;
 					} else if (action==4) {
-
+						Tree electionslist_tree ("ElectionsList.dat", 512, new ElectionsListMethods, false);
+						ElectionsList elist (Menu::raw_input("Nombre de la eleccion"), (char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()), (short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"));
+						VariableRecord elistkey_vr (elist.getKey(), elist.getKeySize());
+						VariableRecord elist_vr (elist.getBytes(), elist.getSize());
+						int res = electionslist_tree.insert(&elistkey_vr, &elist_vr);
+						log.write("Agregando eleccion", res!=5, true);
 					} else if (action == 7) {
 						cout << "Generando archivo de distritos" << endl;
 	//					HashBlockFile("District.dat", 512, NULL, NULL, 300, true);
@@ -266,7 +288,7 @@ int main()
 						cout << "Generando archivo de elecciones" << endl;
 						Tree("Election.dat", 512, NULL, true);
 						cout << "Generando archivo de listas" << endl;
-						Tree("CandidatesList.dat", 512, NULL, true);
+						Tree("ElectionsList.dat", 512, NULL, true);
 						cout << "Generando archivo de conteo" << endl;
 						Tree("Count.dat", 512, NULL, true);
 						cout << "Generando archivo de cargos" << endl;

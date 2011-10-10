@@ -197,7 +197,7 @@ void HashTest::testEmptyBlock(int blockNumber)
 
 void HashTest::run()
 {
-	this->testLoadHashwithoutValidation();
+	//this->testLoadHashwithoutValidation();
 	this->testInsert();
 	this->testGetRecord();
 	this->testUpdateRecord();

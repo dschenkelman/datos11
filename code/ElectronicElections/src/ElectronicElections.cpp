@@ -24,8 +24,12 @@
 #include "Voting.h"
 #include "Hash/HashBlockFile.h"
 #include "Hash/DistrictHashingFunction.h"
+#include "Hash/VoterHashingFunction.h"
 #include "Entities/District.h"
 #include "Entities/DistrictMethods.h"
+#include "Entities/Voter.h"
+#include "Entities/VoterMethods.h"
+#include "VariableBlocks/VariableRecord.h"
 #include "BPlusTree/Tree.h"
 #include "Voting/Log.h"
 #include <time.h>
@@ -134,13 +138,32 @@ int main()
 					action = Menu(district_action,3).ask();
 					if (action==0) {
 						District d = District (Menu::raw_input("Nombre del distrito"));
-						hash_district->insertRecord(d.getKey(), d.getBytes()) ? cout << OK << endl : cout << FAILED << endl;
-					}
-					if (action==2) {
+						hash_district->insertRecord(d.getKey(), new VariableRecord(d.getBytes(), d.getSize()) ) ? cout << "OK" << endl : cout << "FAILED" << endl;
+					} else if (action==1) {
 						District d = District (Menu::raw_input("Nombre del distrito"));
-						hash_district->removeRecord(d.getKey()) ? cout << OK << endl : cout << FAILED << endl;
+						hash_district->removeRecord(d.getKey()) ? cout << "OK" << endl : cout << "FAILED" << endl;
+					} else if (action==2) hash_district->printContent();
+				} else if (action == 1) {
+					HashBlockFile *hash_voter = new HashBlockFile("Voter.dat", 1024*10, new VoterMethods, new VoterHashingFunction, 2800, false); // para 28 mil votantes
+					option *voter_action = new option[5];
+					voter_action[0].label = "Agregar votante";
+					voter_action[1].label = "Cambio de domicilio";
+					voter_action[2].label = "Cambio de distrito";
+					voter_action[3].label = "Cambio de clave";
+					voter_action[4].label = "Eliminar votante";
+					action = Menu(voter_action,3).ask();
+					if (action==0) {
+						Voter v = Voter(atoi(Menu::raw_input("DNI").c_str()), Menu::raw_input("Nombre"), Menu::raw_input("Contraseña"), Menu::raw_input("Direccion"), Menu::raw_input("Distrito"), std::vector<ElectionKey>());
+						hash_voter->insertRecord(v.getKey(), new VariableRecord(v.getBytes(), v.getSize()));
+					} else if (action==1) {
+						VariableRecord *record;
+						Voter v = Voter(atoi(Menu::raw_input("DNI").c_str()), NULL, NULL, NULL, NULL, std::vector<ElectionKey>());
+						hash_voter->getRecord(v.getKey(), &record);
+						v.setBytes(record->getBytes());
+						v.setAddress(Menu::raw_input("Nueva direccion"));
+						record->setBytes(v.getBytes(), v.getSize());
+						hash_voter->updateRecord(v.getKey(), record);
 					}
-					if (action==2) hash_district->printContent();
 				} else if (action == 7) {
 					cout << "Generando archivo de distritos" << endl;
 					HashBlockFile("District.dat", 512, NULL, NULL, 300, true);

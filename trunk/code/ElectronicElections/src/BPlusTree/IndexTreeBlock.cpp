@@ -29,6 +29,11 @@ void IndexTreeBlock::clear()
     this->storeNodesPosition();
 }
 
+bool IndexTreeBlock::isEmpty()
+{
+	return (this->freeSpace == (this->maxSize - RECORD_OFFSET));
+}
+
 bool IndexTreeBlock::canInsertRecord(int size)
 {
 	return this->freeSpace >= size + Constants::RECORD_HEADER_SIZE + NODE_POINTER_SIZE;

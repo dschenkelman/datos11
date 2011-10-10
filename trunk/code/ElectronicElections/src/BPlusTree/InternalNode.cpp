@@ -371,7 +371,7 @@ bool InternalNode::balanceLeafUnderflowRightWithinDifferentParents(LeafNode& nod
 }
 
 OpResult InternalNode::handleLeafUnderflow(int nextNode, bool balanceRight, bool lastChild,
-		bool leafAlreadyBalanced, LeafNode& node, VariableRecord* record, char* key)
+		bool leafAlreadyBalanced, LeafNode& node, VariableRecord* record, char* key, int index)
 {
     TreeBlock *underflowBlock = this->file->getCurrentBlock();
     this->file->loadBlock(nextNode);
@@ -395,7 +395,8 @@ OpResult InternalNode::handleLeafUnderflow(int nextNode, bool balanceRight, bool
 
     if(!leafAlreadyBalanced)
     {
-        return Updated;
+    	this->mergeLeafNodes(index, this->file->getCurrentBlock(), underflowBlock);
+    	return Updated;
     }
     else
     {
@@ -424,6 +425,26 @@ OpResult InternalNode::handleCrossParentBalance(VariableRecord *record, Variable
     delete keyAux;
     delete keyRecord;
     return Updated;
+}
+
+void InternalNode::mergeLeafNodes(int index, TreeBlock *brotherBlock, TreeBlock *underflowBlock)
+{
+    // InternalNode Stuff
+	VariableRecord aux;
+    VariableRecord *keyAux;
+    this->block->removeNodePointer(index + 1);
+    brotherBlock->positionAtBegin();
+    brotherBlock->getNextRecord(&aux);
+    keyAux = this->recordMethods->getKeyRecord(aux.getBytes(), aux.getSize());
+    this->block->removeRecord(keyAux->getBytes());
+    delete keyAux;
+    while(!brotherBlock->isEmpty()){
+        VariableRecord *record = brotherBlock->popLast();
+        VariableRecord *keyAux;
+        keyAux = this->recordMethods->getKeyRecord(record->getBytes(), record->getSize());
+        underflowBlock->insertRecord(keyAux, record);
+    }
+    underflowBlock->setNextNode(brotherBlock->getNextNode());
 }
 
 OpResult InternalNode::remove(char *key, VariableRecord* record)
@@ -457,6 +478,7 @@ OpResult InternalNode::remove(char *key, VariableRecord* record)
 		LeafNode node(this->file->getCurrentBlock(), this->recordMethods);
 		result = node.remove(key, record);
 
+
 		if (result == Underflow)
 		{
 			// Look for brother to balance with
@@ -466,12 +488,51 @@ OpResult InternalNode::remove(char *key, VariableRecord* record)
 
 			if (nextNode != 0)
 			{
-			    result = this->handleLeafUnderflow(nextNode, balanceRight, lastChild,
-			    		leafAlreadyBalanced, node, record, key);
-			    this->file->saveBlock();
+				result = this->handleLeafUnderflow(nextNode, balanceRight, lastChild,
+				leafAlreadyBalanced, node, record, key, index);
+				this->file->saveBlock();
 				this->file->popBlock();
 			}
 		}
+		/*
+		if (result == Underflow)
+		{
+			// Look for brother to balance with
+			int nextNode = node.getNextNode();
+			bool balanceRight = nextNode != 0;
+			nextNode = balanceRight ? nextNode : this->block->getNodePointer(index-1);
+
+			if (nextNode != 0)
+			{
+
+				//Has a brother
+				TreeBlock* underflowBlock = this->file->getCurrentBlock();
+				this->file->loadBlock(nextNode);
+				this->file->pushBlock();
+				TreeBlock* brotherBlock = this->file->getCurrentBlock();
+				LeafNode brother(brotherBlock, this->recordMethods);
+				// not considering right-most case, use boolean!
+				if (balanceRight)
+				{
+					leafAlreadyBalanced = this->balanceLeafOverflowRight(&node,&brother, underflowBlock);
+				}
+				else
+				{
+					leafAlreadyBalanced = this->balanceLeafOverflowLeft(&brother, &node, underflowBlock);
+				}
+
+				if (!leafAlreadyBalanced)
+				{
+					// InternalNode Stuff
+				    mergeLeafNodes(index, brotherBlock, aux, underflowBlock);
+
+				}
+
+				this->file->saveBlock();
+
+				this->file->popBlock();
+			}
+		}*/
 	}
 	else
 	{
@@ -495,8 +556,9 @@ OpResult InternalNode::remove(char *key, VariableRecord* record)
 
 bool InternalNode::balanceLeafUnderflowRightWithinSameParent(LeafNode& leftLeaf, LeafNode& rightLeaf, TreeBlock* underflowBlock)
 {
+
 	int totalCapacity = leftLeaf.getOccupiedSize() + rightLeaf.getOccupiedSize();
-	if (totalCapacity / 2 < leftLeaf.getMinimumSize())
+	if (totalCapacity < leftLeaf.getMaxSize())
 	{
 		// There is not enough records to balance the Leafs
 		return false;
@@ -505,17 +567,35 @@ bool InternalNode::balanceLeafUnderflowRightWithinSameParent(LeafNode& leftLeaf,
 	// remove first register from right child from parent
 	VariableRecord aux;
 	VariableRecord* keyAux;
+	bool balanced = false;
 	this->file->getCurrentBlock()->positionAtBegin();
 	this->file->getCurrentBlock()->getNextRecord(&aux);
 	keyAux = this->recordMethods->getKeyRecord(aux.getBytes(),aux.getSize());
 	this->block->removeRecord(keyAux->getBytes());
 	delete keyAux;
 
+
+	VariableRecord* dataRecord;
+	VariableRecord* keyRecord;
+
+
 	while (leftLeaf.getOccupiedSize() < rightLeaf.getOccupiedSize())
 	{
-		VariableRecord* dataRecord = rightLeaf.popFirst();
-		VariableRecord* keyRecord = this->recordMethods->getKeyRecord(dataRecord->getBytes(),dataRecord->getSize());
+		balanced = true;
+		dataRecord = rightLeaf.popFirst();
+		keyRecord = this->recordMethods->getKeyRecord(dataRecord->getBytes(),dataRecord->getSize());
+
 		underflowBlock->insertRecord(keyRecord, dataRecord);
+		delete dataRecord;
+		delete keyRecord;
+	}
+	if (balanced)
+	{
+		dataRecord = leftLeaf.popLast();
+		keyRecord = this->recordMethods->getKeyRecord(dataRecord->getBytes(),
+		dataRecord->getSize());
+		this->file->getCurrentBlock()->insertRecord(keyRecord, dataRecord);
+		underflowBlock->removeRecord(keyRecord->getBytes());
 		delete dataRecord;
 		delete keyRecord;
 	}
@@ -534,8 +614,8 @@ bool InternalNode::balanceLeafUnderflowLeft(LeafNode& leftLeaf, LeafNode& rightL
 		TreeBlock* underflowBlock, char* removedKey)
 {
 	int totalCapacity = leftLeaf.getOccupiedSize() + rightLeaf.getOccupiedSize();
-	int amountOfRecordsBalanced = 0;
-	if (totalCapacity / 2 < leftLeaf.getMinimumSize())
+	bool balanced = false;
+	if (totalCapacity < leftLeaf.getMaxSize())
 	{
 		// There is not enough records to balance the Leafs
 		return false;
@@ -562,23 +642,25 @@ bool InternalNode::balanceLeafUnderflowLeft(LeafNode& leftLeaf, LeafNode& rightL
 
 	while (leftLeaf.getOccupiedSize() > rightLeaf.getOccupiedSize())
 	{
+		balanced = true;
 		dataRecord = leftLeaf.popLast();
 		keyRecord = this->recordMethods->getKeyRecord(dataRecord->getBytes(),
 				dataRecord->getSize());
 		underflowBlock->insertRecord(keyRecord, dataRecord);
 		delete dataRecord;
 		delete keyRecord;
-		amountOfRecordsBalanced++;
+	}
+	if (balanced)
+	{
+		dataRecord = rightLeaf.popFirst();
+		keyRecord = this->recordMethods->getKeyRecord(dataRecord->getBytes(),
+				dataRecord->getSize());
+		this->file->getCurrentBlock()->insertRecord(keyRecord, dataRecord);
+		underflowBlock->removeRecord(keyRecord->getBytes());
+		delete dataRecord;
+		delete keyRecord;
 	}
 
-	dataRecord = rightLeaf.popFirst();
-	keyRecord = this->recordMethods->getKeyRecord(dataRecord->getBytes(),
-			dataRecord->getSize());
-	this->file->getCurrentBlock()->insertRecord(keyRecord, dataRecord);
-	underflowBlock->removeRecord(keyRecord->getBytes());
-	delete dataRecord;
-	delete keyRecord;
-	amountOfRecordsBalanced--;
 
 	// update internal parent with first child of right node
 	underflowBlock->positionAtBegin();
@@ -587,7 +669,7 @@ bool InternalNode::balanceLeafUnderflowLeft(LeafNode& leftLeaf, LeafNode& rightL
 	this->block->insertRecord(keyAux, keyAux);
 	delete keyAux;
 
-	return amountOfRecordsBalanced != 0;
+	return true;
 }
 
 int InternalNode::getMinimumSize()

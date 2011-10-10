@@ -40,6 +40,7 @@ public:
 	virtual int getNextNode();
 	virtual VariableRecord* popFirst();
 	virtual VariableRecord* popLast();
+	virtual bool isEmpty();
 	virtual ~SequenceTreeBlock();
 };
 

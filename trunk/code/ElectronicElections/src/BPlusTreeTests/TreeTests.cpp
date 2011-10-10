@@ -40,6 +40,9 @@ void TreeTests::run()
 	this->printResult("testRemoveInLeafWithUnderflowIsBalancedByParentWithRightBrother", testRemoveInLeafWithUnderflowIsBalancedByParentWithRightBrother());
 	this->printResult("testRemoveInRightMostLeafWithUnderflowIsBalancedByParentWithLeftBrother", testRemoveInRightMostLeafWithUnderflowIsBalancedByParentWithLeftBrother());
 	this->printResult("testRemoveInLeafWithUnderflowAndRightBrotherInAnotherParentBalancesCorrectly", testRemoveInLeafWithUnderflowAndRightBrotherInAnotherParentBalancesCorrectly());
+	this->printResult("testRemoveInLeafWithUnderflowIsMergedByParent", testRemoveInLeafWithUnderflowIsMergedByParent());
+
+
 }
 
 bool TreeTests::testInsertInEmptyTreeWorksCorrectly()
@@ -400,6 +403,7 @@ bool TreeTests::testRemoveInLeafWithUnderflowAndRightBrotherInAnotherParentBalan
 bool TreeTests::testRemoveInLeafWithUnderflowIsMergedByParent()
 {
 	DistrictMethods districtMethods;
+	District *distric;
 	Tree tree("treeTests.dat", 96, &districtMethods, true);
 
 	// approximately n chars
@@ -412,40 +416,62 @@ bool TreeTests::testRemoveInLeafWithUnderflowIsMergedByParent()
 
 	for (int i = 0; i < 10; i++)
 	{
-		District d(districts[i]);
-		VariableRecord dataRecord;
-		VariableRecord keyRecord;
-		dataRecord.setBytes(d.getBytes(), d.getSize());
-		keyRecord.setBytes(d.getKey(), d.getKeySize());
-		cout << endl;tree.print();cout << endl;
-		/*if (strcmp(districts[i].c_str(),"Chubut") == 0)
-		{
-			tree.insert(&keyRecord, &dataRecord);
-		}
-		else
-		{*/
-			tree.insert(&keyRecord, &dataRecord);
-
-		//cin >> sad;
+		this->insertInTree(&tree,districts[i]);
 	}
 
 	tree.print();
-
-	cout << endl << "Remove in the right child 'Santa Fe' and 'Santa Cruz' => it gets underflow" << endl;
-	District d("Santa Fe");
-	tree.remove(d.getKey());
-
-	cout << endl << "The nodes are merged" << endl;
+/*
+	cout << endl << "Remove in the right child 'Santa Fe' => underflow => merge" << endl;
+	distric = new District("Santa Fe");
+	tree.remove(distric->getKey());
 	tree.print();
+	delete distric;
 
+	cout << endl << "Reinsert 'Santa Fe' => overflow => split" << endl;
+	this->insertInTree(&tree,"Santa Fe");
+	tree.print();
+*/
+	cout << endl << "Remove in the middle child 'Entre Rios' => underflow => merge" << endl;
+	distric = new District("Entre Rios");
+	tree.remove(distric->getKey());
+	tree.print();
+	delete distric;
+
+	cout << endl << "Reinsert 'Entre Rios' => overflow => split" << endl;
+	this->insertInTree(&tree,"Entre Rios");
+	tree.print();
+/*
+	cout << endl << "Remove in the first child 'Cordoba', then 'Corrientes' => underflow => merge" << endl;
+	distric = new District("Cordoba");
+	tree.remove(distric->getKey());
+	delete distric;
+	distric = new District("Corrientes");
+	tree.remove(distric->getKey());
+	delete distric;
+	tree.print();
+*/
 	cout << endl;
 
-	return false;
+	return true;
 }
+
+
+void TreeTests::insertInTree(Tree* tree, string key)
+{
+	District d(key);
+	VariableRecord dataRecord;
+	VariableRecord keyRecord;
+	dataRecord.setBytes(d.getBytes(), d.getSize());
+	keyRecord.setBytes(d.getKey(), d.getKeySize());
+	tree->insert(&keyRecord, &dataRecord);
+}
+
 
 bool TreeTests::testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalanced()
 {
+	return false;
 }
+
 
 TreeTests::~TreeTests()
 {

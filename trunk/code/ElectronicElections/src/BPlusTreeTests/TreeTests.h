@@ -9,6 +9,7 @@
 #define TREETESTS_H_
 
 #include <string>
+#include "../BPlusTree/Tree.h"
 
 class TreeTests
 {
@@ -16,6 +17,7 @@ class TreeTests
 public:
 	TreeTests();
 	void run();
+	void insertInTree(Tree* tree, std::string key);
 	bool testInsertInEmptyTreeWorksCorrectly();
 	bool testInsertInRootWithOverflowCreatesTwoLeafs();
 	bool testInsertInLeafWithOverflowIsSplitByParent();

@@ -27,8 +27,9 @@ class InternalNode: public Node
     bool balanceLeafUnderflowLeft(LeafNode& leftLeaf, LeafNode& rightLeaf, TreeBlock* underflowBlock, char* removedKey);
     bool balanceLeafUnderflowRightWithinDifferentParents(LeafNode& node, LeafNode& brother, TreeBlock *underflowBlock, VariableRecord* record);
     OpResult handleLeafUnderflow(int nextNode, bool balanceRight, bool lastChild, bool leafAlreadyBalanced,
-    		LeafNode& node, VariableRecord* record, char* key);
+    		LeafNode& node, VariableRecord* record, char* key, int index);
     OpResult handleCrossParentBalance(VariableRecord *record, VariableRecord & aux);
+    void mergeLeafNodes(int index, TreeBlock *brotherBlock, TreeBlock *underflowBlock);
 public:
 	InternalNode(TreeBlockFile* file, TreeBlock* b, RecordMethods* methods);
 	virtual OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord, OverflowParameter& overflowParameter);

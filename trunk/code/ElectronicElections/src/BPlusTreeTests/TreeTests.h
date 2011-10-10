@@ -29,7 +29,8 @@ public:
 	bool testRemoveInRightMostLeafWithUnderflowIsBalancedByParentWithLeftBrother();
 	bool testRemoveInLeafWithUnderflowIsMergedByParent();
 	bool testRemoveInLeafWithUnderflowAndRightBrotherInAnotherParentBalancesCorrectly();
-	bool testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalanced();
+	bool testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedWhenNonRightMost();
+	bool testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedWhenRightMost();
 	virtual ~TreeTests();
 };
 

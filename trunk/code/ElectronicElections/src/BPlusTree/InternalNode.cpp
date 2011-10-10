@@ -462,6 +462,54 @@ void InternalNode::mergeLeafNodes(int index, TreeBlock *brotherBlock, TreeBlock 
     underflowBlock->setNextNode(brotherBlock->getNextNode());
 }
 
+void InternalNode::balanceInternalNodeToTheLeft(TreeBlock *underflowBlock, TreeBlock *balancingBlock, VariableRecord & aux)
+{
+	int underflowRecordCount = 0;
+	VariableRecord aux2;
+	underflowBlock->positionAtBegin();
+	while (underflowBlock->getNextRecord(&aux2)){ underflowRecordCount++; }
+    while(underflowBlock->getOccupiedSize() < balancingBlock->getOccupiedSize()){
+        underflowBlock->forceInsert(&aux);
+        underflowRecordCount++;
+        this->block->removeRecord(aux.getBytes());
+        balancingBlock->positionAtBegin();
+        balancingBlock->getNextRecord(&aux);
+        int nodePointer = balancingBlock->getNodePointer(0);
+        balancingBlock->removeRecord(aux.getBytes());
+        balancingBlock->removeNodePointer(0);
+        this->block->insertRecord(&aux, &aux);
+        underflowBlock->insertNodePointer(underflowRecordCount, nodePointer);
+    }
+}
+
+void InternalNode::balanceInternalNodeToTheRight(TreeBlock *balancingBlock, TreeBlock *underflowBlock)
+{
+	VariableRecord aux;
+    int balanceRecordCount = 0;
+    balancingBlock->positionAtBegin();
+    while(balancingBlock->getNextRecord(&aux)){
+        balanceRecordCount++;
+    }
+    while(balancingBlock->getOccupiedSize() > underflowBlock->getOccupiedSize())
+    {
+        VariableRecord *lastParentRecord = this->block->popLast();
+        int futureUnderflowSize = lastParentRecord->getSize() + underflowBlock->getOccupiedSize() + Constants::RECORD_HEADER_SIZE;
+        if(futureUnderflowSize > balancingBlock->getOccupiedSize()){
+            this->block->forceInsert(lastParentRecord);
+            delete lastParentRecord;
+            break;
+        }
+        underflowBlock->insertRecord(lastParentRecord, lastParentRecord);
+        int nodePointer = balancingBlock->getNodePointer(balanceRecordCount);
+        VariableRecord *lastBalancingRecord = balancingBlock->popLast();
+        balanceRecordCount--;
+        underflowBlock->insertNodePointer(0, nodePointer);
+        this->block->insertRecord(lastBalancingRecord, lastBalancingRecord);
+        delete lastParentRecord;
+        delete lastBalancingRecord;
+    }
+}
+
 OpResult InternalNode::remove(char *key, VariableRecord* record)
 {
 	VariableRecord aux;
@@ -522,25 +570,15 @@ OpResult InternalNode::remove(char *key, VariableRecord* record)
 			this->file->loadBlock(balancingNode);
 			this->file->pushBlock();
 			TreeBlock* balancingBlock = this->file->getCurrentBlock();
-			int underflowRecordCount = 0;
-			VariableRecord aux2;
-			underflowBlock->positionAtBegin();
-			while (underflowBlock->getNextRecord(&aux2)){ underflowRecordCount++; }
-			while (underflowBlock->getOccupiedSize() < balancingBlock->getOccupiedSize())
-			{
-				underflowBlock->forceInsert(&aux);
-				underflowRecordCount++;
-				this->block->removeRecord(aux.getBytes());
-				balancingBlock->positionAtBegin();
-				balancingBlock->getNextRecord(&aux);
-				int nodePointer = balancingBlock->getNodePointer(0);
-				balancingBlock->removeRecord(aux.getBytes());
-				balancingBlock->removeNodePointer(0);
-				this->block->insertRecord(&aux, &aux);
-				underflowBlock->insertNodePointer(underflowRecordCount, nodePointer);
-			}
-
-			this->file->saveBlock();
+		    if (lastChild)
+		    {
+    		    this->balanceInternalNodeToTheRight(balancingBlock, underflowBlock);
+    		}
+		    else
+		    {
+		    	this->balanceInternalNodeToTheLeft(underflowBlock, balancingBlock, aux);
+		    }
+		    this->file->saveBlock();
 			this->file->popBlock();
 
 			result = Updated;

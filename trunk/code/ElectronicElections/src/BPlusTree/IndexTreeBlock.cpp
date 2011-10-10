@@ -333,7 +333,15 @@ VariableRecord* IndexTreeBlock::popFirst()
 
 VariableRecord *IndexTreeBlock::popLast()
 {
-	return NULL;
+	VariableRecord aux;
+	this->positionAtBegin();
+	while (this->getNextRecord(&aux) != NULL){}
+
+	VariableRecord* ret = new VariableRecord;
+	*ret = aux;
+	this->removeRecord(aux.getBytes());
+
+	return ret;
 }
 
 IndexTreeBlock::~IndexTreeBlock()

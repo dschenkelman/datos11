@@ -31,6 +31,7 @@ public:
 	bool testRemoveInLeafWithUnderflowAndRightBrotherInAnotherParentBalancesCorrectly();
 	bool testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedWhenNonRightMost();
 	bool testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedWhenRightMost();
+	bool testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedAcrossParents();
 	virtual ~TreeTests();
 };
 

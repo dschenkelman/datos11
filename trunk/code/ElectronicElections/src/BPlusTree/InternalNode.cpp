@@ -138,8 +138,9 @@ OpResult InternalNode::handleLeafOverflow(VariableRecord* keyRecord, VariableRec
     VariableRecord* keyAux;
 
     keyAux = this->recordMethods->getKeyRecord(dataRecord->getBytes(), dataRecord->getSize());
-    int freeSpace = this->block->getFreeSpace() - (keyAux->getSize() + Constants::RECORD_HEADER_SIZE + IndexTreeBlock::NODE_POINTER_SIZE);
-    if (freeSpace < this->block->getSize() - this->maximumSize)
+    int freeSpace = this->block->getFreeSpace() - (keyAux->getSize() +
+    		Constants::RECORD_HEADER_SIZE + IndexTreeBlock::NODE_POINTER_SIZE);
+    if (freeSpace < this->block->getSize() - IndexTreeBlock::RECORD_OFFSET - this->maximumSize)
     {
         this->handleOverflowInInternalNode(keyAux, dataRecord, overflowParameter, newBlock);
         delete keyAux;
@@ -173,14 +174,16 @@ OpResult InternalNode::handleInternalNodeOverflow(OverflowParameter& overflowPar
     this->file->swapBlockKind();
     this->file->getCurrentBlock()->setLevel(overflowBlock->getLevel());
     overflowBlock->positionAtBegin();
-    int index = 1;
+    int index = 0;
     int index2 = 0;
     bool middlePointerAdded = false;
     stack<VariableRecord*> recordsToDelete;
     stack<int> nodesToDelete;
     VariableRecord *aux2;
-    while(overflowBlock->getNextRecord(&aux))
+    int nodePointer = -1;
+    while(overflowBlock->getNextRecord(&aux) != NULL)
     {
+        index++;
         if(this->recordMethods->compare(aux.getBytes(), dataRecord->getBytes(), dataRecord->getSize()) > 0)
         {
             if(!middlePointerAdded)
@@ -191,7 +194,7 @@ OpResult InternalNode::handleInternalNodeOverflow(OverflowParameter& overflowPar
             }
             aux2 = new VariableRecord;
             *aux2 = aux;
-            int nodePointer = -1;
+            nodePointer = -1;
             nodePointer = overflowBlock->getNodePointer(index);
             this->file->getCurrentBlock()->insertRecord(aux2, aux2);
             recordsToDelete.push(aux2);
@@ -199,11 +202,9 @@ OpResult InternalNode::handleInternalNodeOverflow(OverflowParameter& overflowPar
             this->file->getCurrentBlock()->insertNodePointer(index2, nodePointer);
             index2++;
         }
-
-        index++;
     }
 
-    int nodePointer = overflowBlock->getNodePointer(index);
+    nodePointer = overflowBlock->getNodePointer(index);
     this->file->getCurrentBlock()->insertNodePointer(index2, nodePointer);
     nodesToDelete.push(index);
     while(!recordsToDelete.empty())
@@ -225,8 +226,9 @@ OpResult InternalNode::handleInternalNodeOverflow(OverflowParameter& overflowPar
 
     VariableRecord* keyAux;
     keyAux = this->recordMethods->getKeyRecord(dataRecord->getBytes(), dataRecord->getSize());
-	int freeSpace = this->block->getFreeSpace() - (keyAux->getSize() + Constants::RECORD_HEADER_SIZE + IndexTreeBlock::NODE_POINTER_SIZE);
-	if (freeSpace < this->block->getSize() - this->maximumSize)
+	int freeSpace = this->block->getFreeSpace() - (keyAux->getSize()
+			+ Constants::RECORD_HEADER_SIZE + IndexTreeBlock::NODE_POINTER_SIZE);
+	if (freeSpace < this->block->getSize() - this->maximumSize - IndexTreeBlock::RECORD_OFFSET)
 	{
 		this->handleOverflowInInternalNode(keyAux, dataRecord, overflowParameter, newBlock);
 		delete keyAux;

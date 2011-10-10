@@ -31,6 +31,12 @@ public:
 		this->file.flush();
 		return *this;
 	}
+	void write(string operation, bool result, bool use_stdout) {
+		string res;
+		result ? res = operation.append(" OK") : res = operation.append(" FAILED");
+		this->operator <<(res);
+		if (use_stdout) cout << res << endl;
+	}
 };
 
 #endif /* LOG_H_ */

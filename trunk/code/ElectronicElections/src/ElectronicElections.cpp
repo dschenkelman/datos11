@@ -23,6 +23,9 @@
 #include "Voting/Menu.h"
 #include "Voting.h"
 #include "Hash/HashBlockFile.h"
+#include "Hash/DistrictHashingFunction.h"
+#include "Entities/District.h"
+#include "Entities/DistrictMethods.h"
 #include "BPlusTree/Tree.h"
 #include "Voting/Log.h"
 #include <time.h>
@@ -122,37 +125,37 @@ int main()
 				admin_action[6].label = "Informar resultados";
 				admin_action[7].label = "Generar archivos vacios";
 				action = Menu(admin_action,8).ask();
-				switch (action){
-					case 0:
-						break;
-					case 1:
-						break;
-					case 2:
-						break;
-					case 3:
-						break;
-					case 4:
-						break;
-					case 5:
-						break;
-					case 6:
-						break;
-					case 7:
-						cout << "Generando archivo de distritos" << endl;
-						HashBlockFile("District.dat", 512, NULL, NULL, 300, true);
-//						cout << "Generando archivo de votantes" << endl;
-//						HashBlockFile("Voter.dat", 1024*10, NULL, NULL, 2800000, true);
-						cout << "Generando archivo de elecciones" << endl;
-						Tree("Election.dat", 512, NULL, true);
-						cout << "Generando archivo de listas" << endl;
-						Tree("CandidatesList.dat", 512, NULL, true);
-						cout << "Generando archivo de conteo" << endl;
-						Tree("Count.dat", 512, NULL, true);
-						cout << "Generando archivo de cargos" << endl;
-						HashBlockFile("Charge.dat", 512, NULL, NULL, 300, true);
-						cout << "Generando archivo de candidato" << endl;
-						Tree("Candidate.dat", 512, NULL, true);
-						break;
+				if (action == 0) {
+					HashBlockFile *hash_district = new HashBlockFile("District.dat", 512, new DistrictMethods, new DistrictHashingFunction, 300, false);
+					option *district_action = new option[3];
+					district_action[0].label = "Agregar distrito";
+					district_action[1].label = "Eliminar distrito";
+					district_action[2].label = "Imprimir hash de distritos";
+					action = Menu(district_action,3).ask();
+					if (action==0) {
+						District d = District (Menu::raw_input("Nombre del distrito"));
+						hash_district->insertRecord(d.getKey(), d.getBytes()) ? cout << OK << endl : cout << FAILED << endl;
+					}
+					if (action==2) {
+						District d = District (Menu::raw_input("Nombre del distrito"));
+						hash_district->removeRecord(d.getKey()) ? cout << OK << endl : cout << FAILED << endl;
+					}
+					if (action==2) hash_district->printContent();
+				} else if (action == 7) {
+					cout << "Generando archivo de distritos" << endl;
+					HashBlockFile("District.dat", 512, NULL, NULL, 300, true);
+					cout << "Generando archivo de votantes" << endl;
+					HashBlockFile("Voter.dat", 1024*10, NULL, NULL, 2800, true); // para 28 mil votantes
+					cout << "Generando archivo de elecciones" << endl;
+					Tree("Election.dat", 512, NULL, true);
+					cout << "Generando archivo de listas" << endl;
+					Tree("CandidatesList.dat", 512, NULL, true);
+					cout << "Generando archivo de conteo" << endl;
+					Tree("Count.dat", 512, NULL, true);
+					cout << "Generando archivo de cargos" << endl;
+					HashBlockFile("Charge.dat", 512, NULL, NULL, 300, true);
+					cout << "Generando archivo de candidato" << endl;
+					Tree("Candidate.dat", 512, NULL, true);
 				}
 				break;
 		}

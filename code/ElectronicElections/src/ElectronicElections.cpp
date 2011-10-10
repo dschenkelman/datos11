@@ -25,6 +25,7 @@
 #include "Hash/HashBlockFile.h"
 #include "Hash/DistrictHashingFunction.h"
 #include "Hash/VoterHashingFunction.h"
+#include "Hash/ChargeHashingFunction.h"
 #include "Entities/District.h"
 #include "Entities/DistrictMethods.h"
 #include "Entities/Voter.h"
@@ -33,6 +34,8 @@
 #include "Entities/AdministratorMethods.h"
 #include "Entities/Election.h"
 #include "Entities/ElectionMethods.h"
+#include "Entities/Charge.h"
+#include "Entities/ChargeMethods.h"
 #include "VariableBlocks/VariableRecord.h"
 #include "BPlusTree/Tree.h"
 #include "Voting/Log.h"
@@ -225,7 +228,33 @@ int main()
 						}
 
 					} else if (action==3) {
+//						HashBlockFile charge_hash = HashBlockFile("Charge.dat", 512, new ChargeMethods, new ChargeHashingFunction, 300, false);
+						// POR QUE NO ANDA CON LA LINEA DE ARRIBA???
+						HashBlockFile *charge_hash = new HashBlockFile("Charge.dat", 512, new ChargeMethods, new ChargeHashingFunction, 300, false);
+						std::vector<string> subcharges;
+						Menu::raw_input("Primero debera seleccionar los subcargos del cargo, continuar");
+						while (1) {
+							option *charge_subcharge_action = new option[4];
+							charge_subcharge_action[0].label = "Asignar subcargo";
+							charge_subcharge_action[1].label = "Eliminar subcargo asignado";
+							charge_subcharge_action[2].label = "Ver subcargos asignados";
+							charge_subcharge_action[3].label = "Seleccion terminada, continuar.";
+							action = Menu(charge_subcharge_action,4).ask();
+							if (action==0) {
+								subcharges.push_back(Menu::raw_input("Subcargo"));
+							} else if (action==1) {
 
+							} else if (action==2) {
+								for (std::vector<string>::iterator i = subcharges.begin(); i != subcharges.end(); ++i) {
+									cout << *i << " - ";
+								}
+								cout << endl;
+							} else if (action==3) {
+								break;
+							}
+						}
+						Charge c (Menu::raw_input("Nombre del cargo"), subcharges);
+						delete charge_hash;
 					} else if (action==4) {
 
 					} else if (action == 7) {

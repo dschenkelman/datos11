@@ -301,7 +301,7 @@ bool TreeTests::testRemoveInLeafWithUnderflowIsBalancedByParentWithRightBrother(
 	tree.print();
 
 	cout << endl << "Remove in the left child => it gets underflow" << endl;
-	District d("Entre Rios");
+	District d("Corrientes");
 	tree.remove(d.getKey());
 
 	cout << endl << "The tree is balanced" << endl;
@@ -337,9 +337,13 @@ bool TreeTests::testRemoveInRightMostLeafWithUnderflowIsBalancedByParentWithLeft
 	cout << "District Count" << i <<endl;
 	tree.print();
 
-	cout << endl << "Remove in the right child 'Tierra del Fuego' => it gets underflow" << endl;
+	cout << endl << "Remove in the right child 'Tierra del Fuego'" << endl;
 	District d("Tierra del Fuego");
 	tree.remove(d.getKey());
+
+	cout << endl << "Remove in the right child 'Entre Rios' => it gets underflow" << endl;
+	District d1("Entre Rios");
+	tree.remove(d1.getKey());
 
 	cout << endl << "The tree is balanced" << endl;
 	cout << "District Count" << i - 1 << endl;
@@ -405,7 +409,7 @@ bool TreeTests::testRemoveInLeafWithUnderflowIsMergedByParent()
 						 "Santa Fe", //"Santiago del Estero",
 						"Mendoza", "Misiones"//, "Neuquen"
 						};
-int sad;
+
 	for (int i = 0; i < 10; i++)
 	{
 		District d(districts[i]);
@@ -437,6 +441,10 @@ int sad;
 	cout << endl;
 
 	return false;
+}
+
+bool TreeTests::testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalanced()
+{
 }
 
 TreeTests::~TreeTests()

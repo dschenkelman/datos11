@@ -370,7 +370,8 @@ bool InternalNode::balanceLeafUnderflowRightWithinDifferentParents(LeafNode& nod
     return true;
 }
 
-OpResult InternalNode::handleLeafUnderflow(int nextNode, bool balanceRight, bool lastChild, bool leafAlreadyBalanced, LeafNode& node, VariableRecord* record)
+OpResult InternalNode::handleLeafUnderflow(int nextNode, bool balanceRight, bool lastChild,
+		bool leafAlreadyBalanced, LeafNode& node, VariableRecord* record, char* key)
 {
     TreeBlock *underflowBlock = this->file->getCurrentBlock();
     this->file->loadBlock(nextNode);
@@ -389,11 +390,11 @@ OpResult InternalNode::handleLeafUnderflow(int nextNode, bool balanceRight, bool
     }
     else
     {
-        leafAlreadyBalanced = this->balanceLeafUnderflowLeft(brother, node, underflowBlock);
+        leafAlreadyBalanced = this->balanceLeafUnderflowLeft(brother, node, underflowBlock, key);
     }
 
-    if(!leafAlreadyBalanced){
-        cout << "YEAAHHHHHH";
+    if(!leafAlreadyBalanced)
+    {
         return Updated;
     }
     else
@@ -465,7 +466,8 @@ OpResult InternalNode::remove(char *key, VariableRecord* record)
 
 			if (nextNode != 0)
 			{
-			    result = this->handleLeafUnderflow(nextNode, balanceRight, lastChild, leafAlreadyBalanced, node, record);
+			    result = this->handleLeafUnderflow(nextNode, balanceRight, lastChild,
+			    		leafAlreadyBalanced, node, record, key);
 			    this->file->saveBlock();
 				this->file->popBlock();
 			}
@@ -528,7 +530,8 @@ bool InternalNode::balanceLeafUnderflowRightWithinSameParent(LeafNode& leftLeaf,
 	return true;
 }
 
-bool InternalNode::balanceLeafUnderflowLeft(LeafNode& leftLeaf, LeafNode& rightLeaf, TreeBlock* underflowBlock)
+bool InternalNode::balanceLeafUnderflowLeft(LeafNode& leftLeaf, LeafNode& rightLeaf,
+		TreeBlock* underflowBlock, char* removedKey)
 {
 	int totalCapacity = leftLeaf.getOccupiedSize() + rightLeaf.getOccupiedSize();
 	int amountOfRecordsBalanced = 0;
@@ -544,7 +547,14 @@ bool InternalNode::balanceLeafUnderflowLeft(LeafNode& leftLeaf, LeafNode& rightL
 	underflowBlock->positionAtBegin();
 	underflowBlock->getNextRecord(&aux);
 	keyAux = this->recordMethods->getKeyRecord(aux.getBytes(),aux.getSize());
-	this->block->removeRecord(keyAux->getBytes());
+	if (this->recordMethods->compare(removedKey, aux.getBytes(), aux.getSize()) < 0)
+	{
+		this->block->removeRecord(removedKey);
+	}
+	else
+	{
+		this->block->removeRecord(keyAux->getBytes());
+	}
 	delete keyAux;
 
 	VariableRecord* dataRecord;

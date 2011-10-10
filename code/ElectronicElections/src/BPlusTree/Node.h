@@ -30,7 +30,7 @@ public:
 	Node(TreeBlock* b, RecordMethods* methods);
 	virtual OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord, OverflowParameter& overflowParameter) = 0;
 	virtual OpResult update(char* key, VariableRecord* r) = 0;
-	virtual OpResult remove(char* key) = 0;
+	virtual OpResult remove(char* key, VariableRecord* record) = 0;
 	virtual void print() = 0;
 	virtual int getMaxSize() = 0;
 	virtual int getOccupiedSize();

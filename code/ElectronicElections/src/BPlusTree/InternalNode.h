@@ -21,13 +21,14 @@ class InternalNode: public Node
     OpResult handleLeafOverflow(VariableRecord* keyRecord, VariableRecord* dataRecord, OverflowParameter& overflowParameter);
     OpResult handleInternalNodeOverflow(OverflowParameter & overflowParameter, int blockPointer, VariableRecord *dataRecord);
     void handleOverflowInInternalNode(VariableRecord* keyAux, VariableRecord *dataRecord, OverflowParameter & overflowParameter, int newBlock);
-    bool balanceLeafUnderflowRightWithinSameParent(LeafNode* leftLeaf, LeafNode* rightLeaf, TreeBlock* underflowBlock);
-    bool balanceLeafUnderflowLeft(LeafNode* leftLeaf, LeafNode* rightLeaf, TreeBlock* underflowBlock);
+    bool balanceLeafUnderflowRightWithinSameParent(LeafNode& leftLeaf, LeafNode& rightLeaf, TreeBlock* underflowBlock);
+    bool balanceLeafUnderflowLeft(LeafNode& leftLeaf, LeafNode& rightLeaf, TreeBlock* underflowBlock);
+    bool balanceLeafUnderflowRightWithinDifferentParents(LeafNode& node, LeafNode& brother, TreeBlock *underflowBlock, VariableRecord* record);
 public:
 	InternalNode(TreeBlockFile* file, TreeBlock* b, RecordMethods* methods);
 	virtual OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord, OverflowParameter& overflowParameter);
 	virtual OpResult update(char* key, VariableRecord* r);
-	virtual OpResult remove(char* key);
+	virtual OpResult remove(char* key, VariableRecord* record);
 	virtual void print();
 	virtual int getMaxSize();
 	virtual int getMinimumSize();

@@ -11,7 +11,7 @@ DistrictHashingFunction::DistrictHashingFunction()
 {
 }
 
-int DistrictHashingFunction::hashingFunction(char* keyRecord, int blockCount)
+int DistrictHashingFunction::hashingFunction(const char* keyRecord, int blockCount)
 {
 	// TODO: implement Distric hashing depending its key value.
 	return 0;

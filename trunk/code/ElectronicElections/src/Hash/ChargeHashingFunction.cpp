@@ -11,7 +11,7 @@ ChargeHashingFunction::ChargeHashingFunction()
 {
 }
 
-int ChargeHashingFunction::hashingFunction(char* keyRecord, int blockCount)
+int ChargeHashingFunction::hashingFunction(const char* keyRecord, int blockCount)
 {
 	// Total blocks for charge are enough with 6 blocks but last 9
 	// to be more intuitive, and have each charge in one block

@@ -1,3 +1,3 @@
-Voter,padron.txt,16000,28000000,347
+Voter,padron.txt,1600,280000,347
 District,districts.txt,512,0,0
 Charge,charges.txt,50,6,20

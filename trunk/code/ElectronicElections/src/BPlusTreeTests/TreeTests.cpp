@@ -352,7 +352,7 @@ bool TreeTests::testRemoveInRightMostLeafWithUnderflowIsBalancedByParentWithLeft
 bool TreeTests::testRemoveInLeafWithUnderflowAndRightBrotherInAnotherParentBalancesCorrectly()
 {
 	DistrictMethods districtMethods;
-	Tree tree("treeTests.dat", 100, &districtMethods, true);
+	Tree tree("treeTests.dat", 90, &districtMethods, true);
 
 	// approximately 223 chars
 	string districts[] = {	"Corrientes", "Entre Rios",
@@ -367,7 +367,7 @@ bool TreeTests::testRemoveInLeafWithUnderflowAndRightBrotherInAnotherParentBalan
 				};
 
 	int i;
-	for (i = 0; i < 18; i++)
+	for (i = 0; i < 23; i++)
 	{
 		District d(districts[i]);
 		VariableRecord dataRecord;
@@ -382,15 +382,13 @@ bool TreeTests::testRemoveInLeafWithUnderflowAndRightBrotherInAnotherParentBalan
 	tree.print();
 	cout << endl;
 
-	//District d1("San Juan");
-	//District d2("Misiones");
-	//District d3("Entre Rios");
+	District d("La Pampa");
 	//tree.remove(d1.getKey());
-	//tree.remove(d3.getKey());
+	tree.remove(d.getKey());
 
-//	cout << "District Count: " << i - 2 << endl;
-//	tree.print();
-//	cout << endl;
+	cout << "District Count: " << i - 1 << endl;
+	tree.print();
+	cout << endl;
 
 	return false;
 }

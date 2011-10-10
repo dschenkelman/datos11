@@ -199,7 +199,8 @@ OpResult Tree::insert(VariableRecord *keyRecord, VariableRecord *dataRecord)
 
 OpResult Tree::remove(char *key)
 {
-	return this->root->remove(key);
+	VariableRecord record;
+	return this->root->remove(key, &record);
 }
 
 OpResult Tree::update(char *key, VariableRecord *r)

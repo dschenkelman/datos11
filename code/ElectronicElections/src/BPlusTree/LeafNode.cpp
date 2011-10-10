@@ -151,12 +151,12 @@ OpResult LeafNode::remove(char *key, VariableRecord* record)
 		{
 			return Underflow;
 		}
-
 		return Updated;
 	}
-
 	return NotFound;
 }
+
+
 
 void LeafNode::print()
 {

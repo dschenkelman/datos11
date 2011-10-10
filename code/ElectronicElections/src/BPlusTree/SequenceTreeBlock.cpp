@@ -48,6 +48,11 @@ void SequenceTreeBlock::clear()
     this->updateFreeSpace(this->maxSize - this->RECORD_OFFSET);
 }
 
+bool SequenceTreeBlock::isEmpty()
+{
+	return (this->freeSpace == (this->maxSize - RECORD_OFFSET));
+}
+
 void SequenceTreeBlock::forceInsert(VariableRecord *rec)
 {
 	short recSize = rec->getSize();

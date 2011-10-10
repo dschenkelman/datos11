@@ -48,6 +48,7 @@ public:
 	virtual void forceInsert(VariableRecord *rec) = 0;
 	virtual VariableRecord* getNextRecord(VariableRecord* r) = 0;
 	virtual void positionAtBegin();
+	virtual bool isEmpty() = 0;
 	virtual ~BaseVariableBlock();
 };
 

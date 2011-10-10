@@ -34,27 +34,30 @@ void LoadDataFiles::readConfigFile()
 
 void LoadDataFiles::createFileType(char* fileType, char** fields)
 {
-	int bSize = atoi(fields[1]);
-	int regsCount = atoi(fields[2]);
-	int regsSize = atoi(fields[3]);
+	this->bSize = atoi(fields[1]);
+	this->regsCount = atoi(fields[2]);
+	this->regsSize = atoi(fields[3]);
+
 	if(strcmp(fileType, "District") == 0)
 	{
-		this->treeDistrictFile = new Tree("DistrictTree", bSize, new DistrictMethods, true);
+		this->treeDistrictFile = new Tree("DistrictTree", this->bSize, new DistrictMethods, true);
 		this->readDistrictFile(fields[0]);
 	}
+
 	else if(strcmp(fileType, "Voter") == 0)
 	{
 		//hash types..calculate blockamount
-		int eficientBSize = bSize * 4/5; //reserve 20% of free block
-		int blockAmount = regsCount* regsSize /eficientBSize;
+		this->voterBlockSize = this->bSize * 4/5; //reserve 20% of free block
+		this->voterBlockAmount = this->regsCount * this->regsSize /this->voterBlockSize;
 
-		this->hashVoterFile = new HashBlockFile("VoterHash", bSize, new VoterMethods, new VoterHashingFunction, blockAmount, true);
+		this->hashVoterFile = new HashBlockFile("VoterHash", this->bSize, new VoterMethods, new VoterHashingFunction, this->voterBlockAmount, true);
 		this->readVoterFile(fields[0]);
 	}
+
 	else if(strcmp(fileType, "Charge") == 0)
 	{
-		int blockAmount = 9;
-		this->hashChargeFile = new HashBlockFile("ChargeHash", bSize, new ChargeMethods, new ChargeHashingFunction, blockAmount, true);
+		this->chargeBlockAmount = 9;
+		this->hashChargeFile = new HashBlockFile("ChargeHash", this->bSize, new ChargeMethods, new ChargeHashingFunction, this->chargeBlockAmount, true);
 		this->readChargeFile(fields[0]);
 	}
 }

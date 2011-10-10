@@ -200,7 +200,15 @@ OpResult Tree::insert(VariableRecord *keyRecord, VariableRecord *dataRecord)
 OpResult Tree::remove(char *key)
 {
 	VariableRecord record;
-	return this->root->remove(key, &record);
+	OpResult result = this->root->remove(key, &record);
+	VariableRecord aux;
+	this->file->getCurrentBlock()->positionAtBegin();
+	int i = 0;
+	while(this->file->getCurrentBlock()->getNextRecord(&aux)){i++;};
+	if (result == Underflow && !this->file->isCurrentLeaf() && i == 0)
+	{
+		// transform internal root into leaf
+	}
 }
 
 OpResult Tree::update(char *key, VariableRecord *r)

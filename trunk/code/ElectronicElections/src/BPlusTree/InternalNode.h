@@ -31,7 +31,7 @@ class InternalNode: public Node
     OpResult handleLeafUnderflow(int nextNode, bool balanceRight, bool lastChild, bool leafAlreadyBalanced,
     		LeafNode& node, VariableRecord* record, char* key, int index);
     OpResult handleCrossParentBalance(VariableRecord *record, VariableRecord & aux);
-    void mergeLeafNodes(int index, TreeBlock *brotherBlock, TreeBlock *underflowBlock);
+    void mergeLeafNodes(int index, TreeBlock *brotherBlock, TreeBlock *underflowBlock, char* key, bool balanceRight);
     void balanceInternalNodeToTheLeft(TreeBlock *underflowBlock, TreeBlock *balancingBlock, VariableRecord & aux);
     void balanceInternalNodeToTheRight(TreeBlock *balancingBlock, TreeBlock *underflowBlock);
 public:

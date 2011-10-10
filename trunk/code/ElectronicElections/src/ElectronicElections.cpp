@@ -96,7 +96,7 @@ int run_tests()
 
 int main()
 {
-	bool debug = false;
+	bool debug = true;
 	if (debug)
 	{
 		run_tests();

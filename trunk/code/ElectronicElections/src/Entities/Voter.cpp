@@ -183,6 +183,10 @@ std::string Voter::getAddress()
 	return this->address;
 }
 
+void Voter::setAddress(std::string address) {
+	this->address = address;
+}
+
 std::string Voter::getDistrict()
 {
 	return this->district;

@@ -45,6 +45,7 @@ public:
 	std::string getNames();
 	std::string getPassword();
 	std::string getAddress();
+	void setAddress(std::string address);
 	std::string getDistrict();
 	std::vector<ElectionKey> getElectionKeyList();
 };

@@ -15,6 +15,8 @@
 
 class InternalNode: public Node
 {
+	int minimumSize;
+	int maximumSize;
 	TreeBlockFile* file;
 	int calculateMaxSize();
 	int calculateMinimumSize();
@@ -34,6 +36,7 @@ class InternalNode: public Node
     void mergeLeafNodes(int index, TreeBlock *brotherBlock, TreeBlock *underflowBlock, char* key, bool lastChild);
     bool balanceInternalNodeToTheLeft(TreeBlock *underflowBlock, TreeBlock *balancingBlock, VariableRecord & aux);
     bool balanceInternalNodeToTheRight(TreeBlock *balancingBlock, TreeBlock *underflowBlock);
+    void mergeNodeToTheLeft(VariableRecord & nextKeyInFather, int index, TreeBlock *underflowBlock, TreeBlock *balancingBlock);
 public:
 	InternalNode(TreeBlockFile* file, TreeBlock* b, RecordMethods* methods);
 	virtual OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord, OverflowParameter& overflowParameter);
@@ -41,7 +44,6 @@ public:
 	virtual OpResult remove(char* key);
 	virtual void print();
 	virtual bool isUnderflow();
-	virtual OpResult get(char* key, VariableRecord* record);
 	virtual int getMaxSize();
 	virtual int getMinimumSize();
 	virtual ~InternalNode();

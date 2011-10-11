@@ -42,7 +42,7 @@ char* District::getBytes()
 
 	if(this->bytes != NULL)
 	{
-		delete this->bytes;
+		delete[] this->bytes;
 	}
 
 	this->bytes = new char[size];
@@ -67,6 +67,6 @@ District::~District()
 {
 	if(this->bytes != NULL)
 	{
-		delete this->bytes;
+		delete[] this->bytes;
 	}
 }

@@ -43,7 +43,6 @@ void TreeTests::run()
 	this->printResult("testRemoveInLeafWithUnderflowIsMergedByParent", testRemoveInLeafWithUnderflowIsMergedByParent());
 	this->printResult("testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedWhenNonRightMost", testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedWhenNonRightMost());
 	this->printResult("testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedWhenRightMost", testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedWhenRightMost());
-	// this->printResult("testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedAcrossParents", testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedAcrossParents());
 	this->printResult("testRemoveCausesUnderflowInRootIsMergedIntoLeaf", testRemoveCausesUnderflowInRootIsMergedIntoLeaf());
 }
 
@@ -563,68 +562,11 @@ bool TreeTests::testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedWhenR
 	return true;
 }
 
-bool TreeTests::testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedAcrossParents()
-{
-	DistrictMethods districtMethods;
-	Tree tree("treeTests.dat", 70, &districtMethods, true);
-
-	string districts[] = {
-				 "Santa Fe", "Santiago del Estero",
-				"Mendoza", "Misiones", "Neuquen",
-				"Tierra del Fuego", "Tucuman",
-				 "Salta", "San Juan",
-				 "Jujuy", "La Pampa", "La Rioja","Rio Negro",
-				 "San Luis", "Santa Cruz",
-				 "Corrientes", "Entre Rios",
-				"Chaco", "Chubut", "Cordoba",
-				"Buenos Aires", "Catamarca", "Formosa",
-				"Artigas", "Canelones", "Cerro Largo",
-				"Colonia", "Durazno", "Flores", "Florida",
-				"Lavalleja", "Maldonado", "Montevideo",
-				"Paysandu", "Rivera", "Rocha", "Salto",
-				"San Jose", "Soriano", "Tacuarembo", "Treinta y Tres",
-				"Acre", "Alagoas", "Amapa", "Amazonas", "Bahia", "Ceara",
-				"Distrito Federal", "Espiritu Santo", "Goias", "Marañao",
-				"Mato Groso", "Mato Groso del Sur", "Minas Gerais", "Para",
-				"Paraiba", "Parana", "Pernambuco", "Piaui",
-				"Rio de Janeiro", "Rio Grande del Norte",
-				"Rio Grande del Sur", "Rondonia", "Roraima",
-				"San Pablo", "Santa Catalina", "Sergipe", "Tocantins"
-				};
-
-	int i;
-	for (i = 0; i < 62; i++)
-	{
-		District d(districts[i]);
-		VariableRecord dataRecord;
-		VariableRecord keyRecord;
-		dataRecord.setBytes(d.getBytes(), d.getSize());
-		keyRecord.setBytes(d.getKey(), d.getKeySize());
-
-		tree.insert(&keyRecord, &dataRecord);
-	}
-
-	cout << "District Count: " << i << endl;
-	tree.print();
-	cout << endl;
-//
-//
-//	District d("Santiago del Estero");
-//	tree.remove(d.getKey());
-//
-//	cout << "Removing Santiago del Estero. Last node in level 1 goes into"
-//			" underflow and is balanced with brother." << endl;
-//	cout << "District Count: " << i - 1 << endl;
-//	tree.print();
-//	cout << endl;
-
-	return false;
-}
-
 bool TreeTests::testRemoveCausesUnderflowInRootIsMergedIntoLeaf()
 {
 	DistrictMethods districtMethods;
-	Tree tree("treeTests.dat", 70, &districtMethods, true);
+	string fileName = "treeTests.dat";
+	Tree tree(fileName, 70, &districtMethods, true);
 
 	string districts[] = {
 				"Acre", "Alagoas", "Amapa", "Amazonas", "Bahia", "Ceara",
@@ -657,7 +599,6 @@ bool TreeTests::testRemoveCausesUnderflowInRootIsMergedIntoLeaf()
 	cout << "Removed Amazonas, internal root goes into underflow and is transformed into leaf." << endl;
 	tree.print();
 	cout << endl;
-
 
 	return false;
 }

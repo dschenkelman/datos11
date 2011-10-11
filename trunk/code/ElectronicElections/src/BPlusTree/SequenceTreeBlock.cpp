@@ -43,7 +43,7 @@ void SequenceTreeBlock::printContent()
 
 void SequenceTreeBlock::clear()
 {
-	memset(this->bytes + this->RECORD_OFFSET, 0, this->maxSize);
+	memset(this->bytes + this->RECORD_OFFSET, 0, this->maxSize - this->RECORD_OFFSET);
 	this->position = RECORD_OFFSET;
     this->updateFreeSpace(this->maxSize - this->RECORD_OFFSET);
 }
@@ -281,7 +281,10 @@ VariableRecord* SequenceTreeBlock::popFirst()
 	char record[recordSize];
 	memcpy(record, this->bytes + this->position, recordSize);
 	VariableRecord* ret = new VariableRecord(record,recordSize);
-	this->removeRecord(this->recordMethods->getKeyRecord(record,recordSize)->getBytes());
+	VariableRecord* keyRecord = this->recordMethods->getKeyRecord(record,recordSize);
+	this->removeRecord(keyRecord->getBytes());
+
+	delete keyRecord;
 	return ret;
 }
 
@@ -293,8 +296,10 @@ VariableRecord *SequenceTreeBlock::popLast()
 
 	VariableRecord* ret = new VariableRecord;
 	*ret = aux;
-	this->removeRecord(this->recordMethods->getKeyRecord(aux.getBytes(),aux.getSize())->getBytes());
+	VariableRecord* keyRecord = this->recordMethods->getKeyRecord(aux.getBytes(),aux.getSize());
+	this->removeRecord(keyRecord->getBytes());
 
+	delete keyRecord;
 	return ret;
 }
 

@@ -52,7 +52,7 @@ char* Count::getBytes()
 
 	if(this->bytes != NULL)
 	{
-		delete this->bytes;
+		delete[] this->bytes;
 	}
 
 	this->bytes = new char[size];
@@ -164,12 +164,12 @@ Count::~Count()
 {
 	if(this->key != NULL)
 	{
-		delete this->key;
+		delete[] this->key;
 	}
 
 	if(this->bytes != NULL)
 	{
-		delete this->bytes;
+		delete[] this->bytes;
 	}
 }
 

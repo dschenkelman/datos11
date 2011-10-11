@@ -11,6 +11,7 @@
 #include "LeafNode.h"
 #include "InternalNode.h"
 #include "IndexTreeBlock.h"
+#include <string.h>
 
 using namespace std;
 
@@ -197,6 +198,26 @@ OpResult Tree::insert(VariableRecord *keyRecord, VariableRecord *dataRecord)
 	return result;
 }
 
+void Tree::transformInternalRootToLeaf()
+{
+	TreeBlock *rootBlock = this->file->getCurrentBlock();
+	int nodePointer = rootBlock->getNodePointer(0);
+    this->file->swapBlockKind();
+    rootBlock = this->file->getCurrentBlock();
+    this->file->loadBlock(nodePointer);
+    this->file->pushBlock();
+    TreeBlock *childBlock = this->file->getCurrentBlock();
+    memcpy(rootBlock->getBytes(), childBlock->getBytes(), childBlock->getSize());
+    rootBlock->updateInformation();
+    this->file->popBlock();
+    if(rootBlock->getLevel() == 0)
+    {
+        delete this->root;
+        this->root = new LeafNode(rootBlock, methods);
+    }
+    this->file->saveBlock();
+}
+
 OpResult Tree::remove(char *key)
 {
 	VariableRecord record;
@@ -207,8 +228,11 @@ OpResult Tree::remove(char *key)
 	while(this->file->getCurrentBlock()->getNextRecord(&aux)){i++;};
 	if (result == Underflow && !this->file->isCurrentLeaf() && i == 0)
 	{
-		// transform internal root into leaf
+	    this->transformInternalRootToLeaf();
+	    result = Updated;
 	}
+
+	return result;
 }
 
 OpResult Tree::update(char *key, VariableRecord *r)
@@ -223,6 +247,7 @@ void Tree::print()
 
 Tree::~Tree()
 {
+	//this->file->popBlock();
 	delete this->root;
 	delete this->file;
 }

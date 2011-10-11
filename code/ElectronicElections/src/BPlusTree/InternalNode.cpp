@@ -212,6 +212,7 @@ OpResult InternalNode::handleInternalNodeOverflow(OverflowParameter& overflowPar
         aux2 = recordsToDelete.top();
         recordsToDelete.pop();
         overflowBlock->removeRecord(aux2->getBytes());
+        delete aux2;
         index = nodesToDelete.top();
         nodesToDelete.pop();
         overflowBlock->removeNodePointer(index);
@@ -475,6 +476,8 @@ void InternalNode::mergeLeafNodes(int index, TreeBlock *brotherBlock, TreeBlock 
         VariableRecord *keyAux;
         keyAux = this->recordMethods->getKeyRecord(record->getBytes(), record->getSize());
         underflowBlock->insertRecord(keyAux, record);
+        delete record;
+        delete keyAux;
     }
     underflowBlock->setNextNode(brotherBlock->getNextNode());
 }

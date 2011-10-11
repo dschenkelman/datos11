@@ -44,6 +44,7 @@
 #include "BPlusTree/Tree.h"
 #include "Voting/Log.h"
 #include <time.h>
+#include <sstream>
 
 using namespace std;
 

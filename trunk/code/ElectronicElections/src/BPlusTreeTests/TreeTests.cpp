@@ -43,6 +43,7 @@ void TreeTests::run()
 	this->printResult("testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedWhenNonRightMost", testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedWhenNonRightMost());
 	this->printResult("testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedWhenRightMost", testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedWhenRightMost());
 	this->printResult("testRemoveCausesUnderflowInRootIsMergedIntoLeaf", testRemoveCausesUnderflowInRootIsMergedIntoLeaf());
+//	this->printResult("testRemoveShouldMergeInternalNodes", testRemoveShouldMergeInternalNodes());
 }
 
 bool TreeTests::testInsertInEmptyTreeWorksCorrectly()
@@ -525,17 +526,6 @@ bool TreeTests::testRemoveShouldMergeInternalNodes()
 	DistrictMethods districtMethods;
 	Tree tree("treeTests.dat", 90, &districtMethods, true);
 
-	// approximately 223 chars
-	/*string districts[] = {"San Luis", "Santa Cruz",
-				"Corrientes", "Entre Rios",
-				"Chaco", "Chubut", "Cordoba",
-				 "Santa Fe", "Santiago del Estero",
-				"Mendoza", "Misiones", "Neuquen",
-				"Tierra del Fuego", "Tucuman",
-				"Rio Negro", "Salta", "San Juan",
-				"Buenos Aires", "Catamarca", "Formosa",
-				"Jujuy", "La Pampa", "La Rioja",
-				};*/
 	string districts[] = {"San Luis", "Santa Cruz",
 					"Tierra del Fuego", "Tucuman",
 					"Rio Negro", "Salta", "San Juan",
@@ -545,9 +535,9 @@ bool TreeTests::testRemoveShouldMergeInternalNodes()
 					"Chaco", "Chubut!!Chubut!!", "Cordoba",
 					"Corrientes", "Entre Rios",
 					"Buenos Aires", "Catamarca", "Formosa",
-					"Dakhala", "El Cairo islámico", "Masai Mara",
+					"Dakhala", "El Cairo islamico", "Masai Mara",
 					"Glaciar Perito Moreno", "Kilimanjaro", "Marrakech",
-					"Iguazú", "Xauen", "Seychelles Rocks",
+					"Iguazu", "Xauen", "Seychelles Rocks",
 					};
 
 	int i;
@@ -559,43 +549,40 @@ bool TreeTests::testRemoveShouldMergeInternalNodes()
 	cout << "District Count" << i << endl;
 	tree.print();
 
-	District e("Santiago del Estero");
-	tree.remove(e.getKey());
+	District se("Santiago del Estero");
+	tree.remove(se.getKey());
 	cout << endl << "REMOVE Santiago del Estero";
 	cout<<endl;tree.print();cout<<endl;
 
-	District h("Mendoza");
-	tree.remove(h.getKey());
+	District me("Mendoza");
+	tree.remove(me.getKey());
 	cout << endl << "REMOVE Mendoza";
 	cout<<endl;tree.print();cout<<endl;
 
-	District p("Rio Negro");
-	tree.remove(p.getKey());
+	District rn("Rio Negro");
+	tree.remove(rn.getKey());
 	cout << endl << "REMOVE Rio Negro";
 	cout<<endl;tree.print();cout<<endl;
 
-	District a("Misiones");
-	tree.remove(a.getKey());
+	District mi("Misiones");
+	tree.remove(mi.getKey());
 	cout << endl << "REMOVE Misiones";
 	cout<<endl;tree.print();cout<<endl;
 
-	/*District e("Formosa");
-	tree.remove(e.getKey());
-	cout << endl << "REMOVE Formosa";
+	District cord("Cordoba");
+	tree.remove(cord.getKey());
+	cout << endl << "REMOVE Cordoba";
 	cout<<endl;tree.print();cout<<endl;
-	District f("Entre Rios");
-	tree.remove(f.getKey());
+
+	District corr("Corrientes");
+	tree.remove(corr.getKey());
+	cout << endl << "REMOVE Corrientes";
+	cout<<endl;tree.print();cout<<endl;
+
+	District err("Entre Rios");
+	tree.remove(err.getKey());
 	cout << endl << "REMOVE Entre Rios";
 	cout<<endl;tree.print();cout<<endl;
-	District d("Jujuy");
-	tree.remove(d.getKey());
-	cout << endl << "REMOVE Jujuy";
-	cout<<endl;tree.print();cout<<endl;
-	/*District j("Santiago del Estero");
-	tree.remove(j.getKey());
-	cout << endl << "REMOVE Santiago del Estero";
-	cout<<endl;tree.print();cout<<endl;*/
-
 
 	return false;
 }

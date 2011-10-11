@@ -327,8 +327,15 @@ int IndexTreeBlock::getNextNode()
 
 VariableRecord* IndexTreeBlock::popFirst()
 {
-	// TODO if needed
-	return NULL;
+	VariableRecord aux;
+	this->positionAtBegin();
+	this->getNextRecord(&aux);
+
+	VariableRecord* ret = new VariableRecord;
+	*ret = aux;
+	this->removeRecord(aux.getBytes());
+
+	return ret;
 }
 
 VariableRecord *IndexTreeBlock::popLast()

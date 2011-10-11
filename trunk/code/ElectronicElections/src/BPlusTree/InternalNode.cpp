@@ -215,9 +215,6 @@ OpResult InternalNode::handleInternalNodeOverflow(OverflowParameter& overflowPar
         overflowBlock->removeNodePointer(index);
     }
 
-    //index = nodesToDelete.top();
-    //nodesToDelete.pop();
-    //overflowBlock->removeNodePointer(index);
     this->file->saveBlock();
     this->file->popBlock();
     this->file->saveBlock();
@@ -388,31 +385,9 @@ OpResult InternalNode::handleLeafUnderflow(int nextNode, bool lastChild,
 }
 
 
-OpResult InternalNode::handleCrossParentBalance(VariableRecord *record, VariableRecord& aux)
-{
-    VariableRecord aux2;
-    VariableRecord *keyRecord = this->recordMethods->getKeyRecord(record->getBytes(), record->getSize());
-    this->block->positionAtBegin();
-    while (this->block->getNextRecord(&aux) != NULL)
-			{
-				if (this->recordMethods->compare
-						(keyRecord->getBytes(), aux.getBytes(), aux.getSize()) < 0)
-				{
-					break;
-				}
 
-				aux2 = aux;
-			}
-    VariableRecord *keyAux = this->recordMethods->getKeyRecord(aux2.getBytes(), aux2.getSize());
-    this->block->removeRecord(keyAux->getBytes());
-    this->block->insertRecord(keyRecord, record);
-    delete keyAux;
-    delete keyRecord;
-    return Updated;
-}
-
-
-void InternalNode::mergeLeafNodes(int index, TreeBlock *brotherBlock, TreeBlock *underflowBlock, char* removedKey, bool lastChild)
+void InternalNode::mergeLeafNodes(int index, TreeBlock *brotherBlock, TreeBlock *underflowBlock,
+		char* removedKey, bool lastChild)
 {
     // InternalNode Stuff
 	VariableRecord aux;
@@ -434,7 +409,19 @@ void InternalNode::mergeLeafNodes(int index, TreeBlock *brotherBlock, TreeBlock 
     }
     else
     {
-    	this->block->removeRecord(keyAux->getBytes());
+		VariableRecord previous;
+		VariableRecord current;
+		this->block->positionAtBegin();
+		while(this->block->getNextRecord(&current))
+		{
+			if (this->recordMethods->compare(keyAux->getBytes(), aux.getBytes(), aux.getSize()) < 0)
+			{
+				break;
+			}
+			previous = current;
+		}
+
+		this->block->removeRecord(previous.getBytes());
     }
 
     delete keyAux;
@@ -517,6 +504,36 @@ bool InternalNode::balanceInternalNodeToTheRight(TreeBlock *balancingBlock, Tree
     return true;
 }
 
+void InternalNode::mergeNodeToTheLeft(VariableRecord & nextKeyInFather, int index, TreeBlock *underflowBlock, TreeBlock *balancingBlock)
+{
+	VariableRecord aux;
+	VariableRecord *keyAux;
+    keyAux = this->recordMethods->getKeyRecord(nextKeyInFather.getBytes(), nextKeyInFather.getSize());
+    this->block->removeRecord(keyAux->getBytes());
+    this->block->removeNodePointer(index + 1);
+    underflowBlock->insertRecord(keyAux, keyAux);
+    delete keyAux;
+    int underflowIndex = 0;
+    underflowBlock->positionAtBegin();
+    while(underflowBlock->getNextRecord(&aux) != NULL)
+					{
+						underflowIndex++;
+					}
+    int nodePointer = balancingBlock->getNodePointer(0);
+    balancingBlock->removeNodePointer(0);
+    underflowBlock->insertNodePointer(underflowIndex, nodePointer);
+    underflowIndex++;
+    while(!balancingBlock->isEmpty()){
+        VariableRecord *firstParentRecord = balancingBlock->popFirst();
+        underflowBlock->forceInsert(firstParentRecord);
+        delete firstParentRecord;
+        nodePointer = balancingBlock->getNodePointer(0);
+        balancingBlock->removeNodePointer(0);
+        underflowBlock->insertNodePointer(underflowIndex, nodePointer);
+        underflowIndex++;
+    }
+}
+
 OpResult InternalNode::remove(char *key)
 {
 	VariableRecord aux;
@@ -592,51 +609,8 @@ OpResult InternalNode::remove(char *key)
 		    {
 		    	if (!lastChild)
 		    	{
-		    		// Delete nextKey from parent
-		    		VariableRecord *keyAux;
-		    		keyAux = this->recordMethods->getKeyRecord(nextKeyInFather.getBytes(), nextKeyInFather.getSize());
-		    		this->block->removeRecord(keyAux->getBytes());
-
-		    		// Delete nextPointer from parent
-		    		this->block->removeNodePointer(index + 1);
-
-		    		// Insert nextKey in underflow node
-		    		underflowBlock->insertRecord(keyAux,keyAux);
-		    		delete keyAux;
-
-		    		// ===============================
-		    		// Move all the content from brother to underflow node
-
-		    		// Count how many records are there in underflowBlock
-		    		int underflowIndex = 0;
-		    		underflowBlock->positionAtBegin();
-		    		while(underflowBlock->getNextRecord(&aux) != NULL)
-					{
-						underflowIndex++;
-					}
-
-		    		//First nodeptr move
-		    		int nodePointer = balancingBlock->getNodePointer(0);
-		    		balancingBlock->removeNodePointer(0);
-		    		underflowBlock->insertNodePointer(underflowIndex,nodePointer);
-		    		underflowIndex++;
-
-		    		while (!balancingBlock->isEmpty())
-		    		{
-		    			// Move Records
-		    			VariableRecord *firstParentRecord = balancingBlock->popFirst();
-						underflowBlock->forceInsert(firstParentRecord);
-						delete firstParentRecord;
-
-						// Move Pointers
-						nodePointer = balancingBlock->getNodePointer(0);
-						balancingBlock->removeNodePointer(0);
-						underflowBlock->insertNodePointer(underflowIndex, nodePointer);
-
-						underflowIndex++;
-		    		}
-
-		    	}
+	    		    //this->mergeNodeToTheLeft(nextKeyInFather, index, underflowBlock, balancingBlock);
+	    		}
 		    }
 		    this->file->saveBlock();
 			this->file->popBlock();
@@ -790,39 +764,6 @@ OpResult InternalNode::update(char *key, VariableRecord *r)
 bool InternalNode::isUnderflow()
 {
 	return (this->block->getOccupiedSize() - IndexTreeBlock::RECORD_OFFSET) < this->minimumSize;
-}
-
-OpResult InternalNode::get(char* key, VariableRecord* record)
-{
-	VariableRecord aux;
-
-	// Look for the Leaf
-	int index = 0;
-	this->block->positionAtBegin();
-	while(this->block->getNextRecord(&aux) != NULL)
-	{
-		if(this->recordMethods->compare
-				(key, aux.getBytes(), aux.getSize()) < 0)
-		{
-			break;
-		}
-		index++;
-	}
-	int blockPointer = this->block->getNodePointer(index);
-	this->file->loadBlock(blockPointer);
-	this->file->pushBlock();
-
-	if (this->file->isCurrentLeaf())
-	{
-		LeafNode node(this->file->getCurrentBlock(), this->recordMethods);
-		return node.get(key,record);
-	}
-	else
-	{
-		InternalNode node(this->file, this->file->getCurrentBlock(), this->recordMethods);
-		return node.get(key,record);
-	}
-
 }
 
 InternalNode::~InternalNode()

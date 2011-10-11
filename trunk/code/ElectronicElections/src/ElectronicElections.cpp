@@ -130,12 +130,12 @@ int main()
 			case 1:
 				string user = Menu::raw_input("User");
 				string passwd = Menu::raw_input("Password");
-				Tree admin_tree = Tree("Administrator.dat", 512, new AdministratorMethods, false);
+				Tree admin_tree = Tree("Administrator.dat", 512, &AdministratorMethods(), false);
 				Administrator admin = Administrator(user, passwd);
 
 				// TODO VERIFY LOGIN
 				while (1) {
-					option *admin_action = new option[9];
+					option admin_action[9];
 					admin_action[0].label = "Mantener distritos";
 					admin_action[1].label = "Mantener votantes";
 					admin_action[2].label = "Mantener elecciones";
@@ -147,7 +147,7 @@ int main()
 					admin_action[8].label = "Volver";
 					action = Menu(admin_action,9).ask();
 					if (action == 0) {
-						Tree district_tree ("District.dat", 512, new DistrictMethods, false);
+						Tree district_tree ("District.dat", 512, &DistrictMethods(), false);
 						option district_action[3];
 						district_action[0].label = "Agregar distrito";
 						district_action[1].label = "Eliminar distrito";
@@ -164,7 +164,7 @@ int main()
 							log.write(string("Eliminando distrito ").append(d.getName()), res!=4, true);
 						} else if (action==2) district_tree.print();
 					} else if (action == 1) {
-						HashBlockFile *hash_voter = new HashBlockFile("Voter.dat", 1024*10, new VoterMethods, new VoterHashingFunction, 2800, false); // para 28 mil votantes
+						HashBlockFile hash_voter ("Voter.dat", 1024*10, &VoterMethods(), &VoterHashingFunction(), 2800, false); // para 28 mil votantes
 						option voter_action[5];
 						voter_action[0].label = "Agregar votante";
 						voter_action[1].label = "Cambio de domicilio";
@@ -174,37 +174,37 @@ int main()
 						action = Menu(voter_action,5).ask();
 						if (action==0) {
 							Voter v = Voter(atoi(Menu::raw_input("DNI").c_str()), Menu::raw_input("Nombre"), Menu::raw_input("Contraseña"), Menu::raw_input("Direccion"), Menu::raw_input("Distrito"), std::vector<ElectionKey>());
-							hash_voter->insertRecord(v.getKey(), new VariableRecord(v.getBytes(), v.getSize())) ? cout << "OK" : cout << "FAILED";
+							hash_voter.insertRecord(v.getKey(), &VariableRecord(v.getBytes(), v.getSize())) ? cout << "OK" : cout << "FAILED";
 						} else if (action==1) {
 							VariableRecord *record;
 							Voter v = Voter(atoi(Menu::raw_input("DNI").c_str()), NULL, NULL, NULL, NULL, std::vector<ElectionKey>());
-							hash_voter->getRecord(v.getKey(), &record);
+							hash_voter.getRecord(v.getKey(), &record);
 							v.setBytes(record->getBytes());
 							v.setAddress(Menu::raw_input("Nueva direccion"));
 							record->setBytes(v.getBytes(), v.getSize());
-							hash_voter->updateRecord(v.getKey(), record);
+							hash_voter.updateRecord(v.getKey(), record);
 						} else if (action==2) {
 							VariableRecord *record;
 							Voter v = Voter(atoi(Menu::raw_input("DNI").c_str()), NULL, NULL, NULL, NULL, std::vector<ElectionKey>());
-							hash_voter->getRecord(v.getKey(), &record);
+							hash_voter.getRecord(v.getKey(), &record);
 							v.setBytes(record->getBytes());
 							v.setDistrict(Menu::raw_input("Nuevo distrito"));
 							record->setBytes(v.getBytes(), v.getSize());
-							hash_voter->updateRecord(v.getKey(), record);
+							hash_voter.updateRecord(v.getKey(), record);
 						} else if (action==3) {
 							VariableRecord *record;
 							Voter v = Voter(atoi(Menu::raw_input("DNI").c_str()), NULL, NULL, NULL, NULL, std::vector<ElectionKey>());
-							hash_voter->getRecord(v.getKey(), &record);
+							hash_voter.getRecord(v.getKey(), &record);
 							v.setBytes(record->getBytes());
 							v.setPassword(Menu::raw_input("Nueva contraseña"));
 							record->setBytes(v.getBytes(), v.getSize());
-							hash_voter->updateRecord(v.getKey(), record);
+							hash_voter.updateRecord(v.getKey(), record);
 						} else if (action==4) {
 							Voter v = Voter(atoi(Menu::raw_input("DNI").c_str()), NULL, NULL, NULL, NULL, std::vector<ElectionKey>());
-							hash_voter->removeRecord(v.getKey());
+							hash_voter.removeRecord(v.getKey());
 						}
 					} else if (action==2) {
-						Tree election_tree ("Election.dat", 512, new ElectionMethods, false);
+						Tree election_tree ("Election.dat", 512, &ElectionMethods(), false);
 						option election_action[3];
 						election_action[0].label = "Agregar eleccion";
 						election_action[1].label = "Eliminar eleccion";
@@ -271,8 +271,8 @@ int main()
 //						HashBlockFile charge_hash = HashBlockFile("Charge.dat", 512, new ChargeMethods, new ChargeHashingFunction, 300, false);
 						// POR QUE NO ANDA CON LA LINEA DE ARRIBA???
 						// Deberia andar así: HashBlockFile charge_hash("Charge.dat", 512, new ChargeMethods, new ChargeHashingFunction, 300, false);
-						HashBlockFile charge_hash ("Charge.dat", 512, new ChargeMethods, new ChargeHashingFunction, 300, false);
-						option *charge_action = new option[3];
+						HashBlockFile charge_hash ("Charge.dat", 512, &ChargeMethods(), &ChargeHashingFunction(), 300, false);
+						option charge_action[3];
 						charge_action[0].label = "Agregar cargo";
 						charge_action[1].label = "Eliminar cargo";
 						charge_action[2].label = "Imprimir hash de cargos";
@@ -281,7 +281,7 @@ int main()
 							std::vector<string> subcharges;
 							Menu::raw_input("Primero debera seleccionar los subcargos del cargo, continuar");
 							while (1) {
-								option *charge_subcharge_action = new option[4];
+								option charge_subcharge_action[4];
 								charge_subcharge_action[0].label = "Asignar subcargo";
 								charge_subcharge_action[1].label = "Eliminar subcargo asignado";
 								charge_subcharge_action[2].label = "Ver subcargos asignados";
@@ -331,7 +331,7 @@ int main()
 							electionslist_tree.print();
 						}
 					} else if (action==5) {
-						Tree candidate_tree = Tree("Candidate.dat", 512, new CandidateMethods, false);
+						Tree candidate_tree = Tree("Candidate.dat", 512, &CandidateMethods(), false);
 						option candidate_action[3];
 						candidate_action[0].label = "Agregar candidato";
 						candidate_action[1].label = "Eliminar candidato";

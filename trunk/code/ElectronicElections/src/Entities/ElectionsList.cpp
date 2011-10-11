@@ -35,7 +35,7 @@ char* ElectionsList::getBytes()
 
 	if(this->bytes != NULL)
 	{
-		delete this->bytes;
+		delete[] this->bytes;
 	}
 
 	this->bytes = new char[size];
@@ -119,7 +119,7 @@ ElectionsList::~ElectionsList()
 {
 	if(this->bytes != NULL)
 	{
-		delete this->bytes;
+		delete[] this->bytes;
 	}
 }
 

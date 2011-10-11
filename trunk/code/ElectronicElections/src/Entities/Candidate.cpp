@@ -48,7 +48,7 @@ char* Candidate::getBytes()
 
 	if(this->bytes != NULL)
 	{
-		delete this->bytes;
+		delete[] this->bytes;
 	}
 
 	this->bytes = new char[size];
@@ -136,6 +136,6 @@ Candidate::~Candidate()
 {
 	if(this->bytes != NULL)
 	{
-		delete this->bytes;
+		delete[] this->bytes;
 	}
 }

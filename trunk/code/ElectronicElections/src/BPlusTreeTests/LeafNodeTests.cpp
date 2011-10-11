@@ -346,8 +346,7 @@ bool LeafNodeTests::testDeleteReturnsNotFoundIfKeyIsNotPresent()
 	SequenceTreeBlock block(32, &methods, false);
 	LeafNode node(&block, &methods);
 
-	VariableRecord r;
-	return node.remove("NotValid", &r) == NotFound;
+	return node.remove("NotValid") == NotFound;
 }
 
 bool LeafNodeTests::testDeleteReturnsUnderflowIfOccupiedSizeIsLessThanMinimum()
@@ -384,8 +383,7 @@ bool LeafNodeTests::testDeleteReturnsUnderflowIfOccupiedSizeIsLessThanMinimum()
 	node.insert(&key, &recordOne, parameter);
 
 	node.print();
-	VariableRecord r;
-	bool success = node.remove(recordKey, &r) == Underflow;
+	bool success = node.remove(recordKey) == Underflow;
 	node.print();
 	std::cout << std::endl;
 
@@ -450,8 +448,7 @@ bool LeafNodeTests::testDeleteReturnsUpdatedIfOccupiedSizeIsMoreThanMinimumAndRe
 	bool success = true;
 	success = success && node.insert(&custKey, &recordTwo, parameter) == Updated;
 	node.print();
-	VariableRecord r;
-	success = success && node.remove(custRecordKey, &r) == Updated;
+	success = success && node.remove(custRecordKey) == Updated;
 	node.print();
 
 	return success;

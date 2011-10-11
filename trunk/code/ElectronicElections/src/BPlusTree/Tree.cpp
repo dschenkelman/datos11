@@ -220,8 +220,7 @@ void Tree::transformInternalRootToLeaf()
 
 OpResult Tree::remove(char *key)
 {
-	VariableRecord record;
-	OpResult result = this->root->remove(key, &record);
+	OpResult result = this->root->remove(key);
 	VariableRecord aux;
 	this->file->getCurrentBlock()->positionAtBegin();
 	int i = 0;
@@ -247,7 +246,6 @@ void Tree::print()
 
 Tree::~Tree()
 {
-	//this->file->popBlock();
 	delete this->root;
 	delete this->file;
 }

@@ -142,7 +142,7 @@ OpResult LeafNode::update(char *key, VariableRecord* r)
 	return Overflow;
 }
 
-OpResult LeafNode::remove(char *key, VariableRecord* record)
+OpResult LeafNode::remove(char *key)
 {
 	if (this->block->removeRecord(key))
 	{

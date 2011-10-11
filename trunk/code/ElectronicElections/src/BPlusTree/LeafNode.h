@@ -24,7 +24,7 @@ public:
 	LeafNode(TreeBlock* tb, RecordMethods* methods);
 	virtual OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord, OverflowParameter& overflowParameter);
 	virtual OpResult update(char* key, VariableRecord* r);
-	virtual OpResult remove(char* key, VariableRecord* record);
+	virtual OpResult remove(char* key);
 	virtual int getMaxSize();
 	virtual int getMinimumSize();
 	int getNextNode();

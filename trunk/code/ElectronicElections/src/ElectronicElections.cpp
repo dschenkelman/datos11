@@ -46,11 +46,17 @@
 #include <time.h>
 #include <sstream>
 
+#include "Voting/LoadDataFiles.h"
+
 using namespace std;
 
 int run_tests()
 {
+	//LoadDataFiles dataFiles("config.txt");
+	//dataFiles.readConfigFile();
+
 	cout << "***** RUNNING TESTS *****" << endl;
+
 	srand(time(NULL));
 	//SimpleVariableBlockFileTests rlvTest;
 	//rlvTest.run();
@@ -68,14 +74,15 @@ int run_tests()
 	DistrictTests districtTests;
 	districtTests.run();*/
 
-//	cout << "Hash Tests" << endl;
-//	HashTest hashTests;
-//	hashTests.run();
+	cout << "Hash Tests" << endl;
+	HashTest hashTests;
+	hashTests.run();
 
+	/*
 	cout << "Tree Tests" << endl;
 	TreeTests treeTests;
 	treeTests.run();
-	/*
+
 	cout << "Elections List Tests" << endl;
 	ElectionsListTests electionTests;
 	electionTests.run();
@@ -107,6 +114,7 @@ int main()
 		run_tests();
 		return 0;
 	}
+	LoadDataFiles dataFiles("config.txt");
 	Log log;
 	log.write("Iniciando sistema", true, true);
 	option main[2];
@@ -130,9 +138,14 @@ int main()
 			case 1:
 				string user = Menu::raw_input("User");
 				string passwd = Menu::raw_input("Password");
-				Tree admin_tree = Tree("Administrator.dat", 512, &AdministratorMethods(), false);
+				if(!dataFiles.canOpenAdminFile())
+				{
+					Tree admin_tree = dataFiles.createAdminFile();
+				}
+				else{
+					Tree admin_tree = dataFiles.getAdminFile();
+				}
 				Administrator admin = Administrator(user, passwd);
-
 				// TODO VERIFY LOGIN
 				while (1) {
 					option admin_action[9];
@@ -352,23 +365,7 @@ int main()
 						}
 					} else if (action==6) {
 					} else if (action == 7) {
-						cout << "Generando archivo de distritos" << endl;
-	//					HashBlockFile("District.dat", 512, NULL, NULL, 300, true);
-						Tree("District.dat", 512, NULL, true);
-						cout << "Generando archivo de votantes" << endl;
-						HashBlockFile("Voter.dat", 1024*10, NULL, NULL, 2800, true); // para 28 mil votantes
-						cout << "Generando archivo de elecciones" << endl;
-						Tree("Election.dat", 512, NULL, true);
-						cout << "Generando archivo de listas" << endl;
-						Tree("ElectionsList.dat", 512, NULL, true);
-						cout << "Generando archivo de conteo" << endl;
-						Tree("Count.dat", 512, NULL, true);
-						cout << "Generando archivo de cargos" << endl;
-						HashBlockFile("Charge.dat", 512, NULL, NULL, 300, true);
-						cout << "Generando archivo de candidato" << endl;
-						Tree("Candidate.dat", 512, NULL, true);
-						cout << "Generando archivo de administrador" << endl;
-						Tree("Administrator.dat", 512, NULL, true);
+						dataFiles.readConfigFile();
 					} else if (action == 8) {
 						break;
 					}

@@ -1,3 +1,8 @@
-Voter,padron.txt,1600,280000,347
+Voter,padron.txt,1024,28000,347
 District,districts.txt,512,0,0
 Charge,charges.txt,512,6,30
+Administrator,admin.txt,512,10,20
+Candidate,"",512,0,0
+Count,"",512,0,0
+ElectionList,"",512,0,0
+Election,"",512,0,0

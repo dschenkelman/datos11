@@ -16,6 +16,7 @@ Menu::~Menu() {
 }
 
 int Menu::ask() {
+	cout << "\033[2J\033[1;1H";
 	cout << endl << "****************************************" << endl << "Seleccione:" << endl;
 	option *cur_opt = this->options;
 	for (int i = 0; i < this->size; i++) {

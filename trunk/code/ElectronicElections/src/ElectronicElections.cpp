@@ -109,12 +109,12 @@ int main()
 	}
 	Log log;
 	log.write("Iniciando sistema", true, true);
-	option *main = new option[2];
+	option main[2];
 	main[0].label = "Run main program";
 	main[1].label = "Run tests";
 	if ( Menu(main,2).ask() == 1 ) return run_tests();
 
-	option *login_type = new option[3];
+	option login_type[3];
 	login_type[0].label = "Vote";
 	login_type[1].label = "Admin";
 	login_type[2].label = "Quit";
@@ -148,7 +148,7 @@ int main()
 					action = Menu(admin_action,9).ask();
 					if (action == 0) {
 						Tree district_tree ("District.dat", 512, new DistrictMethods, false);
-						option *district_action = new option[3];
+						option district_action[3];
 						district_action[0].label = "Agregar distrito";
 						district_action[1].label = "Eliminar distrito";
 						district_action[2].label = "Imprimir arbol de distritos";
@@ -165,7 +165,7 @@ int main()
 						} else if (action==2) district_tree.print();
 					} else if (action == 1) {
 						HashBlockFile *hash_voter = new HashBlockFile("Voter.dat", 1024*10, new VoterMethods, new VoterHashingFunction, 2800, false); // para 28 mil votantes
-						option *voter_action = new option[5];
+						option voter_action[5];
 						voter_action[0].label = "Agregar votante";
 						voter_action[1].label = "Cambio de domicilio";
 						voter_action[2].label = "Cambio de distrito";
@@ -205,7 +205,7 @@ int main()
 						}
 					} else if (action==2) {
 						Tree election_tree ("Election.dat", 512, new ElectionMethods, false);
-												option *election_action = new option[3];
+						option election_action[3];
 						election_action[0].label = "Agregar eleccion";
 						election_action[1].label = "Eliminar eleccion";
 						election_action[2].label = "Imprimir arbol de elecciones";
@@ -214,7 +214,7 @@ int main()
 							// agregar eleccion
 							std::vector<string> dist_vector;
 							while (1) {
-								option *election_district_action = new option[3];
+								option election_district_action[4];
 								election_district_action[0].label = "Asignar distrito";
 								election_district_action[1].label = "Eliminar distrito asignado";
 								election_district_action[2].label = "Ver distritos asignados";
@@ -253,7 +253,7 @@ int main()
 							elec << " "; elec << e.getCharge();
 							log.write(string("Agregando eleccion ").append(elec.str()), res!=5, true);
 
-						} else if (action == 2) {
+						} else if (action == 1) {
 							// eliminar eleccion
 							Election e ((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()),
 									(short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"), std::vector<string>());
@@ -262,7 +262,7 @@ int main()
 							elec << e.getDay(); elec << "/"; elec << e.getMonth(); elec <<  "/"; elec << e.getYear();
 							elec << " "; elec << e.getCharge();
 							log.write(string("Eliminado eleccion ").append(elec.str()), res != 4, true);
-						} else if (action == 3) {
+						} else if (action == 2) {
 							// imprimir eleccion
 							election_tree.print();
 						}
@@ -271,7 +271,7 @@ int main()
 //						HashBlockFile charge_hash = HashBlockFile("Charge.dat", 512, new ChargeMethods, new ChargeHashingFunction, 300, false);
 						// POR QUE NO ANDA CON LA LINEA DE ARRIBA???
 						// Deberia andar así: HashBlockFile charge_hash("Charge.dat", 512, new ChargeMethods, new ChargeHashingFunction, 300, false);
-						HashBlockFile *charge_hash = new HashBlockFile("Charge.dat", 512, new ChargeMethods, new ChargeHashingFunction, 300, false);
+						HashBlockFile charge_hash ("Charge.dat", 512, new ChargeMethods, new ChargeHashingFunction, 300, false);
 						option *charge_action = new option[3];
 						charge_action[0].label = "Agregar cargo";
 						charge_action[1].label = "Eliminar cargo";
@@ -302,32 +302,31 @@ int main()
 							}
 							Charge c (Menu::raw_input("Nombre del cargo"), subcharges);
 							VariableRecord chargerecord(c.getBytes(), c.getSize());
-							bool res = charge_hash->insertRecord(c.getKey(), &chargerecord);
+							bool res = charge_hash.insertRecord(c.getKey(), &chargerecord);
 							log.write("Agregando cargo", res, true);
 						} else if (action==1) {
-							bool res = charge_hash->removeRecord(Menu::raw_input("Nombre del cargo").c_str());
+							bool res = charge_hash.removeRecord(Menu::raw_input("Nombre del cargo").c_str());
 							log.write("Eliminando cargo", res, true);
 						} else if (action==2) {
-							charge_hash->printContent();
+							charge_hash.printContent();
 						}
-						delete charge_hash;
 					} else if (action==4) {
-						Tree electionslist_tree ("ElectionsList.dat", 512, new ElectionsListMethods, false);
+						Tree electionslist_tree ("ElectionsList.dat", 512, &ElectionsListMethods(), false);
 						option list_action[3];
 						list_action[0].label = "Agregar lista";
 						list_action[1].label = "Eliminar lista";
 						list_action[2].label = "Imprimir arbol de listas";
 						action = Menu(list_action,3).ask();
 						if (action==0) {
-							ElectionsList elist (Menu::raw_input("Nombre de la eleccion"), (char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()), (short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"));
+							ElectionsList elist (Menu::raw_input("Nombre"), (char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()), (short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"));
 							VariableRecord elistkey_vr (elist.getKey(), elist.getKeySize());
 							VariableRecord elist_vr (elist.getBytes(), elist.getSize());
 							int res = electionslist_tree.insert(&elistkey_vr, &elist_vr);
-							log.write("Agregando eleccion", res!=5, true);
+							log.write("Agregando lista", res!=5, true);
 						} else if (action==1) {
-							ElectionsList elist (Menu::raw_input("Nombre de la eleccion"), (char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()), (short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"));
+							ElectionsList elist (Menu::raw_input("Nombre"), (char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()), (short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"));
 							int res = electionslist_tree.remove(elist.getKey());
-							log.write("Eliminando eleccion", res!=4, true);
+							log.write("Eliminando lista", res!=4, true);
 						} else if (action==2) {
 							electionslist_tree.print();
 						}

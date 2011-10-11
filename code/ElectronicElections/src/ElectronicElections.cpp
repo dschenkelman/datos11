@@ -204,12 +204,13 @@ int main()
 						}
 					} else if (action==2) {
 						Tree election_tree ("Election.dat", 512, new ElectionMethods, false);
-						option *election_action = new option[3];
+												option *election_action = new option[3];
 						election_action[0].label = "Agregar eleccion";
 						election_action[1].label = "Eliminar eleccion";
 						election_action[2].label = "Imprimir arbol de elecciones";
 						action = Menu(election_action,3).ask();
 						if (action==0) {
+							// agregar eleccion
 							std::vector<string> dist_vector;
 							while (1) {
 								option *election_district_action = new option[3];
@@ -219,21 +220,56 @@ int main()
 								election_district_action[3].label = "Seleccion terminada, continuar.";
 								action = Menu(election_district_action,4).ask();
 								if (action==0) {
+									// asignar distrito
 									string dist = Menu::raw_input("Distrito");
-//									dist_vector.push_back(&dist);
+									dist_vector.push_back(dist);
 								} else if (action==1) {
+									// eliminar distrito asignado
+									string dist = Menu::raw_input("Distrito");
+									for(int i = 0; i < dist_vector.size(); i++) {
+										if(dist_vector.at(i) == dist){
+											dist_vector.erase(dist_vector.begin() + i);
+										}
+									}
 								} else if (action==2) {
-//									cout << dist_vector
+									// ver distritos
+									for(int i = 0; i < dist_vector.size(); i++) {
+										cout << dist_vector.at(i) << endl;
+									}
 								} else if (action==3) {
 									break;
 								}
 							}
-							Election e ((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()), (short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"), std::vector<string>());
+							Election e ((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()),
+									(short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"), dist_vector);
+
+							VariableRecord keyRecord(e.getKey(), e.getKeySize());
+							VariableRecord dataRecord(e.getBytes(), e.getSize());
+
+							int res = election_tree.insert(&keyRecord, &dataRecord);
+							stringstream elec;
+							elec << e.getDay(); elec << "/"; elec << e.getMonth(); elec <<  "/"; elec << e.getYear();
+							elec << " "; elec << e.getCharge();
+							log.write(string("Agregando eleccion ").append(elec.str()), res!=5, true);
+
+						} else if (action == 2) {
+							// eliminar eleccion
+							Election e ((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()),
+									(short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"), std::vector<string>());
+							int res = election_tree.remove(e.getKey());
+							stringstream elec;
+							elec << e.getDay(); elec << "/"; elec << e.getMonth(); elec <<  "/"; elec << e.getYear();
+							elec << " "; elec << e.getCharge();
+							log.write(string("Eliminado eleccion ").append(elec.str()), res != 4, true);
+						} else if (action == 3) {
+							// imprimir eleccion
+							election_tree.print();
 						}
 
 					} else if (action==3) {
 //						HashBlockFile charge_hash = HashBlockFile("Charge.dat", 512, new ChargeMethods, new ChargeHashingFunction, 300, false);
 						// POR QUE NO ANDA CON LA LINEA DE ARRIBA???
+						// Deberia andar así: HashBlockFile charge_hash("Charge.dat", 512, new ChargeMethods, new ChargeHashingFunction, 300, false);
 						HashBlockFile *charge_hash = new HashBlockFile("Charge.dat", 512, new ChargeMethods, new ChargeHashingFunction, 300, false);
 						option *charge_action = new option[3];
 						charge_action[0].label = "Agregar cargo";

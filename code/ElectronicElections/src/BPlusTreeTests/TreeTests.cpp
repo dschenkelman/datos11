@@ -519,6 +519,88 @@ bool TreeTests::testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedWhenR
 	return true;
 }
 
+
+bool TreeTests::testRemoveShouldMergeInternalNodes()
+{
+	DistrictMethods districtMethods;
+	Tree tree("treeTests.dat", 90, &districtMethods, true);
+
+	// approximately 223 chars
+	/*string districts[] = {"San Luis", "Santa Cruz",
+				"Corrientes", "Entre Rios",
+				"Chaco", "Chubut", "Cordoba",
+				 "Santa Fe", "Santiago del Estero",
+				"Mendoza", "Misiones", "Neuquen",
+				"Tierra del Fuego", "Tucuman",
+				"Rio Negro", "Salta", "San Juan",
+				"Buenos Aires", "Catamarca", "Formosa",
+				"Jujuy", "La Pampa", "La Rioja",
+				};*/
+	string districts[] = {"San Luis", "Santa Cruz",
+					"Tierra del Fuego", "Tucuman",
+					"Rio Negro", "Salta", "San Juan",
+					 "Santa Fe", "Santiago del Estero",
+					 "Mendoza", "Misiones", "Neuquen",
+					"Jujuy", "La Pampa", "La Rioja",
+					"Chaco", "Chubut!!Chubut!!", "Cordoba",
+					"Corrientes", "Entre Rios",
+					"Buenos Aires", "Catamarca", "Formosa",
+					"Dakhala", "El Cairo islámico", "Masai Mara",
+					"Glaciar Perito Moreno", "Kilimanjaro", "Marrakech",
+					"Iguazú", "Xauen", "Seychelles Rocks",
+					};
+
+	int i;
+	for (i = 0; i < 24; i++)
+	{
+		insertInTree(&tree,districts[i]);
+	}
+
+	cout << "District Count" << i << endl;
+	tree.print();
+
+	District e("Santiago del Estero");
+	tree.remove(e.getKey());
+	cout << endl << "REMOVE Santiago del Estero";
+	cout<<endl;tree.print();cout<<endl;
+
+	District h("Mendoza");
+	tree.remove(h.getKey());
+	cout << endl << "REMOVE Mendoza";
+	cout<<endl;tree.print();cout<<endl;
+
+	District p("Rio Negro");
+	tree.remove(p.getKey());
+	cout << endl << "REMOVE Rio Negro";
+	cout<<endl;tree.print();cout<<endl;
+
+	District a("Misiones");
+	tree.remove(a.getKey());
+	cout << endl << "REMOVE Misiones";
+	cout<<endl;tree.print();cout<<endl;
+
+	/*District e("Formosa");
+	tree.remove(e.getKey());
+	cout << endl << "REMOVE Formosa";
+	cout<<endl;tree.print();cout<<endl;
+	District f("Entre Rios");
+	tree.remove(f.getKey());
+	cout << endl << "REMOVE Entre Rios";
+	cout<<endl;tree.print();cout<<endl;
+	District d("Jujuy");
+	tree.remove(d.getKey());
+	cout << endl << "REMOVE Jujuy";
+	cout<<endl;tree.print();cout<<endl;
+	/*District j("Santiago del Estero");
+	tree.remove(j.getKey());
+	cout << endl << "REMOVE Santiago del Estero";
+	cout<<endl;tree.print();cout<<endl;*/
+
+
+	return false;
+}
+
+
 bool TreeTests::testRemoveCausesUnderflowInRootIsMergedIntoLeaf()
 {
 	DistrictMethods districtMethods;
@@ -559,6 +641,7 @@ bool TreeTests::testRemoveCausesUnderflowInRootIsMergedIntoLeaf()
 
 	return false;
 }
+
 
 TreeTests::~TreeTests()
 {

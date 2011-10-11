@@ -30,6 +30,7 @@ public:
 	bool testRemoveInLeafWithUnderflowIsMergedByParent();
 	bool testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedWhenNonRightMost();
 	bool testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedWhenRightMost();
+	bool testRemoveShouldMergeInternalNodes();
 	bool testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedAcrossParents();
 	bool testRemoveCausesUnderflowInRootIsMergedIntoLeaf();
 	virtual ~TreeTests();

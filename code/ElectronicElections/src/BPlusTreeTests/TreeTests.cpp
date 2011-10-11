@@ -39,7 +39,6 @@ void TreeTests::run()
 	this->printResult("testRemoveWithoutUnderflowWorksCorrectly", testRemoveWithoutUnderflowWorksCorrectly());
 	this->printResult("testRemoveInLeafWithUnderflowIsBalancedByParentWithRightBrother", testRemoveInLeafWithUnderflowIsBalancedByParentWithRightBrother());
 	this->printResult("testRemoveInRightMostLeafWithUnderflowIsBalancedByParentWithLeftBrother", testRemoveInRightMostLeafWithUnderflowIsBalancedByParentWithLeftBrother());
-	this->printResult("testRemoveInLeafWithUnderflowAndRightBrotherInAnotherParentBalancesCorrectly", testRemoveInLeafWithUnderflowAndRightBrotherInAnotherParentBalancesCorrectly());
 	this->printResult("testRemoveInLeafWithUnderflowIsMergedByParent", testRemoveInLeafWithUnderflowIsMergedByParent());
 	this->printResult("testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedWhenNonRightMost", testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedWhenNonRightMost());
 	this->printResult("testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedWhenRightMost", testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedWhenRightMost());
@@ -180,18 +179,19 @@ bool TreeTests::testInsertInInternalRootWithOverflowIsSplit()
 bool TreeTests::testInsertInInternalNodeWithOverflowIsSplit()
 {
 	DistrictMethods districtMethods;
-	Tree tree("treeTests.dat", 80, &districtMethods, true);
+	Tree tree("treeTests.dat", 84, &districtMethods, true);
 
 	// approximately 223 chars
-	string districts[] = {"San Luis", "Santa Cruz",
-				"Corrientes", "Entre Rios",
-				"Chaco", "Chubut", "Cordoba",
-				 "Santa Fe", "Santiago del Estero",
-				"Mendoza", "Misiones", "Neuquen",
-				"Tierra del Fuego", "Tucuman",
+	string districts[] = {
+			"Buenos Aires", "Catamarca",
+			"Chaco", "Chubut", "Cordoba",
+			"Corrientes", "Entre Rios", "Formosa",
+			"Jujuy", "La Pampa", "La Rioja",
+			"Mendoza", "Misiones", "Neuquen",
 				"Rio Negro", "Salta", "San Juan",
-				"Buenos Aires", "Catamarca", "Formosa",
-				"Jujuy", "La Pampa", "La Rioja",
+				"Santa Fe", "Santiago del Estero",
+				"San Luis", "Santa Cruz",
+				"Tierra del Fuego", "Tucuman",
 				};
 
 	int i;
@@ -323,11 +323,12 @@ bool TreeTests::testRemoveInRightMostLeafWithUnderflowIsBalancedByParentWithLeft
 
 	// approximately 78 chars
 	string districts[] = {"San Luis", "Santa Cruz",
-					"Corrientes", "Entre Rios", "Chaco", "Chubut",
-					"Cordoba","Tierra del Fuego", "Santa Fe","Buenos Aires"};
+					"Corrientes", "Entre Rios", "Chaco", "Chubut", "Artigas",
+					"Cordoba","Tierra del Fuego", "Santa Fe","Buenos Aires",
+					"Santiago del Estero", "Maldonado", "Mendoza"};
 
 	int i;
-	for (i = 0; i < 10; i++)
+	for (i = 0; i < 14; i++)
 	{
 		District d(districts[i]);
 		VariableRecord dataRecord;
@@ -341,63 +342,19 @@ bool TreeTests::testRemoveInRightMostLeafWithUnderflowIsBalancedByParentWithLeft
 	cout << "District Count" << i <<endl;
 	tree.print();
 
-	cout << endl << "Remove in the right child 'Tierra del Fuego'" << endl;
+	cout << endl << "Remove in the right most child 'Tierra del Fuego'" << endl;
 	District d("Tierra del Fuego");
 	tree.remove(d.getKey());
 
-	cout << endl << "Remove in the right child 'Entre Rios' => it gets underflow" << endl;
-	District d1("Entre Rios");
+	cout << endl << "Remove in the right most child 'Santa Fe'. 'San Luis' is balanced" << endl;
+	District d1("Santa Fe");
 	tree.remove(d1.getKey());
 
 	cout << endl << "The tree is balanced" << endl;
-	cout << "District Count" << i - 1 << endl;
+	cout << "District Count" << i - 2 << endl;
 	tree.print();
 
 	cout << endl;
-	return true;
-}
-
-bool TreeTests::testRemoveInLeafWithUnderflowAndRightBrotherInAnotherParentBalancesCorrectly()
-{
-	DistrictMethods districtMethods;
-	Tree tree("treeTests.dat", 90, &districtMethods, true);
-
-	// approximately 223 chars
-	string districts[] = {	"Corrientes", "Entre Rios",
-				"Chaco", "Chubut", "Cordoba",
-				 "Santa Fe", "Santiago del Estero",
-				"Mendoza", "Misiones", "Neuquen",
-				"Tierra del Fuego", "Tucuman",
-				 "Salta", "San Juan",
-				 "San Luis", "Santa Cruz",
-				"Buenos Aires", "Catamarca", "Formosa",
-				"Jujuy", "La Pampa", "La Rioja","Rio Negro",
-				};
-
-	int i;
-	for (i = 0; i < 23; i++)
-	{
-		District d(districts[i]);
-		VariableRecord dataRecord;
-		VariableRecord keyRecord;
-		dataRecord.setBytes(d.getBytes(), d.getSize());
-		keyRecord.setBytes(d.getKey(), d.getKeySize());
-
-		tree.insert(&keyRecord, &dataRecord);
-	}
-
-	cout << "District Count: " << i << endl;
-	tree.print();
-	cout << endl;
-
-	District d("La Pampa");
-	//tree.remove(d1.getKey());
-	tree.remove(d.getKey());
-
-	cout << "District Count: " << i - 1 << endl;
-	tree.print();
-	cout << endl;
-
 	return true;
 }
 

@@ -38,7 +38,7 @@ char* Administrator::getBytes()
 
 	if(this->bytes != NULL)
 	{
-		delete this->bytes;
+		delete[] this->bytes;
 	}
 
 	this->bytes = new char[size];
@@ -78,7 +78,7 @@ char* Administrator::getKey()
 {
 	if(this->key != NULL)
 	{
-		delete this->key;
+		delete []this->key;
 	}
 
 	int size = getKeySize();
@@ -104,12 +104,12 @@ Administrator::~Administrator()
 {
 	if(this->bytes != NULL)
 	{
-		delete this->bytes;
+		delete[] this->bytes;
 	}
 
 	if(this->key != NULL)
 	{
-		delete this->key;
+		delete[] this->key;
 	}
 }
 

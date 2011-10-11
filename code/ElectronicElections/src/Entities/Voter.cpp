@@ -56,7 +56,7 @@ char* Voter::getKey()
 
 	if(this->key != NULL)
 	{
-		delete this->key;
+		delete[] this->key;
 	}
 
 	this->key = new char[size];
@@ -124,7 +124,7 @@ char* Voter::getBytes()
 
 	if(this->bytes != NULL)
 	{
-		delete this->bytes;
+		delete[] this->bytes;
 	}
 
 	this->bytes = new char[size];
@@ -209,12 +209,12 @@ Voter::~Voter()
 {
 	if(this->key != NULL)
 	{
-		delete this->key;
+		delete[] this->key;
 	}
 
 	if(this->bytes != NULL)
 	{
-		delete this->bytes;
+		delete[] this->bytes;
 	}
 }
 

@@ -313,11 +313,24 @@ int main()
 						delete charge_hash;
 					} else if (action==4) {
 						Tree electionslist_tree ("ElectionsList.dat", 512, new ElectionsListMethods, false);
-						ElectionsList elist (Menu::raw_input("Nombre de la eleccion"), (char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()), (short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"));
-						VariableRecord elistkey_vr (elist.getKey(), elist.getKeySize());
-						VariableRecord elist_vr (elist.getBytes(), elist.getSize());
-						int res = electionslist_tree.insert(&elistkey_vr, &elist_vr);
-						log.write("Agregando eleccion", res!=5, true);
+						option list_action[3];
+						list_action[0].label = "Agregar lista";
+						list_action[1].label = "Eliminar lista";
+						list_action[2].label = "Imprimir arbol de listas";
+						action = Menu(list_action,3).ask();
+						if (action==0) {
+							ElectionsList elist (Menu::raw_input("Nombre de la eleccion"), (char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()), (short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"));
+							VariableRecord elistkey_vr (elist.getKey(), elist.getKeySize());
+							VariableRecord elist_vr (elist.getBytes(), elist.getSize());
+							int res = electionslist_tree.insert(&elistkey_vr, &elist_vr);
+							log.write("Agregando eleccion", res!=5, true);
+						} else if (action==1) {
+							ElectionsList elist (Menu::raw_input("Nombre de la eleccion"), (char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()), (short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"));
+							int res = electionslist_tree.remove(elist.getKey());
+							log.write("Eliminando eleccion", res!=4, true);
+						} else if (action==2) {
+							electionslist_tree.print();
+						}
 					} else if (action==5) {
 						Tree candidate_tree = Tree("Candidate.dat", 512, new CandidateMethods, false);
 						option candidate_action[3];

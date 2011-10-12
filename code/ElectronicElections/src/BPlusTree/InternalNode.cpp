@@ -384,8 +384,6 @@ OpResult InternalNode::handleLeafUnderflow(int nextNode, bool lastChild,
     }
 }
 
-
-
 void InternalNode::mergeLeafNodes(int index, TreeBlock *brotherBlock, TreeBlock *underflowBlock,
 		char* removedKey, bool lastChild)
 {
@@ -396,33 +394,20 @@ void InternalNode::mergeLeafNodes(int index, TreeBlock *brotherBlock, TreeBlock 
     brotherBlock->positionAtBegin();
     brotherBlock->getNextRecord(&aux);
     keyAux = this->recordMethods->getKeyRecord(aux.getBytes(), aux.getSize());
-    if (lastChild)
-    {
-    	if (this->recordMethods->compare(removedKey, aux.getBytes(), aux.getSize()) < 0)
+    VariableRecord previous;
+	VariableRecord current;
+	this->block->positionAtBegin();
+	while(this->block->getNextRecord(&current))
+	{
+		if (this->recordMethods->compare(keyAux->getBytes(), aux.getBytes(), aux.getSize()) < 0)
 		{
-			this->block->removeRecord(removedKey);
+			break;
 		}
-		else
-		{
-			this->block->removeRecord(keyAux->getBytes());
-		}
-    }
-    else
-    {
-		VariableRecord previous;
-		VariableRecord current;
-		this->block->positionAtBegin();
-		while(this->block->getNextRecord(&current))
-		{
-			if (this->recordMethods->compare(keyAux->getBytes(), aux.getBytes(), aux.getSize()) < 0)
-			{
-				break;
-			}
-			previous = current;
-		}
+		previous = current;
+	}
 
-		this->block->removeRecord(previous.getBytes());
-    }
+	this->block->removeRecord(previous.getBytes());
+
 
     delete keyAux;
     while(!brotherBlock->isEmpty())
@@ -464,7 +449,7 @@ bool InternalNode::balanceInternalNodeToTheLeft(TreeBlock *underflowBlock, TreeB
         this->block->insertRecord(&aux, &aux);
         underflowBlock->insertNodePointer(underflowRecordCount, nodePointer);
     }
-	return !(balancingNode.isUnderflow()); // True ==> is balanced
+	return true;
 }
 
 bool InternalNode::balanceInternalNodeToTheRight(TreeBlock *balancingBlock, TreeBlock *underflowBlock)
@@ -494,6 +479,7 @@ bool InternalNode::balanceInternalNodeToTheRight(TreeBlock *balancingBlock, Tree
         }
         underflowBlock->insertRecord(lastParentRecord, lastParentRecord);
         int nodePointer = balancingBlock->getNodePointer(balanceRecordCount);
+        balancingBlock->removeNodePointer(balanceRecordCount);
         VariableRecord *lastBalancingRecord = balancingBlock->popLast();
         balanceRecordCount--;
         underflowBlock->insertNodePointer(0, nodePointer);
@@ -605,17 +591,24 @@ OpResult InternalNode::remove(char *key)
 		    {
 		    	balanced = this->balanceInternalNodeToTheLeft(underflowBlock, balancingBlock, aux);
 		    }
+
+			result = Updated;
+
 		    if (!balanced)
 		    {
 		    	if (!lastChild)
 		    	{
-	    		    //this->mergeNodeToTheLeft(nextKeyInFather, index, underflowBlock, balancingBlock);
+	    		    this->mergeNodeToTheLeft(nextKeyInFather, index, underflowBlock, balancingBlock);
+
+	    		    if ((this->block->getOccupiedSize() - IndexTreeBlock::RECORD_OFFSET) < this->minimumSize)
+					{
+	    		    	result = Underflow;
+					}
 	    		}
 		    }
+
 		    this->file->saveBlock();
 			this->file->popBlock();
-
-			result = Updated;
 		}
 	}
 
@@ -631,7 +624,7 @@ OpResult InternalNode::remove(char *key)
 bool InternalNode::balanceLeafUnderflowRight(LeafNode& leftLeaf, LeafNode& rightLeaf, TreeBlock* underflowBlock)
 {
 
-	int totalCapacity = leftLeaf.getOccupiedSize() + rightLeaf.getOccupiedSize();
+	int totalCapacity = leftLeaf.getOccupiedSize() + rightLeaf.getOccupiedSize() - 2 * SequenceTreeBlock::RECORD_OFFSET;
 	if (totalCapacity < leftLeaf.getMaxSize())
 	{
 		// There is not enough records to balance the Leafs
@@ -645,7 +638,19 @@ bool InternalNode::balanceLeafUnderflowRight(LeafNode& leftLeaf, LeafNode& right
 	this->file->getCurrentBlock()->positionAtBegin();
 	this->file->getCurrentBlock()->getNextRecord(&aux);
 	keyAux = this->recordMethods->getKeyRecord(aux.getBytes(),aux.getSize());
-	this->block->removeRecord(keyAux->getBytes());
+    VariableRecord previous;
+	VariableRecord current;
+	this->block->positionAtBegin();
+	while(this->block->getNextRecord(&current))
+	{
+		if (this->recordMethods->compare(keyAux->getBytes(), aux.getBytes(), aux.getSize()) < 0)
+		{
+			break;
+		}
+		previous = current;
+	}
+
+	this->block->removeRecord(previous.getBytes());
 	delete keyAux;
 
 
@@ -663,16 +668,6 @@ bool InternalNode::balanceLeafUnderflowRight(LeafNode& leftLeaf, LeafNode& right
 		delete dataRecord;
 		delete keyRecord;
 	}
-	if (balanced)
-	{
-		dataRecord = leftLeaf.popLast();
-		keyRecord = this->recordMethods->getKeyRecord(dataRecord->getBytes(),
-		dataRecord->getSize());
-		this->file->getCurrentBlock()->insertRecord(keyRecord, dataRecord);
-		underflowBlock->removeRecord(keyRecord->getBytes());
-		delete dataRecord;
-		delete keyRecord;
-	}
 
 	// update internal parent with first child of right node
 	this->file->getCurrentBlock()->positionAtBegin();
@@ -687,7 +682,7 @@ bool InternalNode::balanceLeafUnderflowRight(LeafNode& leftLeaf, LeafNode& right
 bool InternalNode::balanceLeafUnderflowLeft(LeafNode& leftLeaf, LeafNode& rightLeaf,
 		TreeBlock* underflowBlock, char* removedKey)
 {
-	int totalCapacity = leftLeaf.getOccupiedSize() + rightLeaf.getOccupiedSize();
+	int totalCapacity = leftLeaf.getOccupiedSize() + rightLeaf.getOccupiedSize() - 2 * SequenceTreeBlock::RECORD_OFFSET;
 	bool balanced = false;
 	if (totalCapacity < leftLeaf.getMaxSize())
 	{
@@ -701,14 +696,19 @@ bool InternalNode::balanceLeafUnderflowLeft(LeafNode& leftLeaf, LeafNode& rightL
 	underflowBlock->positionAtBegin();
 	underflowBlock->getNextRecord(&aux);
 	keyAux = this->recordMethods->getKeyRecord(aux.getBytes(),aux.getSize());
-	if (this->recordMethods->compare(removedKey, aux.getBytes(), aux.getSize()) < 0)
+    VariableRecord previous;
+	VariableRecord current;
+	this->block->positionAtBegin();
+	while(this->block->getNextRecord(&current))
 	{
-		this->block->removeRecord(removedKey);
+		if (this->recordMethods->compare(keyAux->getBytes(), aux.getBytes(), aux.getSize()) < 0)
+		{
+			break;
+		}
+		previous = current;
 	}
-	else
-	{
-		this->block->removeRecord(keyAux->getBytes());
-	}
+
+	this->block->removeRecord(previous.getBytes());
 	delete keyAux;
 
 	VariableRecord* dataRecord;

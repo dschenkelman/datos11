@@ -21,7 +21,7 @@
 #include "EntitiesTests/CountTests.h"
 #include "EntitiesTests/ChargeTests.h"
 #include "Voting/Menu.h"
-#include "Voting.h"
+#include "Voting/Voting.h"
 #include "Hash/HashBlockFile.h"
 #include "Hash/DistrictHashingFunction.h"
 #include "Hash/VoterHashingFunction.h"
@@ -70,19 +70,20 @@ int run_tests()
 	LeafNodeTests leafTests;
 	leafTests.run();*/
 
-	cout << "District Tests" << endl;
-	DistrictTests districtTests;
-	districtTests.run();
+//	cout << "District Tests" << endl;
+//	DistrictTests districtTests;
+//	districtTests.run();
 
 //	cout << "Hash Tests" << endl;
 //	HashTest hashTests;
 //	hashTests.run();
 
-	/*
+
+
 	cout << "Tree Tests" << endl;
 	TreeTests treeTests;
-	treeTests.run();*/
-
+	treeTests.run();
+	/*
 	cout << "Elections List Tests" << endl;
 	ElectionsListTests electionTests;
 	electionTests.run();
@@ -101,14 +102,14 @@ int run_tests()
 
 	cout << "Charge Tests" << endl;
 	ChargeTests chargeTests;
-	chargeTests.run();
+	chargeTests.run();*/
 
 	return 0;
 }
 
 int main()
 {
-	bool debug = false;
+	bool debug = true;
 	if (debug)
 	{
 		run_tests();
@@ -126,34 +127,32 @@ int main()
 	login_type[0].label = "Vote";
 	login_type[1].label = "Admin";
 	login_type[2].label = "Quit";
-	while (1) {
+	while (1)
+	{
 		int action = Menu(login_type,3).ask();
-		switch (action) {
+		switch (action)
+		{
 			case 0:
-			{
-				bool voting = true;
-				LoadDataFiles ldf("config.txt");
-				ldf.readConfigFile();
-				/*while(voting)
 				{
-					Voting vot(&ldf);
+					bool voting = true;
+					LoadDataFiles ldf("config.txt");
+					ldf.readConfigFile();
+					while(voting)
+					{
+						Voting vot(&ldf);
 
-					 * if(!vot.login())
-					 * {
-					 *  	cout << "Fallo login. Intente nuevamente" << endl;
-					 * }
-					 *
-					 * else if(!vot.vote())
-					 * {
-					 * 		cout << "Fallo votacion. Intente nuevamente" << endl;
-					 * }
-					 *
-					 * else voting = false;
-					 */
-				break;
+						 if(!vot.login())
+						 {
+							 cout << "Fallo login. Intente nuevamente" << endl;
+						 }
+						 else if(!vot.vote())
+						 {
+						 cout << "Fallo votacion. Intente nuevamente" << endl;
+						 }
+						 else voting = false;
+						 break;
+					}
 				}
-
-			}
 				break;
 			case 2:
 				return 0;

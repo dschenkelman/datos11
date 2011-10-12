@@ -6,16 +6,16 @@
  */
 
 #include "Voting.h"
-#include "Voting/Menu.h"
-#include "Hash/HashBlockFile.h"
-#include "Entities/VoterMethods.h"
-#include "Entities/Election.h"
-#include "Entities/ElectionMethods.h"
-#include "Entities/ElectionsList.h"
-#include "Entities/ElectionsListMethods.h"
-#include "Hash/VoterHashingFunction.h"
-#include "BPlusTree/TreeBlockFile.h"
-#include "VariableBlocks/Constants.h"
+#include "Menu.h"
+#include "../Hash/HashBlockFile.h"
+#include "../Entities/VoterMethods.h"
+#include "../Entities/Election.h"
+#include "../Entities/ElectionMethods.h"
+#include "../Entities/ElectionsList.h"
+#include "../Entities/ElectionsListMethods.h"
+#include "../Hash/VoterHashingFunction.h"
+#include "../BPlusTree/TreeBlockFile.h"
+#include "../VariableBlocks/Constants.h"
 #include <vector>
 #include <cstring>
 #include <iostream>

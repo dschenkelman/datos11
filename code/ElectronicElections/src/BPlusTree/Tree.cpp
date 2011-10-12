@@ -200,16 +200,23 @@ OpResult Tree::insert(VariableRecord *keyRecord, VariableRecord *dataRecord)
 
 void Tree::transformInternalRootToLeaf()
 {
-	TreeBlock *rootBlock = this->file->getCurrentBlock();
-	int nodePointer = rootBlock->getNodePointer(0);
-    this->file->swapBlockKind();
-    rootBlock = this->file->getCurrentBlock();
-    this->file->loadBlock(nodePointer);
-    this->file->pushBlock();
-    TreeBlock *childBlock = this->file->getCurrentBlock();
-    memcpy(rootBlock->getBytes(), childBlock->getBytes(), childBlock->getSize());
+	int nodePointer = this->file->getCurrentBlock()->getNodePointer(0);
+	this->file->loadBlock(nodePointer);
+	this->file->pushBlock();
+	int childLevel = this->file->getCurrentBlock()->getLevel();
+	int blockSize = this->file->getCurrentBlock()->getSize();
+	char buffer[blockSize];
+	memcpy(buffer, this->file->getCurrentBlock()->getBytes(), blockSize);
+	this->file->popBlock();
+
+	if (childLevel == 0)
+	{
+		this->file->swapBlockKind();
+	}
+
+	TreeBlock* rootBlock = this->file->getCurrentBlock();
+    memcpy(rootBlock->getBytes(), buffer, blockSize);
     rootBlock->updateInformation();
-    this->file->popBlock();
     if(rootBlock->getLevel() == 0)
     {
         delete this->root;

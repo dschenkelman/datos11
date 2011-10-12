@@ -43,7 +43,7 @@ void TreeTests::run()
 	this->printResult("testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedWhenNonRightMost", testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedWhenNonRightMost());
 	this->printResult("testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedWhenRightMost", testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedWhenRightMost());
 	this->printResult("testRemoveCausesUnderflowInRootIsMergedIntoLeaf", testRemoveCausesUnderflowInRootIsMergedIntoLeaf());
-//	this->printResult("testRemoveShouldMergeInternalNodes", testRemoveShouldMergeInternalNodes());
+	this->printResult("testRemoveShouldMergeInternalNodes", testRemoveShouldMergeInternalNodes());
 }
 
 bool TreeTests::testInsertInEmptyTreeWorksCorrectly()
@@ -549,6 +549,11 @@ bool TreeTests::testRemoveShouldMergeInternalNodes()
 	cout << "District Count" << i << endl;
 	tree.print();
 
+	District err("Entre Rios");
+	tree.remove(err.getKey());
+	cout << endl << "REMOVE Entre Rios";
+	cout<<endl;tree.print();cout<<endl;
+
 	District se("Santiago del Estero");
 	tree.remove(se.getKey());
 	cout << endl << "REMOVE Santiago del Estero";
@@ -578,11 +583,11 @@ bool TreeTests::testRemoveShouldMergeInternalNodes()
 	tree.remove(corr.getKey());
 	cout << endl << "REMOVE Corrientes";
 	cout<<endl;tree.print();cout<<endl;
-
-	District err("Entre Rios");
-	tree.remove(err.getKey());
-	cout << endl << "REMOVE Entre Rios";
-	cout<<endl;tree.print();cout<<endl;
+//
+//	District err("Entre Rios");
+//	tree.remove(err.getKey());
+//	cout << endl << "REMOVE Entre Rios";
+//	cout<<endl;tree.print();cout<<endl;
 
 	return false;
 }

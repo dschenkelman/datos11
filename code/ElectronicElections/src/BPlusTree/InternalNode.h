@@ -37,6 +37,7 @@ class InternalNode: public Node
     bool balanceInternalNodeToTheLeft(TreeBlock *underflowBlock, TreeBlock *balancingBlock, VariableRecord & aux);
     bool balanceInternalNodeToTheRight(TreeBlock *balancingBlock, TreeBlock *underflowBlock);
     void mergeNodeToTheLeft(VariableRecord & nextKeyInFather, int index, TreeBlock *underflowBlock, TreeBlock *balancingBlock);
+    void mergeLastInternalChildNode(VariableRecord & lastRecord, int index, TreeBlock *balancingBlock, TreeBlock *underflowBlock);
 public:
 	InternalNode(TreeBlockFile* file, TreeBlock* b, RecordMethods* methods);
 	virtual OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord, OverflowParameter& overflowParameter);

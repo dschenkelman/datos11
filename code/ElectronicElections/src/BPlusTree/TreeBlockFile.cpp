@@ -120,6 +120,25 @@ void TreeBlockFile::pushBlock()
 	this->isLeaf = this->currentBlock->getLevel() == 0;
 }
 
+TreeBlock* TreeBlockFile::popAndKeep()
+{
+	this->deleteKeptLeaf();
+	this->currentLeaf = this->blockStack.top();
+	this->blockStack.pop();
+	this->blockNumberStack.pop();
+	this->currentBlock = this->blockStack.top();
+	this->isLeaf = this->currentBlock->getLevel() == 0;
+	return this->currentLeaf;
+}
+
+void TreeBlockFile::deleteKeptLeaf()
+{
+	if (this->currentLeaf != NULL)
+	{
+		delete this->currentLeaf;
+	}
+}
+
 void TreeBlockFile::swapBlockKind()
 {
 	int level = this->getCurrentBlock()->getLevel();

@@ -181,6 +181,25 @@ int LeafNode::getNextNode()
 	return this->block->getNextNode();
 }
 
+bool LeafNode::isUnderflow()
+{
+	// TODO if required
+	return false;
+}
+
+OpResult LeafNode::get(char* key, VariableRecord* record, TreeBlock* currentLeafBlock)
+{
+	VariableRecord* rec = new VariableRecord();
+	int position = this->block->findRecord(key, &rec);
+	if (position < 0)
+	{
+		return NotFound;
+	}
+	record->setBytes(rec->getBytes(),rec->getSize());
+	delete rec;
+	return Updated;
+}
+
 LeafNode::~LeafNode()
 {
 }

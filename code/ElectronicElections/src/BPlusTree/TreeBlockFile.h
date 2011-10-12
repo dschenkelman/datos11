@@ -18,6 +18,7 @@ class TreeBlockFile: public BaseVariableBlockFile
 {
 	FreeBlockManager freeBlockManager;
 	TreeBlock* currentBlock;
+	TreeBlock* currentLeaf;
 	bool isLeaf;
 	std::stack<TreeBlock*> blockStack;
 	std::stack<int> blockNumberStack;
@@ -28,6 +29,8 @@ public:
 	bool isCurrentLeaf();
 	void pushBlock();
 	void popBlock();
+	TreeBlock* popAndKeep();
+	void deleteKeptLeaf();
 	virtual TreeBlock* getCurrentBlock();
 	virtual void printContent();
 	virtual void loadBlock(int blockNumber);

@@ -11,6 +11,7 @@
 #include "../BPlusTree/LeafNode.h"
 #include "../BPlusTree/TreeBlock.h"
 #include "../Voting/VoterIndexMethods.h"
+#include "../Entities/DistrictMethods.h"
 #include <iostream>
 #include <string.h>
 #include <stdlib.h>
@@ -37,6 +38,8 @@ void LeafNodeTests::run()
 	printResult("testDeleteReturnsNotFoundIfKeyIsNotPresent", testDeleteReturnsNotFoundIfKeyIsNotPresent());
 	printResult("testDeleteReturnsUnderflowIfOccupiedSizeIsLessThanMinimum", testDeleteReturnsUnderflowIfOccupiedSizeIsLessThanMinimum());
 	printResult("testDeleteReturnsUpdatedIfOccupiedSizeIsMoreThanMinimumAndRecordWasDeleted", testDeleteReturnsUpdatedIfOccupiedSizeIsMoreThanMinimumAndRecordWasDeleted());
+	printResult("testGetShouldGetRecordAndReturnUpdated", testGetShouldGetRecordAndReturnUpdated());
+	printResult("testGetNonExistentRecordReturnsNotFound", testGetNonExistentRecordReturnsNotFound());
 }
 
 bool LeafNodeTests::testInsertDuplicatedRecordReturnsCorrectResult()
@@ -452,6 +455,62 @@ bool LeafNodeTests::testDeleteReturnsUpdatedIfOccupiedSizeIsMoreThanMinimumAndRe
 	node.print();
 
 	return success;
+}
+
+bool LeafNodeTests::testGetNonExistentRecordReturnsNotFound()
+{
+	DistrictMethods districtMethods;
+	District d("Tierra del Fuego");
+	VariableRecord record;
+	SequenceTreeBlock block(42, &districtMethods, false);
+	LeafNode node(&block, &districtMethods);
+	std::string districts[] = {	"Corrientes", "Entre Rios",
+			"Chaco", "Chubut", "Cordoba",
+			 "Santa Fe", "Santiago del Estero",
+			"Mendoza", "Misiones", "Neuquen",
+			"Tierra del Fuego", "Tucuman",
+			};
+
+	for (int i = 0; i < 4; i++)
+	{
+		insertDistrict(&node,districts[i]);
+	}
+	return NotFound == node.get(d.getKey(),&record, NULL);
+}
+
+bool LeafNodeTests::testGetShouldGetRecordAndReturnUpdated()
+{
+	DistrictMethods districtMethods;
+	District d("Entre Rios");
+	VariableRecord record;
+	SequenceTreeBlock block(80, &districtMethods, false);
+	LeafNode node(&block, &districtMethods);
+	std::string districts[] = {	"Corrientes", "Entre Rios",
+			"Chaco", "Chubut", "Cordoba",
+			 "Santa Fe", "Santiago del Estero",
+			"Mendoza", "Misiones", "Neuquen",
+			"Tierra del Fuego", "Tucuman",
+			};
+
+	for (int i = 0; i < 4; i++)
+	{
+		insertDistrict(&node,districts[i]);
+	}
+	OpResult result = node.get(d.getKey(),&record, NULL);
+	bool recordInsertedIsTheSameThanReturned = districtMethods.compare(d.getBytes(),record.getBytes(),d.getSize()) == 0;
+
+	return (recordInsertedIsTheSameThanReturned && (result == Updated));
+}
+
+void LeafNodeTests::insertDistrict(LeafNode* node, std::string key)
+{
+	District d(key);
+	OverflowParameter parameter;
+	VariableRecord dataRecord;
+	VariableRecord keyRecord;
+	dataRecord.setBytes(d.getBytes(), d.getSize());
+	keyRecord.setBytes(d.getKey(), d.getKeySize());
+	node->insert(&keyRecord, &dataRecord, parameter);
 }
 
 LeafNodeTests::~LeafNodeTests()

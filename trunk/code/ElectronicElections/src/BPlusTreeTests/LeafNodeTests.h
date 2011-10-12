@@ -9,10 +9,12 @@
 #define LEAFNODETESTS_H_
 
 #include <string>
+#include "../BPlusTree/LeafNode.h"
 
 class LeafNodeTests
 {
 	void printResult(std::string testName, bool result);
+	void insertDistrict(LeafNode* node, std::string key);
 public:
 	LeafNodeTests();
 	bool testInsertLessThanFullSizeReturnsCorrectResult();
@@ -22,6 +24,8 @@ public:
 	bool testUpdateNonExistentRecordReturnsNotFound();
 	bool testUpdateShouldReturnOverflowIfRecordDoesNotFitNode();
 	bool testUpdateShouldUpdateRecordAndReturnUpdated();
+	bool testGetNonExistentRecordReturnsNotFound();
+	bool testGetShouldGetRecordAndReturnUpdated();
 	bool testDeleteReturnsNotFoundIfKeyIsNotPresent();
 	bool testDeleteReturnsUnderflowIfOccupiedSizeIsLessThanMinimum();
 	bool testDeleteReturnsUpdatedIfOccupiedSizeIsMoreThanMinimumAndRecordWasDeleted();

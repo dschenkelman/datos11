@@ -26,15 +26,19 @@ class Node
 protected:
 	TreeBlock* block;
 	RecordMethods* recordMethods;
+	int maximumSize;
+	int minimumSize;
 public:
 	Node(TreeBlock* b, RecordMethods* methods);
 	virtual OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord, OverflowParameter& overflowParameter) = 0;
 	virtual OpResult update(char* key, VariableRecord* r) = 0;
 	virtual OpResult remove(char* key) = 0;
+	virtual OpResult get(char* key, VariableRecord* record, TreeBlock* currentLeafBlock) = 0;
 	virtual void print() = 0;
 	virtual int getMaxSize() = 0;
 	virtual int getOccupiedSize();
 	virtual int getMinimumSize() = 0;
+	virtual bool isUnderflow() = 0;
 	short getLevel();
 	void increaseLevel();
 	virtual ~Node();

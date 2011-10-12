@@ -246,6 +246,48 @@ OpResult Tree::update(char *key, VariableRecord *r)
 	return this->root->update(key, r);
 }
 
+OpResult Tree::get(char* key, VariableRecord* r)
+{
+	if (this->currentLeafBlock != NULL)
+	{
+		this->file->popBlock();
+	}
+	return this->root->get(key, r, currentLeafBlock);
+}
+
+VariableRecord* Tree::getNext(VariableRecord* r)
+{
+	// Check if key is in currentBlock or next
+	VariableRecord aux;
+	this->currentLeafBlock->positionAtBegin();
+	while (this->currentLeafBlock->getNextRecord(&aux) != NULL){}
+	if (this->methods->compare
+			(r->getBytes(), aux.getBytes(), aux.getSize()) > 0 )
+	{
+		// Load next block
+		int nextNode = this->currentLeafBlock->getNextNode();
+		if (nextNode == 0)
+		{
+			r = NULL;
+			return r;
+		}
+		this->file->deleteKeptLeaf();
+		this->file->loadBlock(nextNode);
+		this->currentLeafBlock = this->file->getCurrentBlock();
+	}
+	this->currentLeafBlock->positionAtBegin();
+	while (this->currentLeafBlock->getNextRecord(&aux) != NULL)
+	{
+		if (this->methods->compare
+					(r->getBytes(), aux.getBytes(), aux.getSize()) > 0 )
+		{
+			r->setBytes(aux.getBytes(),aux.getSize());
+			return r;
+		}
+	}
+	return r;
+}
+
 void Tree::print()
 {
 	this->root->print();

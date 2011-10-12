@@ -15,6 +15,8 @@
 #include "OverflowParameter.h"
 
 class Tree {
+	VariableRecord lastKey;
+	TreeBlock* currentLeafBlock;
 	Node* root;
 	RecordMethods* methods;
 	TreeBlockFile* file;
@@ -26,6 +28,8 @@ public:
 	Tree(std::string fileName, int blockSize, RecordMethods* methods, bool createNew);
 	OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord);
 	OpResult update(char* key, VariableRecord* r);
+	OpResult get(char* key, VariableRecord* r);
+	VariableRecord* getNext(VariableRecord* r);
 	OpResult remove(char* key);
 	void print();
 	virtual ~Tree();

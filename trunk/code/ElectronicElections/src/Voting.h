@@ -9,13 +9,22 @@
 #define VOTING_H_
 
 #include <string>
+#include "Voting/LoadDataFiles.h"
+#include "Entities/Voter.h"
 using namespace std;
 
 class Voting {
+private:
+	LoadDataFiles* dataFiles;
+	Voter* voter;
+	bool isInVoterElectionList(Election* e);
+	bool voteInElection(Election* e);
+	bool isInVoterDistrict(Election* e);
 public:
-	Voting();
+	Voting(LoadDataFiles* dataFiles);
+	bool login();
+	bool vote();
 	virtual ~Voting();
-	bool voted(string dni);
 };
 
 #endif /* VOTING_H_ */

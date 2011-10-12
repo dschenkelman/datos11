@@ -68,20 +68,20 @@ int run_tests()
 	/*
 	cout << "LeafNode Tests" << endl;
 	LeafNodeTests leafTests;
-	leafTests.run();
+	leafTests.run();*/
 
 	cout << "District Tests" << endl;
 	DistrictTests districtTests;
-	districtTests.run();*/
+	districtTests.run();
 
-	cout << "Hash Tests" << endl;
-	HashTest hashTests;
-	hashTests.run();
+//	cout << "Hash Tests" << endl;
+//	HashTest hashTests;
+//	hashTests.run();
 
 	/*
 	cout << "Tree Tests" << endl;
 	TreeTests treeTests;
-	treeTests.run();
+	treeTests.run();*/
 
 	cout << "Elections List Tests" << endl;
 	ElectionsListTests electionTests;
@@ -96,12 +96,12 @@ int run_tests()
 	at.run();
 
 	cout << "Count Tests" << endl;
-	CountTests ct;
-	ct.run();
+	CountTests countTests;
+	countTests.run();
 
 	cout << "Charge Tests" << endl;
-	ChargeTests ct;
-	ct.run();*/
+	ChargeTests chargeTests;
+	chargeTests.run();
 
 	return 0;
 }
@@ -130,7 +130,30 @@ int main()
 		int action = Menu(login_type,3).ask();
 		switch (action) {
 			case 0:
-				cout << "Not available" << endl;
+			{
+				bool voting = true;
+				LoadDataFiles ldf("config.txt");
+				ldf.readConfigFile();
+				/*while(voting)
+				{
+					Voting vot(&ldf);
+
+					 * if(!vot.login())
+					 * {
+					 *  	cout << "Fallo login. Intente nuevamente" << endl;
+					 * }
+					 *
+					 * else if(!vot.vote())
+					 * {
+					 * 		cout << "Fallo votacion. Intente nuevamente" << endl;
+					 * }
+					 *
+					 * else voting = false;
+					 */
+				break;
+				}
+
+			}
 				break;
 			case 2:
 				return 0;

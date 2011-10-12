@@ -9,8 +9,10 @@
 #define VOTING_H_
 
 #include <string>
-#include "Voting/LoadDataFiles.h"
-#include "Entities/Voter.h"
+#include "LoadDataFiles.h"
+#include "../Entities/Voter.h"
+#include "../Entities/Election.h"
+
 using namespace std;
 
 class Voting {

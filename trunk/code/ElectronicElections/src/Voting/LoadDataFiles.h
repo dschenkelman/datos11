@@ -24,6 +24,8 @@
 #include "../Hash/ChargeHashingFunction.h"
 #include "../Entities/ChargeMethods.h"
 
+#include "../Entities/Candidate.h"
+
 
 class LoadDataFiles
 {
@@ -59,6 +61,7 @@ class LoadDataFiles
 	//void initializefile();
 
 	void readDistrictFile(Tree* treeDistrictFile, char* dataFile);
+	void readCandidateFile(Tree* treeCandidateFile, char* dataFileName);
 	void readVoterFile(HashBlockFile* hashVoterFile, char* dataFile);
 	void readChargeFile(HashBlockFile* hashChargeFile, char* dataFile);
 	void createFileType(char* fileType,char** fields);

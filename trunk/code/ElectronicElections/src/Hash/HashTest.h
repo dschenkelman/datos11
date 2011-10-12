@@ -5,8 +5,8 @@
  *      Author: gabriel
  */
 
-#ifndef HASHTEST_H
-#define HASHTEST_H
+#ifndef HASHTEST_H_
+#define HASHTEST_H_
 
 #include "HashBlockFile.h"
 
@@ -25,4 +25,5 @@ public:
 	void run();
 	virtual ~HashTest();
 };
-#endif HASHTEST_H
+
+#endif HASHTEST_H_

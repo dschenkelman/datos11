@@ -8,6 +8,7 @@
 #include "HashTest.h"
 #include "../BlocksTests/CustomerMethods.h"
 #include "../Entities/DistrictMethods.h"
+#include "DistrictHashingFunction.h"
 #include <string>
 #include <iostream>
 #include <stdlib.h>
@@ -19,14 +20,14 @@ HashTest::HashTest()
 {
 	string f = "hashtest";
 	int blockAmount = 9;
-	this->file = new HashBlockFile(f, 512, new CustomerMethods, NULL, blockAmount, true);
+	this->file = new HashBlockFile(f, 512, new CustomerMethods, new DistrictHashingFunction, blockAmount, true);
 }
 
 void HashTest::testLoadHashwithoutValidation()
 {
 	std::cout << "==================================" << std::endl;
 	std::cout << "Load Hash " << std::endl;
-	HashBlockFile* districtHash = new HashBlockFile("districthash", 1024, new DistrictMethods, NULL, 1000, true);
+	HashBlockFile districtHash("districthash", 1024, new DistrictMethods, new DistrictHashingFunction, 100, true);
 	string districts[] = {"San Luis", "Santa Cruz", "Santa Fe", "Santiago del Estero",
 			"Corrientes", "Tierra del Fuego", "Tucuman", "Entre Rios",
 			"Chaco", "Chubut", "Cordoba",
@@ -35,25 +36,24 @@ void HashTest::testLoadHashwithoutValidation()
 			};
 	VariableRecord dataRecord;
 	VariableRecord keyRecord;
-	for (int i = 0; i < 60000; i++)
+	for (int i = 0; i < 6000; i++)
 	{
 		District d(districts[i%23]);
 		dataRecord.setBytes(d.getBytes(), d.getSize());
 		keyRecord.setBytes(d.getKey(), d.getKeySize());
 
-		districtHash->loadRecord(keyRecord.getBytes(), &dataRecord);
+		districtHash.loadRecord(keyRecord.getBytes(), &dataRecord);
 	}
-	districtHash->printContent();
+	districtHash.printContent();
 	std::cout << "Loaded District Hash successful" << std::endl;
 	std::cout << "==================================" << std::endl;
 	std::cout << "Update San Juan Hash.." << std::endl;
 	District dUpdate("Barcelo");
 	District dOld("San Luis");
 	dataRecord.setBytes(dUpdate.getBytes(), dUpdate.getSize());
-	districtHash->updateRecord(dOld.getKey(), &dataRecord);
+	districtHash.updateRecord(dOld.getKey(), &dataRecord);
 	//districtHash->printContent();
 	std::cout << "==================================" << std::endl;
-	delete districtHash;
 }
 
 void HashTest::testInsert()
@@ -85,10 +85,11 @@ void HashTest::testInsert()
 		memcpy(recordBytes +1+ l1, &l2, sizeof(char));
 		memcpy(recordBytes +1+ l1 + 1, c.lastName, l2);
 		memcpy(recordBytes +2+ (l1+l2), &c.balance, sizeof(int));
-		VariableRecord record;
-		record.setBytes(recordBytes, size);
+		VariableRecord* record = new VariableRecord();
+		record->setBytes(recordBytes, size);
 		//blockNumber = hasingName(recordKey);
-		this->file->insertRecord(recordKey, &record);
+		this->file->insertRecord(recordKey, record);
+		delete record;
 	}
 	this->file->printContent();
 	std::cout << "Inserted Hash successful" << std::endl;
@@ -100,7 +101,7 @@ void HashTest::testGetRecord()
 	std::cout << "==================================" << std::endl;
 	std::cout << "Get Record from Hash.." << std::endl;
 
-	CustomerMethods* cm;
+	CustomerMethods* cm = new CustomerMethods();
 	Customer c;
 	c.firstName = "John"; //char= 5
 	c.lastName = "Connor"; //char= 7
@@ -111,16 +112,21 @@ void HashTest::testGetRecord()
 	strcat(recordKey, c.firstName);
 	strcat(recordKey, c.lastName);
 	
-	VariableRecord* gotRecord = new VariableRecord();
+	VariableRecord* gotRecord = NULL;
 	if( this->file->getRecord(recordKey, &gotRecord))
 	{
-		c = *(cm->getCustomerFromRecord(gotRecord->getBytes(), gotRecord->getSize()));
+		c = cm->getCustomerFromRecord(gotRecord->getBytes(), gotRecord->getSize());
 		std::cout << c.firstName << c.lastName << c.balance << endl;
+		delete[] c.firstName;
+		delete[] c.lastName;
 	}
 
 	else std::cout << "couldn't find key: " << recordKey << endl;
 	delete [] recordKey;
-	delete gotRecord;
+	if(gotRecord != NULL){
+		delete gotRecord;
+	}
+	delete cm;
 	std::cout << "GetRecord Successful!" << endl;
 	std::cout << "==================================" << std::endl;
 }
@@ -171,13 +177,11 @@ void HashTest::testRemove()
 		memset(recordKey, 0, keySize);
 		strcat(recordKey, c.firstName);
 		strcat(recordKey, c.lastName);
-		VariableRecord* gotRecord = new VariableRecord();
 		if(this->file->removeRecord(recordKey) )
 			std::cout << "key: " << recordKey << endl;
 		else std::cout << "couldn't remove key: " << recordKey << endl;
 
 		delete [] recordKey;
-		delete gotRecord;
 	}
 	this->file->printContent();
 	std::cout << "Remove Successful" << endl;
@@ -197,7 +201,7 @@ void HashTest::testEmptyBlock(int blockNumber)
 
 void HashTest::run()
 {
-	//this->testLoadHashwithoutValidation();
+	this->testLoadHashwithoutValidation();
 	this->testInsert();
 	this->testGetRecord();
 	this->testUpdateRecord();

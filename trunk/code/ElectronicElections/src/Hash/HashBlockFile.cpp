@@ -53,7 +53,7 @@ int HashBlockFile::fakeHashFunction(const char* key)
 {
 	// This will change
 	int hash = rand() % this->totalBlocks;
-	return 2;
+	return hash;
 }
 
 void HashBlockFile::printContent()
@@ -87,9 +87,9 @@ void HashBlockFile::printContent()
 
 void HashBlockFile::loadRecord(const char* key, VariableRecord* record)
 {
-	//int blockNumber = this->fakeHashFunction(key);
+	int blockNumber = this->fakeHashFunction(key);
 	//to use on each Record Type :D
-	int blockNumber = this->hashingFunction->hashingFunction(key, this->totalBlocks);
+	//int blockNumber = this->hashingFunction->hashingFunction(key, this->totalBlocks);
 
 	this->loadBlock(blockNumber);
 	if(this->currentBlock->getFreeSpace() >= record->getSize() +2)
@@ -178,8 +178,12 @@ bool HashBlockFile::insertRecord(const char* key, VariableRecord* record)
 	int ovflowBlock;
 	this->loadBlock(blockNumber);
 	this->currentBlock = this->getCurrentBlock();
-	if(this->currentBlock->findRecord(key, &record) >= 0)
+	VariableRecord* rec = NULL;
+	if(this->currentBlock->findRecord(key, &rec) >= 0)
 	{
+		if(rec != NULL){
+			delete rec;
+		}
 		//ERROR, KEY ALREADY INSERTED
 		return false;
 	}
@@ -188,8 +192,11 @@ bool HashBlockFile::insertRecord(const char* key, VariableRecord* record)
 		if( (ovflowBlock = this->currentBlock->getOverflowedBlock()) != -1)
 		{
 			this->overflowFile->loadBlock(ovflowBlock);
-			if(this->findInOverflowBlocks(key, &record, false) != -1)
+			if(this->findInOverflowBlocks(key, &rec, false) != -1)
 			{
+				if(rec != NULL){
+					delete rec;
+				}
 				return false;
 			}
 		}
@@ -202,8 +209,11 @@ bool HashBlockFile::insertRecord(const char* key, VariableRecord* record)
 	if((ovflowBlock = this->currentBlock->getOverflowedBlock()) != -1)
 	{
 		this->overflowFile->loadBlock(ovflowBlock);
-		if(this->findInOverflowBlocks(key, &record, false) != -1)
+		if(this->findInOverflowBlocks(key, &rec, true) != -1)
 		{
+			if(rec != NULL){
+				delete rec;
+			}
 			return false;
 		}
 		this->overflowFile->loadBlock(ovflowBlock);
@@ -240,11 +250,13 @@ bool HashBlockFile::getRecord(const char* key, VariableRecord** record)
 	int overflwBlock;
 	this->loadBlock(blockNumber);
 	if(this->currentBlock->findRecord(key, record) != -1)
+
 		return true;
 	if((overflwBlock = this->currentBlock->getOverflowedBlock() ) != -1)
 	{
 		this->overflowFile->loadBlock(overflwBlock);
 		if(this->findInOverflowBlocks(key, record, true) != -1)
+
 			return true;
 	}
 	return false;
@@ -298,11 +310,16 @@ bool HashBlockFile::updateRecord(const char *key, VariableRecord* record)
 	if(ovflwBlock == -1)
 		return false;//not found in hash and no overflow, stop.
 
+	VariableRecord* rec = NULL;
 	this->overflowFile->loadBlock(ovflwBlock);
-	int foundInBlock = this->findInOverflowBlocks(key, &record, false);//the block is loaded
+	int foundInBlock = this->findInOverflowBlocks(key, &rec, false);//the block is loaded
+	if(rec != NULL)
+	{
+		delete rec;
+	}
+
 	if(foundInBlock == -1)
 		return false;//key was not found
-
 	result = this->overflowFile->getCurrentBlock()->updateRecord(key, record);
 	switch(result){
 	case UPDATED:
@@ -359,13 +376,19 @@ bool HashBlockFile::removeRecord(const char* key)
 	}
 	int ovflowBlock;
 	int foundInBlock;
-	VariableRecord* record;
+	VariableRecord* record = NULL;
 	if((ovflowBlock = this->currentBlock->getOverflowedBlock()) != -1)
 	{
 		this->overflowFile->loadBlock(ovflowBlock);
 		foundInBlock = this->findInOverflowBlocks(key, &record, true);//the block is loaded
 		if(foundInBlock == -1)
+		{
 			return false;
+		}
+		if(record != NULL)
+		{
+			delete record;
+		}
 		if(this->overflowFile->getCurrentBlock()->removeRecord(key))
 		{
 			this->ovflowBlockUsed = true;
@@ -402,22 +425,24 @@ int HashBlockFile::findInOverflowBlocks(const char* key, VariableRecord** record
 {
 	int ovflowBlock = this->currentBlock->getOverflowedBlock();
 	SimpleVariableBlock* block = this->overflowFile->getCurrentBlock();
-	VariableRecord* rec = new VariableRecord();
+	VariableRecord* rec;
 	while(block->findRecord(key, &rec) == -1)
 	{
 		ovflowBlock = block->getOverflowedBlock();
 		if(ovflowBlock == -1)
 		{
-			delete rec;
+			//delete rec;
 			return ovflowBlock; //key was not found
 		}
 		this->overflowFile->loadBlock(ovflowBlock);
 		block = this->overflowFile->getCurrentBlock();
 	}
 	if(getFlag)
+	{
 		*record = rec;
-	else
-		delete rec;
+	}
+	//else
+		//delete rec;
 	return ovflowBlock;
 }
 
@@ -452,5 +477,7 @@ HashBlockFile::~HashBlockFile()
 	delete this->currentBlock;
 	delete this->overflowFile;
 	this->dataFile.close();
+	delete hashingFunction;
+	//delete recordMethods;
 }
 

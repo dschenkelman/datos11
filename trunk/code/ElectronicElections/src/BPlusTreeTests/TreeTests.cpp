@@ -43,7 +43,8 @@ void TreeTests::run()
 	this->printResult("testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedWhenNonRightMost", testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedWhenNonRightMost());
 	this->printResult("testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedWhenRightMost", testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedWhenRightMost());
 	this->printResult("testRemoveCausesUnderflowInRootIsMergedIntoLeaf", testRemoveCausesUnderflowInRootIsMergedIntoLeaf());
-	this->printResult("testRemoveShouldMergeInternalNodes", testRemoveShouldMergeInternalNodes());
+	this->printResult("testRemoveShouldMergeInternalNodes", testRemoveShouldMergeInternalNodesWhenNotRightMost());
+	this->printResult("testRemoveShouldMergeInternalNodesWhenRightMost", testRemoveShouldMergeInternalNodesWhenRightMost());
 }
 
 bool TreeTests::testInsertInEmptyTreeWorksCorrectly()
@@ -521,7 +522,7 @@ bool TreeTests::testRemoveInLeafCausingUnderflowInParentIsCorrectlyBalancedWhenR
 }
 
 
-bool TreeTests::testRemoveShouldMergeInternalNodes()
+bool TreeTests::testRemoveShouldMergeInternalNodesWhenNotRightMost()
 {
 	DistrictMethods districtMethods;
 	Tree tree("treeTests.dat", 90, &districtMethods, true);
@@ -634,6 +635,49 @@ bool TreeTests::testRemoveCausesUnderflowInRootIsMergedIntoLeaf()
 	return false;
 }
 
+bool TreeTests::testRemoveShouldMergeInternalNodesWhenRightMost()
+{
+	DistrictMethods districtMethods;
+	Tree tree("treeTests.dat", 90, &districtMethods, true);
+
+	string districts[] = {
+				 "Santa Fe", "Santiago del Estero",
+				"Mendoza", "Misiones", "Neuquen",
+				"Tierra del Fuego", "Tucuman",
+				 "Salta", "San Juan",
+				 "Jujuy", "La Pampa", "La Rioja","Rio Negro",
+				 "San Luis", "Santa Cruz",
+				 "Corrientes", "Entre Rios",
+				"Chaco", "Chubut", "Cordoba",
+				"Buenos Aires", "Catamarca", "Formosa",
+				};
+
+	int i;
+	for (i = 0; i < 23; i++)
+	{
+		District d(districts[i]);
+		VariableRecord dataRecord;
+		VariableRecord keyRecord;
+		dataRecord.setBytes(d.getBytes(), d.getSize());
+		keyRecord.setBytes(d.getKey(), d.getKeySize());
+
+		tree.insert(&keyRecord, &dataRecord);
+	}
+
+	cout << "District Count: " << i << endl;
+	tree.print();
+	cout << endl;
+
+	District d("Santiago del Estero");
+	tree.remove(d.getKey());
+
+	cout << "District Count: " << i - 1 << endl;
+	tree.print();
+	cout << endl;
+
+	return true;
+
+}
 
 TreeTests::~TreeTests()
 {

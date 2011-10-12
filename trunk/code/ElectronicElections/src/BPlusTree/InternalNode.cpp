@@ -520,9 +520,37 @@ void InternalNode::mergeNodeToTheLeft(VariableRecord & nextKeyInFather, int inde
     }
 }
 
+void InternalNode::mergeLastInternalChildNode(VariableRecord & lastRecord, int index, TreeBlock *balancingBlock, TreeBlock *underflowBlock)
+{
+    VariableRecord aux;
+    this->block->removeRecord(lastRecord.getBytes());
+    this->block->removeNodePointer(index);
+    balancingBlock->insertRecord(&lastRecord, &lastRecord);
+    int balancingIndex = 0;
+    balancingBlock->positionAtBegin();
+    while(balancingBlock->getNextRecord(&aux) != NULL)
+					{
+						balancingIndex++;
+					}
+    int nodePointer = underflowBlock->getNodePointer(0);
+    underflowBlock->removeNodePointer(0);
+    balancingBlock->insertNodePointer(balancingIndex, nodePointer);
+    balancingIndex++;
+    while(!underflowBlock->isEmpty()){
+        VariableRecord *firstParentRecord = underflowBlock->popFirst();
+        balancingBlock->forceInsert(firstParentRecord);
+        delete firstParentRecord;
+        nodePointer = underflowBlock->getNodePointer(0);
+        underflowBlock->removeNodePointer(0);
+        balancingBlock->insertNodePointer(balancingIndex, nodePointer);
+        balancingIndex++;
+    }
+}
+
 OpResult InternalNode::remove(char *key)
 {
 	VariableRecord aux;
+	VariableRecord lastRecord;
 	OpResult result;
 	bool leafAlreadyBalanced = false;
 	this->block->positionAtBegin();
@@ -539,6 +567,7 @@ OpResult InternalNode::remove(char *key)
 			break;
 		}
 
+		lastRecord = aux;
 		index++;
 	}
 	//To be used in internalNode merging
@@ -599,12 +628,17 @@ OpResult InternalNode::remove(char *key)
 		    	if (!lastChild)
 		    	{
 	    		    this->mergeNodeToTheLeft(nextKeyInFather, index, underflowBlock, balancingBlock);
-
-	    		    if ((this->block->getOccupiedSize() - IndexTreeBlock::RECORD_OFFSET) < this->minimumSize)
-					{
-	    		    	result = Underflow;
-					}
 	    		}
+		    	else
+		    	{
+	    		    this->mergeLastInternalChildNode(lastRecord, index, balancingBlock, underflowBlock);
+	    		}
+
+
+    		    if ((this->block->getOccupiedSize() - IndexTreeBlock::RECORD_OFFSET) < this->minimumSize)
+				{
+    		    	result = Underflow;
+				}
 		    }
 
 		    this->file->saveBlock();

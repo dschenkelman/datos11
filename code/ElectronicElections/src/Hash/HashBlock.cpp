@@ -109,7 +109,7 @@ void HashBlock::forceInsert(VariableRecord *rec)
 
 bool HashBlock::insertRecord(const char* key, VariableRecord *rec)
 {
-	if (!this->canInsertRecord(rec->getSize()) || this->findRecord(key, &rec) >= 0)
+	if (!this->canInsertRecord(rec->getSize()) || this->findRecord(key,&rec) >= 0)
 	{
 		return false;
 	}
@@ -121,7 +121,7 @@ bool HashBlock::insertRecord(const char* key, VariableRecord *rec)
 
 UpdateResult HashBlock::updateRecord(const char* key, VariableRecord* rec)
 {
-	VariableRecord* r = new VariableRecord();
+	VariableRecord* r = NULL;
 	int startPosition = this->findRecord(key, &r);
 
 	if (startPosition < 0)
@@ -141,7 +141,7 @@ UpdateResult HashBlock::updateRecord(const char* key, VariableRecord* rec)
 		occupiedSpace += sizeDifference;
 		// there is enough space to perform the update
 		// in the current block
-		int bufferSize = (this->maxSize - this->position) - sizeDifference;
+		int bufferSize = (this->maxSize - this->position);
 		char buffer[bufferSize];
 		memset(buffer, 0, bufferSize);
 
@@ -154,7 +154,7 @@ UpdateResult HashBlock::updateRecord(const char* key, VariableRecord* rec)
 		memcpy(this->bytes + (startPosition + sizeof(short)), rec->getBytes(), recordSize);
 
 		// add
-		memcpy(this->bytes + (startPosition + sizeof(short) + recordSize), buffer, bufferSize);
+		memcpy(this->bytes + (startPosition + sizeof(short) + recordSize + sizeDifference), buffer, bufferSize);
 
 		// update block size
 		memcpy(this->bytes +1, &occupiedSpace, sizeof(int));
@@ -179,13 +179,13 @@ UpdateResult HashBlock::updateRecord(const char* key, VariableRecord* rec)
 
 bool HashBlock::removeRecord(const char* key)
 {
-	VariableRecord* r = new VariableRecord();
+	VariableRecord* r;
 	int startPosition = this->findRecord(key, &r);
 	if (startPosition < 0)
 	{
-		if (r != NULL)
+		//if (r != NULL)
 		{
-			delete r;
+			//delete r;
 		}
 		return false;
 	}

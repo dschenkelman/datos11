@@ -115,15 +115,16 @@ bool LoadDataFiles::canOpenAdminFile()
 	}
 	return valid;
 }
+
 Tree LoadDataFiles::createAdminFile()
 {
 	cout << "Generando archivo de administrador" << endl;
-	Tree treeAdministratorFile = Tree(this->administratorFileName, this->administratorBlockSize, new AdministratorMethods, true);
+	Tree treeAdministratorFile(this->administratorFileName, this->administratorBlockSize, new AdministratorMethods, true);
 	return treeAdministratorFile;
 }
 Tree LoadDataFiles::getAdminFile()
 {
-	Tree treeAdministratorFile = Tree(this->administratorFileName, this->administratorBlockSize, new AdministratorMethods, false);
+	Tree treeAdministratorFile(this->administratorFileName, this->administratorBlockSize, new AdministratorMethods, false);
 	return treeAdministratorFile;
 }
 
@@ -140,7 +141,7 @@ void LoadDataFiles::readDistrictFile(Tree* treeDistrictFile, char* dataFileName)
 		char* districtName = strdup(line.c_str());
 		strtok(districtName, ",");
 
-		//POSSIBLE INTERNAL DISTRICT LIST ON PRINCIPAL DISTRICT
+		// INTERNAL DISTRICT LIST ON PRINCIPAL DISTRICT
 		/*while((secondCharges = strtok(NULL, ",")) != NULL)
 		{
 			list.push_back(string(secondCharges));
@@ -152,6 +153,29 @@ void LoadDataFiles::readDistrictFile(Tree* treeDistrictFile, char* dataFileName)
 		//treeDistrictFile->loadRecord(district->getKey(), record);
 		delete district;
 		delete record;
+	}
+	dataFile.close();
+}
+
+void LoadDataFiles::readCandidateFile(Tree* treeCandidateFile, char* dataFileName)
+{
+	fstream dataFile;
+	dataFile.open(dataFileName, ios::in |  ios::binary);
+	std::string line;
+	char* lista;
+	char* cargo;
+	//char* district;  SHOULD BE ANOTHER FIELD TO REFERENCE CHARGE & DISTRICT
+	while ( getline(dataFile,line) )
+	{
+		char* name = strdup(line.c_str());
+		strtok(name, ",");
+		lista = strtok(NULL, ",");//fecha, eleccion!
+		cargo = strtok(NULL, ",");
+		//Candidate* candidate = new Candidate(string(name), );
+		VariableRecord* record;
+		//record->setBytes(candidate->getBytes(), candidate->getSize());
+		//treeDistrictFile->loadRecord(district->getKey(), record);
+		//delete candidate;
 	}
 	dataFile.close();
 }

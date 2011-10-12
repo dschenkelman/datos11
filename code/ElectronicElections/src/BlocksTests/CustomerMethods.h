@@ -18,7 +18,7 @@ private:
 
 public:
     CustomerMethods();
-    Customer* getCustomerFromRecord(const char *recordBytes, int recordSize);
+    Customer getCustomerFromRecord(const char *recordBytes, int recordSize);
     VariableRecord* getRecordFromCustomer(Customer* customer);
 	virtual int compare(const char* key, const char* recordBytes, int recordSize);
 	virtual void print(const char* recordBytes, int recordSize);

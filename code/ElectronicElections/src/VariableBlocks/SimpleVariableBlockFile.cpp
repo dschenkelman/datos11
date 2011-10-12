@@ -22,7 +22,7 @@ BaseVariableBlockFile(name, bSize, methods)
 	if (createNew)
 	{
 		this->dataFile.open(this->fileName.c_str(), ios::binary | ios::in | ios::out | ios::trunc);
-		char* initialValue= new char[bSize * 2]; //to start with an empty block
+		char initialValue[bSize * 2]; //to start with an empty block
 		memset(initialValue, 0, bSize *2);
 		char noOverflow = -1;
 		memcpy(initialValue+bSize, &noOverflow, sizeof(char));
@@ -31,7 +31,6 @@ BaseVariableBlockFile(name, bSize, methods)
 		memcpy(initialValue, &blockAmount, sizeof(long));
 		this->dataFile.seekp(0, ios::beg);
 		this->dataFile.write(initialValue, this->blockSize * 2);
-		delete [] initialValue;
 	}
 	else
 	{
@@ -294,5 +293,5 @@ SimpleVariableBlockFile::~SimpleVariableBlockFile()
 	this->dataFile.close();
 	delete this->currentBlock;
 	delete this->recordMethods;
-	delete this->positionToDataBlocks;
+	delete[] this->positionToDataBlocks;
 }

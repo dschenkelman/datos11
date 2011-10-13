@@ -38,8 +38,8 @@ void LeafNodeTests::run()
 	printResult("testDeleteReturnsNotFoundIfKeyIsNotPresent", testDeleteReturnsNotFoundIfKeyIsNotPresent());
 	printResult("testDeleteReturnsUnderflowIfOccupiedSizeIsLessThanMinimum", testDeleteReturnsUnderflowIfOccupiedSizeIsLessThanMinimum());
 	printResult("testDeleteReturnsUpdatedIfOccupiedSizeIsMoreThanMinimumAndRecordWasDeleted", testDeleteReturnsUpdatedIfOccupiedSizeIsMoreThanMinimumAndRecordWasDeleted());
-	printResult("testGetShouldGetRecordAndReturnUpdated", testGetShouldGetRecordAndReturnUpdated());
-	printResult("testGetNonExistentRecordReturnsNotFound", testGetNonExistentRecordReturnsNotFound());
+	printResult("testGetShouldGetRecordAndReturnTrue", testGetShouldGetRecordAndReturnTrue());
+	printResult("testGetNonExistentRecordReturnsFalse", testGetNonExistentRecordReturnsFalse());
 }
 
 bool LeafNodeTests::testInsertDuplicatedRecordReturnsCorrectResult()
@@ -457,7 +457,7 @@ bool LeafNodeTests::testDeleteReturnsUpdatedIfOccupiedSizeIsMoreThanMinimumAndRe
 	return success;
 }
 
-bool LeafNodeTests::testGetNonExistentRecordReturnsNotFound()
+bool LeafNodeTests::testGetNonExistentRecordReturnsFalse()
 {
 	DistrictMethods districtMethods;
 	District d("Tierra del Fuego");
@@ -475,10 +475,10 @@ bool LeafNodeTests::testGetNonExistentRecordReturnsNotFound()
 	{
 		insertDistrict(&node,districts[i]);
 	}
-	return NotFound == node.get(d.getKey(),&record, NULL);
+	return !node.get(d.getKey(),&record, NULL);
 }
 
-bool LeafNodeTests::testGetShouldGetRecordAndReturnUpdated()
+bool LeafNodeTests::testGetShouldGetRecordAndReturnTrue()
 {
 	DistrictMethods districtMethods;
 	District d("Entre Rios");
@@ -496,10 +496,10 @@ bool LeafNodeTests::testGetShouldGetRecordAndReturnUpdated()
 	{
 		insertDistrict(&node,districts[i]);
 	}
-	OpResult result = node.get(d.getKey(),&record, NULL);
+	bool result = node.get(d.getKey(),&record, NULL);
 	bool recordInsertedIsTheSameThanReturned = districtMethods.compare(d.getBytes(),record.getBytes(),d.getSize()) == 0;
 
-	return (recordInsertedIsTheSameThanReturned && (result == Updated));
+	return (recordInsertedIsTheSameThanReturned && (result));
 }
 
 void LeafNodeTests::insertDistrict(LeafNode* node, std::string key)

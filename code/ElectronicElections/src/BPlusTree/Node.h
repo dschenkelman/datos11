@@ -33,7 +33,7 @@ public:
 	virtual OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord, OverflowParameter& overflowParameter) = 0;
 	virtual OpResult update(char* key, VariableRecord* r) = 0;
 	virtual OpResult remove(char* key) = 0;
-	virtual OpResult get(char* key, VariableRecord* record, TreeBlock* currentLeafBlock) = 0;
+	virtual bool get(char* key, VariableRecord* record, TreeBlock** currentLeafBlock) = 0;
 	virtual void print() = 0;
 	virtual int getMaxSize() = 0;
 	virtual int getOccupiedSize();

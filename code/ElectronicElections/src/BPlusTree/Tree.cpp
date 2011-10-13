@@ -24,6 +24,7 @@ Tree::Tree(string fileName, int blockSize, RecordMethods* methods, bool createNe
 	}
 
 	this->file = new TreeBlockFile(fileName, blockSize, methods, createNew);
+	this->currentLeafBlock = NULL;
 	// load root
 	this->file->loadBlock(0);
 	this->file->pushBlock();
@@ -246,23 +247,43 @@ OpResult Tree::update(char *key, VariableRecord *r)
 	return this->root->update(key, r);
 }
 
-OpResult Tree::get(char* key, VariableRecord* r)
+void Tree::deleteKeptLeaf()
 {
 	if (this->currentLeafBlock != NULL)
 	{
-		this->file->popBlock();
+		delete this->currentLeafBlock;
 	}
-	return this->root->get(key, r, currentLeafBlock);
+	this->currentLeafBlock = NULL;
+}
+
+bool Tree::get(char* key, VariableRecord* r)
+{
+	this->deleteKeptLeaf();
+	bool found = this->root->get(key, r, &currentLeafBlock);
+	if (found)
+	{
+		this->lastKey.setBytes(r->getBytes(),r->getSize());
+	}
+	else
+	{
+		this->lastKey.setBytes(key,strlen(key));
+		this->getNext(r);
+	}
+	return found;
 }
 
 VariableRecord* Tree::getNext(VariableRecord* r)
 {
 	// Check if key is in currentBlock or next
 	VariableRecord aux;
+	if (this->currentLeafBlock == NULL)
+	{
+		//Return first
+	}
 	this->currentLeafBlock->positionAtBegin();
 	while (this->currentLeafBlock->getNextRecord(&aux) != NULL){}
 	if (this->methods->compare
-			(r->getBytes(), aux.getBytes(), aux.getSize()) > 0 )
+			(this->lastKey.getBytes(), aux.getBytes(), aux.getSize()) >= 0 )
 	{
 		// Load next block
 		int nextNode = this->currentLeafBlock->getNextNode();
@@ -271,17 +292,18 @@ VariableRecord* Tree::getNext(VariableRecord* r)
 			r = NULL;
 			return r;
 		}
-		this->file->deleteKeptLeaf();
 		this->file->loadBlock(nextNode);
+		this->deleteKeptLeaf();
 		this->currentLeafBlock = this->file->getCurrentBlock();
 	}
 	this->currentLeafBlock->positionAtBegin();
 	while (this->currentLeafBlock->getNextRecord(&aux) != NULL)
 	{
 		if (this->methods->compare
-					(r->getBytes(), aux.getBytes(), aux.getSize()) > 0 )
+					(this->lastKey.getBytes(), aux.getBytes(), aux.getSize()) > 0 )
 		{
 			r->setBytes(aux.getBytes(),aux.getSize());
+			this->lastKey.setBytes(aux.getBytes(),aux.getSize());
 			return r;
 		}
 	}

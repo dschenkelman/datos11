@@ -28,7 +28,8 @@ public:
 	Tree(std::string fileName, int blockSize, RecordMethods* methods, bool createNew);
 	OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord);
 	OpResult update(char* key, VariableRecord* r);
-	OpResult get(char* key, VariableRecord* r);
+	void deleteKeptLeaf();
+	bool get(char* key, VariableRecord* r);
 	VariableRecord* getNext(VariableRecord* r);
 	OpResult remove(char* key);
 	void print();

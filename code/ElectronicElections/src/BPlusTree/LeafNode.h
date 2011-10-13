@@ -23,7 +23,7 @@ public:
 	virtual OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord, OverflowParameter& overflowParameter);
 	virtual OpResult update(char* key, VariableRecord* r);
 	virtual OpResult remove(char* key);
-	virtual OpResult get(char* key, VariableRecord* record, TreeBlock* currentLeafBlock);
+	virtual bool get(char* key, VariableRecord* record, TreeBlock** currentLeafBlock);
 	virtual int getMaxSize();
 	virtual int getMinimumSize();
 	virtual bool isUnderflow();

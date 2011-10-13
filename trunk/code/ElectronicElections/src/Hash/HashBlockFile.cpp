@@ -87,9 +87,9 @@ void HashBlockFile::printContent()
 
 void HashBlockFile::loadRecord(const char* key, VariableRecord* record)
 {
-	int blockNumber = this->fakeHashFunction(key);
+	//int blockNumber = this->fakeHashFunction(key);
 	//to use on each Record Type :D
-	//int blockNumber = this->hashingFunction->hashingFunction(key, this->totalBlocks);
+	int blockNumber = this->hashingFunction->hashingFunction(key, this->totalBlocks);
 
 	this->loadBlock(blockNumber);
 	if(this->currentBlock->getFreeSpace() >= record->getSize() +2)
@@ -477,7 +477,5 @@ HashBlockFile::~HashBlockFile()
 	delete this->currentBlock;
 	delete this->overflowFile;
 	this->dataFile.close();
-	delete hashingFunction;
-	//delete recordMethods;
 }
 

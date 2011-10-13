@@ -9,10 +9,14 @@
 #define HASHTEST_H_
 
 #include "HashBlockFile.h"
+#include "DistrictHashingFunction.h"
+#include "../BlocksTests/CustomerMethods.h"
 
 class HashTest
 {
 	HashBlockFile* file;
+	DistrictHashingFunction* dhashf;
+	CustomerMethods* cm;
 
 public:
 	HashTest();

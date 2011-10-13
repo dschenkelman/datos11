@@ -1,0 +1,5 @@
+Presidente,Vicepresidente,Gobernador,Intendente,Consejales
+Gobernador,Vicegobernador,Intendente
+Diputado,segundoDiputado,tercerDiputado
+Senador,segundoSenador,tercerSenador
+Intendente

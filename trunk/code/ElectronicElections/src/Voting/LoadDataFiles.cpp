@@ -58,14 +58,18 @@ void LoadDataFiles::createFileType(char* fileType, char** fields)
 		this->electionBlockSize = atoi(fields[1]);
 		//create it empty..
 		cout << "Generando archivo de elecciones" << endl;
-		Tree(this->electionFileName, this->electionBlockSize, NULL, true);
+		Tree* electionTree = new Tree(this->electionFileName, this->electionBlockSize, NULL, true);
+		this->readElectionFile(electionTree, fields[0]);
+		delete electionTree;
 	}
 	else if(strcmp(fileType, "ElectionList") == 0)
 	{
 		this->electionListBlockSize = atoi(fields[1]);
-		//create it empty..
+		//read data..
 		cout << "Generando archivo de listas" << endl;
-		Tree(this->electionListFileName, this->electionListBlockSize, NULL, true);
+		Tree* listTree = new Tree(this->electionListFileName, this->electionListBlockSize, NULL, true);
+		this->readListFile(listTree, fields[0]);
+		delete listTree;
 	}
 	else if(strcmp(fileType, "Count") == 0)
 	{
@@ -77,9 +81,11 @@ void LoadDataFiles::createFileType(char* fileType, char** fields)
 	else if(strcmp(fileType, "Candidate") == 0)
 	{
 		this->candidateBlockSize = atoi(fields[1]);
-		//create it empty..
+		//read file..
 		cout << "Generando archivo de candidato" << endl;
-		Tree(this->candidateFileName, this->candidateBlockSize, NULL, true);
+		Tree* candidateTree = new Tree(this->candidateFileName, this->candidateBlockSize, NULL, true);
+		this->readCandidateFile(candidateTree, fields[0]);
+		delete candidateTree;
 	}
 	else if(strcmp(fileType, "Voter") == 0)
 	{
@@ -133,19 +139,11 @@ void LoadDataFiles::readDistrictFile(Tree* treeDistrictFile, char* dataFileName)
 	fstream dataFile;
 	dataFile.open(dataFileName, ios::in |  ios::binary);
 	std::string line;
-	//std::vector<std::string> list;
-	//char* secondCharges;
 	while ( getline(dataFile,line) )
 	{
 		//list.clear();
 		char* districtName = strdup(line.c_str());
 		strtok(districtName, ",");
-
-		// INTERNAL DISTRICT LIST ON PRINCIPAL DISTRICT
-		/*while((secondCharges = strtok(NULL, ",")) != NULL)
-		{
-			list.push_back(string(secondCharges));
-		}*/
 
 		District* district = new District(string(districtName));
 		VariableRecord* record = new VariableRecord();
@@ -162,20 +160,89 @@ void LoadDataFiles::readCandidateFile(Tree* treeCandidateFile, char* dataFileNam
 	fstream dataFile;
 	dataFile.open(dataFileName, ios::in |  ios::binary);
 	std::string line;
-	char* lista;
+	char* month;
+	char* year;
 	char* cargo;
-	//char* district;  SHOULD BE ANOTHER FIELD TO REFERENCE CHARGE & DISTRICT
+	char* listName;
+	char* dniVoter;
 	while ( getline(dataFile,line) )
 	{
-		char* name = strdup(line.c_str());
-		strtok(name, ",");
-		lista = strtok(NULL, ",");//fecha, eleccion!
+		char* day = strdup(line.c_str());
+		strtok(day, ",");
+		month = strtok(NULL, ",");
+		year = strtok(NULL, ",");
 		cargo = strtok(NULL, ",");
-		//Candidate* candidate = new Candidate(string(name), );
+		listName = strtok(NULL, ",");
+		dniVoter = strtok(NULL, ",");
+		short yearNumber = atoi(year);
+		Candidate* candidate = new Candidate(*day, *month, yearNumber, string(listName), string(cargo), atoi(dniVoter));
 		VariableRecord* record;
-		//record->setBytes(candidate->getBytes(), candidate->getSize());
-		//treeDistrictFile->loadRecord(district->getKey(), record);
-		//delete candidate;
+		record->setBytes(candidate->getBytes(), candidate->getSize());
+		//treeCandidateFile->insert(candidate->getKey(), record);
+		delete candidate;
+	}
+	dataFile.close();
+}
+
+void LoadDataFiles::readElectionFile(Tree* treeElectionFile, char* dataFileName)
+{
+	fstream dataFile;
+	dataFile.open(dataFileName, ios::in |  ios::binary);
+	std::string line;
+	char* month;
+	char* year;
+	char* cargo;
+	char* firstDistrict;
+	char* secondDistricts;
+	std::vector<std::string> list;
+	while ( getline(dataFile,line) )
+	{
+		char* day = strdup(line.c_str());
+		strtok(day, ",");
+		month = strtok(NULL, ",");
+		year = strtok(NULL, ",");
+		cargo = strtok(NULL, ",");
+		firstDistrict = strtok(NULL, ",");
+		list.push_back(string(firstDistrict));
+		while((secondDistricts = strtok(NULL, ",")) != NULL)
+		{
+			list.push_back(string(secondDistricts));
+		}
+
+		short yearNumber = atoi(year);
+		Election* election = new Election(*day, *month, yearNumber, string(cargo), list);
+		VariableRecord* record;
+		record->setBytes(election->getBytes(), election->getSize());
+		//treeElectionFile->insert(election->getKey(), record);
+		delete election;
+	}
+	dataFile.close();
+}
+
+void LoadDataFiles::readListFile(Tree* treeListFile, char* dataFileName)
+{
+	fstream dataFile;
+	dataFile.open(dataFileName, ios::in |  ios::binary);
+	std::string line;
+	char* month;
+	char* year;
+	char* cargo;
+	char* listName;
+
+	while ( getline(dataFile,line) )
+	{
+		char* day = strdup(line.c_str());
+		strtok(day, ",");
+		month = strtok(NULL, ",");
+		year = strtok(NULL, ",");
+		cargo = strtok(NULL, ",");
+		listName = strtok(NULL, ",");
+		short yearNumber = atoi(year);
+		CandidatesList* candidatesList = new CandidatesList(*day, *month, yearNumber, string(cargo), string(listName));
+		VariableRecord* record;
+		record->setBytes(candidatesList->getBytes(), candidatesList->getSize());
+		//treeListFile->insert(candidatesList->getKey(), record);
+		delete candidatesList;
 	}
 	dataFile.close();
 }

@@ -6,7 +6,7 @@
  */
 
 #include "HashTest.h"
-#include "../BlocksTests/CustomerMethods.h"
+
 #include "../Entities/DistrictMethods.h"
 #include "DistrictHashingFunction.h"
 #include <string>
@@ -20,14 +20,18 @@ HashTest::HashTest()
 {
 	string f = "hashtest";
 	int blockAmount = 9;
-	this->file = new HashBlockFile(f, 512, new CustomerMethods, new DistrictHashingFunction, blockAmount, true);
+	this->cm = new CustomerMethods();
+	this->dhashf = new DistrictHashingFunction();
+	this->file = new HashBlockFile(f, 512, cm, dhashf, blockAmount, true);
 }
 
 void HashTest::testLoadHashwithoutValidation()
 {
 	std::cout << "==================================" << std::endl;
 	std::cout << "Load Hash " << std::endl;
-	HashBlockFile districtHash("districthash", 1024, new DistrictMethods, new DistrictHashingFunction, 100, true);
+	DistrictMethods* dm = new DistrictMethods();
+	DistrictHashingFunction* dhashf = new DistrictHashingFunction();
+	HashBlockFile districtHash("districthash", 1024, dm, dhashf, 100, true);
 	string districts[] = {"San Luis", "Santa Cruz", "Santa Fe", "Santiago del Estero",
 			"Corrientes", "Tierra del Fuego", "Tucuman", "Entre Rios",
 			"Chaco", "Chubut", "Cordoba",
@@ -54,6 +58,8 @@ void HashTest::testLoadHashwithoutValidation()
 	districtHash.updateRecord(dOld.getKey(), &dataRecord);
 	//districtHash->printContent();
 	std::cout << "==================================" << std::endl;
+	delete dm;
+	delete dhashf;
 }
 
 void HashTest::testInsert()
@@ -211,4 +217,6 @@ void HashTest::run()
 HashTest::~HashTest()
 {
 	delete this->file;
+	delete this->cm;
+	delete this->dhashf;
 }

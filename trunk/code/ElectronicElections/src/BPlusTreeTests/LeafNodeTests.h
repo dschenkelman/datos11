@@ -24,8 +24,8 @@ public:
 	bool testUpdateNonExistentRecordReturnsNotFound();
 	bool testUpdateShouldReturnOverflowIfRecordDoesNotFitNode();
 	bool testUpdateShouldUpdateRecordAndReturnUpdated();
-	bool testGetNonExistentRecordReturnsNotFound();
-	bool testGetShouldGetRecordAndReturnUpdated();
+	bool testGetNonExistentRecordReturnsFalse();
+	bool testGetShouldGetRecordAndReturnTrue();
 	bool testDeleteReturnsNotFoundIfKeyIsNotPresent();
 	bool testDeleteReturnsUnderflowIfOccupiedSizeIsLessThanMinimum();
 	bool testDeleteReturnsUpdatedIfOccupiedSizeIsMoreThanMinimumAndRecordWasDeleted();

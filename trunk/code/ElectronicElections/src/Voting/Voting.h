@@ -12,6 +12,8 @@
 #include "LoadDataFiles.h"
 #include "../Entities/Voter.h"
 #include "../Entities/Election.h"
+#include "../Entities/District.h"
+#include "../Entities/ElectionsList.h"
 
 using namespace std;
 
@@ -20,8 +22,8 @@ private:
 	LoadDataFiles* dataFiles;
 	Voter* voter;
 	bool isInVoterElectionList(Election* e);
-	bool voteInElection(Election* e);
-	bool isInVoterDistrict(Election* e);
+	vector<Election> getElectionByDistrict(District* d);
+	vector<ElectionsList> getElectionsListsByElection(Election* e);
 public:
 	Voting(LoadDataFiles* dataFiles);
 	bool login();

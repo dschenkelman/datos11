@@ -16,93 +16,165 @@
 #include "../Hash/VoterHashingFunction.h"
 #include "../BPlusTree/TreeBlockFile.h"
 #include "../VariableBlocks/Constants.h"
+#include "../Entities/Count.h"
+#include "../Entities/CountMethods.h"
+#include "../Entities/VoterMethods.h"
 #include <vector>
 #include <cstring>
 #include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <ctime>
+
+static const int MAX_LINE_SIZE = 400;
 
 Voting::Voting(LoadDataFiles* dataFiles)
 {
-	this->dataFiles = dataFiles;
-	this->voter = NULL;
+    this->dataFiles = dataFiles;
+    this->voter = NULL;
 }
 
 bool Voting::login()
 {
-	string voterFileName = this->dataFiles->getVoterFileName();
-	int voterBlockSize = this->dataFiles->getVoterBlockSize();
-	int voterBlockAmount = this->dataFiles->getVoterBlockAmount();
+    string voterFileName = this->dataFiles->getVoterFileName();
+    int voterBlockSize = this->dataFiles->getVoterBlockSize();
+    int voterBlockAmount = this->dataFiles->getVoterBlockAmount();
 
-	HashBlockFile voterFile(voterFileName, voterBlockSize, new VoterMethods, new VoterHashingFunction, voterBlockAmount, true);
+    HashBlockFile voterFile(voterFileName, voterBlockSize, new VoterMethods, new VoterHashingFunction, voterBlockAmount, true);
 
-	//string dni = Menu::raw_input("DNI");
-	//string pass = Menu::raw_input("Password");
+    ifstream voterFileTxt;
+    voterFileTxt.open("padron.txt");
 
-	string dni = "35094006";
+    char line[MAX_LINE_SIZE];
+    while(voterFileTxt.getline(line, MAX_LINE_SIZE))
+    {
+        string dni = strtok(line, ","); strtok(NULL, ",");
+        string pass = strtok(NULL, ",");
+        int intDni = atoi(dni.c_str());
 
-	VariableRecord* voterRecord = new VariableRecord();
-	if(!voterFile.getRecord(dni.c_str(), &voterRecord))
-	{
-		return false;
-	}
+        this->voter = new Voter(intDni, "invalid", "invalid", "invalid", "invalid", std::vector<ElectionKey>());
 
-	this->voter = new Voter(0, "invalid", "invalid", "invalid", "invalid", std::vector<ElectionKey>());
-	this->voter->setBytes((char*) voterRecord->getBytes());
+        VariableRecord* voterRecord = new VariableRecord();
 
-	delete voterRecord;
+        if(!voterFile.getRecord(this->voter->getKey(), &voterRecord))
+        {
+        	return false;
+        }
 
-	/*if(strcmp(pass.c_str(), this->voter->getPassword().c_str()) != 0)
-	{
-		return false;
-	}*/
+        this->voter->setBytes((char*) voterRecord->getBytes());
 
-	return true;
+        if(strcmp(this->voter->getPassword().c_str(), pass.c_str()) != 0)
+        {
+            // loguear error
+            continue;
+        }
+
+        delete voterRecord;
+
+        this->vote();
+
+        delete this->voter;
+    }
+
+    voterFileTxt.close();
+    return true;
 }
 
 bool Voting::vote()
 {
-	/*string electionTreeName = this->dataFiles->getElectionFileName();
-	int electionBlockSize = this->dataFiles->getElectionBlockSize();
-	TreeBlockFile electionTree(electionTreeName, electionBlockSize, new ElectionMethods, true);
+	// indice para obtener elecciones por distrito
+	District d(this->voter->getDistrict());
+    vector<Election> districtElection = this->getElectionByDistrict(&d);
 
-	while(!electionTree.isAtEOF())
-	{
-		Election e(1, 1, 1, "invalid", std::vector<string>());
-		e.setBytes((char*) electionTree.getCurrentBlock()->getBytes());
+    for(int i = 0; i < districtElection.size(); i++)
+    {
+        /*string electionsListFileName = this->dataFiles->getElectionListFileName();
+        int electionsListBlockSize = this->dataFiles->getElectionListBlockSize();
+        Tree electionsListTree(electionsListFileName, electionsListBlockSize, &ElectionsListMethods(), true);*/
 
-		if(this->isInVoterElectionList(&e))
-		{
-			//
-		}
+        // acá necesito las listas que tengan a esta eleccion como parte de su identificador.. indice?
+        vector<ElectionsList> electionsLists = this->getElectionsListsByElection(&(districtElection.at(i)));
 
-		if(!this->isInVoterDistrict(&e))
-		{
+        if(electionsLists.size() != 0)
+        {
+            srand(time(NULL));
+            int listIndex = rand() % (electionsLists.size());
 
-		}
+            ElectionsList list = electionsLists.at(listIndex);
 
-		this->voteInElection(&e);
-		// avanzar en el arbol
-	}*/
+            cout << "Voto a: " << list.getName() << endl;
 
-	return true;
+            if(this->isInVoterElectionList(&(districtElection.at(i))))
+            {
+            	continue;
+            }
+
+			ElectionKey eKey = {districtElection.at(i).getYear(), districtElection.at(i).getMonth(),
+					districtElection.at(i).getDay(), districtElection.at(i).getCharge()};
+			this->voter->getElectionKeyList().push_back(eKey);
+
+/*			string countFileName = this->dataFiles->getCountFileName();
+			int countBlockSize = this->dataFiles->getCountBlockSize();
+			Tree countTree(countFileName, countBlockSize, &CountMethods(), true);
+
+			Count c(districtElection.at(i).getDay(), districtElection.at(i).getMonth(), districtElection.at(i).getYear(),
+					districtElection.at(i).getCharge(), list.getName(), this->voter->getDistrict(), 0);
+
+			char key[c.getKeySize()];
+			memcpy(key, c.getKey(), c.getKeySize());
+
+			VariableRecord record;
+			countTree.get(c.getKey(), &record);
+			c.setBytes(record.getBytes());
+
+			//c.setQuantity(c.getQuantity() + 1);
+			record.setBytes(c.getBytes(), c.getSize());
+
+			countTree.update(key, &record);*/
+        }
+
+        else return false;
+    }
+    return true;
 }
 
-bool Voting::voteInElection(Election* e)
+vector<ElectionsList> Voting::getElectionsListsByElection(Election* e)
 {
-	//random para ver a quien vota
-	return true;
-}
+	vector<ElectionsList> electionsLists;
+	ElectionsList eOne("Lista1", 1, 2, 2009, "Intendente");
+	ElectionsList eTwo("Lista2", 3, 2, 2009, "Gobernador");
+	ElectionsList eThree("Lista3", 1, 4, 2009, "Presidente");
+	ElectionsList eFour("Lista4", 12, 6, 2009, "Senador");
+	ElectionsList eFive("Lista5", 19, 7, 2009, "Diputado");
 
-bool Voting::isInVoterDistrict(Election* e)
-{
-	for(int i = 0; i < e->getDistrictList().size(); i++)
+	ElectionsList elecs[] = {eOne, eTwo, eThree, eFour, eFive};
+	vector<ElectionsList> retVec;
+	for(int i = 0; i < 5; i++)
 	{
-		if(e->getDistrictList().at(i) == this->voter->getDistrict())
-		{
-			return true;
-		}
+		retVec.push_back(elecs[i]);
 	}
 
-	return false;
+	return retVec;
+}
+
+vector<Election> Voting::getElectionByDistrict(District* d)
+{
+	vector<string> districts;
+	districts.push_back(d->getName());
+	Election eOne(1, 2, 2009, "Intendente", districts);
+	Election eTwo(3, 2, 2009, "Gobernador", districts);
+	Election eThree(1, 4, 2009, "Presidente", districts);
+	Election eFour(12, 6, 2009, "Senador", districts);
+	Election eFive(19, 7, 2009, "Diputado", districts);
+
+	Election elecs[] = {eOne, eTwo, eThree, eFour, eFive};
+	vector<Election> retVec;
+	for(int i = 0; i < 5; i++)
+	{
+		retVec.push_back(elecs[i]);
+	}
+
+	return retVec;
 }
 
 bool Voting::isInVoterElectionList(Election* e)

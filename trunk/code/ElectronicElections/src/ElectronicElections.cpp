@@ -162,10 +162,12 @@ int main()
 				string passwd = Menu::raw_input("Password");
 				if(!dataFiles.canOpenAdminFile())
 				{
-					Tree admin_tree = dataFiles.createAdminFile();
+					Tree admin_tree(NULL, 0, NULL, false);
+					admin_tree = dataFiles.createAdminFile(); // esta funcion deberia devolver un puntero para evitar esto
 				}
 				else{
-					Tree admin_tree = dataFiles.getAdminFile();
+					Tree admin_tree(NULL, 0, NULL, false);
+					admin_tree = dataFiles.getAdminFile();
 				}
 				Administrator admin = Administrator(user, passwd);
 				// TODO VERIFY LOGIN
@@ -366,7 +368,7 @@ int main()
 							electionslist_tree.print();
 						}
 					} else if (action==5) {
-						Tree candidate_tree = Tree("Candidate.dat", 512, &CandidateMethods(), false);
+						Tree candidate_tree ("Candidate.dat", 512, &CandidateMethods(), false);
 						option candidate_action[3];
 						candidate_action[0].label = "Agregar candidato";
 						candidate_action[1].label = "Eliminar candidato";

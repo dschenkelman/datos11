@@ -713,17 +713,19 @@ bool TreeTests::testGetInATree()
 	tree.print();
 	cout << endl;
 
-	District d("Chubut");
+	/*District d("Chubut");
 	VariableRecord r;
 	tree.get(d.getKey(),&r);
 
 	cout << "Search for Chubut..." << endl;
 	cout << "Key obtained: " << endl;
 	districtMethods.print(r.getBytes(),r.getSize());
-	cout << endl;
+	cout << endl;*/
 
-
-	District e("La Pampa");
+	VariableRecord r;
+	tree.getNext(&r);
+	districtMethods.print(r.getBytes(),r.getSize());
+	/*District e("La Pampa");
 	tree.get(e.getKey(),&r);
 	cout << "Search for La Pampa..." << endl;
 	cout << "Key obtained: " << endl;
@@ -742,7 +744,7 @@ bool TreeTests::testGetInATree()
 	cout << "Search for Rio Ceballos... (it must return the next record found)" << endl;
 	cout << "Key obtained: " << endl;
 	districtMethods.print(r.getBytes(),r.getSize());
-	cout << endl;
+	cout << endl;*/
 
 
 	return false;

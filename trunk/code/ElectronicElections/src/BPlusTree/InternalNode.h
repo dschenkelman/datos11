@@ -44,6 +44,7 @@ public:
 	virtual OpResult update(char* key, VariableRecord* r);
 	virtual OpResult remove(char* key);
 	bool get(char* key, VariableRecord* record, TreeBlock** currentLeafBlock);
+	virtual VariableRecord* returnFirst(VariableRecord* r, TreeBlock** currentLeafBlock);
 	virtual void print();
 	virtual bool isUnderflow();
 	virtual int getMaxSize();

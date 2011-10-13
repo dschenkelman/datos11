@@ -837,6 +837,31 @@ bool InternalNode::get(char* key, VariableRecord* record, TreeBlock** currentLea
 
 }
 
+VariableRecord* InternalNode::returnFirst(VariableRecord* r, TreeBlock** currentLeafBlock)
+{
+	VariableRecord aux;
+	bool result;
+	int index = 0;
+
+	int blockPointer = this->block->getNodePointer(index);
+	this->file->loadBlock(blockPointer);
+	this->file->pushBlock();
+
+	if (this->file->isCurrentLeaf())
+	{
+		LeafNode leaf(this->file->getCurrentBlock(), this->recordMethods);
+		leaf.returnFirst(r, currentLeafBlock);
+		*currentLeafBlock = this->file->popAndKeep();
+		return r;
+	}
+
+	// Internal Node
+	InternalNode internal(this->file, this->file->getCurrentBlock(), this->recordMethods);
+	result = internal.returnFirst(r, currentLeafBlock);
+	this->file->popBlock();
+	return r;
+}
+
 InternalNode::~InternalNode()
 {
 }

@@ -25,6 +25,8 @@
 #include "../Entities/ChargeMethods.h"
 
 #include "../Entities/Candidate.h"
+#include "../Entities/CandidatesList.h"
+#include "../Entities/Election.h"
 
 
 class LoadDataFiles
@@ -60,6 +62,8 @@ class LoadDataFiles
 
 	//void initializefile();
 
+	void readElectionFile(Tree* treeElectionFile, char* dataFileName);
+	void readListFile(Tree* treeListFile, char* dataFileName);
 	void readDistrictFile(Tree* treeDistrictFile, char* dataFile);
 	void readCandidateFile(Tree* treeCandidateFile, char* dataFileName);
 	void readVoterFile(HashBlockFile* hashVoterFile, char* dataFile);

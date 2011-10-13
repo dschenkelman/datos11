@@ -292,6 +292,6 @@ SimpleVariableBlockFile::~SimpleVariableBlockFile()
 	delete [] dataBlocks;
 	this->dataFile.close();
 	delete this->currentBlock;
-	delete this->recordMethods;
+	//delete this->recordMethods;
 	delete[] this->positionToDataBlocks;
 }

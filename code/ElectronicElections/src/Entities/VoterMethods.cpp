@@ -10,6 +10,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <cstring>
+#include <cstdlib>
 
 using namespace std;
 
@@ -20,17 +21,22 @@ VoterMethods::VoterMethods()
 int VoterMethods::compare(const char* key, const char* recordBytes, int recordSize)
 {
 	std::vector<ElectionKey> list;
-	Voter v(11111111, "Fernando Gago", "1234", "Cordoba 900", "Neuquen", list);
+	Voter v(0, "Invalid", "1234", "Invalid", "Invalid", list);
 
 	v.setBytes((char*) recordBytes);
 
-	return strcmp(key, v.getKey());
+	int dni;
+	memcpy(&dni, key, sizeof(int));
+
+	if (dni == v.getDni()) return 0;
+	else if (dni > v.getDni()) return 1;
+	else return -1;
 }
 
 void VoterMethods::print(const char* recordBytes, int recordSize)
 {
 	std::vector<ElectionKey> list;
-	Voter v(11111111, "Fernando Gago", "1234", "Cordoba 900", "Neuquen", list);
+	Voter v(0, "Invalid", "1234", "Invalid", "Invalid", list);
 
 	v.setBytes((char*) recordBytes);
 

@@ -73,8 +73,8 @@ class LoadDataFiles
 public:
 	LoadDataFiles(std::string configFileName);
 	bool canOpenAdminFile();
-	Tree createAdminFile();
-	Tree getAdminFile();
+	Tree* createAdminFile();
+	Tree* getAdminFile();
 
 	string getChargeFileName();
 	string getVoterFileName();

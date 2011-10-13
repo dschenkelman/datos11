@@ -278,7 +278,8 @@ VariableRecord* Tree::getNext(VariableRecord* r)
 	VariableRecord aux;
 	if (this->currentLeafBlock == NULL)
 	{
-		//Return first
+		this->returnFirst(r);
+		return r;
 	}
 	this->currentLeafBlock->positionAtBegin();
 	while (this->currentLeafBlock->getNextRecord(&aux) != NULL){}
@@ -308,6 +309,13 @@ VariableRecord* Tree::getNext(VariableRecord* r)
 			return r;
 		}
 	}
+	return r;
+}
+
+VariableRecord* Tree::returnFirst(VariableRecord* r)
+{
+	this->root->returnFirst(r, &(this->currentLeafBlock));
+	this->lastKey.setBytes(r->getBytes(),r->getSize());
 	return r;
 }
 

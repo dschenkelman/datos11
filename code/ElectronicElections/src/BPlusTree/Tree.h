@@ -31,6 +31,7 @@ public:
 	void deleteKeptLeaf();
 	bool get(char* key, VariableRecord* r);
 	VariableRecord* getNext(VariableRecord* r);
+	VariableRecord* returnFirst(VariableRecord* r);
 	OpResult remove(char* key);
 	void print();
 	virtual ~Tree();

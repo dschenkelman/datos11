@@ -201,6 +201,13 @@ bool LeafNode::get(char* key, VariableRecord* record, TreeBlock** currentLeafBlo
 	return true;
 }
 
+VariableRecord* LeafNode::returnFirst(VariableRecord* r, TreeBlock** currentLeafBlock)
+{
+	this->block->positionAtBegin();
+	this->block->getNextRecord(r);
+	return r;
+}
+
 LeafNode::~LeafNode()
 {
 }

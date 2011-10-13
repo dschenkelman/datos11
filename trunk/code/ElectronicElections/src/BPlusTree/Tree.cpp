@@ -293,14 +293,15 @@ VariableRecord* Tree::getNext(VariableRecord* r)
 			return r;
 		}
 		this->file->loadBlock(nextNode);
+		this->file->pushBlock();
 		this->deleteKeptLeaf();
-		this->currentLeafBlock = this->file->getCurrentBlock();
+		this->currentLeafBlock = this->file->popAndKeep();
 	}
 	this->currentLeafBlock->positionAtBegin();
 	while (this->currentLeafBlock->getNextRecord(&aux) != NULL)
 	{
 		if (this->methods->compare
-					(this->lastKey.getBytes(), aux.getBytes(), aux.getSize()) > 0 )
+					(this->lastKey.getBytes(), aux.getBytes(), aux.getSize()) < 0 )
 		{
 			r->setBytes(aux.getBytes(),aux.getSize());
 			this->lastKey.setBytes(aux.getBytes(),aux.getSize());

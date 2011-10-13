@@ -737,6 +737,13 @@ bool TreeTests::testGetInATree()
 	districtMethods.print(r.getBytes(),r.getSize());
 	cout << endl;
 
+	District g("Rio Ceballos");
+	tree.get(g.getKey(),&r);
+	cout << "Search for Rio Ceballos... (it must return the next record found)" << endl;
+	cout << "Key obtained: " << endl;
+	districtMethods.print(r.getBytes(),r.getSize());
+	cout << endl;
+
 
 	return false;
 }

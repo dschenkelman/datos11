@@ -107,14 +107,8 @@ int run_tests()
 	return 0;
 }
 
-int main()
-{
-	bool debug = true;
-	if (debug)
-	{
-		run_tests();
-		return 0;
-	}
+int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, incluso desde eclipse
+{			// No impedir el uso normal del sistema
 	LoadDataFiles dataFiles("config.txt");
 	Log log;
 	log.write("Iniciando sistema", true, true);
@@ -160,17 +154,16 @@ int main()
 			case 1:
 				string user = Menu::raw_input("User");
 				string passwd = Menu::raw_input("Password");
+				Tree *admin_tree;
 				if(!dataFiles.canOpenAdminFile())
-				{
-					Tree admin_tree(NULL, 0, NULL, false);
-					admin_tree = dataFiles.createAdminFile(); // esta funcion deberia devolver un puntero para evitar esto
-				}
-				else{
-					Tree admin_tree(NULL, 0, NULL, false);
+					admin_tree = dataFiles.createAdminFile();
+				else
 					admin_tree = dataFiles.getAdminFile();
-				}
 				Administrator admin = Administrator(user, passwd);
-				// TODO VERIFY LOGIN
+				VariableRecord *adminrecord = new VariableRecord;
+				admin_tree->get(admin.getKey(), adminrecord);
+				delete adminrecord;
+				// TODO - COMO OBTENGO EL OBJETO ADMINISTRADOR AHORA?
 				while (1) {
 					option admin_action[9];
 					admin_action[0].label = "Mantener distritos";

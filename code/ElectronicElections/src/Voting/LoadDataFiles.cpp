@@ -122,16 +122,14 @@ bool LoadDataFiles::canOpenAdminFile()
 	return valid;
 }
 
-Tree LoadDataFiles::createAdminFile()
+Tree* LoadDataFiles::createAdminFile()
 {
 	cout << "Generando archivo de administrador" << endl;
-	Tree treeAdministratorFile(this->administratorFileName, this->administratorBlockSize, new AdministratorMethods, true);
-	return treeAdministratorFile;
+	return new Tree(this->administratorFileName, this->administratorBlockSize, new AdministratorMethods, true);
 }
-Tree LoadDataFiles::getAdminFile()
+Tree* LoadDataFiles::getAdminFile()
 {
-	Tree treeAdministratorFile(this->administratorFileName, this->administratorBlockSize, new AdministratorMethods, false);
-	return treeAdministratorFile;
+	return new Tree (this->administratorFileName, this->administratorBlockSize, new AdministratorMethods, false);
 }
 
 void LoadDataFiles::readDistrictFile(Tree* treeDistrictFile, char* dataFileName)

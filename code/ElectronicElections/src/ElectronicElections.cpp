@@ -131,21 +131,10 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 					bool voting = true;
 					LoadDataFiles ldf("config.txt");
 					ldf.readConfigFile();
-					while(voting)
-					{
-						Voting vot(&ldf);
 
-						 if(!vot.login())
-						 {
-							 cout << "Fallo login. Intente nuevamente" << endl;
-						 }
-						 else if(!vot.vote())
-						 {
-						 cout << "Fallo votacion. Intente nuevamente" << endl;
-						 }
-						 else voting = false;
-						 break;
-					}
+					Voting vot(&ldf);
+					vot.login();
+					voting = false;
 				}
 				break;
 			case 2:

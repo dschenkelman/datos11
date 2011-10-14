@@ -6,6 +6,7 @@
  */
 
 #include "LoadDataFiles.h"
+#include "Log.h"
 #include <iostream>
 using namespace std;
 
@@ -143,12 +144,11 @@ void LoadDataFiles::readDistrictFile(Tree* treeDistrictFile, char* dataFileName)
 		char* districtName = strdup(line.c_str());
 		strtok(districtName, ",");
 
-		District* district = new District(string(districtName));
-		VariableRecord* record = new VariableRecord();
-		record->setBytes(district->getBytes(), district->getSize());
-		//treeDistrictFile->loadRecord(district->getKey(), record);
-		delete district;
-		delete record;
+		District d = District (string(districtName));
+		VariableRecord record (d.getBytes(), d.getSize());
+		int res = treeDistrictFile->insert(&record, &record);
+		Log().write(string("Agregando distrito ").append(d.getName()), res!=5, true);
+
 	}
 	dataFile.close();
 }

@@ -25,8 +25,10 @@
 #include "../Entities/ChargeMethods.h"
 
 #include "../Entities/Candidate.h"
-#include "../Entities/CandidatesList.h"
+#include "../Entities/ElectionsList.h"
 #include "../Entities/Election.h"
+
+#include "Log.h"
 
 
 class LoadDataFiles

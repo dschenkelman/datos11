@@ -6,7 +6,6 @@
  */
 
 #include "LoadDataFiles.h"
-#include "Log.h"
 #include <iostream>
 using namespace std;
 
@@ -173,11 +172,13 @@ void LoadDataFiles::readCandidateFile(Tree* treeCandidateFile, char* dataFileNam
 		listName = strtok(NULL, ",");
 		dniVoter = strtok(NULL, ",");
 		short yearNumber = atoi(year);
-		Candidate* candidate = new Candidate(*day, *month, yearNumber, string(listName), string(cargo), atoi(dniVoter));
-		VariableRecord* record;
-		record->setBytes(candidate->getBytes(), candidate->getSize());
-		//treeCandidateFile->insert(candidate->getKey(), record);
-		delete candidate;
+
+		Candidate cand (*day, *month, yearNumber, string(listName), string(cargo), atoi(dniVoter));
+		VariableRecord candkey_vr (cand.getKey(), cand.getKeySize());
+		VariableRecord cand_vr (cand.getBytes(), cand.getSize());
+		int res = treeCandidateFile->insert(&candkey_vr, &cand_vr);
+		Log().write("Agregando candidato", res!=5, true);
+
 	}
 	dataFile.close();
 }
@@ -236,11 +237,12 @@ void LoadDataFiles::readListFile(Tree* treeListFile, char* dataFileName)
 		cargo = strtok(NULL, ",");
 		listName = strtok(NULL, ",");
 		short yearNumber = atoi(year);
-		CandidatesList* candidatesList = new CandidatesList(*day, *month, yearNumber, string(cargo), string(listName));
-		VariableRecord* record;
-		record->setBytes(candidatesList->getBytes(), candidatesList->getSize());
-		//treeListFile->insert(candidatesList->getKey(), record);
-		delete candidatesList;
+//		CandidatesList* candidatesList = new CandidatesList(*day, *month, yearNumber, string(cargo), string(listName));
+		ElectionsList elist (string(listName), *day, *month, yearNumber, string(cargo));
+		VariableRecord elistkey_vr (elist.getKey(), elist.getKeySize());
+		VariableRecord elist_vr (elist.getBytes(), elist.getSize());
+		int res = treeListFile->insert(&elistkey_vr, &elist_vr);
+		Log().write("Agregando lista", res!=5, true);
 	}
 	dataFile.close();
 }

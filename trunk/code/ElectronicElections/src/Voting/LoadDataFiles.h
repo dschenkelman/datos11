@@ -26,6 +26,9 @@
 
 #include "../Entities/Candidate.h"
 #include "../Entities/ElectionsList.h"
+#include "../Entities/ElectionsListMethods.h"
+#include "../Entities/CandidateMethods.h"
+#include "../Entities/CountMethods.h"
 #include "../Entities/Election.h"
 
 #include "Log.h"

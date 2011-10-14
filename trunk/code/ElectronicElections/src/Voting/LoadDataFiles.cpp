@@ -67,7 +67,7 @@ void LoadDataFiles::createFileType(char* fileType, char** fields)
 		this->electionListBlockSize = atoi(fields[1]);
 		//read data..
 		cout << "Generando archivo de listas" << endl;
-		Tree* listTree = new Tree(this->electionListFileName, this->electionListBlockSize, NULL, true);
+		Tree* listTree = new Tree(this->electionListFileName, this->electionListBlockSize, &ElectionsListMethods(), true);
 		this->readListFile(listTree, fields[0]);
 		delete listTree;
 	}
@@ -76,14 +76,14 @@ void LoadDataFiles::createFileType(char* fileType, char** fields)
 		this->countBlockSize = atoi(fields[1]);
 		//create it empty..
 		cout << "Generando archivo de conteo" << endl;
-		Tree(this->countFileName, this->countBlockSize, NULL, true);
+		Tree(this->countFileName, this->countBlockSize, &CountMethods(), true);
 	}
 	else if(strcmp(fileType, "Candidate") == 0)
 	{
 		this->candidateBlockSize = atoi(fields[1]);
 		//read file..
 		cout << "Generando archivo de candidato" << endl;
-		Tree* candidateTree = new Tree(this->candidateFileName, this->candidateBlockSize, NULL, true);
+		Tree* candidateTree = new Tree(this->candidateFileName, this->candidateBlockSize, &CandidateMethods(), true);
 		this->readCandidateFile(candidateTree, fields[0]);
 		delete candidateTree;
 	}

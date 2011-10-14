@@ -183,44 +183,47 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							log.write(string("Eliminando distrito ").append(d.getName()), res!=4, true);
 						} else if (action==2) district_tree.print();
 					} else if (action == 1) {
-						HashBlockFile hash_voter ("Voter.dat", 1024*10, &VoterMethods(), &VoterHashingFunction(), 2800, false); // para 28 mil votantes
-						option voter_action[5];
+						HashBlockFile *hash_voter = new HashBlockFile("Voter.dat", 1024*10, &VoterMethods(), &VoterHashingFunction(), 2800, false); // para 28 mil votantes
+						option voter_action[6];
 						voter_action[0].label = "Agregar votante";
 						voter_action[1].label = "Cambio de domicilio";
 						voter_action[2].label = "Cambio de distrito";
 						voter_action[3].label = "Cambio de clave";
 						voter_action[4].label = "Eliminar votante";
-						action = Menu(voter_action,5).ask();
+						voter_action[5].label = "Imprimir hash de votantes";
+						action = Menu(voter_action,6).ask();
 						if (action==0) {
 							Voter v = Voter(atoi(Menu::raw_input("DNI").c_str()), Menu::raw_input("Nombre"), Menu::raw_input("Contraseña"), Menu::raw_input("Direccion"), Menu::raw_input("Distrito"), std::vector<ElectionKey>());
-							hash_voter.insertRecord(v.getKey(), &VariableRecord(v.getBytes(), v.getSize())) ? cout << "OK" : cout << "FAILED";
+							hash_voter->insertRecord(v.getKey(), &VariableRecord(v.getBytes(), v.getSize())) ? cout << "OK" : cout << "FAILED";
 						} else if (action==1) {
 							VariableRecord *record;
 							Voter v = Voter(atoi(Menu::raw_input("DNI").c_str()), NULL, NULL, NULL, NULL, std::vector<ElectionKey>());
-							hash_voter.getRecord(v.getKey(), &record);
+							hash_voter->getRecord(v.getKey(), &record);
 							v.setBytes(record->getBytes());
 							v.setAddress(Menu::raw_input("Nueva direccion"));
 							record->setBytes(v.getBytes(), v.getSize());
-							hash_voter.updateRecord(v.getKey(), record);
+							hash_voter->updateRecord(v.getKey(), record);
 						} else if (action==2) {
 							VariableRecord *record;
 							Voter v = Voter(atoi(Menu::raw_input("DNI").c_str()), NULL, NULL, NULL, NULL, std::vector<ElectionKey>());
-							hash_voter.getRecord(v.getKey(), &record);
+							hash_voter->getRecord(v.getKey(), &record);
 							v.setBytes(record->getBytes());
 							v.setDistrict(Menu::raw_input("Nuevo distrito"));
 							record->setBytes(v.getBytes(), v.getSize());
-							hash_voter.updateRecord(v.getKey(), record);
+							hash_voter->updateRecord(v.getKey(), record);
 						} else if (action==3) {
 							VariableRecord *record;
 							Voter v = Voter(atoi(Menu::raw_input("DNI").c_str()), NULL, NULL, NULL, NULL, std::vector<ElectionKey>());
-							hash_voter.getRecord(v.getKey(), &record);
+							hash_voter->getRecord(v.getKey(), &record);
 							v.setBytes(record->getBytes());
 							v.setPassword(Menu::raw_input("Nueva contraseña"));
 							record->setBytes(v.getBytes(), v.getSize());
-							hash_voter.updateRecord(v.getKey(), record);
+							hash_voter->updateRecord(v.getKey(), record);
 						} else if (action==4) {
 							Voter v = Voter(atoi(Menu::raw_input("DNI").c_str()), NULL, NULL, NULL, NULL, std::vector<ElectionKey>());
-							hash_voter.removeRecord(v.getKey());
+							hash_voter->removeRecord(v.getKey());
+						} else if (action==5) {
+							hash_voter->printContent();
 						}
 					} else if (action==2) {
 						Tree election_tree ("Election.dat", 512, &ElectionMethods(), false);

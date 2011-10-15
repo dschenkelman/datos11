@@ -65,6 +65,14 @@ void Tree::handleOverflowInLeafRoot(VariableRecord *keyRecord, VariableRecord *d
     int newBlock2 = this->file->getFreeBlockManager().getNextBlock();
     this->file->loadBlock(newBlock1);
     this->file->pushBlock();
+    if (!this->file->isCurrentLeaf())
+	{
+		this->file->swapBlockKind();
+	}
+	else
+	{
+		this->file->getCurrentBlock()->clear();
+	}
     this->file->getCurrentBlock()->setNextNode(newBlock2);
     this->file->getCurrentBlock()->setLevel(0);
     VariableRecord aux;
@@ -123,7 +131,14 @@ void Tree::handleOverflowInInternalRoot(VariableRecord *keyRecord,
 	int newBlock2 = this->file->getFreeBlockManager().getNextBlock();
 	this->file->loadBlock(newBlock1);
 	this->file->pushBlock();
-	this->file->swapBlockKind();
+	if (this->file->isCurrentLeaf())
+	{
+		this->file->swapBlockKind();
+	}
+	else
+	{
+		this->file->getCurrentBlock()->clear();
+	}
 	this->file->getCurrentBlock()->setLevel(this->root->getLevel());
 
 	int index = 0;
@@ -199,9 +214,10 @@ OpResult Tree::insert(VariableRecord *keyRecord, VariableRecord *dataRecord)
 	return result;
 }
 
-void Tree::transformInternalRootToLeaf()
+void Tree::decreaseTreeHeight()
 {
 	int nodePointer = this->file->getCurrentBlock()->getNodePointer(0);
+	this->file->getFreeBlockManager().addFreeBlock(nodePointer);
 	this->file->loadBlock(nodePointer);
 	this->file->pushBlock();
 	int childLevel = this->file->getCurrentBlock()->getLevel();
@@ -235,7 +251,7 @@ OpResult Tree::remove(char *key)
 	while(this->file->getCurrentBlock()->getNextRecord(&aux)){i++;};
 	if (result == Underflow && !this->file->isCurrentLeaf() && i == 0)
 	{
-	    this->transformInternalRootToLeaf();
+	    this->decreaseTreeHeight();
 	    result = Updated;
 	}
 

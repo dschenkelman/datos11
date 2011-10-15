@@ -34,6 +34,7 @@ public:
 	bool testRemoveCausesUnderflowInRootIsMergedIntoLeaf();
 	bool testRemoveShouldMergeInternalNodesWhenNotRightMost();
 	bool testRemoveShouldMergeInternalNodesWhenRightMost();
+	bool testRemoveShouldStoreAvailableFreeBlocks();
 	virtual ~TreeTests();
 };
 

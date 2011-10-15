@@ -12,6 +12,8 @@
 #include "../Entities/DistrictMethods.h"
 #include "../Entities/Count.h"
 #include "../Entities/CountMethods.h"
+#include "../Entities/Administrator.h"
+#include "../Entities/AdministratorMethods.h"
 #include "../VariableBlocks/VariableRecord.h"
 #include <string.h>
 
@@ -46,6 +48,7 @@ void TreeTests::run()
 	this->printResult("testRemoveShouldMergeInternalNodes", testRemoveShouldMergeInternalNodesWhenNotRightMost());
 	this->printResult("testRemoveShouldMergeInternalNodesWhenRightMost", testRemoveShouldMergeInternalNodesWhenRightMost());
 	this->printResult("testRemoveShouldStoreAvailableFreeBlocks", testRemoveShouldStoreAvailableFreeBlocks());
+	this->printResult("testShouldUpdateBlocksInLeaf", testShouldUpdateBlocksInLeaf());
 }
 
 bool TreeTests::testInsertInEmptyTreeWorksCorrectly()
@@ -821,6 +824,57 @@ bool TreeTests::testRemoveShouldStoreAvailableFreeBlocks()
 	tree.print();cout<<endl;
 
 	return false;
+}
+
+bool TreeTests::testShouldUpdateBlocksInLeaf()
+{
+		Administrator a1("A1", "P1");
+		Administrator a2("A2", "P2");
+		Administrator a3("A3", "P3");
+		Administrator a4("A4", "P4");
+		Administrator a5("A5", "P5");
+		Administrator a6("A6", "P6");
+
+		Administrator admins[] = {a1, a2, a3, a4, a5, a6};
+		AdministratorMethods adminMethods;
+		Tree tree("treeTests.dat", 128, &adminMethods, true);
+
+		int i;
+		for (i = 0; i < 6; i++)
+		{
+			Administrator a = admins[i];
+			VariableRecord dataRecord;
+			VariableRecord keyRecord;
+			dataRecord.setBytes(a.getBytes(), a.getSize());
+			keyRecord.setBytes(a.getKey(), a.getKeySize());
+
+			tree.insert(&keyRecord, &dataRecord);
+		}
+
+		cout << "Admins Count" << i << endl;
+		tree.print();
+		cout << endl;
+
+		string pass = "Pass";
+		string pass1 = "Pas5";
+
+		a3.setPassword(pass);
+
+		a4.setPassword(pass);
+
+		a5.setPassword(pass1);
+
+		VariableRecord r3(a3.getBytes(), a3.getSize());
+		VariableRecord r4(a4.getBytes(), a4.getSize());
+		VariableRecord r5(a5.getBytes(), a5.getSize());
+		tree.update(a3.getKey(), &r3);
+		tree.update(a4.getKey(), &r4);
+		tree.update(a5.getKey(), &r5);
+
+		tree.print();
+		cout << endl;
+
+		return true;
 }
 
 TreeTests::~TreeTests()

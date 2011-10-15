@@ -29,7 +29,7 @@ public:
 	// getters
 	std::string getName();
 	std::string getPassword();
-
+	void setPassword(std::string& value);
 };
 
 #endif /* ADMINISTRATOR_H_ */

@@ -19,15 +19,16 @@ BaseVariableBlockFile(name, bSize, methods)
 	this->recordMethods = methods;
 	this->positionToDataBlocks = new char[bSize-4];
 	this->currentBlock = new SimpleVariableBlock(this->blockSize, this->recordMethods);
+	this->mapBlockNumber = 0;
 	if (createNew)
 	{
 		this->dataFile.open(this->fileName.c_str(), ios::binary | ios::in | ios::out | ios::trunc);
 		char initialValue[bSize * 2]; //to start with an empty block
 		memset(initialValue, 0, bSize *2);
-		char noOverflow = -1;
-		memcpy(initialValue+bSize, &noOverflow, sizeof(char));
+		int noOverflow = -1;// 4 bytes!
+		memcpy(initialValue+bSize, &noOverflow, sizeof(int));
 		memset(this->positionToDataBlocks, 0, bSize-4);
-		this->blockAmount = 1;
+		this->blockAmount = 1;//relative block for each pagination.
 		memcpy(initialValue, &blockAmount, sizeof(long));
 		this->dataFile.seekp(0, ios::beg);
 		this->dataFile.write(initialValue, this->blockSize * 2);
@@ -45,17 +46,57 @@ BaseVariableBlockFile(name, bSize, methods)
 
 int SimpleVariableBlockFile::getFirstFreeEmptyBlock()
 {
-	//it returns -1 if there are no empty blocks
+	//it searchs from one map block to other until it finds an empty place
+	int mapBlock = 0;//reference to actual map block
+	int i = 0; //block number para encontrar el libre
 	int occupiedSize;
-	int i;
-	for(i=0; i < this->blockAmount; i++)
+	int occupiedBlocks = this->blockAmount;
+	this->dataFile.seekg(0, ios::end);
+	long fileLength = this->dataFile.tellg();
+	char positionData[this->blockSize-4];
+	memcpy(positionData, this->positionToDataBlocks, this->blockSize -4);
+	while((occupiedBlocks+1) == this->blockSize/sizeof(int))
 	{
-		memcpy(&occupiedSize, this->positionToDataBlocks + i*4, 4);
-		if(occupiedSize == 0) return i+1;
-
+		if(i == occupiedBlocks)
+		{
+			mapBlock+= this->blockSize/sizeof(int);
+			if(fileLength <= mapBlock * this->blockSize)
+			{
+				break;//creo nuevo bloque de mapa y devuelvo el siguiente
+			}
+			i = 0; //first data block!
+			this->positionAtBlock(mapBlock);
+			char bytes[this->blockSize];
+			this->dataFile.read(bytes, this->blockSize);
+			memcpy(&occupiedBlocks, bytes, 4);
+			memcpy(positionData, bytes + 4, this->blockSize - 4);
+			//this->loadMapBlock(mapBlock); //updates blockAmount & posToData
+		}
+		memcpy(&occupiedSize, (positionData + i*4), sizeof(int));
+		if(occupiedSize == 0)
+		{
+			return mapBlock + i+1; //block is free
+		}
+		i++;
 	}
-	blockAmount++;
-	return blockAmount; //all occupied. returns a new one.
+	if((occupiedBlocks+1)  != this->blockSize/sizeof(int))
+	{
+		for(i=0; i < occupiedBlocks; i++)
+		{
+			memcpy(&occupiedSize, positionData + (i*4), 4);
+			if(occupiedSize == 0) return mapBlock + i+1;
+		}
+		return (mapBlock + occupiedBlocks+1);
+	}
+	//nuevo map block
+	char map[this->blockSize];
+	occupiedBlocks = 1;
+	memset(map, 0, this->blockSize);
+	memcpy(map, &(occupiedBlocks), sizeof(int));
+	this->dataFile.seekp(mapBlock * this->blockSize, ios::beg);
+	this->dataFile.write(map, this->blockSize);
+	memset(positionData, 0, this->blockSize-4);
+	return mapBlock + 1; //all occupied. returns a new one.
 }
 
 void SimpleVariableBlockFile::printContent()
@@ -67,8 +108,12 @@ void SimpleVariableBlockFile::printContent()
 		this->loadBlock(blockNumber);
 		this->currentBlock->printContent();
 		blockNumber++;
+		if(blockNumber % (this->blockSize/sizeof(int)) == 0)
+		{
+			blockNumber++;//doesnt print the map block
+		}
 	}
-	this->updateBlockAmount();
+	//this->updateBlockAmount();
 }
 
 bool SimpleVariableBlockFile::internalInsertRecord(const char* key,
@@ -195,19 +240,23 @@ bool SimpleVariableBlockFile::removeRecord(const char* key)
 bool SimpleVariableBlockFile::getRecord(const char *key, VariableRecord** rec)
 {
 	int blockNumber = 1;
-
 	this->positionAtBlock(0);
+	VariableRecord* r = NULL;
 	while(!this->isAtEOF())
 	{
 		this->loadBlock(blockNumber);
-		if (this->currentBlock->findRecord(key, rec) >= 0)
+
+		if (this->currentBlock->findRecord(key, &r) >= 0)
 		{
+			*rec = r;
 			return true;
 		}
-
 		blockNumber++;
 	}
-
+	if (r != NULL)
+	{
+		delete r;
+	}
 	return false;
 }
 
@@ -228,6 +277,27 @@ bool SimpleVariableBlockFile::isAtEOF()
 	return position == size;
 }
 
+void SimpleVariableBlockFile::loadMapBlock(int mapBlock)
+{
+	if(this->mapBlockNumber != mapBlock)
+	{
+		this->mapBlockNumber = mapBlock;
+		this->positionAtBlock(this->mapBlockNumber);
+		char bytes[this->blockSize];
+		this->dataFile.read(bytes, this->blockSize);
+		memcpy(&this->blockAmount, bytes, 4);
+		memcpy(this->positionToDataBlocks, bytes + 4, this->blockSize - 4);
+	}
+}
+
+void SimpleVariableBlockFile::loadRespectiveMapBlock(int blockNumber)
+{
+	//encuentra el mapa respectivo y lo carga.
+	int blocksInMap = this->blockSize/ sizeof(int);
+	int mapBlock = (blockNumber/ blocksInMap) * blocksInMap;
+	this->loadMapBlock(mapBlock);
+}
+
 void SimpleVariableBlockFile::loadBlock(int blockNumber)
 {
 	this->currentBlockNumber = blockNumber;
@@ -241,7 +311,7 @@ void SimpleVariableBlockFile::loadBlock(int blockNumber)
     {
     	memset(this->currentBlock->getBytes(), 0, this->blockSize);
     }
-
+    this->loadRespectiveMapBlock(blockNumber);
     this->currentBlock->updateInformation();
     this->positionAtBlock(blockNumber);
 }
@@ -258,14 +328,15 @@ void SimpleVariableBlockFile::saveBlock()
 	char bytes[this->blockSize];
 	memcpy(bytes, this->currentBlock->getBytes(), this->blockSize);
 	int overflwBlock = this->getCurrentBlock()->getOverflowedBlock();
-	memcpy(bytes, &overflwBlock, sizeof(char));
-	int occupiedSpace = this->blockSize - this->currentBlock->getFreeSpace();
+	memcpy(bytes, &overflwBlock, sizeof(int));//puntero 4 bytes
 	this->dataFile.write(bytes, this->blockSize);
+
 	//writing occupied size of all blocks in first block
-	memcpy(this->positionToDataBlocks + (this->currentBlockNumber-1) * 4,
-				&occupiedSpace, 4);
+	int occupiedSpace = this->blockSize - this->currentBlock->getFreeSpace();
+	int blockOffset = (this->currentBlockNumber % (this->blockSize/sizeof(int)) ) -1;
+	memcpy(this->positionToDataBlocks + (blockOffset* 4), &occupiedSpace, 4);
 	this->updateBlockAmount();
-	this->dataFile.seekp(0, ios::beg);
+	this->dataFile.seekp(this->mapBlockNumber* this->blockSize, ios::beg);
 	char* dataBlocks = new char[this->blockSize];
 	memset(dataBlocks, 0, this->blockSize);
 	memcpy(dataBlocks, &this->blockAmount, 4);
@@ -277,21 +348,19 @@ void SimpleVariableBlockFile::updateBlockAmount()
 {
 	this->dataFile.seekg(0, ios::end);
 	long size = this->dataFile.tellg();
-	this->blockAmount = size / this->blockSize - 1; //less 1 for the first block that it doesn't count
+	int totalBlocks = size / this->blockSize - 1; //less 1 for the first block that it doesn't count
+	if( (this->mapBlockNumber + this->blockSize/sizeof(int) -1) <= totalBlocks)
+	{
+		this->blockAmount = this->blockSize/sizeof(int) -1;
+	}
+	else
+	{
+	this->blockAmount = totalBlocks - this->mapBlockNumber;
+	}
 }
-
 SimpleVariableBlockFile::~SimpleVariableBlockFile()
 {
-	//writing occupied size of all blocks in first block
-	this->dataFile.seekp(0, ios::beg);
-	char* dataBlocks = new char[this->blockSize];
-	memset(dataBlocks, 0, this->blockSize);
-	memcpy(dataBlocks, &this->blockAmount, 4);
-	memcpy(dataBlocks + 4, this->positionToDataBlocks, this->blockSize-4);
-	this->dataFile.write(dataBlocks, this->blockSize);
-	delete [] dataBlocks;
 	this->dataFile.close();
 	delete this->currentBlock;
-	//delete this->recordMethods;
 	delete[] this->positionToDataBlocks;
 }

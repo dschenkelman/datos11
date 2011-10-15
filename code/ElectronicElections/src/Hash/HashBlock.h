@@ -25,7 +25,7 @@ public:
 	virtual void printContent();
 	int getOverflowedBlock();
 	void setNoOverflow();
-	void becomesOverflow(char ovflowBlock);
+	void becomesOverflow(int ovflowBlock);
 	virtual void forceInsert(VariableRecord *rec);
 	virtual bool insertRecord(const char* key, VariableRecord* record);
 	virtual bool removeRecord(const char* key);

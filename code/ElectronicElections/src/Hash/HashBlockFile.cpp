@@ -35,8 +35,8 @@ void HashBlockFile::initializefile()
 	this->dataFile.open(this->fileName.c_str(), ios::binary | ios::in | ios::out | ios::trunc);
 	char block[blockSize];
 	memset(block,0,blockSize);
-	char overflowBlock = -1;
-	memcpy(block,&overflowBlock,sizeof(char));
+	int overflowBlock = -1;//4 bytes for pointer
+	memcpy(block,&overflowBlock,sizeof(int));
 	for (int i= 0; i < totalBlocks; i++)
 	{
 		this->positionAtBlock(i);
@@ -109,6 +109,7 @@ void HashBlockFile::loadRecord(const char* key, VariableRecord* record)
 		this->overflowFile->loadBlock(overflowBlock);
 		this->overflowFile->getCurrentBlock()->setNoOverflow();//initialize it with -1
 		this->overflowFile->getCurrentBlock()->forceInsert(record);
+		this->overflowFile->getCurrentBlock()->updateInformation();
 		this->ovflowBlockUsed = true;
 		this->saveBlock();
 		return;
@@ -132,6 +133,7 @@ void HashBlockFile::loadRecord(const char* key, VariableRecord* record)
 	}
 	//found available space
 	this->overflowFile->getCurrentBlock()->forceInsert(record);
+	this->overflowFile->getCurrentBlock()->updateInformation();
 	this->ovflowBlockUsed = true;
 	this->saveBlock();
 	return;
@@ -141,8 +143,8 @@ int HashBlockFile::getAvailableOverflowBlock(const char* key, VariableRecord* re
 {
 	SimpleVariableBlock* block = this->overflowFile->getCurrentBlock();
 	int freeSpace = block->getFreeSpace();
-	char ovflwBlock = block->getOverflowedBlock();
-	char freeBlock = ovflwBlock;
+	int ovflwBlock = block->getOverflowedBlock();
+	int freeBlock = ovflwBlock;
 	while(freeSpace < record->getSize()+2)
 	{
 		if(ovflwBlock == -1)

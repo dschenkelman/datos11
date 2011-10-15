@@ -24,7 +24,7 @@ public:
 	// and the amount of free space available in it
 	int getOverflowedBlock();
 	void setNoOverflow();
-	void becomesOverflow(char ovflowBlock);
+	void becomesOverflow(int ovflowBlock);
 	virtual void updateInformation();
 	virtual void clear();
 	bool isEmpty();

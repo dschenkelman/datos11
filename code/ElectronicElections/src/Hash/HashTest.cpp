@@ -19,7 +19,7 @@ using namespace std;
 HashTest::HashTest()
 {
 	string f = "hashtest";
-	int blockAmount = 9;
+	int blockAmount = 6;
 	this->cm = new CustomerMethods();
 	this->dhashf = new DistrictHashingFunction();
 	this->file = new HashBlockFile(f, 512, cm, dhashf, blockAmount, true);
@@ -40,7 +40,7 @@ void HashTest::testLoadHashwithoutValidation()
 			};
 	VariableRecord dataRecord;
 	VariableRecord keyRecord;
-	for (int i = 0; i < 6000; i++)
+	for (int i = 0; i < 50000; i++)
 	{
 		District d(districts[i%23]);
 		dataRecord.setBytes(d.getBytes(), d.getSize());
@@ -67,12 +67,12 @@ void HashTest::testInsert()
 	std::cout << "==================================" << std::endl;
 	std::cout << "Insert Hash " << std::endl;
 
-	char firstNames[10][5] = {"John", "Mike", "Tony", "Rick", "Josh", "gaby", "dami", "juan","aleT", "gonz"};
-	char lastNames[9][7] = {"Connor", "Potter", "Wesley", "Mordor", "Gondor", "ostrow", "shenke", "Torrad", "Durand"};
-	for(long i = 0;i < 100;++i)
+	char firstNames[12][5] = {"John", "Mike", "Tony", "Rick", "Josh", "gaby", "dami", "juan","aleT", "gonz","Manu","Roky"};
+	char lastNames[11][7] = {"Connor", "Potter", "Wesley", "Mordor", "Gondor", "ostrow", "shenke", "Torrad", "Durand","Darzub", "Balboa"};
+	for(long i = 0;i < 500;++i)
 	{
-		int fn = rand() % 10;
-		int ln = rand() % 9;
+		int fn = rand() % 12;
+		int ln = rand() % 11;
 		Customer c;
 		c.firstName = firstNames[fn];
 		c.lastName = lastNames[ln];
@@ -93,7 +93,6 @@ void HashTest::testInsert()
 		memcpy(recordBytes +2+ (l1+l2), &c.balance, sizeof(int));
 		VariableRecord* record = new VariableRecord();
 		record->setBytes(recordBytes, size);
-		//blockNumber = hasingName(recordKey);
 		this->file->insertRecord(recordKey, record);
 		delete record;
 	}
@@ -208,10 +207,10 @@ void HashTest::testEmptyBlock(int blockNumber)
 void HashTest::run()
 {
 	this->testLoadHashwithoutValidation();
-	this->testInsert();
-	this->testGetRecord();
-	this->testUpdateRecord();
-	this->testRemove();
+	//this->testInsert();
+	//this->testGetRecord();
+	//this->testUpdateRecord();
+	//this->testRemove();
 }
 
 HashTest::~HashTest()

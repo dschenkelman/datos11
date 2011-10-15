@@ -11,39 +11,39 @@
 #include <string.h>
 
 HashBlock::HashBlock(int size, RecordMethods* methods)
-: BaseVariableBlock(size, 5, 5, methods)
+: BaseVariableBlock(size, 8, 8, methods)
 {
 }
 
 bool HashBlock::isEmpty()
 {
 	int occupiedSize;
-	memcpy(&occupiedSize, this->bytes + 1, sizeof(int));
+	memcpy(&occupiedSize, this->bytes + 4, sizeof(int));// 4 bytes for pointer
 	return this->maxSize == (this->freeSpace);
 }
 
 int HashBlock::getOverflowedBlock()
 {
-	char overflowedBlock;
-	memcpy(&overflowedBlock, this->bytes, sizeof(char));
+	int overflowedBlock;
+	memcpy(&overflowedBlock, this->bytes, sizeof(int));
 	return overflowedBlock;
 }
 
 void HashBlock::setNoOverflow()
 {
-	char noOverflow = -1;
-	memcpy(this->bytes, &noOverflow, sizeof(char));
+	int noOverflow = -1;
+	memcpy(this->bytes, &noOverflow, sizeof(int));
 }
 
-void HashBlock::becomesOverflow(char ovflowBlock)
+void HashBlock::becomesOverflow(int ovflowBlock)
 {
-	memcpy(this->bytes, &ovflowBlock, sizeof(char));
+	memcpy(this->bytes, &ovflowBlock, sizeof(int));
 }
 
 void HashBlock::updateInformation()
 {
 	int occupiedSize;
-	memcpy(&occupiedSize, this->bytes + 1, sizeof(int));
+	memcpy(&occupiedSize, this->bytes + 4, sizeof(int));// 4 bytes for pointer
 	this->freeSpace = this->maxSize - occupiedSize;
 }
 
@@ -69,8 +69,8 @@ VariableRecord* HashBlock::getNextRecord(VariableRecord* r)
 void HashBlock::clear()
 {
 	memset(this->bytes, 0, this->maxSize);
-	char nonOverflowReference = -1;
-	memcpy(this->bytes, &nonOverflowReference, sizeof(char));
+	int nonOverflowReference = -1;
+	memcpy(this->bytes, &nonOverflowReference, sizeof(int));
 	this->position = this->recordsOffset;
 	this->freeSpace = this->maxSize - this->recordsOffset;
 }
@@ -104,7 +104,7 @@ void HashBlock::forceInsert(VariableRecord *rec)
     memcpy(this->bytes + occupiedSpace, rec->getBytes(), recSize);
     occupiedSpace += recSize;
     // update block size
-    memcpy(this->bytes +1, &occupiedSpace, sizeof(int));
+    memcpy(this->bytes +4, &occupiedSpace, sizeof(int));// 4 bytes for pointer
 }
 
 bool HashBlock::insertRecord(const char* key, VariableRecord *rec)
@@ -157,7 +157,7 @@ UpdateResult HashBlock::updateRecord(const char* key, VariableRecord* rec)
 		memcpy(this->bytes + (startPosition + sizeof(short) + recordSize + sizeDifference), buffer, bufferSize);
 
 		// update block size
-		memcpy(this->bytes +1, &occupiedSpace, sizeof(int));
+		memcpy(this->bytes +4, &occupiedSpace, sizeof(int));
 	}
 	else
 	{
@@ -207,7 +207,7 @@ bool HashBlock::removeRecord(const char* key)
 	// update block size
 	if(occupiedSpace == this->recordsOffset) //block is empty!
 		occupiedSpace = 0;
-	memcpy(this->bytes +1, &occupiedSpace, Constants::BLOCK_HEADER_SIZE);
+	memcpy(this->bytes +4, &occupiedSpace, Constants::BLOCK_HEADER_SIZE);
 
 	this->updateInformation();
 	if (r != NULL)

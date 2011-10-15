@@ -21,12 +21,16 @@ class SimpleVariableBlockFile: public BaseVariableBlockFile
     std::fstream dataFile;
     SimpleVariableBlock *currentBlock;
     int blockAmount;
+    int mapBlockNumber;
     char* positionToDataBlocks;
 protected:
     bool internalInsertRecord(const char* key,
     		const char* recordBytes, short size, bool force);
     bool isAtEOF();
     void updateBlockAmount();
+    void loadRespectiveMapBlock(int blockNumber);
+    void loadMapBlock(int mapBlock);
+
 public:
     SimpleVariableBlockFile(std::string& fileName, int bSize, RecordMethods *methods, bool createNew);
     void printContent();

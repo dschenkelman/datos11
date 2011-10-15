@@ -55,8 +55,12 @@ src/ElectronicElections.d src/ElectronicElections.o: \
  ../src/Voting/../Hash/ChargeHashingFunction.h \
  ../src/Voting/../Entities/ChargeMethods.h \
  ../src/Voting/../Entities/Candidate.h \
- ../src/Voting/../Entities/CandidatesList.h \
- ../src/Voting/../Entities/Election.h ../src/Hash/HashBlockFile.h \
+ ../src/Voting/../Entities/ElectionsList.h \
+ ../src/Voting/../Entities/ElectionsListMethods.h \
+ ../src/Voting/../Entities/CandidateMethods.h \
+ ../src/Voting/../Entities/CountMethods.h \
+ ../src/Voting/../Entities/Election.h ../src/Voting/Log.h \
+ ../src/Voting/../Entities/District.h ../src/Hash/HashBlockFile.h \
  ../src/Hash/DistrictHashingFunction.h ../src/Hash/VoterHashingFunction.h \
  ../src/Hash/ChargeHashingFunction.h ../src/Entities/District.h \
  ../src/Entities/DistrictMethods.h ../src/Entities/Voter.h \
@@ -65,10 +69,8 @@ src/ElectronicElections.d src/ElectronicElections.o: \
  ../src/Entities/ElectionMethods.h \
  ../src/Entities/../VariableBlocks/RecordMethods.h \
  ../src/Entities/Charge.h ../src/Entities/ChargeMethods.h \
- ../src/Entities/ElectionsList.h \
- ../src/Entities/../VariableBlocks/Constants.h \
- ../src/Entities/ElectionsListMethods.h ../src/Entities/Candidate.h \
- ../src/Entities/CandidateMethods.h \
+ ../src/Entities/ElectionsList.h ../src/Entities/ElectionsListMethods.h \
+ ../src/Entities/Candidate.h ../src/Entities/CandidateMethods.h \
  ../src/VariableBlocks/VariableRecord.h ../src/BPlusTree/Tree.h \
  ../src/Voting/Log.h ../src/Voting/LoadDataFiles.h
 
@@ -196,9 +198,19 @@ src/ElectronicElections.d src/ElectronicElections.o: \
 
 ../src/Voting/../Entities/Candidate.h:
 
-../src/Voting/../Entities/CandidatesList.h:
+../src/Voting/../Entities/ElectionsList.h:
+
+../src/Voting/../Entities/ElectionsListMethods.h:
+
+../src/Voting/../Entities/CandidateMethods.h:
+
+../src/Voting/../Entities/CountMethods.h:
 
 ../src/Voting/../Entities/Election.h:
+
+../src/Voting/Log.h:
+
+../src/Voting/../Entities/District.h:
 
 ../src/Hash/HashBlockFile.h:
 
@@ -231,8 +243,6 @@ src/ElectronicElections.d src/ElectronicElections.o: \
 ../src/Entities/ChargeMethods.h:
 
 ../src/Entities/ElectionsList.h:
-
-../src/Entities/../VariableBlocks/Constants.h:
 
 ../src/Entities/ElectionsListMethods.h:
 

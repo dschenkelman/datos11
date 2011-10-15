@@ -33,8 +33,8 @@ void SimpleVariableBlockFileTests::testInsert()
 	char lastNames[5][7] = {"Connor", "Potter", "Wesley", "Mordor", "Gondor"};
 	for(long i = 0;i < 100;++i)
 	{
-		int fn = rand() % 1;
-		int ln = rand() % 1;
+		int fn = rand() % 10;
+		int ln = rand() % 5;
 		Customer c;
 		c.firstName = firstNames[fn];
 		c.lastName = lastNames[ln];
@@ -74,7 +74,7 @@ void SimpleVariableBlockFileTests::testGet()
 {
 	string key = "JohnKratos";
 
-	VariableRecord* rec = new VariableRecord();
+	VariableRecord* rec = NULL;
 	file->loadBlock(0);
 	std::cout << "==================================" << std::endl;
 	std::cout << "Get RLVTest" << std::endl;
@@ -83,6 +83,10 @@ void SimpleVariableBlockFileTests::testGet()
 	{
 		CustomerMethods cm;
 		cm.print(rec->getBytes(), rec->getSize());
+		if(rec != NULL)
+		{
+		delete rec;
+		}
 	}
 	else
 	{
@@ -98,7 +102,6 @@ void SimpleVariableBlockFileTests::testGet()
 	{
 		std::cout << trueKey << "--> was not found in file" << std::endl;
 	}
-
 }
 
 void SimpleVariableBlockFileTests::testRemove()
@@ -155,7 +158,7 @@ void SimpleVariableBlockFileTests::testUpdate()
 	memcpy(buffer + l1+2, lastName.c_str(), l2);
 	memcpy(buffer + (l1+l2)+2, &balance, 4);
 
-	std::cout << "--Replacing " << key1 << "and" << key2 << "with John Kratos.."<< std::endl;
+	std::cout << "--Replacing " << key1 << " and " << key2 << "with John Kratos.."<< std::endl;
 	file->updateRecord(key1.c_str(), buffer, size);
 	file->updateRecord(key2.c_str(), buffer, size);
 	file->saveBlock();

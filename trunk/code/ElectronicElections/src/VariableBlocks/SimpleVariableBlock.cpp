@@ -10,40 +10,40 @@
 #include <exception>
 
 SimpleVariableBlock::SimpleVariableBlock(int size, RecordMethods* methods) :
-BaseVariableBlock(size, Constants::BLOCK_HEADER_SIZE+1, Constants::BLOCK_HEADER_SIZE+1, methods)
+BaseVariableBlock(size, Constants::BLOCK_HEADER_SIZE+4, Constants::BLOCK_HEADER_SIZE+4, methods)
 {
 }
 
 void SimpleVariableBlock::updateInformation()
 {
 	int occupiedSize;
-	memcpy(&occupiedSize, this->bytes+1, sizeof(int));
+	memcpy(&occupiedSize, this->bytes+4, sizeof(int));//primeros 4 para el puntero
 	this->freeSpace = this->maxSize - occupiedSize;
 }
 
 bool SimpleVariableBlock::isEmpty()
 {
 	int occupiedSize;
-	memcpy(&occupiedSize, this->bytes+1, sizeof(int));
+	memcpy(&occupiedSize, this->bytes+4, sizeof(int));
 	return this->freeSpace == this->maxSize;
 }
 
 int SimpleVariableBlock::getOverflowedBlock()
 {
-	char overflowedBlock;
-	memcpy(&overflowedBlock, this->bytes, sizeof(char));
+	int overflowedBlock;
+	memcpy(&overflowedBlock, this->bytes, sizeof(int));
 	return overflowedBlock;
 }
 
 void SimpleVariableBlock::setNoOverflow()
 {
-	char noOverflow = -1;
-	memcpy(this->bytes, &noOverflow, sizeof(char));
+	int noOverflow = -1;
+	memcpy(this->bytes, &noOverflow, sizeof(int));
 }
 
-void SimpleVariableBlock::becomesOverflow(char ovflowBlock)
+void SimpleVariableBlock::becomesOverflow(int ovflowBlock)
 {
-	memcpy(this->bytes, &ovflowBlock, sizeof(char));
+	memcpy(this->bytes, &ovflowBlock, sizeof(int));
 }
 
 bool SimpleVariableBlock::hasNextRecord()
@@ -70,8 +70,8 @@ VariableRecord* SimpleVariableBlock::getNextRecord(VariableRecord* r)
 void SimpleVariableBlock::clear()
 {
 	memset(this->bytes, 0, this->maxSize);
-	char noOverflow = -1;
-	memcpy(this->bytes, &noOverflow, sizeof(char));
+	int noOverflow = -1;
+	memcpy(this->bytes, &noOverflow, sizeof(int));
 	this->position = this->recordsOffset;
 	this->freeSpace = this->maxSize;
 }
@@ -128,7 +128,7 @@ UpdateResult SimpleVariableBlock::updateRecord(const char* key, VariableRecord* 
 		memcpy(this->bytes + (startPosition + Constants::RECORD_HEADER_SIZE + recordSize), buffer, bufferSize);
 
 		// update block size
-		memcpy(this->bytes+1, &occupiedSpace, Constants::BLOCK_HEADER_SIZE);
+		memcpy(this->bytes+4, &occupiedSpace, Constants::BLOCK_HEADER_SIZE);
 	}
 	else
 	{
@@ -164,7 +164,7 @@ void SimpleVariableBlock::forceInsert(VariableRecord *rec)
     memcpy(this->bytes + occupiedSpace, rec->getBytes(), recSize);
     occupiedSpace += recSize;
     // update block size
-    memcpy(this->bytes+1, &occupiedSpace, Constants::BLOCK_HEADER_SIZE);
+    memcpy(this->bytes+4, &occupiedSpace, Constants::BLOCK_HEADER_SIZE);
 }
 
 bool SimpleVariableBlock::insertRecord(const char* key, VariableRecord *rec)
@@ -210,7 +210,7 @@ bool SimpleVariableBlock::removeRecord(const char* key)
 	// update block size
 	if(occupiedSpace == this->recordsOffset) //block is empty!
 		occupiedSpace = 0;
-	memcpy(this->bytes+1, &occupiedSpace, Constants::BLOCK_HEADER_SIZE);
+	memcpy(this->bytes+4, &occupiedSpace, Constants::BLOCK_HEADER_SIZE);
 
 	this->updateInformation();
 	if (r != NULL)

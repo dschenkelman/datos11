@@ -16,8 +16,7 @@ class FreeBlockManager
 {
 private:
 	void loadFreeBlocks();
-	// to be used by remove
-	// void addFreeBlock(int block);
+    void saveFreeBlocks();
 	std::fstream file;
 	std::vector<int> blocks;
 	std::string fileName;
@@ -25,6 +24,7 @@ private:
 public:
 	FreeBlockManager(std::string fName, bool createNew);
 	int getNextBlock();
+	int addFreeBlock(int block);
 	virtual ~FreeBlockManager();
 };
 

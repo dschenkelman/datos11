@@ -45,7 +45,6 @@ void FreeBlockManager::loadFreeBlocks()
 	{
 		memcpy(&value, buffer + i * sizeof(int), sizeof(int));
 		this->blocks.push_back(value);
-		this->file.write(buffer, (this->size + 1) * sizeof(int));
 	}
 }
 
@@ -62,18 +61,30 @@ int FreeBlockManager::getNextBlock()
 		this->blocks[this->blocks.size() - 1] = ++value2;
 	}
 
-	this->file.clear();
-	this->file.seekp(0, ios::beg);
-	char buffer[this->size--];
-	memcpy(buffer,&this->size, sizeof(int));
-	for (int i = 1; i <= this->size; i++)
-	{
-		memcpy(buffer + i * sizeof(int), &this->blocks[i], sizeof(int));
-	}
-
-	this->file.write(buffer, (this->size + 1) * sizeof(int));
+	this->size--;
+	this->saveFreeBlocks();
 
 	return value;
+}
+
+void FreeBlockManager::saveFreeBlocks()
+{
+	this->file.clear();
+	this->file.seekp(0, ios::beg);
+    char buffer[this->size + 1];
+    memcpy(buffer, &this->size, sizeof (int));
+    for(int i = 1; i <= this->size; i++)
+    {
+        memcpy(buffer + i * sizeof (int), &this->blocks[i], sizeof (int));
+    }
+    this->file.write(buffer, (this->size + 1) * sizeof (int));
+}
+
+int FreeBlockManager::addFreeBlock(int block)
+{
+	this->blocks.push_back(block);
+	this->size++;
+    this->saveFreeBlocks();
 }
 
 FreeBlockManager::~FreeBlockManager()

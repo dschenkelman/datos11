@@ -100,6 +100,11 @@ std::string Administrator::getName()
 	return this->name;
 }
 
+void Administrator::setPassword(std::string & value)
+{
+	this->password = value;
+}
+
 Administrator::~Administrator()
 {
 	if(this->bytes != NULL)
@@ -112,4 +117,3 @@ Administrator::~Administrator()
 		delete[] this->key;
 	}
 }
-

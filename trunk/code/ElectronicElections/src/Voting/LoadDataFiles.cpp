@@ -58,7 +58,8 @@ void LoadDataFiles::createFileType(char* fileType, char** fields)
 		this->electionBlockSize = atoi(fields[1]);
 		//create it empty..
 		cout << "Generando archivo de elecciones" << endl;
-		Tree* electionTree = new Tree(this->electionFileName, this->electionBlockSize, NULL, true);
+		cout << this->electionBlockSize << endl;
+		Tree* electionTree = new Tree(this->electionFileName, this->electionBlockSize, new ElectionMethods, true);
 		this->readElectionFile(electionTree, fields[0]);
 		delete electionTree;
 	}
@@ -193,28 +194,30 @@ void LoadDataFiles::readElectionFile(Tree* treeElectionFile, char* dataFileName)
 	char* cargo;
 	char* firstDistrict;
 	char* secondDistricts;
-	std::vector<std::string> list;
 	while ( getline(dataFile,line) )
 	{
+		std::vector<std::string> distlist;
 		char* day = strdup(line.c_str());
 		strtok(day, ",");
 		month = strtok(NULL, ",");
 		year = strtok(NULL, ",");
 		cargo = strtok(NULL, ",");
 		firstDistrict = strtok(NULL, ",");
-		list.push_back(string(firstDistrict));
+		distlist.push_back(string(firstDistrict));
 
 
 		short yearNumber = atoi(year);
-		Election election(*day, *month, yearNumber, string(cargo));
+		cout << day <<"-"<< month<<"-"<<yearNumber<<"-"<<cargo<<endl;
 		while((secondDistricts = strtok(NULL, ",")) != NULL)
 		{
-			election.getDistrictList().push_back(secondDistricts);
+			distlist.push_back(secondDistricts);
 		}
+		Election election((char)atoi(day), (char)atoi(month), yearNumber, string(cargo), distlist);
 
-		VariableRecord* record;
+		VariableRecord* record = new VariableRecord();
 		record->setBytes(election.getBytes(), election.getSize());
-		//treeElectionFile->insert(election->getKey(), record);
+		VariableRecord* key = new VariableRecord(election.getKey(), election.getKeySize());
+		cout << treeElectionFile->insert(key, record)<<endl;
 	}
 	dataFile.close();
 }
@@ -285,11 +288,12 @@ void LoadDataFiles::readVoterFile(HashBlockFile* hashVoterFile, char* dataFileNa
 			if(i > 3) i = 0;
 		}
 		Voter* voter = new Voter(atoi(dni), string(nombre), string(pass), string(domicilio), string(district), list);
-		cout<<atoi(dni)<<"-"<<string(nombre)<<"-"<<string(pass)<<"-"<<string(domicilio)<<"-"<<string(district)<<endl;
-		cout<<voter->getKey()<<endl;
+//		cout<<atoi(dni)<<"-"<<string(nombre)<<"-"<<string(pass)<<"-"<<string(domicilio)<<"-"<<string(district)<<endl;
+//		cout<<voter->getKey()<<endl;
 		VariableRecord* record = new VariableRecord();
 		record->setBytes(voter->getBytes(), voter->getSize());
-		hashVoterFile->loadRecord(voter->getKey(), record);
+		hashVoterFile->insertRecord(voter->getKey(), record) ? cout <<"ok"<<endl : cout<<"fallo"<<endl;
+//		hashVoterFile->loadRecord(voter->getKey(), record);
 		delete voter;
 		delete record;
 	}

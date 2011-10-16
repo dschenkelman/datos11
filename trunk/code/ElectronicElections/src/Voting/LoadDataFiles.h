@@ -30,6 +30,7 @@
 #include "../Entities/CandidateMethods.h"
 #include "../Entities/CountMethods.h"
 #include "../Entities/Election.h"
+#include "../Entities/ElectionMethods.h"
 
 #include "Log.h"
 

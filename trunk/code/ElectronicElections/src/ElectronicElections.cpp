@@ -183,7 +183,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							log.write(string("Eliminando distrito ").append(d.getName()), res!=4, true);
 						} else if (action==2) district_tree.print();
 					} else if (action == 1) {
-						HashBlockFile *hash_voter = new HashBlockFile("Voter.dat", 1024*10, &VoterMethods(), &VoterHashingFunction(), 2800, false); // para 28 mil votantes
+						HashBlockFile *hash_voter = new HashBlockFile("VoterHash.dat", 1024, &VoterMethods(), &VoterHashingFunction(), 28000, false); // para 28 mil votantes
 						option voter_action[6];
 						voter_action[0].label = "Agregar votante";
 						voter_action[1].label = "Cambio de domicilio";
@@ -226,7 +226,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							hash_voter->printContent();
 						}
 					} else if (action==2) {
-						Tree election_tree ("Election.dat", 512, &ElectionMethods(), false);
+						Tree election_tree ("Election.dat", 16000, &ElectionMethods(), false);
 						option election_action[3];
 						election_action[0].label = "Agregar eleccion";
 						election_action[1].label = "Eliminar eleccion";
@@ -278,7 +278,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 						} else if (action == 1) {
 							// eliminar eleccion
 							Election e ((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()),
-									(short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"), std::vector<string>());
+									(short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"));
 							int res = election_tree.remove(e.getKey());
 							stringstream elec;
 							elec << e.getDay(); elec << "/"; elec << e.getMonth(); elec <<  "/"; elec << e.getYear();

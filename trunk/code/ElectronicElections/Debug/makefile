@@ -13,10 +13,10 @@ RM := rm -rf
 -include src/VariableBlocks/subdir.mk
 -include src/Helpers/subdir.mk
 -include src/Hash/subdir.mk
+-include src/EntitiesTests/subdir.mk
+-include src/Entities/subdir.mk
 -include src/subdir.mk
--include src/Database/subdir.mk
 -include src/BlocksTests/subdir.mk
--include src/Blocks/subdir.mk
 -include src/BPlusTreeTests/subdir.mk
 -include src/BPlusTree/subdir.mk
 -include objects.mk

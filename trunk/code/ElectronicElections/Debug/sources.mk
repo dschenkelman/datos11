@@ -27,10 +27,10 @@ src/Voting \
 src/VariableBlocks \
 src/Helpers \
 src/Hash \
+src/EntitiesTests \
+src/Entities \
 src \
-src/Database \
 src/BlocksTests \
-src/Blocks \
 src/BPlusTreeTests \
 src/BPlusTree \
 

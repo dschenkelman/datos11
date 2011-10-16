@@ -37,6 +37,7 @@ public:
 	std::string getListName();
 	std::string getDistrict();
 	unsigned int getQuantity();
+	void increaseQuantity();
 };
 
 #endif /* COUNT_H_ */

@@ -6,6 +6,9 @@
  */
 
 #include "Menu.h"
+#include <iostream>
+#include <string>
+#include <sstream>
 
 Menu::Menu(option *opts, int size) {
 	this->options = opts;
@@ -23,7 +26,13 @@ int Menu::ask() {
 		cout << i << ". " << cur_opt[i].label << endl;
 	}
 	int ret_value;
-	cin >> ret_value;
+	string input = "";
+	getline(cin, input);
+	stringstream myStream(input);
+	if (!(myStream >> ret_value))
+	{
+		return -1;
+	}
 	return ret_value;
 }
 

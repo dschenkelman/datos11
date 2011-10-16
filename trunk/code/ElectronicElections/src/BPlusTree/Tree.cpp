@@ -57,7 +57,7 @@ void Tree::changeBlock(int newBlock2, VariableRecord* middleRecord)
     this->file->getCurrentBlock()->setLevel(0);
 }
 
-void Tree::handleOverflowInLeafRoot(VariableRecord *keyRecord, VariableRecord *dataRecord)
+void Tree::handleOverflowInLeafRoot(VariableRecord *dataRecord)
 {
     TreeBlock *currentBlock = this->file->getCurrentBlock();
     bool blockChanged = false;
@@ -77,9 +77,10 @@ void Tree::handleOverflowInLeafRoot(VariableRecord *keyRecord, VariableRecord *d
     this->file->getCurrentBlock()->setLevel(0);
     VariableRecord aux;
     currentBlock->positionAtBegin();
+    VariableRecord* keyAux = this->methods->getKeyRecord(dataRecord->getBytes(), dataRecord->getSize());
     while(currentBlock->getNextRecord(&aux) != NULL)
 	{
-		int result = this->methods->compare(dataRecord->getBytes(), aux.getBytes(), aux.getSize());
+		int result = this->methods->compare(keyAux->getBytes(), aux.getBytes(), aux.getSize());
 		if (result > 0)
 		{
 			// first leaf
@@ -97,6 +98,8 @@ void Tree::handleOverflowInLeafRoot(VariableRecord *keyRecord, VariableRecord *d
 		}
 	}
 
+    delete keyAux;
+
 	if (!blockChanged)
 	{
 		blockChanged = true;
@@ -108,8 +111,7 @@ void Tree::handleOverflowInLeafRoot(VariableRecord *keyRecord, VariableRecord *d
 
     this->file->swapBlockKind();
     this->file->getCurrentBlock()->insertNodePointer(0, newBlock1);
-    VariableRecord* middleKeyRecord =
-	this->methods->getKeyRecord(dataRecord->getBytes(), dataRecord->getSize());
+    VariableRecord* middleKeyRecord = this->methods->getKeyRecord(dataRecord->getBytes(), dataRecord->getSize());
     this->file->getCurrentBlock()->insertRecord(middleKeyRecord, middleKeyRecord);
     this->file->getCurrentBlock()->insertNodePointer(1, newBlock2);
     this->file->getCurrentBlock()->setLevel(1);
@@ -202,7 +204,7 @@ OpResult Tree::insert(VariableRecord *keyRecord, VariableRecord *dataRecord)
 	{
 		if (this->file->isCurrentLeaf())
 		{
-			this->handleOverflowInLeafRoot(keyRecord, dataRecord);
+			this->handleOverflowInLeafRoot(dataRecord);
 		}
 		else
 		{
@@ -260,7 +262,23 @@ OpResult Tree::remove(char *key)
 
 OpResult Tree::update(char *key, VariableRecord *r)
 {
-	return this->root->update(key, r);
+	OpResult result = this->root->update(key, r);
+
+	// overflow in root, split
+	if (result == Overflow)
+	{
+		if (this->file->isCurrentLeaf())
+		{
+			this->handleOverflowInLeafRoot(r);
+		}
+//		else
+//		{
+//			this->handleOverflowInInternalRoot(keyRecord, dataRecord, overflowParameter);
+//		}
+	}
+
+	this->file->saveBlock();
+	return result;
 }
 
 void Tree::deleteKeptLeaf()

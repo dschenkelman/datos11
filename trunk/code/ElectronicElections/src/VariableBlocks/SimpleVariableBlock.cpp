@@ -169,10 +169,21 @@ void SimpleVariableBlock::forceInsert(VariableRecord *rec)
 
 bool SimpleVariableBlock::insertRecord(const char* key, VariableRecord *rec)
 {
-	if (!this->canInsertRecord(rec->getSize()) || this->findRecord(key, &rec) >= 0)
+	VariableRecord* r = NULL;
+	if (!this->canInsertRecord(rec->getSize()) || this->findRecord(key, &r) >= 0)
 	{
+		if (r != NULL)
+		{
+			delete r;
+		}
 		return false;
 	}
+
+	if (r != NULL)
+	{
+		delete r;
+	}
+
     this->forceInsert(rec);
     this->updateInformation();
     return true;

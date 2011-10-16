@@ -45,7 +45,7 @@ void AdministratorMethods::printKey(const char* key, int recordSize)
 	char buffer[len];
 	memcpy(buffer, key + Constants::FIELD_HEADER_SIZE, len);
 
-	cout << buffer << endl;
+	cout << buffer;
 }
 
 VariableRecord* AdministratorMethods::getKeyRecord(const char* recordBytes, int recordSize)

@@ -185,6 +185,7 @@ bool HashBlockFile::insertRecord(const char* key, VariableRecord* record)
 	{
 		if(rec != NULL){
 			delete rec;
+			rec = NULL;
 		}
 		//ERROR, KEY ALREADY INSERTED
 		return false;
@@ -198,6 +199,7 @@ bool HashBlockFile::insertRecord(const char* key, VariableRecord* record)
 			{
 				if(rec != NULL){
 					delete rec;
+					rec = NULL;
 				}
 				return false;
 			}
@@ -205,6 +207,11 @@ bool HashBlockFile::insertRecord(const char* key, VariableRecord* record)
 		this->hashBlockUsed = true;
 		this->currentBlock->insertRecord(key, record);
 		this->saveBlock();
+		if(rec != NULL)
+		{
+			delete rec;
+			rec = NULL;
+		}
 		return true;
 	}
 	//no space in block, overflow!
@@ -215,6 +222,7 @@ bool HashBlockFile::insertRecord(const char* key, VariableRecord* record)
 		{
 			if(rec != NULL){
 				delete rec;
+				rec = NULL;
 			}
 			return false;
 		}
@@ -229,6 +237,11 @@ bool HashBlockFile::insertRecord(const char* key, VariableRecord* record)
 		}
 		this->ovflowBlockUsed = true;
 		this->saveBlock();
+		if(rec != NULL)
+		{
+			delete rec;
+			rec = NULL;
+		}
 		return true;
 	}
 	//it wasn't overflowed. now it is
@@ -239,6 +252,10 @@ bool HashBlockFile::insertRecord(const char* key, VariableRecord* record)
 	this->overflowFile->loadBlock(ovflowBlock);
 	this->overflowFile->getCurrentBlock()->insertRecord(key, record);
 	this->saveBlock();
+	if(rec != NULL)
+	{
+		delete rec;
+	}
 	return true;
 }
 
@@ -427,13 +444,16 @@ int HashBlockFile::findInOverflowBlocks(const char* key, VariableRecord** record
 {
 	int ovflowBlock = this->currentBlock->getOverflowedBlock();
 	SimpleVariableBlock* block = this->overflowFile->getCurrentBlock();
-	VariableRecord* rec;
+	VariableRecord* rec = NULL;
 	while(block->findRecord(key, &rec) == -1)
 	{
 		ovflowBlock = block->getOverflowedBlock();
 		if(ovflowBlock == -1)
 		{
-			//delete rec;
+			if (rec != NULL)
+			{
+				delete rec;
+			}
 			return ovflowBlock; //key was not found
 		}
 		this->overflowFile->loadBlock(ovflowBlock);

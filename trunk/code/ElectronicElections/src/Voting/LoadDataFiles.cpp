@@ -174,7 +174,7 @@ void LoadDataFiles::readCandidateFile(Tree* treeCandidateFile, char* dataFileNam
 		dniVoter = strtok(NULL, ",");
 		short yearNumber = atoi(year);
 
-		Candidate cand (*day, *month, yearNumber, string(listName), string(cargo), atoi(dniVoter));
+		Candidate cand ((char)atoi(day), (char)atoi(month), yearNumber, string(listName), string(cargo), atoi(dniVoter));
 		VariableRecord candkey_vr (cand.getKey(), cand.getKeySize());
 		VariableRecord cand_vr (cand.getBytes(), cand.getSize());
 		int res = treeCandidateFile->insert(&candkey_vr, &cand_vr);

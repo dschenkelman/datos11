@@ -160,6 +160,11 @@ unsigned int Count::getQuantity()
 	return this->quantity;
 }
 
+void Count::increaseQuantity()
+{
+	this->quantity++;
+}
+
 Count::~Count()
 {
 	if(this->key != NULL)

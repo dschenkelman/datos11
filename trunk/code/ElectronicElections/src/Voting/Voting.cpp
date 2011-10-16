@@ -61,6 +61,8 @@ bool Voting::login()
         	return false;
         }
 
+        cout << "Votante encontrado: " << this->voter->getNames();
+
         this->voter->setBytes((char*) voterRecord->getBytes());
 
         if(strcmp(this->voter->getPassword().c_str(), pass.c_str()) != 0)
@@ -102,8 +104,6 @@ bool Voting::vote()
 
             ElectionsList list = electionsLists.at(listIndex);
 
-            cout << "Voto a: " << list.getName() << endl;
-
             if(this->isInVoterElectionList(&(districtElection.at(i))))
             {
             	continue;
@@ -111,7 +111,7 @@ bool Voting::vote()
 
 			ElectionKey eKey = {districtElection.at(i).getYear(), districtElection.at(i).getMonth(),
 					districtElection.at(i).getDay(), districtElection.at(i).getCharge()};
-			this->voter->getElectionKeyList().push_back(eKey);
+			this->voter->getElectionKeyList().push_back(eKey); // para que esto funque bien si no me equivoco getElectionKeyList tiene que devolver vector& no?
 
 /*			string countFileName = this->dataFiles->getCountFileName();
 			int countBlockSize = this->dataFiles->getCountBlockSize();
@@ -127,7 +127,7 @@ bool Voting::vote()
 			countTree.get(c.getKey(), &record);
 			c.setBytes(record.getBytes());
 
-			//c.setQuantity(c.getQuantity() + 1);
+			c.increaseQuantity();
 			record.setBytes(c.getBytes(), c.getSize());
 
 			countTree.update(key, &record);*/
@@ -137,6 +137,36 @@ bool Voting::vote()
     }
     return true;
 }
+
+/*vector<ElectionsList> Voting::getElectionsListsByElection(Election* e)
+{
+	string electionsListFileName = this->dataFiles->getElectionListFileName();
+	int electionsListBlockSize = this->dataFiles->getElectionListBlockSize();
+
+	ElectionsListMethods elm;
+	Tree electionsListTree(electionsListFileName, electionsListBlockSize, &elm, true);
+
+	vector<ElectionsList> electionsListVector;
+
+	VariableRecord record;
+	electionsListTree.returnFirst(&record);
+
+	while(record != NULL)
+	{
+		ElectionsList eList("invalid", 0, 0, 0, "invalid");
+		eList.setBytes(record.getBytes());
+		int compareResult = elm.compare(eList.getKey(), e->getBytes(), e->getSize());
+
+		if(compareResult == 0)
+		{
+			electionsListVector.push_back(eList);
+		}
+
+		record = electionsListTree.getNext(&record);
+	}
+
+	return electionsListVector;
+}*/
 
 vector<ElectionsList> Voting::getElectionsListsByElection(Election* e)
 {

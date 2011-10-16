@@ -53,6 +53,8 @@ void TreeTests::run()
 	this->printResult("testShouldUpdateBlocksInLeaf", testUpdateBlocksInLeaf());
 	this->printResult("testUpdateBlockInLeafWithOverflowCreatesTwoLeafs", testUpdateBlockInLeafWithOverflowCreatesTwoLeafs());
 	this->printResult("testUpdateInLeafWithOverflowIsSplitByParent", testUpdateInLeafWithOverflowIsSplitByParent());
+	this->printResult("testUpdateInInternalRootWithOverflowIsSplit", testUpdateInInternalRootWithOverflowIsSplit());
+	this->printResult("testUpdateInInternalNodeWithOverflowIsSplit", testUpdateInInternalNodeWithOverflowIsSplit());
 }
 
 bool TreeTests::testInsertInEmptyTreeWorksCorrectly()
@@ -947,7 +949,7 @@ bool TreeTests::testUpdateInLeafWithOverflowIsSplitByParent()
 		tree.insert(&keyRecord, &dataRecord);
 	}
 
-	cout << "Eletions Count " << i << endl;
+	cout << "Elections Count " << i << endl;
 	tree.print();
 	cout << endl;
 
@@ -958,6 +960,122 @@ bool TreeTests::testUpdateInLeafWithOverflowIsSplitByParent()
 	VariableRecord dataRecord;
 	dataRecord.setBytes(e2.getBytes(), e2.getSize());
 	tree.update(e2.getKey(), &dataRecord);
+
+	cout << "After update" << endl;
+	tree.print();
+	cout << endl;
+
+	return true;
+}
+
+bool TreeTests::testUpdateInInternalRootWithOverflowIsSplit()
+{
+	Election e1(23, 10, 2011, "Presidente");
+	Election e12(12, 11, 2010, "Presidente");
+	Election e13(11, 10, 2009, "Presidente");
+	Election e14(10, 9, 2008, "Presidente");
+	Election e2(22, 9, 2007, "Presidente");
+	Election e15(9, 8, 2006, "Presidente");
+	Election e3(21, 8, 2003, "Presidente");
+	Election e4(20, 7, 1999, "Presidente");
+	Election e16(8, 7, 1998, "Presidente");
+	Election e8(16, 3, 1997, "Presidente");
+	Election e5(19, 6, 1995, "Presidente");
+	Election e11(13, 12, 1994, "Presidente");
+	Election e10(14, 1, 1993, "Presidente");
+	Election e9(15, 2, 1991, "Presidente");
+	Election e6(18, 5, 1989, "Presidente");
+	Election e7(17, 4, 1983, "Presidente");
+	Election e19(5, 4, 1932, "Presidente");
+	Election e18(6, 5, 1931, "Presidente");
+	Election e17(7, 6, 1930, "Presidente");
+
+
+	Election elections[] = {e9, e8, e1, e10, e16, e2, e12, e5, e7, e3, e4, e6, e11, e13, e14, e15, e17, e18, e19,};
+	ElectionMethods electionMethods;
+	Tree tree("treeTests.dat", 128, &electionMethods, true);
+
+	int i;
+	for (i = 0; i < 19; i++)
+	{
+		Election e = elections[i];
+		VariableRecord dataRecord;
+		VariableRecord keyRecord;
+		dataRecord.setBytes(e.getBytes(), e.getSize());
+		keyRecord.setBytes(e.getKey(), e.getKeySize());
+
+		tree.insert(&keyRecord, &dataRecord);
+	}
+
+	cout << "Elections Count " << i << endl;
+	tree.print();
+	cout << endl;
+
+	e6.getDistrictList().push_back("Buenos Aires");
+	e6.getDistrictList().push_back("Cordoba");
+	e6.getDistrictList().push_back("Santa Fe");
+
+	VariableRecord dataRecord;
+	dataRecord.setBytes(e6.getBytes(), e6.getSize());
+	tree.update(e6.getKey(), &dataRecord);
+
+	cout << "After update" << endl;
+	tree.print();
+	cout << endl;
+
+	return true;
+}
+
+bool TreeTests::testUpdateInInternalNodeWithOverflowIsSplit()
+{
+	Election e1(23, 10, 2011, "Presidente");
+	Election e12(12, 11, 2010, "Presidente");
+	Election e13(11, 10, 2009, "Presidente");
+	Election e14(10, 9, 2008, "Presidente");
+	Election e2(22, 9, 2007, "Presidente");
+	Election e15(9, 8, 2006, "Presidente");
+	Election e3(21, 8, 2003, "Presidente");
+	Election e4(20, 7, 1999, "Presidente");
+	Election e16(8, 7, 1998, "Presidente");
+	Election e8(16, 3, 1997, "Presidente");
+	Election e5(19, 6, 1995, "Presidente");
+	Election e11(13, 12, 1994, "Presidente");
+	Election e10(14, 1, 1993, "Presidente");
+	Election e9(15, 2, 1991, "Presidente");
+	Election e6(18, 5, 1989, "Presidente");
+	Election e7(17, 4, 1983, "Presidente");
+	Election e19(5, 4, 1932, "Presidente");
+	Election e18(6, 5, 1931, "Presidente");
+	Election e17(7, 6, 1930, "Presidente");
+
+
+	Election elections[] = {e9, e8, e1, e10, e16, e2, e12, e5, e7, e3, e4, e6, e11, e13, e14, e15, e17, e18, e19,};
+	ElectionMethods electionMethods;
+	Tree tree("treeTests.dat", 100, &electionMethods, true);
+
+	int i;
+	for (i = 0; i < 19; i++)
+	{
+		Election e = elections[i];
+		VariableRecord dataRecord;
+		VariableRecord keyRecord;
+		dataRecord.setBytes(e.getBytes(), e.getSize());
+		keyRecord.setBytes(e.getKey(), e.getKeySize());
+
+		tree.insert(&keyRecord, &dataRecord);
+	}
+
+	cout << "Elections Count " << i << endl;
+	tree.print();
+	cout << endl;
+
+	e5.getDistrictList().push_back("Buenos Aires");
+	e5.getDistrictList().push_back("Cordoba");
+	e5.getDistrictList().push_back("Santa Fe");
+
+	VariableRecord dataRecord;
+	dataRecord.setBytes(e5.getBytes(), e5.getSize());
+	tree.update(e5.getKey(), &dataRecord);
 
 	cout << "After update" << endl;
 	tree.print();

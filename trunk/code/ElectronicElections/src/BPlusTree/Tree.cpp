@@ -125,8 +125,7 @@ void Tree::handleOverflowInLeafRoot(VariableRecord *dataRecord)
     		this->file->getCurrentBlock(), this->methods);
 }
 
-void Tree::handleOverflowInInternalRoot(VariableRecord *keyRecord,
-		VariableRecord *dataRecord, OverflowParameter& overflowParameter)
+void Tree::handleOverflowInInternalRoot(VariableRecord *dataRecord, OverflowParameter& overflowParameter)
 {
 	TreeBlock* rootBlock = this->file->getCurrentBlock();
 	int newBlock1 = this->file->getFreeBlockManager().getNextBlock();
@@ -208,7 +207,7 @@ OpResult Tree::insert(VariableRecord *keyRecord, VariableRecord *dataRecord)
 		}
 		else
 		{
-			this->handleOverflowInInternalRoot(keyRecord, dataRecord, overflowParameter);
+			this->handleOverflowInInternalRoot(dataRecord, overflowParameter);
 		}
 	}
 
@@ -272,10 +271,10 @@ OpResult Tree::update(char *key, VariableRecord *r)
 		{
 			this->handleOverflowInLeafRoot(r);
 		}
-//		else
-//		{
-//			this->handleOverflowInInternalRoot(keyRecord, dataRecord, overflowParameter);
-//		}
+		else
+		{
+			this->handleOverflowInInternalRoot(r, overflowParameter);
+		}
 	}
 
 	this->file->saveBlock();

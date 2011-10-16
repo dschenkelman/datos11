@@ -19,7 +19,7 @@ using namespace std;
 HashTest::HashTest()
 {
 	string f = "hashtest";
-	int blockAmount = 6;
+	int blockAmount = 1;
 	this->cm = new CustomerMethods();
 	this->dhashf = new DistrictHashingFunction();
 	this->file = new HashBlockFile(f, 512, cm, dhashf, blockAmount, true);
@@ -94,7 +94,10 @@ void HashTest::testInsert()
 		VariableRecord* record = new VariableRecord();
 		record->setBytes(recordBytes, size);
 		this->file->insertRecord(recordKey, record);
-		delete record;
+		//if (record != NULL)
+		//{
+			delete record;
+		//}
 	}
 	this->file->printContent();
 	std::cout << "Inserted Hash successful" << std::endl;
@@ -207,10 +210,10 @@ void HashTest::testEmptyBlock(int blockNumber)
 void HashTest::run()
 {
 	this->testLoadHashwithoutValidation();
-	//this->testInsert();
-	//this->testGetRecord();
-	//this->testUpdateRecord();
-	//this->testRemove();
+	this->testInsert();
+	this->testGetRecord();
+	this->testUpdateRecord();
+	this->testRemove();
 }
 
 HashTest::~HashTest()

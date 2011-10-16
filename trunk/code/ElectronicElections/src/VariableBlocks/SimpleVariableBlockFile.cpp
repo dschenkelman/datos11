@@ -309,7 +309,8 @@ void SimpleVariableBlockFile::loadBlock(int blockNumber)
     }
     else
     {
-    	memset(this->currentBlock->getBytes(), 0, this->blockSize);
+    	//memset(this->currentBlock->getBytes(), 0, this->blockSize);
+    	this->currentBlock->clear();
     }
     this->loadRespectiveMapBlock(blockNumber);
     this->currentBlock->updateInformation();

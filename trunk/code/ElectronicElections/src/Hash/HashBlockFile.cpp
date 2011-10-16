@@ -442,7 +442,8 @@ bool HashBlockFile::removeRecord(const char* key)
 
 int HashBlockFile::findInOverflowBlocks(const char* key, VariableRecord** record, bool getFlag)
 {
-	int ovflowBlock = this->currentBlock->getOverflowedBlock();
+	//int ovflowBlock = this->currentBlock->getOverflowedBlock();
+	int ovflowBlock;
 	SimpleVariableBlock* block = this->overflowFile->getCurrentBlock();
 	VariableRecord* rec = NULL;
 	while(block->findRecord(key, &rec) == -1)

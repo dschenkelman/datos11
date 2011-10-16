@@ -13,11 +13,11 @@
 
 using namespace std;
 
-DistrictElectionMethods::DistrictElectionMethods()
+DistrictElectionsMethods::DistrictElectionsMethods()
 {
 }
 
-void DistrictElectionMethods::printKey(const char *recordBytes, int recordSize)
+void DistrictElectionsMethods::printKey(const char *recordBytes, int recordSize)
 {
 	char districtSize = 0;
 	memcpy(&districtSize, recordBytes, Constants::FIELD_HEADER_SIZE);
@@ -27,13 +27,13 @@ void DistrictElectionMethods::printKey(const char *recordBytes, int recordSize)
 	cout << district;
 }
 
-void DistrictElectionMethods::print(const char *recordBytes, int recordSize)
+void DistrictElectionsMethods::print(const char *recordBytes, int recordSize)
 {
 	DistrictElections de;
 	de.setBytes(recordBytes);
 }
 
-int DistrictElectionMethods::compare(const char *key, const char *recordBytes, int recordSize)
+int DistrictElectionsMethods::compare(const char *key, const char *recordBytes, int recordSize)
 {
 	DistrictElections de;
 	de.setBytes(recordBytes);
@@ -41,7 +41,7 @@ int DistrictElectionMethods::compare(const char *key, const char *recordBytes, i
 	return strcmp(key, de.getDistrict().c_str());
 }
 
-VariableRecord *DistrictElectionMethods::getKeyRecord(const char *recordBytes, int recordSize)
+VariableRecord *DistrictElectionsMethods::getKeyRecord(const char *recordBytes, int recordSize)
 {
 	DistrictElections de;
 	de.setBytes(recordBytes);
@@ -59,6 +59,6 @@ VariableRecord *DistrictElectionMethods::getKeyRecord(const char *recordBytes, i
 	return record;
 }
 
-DistrictElectionMethods::~DistrictElectionMethods()
+DistrictElectionsMethods::~DistrictElectionsMethods()
 {
 }

@@ -17,11 +17,14 @@ class DistrictElections
 	std::vector<ElectionId> elections;
 	std::string district;
 	char* bytes;
+	char* key;
 public:
 	DistrictElections();
 	DistrictElections(std::string& d);
 	int getSize();
+	int getKeySize();
 	void setBytes(const char* value);
+	char* getKey();
 	char* getBytes();
 	std::string& getDistrict();
 	void setDistrict(std::string& value);

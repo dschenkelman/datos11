@@ -14,11 +14,13 @@ using namespace std;
 DistrictElections::DistrictElections():district("None")
 {
 	this->bytes = NULL;
+	this->key = NULL;
 }
 
 DistrictElections::DistrictElections(std::string & d) : district(d)
 {
 	this->bytes = NULL;
+	this->key = NULL;
 }
 
 void DistrictElections::addElection(char d, char m, short  y, std::string & c)
@@ -30,6 +32,22 @@ void DistrictElections::addElection(char d, char m, short  y, std::string & c)
 void DistrictElections::setDistrict(std::string & value)
 {
 	this->district = value;
+}
+
+char *DistrictElections::getKey()
+{
+	char districtLength = this->district.length() + 1;
+	int keyLength = this->district.length() + 1 + Constants::FIELD_HEADER_SIZE;
+	if (this->key != NULL)
+	{
+		delete this->key;
+	}
+
+	this->key = new char[keyLength];
+	memcpy(this->key, &districtLength, Constants::FIELD_HEADER_SIZE);
+	memcpy(this->key + Constants::FIELD_HEADER_SIZE, this->district.c_str(), districtLength);
+
+	return this->key;
 }
 
 std::string & DistrictElections::getDistrict()
@@ -147,10 +165,21 @@ int DistrictElections::getSize()
 	return size;
 }
 
+int DistrictElections::getKeySize()
+{
+	char districtLength = this->district.length() + 1;
+	return districtLength + Constants::FIELD_HEADER_SIZE;
+}
+
 DistrictElections::~DistrictElections()
 {
 	if (this->bytes != NULL)
 	{
 		delete this->bytes;
+	}
+
+	if (this->key != NULL)
+	{
+		delete this->key;
 	}
 }

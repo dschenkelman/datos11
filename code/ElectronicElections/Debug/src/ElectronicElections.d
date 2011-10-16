@@ -59,18 +59,18 @@ src/ElectronicElections.d src/ElectronicElections.o: \
  ../src/Voting/../Entities/ElectionsListMethods.h \
  ../src/Voting/../Entities/CandidateMethods.h \
  ../src/Voting/../Entities/CountMethods.h \
- ../src/Voting/../Entities/Election.h ../src/Voting/Log.h \
+ ../src/Voting/../Entities/Election.h \
+ ../src/Voting/../Entities/ElectionMethods.h ../src/Voting/Log.h \
  ../src/Voting/../Entities/District.h ../src/Hash/HashBlockFile.h \
  ../src/Hash/DistrictHashingFunction.h ../src/Hash/VoterHashingFunction.h \
- ../src/Hash/ChargeHashingFunction.h ../src/Entities/District.h \
+ ../src/Hash/ChargeHashingFunction.h ../src/Entities/Administrator.h \
+ ../src/Entities/AdministratorMethods.h ../src/Entities/District.h \
  ../src/Entities/DistrictMethods.h ../src/Entities/Voter.h \
- ../src/Entities/VoterMethods.h ../src/Entities/Administrator.h \
- ../src/Entities/AdministratorMethods.h ../src/Entities/Election.h \
- ../src/Entities/ElectionMethods.h \
- ../src/Entities/../VariableBlocks/RecordMethods.h \
- ../src/Entities/Charge.h ../src/Entities/ChargeMethods.h \
- ../src/Entities/ElectionsList.h ../src/Entities/ElectionsListMethods.h \
- ../src/Entities/Candidate.h ../src/Entities/CandidateMethods.h \
+ ../src/Entities/VoterMethods.h ../src/Entities/Election.h \
+ ../src/Entities/ElectionMethods.h ../src/Entities/Charge.h \
+ ../src/Entities/ChargeMethods.h ../src/Entities/ElectionsList.h \
+ ../src/Entities/ElectionsListMethods.h ../src/Entities/Candidate.h \
+ ../src/Entities/CandidateMethods.h \
  ../src/VariableBlocks/VariableRecord.h ../src/BPlusTree/Tree.h \
  ../src/Voting/Log.h ../src/Voting/LoadDataFiles.h
 
@@ -208,6 +208,8 @@ src/ElectronicElections.d src/ElectronicElections.o: \
 
 ../src/Voting/../Entities/Election.h:
 
+../src/Voting/../Entities/ElectionMethods.h:
+
 ../src/Voting/Log.h:
 
 ../src/Voting/../Entities/District.h:
@@ -220,6 +222,10 @@ src/ElectronicElections.d src/ElectronicElections.o: \
 
 ../src/Hash/ChargeHashingFunction.h:
 
+../src/Entities/Administrator.h:
+
+../src/Entities/AdministratorMethods.h:
+
 ../src/Entities/District.h:
 
 ../src/Entities/DistrictMethods.h:
@@ -228,15 +234,9 @@ src/ElectronicElections.d src/ElectronicElections.o: \
 
 ../src/Entities/VoterMethods.h:
 
-../src/Entities/Administrator.h:
-
-../src/Entities/AdministratorMethods.h:
-
 ../src/Entities/Election.h:
 
 ../src/Entities/ElectionMethods.h:
-
-../src/Entities/../VariableBlocks/RecordMethods.h:
 
 ../src/Entities/Charge.h:
 

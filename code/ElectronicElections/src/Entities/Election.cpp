@@ -9,13 +9,23 @@
 #include "../VariableBlocks/Constants.h"
 #include <cstring>
 
-Election::Election(char day, char month, short year, std::string charge, std::vector<string> districtList)
+Election::Election(char day, char month, short year, std::string charge)
 {
 	this->day = day;
 	this->month = month;
 	this->year = year;
 	this->charge = charge;
-	this->districtList = districtList;
+	this->bytes = NULL;
+	this->key = NULL;
+}
+
+Election::Election(char day, char month, short year, std::string charge, vector<string>& districts)
+{
+	this->day = day;
+	this->month = month;
+	this->year = year;
+	this->charge = charge;
+	this->districtList = districts;
 	this->bytes = NULL;
 	this->key = NULL;
 }
@@ -149,12 +159,12 @@ short Election::getYear()
 	return this->year;
 }
 
-std::vector<std::string> Election::getDistrictList()
+std::vector<std::string>& Election::getDistrictList()
 {
 	return this->districtList;
 }
 
-std::string Election::getCharge()
+std::string& Election::getCharge()
 {
 	return this->charge;
 }

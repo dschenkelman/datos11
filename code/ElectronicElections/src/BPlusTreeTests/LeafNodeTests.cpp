@@ -259,7 +259,8 @@ bool LeafNodeTests::testUpdateNonExistentRecordReturnsNotFound()
 	char key[sizeof(int)];
 	memcpy(&key, &v.DNI, sizeof(int));
 	r.setBytes(key, 2*sizeof(int));
-	return node.update(key, &r) == NotFound;
+	OverflowParameter ov;
+	return node.update(key, &r, ov) == NotFound;
 }
 
 bool LeafNodeTests::testUpdateShouldReturnOverflowIfRecordDoesNotFitNode()
@@ -296,7 +297,7 @@ bool LeafNodeTests::testUpdateShouldReturnOverflowIfRecordDoesNotFitNode()
 
 	OverflowParameter parameter;
 	node.insert(&key, &recordOne, parameter);
-	return node.update(recordKey, &recordTwo) == Overflow;
+	return node.update(recordKey, &recordTwo, parameter) == Overflow;
 }
 
 bool LeafNodeTests::testUpdateShouldUpdateRecordAndReturnUpdated()
@@ -336,7 +337,7 @@ bool LeafNodeTests::testUpdateShouldUpdateRecordAndReturnUpdated()
 
 	OverflowParameter parameter;
 	node.insert(&key, &recordOne, parameter);
-	bool success = node.update(recordKey, &recordTwo) == Updated;
+	bool success = node.update(recordKey, &recordTwo, parameter) == Updated;
 
 	node.print();
 

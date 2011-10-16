@@ -31,7 +31,7 @@ protected:
 public:
 	Node(TreeBlock* b, RecordMethods* methods);
 	virtual OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord, OverflowParameter& overflowParameter) = 0;
-	virtual OpResult update(char* key, VariableRecord* r) = 0;
+	virtual OpResult update(char* key, VariableRecord* r, OverflowParameter& overflowParameter) = 0;
 	virtual OpResult remove(char* key) = 0;
 	virtual bool get(char* key, VariableRecord* record, TreeBlock** currentLeafBlock) = 0;
 	virtual VariableRecord* returnFirst(VariableRecord* r, TreeBlock** currentLeafBlock) = 0;

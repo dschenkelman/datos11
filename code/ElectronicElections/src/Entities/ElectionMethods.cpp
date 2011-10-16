@@ -89,7 +89,15 @@ void ElectionMethods::print(const char* recordBytes, int recordSize)
 
 	e.setBytes((char*) recordBytes);
 
-	cout << "(" << e.getDay() << "/" << e.getMonth() << "/" << e.getYear() << ", " << e.getCharge() << ")" << endl;
+	cout << "(" << (short) e.getDay() << "/" << (short) e.getMonth() << "/" << e.getYear() << ", "
+			<< e.getCharge() << ",(";
+
+	for(int i = 0; i < e.getDistrictList().size(); i++)
+	{
+		cout << e.getDistrictList().at(i) << ",";
+	}
+
+	cout << "))";
 }
 
 void ElectionMethods::printKey(const char* key, int recordSize)
@@ -109,7 +117,7 @@ void ElectionMethods::printKey(const char* key, int recordSize)
 	std::string charge = "";
 	charge.append(chargeAux);
 
-	cout << "(" << day << "/" << month << "/" << year << ", " << charge << ")" << endl;
+	cout << (short)day << "/" << (short)month << "/" << year << ", " << charge;
 }
 
 VariableRecord* ElectionMethods::getKeyRecord(const char* recordBytes, int recordSize)

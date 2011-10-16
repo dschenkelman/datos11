@@ -203,17 +203,18 @@ void LoadDataFiles::readElectionFile(Tree* treeElectionFile, char* dataFileName)
 		cargo = strtok(NULL, ",");
 		firstDistrict = strtok(NULL, ",");
 		list.push_back(string(firstDistrict));
-		while((secondDistricts = strtok(NULL, ",")) != NULL)
-		{
-			list.push_back(string(secondDistricts));
-		}
+
 
 		short yearNumber = atoi(year);
-		Election* election = new Election(*day, *month, yearNumber, string(cargo), list);
+		Election election(*day, *month, yearNumber, string(cargo));
+		while((secondDistricts = strtok(NULL, ",")) != NULL)
+		{
+			election.getDistrictList().push_back(secondDistricts);
+		}
+
 		VariableRecord* record;
-		record->setBytes(election->getBytes(), election->getSize());
+		record->setBytes(election.getBytes(), election.getSize());
 		//treeElectionFile->insert(election->getKey(), record);
-		delete election;
 	}
 	dataFile.close();
 }

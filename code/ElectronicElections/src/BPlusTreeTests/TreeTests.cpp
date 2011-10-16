@@ -48,7 +48,8 @@ void TreeTests::run()
 	this->printResult("testRemoveShouldMergeInternalNodes", testRemoveShouldMergeInternalNodesWhenNotRightMost());
 	this->printResult("testRemoveShouldMergeInternalNodesWhenRightMost", testRemoveShouldMergeInternalNodesWhenRightMost());
 	this->printResult("testRemoveShouldStoreAvailableFreeBlocks", testRemoveShouldStoreAvailableFreeBlocks());
-	this->printResult("testShouldUpdateBlocksInLeaf", testShouldUpdateBlocksInLeaf());
+	this->printResult("testShouldUpdateBlocksInLeaf", testUpdateBlocksInLeaf());
+	this->printResult("testUpdateBlockInLeafWithOverflowCreatesTwoLeafs", testUpdateBlockInLeafWithOverflowCreatesTwoLeafs());
 }
 
 bool TreeTests::testInsertInEmptyTreeWorksCorrectly()
@@ -241,7 +242,6 @@ bool TreeTests::testInsertRecordWithDifferentKeyThanData()
 		VariableRecord keyRecord;
 		dataRecord.setBytes(c.getBytes(), c.getSize());
 		keyRecord.setBytes(c.getKey(), c.getKeySize());
-
 		tree.insert(&keyRecord, &dataRecord);
 	}
 
@@ -823,10 +823,10 @@ bool TreeTests::testRemoveShouldStoreAvailableFreeBlocks()
 	cout << endl << "Added all back" << endl;
 	tree.print();cout<<endl;
 
-	return false;
+	return true;
 }
 
-bool TreeTests::testShouldUpdateBlocksInLeaf()
+bool TreeTests::testUpdateBlocksInLeaf()
 {
 		Administrator a1("A1", "P1");
 		Administrator a2("A2", "P2");
@@ -875,6 +875,51 @@ bool TreeTests::testShouldUpdateBlocksInLeaf()
 		cout << endl;
 
 		return true;
+}
+
+bool TreeTests::testUpdateBlockInLeafWithOverflowCreatesTwoLeafs()
+{
+	Administrator a1("Adm1", "P1");
+	Administrator a2("Adm2", "P2");
+	Administrator a3("Adm3", "P3");
+
+	Administrator admins[] = {a1, a2, a3};
+	AdministratorMethods adminMethods;
+	Tree tree("treeTests.dat", 64, &adminMethods, true);
+
+	int i;
+	for (i = 0; i < 3; i++)
+	{
+		Administrator a = admins[i];
+		VariableRecord dataRecord;
+		VariableRecord keyRecord;
+		dataRecord.setBytes(a.getBytes(), a.getSize());
+		keyRecord.setBytes(a.getKey(), a.getKeySize());
+
+		tree.insert(&keyRecord, &dataRecord);
+	}
+
+	cout << "Admins Count " << i << endl;
+	tree.print();
+	cout << endl;
+
+	string pass1 = "Pas1";
+	string pass2 = "Pas2";
+
+	a1.setPassword(pass1);
+
+	a2.setPassword(pass2);
+
+	VariableRecord r1(a1.getBytes(), a1.getSize());
+	VariableRecord r2(a2.getBytes(), a2.getSize());
+	tree.update(a1.getKey(), &r1);
+	tree.update(a2.getKey(), &r2);
+
+	cout << "After Update" << endl;
+	tree.print();
+	cout << endl;
+
+	return false;
 }
 
 TreeTests::~TreeTests()

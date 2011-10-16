@@ -115,9 +115,19 @@ bool SequenceTreeBlock::canInsertRecord(int size)
 
 bool SequenceTreeBlock::insertRecord(VariableRecord* keyRecord, VariableRecord* dataRecord)
 {
-	if (!this->canInsertRecord(dataRecord->getSize()) || this->findRecord(keyRecord->getBytes(), &dataRecord) >= 0)
+	VariableRecord* r = NULL;
+	if (!this->canInsertRecord(dataRecord->getSize()) || this->findRecord(keyRecord->getBytes(), &r) >= 0)
 	{
+		if (r != NULL)
+		{
+			delete r;
+		}
 		return false;
+	}
+
+	if (r != NULL)
+	{
+		delete r;
 	}
 
 	vector<int> recordPositions;

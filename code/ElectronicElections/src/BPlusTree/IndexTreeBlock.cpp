@@ -75,10 +75,20 @@ void IndexTreeBlock::forceInsert(VariableRecord *rec)
 bool IndexTreeBlock::insertRecord(VariableRecord* keyRecord, VariableRecord* dataRecord)
 {
 	// data record has the key separator to be inserted.
+	VariableRecord* r = NULL;
 	if (!this->canInsertRecord(dataRecord->getSize()) ||
-			this->findRecord(keyRecord->getBytes(), &dataRecord) >= 0)
+			this->findRecord(keyRecord->getBytes(), &r) >= 0)
 	{
+		if (r != NULL)
+		{
+			delete r;
+		}
 		return false;
+	}
+
+	if (r != NULL)
+	{
+		delete r;
 	}
 
 	vector<int> recordPositions;

@@ -59,5 +59,3 @@ VariableRecord *DistrictMethods::getKeyRecord(const char *recordBytes, int recor
 
 	return record;
 }
-
-

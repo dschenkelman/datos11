@@ -35,7 +35,8 @@ public:
 	bool testRemoveShouldMergeInternalNodesWhenNotRightMost();
 	bool testRemoveShouldMergeInternalNodesWhenRightMost();
 	bool testRemoveShouldStoreAvailableFreeBlocks();
-	bool testShouldUpdateBlocksInLeaf();
+	bool testUpdateBlocksInLeaf();
+	bool testUpdateBlockInLeafWithOverflowCreatesTwoLeafs();
 	virtual ~TreeTests();
 };
 

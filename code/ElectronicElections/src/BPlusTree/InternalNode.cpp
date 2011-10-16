@@ -110,12 +110,13 @@ OpResult InternalNode::handleLeafOverflow(VariableRecord* keyRecord, VariableRec
     this->file->getCurrentBlock()->setLevel(0);
     bool middleInserted = false;
     VariableRecord aux;
+    VariableRecord* keyAux = this->recordMethods->getKeyRecord(dataRecord->getBytes(), dataRecord->getSize());
     stack<VariableRecord*> toRemove;
     oldLeafBlock->positionAtBegin();
     while(oldLeafBlock->getNextRecord(&aux) != NULL)
 	{
 		int result = this->recordMethods->compare
-				(dataRecord->getBytes(), aux.getBytes(), aux.getSize());
+				(keyAux->getBytes(), aux.getBytes(), aux.getSize());
 		if (result <= 0)
 		{
 			if (!middleInserted)
@@ -131,6 +132,8 @@ OpResult InternalNode::handleLeafOverflow(VariableRecord* keyRecord, VariableRec
 		}
 	}
 
+    delete keyAux;
+
     while (!toRemove.empty())
     {
     	VariableRecord* auxKeyRecord = toRemove.top();
@@ -142,8 +145,6 @@ OpResult InternalNode::handleLeafOverflow(VariableRecord* keyRecord, VariableRec
     this->file->saveBlock();
     this->file->popBlock();
     this->file->saveBlock();
-
-    VariableRecord* keyAux;
 
     keyAux = this->recordMethods->getKeyRecord(dataRecord->getBytes(), dataRecord->getSize());
     int freeSpace = this->block->getFreeSpace() - (keyAux->getSize() +
@@ -423,10 +424,23 @@ void InternalNode::mergeLeafNodes(int index, TreeBlock *brotherBlock, TreeBlock 
 		previous = current;
 	}
 
-	this->block->removeRecord(previous.getBytes());
-
-
     delete keyAux;
+
+	if (previous.getBytes() != NULL)
+	{
+		keyAux = this->recordMethods->getKeyRecord(previous.getBytes(), previous.getSize());
+		this->block->removeRecord(keyAux->getBytes());
+		delete keyAux;
+	}
+	else
+	{
+		keyAux = this->recordMethods->getKeyRecord(current.getBytes(), current.getSize());
+		this->block->removeRecord(keyAux->getBytes());
+		delete keyAux;
+	}
+
+
+
     while(!brotherBlock->isEmpty())
     {
         VariableRecord *record = brotherBlock->popLast();
@@ -492,7 +506,7 @@ bool InternalNode::balanceInternalNodeToTheRight(TreeBlock *balancingBlock, Tree
         if(futureUnderflowSize > balancingBlock->getOccupiedSize()){
             this->block->forceInsert(lastParentRecord);
             delete lastParentRecord;
-            return false;
+            return true;
         }
         underflowBlock->insertRecord(lastParentRecord, lastParentRecord);
         int nodePointer = balancingBlock->getNodePointer(balanceRecordCount);

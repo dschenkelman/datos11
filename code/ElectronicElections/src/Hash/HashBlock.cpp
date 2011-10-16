@@ -109,9 +109,19 @@ void HashBlock::forceInsert(VariableRecord *rec)
 
 bool HashBlock::insertRecord(const char* key, VariableRecord *rec)
 {
-	if (!this->canInsertRecord(rec->getSize()) || this->findRecord(key,&rec) >= 0)
+	VariableRecord* r = NULL;
+	if (!this->canInsertRecord(rec->getSize()) || this->findRecord(key,&r) >= 0)
 	{
+		if (r != NULL)
+		{
+			delete r;
+		}
 		return false;
+	}
+
+	if (r != NULL)
+	{
+		delete r;
 	}
     this->forceInsert(rec);
     this->updateInformation();
@@ -179,13 +189,13 @@ UpdateResult HashBlock::updateRecord(const char* key, VariableRecord* rec)
 
 bool HashBlock::removeRecord(const char* key)
 {
-	VariableRecord* r;
+	VariableRecord* r = NULL;
 	int startPosition = this->findRecord(key, &r);
 	if (startPosition < 0)
 	{
-		//if (r != NULL)
+		if (r != NULL)
 		{
-			//delete r;
+			delete r;
 		}
 		return false;
 	}

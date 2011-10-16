@@ -45,14 +45,21 @@ VariableRecord *LeafNode::popLast()
 OpResult LeafNode::insert(VariableRecord* keyRecord, VariableRecord* dataRecord, OverflowParameter& overflowParameter)
 {
 	//Check uniqueness
-	VariableRecord* variableRec = new VariableRecord();
+	VariableRecord* variableRec = NULL;
 	if(this->block->findRecord(keyRecord->getBytes(), &variableRec) != -1)
 	{
-		delete variableRec;
+		if (variableRec != NULL)
+		{
+			delete variableRec;
+		}
+
 		return Duplicated;
 	}
 
-	delete variableRec;
+	if (variableRec != NULL)
+	{
+		delete variableRec;
+	}
 
 	VariableRecord aux;
 
@@ -109,36 +116,57 @@ OpResult LeafNode::insert(VariableRecord* keyRecord, VariableRecord* dataRecord,
 
 OpResult LeafNode::update(char *key, VariableRecord* r)
 {
-	VariableRecord* rec = new VariableRecord();
+	VariableRecord* rec = NULL;
 	int position = this->block->findRecord(key, &rec);
 	if (position < 0)
 	{
-		delete rec;
+		if (rec != NULL)
+		{
+			delete rec;
+		}
+
 		return NotFound;
 	}
 
 	short dif = r->getSize() - rec->getSize();
 
-	delete rec;
+	if (rec != NULL)
+	{
+		delete rec;
+	}
 
 	if (dif < 0 || this->block->getFreeSpace() > dif)
 	{
 		this->block->updateRecord(key, r);
-
 		return Updated;
 	}
-	//else
 
-	VariableRecord aux;
 	int bytes = 0;
 	this->block->positionAtBegin();
+	VariableRecord aux;
 
-	while (bytes < this->minimumSize && this->block->getNextRecord(&aux) != NULL)
+	while (bytes < (this->maximumSize / 2) && this->block->getNextRecord(&aux) != NULL)
 	{
-		bytes += aux.getSize();
-		*r = aux;
+		if (this->recordMethods->compare(key, aux.getBytes(), aux.getSize()) == 0)
+		{
+			aux = *r;
+			bytes += r->getSize() + Constants::RECORD_HEADER_SIZE;
+		}
+		else
+		{
+			bytes += aux.getSize() + Constants::RECORD_HEADER_SIZE;
+		}
 	}
 
+	if (!this->recordMethods->compare(key, aux.getBytes(), aux.getSize()) == 0)
+	{
+		VariableRecord* keyAux = this->recordMethods->getKeyRecord(aux.getBytes(), aux.getSize());
+		this->block->removeRecord(keyAux->getBytes());
+		this->block->updateRecord(key, r);
+		delete keyAux;
+	}
+
+	*r = aux;
 	return Overflow;
 }
 
@@ -189,15 +217,22 @@ bool LeafNode::isUnderflow()
 
 bool LeafNode::get(char* key, VariableRecord* record, TreeBlock** currentLeafBlock)
 {
-	VariableRecord* rec = new VariableRecord();
+	VariableRecord* rec = NULL;
 	int position = this->block->findRecord(key, &rec);
 	if (position < 0)
 	{
-		delete rec;
+		if (rec != NULL)
+		{
+			delete rec;
+		}
+
 		return false;
 	}
 	record->setBytes(rec->getBytes(),rec->getSize());
-	delete rec;
+	if (rec != NULL)
+	{
+		delete rec;
+	}
 	return true;
 }
 

@@ -285,6 +285,8 @@ void LoadDataFiles::readVoterFile(HashBlockFile* hashVoterFile, char* dataFileNa
 			if(i > 3) i = 0;
 		}
 		Voter* voter = new Voter(atoi(dni), string(nombre), string(pass), string(domicilio), string(district), list);
+		cout<<atoi(dni)<<"-"<<string(nombre)<<"-"<<string(pass)<<"-"<<string(domicilio)<<"-"<<string(district)<<endl;
+		cout<<voter->getKey()<<endl;
 		VariableRecord* record = new VariableRecord();
 		record->setBytes(voter->getBytes(), voter->getSize());
 		hashVoterFile->loadRecord(voter->getKey(), record);

@@ -112,6 +112,12 @@ int run_tests()
 int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, incluso desde eclipse
 {			// No impedir el uso normal del sistema
 	LoadDataFiles dataFiles("config.txt");
+	bool found = dataFiles.readConfigFile();
+	if (!found)
+	{
+		// The program should not work without the config file
+		exit(0);
+	}
 	Log log;
 	log.write("Iniciando sistema", true, true);
 	option main[2];
@@ -131,10 +137,9 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 			case 0:
 				{
 					bool voting = true;
-					LoadDataFiles ldf("config.txt");
-					ldf.readConfigFile();
 
-					Voting vot(&ldf);
+
+					Voting vot(&dataFiles);
 					vot.login();
 					voting = false;
 				}
@@ -146,13 +151,18 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 				string user = Menu::raw_input("User");
 				string passwd = Menu::raw_input("Password");
 				Tree *admin_tree;
-				if(!dataFiles.canOpenAdminFile()) {
+				if(!dataFiles.canOpenAdminFile())
+				{
 					admin_tree = dataFiles.createAdminFile();
-				} else {
-					admin_tree = dataFiles.getAdminFile(); }
+				}
+				else
+				{
+					admin_tree = dataFiles.getAdminFile();
+				}
 				Administrator admin (user, passwd);
 				VariableRecord adminrecord;
-				if ( admin_tree->get(admin.getKey(), &adminrecord) ) {
+				if ( admin_tree->get(admin.getKey(), &adminrecord) )
+				{
 //					cout << "admin existe" << endl;
 					Administrator realadmin("","");
 					realadmin.setBytes(adminrecord.getBytes());
@@ -160,12 +170,23 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 					cout <<realadmin.getPassword()<<endl;
 					int passcmp = strcmp(admin.getPassword().c_str(), realadmin.getPassword().c_str());
 					log.write(string("Logueo de usuario ").append(user), passcmp==0, true);
-					if ( passcmp==0 ) {
+					if ( passcmp==0 )
+					{
 						cout << "Bienvenido!" << endl;
-					} else { cout << "Contraseña erronea" <<endl; break;}
-				} else if (user=="1" && passwd=="1") {
+					}
+					else
+					{
+						cout << "Contraseña erronea" <<endl; break;
+					}
+				}
+				else if (user=="1" && passwd=="1")
+				{
 					cout << "Login secreto, no le cuentes a nadie!" <<endl;
-				} else { cout << "Usuario erroneo"<<endl; break;}
+				}
+				else
+				{
+					cout << "Usuario erroneo"<<endl; break;
+				}
 //				else { cout << "no existe el admin"<<endl; }
 				while (1) {
 					option admin_action[10];
@@ -180,24 +201,30 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 					admin_action[8].label = "Generar archivos vacios";
 					admin_action[9].label = "Volver";
 					action = Menu(admin_action,10).ask();
-					if (action == 0) {
+					if (action == 0)
+					{
 						Tree district_tree (dataFiles.getDistrictFileName(), dataFiles.getDistrictBlockSize(), &DistrictMethods(), false);
 						option district_action[3];
 						district_action[0].label = "Agregar distrito";
 						district_action[1].label = "Eliminar distrito";
 						district_action[2].label = "Imprimir arbol de distritos";
 						action = Menu(district_action,3).ask();
-						if (action==0) {
+						if (action==0)
+						{
 							District d = District (Menu::raw_input("Nombre del distrito"));
 							VariableRecord record (d.getBytes(), d.getSize());
 							int res = district_tree.insert(&record, &record);
 							log.write(string("Agregando distrito ").append(d.getName()), res!=5, true);
-						} else if (action==1) {
+						}
+						else if (action==1)
+						{
 							District d = District (Menu::raw_input("Nombre del distrito"));
 							int res = district_tree.remove(d.getKey());
 							log.write(string("Eliminando distrito ").append(d.getName()), res!=4, true);
-						} else if (action==2) district_tree.print();
-					} else if (action == 1) {
+						}
+						else if (action==2) district_tree.print();
+					}
+					else if (action == 1) {
 						HashBlockFile *hash_voter = new HashBlockFile(dataFiles.getVoterFileName(), dataFiles.getVoterBlockSize(), &VoterMethods(), &VoterHashingFunction(), dataFiles.getVoterBlockAmount(), false); // para 28 mil votantes
 						option voter_action[6];
 						voter_action[0].label = "Agregar votante";

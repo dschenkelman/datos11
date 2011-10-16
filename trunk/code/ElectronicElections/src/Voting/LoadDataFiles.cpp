@@ -23,9 +23,14 @@ LoadDataFiles::LoadDataFiles(std::string configFileName)
 	this->administratorBlockSize = 512;
 }
 
-void LoadDataFiles::readConfigFile()
+bool LoadDataFiles::readConfigFile()
 {
 	this->configFile.open(this->configName.c_str(), ios::binary | ios::in );
+	if (! configFile.is_open())
+	{
+		cout << this->configName + " file could not be found!" << endl;
+		return false;
+	}
 	std::string line;
 	char* fields[4];
 	while ( getline(this->configFile,line) )
@@ -39,6 +44,7 @@ void LoadDataFiles::readConfigFile()
 		this->createFileType(fileType, fields);
 	}
 	this->configFile.close();
+	return true;
 }
 
 void LoadDataFiles::createFileType(char* fileType, char** fields)

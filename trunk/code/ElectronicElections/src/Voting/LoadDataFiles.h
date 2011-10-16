@@ -103,7 +103,7 @@ public:
 	int getChargeBlockSize();
 	int getChargeBlockAmount();
 
-	void readConfigFile();
+	bool readConfigFile();
 	~LoadDataFiles();
 };
 

@@ -38,8 +38,10 @@ int Menu::ask() {
 
 string Menu::raw_input(string label) {
 	cout << label << "? ";
-	string ret;
-	cin >> ret;
+
+	char ret_value[64];
+	cin.getline (ret_value,64,'\n');
+	string ret (ret_value);
 	return ret;
 }
 

@@ -148,10 +148,14 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 					admin_tree = dataFiles.createAdminFile();
 				else
 					admin_tree = dataFiles.getAdminFile();
-				Administrator admin = Administrator(user, passwd);
-				VariableRecord *adminrecord = new VariableRecord;
-				admin_tree->get(admin.getKey(), adminrecord);
-				delete adminrecord;
+				Administrator admin (user, passwd);
+				VariableRecord adminrecord;
+				if ( admin_tree->get(admin.getKey(), &adminrecord) ) {
+					Administrator realadmin("","");
+					realadmin.setBytes(adminrecord.getBytes());
+					cout << admin.getPassword()<<endl;
+					cout <<realadmin.getPassword()<<endl;
+				}
 				// TODO - COMO OBTENGO EL OBJETO ADMINISTRADOR AHORA?
 				while (1) {
 					option admin_action[9];

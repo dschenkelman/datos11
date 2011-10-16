@@ -114,7 +114,7 @@ OpResult LeafNode::insert(VariableRecord* keyRecord, VariableRecord* dataRecord,
 	return Overflow;
 }
 
-OpResult LeafNode::update(char *key, VariableRecord* r)
+OpResult LeafNode::update(char *key, VariableRecord* r, OverflowParameter& overflowParameter)
 {
 	VariableRecord* rec = NULL;
 	int position = this->block->findRecord(key, &rec);
@@ -135,7 +135,7 @@ OpResult LeafNode::update(char *key, VariableRecord* r)
 		delete rec;
 	}
 
-	if (dif < 0 || this->block->getFreeSpace() > dif)
+	if (dif < 0 || this->maximumSize >= dif + this->block->getOccupiedSize())
 	{
 		this->block->updateRecord(key, r);
 		return Updated;

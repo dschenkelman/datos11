@@ -20,7 +20,7 @@ class InternalNode: public Node
 	TreeBlockFile* file;
 	int calculateMaxSize();
 	int calculateMinimumSize();
-    OpResult handleLeafOverflow(VariableRecord* keyRecord, VariableRecord* dataRecord,
+    OpResult handleLeafOverflow(VariableRecord* dataRecord,
     		OverflowParameter& overflowParameter);
     OpResult handleInternalNodeOverflow(OverflowParameter& overflowParameter,
     		int blockPointer, VariableRecord *dataRecord);
@@ -41,7 +41,7 @@ class InternalNode: public Node
 public:
 	InternalNode(TreeBlockFile* file, TreeBlock* b, RecordMethods* methods);
 	virtual OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord, OverflowParameter& overflowParameter);
-	virtual OpResult update(char* key, VariableRecord* r);
+	virtual OpResult update(char* key, VariableRecord* r, OverflowParameter& overflowParameter);
 	virtual OpResult remove(char* key);
 	bool get(char* key, VariableRecord* record, TreeBlock** currentLeafBlock);
 	virtual VariableRecord* returnFirst(VariableRecord* r, TreeBlock** currentLeafBlock);

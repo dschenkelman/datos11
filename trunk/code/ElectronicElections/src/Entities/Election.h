@@ -23,7 +23,8 @@ private:
 	char* bytes;
 	char* key;
 public:
-	Election(char day, char month, short year, std::string charge, std::vector<string> districtList);
+	Election(char day, char month, short year, std::string charge);
+	Election(char day, char month, short year, std::string charge, vector<string>& districts);
 	char* getBytes();
 	int getSize();
 	char* getKey();
@@ -34,8 +35,8 @@ public:
 	char getDay();
 	char getMonth();
 	short getYear();
-	std::string getCharge();
-	std::vector<std::string> getDistrictList();
+	std::string& getCharge();
+	std::vector<std::string>& getDistrictList();
 };
 
 #endif /* ELECTION_H_ */

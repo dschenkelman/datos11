@@ -262,7 +262,8 @@ OpResult Tree::remove(char *key)
 
 OpResult Tree::update(char *key, VariableRecord *r)
 {
-	OpResult result = this->root->update(key, r);
+	OverflowParameter overflowParameter;
+	OpResult result = this->root->update(key, r, overflowParameter);
 
 	// overflow in root, split
 	if (result == Overflow)

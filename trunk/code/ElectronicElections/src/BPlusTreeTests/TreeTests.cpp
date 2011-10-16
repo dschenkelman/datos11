@@ -14,6 +14,8 @@
 #include "../Entities/CountMethods.h"
 #include "../Entities/Administrator.h"
 #include "../Entities/AdministratorMethods.h"
+#include "../Entities/Election.h"
+#include "../Entities/ElectionMethods.h"
 #include "../VariableBlocks/VariableRecord.h"
 #include <string.h>
 
@@ -879,47 +881,44 @@ bool TreeTests::testUpdateBlocksInLeaf()
 
 bool TreeTests::testUpdateBlockInLeafWithOverflowCreatesTwoLeafs()
 {
-	Administrator a1("Adm1", "P1");
-	Administrator a2("Adm2", "P2");
-	Administrator a3("Adm3", "P3");
+	Election e1(23, 10, 2011, "Presidente");
+	Election e2(22, 9, 2007, "Presidente");
+	Election e3(21, 8, 2003, "Presidente");
+	Election e4(20, 7, 1999, "Presidente");
 
-	Administrator admins[] = {a1, a2, a3};
-	AdministratorMethods adminMethods;
-	Tree tree("treeTests.dat", 64, &adminMethods, true);
+	Election elections[] = {e1, e2, e3, e4};
+	ElectionMethods electionMethods;
+	Tree tree("treeTests.dat", 128, &electionMethods, true);
 
 	int i;
-	for (i = 0; i < 3; i++)
+	for (i = 0; i < 4; i++)
 	{
-		Administrator a = admins[i];
+		Election e = elections[i];
 		VariableRecord dataRecord;
 		VariableRecord keyRecord;
-		dataRecord.setBytes(a.getBytes(), a.getSize());
-		keyRecord.setBytes(a.getKey(), a.getKeySize());
+		dataRecord.setBytes(e.getBytes(), e.getSize());
+		keyRecord.setBytes(e.getKey(), e.getKeySize());
 
 		tree.insert(&keyRecord, &dataRecord);
 	}
 
-	cout << "Admins Count " << i << endl;
+	cout << "Eletions Count " << i << endl;
 	tree.print();
 	cout << endl;
 
-	string pass1 = "Pas1";
-	string pass2 = "Pas2";
+	e2.getDistrictList().push_back("Buenos Aires");
+	e2.getDistrictList().push_back("Cordoba");
+	e2.getDistrictList().push_back("Santa Fe");
 
-	a1.setPassword(pass1);
+	VariableRecord dataRecord;
+	dataRecord.setBytes(e2.getBytes(), e2.getSize());
+	tree.update(e2.getKey(), &dataRecord);
 
-	a2.setPassword(pass2);
-
-	VariableRecord r1(a1.getBytes(), a1.getSize());
-	VariableRecord r2(a2.getBytes(), a2.getSize());
-	tree.update(a1.getKey(), &r1);
-	tree.update(a2.getKey(), &r2);
-
-	cout << "After Update" << endl;
+	cout << "After update" << endl;
 	tree.print();
 	cout << endl;
 
-	return false;
+	return true;
 }
 
 TreeTests::~TreeTests()

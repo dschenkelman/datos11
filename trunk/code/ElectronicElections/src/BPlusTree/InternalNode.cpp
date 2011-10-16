@@ -89,7 +89,7 @@ void InternalNode::handleOverflowInInternalNode(VariableRecord* keyAux,
     *dataRecord = aux;
 }
 
-OpResult InternalNode::handleLeafOverflow(VariableRecord* keyRecord, VariableRecord* dataRecord,
+OpResult InternalNode::handleLeafOverflow(VariableRecord* dataRecord,
 		OverflowParameter& overflowParameter)
 {
     TreeBlock *oldLeafBlock = this->file->getCurrentBlock();
@@ -296,7 +296,7 @@ OpResult InternalNode::insert(VariableRecord *keyRecord, VariableRecord *dataRec
 		if (result == Overflow)
 		{
 			overflowParameter.overflowBlock = blockPointer;
-		    result = this->handleLeafOverflow(keyRecord, dataRecord, overflowParameter);
+		    result = this->handleLeafOverflow(dataRecord, overflowParameter);
 		}
 	}
 	else
@@ -823,9 +823,63 @@ int InternalNode::getMinimumSize()
 	return this->minimumSize;
 }
 
-OpResult InternalNode::update(char *key, VariableRecord *r)
+OpResult InternalNode::update(char *key, VariableRecord *r, OverflowParameter& overflowParameter)
 {
-	return Updated;
+	VariableRecord aux;
+	this->block->positionAtBegin();
+	int index = 0;
+	while(this->block->getNextRecord(&aux) != NULL)
+	{
+		if(this->recordMethods->compare
+				(key, aux.getBytes(), aux.getSize()) < 0)
+		{
+			break;
+		}
+
+		index++;
+	}
+
+	int blockPointer = this->block->getNodePointer(index);
+	this->file->loadBlock(blockPointer);
+	this->file->pushBlock();
+
+	OpResult result;
+
+	if (this->file->isCurrentLeaf())
+	{
+		LeafNode node(this->file->getCurrentBlock(), this->recordMethods);
+		result = node.update(key, r, overflowParameter);
+
+		if (result == Updated)
+		{
+			this->file->saveBlock();
+			result = Unchanged;
+		}
+
+		if (result == Overflow)
+		{
+			overflowParameter.overflowBlock = blockPointer;
+			result = this->handleLeafOverflow(r, overflowParameter);
+		}
+	}
+	else
+	{
+		InternalNode node(this->file, this->file->getCurrentBlock(), this->recordMethods);
+		result = node.update(key, r, overflowParameter);
+
+		if (result == Updated)
+		{
+			this->file->saveBlock();
+			result = Unchanged;
+		}
+
+		if (result == Overflow)
+		{
+			result = this->handleInternalNodeOverflow(overflowParameter, blockPointer, r);
+		}
+	}
+
+	return result;
 }
 
 bool InternalNode::isUnderflow()

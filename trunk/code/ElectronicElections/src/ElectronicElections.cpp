@@ -26,6 +26,8 @@
 #include "Hash/DistrictHashingFunction.h"
 #include "Hash/VoterHashingFunction.h"
 #include "Hash/ChargeHashingFunction.h"
+#include "Entities/Administrator.h"
+#include "Entities/AdministratorMethods.h"
 #include "Entities/District.h"
 #include "Entities/DistrictMethods.h"
 #include "Entities/Voter.h"
@@ -144,18 +146,20 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 				string user = Menu::raw_input("User");
 				string passwd = Menu::raw_input("Password");
 				Tree *admin_tree;
-				if(!dataFiles.canOpenAdminFile())
+				if(!dataFiles.canOpenAdminFile()) {
 					admin_tree = dataFiles.createAdminFile();
-				else
-					admin_tree = dataFiles.getAdminFile();
+				} else {
+					admin_tree = dataFiles.getAdminFile(); }
 				Administrator admin (user, passwd);
 				VariableRecord adminrecord;
 				if ( admin_tree->get(admin.getKey(), &adminrecord) ) {
+					cout << "admin existe" << endl;
 					Administrator realadmin("","");
 					realadmin.setBytes(adminrecord.getBytes());
 					cout << admin.getPassword()<<endl;
 					cout <<realadmin.getPassword()<<endl;
-				}
+					strcmp(admin.getPassword().c_str(), realadmin.getPassword().c_str())==0 ? cout << "contraseñas coinciden" << endl : cout << "contraseñas mal"<<endl;
+				} else { cout << "no existe el admin"<<endl; }
 				// TODO - COMO OBTENGO EL OBJETO ADMINISTRADOR AHORA?
 				while (1) {
 					option admin_action[10];
@@ -378,7 +382,25 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							candidate_tree.print();
 						}
 					} else if (action==6) {
-
+						option administrator_action[3];
+						administrator_action[0].label = "Agregar administrador";
+						administrator_action[1].label = "Eliminar administrador";
+						administrator_action[2].label = "Imprimir arbol de administrador";
+						action = Menu(administrator_action,3).ask();
+						if (action==0) {
+							Administrator newadmin(Menu::raw_input("Usuario"), Menu::raw_input("Contraseña"));
+							VariableRecord adminkey_vr (newadmin.getKey(), newadmin.getKeySize());
+							VariableRecord admin_vr (admin.getBytes(), admin.getSize());
+							int res = admin_tree->insert(&adminkey_vr, &admin_vr);
+							cout << "KEY: "<<newadmin.getKey() << endl;
+							log.write(string("Agregando administrador ").append(newadmin.getName()), res!=5, true);
+						} else if (action==1) {
+							Administrator remadmin(Menu::raw_input("Usuario"), "");
+							int res = admin_tree->remove(remadmin.getKey());
+							log.write(string("Eliminando administrador ").append(remadmin.getName()), res!=4, true);
+						} else if (action==2) {
+							admin_tree->print();
+						}
 					} else if (action==7) {
 					} else if (action == 8) {
 						dataFiles.readConfigFile();
@@ -386,6 +408,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 						break;
 					}
 				}
+				delete admin_tree;
 				break;
 		}
 	}

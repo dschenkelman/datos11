@@ -40,7 +40,7 @@ bool Voting::login()
     int voterBlockSize = this->dataFiles->getVoterBlockSize();
     int voterBlockAmount = this->dataFiles->getVoterBlockAmount();
 
-    HashBlockFile voterFile(voterFileName, voterBlockSize, new VoterMethods, new VoterHashingFunction, voterBlockAmount, true);
+    HashBlockFile voterFile(voterFileName, voterBlockSize, new VoterMethods, new VoterHashingFunction, voterBlockAmount, false);
 
     ifstream voterFileTxt;
     voterFileTxt.open("padron.txt");
@@ -61,9 +61,9 @@ bool Voting::login()
         	return false;
         }
 
-        cout << "Votante encontrado: " << this->voter->getNames();
-
         this->voter->setBytes((char*) voterRecord->getBytes());
+
+        //cout << "Votante encontrado: " << this->voter->getNames() << endl;
 
         if(strcmp(this->voter->getPassword().c_str(), pass.c_str()) != 0)
         {
@@ -113,9 +113,9 @@ bool Voting::vote()
 					districtElection.at(i).getDay(), districtElection.at(i).getCharge()};
 			this->voter->getElectionKeyList().push_back(eKey); // para que esto funque bien si no me equivoco getElectionKeyList tiene que devolver vector& no?
 
-/*			string countFileName = this->dataFiles->getCountFileName();
+			/*string countFileName = this->dataFiles->getCountFileName();
 			int countBlockSize = this->dataFiles->getCountBlockSize();
-			Tree countTree(countFileName, countBlockSize, &CountMethods(), true);
+			Tree countTree(countFileName, countBlockSize, &CountMethods(), false);
 
 			Count c(districtElection.at(i).getDay(), districtElection.at(i).getMonth(), districtElection.at(i).getYear(),
 					districtElection.at(i).getCharge(), list.getName(), this->voter->getDistrict(), 0);
@@ -124,9 +124,14 @@ bool Voting::vote()
 			memcpy(key, c.getKey(), c.getKeySize());
 
 			VariableRecord record;
-			countTree.get(c.getKey(), &record);
-			c.setBytes(record.getBytes());
+			bool found = countTree.get(c.getKey(), &record);
 
+			if(!found)
+			{
+				continue;
+			}
+
+			c.setBytes(record.getBytes());
 			c.increaseQuantity();
 			record.setBytes(c.getBytes(), c.getSize());
 
@@ -144,7 +149,7 @@ bool Voting::vote()
 	int electionsListBlockSize = this->dataFiles->getElectionListBlockSize();
 
 	ElectionsListMethods elm;
-	Tree electionsListTree(electionsListFileName, electionsListBlockSize, &elm, true);
+	Tree electionsListTree(electionsListFileName, electionsListBlockSize, &elm, false);
 
 	vector<ElectionsList> electionsListVector;
 

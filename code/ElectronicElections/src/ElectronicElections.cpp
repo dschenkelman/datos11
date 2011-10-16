@@ -181,7 +181,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 					admin_action[9].label = "Volver";
 					action = Menu(admin_action,10).ask();
 					if (action == 0) {
-						Tree district_tree ("District.dat", 512, &DistrictMethods(), false);
+						Tree district_tree (dataFiles.getDistrictFileName(), dataFiles.getDistrictBlockSize(), &DistrictMethods(), false);
 						option district_action[3];
 						district_action[0].label = "Agregar distrito";
 						district_action[1].label = "Eliminar distrito";
@@ -198,7 +198,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							log.write(string("Eliminando distrito ").append(d.getName()), res!=4, true);
 						} else if (action==2) district_tree.print();
 					} else if (action == 1) {
-						HashBlockFile *hash_voter = new HashBlockFile("VoterHash.dat", 1024, &VoterMethods(), &VoterHashingFunction(), 28000, false); // para 28 mil votantes
+						HashBlockFile *hash_voter = new HashBlockFile(dataFiles.getVoterFileName(), dataFiles.getVoterBlockSize(), &VoterMethods(), &VoterHashingFunction(), dataFiles.getVoterBlockAmount(), false); // para 28 mil votantes
 						option voter_action[6];
 						voter_action[0].label = "Agregar votante";
 						voter_action[1].label = "Cambio de domicilio";
@@ -241,7 +241,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							hash_voter->printContent();
 						}
 					} else if (action==2) {
-						Tree election_tree ("Election.dat", 16000, &ElectionMethods(), false);
+						Tree election_tree (dataFiles.getElectionFileName(), dataFiles.getElectionBlockSize(), &ElectionMethods(), false);
 						option election_action[3];
 						election_action[0].label = "Agregar eleccion";
 						election_action[1].label = "Eliminar eleccion";
@@ -308,7 +308,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 //						HashBlockFile charge_hash = HashBlockFile("Charge.dat", 512, new ChargeMethods, new ChargeHashingFunction, 300, false);
 						// POR QUE NO ANDA CON LA LINEA DE ARRIBA???
 						// Deberia andar así: HashBlockFile charge_hash("Charge.dat", 512, new ChargeMethods, new ChargeHashingFunction, 300, false);
-						HashBlockFile charge_hash ("ChargeHash.dat", 512, &ChargeMethods(), &ChargeHashingFunction(), 9, false);
+						HashBlockFile charge_hash (dataFiles.getChargeFileName(), dataFiles.getChargeBlockSize(), &ChargeMethods(), &ChargeHashingFunction(), dataFiles.getChargeBlockAmount(), false);
 						option charge_action[3];
 						charge_action[0].label = "Agregar cargo";
 						charge_action[1].label = "Eliminar cargo";
@@ -348,7 +348,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							charge_hash.printContent();
 						}
 					} else if (action==4) {
-						Tree electionslist_tree ("ElectionList.dat", 512, &ElectionsListMethods(), false);
+						Tree electionslist_tree (dataFiles.getElectionListFileName(), dataFiles.getElectionListBlockSize(), &ElectionsListMethods(), false);
 						option list_action[3];
 						list_action[0].label = "Agregar lista";
 						list_action[1].label = "Eliminar lista";
@@ -368,7 +368,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							electionslist_tree.print();
 						}
 					} else if (action==5) {
-						Tree candidate_tree ("Candidate.dat", 512, &CandidateMethods(), false);
+						Tree candidate_tree (dataFiles.getCandidateFileName(), dataFiles.getCandidateBlockSize(), &CandidateMethods(), false);
 						option candidate_action[3];
 						candidate_action[0].label = "Agregar candidato";
 						candidate_action[1].label = "Eliminar candidato";

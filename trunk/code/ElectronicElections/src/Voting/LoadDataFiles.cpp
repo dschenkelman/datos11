@@ -241,12 +241,11 @@ void LoadDataFiles::readListFile(Tree* treeListFile, char* dataFileName)
 		cargo = strtok(NULL, ",");
 		listName = strtok(NULL, ",");
 		short yearNumber = atoi(year);
-//		CandidatesList* candidatesList = new CandidatesList(*day, *month, yearNumber, string(cargo), string(listName));
-		ElectionsList elist (string(listName), *day, *month, yearNumber, string(cargo));
+		ElectionsList elist (string(listName), (char)atoi(day), (char)atoi(month), yearNumber, string(cargo));
 		VariableRecord elistkey_vr (elist.getKey(), elist.getKeySize());
 		VariableRecord elist_vr (elist.getBytes(), elist.getSize());
 		int res = treeListFile->insert(&elistkey_vr, &elist_vr);
-		Log().write("Agregando lista", res!=5, true);
+		Log().write(string("Agregando lista ").append(listName), res!=5, true);
 	}
 	dataFile.close();
 }

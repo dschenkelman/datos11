@@ -333,7 +333,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							charge_hash.printContent();
 						}
 					} else if (action==4) {
-						Tree electionslist_tree ("ElectionsList.dat", 512, &ElectionsListMethods(), false);
+						Tree electionslist_tree ("ElectionList.dat", 512, &ElectionsListMethods(), false);
 						option list_action[3];
 						list_action[0].label = "Agregar lista";
 						list_action[1].label = "Eliminar lista";

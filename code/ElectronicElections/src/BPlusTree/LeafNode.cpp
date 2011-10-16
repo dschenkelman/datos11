@@ -165,6 +165,10 @@ OpResult LeafNode::update(char *key, VariableRecord* r, OverflowParameter& overf
 		this->block->updateRecord(key, r);
 		delete keyAux;
 	}
+	else
+	{
+		this->block->removeRecord(key);
+	}
 
 	*r = aux;
 	return Overflow;

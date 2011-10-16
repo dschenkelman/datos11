@@ -52,6 +52,7 @@ void TreeTests::run()
 	this->printResult("testRemoveShouldStoreAvailableFreeBlocks", testRemoveShouldStoreAvailableFreeBlocks());
 	this->printResult("testShouldUpdateBlocksInLeaf", testUpdateBlocksInLeaf());
 	this->printResult("testUpdateBlockInLeafWithOverflowCreatesTwoLeafs", testUpdateBlockInLeafWithOverflowCreatesTwoLeafs());
+	this->printResult("testUpdateInLeafWithOverflowIsSplitByParent", testUpdateInLeafWithOverflowIsSplitByParent());
 }
 
 bool TreeTests::testInsertInEmptyTreeWorksCorrectly()
@@ -919,6 +920,50 @@ bool TreeTests::testUpdateBlockInLeafWithOverflowCreatesTwoLeafs()
 	cout << endl;
 
 	return true;
+}
+
+bool TreeTests::testUpdateInLeafWithOverflowIsSplitByParent()
+{
+	Election e1(23, 10, 2011, "Presidente");
+	Election e2(22, 9, 2007, "Presidente");
+	Election e3(21, 8, 2003, "Presidente");
+	Election e4(20, 7, 1999, "Presidente");
+	Election e5(19, 6, 1995, "Presidente");
+	Election e6(18, 5, 1989, "Presidente");
+
+	Election elections[] = {e6, e1, e2, e5, e3, e4};
+	ElectionMethods electionMethods;
+	Tree tree("treeTests.dat", 128, &electionMethods, true);
+
+	int i;
+	for (i = 0; i < 6; i++)
+	{
+		Election e = elections[i];
+		VariableRecord dataRecord;
+		VariableRecord keyRecord;
+		dataRecord.setBytes(e.getBytes(), e.getSize());
+		keyRecord.setBytes(e.getKey(), e.getKeySize());
+
+		tree.insert(&keyRecord, &dataRecord);
+	}
+
+	cout << "Eletions Count " << i << endl;
+	tree.print();
+	cout << endl;
+
+	e2.getDistrictList().push_back("Buenos Aires");
+	e2.getDistrictList().push_back("Cordoba");
+	e2.getDistrictList().push_back("Santa Fe");
+
+	VariableRecord dataRecord;
+	dataRecord.setBytes(e2.getBytes(), e2.getSize());
+	tree.update(e2.getKey(), &dataRecord);
+
+	cout << "After update" << endl;
+	tree.print();
+	cout << endl;
+
+	return false;
 }
 
 TreeTests::~TreeTests()

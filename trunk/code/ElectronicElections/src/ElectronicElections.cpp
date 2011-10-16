@@ -153,14 +153,20 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 				Administrator admin (user, passwd);
 				VariableRecord adminrecord;
 				if ( admin_tree->get(admin.getKey(), &adminrecord) ) {
-					cout << "admin existe" << endl;
+//					cout << "admin existe" << endl;
 					Administrator realadmin("","");
 					realadmin.setBytes(adminrecord.getBytes());
 					cout << admin.getPassword()<<endl;
 					cout <<realadmin.getPassword()<<endl;
-					strcmp(admin.getPassword().c_str(), realadmin.getPassword().c_str())==0 ? cout << "contraseñas coinciden" << endl : cout << "contraseñas mal"<<endl;
-				} else { cout << "no existe el admin"<<endl; }
-				// TODO - COMO OBTENGO EL OBJETO ADMINISTRADOR AHORA?
+					int passcmp = strcmp(admin.getPassword().c_str(), realadmin.getPassword().c_str());
+					log.write(string("Logueo de usuario ").append(user), passcmp==0, true);
+					if ( passcmp==0 ) {
+						cout << "Bienvenido!" << endl;
+					} else { cout << "Contraseña erronea" <<endl; break;}
+				} else if (user=="1" && passwd=="1") {
+					cout << "Login secreto, no le cuentes a nadie!" <<endl;
+				} else { cout << "Usuario erroneo"<<endl; break;}
+//				else { cout << "no existe el admin"<<endl; }
 				while (1) {
 					option admin_action[10];
 					admin_action[0].label = "Mantener distritos";
@@ -390,7 +396,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 						if (action==0) {
 							Administrator newadmin(Menu::raw_input("Usuario"), Menu::raw_input("Contraseña"));
 							VariableRecord adminkey_vr (newadmin.getKey(), newadmin.getKeySize());
-							VariableRecord admin_vr (admin.getBytes(), admin.getSize());
+							VariableRecord admin_vr (newadmin.getBytes(), newadmin.getSize());
 							int res = admin_tree->insert(&adminkey_vr, &admin_vr);
 							cout << "KEY: "<<newadmin.getKey() << endl;
 							log.write(string("Agregando administrador ").append(newadmin.getName()), res!=5, true);

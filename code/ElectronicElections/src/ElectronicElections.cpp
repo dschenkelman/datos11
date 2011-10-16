@@ -293,7 +293,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 //						HashBlockFile charge_hash = HashBlockFile("Charge.dat", 512, new ChargeMethods, new ChargeHashingFunction, 300, false);
 						// POR QUE NO ANDA CON LA LINEA DE ARRIBA???
 						// Deberia andar así: HashBlockFile charge_hash("Charge.dat", 512, new ChargeMethods, new ChargeHashingFunction, 300, false);
-						HashBlockFile charge_hash ("Charge.dat", 512, &ChargeMethods(), &ChargeHashingFunction(), 300, false);
+						HashBlockFile charge_hash ("ChargeHash.dat", 512, &ChargeMethods(), &ChargeHashingFunction(), 9, false);
 						option charge_action[3];
 						charge_action[0].label = "Agregar cargo";
 						charge_action[1].label = "Eliminar cargo";

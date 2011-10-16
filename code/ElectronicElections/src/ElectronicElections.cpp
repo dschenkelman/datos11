@@ -158,17 +158,18 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 				}
 				// TODO - COMO OBTENGO EL OBJETO ADMINISTRADOR AHORA?
 				while (1) {
-					option admin_action[9];
+					option admin_action[10];
 					admin_action[0].label = "Mantener distritos";
 					admin_action[1].label = "Mantener votantes";
 					admin_action[2].label = "Mantener elecciones";
 					admin_action[3].label = "Mantener cargos";
 					admin_action[4].label = "Mantener listas";
 					admin_action[5].label = "Mantener candidatos";
-					admin_action[6].label = "Informar resultados";
-					admin_action[7].label = "Generar archivos vacios";
-					admin_action[8].label = "Volver";
-					action = Menu(admin_action,9).ask();
+					admin_action[6].label = "Mantener administradores";
+					admin_action[7].label = "Informar resultados";
+					admin_action[8].label = "Generar archivos vacios";
+					admin_action[9].label = "Volver";
+					action = Menu(admin_action,10).ask();
 					if (action == 0) {
 						Tree district_tree ("District.dat", 512, &DistrictMethods(), false);
 						option district_action[3];
@@ -377,9 +378,11 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							candidate_tree.print();
 						}
 					} else if (action==6) {
-					} else if (action == 7) {
-						dataFiles.readConfigFile();
+
+					} else if (action==7) {
 					} else if (action == 8) {
+						dataFiles.readConfigFile();
+					} else if (action == 9) {
 						break;
 					}
 				}

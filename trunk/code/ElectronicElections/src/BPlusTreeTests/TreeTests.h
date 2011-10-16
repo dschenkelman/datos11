@@ -37,6 +37,7 @@ public:
 	bool testRemoveShouldStoreAvailableFreeBlocks();
 	bool testUpdateBlocksInLeaf();
 	bool testUpdateBlockInLeafWithOverflowCreatesTwoLeafs();
+	bool testUpdateInLeafWithOverflowIsSplitByParent();
 	virtual ~TreeTests();
 };
 

@@ -150,15 +150,23 @@ OpResult LeafNode::update(char *key, VariableRecord* r, OverflowParameter& overf
 		if (this->recordMethods->compare(key, aux.getBytes(), aux.getSize()) == 0)
 		{
 			aux = *r;
+			if (r->getSize() >= this->maximumSize / 2)
+			{
+				break;
+			}
 			bytes += r->getSize() + Constants::RECORD_HEADER_SIZE;
 		}
 		else
 		{
+			if (aux.getSize() >= this->maximumSize / 2)
+			{
+				break;
+			}
 			bytes += aux.getSize() + Constants::RECORD_HEADER_SIZE;
 		}
 	}
 
-	if (!this->recordMethods->compare(key, aux.getBytes(), aux.getSize()) == 0)
+	if (this->recordMethods->compare(key, aux.getBytes(), aux.getSize()) != 0)
 	{
 		VariableRecord* keyAux = this->recordMethods->getKeyRecord(aux.getBytes(), aux.getSize());
 		this->block->removeRecord(keyAux->getBytes());

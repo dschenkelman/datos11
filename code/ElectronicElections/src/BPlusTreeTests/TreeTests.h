@@ -38,6 +38,8 @@ public:
 	bool testUpdateBlocksInLeaf();
 	bool testUpdateBlockInLeafWithOverflowCreatesTwoLeafs();
 	bool testUpdateInLeafWithOverflowIsSplitByParent();
+	bool testUpdateInInternalRootWithOverflowIsSplit();
+	bool testUpdateInInternalNodeWithOverflowIsSplit();
 	virtual ~TreeTests();
 };
 

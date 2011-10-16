@@ -132,6 +132,12 @@ OpResult InternalNode::handleLeafOverflow(VariableRecord* dataRecord,
 		}
 	}
 
+    if (!middleInserted)
+	{
+		middleInserted = true;
+		this->file->getCurrentBlock()->forceInsert(dataRecord);
+	}
+
     delete keyAux;
 
     while (!toRemove.empty())
@@ -879,6 +885,7 @@ OpResult InternalNode::update(char *key, VariableRecord *r, OverflowParameter& o
 		}
 	}
 
+	this->file->popBlock();
 	return result;
 }
 

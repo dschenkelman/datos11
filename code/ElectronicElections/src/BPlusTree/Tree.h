@@ -21,7 +21,7 @@ class Tree {
 	RecordMethods* methods;
 	TreeBlockFile* file;
     void handleOverflowInLeafRoot(VariableRecord *dataRecord);
-    void handleOverflowInInternalRoot(VariableRecord *keyRecord, VariableRecord *dataRecord, OverflowParameter& overflowParameter);
+    void handleOverflowInInternalRoot(VariableRecord *dataRecord, OverflowParameter& overflowParameter);
     void changeBlock(int newBlock2, VariableRecord* middleRecord);
     void decreaseTreeHeight();
 public:

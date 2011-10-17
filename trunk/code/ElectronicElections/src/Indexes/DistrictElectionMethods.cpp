@@ -31,6 +31,8 @@ void DistrictElectionsMethods::print(const char *recordBytes, int recordSize)
 {
 	DistrictElections de;
 	de.setBytes(recordBytes);
+
+	cout << "(" << de.getDistrict() << ")";
 }
 
 int DistrictElectionsMethods::compare(const char *key, const char *recordBytes, int recordSize)

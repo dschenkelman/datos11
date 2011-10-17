@@ -74,7 +74,7 @@ class LoadDataFiles
 	void readCandidateFile(Tree* treeCandidateFile, char* dataFileName);
 	void readVoterFile(HashBlockFile* hashVoterFile, char* dataFile);
 	void readChargeFile(HashBlockFile* hashChargeFile, char* dataFile);
-	void createFileType(char* fileType,char** fields);
+	void createFileType(char* fileType,char** fields, bool createNew);
 
 public:
 	LoadDataFiles(std::string configFileName);
@@ -103,7 +103,7 @@ public:
 	int getChargeBlockSize();
 	int getChargeBlockAmount();
 
-	bool readConfigFile();
+	bool readConfigFile(bool createNew);
 	~LoadDataFiles();
 };
 

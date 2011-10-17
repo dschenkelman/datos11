@@ -23,7 +23,7 @@ LoadDataFiles::LoadDataFiles(std::string configFileName)
 	this->administratorBlockSize = 512;
 }
 
-bool LoadDataFiles::readConfigFile()
+bool LoadDataFiles::readConfigFile(bool createNew)
 {
 	this->configFile.open(this->configName.c_str(), ios::binary | ios::in );
 	if (! configFile.is_open())
@@ -41,58 +41,74 @@ bool LoadDataFiles::readConfigFile()
 		{
 			fields[i] = strtok(NULL, ",");
 		}
-		this->createFileType(fileType, fields);
+		this->createFileType(fileType, fields, createNew);
 	}
 	this->configFile.close();
 	return true;
 }
 
-void LoadDataFiles::createFileType(char* fileType, char** fields)
+void LoadDataFiles::createFileType(char* fileType, char** fields, bool createNew)
 {
 	int regsCount = atoi(fields[2]);
 	int regsSize = atoi(fields[3]);
 	if(strcmp(fileType, "District") == 0)
 	{
 		this->districtBlockSize = atoi(fields[1]);
-		cout << "Generando archivo de distritos" << endl;
-		Tree* treeDistrictFile = new Tree(this->districtFileName, this->districtBlockSize, new DistrictMethods, true);
-		this->readDistrictFile(treeDistrictFile, fields[0]);
-		delete treeDistrictFile;
+		if (createNew)
+		{
+			cout << "Generando archivo de distritos" << endl;
+			Tree* treeDistrictFile = new Tree(this->districtFileName, this->districtBlockSize, new DistrictMethods, true);
+			this->readDistrictFile(treeDistrictFile, fields[0]);
+			delete treeDistrictFile;
+		}
 	}
 	else if(strcmp(fileType, "Election") == 0)
 	{
 		this->electionBlockSize = atoi(fields[1]);
-		//create it empty..
-		cout << "Generando archivo de elecciones" << endl;
-		cout << this->electionBlockSize << endl;
-		Tree* electionTree = new Tree(this->electionFileName, this->electionBlockSize, new ElectionMethods, true);
-		this->readElectionFile(electionTree, fields[0]);
-		delete electionTree;
+		if (createNew)
+		{
+			//create it empty..
+			cout << "Generando archivo de elecciones" << endl;
+			cout << this->electionBlockSize << endl;
+			Tree* electionTree = new Tree(this->electionFileName, this->electionBlockSize, new ElectionMethods, true);
+			this->readElectionFile(electionTree, fields[0]);
+			delete electionTree;
+		}
 	}
 	else if(strcmp(fileType, "ElectionList") == 0)
 	{
 		this->electionListBlockSize = atoi(fields[1]);
-		//read data..
-		cout << "Generando archivo de listas" << endl;
-		Tree* listTree = new Tree(this->electionListFileName, this->electionListBlockSize, &ElectionsListMethods(), true);
-		this->readListFile(listTree, fields[0]);
-		delete listTree;
+		if (createNew)
+		{
+			//read data..
+			cout << "Generando archivo de listas" << endl;
+			Tree* listTree = new Tree(this->electionListFileName, this->electionListBlockSize, &ElectionsListMethods(), true);
+			this->readListFile(listTree, fields[0]);
+			delete listTree;
+		}
 	}
 	else if(strcmp(fileType, "Count") == 0)
 	{
 		this->countBlockSize = atoi(fields[1]);
-		//create it empty..
-		cout << "Generando archivo de conteo" << endl;
-		Tree(this->countFileName, this->countBlockSize, &CountMethods(), true);
+		if (createNew)
+		{
+			//create it empty..
+			cout << "Generando archivo de conteo" << endl;
+			Tree(this->countFileName, this->countBlockSize, &CountMethods(), true);
+		}
+
 	}
 	else if(strcmp(fileType, "Candidate") == 0)
 	{
 		this->candidateBlockSize = atoi(fields[1]);
-		//read file..
-		cout << "Generando archivo de candidato" << endl;
-		Tree* candidateTree = new Tree(this->candidateFileName, this->candidateBlockSize, &CandidateMethods(), true);
-		this->readCandidateFile(candidateTree, fields[0]);
-		delete candidateTree;
+		if (createNew)
+		{
+			//read file..
+			cout << "Generando archivo de candidato" << endl;
+			Tree* candidateTree = new Tree(this->candidateFileName, this->candidateBlockSize, &CandidateMethods(), true);
+			this->readCandidateFile(candidateTree, fields[0]);
+			delete candidateTree;
+		}
 	}
 	else if(strcmp(fileType, "Voter") == 0)
 	{
@@ -100,19 +116,25 @@ void LoadDataFiles::createFileType(char* fileType, char** fields)
 		//hash type..calculate blockamount
 		int efficientBSize = this->voterBlockSize * 4/5; //reserve 20% of free block
 		this->voterBlockAmount = regsCount * regsSize /efficientBSize;
-		cout << "Generando archivo de votantes" << endl;
-		HashBlockFile* hashVoterFile = new HashBlockFile(this->voterFileName, this->voterBlockSize, new VoterMethods, new VoterHashingFunction, this->voterBlockAmount, true);
-		this->readVoterFile(hashVoterFile, fields[0]);
-		delete hashVoterFile;
+		if (createNew)
+		{
+			cout << "Generando archivo de votantes" << endl;
+			HashBlockFile* hashVoterFile = new HashBlockFile(this->voterFileName, this->voterBlockSize, new VoterMethods, new VoterHashingFunction, this->voterBlockAmount, true);
+			this->readVoterFile(hashVoterFile, fields[0]);
+			delete hashVoterFile;
+		}
 	}
 	else if(strcmp(fileType, "Charge") == 0)
 	{
 		this->chargeBlockAmount = 9;//Hardcode as there are 6 charges only!
 		this->chargeBlockSize = atoi(fields[1]);
-		cout << "Generando archivo de cargos" << endl;
-		HashBlockFile* hashChargeFile = new HashBlockFile(this->chargeFileName, this->chargeBlockSize, new ChargeMethods, new ChargeHashingFunction, this->chargeBlockAmount, true);
-		this->readChargeFile(hashChargeFile, fields[0]);
-		delete hashChargeFile;
+		if (createNew)
+		{
+			cout << "Generando archivo de cargos" << endl;
+			HashBlockFile* hashChargeFile = new HashBlockFile(this->chargeFileName, this->chargeBlockSize, new ChargeMethods, new ChargeHashingFunction, this->chargeBlockAmount, true);
+			this->readChargeFile(hashChargeFile, fields[0]);
+			delete hashChargeFile;
+		}
 	}
 }
 

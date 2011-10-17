@@ -5,7 +5,7 @@
  *      Author: damian
  */
 
-#include "DistrictElectionMethods.h"
+#include "DistrictElectionsMethods.h"
 #include "../VariableBlocks/Constants.h"
 #include <iostream>
 #include <string.h>

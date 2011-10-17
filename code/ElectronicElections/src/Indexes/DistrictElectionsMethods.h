@@ -5,8 +5,8 @@
  *      Author: damian
  */
 
-#ifndef DISTRICTELECTIONMETHODS_H_
-#define DISTRICTELECTIONMETHODS_H_
+#ifndef DISTRICTELECTIONSMETHODS_H_
+#define DISTRICTELECTIONSMETHODS_H_
 
 #include "../VariableBlocks/RecordMethods.h"
 
@@ -20,4 +20,4 @@ public:
 	virtual ~DistrictElectionsMethods();
 };
 
-#endif /* DISTRICTELECTIONMETHODS_H_ */
+#endif /* DISTRICTELECTIONSMETHODS_H_ */

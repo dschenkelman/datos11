@@ -11,11 +11,13 @@
 #include "../BPlusTree/Tree.h"
 #include <string>
 #include "../Entities/Election.h"
+#include "DistrictElectionsMethods.h"
 
 class DistrictElectionsIndex
 {
 	std::string fileName;
 	Tree* file;
+	DistrictElectionsMethods* methods;
 	void addElectionToDistrict(std::string district, char day, char month, char year, std::string charge);
 	void removeElectionFromDistrict(std::string district, char day, char month, char year, std::string charge);
 public:

@@ -19,6 +19,7 @@
 #include "../Entities/Count.h"
 #include "../Entities/CountMethods.h"
 #include "../Entities/VoterMethods.h"
+#include "../Indexes/DistrictCountsIndex.h"
 #include <vector>
 #include <cstring>
 #include <iostream>
@@ -86,6 +87,8 @@ bool Voting::login(int voterBlockAmount)
 bool Voting::vote()
 {
 	// indice para obtener elecciones por distrito
+	ConfigurationEntry& entry = this->config->getEntry("DistrictCounts");
+	DistrictCountsIndex districtCountsIndex(entry.getDataFileName(), entry.getBlockSize(), true);
 	District d(this->voter->getDistrict());
     vector<Election> districtElection = this->getElectionByDistrict(&d);
 
@@ -129,6 +132,7 @@ bool Voting::vote()
 				VariableRecord keyRecord(c.getKey(), c.getKeySize());
 				record.setBytes(c.getBytes(), c.getSize());
 				countTree.insert(&keyRecord, &record);
+				districtCountsIndex.indexCount(c);
 			}
 
 			else

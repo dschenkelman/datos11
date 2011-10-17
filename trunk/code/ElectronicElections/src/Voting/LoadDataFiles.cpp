@@ -90,6 +90,8 @@ void DataFileLoader::loadFiles()
 	cout << "Generando archivo de cargos" << endl;
     ChargeMethods cm;
     ChargeHashingFunction chf;
+    int efficientBSize = entry.getBlockSize() * 4 / 5;
+    this->chargeBlockAmount = entry.getRegisterCount() * entry.getRegisterSize() / efficientBSize +1;
     HashBlockFile hashChargeFile(entry.getDataFileName(), entry.getBlockSize(), &cm, &chf, this->chargeBlockAmount, true);
 	this->readChargeFile(&hashChargeFile, entry);
 }

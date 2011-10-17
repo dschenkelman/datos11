@@ -61,6 +61,7 @@ src/ElectronicElections.d src/ElectronicElections.o: \
  ../src/Voting/../Entities/CountMethods.h \
  ../src/Voting/../Entities/Election.h \
  ../src/Voting/../Entities/ElectionMethods.h ../src/Voting/Log.h \
+ ../src/Voting/Configuration.h ../src/Voting/ConfigurationEntry.h \
  ../src/Voting/../Entities/District.h ../src/Hash/HashBlockFile.h \
  ../src/Hash/DistrictHashingFunction.h ../src/Hash/VoterHashingFunction.h \
  ../src/Hash/ChargeHashingFunction.h ../src/Entities/Administrator.h \
@@ -70,9 +71,11 @@ src/ElectronicElections.d src/ElectronicElections.o: \
  ../src/Entities/ElectionMethods.h ../src/Entities/Charge.h \
  ../src/Entities/ChargeMethods.h ../src/Entities/ElectionsList.h \
  ../src/Entities/ElectionsListMethods.h ../src/Entities/Candidate.h \
- ../src/Entities/CandidateMethods.h \
+ ../src/Entities/CandidateMethods.h ../src/Entities/Count.h \
  ../src/VariableBlocks/VariableRecord.h ../src/BPlusTree/Tree.h \
- ../src/Voting/Log.h ../src/Voting/LoadDataFiles.h
+ ../src/Voting/Log.h ../src/Voting/Configuration.h \
+ ../src/Voting/LoadDataFiles.h ../src/Indexes/DistrictElectionsIndex.h \
+ ../src/Indexes/../BPlusTree/Tree.h ../src/Indexes/../Entities/Election.h
 
 ../src/BlocksTests/RLVBlockFileTests.h:
 
@@ -212,6 +215,10 @@ src/ElectronicElections.d src/ElectronicElections.o: \
 
 ../src/Voting/Log.h:
 
+../src/Voting/Configuration.h:
+
+../src/Voting/ConfigurationEntry.h:
+
 ../src/Voting/../Entities/District.h:
 
 ../src/Hash/HashBlockFile.h:
@@ -250,10 +257,20 @@ src/ElectronicElections.d src/ElectronicElections.o: \
 
 ../src/Entities/CandidateMethods.h:
 
+../src/Entities/Count.h:
+
 ../src/VariableBlocks/VariableRecord.h:
 
 ../src/BPlusTree/Tree.h:
 
 ../src/Voting/Log.h:
 
+../src/Voting/Configuration.h:
+
 ../src/Voting/LoadDataFiles.h:
+
+../src/Indexes/DistrictElectionsIndex.h:
+
+../src/Indexes/../BPlusTree/Tree.h:
+
+../src/Indexes/../Entities/Election.h:

@@ -45,6 +45,7 @@
 #include "VariableBlocks/VariableRecord.h"
 #include "BPlusTree/Tree.h"
 #include "Voting/Log.h"
+#include "Voting/Configuration.h"
 #include <time.h>
 #include <sstream>
 
@@ -111,14 +112,15 @@ int run_tests()
 
 int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, incluso desde eclipse
 {			// No impedir el uso normal del sistema
-	LoadDataFiles dataFiles("config.txt");
-	bool initializeAllFiles = false;
-	bool found = dataFiles.readConfigFile(initializeAllFiles);
-	if (!found)
-	{
-		// The program should not work without the config file
-		exit(0);
-	}
+	bool debug = false;
+
+	if (debug) return run_tests();
+
+	Configuration configuration("config.txt");
+	configuration.read();
+	LoadDataFiles dataFiles(configuration);
+	dataFiles.loadFiles();
+
 	Log log;
 	log.write("Iniciando sistema", true, true);
 	option main[2];
@@ -138,8 +140,9 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 			case 0:
 				{
 					bool voting = true;
-					Voting vot(&dataFiles);
-					vot.login();
+					ConfigurationEntry& voterEntry = configuration.getEntry("Voter");
+					Voting vot(voterEntry);
+					vot.login(dataFiles.getVoterBlockAmount());
 					voting = false;
 				}
 				break;
@@ -202,7 +205,10 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 					action = Menu(admin_action,10).ask();
 					if (action == 0)
 					{
-						Tree district_tree (dataFiles.getDistrictFileName(), dataFiles.getDistrictBlockSize(), &DistrictMethods(), false);
+						ConfigurationEntry& entry = configuration.getEntry("District");
+						DistrictMethods dm;
+						Tree district_tree (entry.getDataFileName(),
+								entry.getBlockSize(), &dm, false);
 						option district_action[3];
 						district_action[0].label = "Agregar distrito";
 						district_action[1].label = "Eliminar distrito";
@@ -224,7 +230,11 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 						else if (action==2) district_tree.print();
 					}
 					else if (action == 1) {
-						HashBlockFile *hash_voter = new HashBlockFile(dataFiles.getVoterFileName(), dataFiles.getVoterBlockSize(), &VoterMethods(), &VoterHashingFunction(), dataFiles.getVoterBlockAmount(), false); // para 28 mil votantes
+						ConfigurationEntry& entry = configuration.getEntry("Voter");
+						VoterMethods vm;
+						VoterHashingFunction vhf;
+						HashBlockFile hash_voter(entry.getDataFileName(), entry.getBlockSize(), &vm,
+								&vhf, dataFiles.getVoterBlockAmount(), false); // para 28 mil votantes
 						option voter_action[6];
 						voter_action[0].label = "Agregar votante";
 						voter_action[1].label = "Cambio de domicilio";
@@ -234,40 +244,43 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 						voter_action[5].label = "Imprimir hash de votantes";
 						action = Menu(voter_action,6).ask();
 						if (action==0) {
-							Voter v = Voter(atoi(Menu::raw_input("DNI").c_str()), Menu::raw_input("Nombre"), Menu::raw_input("Contraseña"), Menu::raw_input("Direccion"), Menu::raw_input("Distrito"), std::vector<ElectionKey>());
-							hash_voter->insertRecord(v.getKey(), &VariableRecord(v.getBytes(), v.getSize())) ? cout << "OK" : cout << "FAILED";
+							Voter v(atoi(Menu::raw_input("DNI").c_str()), Menu::raw_input("Nombre"), Menu::raw_input("Contraseña"), Menu::raw_input("Direccion"), Menu::raw_input("Distrito"), std::vector<ElectionKey>());
+							VariableRecord vr(v.getBytes(), v.getSize());
+							hash_voter.insertRecord(v.getKey(), &vr) ? cout << "OK" : cout << "FAILED";
 						} else if (action==1) {
 							VariableRecord *record;
-							Voter v = Voter(atoi(Menu::raw_input("DNI").c_str()), NULL, NULL, NULL, NULL, std::vector<ElectionKey>());
-							hash_voter->getRecord(v.getKey(), &record);
+							Voter v(atoi(Menu::raw_input("DNI").c_str()), NULL, NULL, NULL, NULL, std::vector<ElectionKey>());
+							hash_voter.getRecord(v.getKey(), &record);
 							v.setBytes(record->getBytes());
 							v.setAddress(Menu::raw_input("Nueva direccion"));
 							record->setBytes(v.getBytes(), v.getSize());
-							hash_voter->updateRecord(v.getKey(), record);
+							hash_voter.updateRecord(v.getKey(), record);
 						} else if (action==2) {
 							VariableRecord *record;
-							Voter v = Voter(atoi(Menu::raw_input("DNI").c_str()), NULL, NULL, NULL, NULL, std::vector<ElectionKey>());
-							hash_voter->getRecord(v.getKey(), &record);
+							Voter v(atoi(Menu::raw_input("DNI").c_str()), NULL, NULL, NULL, NULL, std::vector<ElectionKey>());
+							hash_voter.getRecord(v.getKey(), &record);
 							v.setBytes(record->getBytes());
 							v.setDistrict(Menu::raw_input("Nuevo distrito"));
 							record->setBytes(v.getBytes(), v.getSize());
-							hash_voter->updateRecord(v.getKey(), record);
+							hash_voter.updateRecord(v.getKey(), record);
 						} else if (action==3) {
 							VariableRecord *record;
-							Voter v = Voter(atoi(Menu::raw_input("DNI").c_str()), NULL, NULL, NULL, NULL, std::vector<ElectionKey>());
-							hash_voter->getRecord(v.getKey(), &record);
+							Voter v(atoi(Menu::raw_input("DNI").c_str()), NULL, NULL, NULL, NULL, std::vector<ElectionKey>());
+							hash_voter.getRecord(v.getKey(), &record);
 							v.setBytes(record->getBytes());
 							v.setPassword(Menu::raw_input("Nueva contraseña"));
 							record->setBytes(v.getBytes(), v.getSize());
-							hash_voter->updateRecord(v.getKey(), record);
+							hash_voter.updateRecord(v.getKey(), record);
 						} else if (action==4) {
-							Voter v = Voter(atoi(Menu::raw_input("DNI").c_str()), NULL, NULL, NULL, NULL, std::vector<ElectionKey>());
-							hash_voter->removeRecord(v.getKey());
+							Voter v(atoi(Menu::raw_input("DNI").c_str()), NULL, NULL, NULL, NULL, std::vector<ElectionKey>());
+							hash_voter.removeRecord(v.getKey());
 						} else if (action==5) {
-							hash_voter->printContent();
+							hash_voter.printContent();
 						}
 					} else if (action==2) {
-						Tree election_tree (dataFiles.getElectionFileName(), dataFiles.getElectionBlockSize(), &ElectionMethods(), false);
+						ConfigurationEntry& entry = configuration.getEntry("Election");
+						ElectionMethods em;
+						Tree election_tree(entry.getDataFileName(), entry.getBlockSize(), &em, false);
 						option election_action[3];
 						election_action[0].label = "Agregar eleccion";
 						election_action[1].label = "Eliminar eleccion";
@@ -290,14 +303,14 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 								} else if (action==1) {
 									// eliminar distrito asignado
 									string dist = Menu::raw_input("Distrito");
-									for(int i = 0; i < dist_vector.size(); i++) {
+									for(unsigned int i = 0; i < dist_vector.size(); i++) {
 										if(dist_vector.at(i) == dist){
 											dist_vector.erase(dist_vector.begin() + i);
 										}
 									}
 								} else if (action==2) {
 									// ver distritos
-									for(int i = 0; i < dist_vector.size(); i++) {
+									for(unsigned int i = 0; i < dist_vector.size(); i++) {
 										cout << dist_vector.at(i) << endl;
 									}
 								} else if (action==3) {
@@ -318,8 +331,9 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 
 						} else if (action == 1) {
 							// eliminar eleccion
+							std::vector<string> districts;
 							Election e ((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()),
-									(short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"));
+							(short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"));
 							int res = election_tree.remove(e.getKey());
 							stringstream elec;
 							elec << e.getDay(); elec << "/"; elec << e.getMonth(); elec <<  "/"; elec << e.getYear();
@@ -334,7 +348,11 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 //						HashBlockFile charge_hash = HashBlockFile("Charge.dat", 512, new ChargeMethods, new ChargeHashingFunction, 300, false);
 						// POR QUE NO ANDA CON LA LINEA DE ARRIBA???
 						// Deberia andar así: HashBlockFile charge_hash("Charge.dat", 512, new ChargeMethods, new ChargeHashingFunction, 300, false);
-						HashBlockFile charge_hash (dataFiles.getChargeFileName(), dataFiles.getChargeBlockSize(), &ChargeMethods(), &ChargeHashingFunction(), dataFiles.getChargeBlockAmount(), false);
+						ConfigurationEntry& entry = configuration.getEntry("Charge");
+						ChargeMethods cm;
+						ChargeHashingFunction chf;
+						HashBlockFile charge_hash (entry.getDataFileName(), entry.getBlockSize(),
+								&cm, &chf, dataFiles.getChargeBlockAmount(), false);
 						option charge_action[3];
 						charge_action[0].label = "Agregar cargo";
 						charge_action[1].label = "Eliminar cargo";
@@ -374,7 +392,10 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							charge_hash.printContent();
 						}
 					} else if (action==4) {
-						Tree electionslist_tree (dataFiles.getElectionListFileName(), dataFiles.getElectionListBlockSize(), &ElectionsListMethods(), false);
+						ConfigurationEntry& entry = configuration.getEntry("Election");
+						ElectionsListMethods elm;
+						Tree electionslist_tree(entry.getDataFileName(), entry.getBlockSize(),
+								&elm, false);
 						option list_action[3];
 						list_action[0].label = "Agregar lista";
 						list_action[1].label = "Eliminar lista";
@@ -394,7 +415,9 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							electionslist_tree.print();
 						}
 					} else if (action==5) {
-						Tree candidate_tree (dataFiles.getCandidateFileName(), dataFiles.getCandidateBlockSize(), &CandidateMethods(), false);
+						ConfigurationEntry& entry = configuration.getEntry("Candidate");
+						CandidateMethods cm;
+						Tree candidate_tree (entry.getDataFileName(), entry.getBlockSize(), &cm, false);
 						option candidate_action[3];
 						candidate_action[0].label = "Agregar candidato";
 						candidate_action[1].label = "Eliminar candidato";
@@ -435,7 +458,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 						}
 					} else if (action==7) {
 					} else if (action == 8) {
-						dataFiles.readConfigFile(true);
+						dataFiles.loadFiles();
 					} else if (action == 9) {
 						break;
 					}

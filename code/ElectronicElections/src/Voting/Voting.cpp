@@ -28,19 +28,19 @@
 
 static const int MAX_LINE_SIZE = 400;
 
-Voting::Voting(LoadDataFiles* dataFiles)
+Voting::Voting(ConfigurationEntry& entry):voterEntry(entry)
 {
-    this->dataFiles = dataFiles;
     this->voter = NULL;
 }
 
-bool Voting::login()
+bool Voting::login(int voterBlockAmount)
 {
-    string voterFileName = this->dataFiles->getVoterFileName();
-    int voterBlockSize = this->dataFiles->getVoterBlockSize();
-    int voterBlockAmount = this->dataFiles->getVoterBlockAmount();
+    string voterFileName = this->voterEntry.getDataFileName();
+    int voterBlockSize = this->voterEntry.getBlockSize();
 
-    HashBlockFile voterFile(voterFileName, voterBlockSize, new VoterMethods, new VoterHashingFunction, voterBlockAmount, false);
+    VoterMethods vm;
+    VoterHashingFunction vhf;
+    HashBlockFile voterFile(voterFileName, voterBlockSize, &vm, &vhf, voterBlockAmount, false);
 
     ifstream voterFileTxt;
     voterFileTxt.open("padron.txt");
@@ -88,7 +88,7 @@ bool Voting::vote()
 	District d(this->voter->getDistrict());
     vector<Election> districtElection = this->getElectionByDistrict(&d);
 
-    for(int i = 0; i < districtElection.size(); i++)
+    for(unsigned int i = 0; i < districtElection.size(); i++)
     {
         /*string electionsListFileName = this->dataFiles->getElectionListFileName();
         int electionsListBlockSize = this->dataFiles->getElectionListBlockSize();
@@ -214,7 +214,7 @@ vector<Election> Voting::getElectionByDistrict(District* d)
 
 bool Voting::isInVoterElectionList(Election* e)
 {
-	for(int i = 0; i < this->voter->getElectionKeyList().size(); i++)
+	for(unsigned int i = 0; i < this->voter->getElectionKeyList().size(); i++)
 	{
 		short year = this->voter->getElectionKeyList().at(i).year;
 		char month = this->voter->getElectionKeyList().at(i).month;

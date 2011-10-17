@@ -9,140 +9,95 @@
 #include <iostream>
 using namespace std;
 
-LoadDataFiles::LoadDataFiles(std::string configFileName)
+LoadDataFiles::LoadDataFiles(Configuration& config):configuration(config)
 {
-	this->configName = configFileName;
-	this->chargeFileName = "ChargeHash.dat";
-	this->voterFileName = "VoterHash.dat";
-	this->districtFileName = "District.dat";
-	this->electionFileName = "Election.dat";
-	this->candidateFileName = "Candidate.dat";
-	this->electionListFileName = "ElectionList.dat";
-	this->countFileName = "Count.dat";
-	this->administratorFileName = "Administrator.dat";
-	this->administratorBlockSize = 512;
 }
 
-bool LoadDataFiles::readConfigFile(bool createNew)
+int LoadDataFiles::getVoterBlockAmount()
 {
-	this->configFile.open(this->configName.c_str(), ios::binary | ios::in );
-	if (! configFile.is_open())
-	{
-		cout << this->configName + " file could not be found!" << endl;
-		return false;
-	}
-	std::string line;
-	char* fields[4];
-	while ( getline(this->configFile,line) )
-	{
-		char *fileType = strdup(line.c_str());
-		strtok(fileType, ",");
-		for(int i = 0; i<4; i++)
-		{
-			fields[i] = strtok(NULL, ",");
-		}
-		this->createFileType(fileType, fields, createNew);
-	}
-	this->configFile.close();
-	return true;
+	return this->voterBlockAmount;
 }
 
-void LoadDataFiles::createFileType(char* fileType, char** fields, bool createNew)
+void LoadDataFiles::loadDistrictsFile()
 {
-	int regsCount = atoi(fields[2]);
-	int regsSize = atoi(fields[3]);
-	if(strcmp(fileType, "District") == 0)
-	{
-		this->districtBlockSize = atoi(fields[1]);
-		if (createNew)
-		{
-			cout << "Generando archivo de distritos" << endl;
-			Tree* treeDistrictFile = new Tree(this->districtFileName, this->districtBlockSize, new DistrictMethods, true);
-			this->readDistrictFile(treeDistrictFile, fields[0]);
-			delete treeDistrictFile;
-		}
-	}
-	else if(strcmp(fileType, "Election") == 0)
-	{
-		this->electionBlockSize = atoi(fields[1]);
-		if (createNew)
-		{
-			//create it empty..
-			cout << "Generando archivo de elecciones" << endl;
-			cout << this->electionBlockSize << endl;
-			Tree* electionTree = new Tree(this->electionFileName, this->electionBlockSize, new ElectionMethods, true);
-			this->readElectionFile(electionTree, fields[0]);
-			delete electionTree;
-		}
-	}
-	else if(strcmp(fileType, "ElectionList") == 0)
-	{
-		this->electionListBlockSize = atoi(fields[1]);
-		if (createNew)
-		{
-			//read data..
-			cout << "Generando archivo de listas" << endl;
-			Tree* listTree = new Tree(this->electionListFileName, this->electionListBlockSize, &ElectionsListMethods(), true);
-			this->readListFile(listTree, fields[0]);
-			delete listTree;
-		}
-	}
-	else if(strcmp(fileType, "Count") == 0)
-	{
-		this->countBlockSize = atoi(fields[1]);
-		if (createNew)
-		{
-			//create it empty..
-			cout << "Generando archivo de conteo" << endl;
-			Tree(this->countFileName, this->countBlockSize, &CountMethods(), true);
-		}
+    cout << "Generando archivo de distritos" << endl;
+    DistrictMethods districtMethods;
+    ConfigurationEntry entry = this->configuration.getEntry("District");
+    Tree treeDistrictFile(entry.getDataFileName(), entry.getBlockSize(), &districtMethods, true);
+    this->readDistrictFile(&treeDistrictFile, entry);
+}
 
-	}
-	else if(strcmp(fileType, "Candidate") == 0)
-	{
-		this->candidateBlockSize = atoi(fields[1]);
-		if (createNew)
-		{
-			//read file..
-			cout << "Generando archivo de candidato" << endl;
-			Tree* candidateTree = new Tree(this->candidateFileName, this->candidateBlockSize, &CandidateMethods(), true);
-			this->readCandidateFile(candidateTree, fields[0]);
-			delete candidateTree;
-		}
-	}
-	else if(strcmp(fileType, "Voter") == 0)
-	{
-		this->voterBlockSize = atoi(fields[1]);
-		//hash type..calculate blockamount
-		int efficientBSize = this->voterBlockSize * 4/5; //reserve 20% of free block
-		this->voterBlockAmount = regsCount * regsSize /efficientBSize;
-		if (createNew)
-		{
-			cout << "Generando archivo de votantes" << endl;
-			HashBlockFile* hashVoterFile = new HashBlockFile(this->voterFileName, this->voterBlockSize, new VoterMethods, new VoterHashingFunction, this->voterBlockAmount, true);
-			this->readVoterFile(hashVoterFile, fields[0]);
-			delete hashVoterFile;
-		}
-	}
-	else if(strcmp(fileType, "Charge") == 0)
-	{
-		this->chargeBlockAmount = 9;//Hardcode as there are 6 charges only!
-		this->chargeBlockSize = atoi(fields[1]);
-		if (createNew)
-		{
-			cout << "Generando archivo de cargos" << endl;
-			HashBlockFile* hashChargeFile = new HashBlockFile(this->chargeFileName, this->chargeBlockSize, new ChargeMethods, new ChargeHashingFunction, this->chargeBlockAmount, true);
-			this->readChargeFile(hashChargeFile, fields[0]);
-			delete hashChargeFile;
-		}
-	}
+void LoadDataFiles::loadElectionsFile()
+{
+    ConfigurationEntry & entry = this->configuration.getEntry("Election");
+    cout << "Generando archivo de elecciones" << endl;
+    cout << entry.getBlockSize() << endl;
+    ElectionMethods em;
+    Tree electionTree(entry.getDataFileName(), entry.getBlockSize(), &em, true);
+    this->readElectionFile(&electionTree, entry);
+}
+
+void LoadDataFiles::loadElectionListsFile()
+{
+    ConfigurationEntry & entry = this->configuration.getEntry("ElectionList");
+    cout << "Generando archivo de listas" << endl;
+    ElectionsListMethods elm;
+    Tree listTree(entry.getDataFileName(), entry.getBlockSize(), &elm, true);
+    this->readListFile(&listTree, entry);
+}
+
+void LoadDataFiles::loadCountsFile()
+{
+    ConfigurationEntry & entry = this->configuration.getEntry("Count");
+    cout << "Generando archivo de conteo" << endl;
+    CountMethods cm;
+    Tree(entry.getDataFileName(), entry.blockSize, &cm, true);
+}
+
+void LoadDataFiles::loadCandidatesFile()
+{
+    ConfigurationEntry & entry = this->configuration.getEntry("Candidate");
+    cout << "Generando archivo de candidato" << endl;
+    CandidateMethods cm;
+    Tree candidateTree(entry.getDataFileName(), entry.getBlockSize(), &cm, true);
+    this->readCandidateFile(&candidateTree, entry);
+}
+
+void LoadDataFiles::loadVotersFile()
+{
+    ConfigurationEntry & entry = this->configuration.getEntry("Voter");
+    int efficientBSize = entry.getBlockSize() * 4 / 5;
+    this->voterBlockAmount = entry.getRegisterCount() * entry.getRegisterSize() / efficientBSize;
+    cout << "Generando archivo de votantes" << endl;
+    VoterMethods vm;
+    VoterHashingFunction vhf;
+    HashBlockFile hashVoterFile(entry.getDataFileName(), entry.getBlockSize(), &vm, &vhf, this->voterBlockAmount, true);
+    this->readVoterFile(&hashVoterFile, entry);
+}
+
+void LoadDataFiles::loadFiles()
+{
+    this->loadDistrictsFile();
+    this->loadElectionsFile();
+    this->loadElectionListsFile();
+    this->loadCountsFile();
+    this->loadCandidatesFile();
+    this->loadVotersFile();
+
+    ConfigurationEntry& entry = this->configuration.getEntry("Charge");
+	cout << "Generando archivo de cargos" << endl;
+    ChargeMethods cm;
+    ChargeHashingFunction chf;
+    HashBlockFile hashChargeFile(entry.getDataFileName(), entry.getBlockSize(), &cm, &chf, this->chargeBlockAmount, true);
+	this->readChargeFile(&hashChargeFile, entry);
 }
 
 bool LoadDataFiles::canOpenAdminFile()
 {
 	fstream adminFile;
+	ConfigurationEntry& entry = this->configuration.getEntry("Administrator");
 	bool valid = false;
-	adminFile.open(this->administratorFileName.c_str(), ios::in | ios::binary | ios::out);
+	adminFile.open(entry.getDataFileName().c_str(), ios::in | ios::binary | ios::out);
 	if( adminFile.is_open())
 	{
 		valid = true;
@@ -154,17 +109,21 @@ bool LoadDataFiles::canOpenAdminFile()
 Tree* LoadDataFiles::createAdminFile()
 {
 	cout << "Generando archivo de administrador" << endl;
-	return new Tree(this->administratorFileName, this->administratorBlockSize, new AdministratorMethods, true);
+	ConfigurationEntry& entry = this->configuration.getEntry("Administrator");
+	AdministratorMethods am;
+	return new Tree(entry.getDataFileName().c_str(), entry.getBlockSize(), &am, true);
 }
 Tree* LoadDataFiles::getAdminFile()
 {
-	return new Tree (this->administratorFileName, this->administratorBlockSize, new AdministratorMethods, false);
+	ConfigurationEntry& entry = this->configuration.getEntry("Administrator");
+	AdministratorMethods am;
+	return new Tree(entry.getDataFileName().c_str(), entry.getBlockSize(), &am, true);
 }
 
-void LoadDataFiles::readDistrictFile(Tree* treeDistrictFile, char* dataFileName)
+void LoadDataFiles::readDistrictFile(Tree* treeDistrictFile, ConfigurationEntry& entry)
 {
 	fstream dataFile;
-	dataFile.open(dataFileName, ios::in |  ios::binary);
+	dataFile.open(entry.getLoadFileName().c_str(), ios::in |  ios::binary);
 	std::string line;
 	while ( getline(dataFile,line) )
 	{
@@ -181,10 +140,10 @@ void LoadDataFiles::readDistrictFile(Tree* treeDistrictFile, char* dataFileName)
 	dataFile.close();
 }
 
-void LoadDataFiles::readCandidateFile(Tree* treeCandidateFile, char* dataFileName)
+void LoadDataFiles::readCandidateFile(Tree* treeCandidateFile, ConfigurationEntry & entry)
 {
 	fstream dataFile;
-	dataFile.open(dataFileName, ios::in |  ios::binary);
+	dataFile.open(entry.getLoadFileName().c_str(), ios::in |  ios::binary);
 	std::string line;
 	char* month;
 	char* year;
@@ -212,10 +171,10 @@ void LoadDataFiles::readCandidateFile(Tree* treeCandidateFile, char* dataFileNam
 	dataFile.close();
 }
 
-void LoadDataFiles::readElectionFile(Tree* treeElectionFile, char* dataFileName)
+void LoadDataFiles::readElectionFile(Tree* treeElectionFile, ConfigurationEntry& entry)
 {
 	fstream dataFile;
-	dataFile.open(dataFileName, ios::in |  ios::binary);
+	dataFile.open(entry.getLoadFileName().c_str(), ios::in |  ios::binary);
 	std::string line;
 	char* month;
 	char* year;
@@ -250,10 +209,10 @@ void LoadDataFiles::readElectionFile(Tree* treeElectionFile, char* dataFileName)
 	dataFile.close();
 }
 
-void LoadDataFiles::readListFile(Tree* treeListFile, char* dataFileName)
+void LoadDataFiles::readListFile(Tree* treeListFile, ConfigurationEntry & entry)
 {
 	fstream dataFile;
-	dataFile.open(dataFileName, ios::in |  ios::binary);
+	dataFile.open(entry.getLoadFileName().c_str(), ios::in |  ios::binary);
 	std::string line;
 	char* month;
 	char* year;
@@ -278,10 +237,10 @@ void LoadDataFiles::readListFile(Tree* treeListFile, char* dataFileName)
 	dataFile.close();
 }
 
-void LoadDataFiles::readVoterFile(HashBlockFile* hashVoterFile, char* dataFileName)
+void LoadDataFiles::readVoterFile(HashBlockFile* hashVoterFile, ConfigurationEntry & entry)
 {
 	fstream dataFile;
-	dataFile.open(dataFileName, ios::in |  ios::binary);
+	dataFile.open(entry.getLoadFileName().c_str(), ios::in |  ios::binary);
 	std::string line;
 	char* nombre;
 	char* pass;
@@ -327,10 +286,10 @@ void LoadDataFiles::readVoterFile(HashBlockFile* hashVoterFile, char* dataFileNa
 	dataFile.close();
 }
 
-void LoadDataFiles::readChargeFile(HashBlockFile* hashChargeFile, char* dataFileName)
+void LoadDataFiles::readChargeFile(HashBlockFile* hashChargeFile, ConfigurationEntry & entry)
 {
 	fstream dataFile;
-	dataFile.open(dataFileName, ios::in |  ios::binary);
+	dataFile.open(entry.getLoadFileName().c_str(), ios::in |  ios::binary);
 	std::string line;
 	std::vector<std::string> list;
 	char* secondCharges;
@@ -354,59 +313,8 @@ void LoadDataFiles::readChargeFile(HashBlockFile* hashChargeFile, char* dataFile
 	dataFile.close();
 }
 
-string LoadDataFiles::getChargeFileName(){
-	return this->chargeFileName;
-}
-string LoadDataFiles::getVoterFileName(){
-	return this->voterFileName;
-}
-string LoadDataFiles::getDistrictFileName(){
-	return this->districtFileName;
-}
-string LoadDataFiles::getElectionFileName(){
-	return this->electionFileName;
-}
-string LoadDataFiles::getCandidateFileName(){
-	return this->candidateFileName;
-}
-string LoadDataFiles::getElectionListFileName(){
-	return this->electionListFileName;
-}
-string LoadDataFiles::getCountFileName(){
-	return this->countFileName;
-}
-string LoadDataFiles::getAdminFileName(){
-	return this->administratorFileName;
-}
-
-int LoadDataFiles::getDistrictBlockSize(){
-	return this->districtBlockSize;
-}
-int LoadDataFiles::getElectionBlockSize(){
-	return this->electionBlockSize;
-}
-int LoadDataFiles::getElectionListBlockSize(){
-	return this->electionListBlockSize;
-}
-int LoadDataFiles::getCountBlockSize(){
-	return this->countBlockSize;
-}
-int LoadDataFiles::getCandidateBlockSize(){
-	return this->candidateBlockSize;
-}
-int LoadDataFiles::getAdminBlockSize(){
-	return this->administratorBlockSize;
-}
-int LoadDataFiles::getVoterBlockSize(){
-	return this->voterBlockSize;
-}
-int LoadDataFiles::getVoterBlockAmount(){
-	return this->voterBlockAmount;
-}
-int LoadDataFiles::getChargeBlockSize(){
-	return this->chargeBlockSize;
-}
-int LoadDataFiles::getChargeBlockAmount(){
+int LoadDataFiles::getChargeBlockAmount()
+{
 	return this->chargeBlockAmount;
 }
 

@@ -33,77 +33,42 @@
 #include "../Entities/ElectionMethods.h"
 
 #include "Log.h"
+#include "Configuration.h"
 
 
 class LoadDataFiles
 {
-	std::string configName;
-	std::ifstream configFile;
-	// District attributes
-	std::string districtFileName;
-	int districtBlockSize;
-	// Election attributes
-	std::string electionFileName;
-	int electionBlockSize;
-	// ElectionList attributes
-	std::string electionListFileName;
-	int electionListBlockSize;
-	// Count attributes
-	std::string countFileName;
-	int countBlockSize;
-	// Candidate attributes
-	std::string candidateFileName;
-	int candidateBlockSize;
-	// Administrator attributes
-	std::string administratorFileName;
-	int administratorBlockSize;
-	// Voter attributes
-	std::string voterFileName;
-	int voterBlockSize;
-	int voterBlockAmount;
-	// Charge attributes
-	std::string chargeFileName;
-	int chargeBlockSize;
-	int chargeBlockAmount;
-
-	//void initializefile();
-
-	void readElectionFile(Tree* treeElectionFile, char* dataFileName);
-	void readListFile(Tree* treeListFile, char* dataFileName);
-	void readDistrictFile(Tree* treeDistrictFile, char* dataFile);
-	void readCandidateFile(Tree* treeCandidateFile, char* dataFileName);
-	void readVoterFile(HashBlockFile* hashVoterFile, char* dataFile);
-	void readChargeFile(HashBlockFile* hashChargeFile, char* dataFile);
-	void createFileType(char* fileType,char** fields, bool createNew);
-
+    std::string districtFileName;
+    std::string electionFileName;
+    std::string electionListFileName;
+    std::string countFileName;
+    std::string candidateFileName;
+    std::string administratorFileName;
+    std::string voterFileName;
+    int voterBlockAmount;
+    std::string chargeFileName;
+    int chargeBlockAmount;
+    Configuration configuration;
+    void readElectionFile(Tree *treeElectionFile, ConfigurationEntry& entry);
+    void readListFile(Tree *treeListFile, ConfigurationEntry & entry);
+    void readDistrictFile(Tree *treeDistrictFile, ConfigurationEntry & entry);
+    void readCandidateFile(Tree *treeCandidateFile, ConfigurationEntry & entry);
+    void readVoterFile(HashBlockFile *hashVoterFile, ConfigurationEntry & entry);
+    void readChargeFile(HashBlockFile *hashChargeFile, ConfigurationEntry & entry);
+    void loadDistrictsFile();
+    void loadElectionsFile();
+    void loadElectionListsFile();
+    void loadCountsFile();
+    void loadCandidatesFile();
+    void loadVotersFile();
 public:
-	LoadDataFiles(std::string configFileName);
+	LoadDataFiles(Configuration& config);
+	void loadFiles();
 	bool canOpenAdminFile();
 	Tree* createAdminFile();
 	Tree* getAdminFile();
-
-	string getChargeFileName();
-	string getVoterFileName();
-	string getDistrictFileName();
-	string getElectionFileName();
-	string getElectionListFileName();
-	string getCountFileName();
-	string getCandidateFileName();
-	string getAdminFileName();
-
-	int getDistrictBlockSize();
-	int getElectionBlockSize();
-	int getElectionListBlockSize();
-	int getCountBlockSize();
-	int getCandidateBlockSize();
-	int getAdminBlockSize();
-
-	int getVoterBlockSize();
 	int getVoterBlockAmount();
-	int getChargeBlockSize();
 	int getChargeBlockAmount();
-
-	bool readConfigFile(bool createNew);
 	~LoadDataFiles();
 };
 

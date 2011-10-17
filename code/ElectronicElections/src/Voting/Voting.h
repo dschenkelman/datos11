@@ -14,6 +14,8 @@
 #include "../Entities/Election.h"
 #include "../Entities/District.h"
 #include "../Entities/ElectionsList.h"
+#include "Configuration.h"
+#include "ConfigurationEntry.h"
 
 using namespace std;
 
@@ -24,9 +26,10 @@ private:
 	bool isInVoterElectionList(Election* e);
 	vector<Election> getElectionByDistrict(District* d);
 	vector<ElectionsList> getElectionsListsByElection(Election* e);
+	ConfigurationEntry voterEntry;
 public:
-	Voting(LoadDataFiles* dataFiles);
-	bool login();
+	Voting(ConfigurationEntry& vEntry);
+	bool login(int voterBlockAmount);
 	bool vote();
 	virtual ~Voting();
 };

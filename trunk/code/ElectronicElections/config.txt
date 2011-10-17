@@ -7,3 +7,4 @@ Election,elections.txt,16384,0,0,Election.dat
 Administrator,"",1024,10,20,Administrator.dat
 Count,"",2048,0,0,Count.dat
 DistrictElections,"",16384,0,0,DistrictElections.ind
+DistrictCounts,"",16384,0,0,DistrictCounts.ind

@@ -112,7 +112,8 @@ int run_tests()
 int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, incluso desde eclipse
 {			// No impedir el uso normal del sistema
 	LoadDataFiles dataFiles("config.txt");
-	bool found = dataFiles.readConfigFile();
+	bool initializeAllFiles = false;
+	bool found = dataFiles.readConfigFile(initializeAllFiles);
 	if (!found)
 	{
 		// The program should not work without the config file
@@ -434,7 +435,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 						}
 					} else if (action==7) {
 					} else if (action == 8) {
-						dataFiles.readConfigFile();
+						dataFiles.readConfigFile(true);
 					} else if (action == 9) {
 						break;
 					}

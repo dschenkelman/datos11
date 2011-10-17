@@ -36,7 +36,7 @@ void Configuration::read()
 		char* fileType = strtok(l, ",");
 		for(int i = 0; i<5; i++)
 		{
-			fields[i] = strtok(NULL, ",");
+			fields[i] = strtok(NULL, ",\r");
 		}
 
 		ConfigurationEntry entry(fields[0], fields[4], atoi(fields[1]), atoi(fields[2]), atoi(fields[3]));

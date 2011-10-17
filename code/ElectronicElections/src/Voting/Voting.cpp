@@ -127,6 +127,7 @@ bool Voting::vote()
 			{
 				c.increaseQuantity();
 				VariableRecord keyRecord(c.getKey(), c.getKeySize());
+				record.setBytes(c.getBytes(), c.getSize());
 				countTree.insert(&keyRecord, &record);
 			}
 
@@ -135,7 +136,6 @@ bool Voting::vote()
 				c.setBytes(record.getBytes());
 				c.increaseQuantity();
 				record.setBytes(c.getBytes(), c.getSize());
-
 				countTree.update(key, &record);
 			}
         }

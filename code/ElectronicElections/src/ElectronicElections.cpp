@@ -81,32 +81,31 @@ int run_tests()
 //	cout << "Hash Tests" << endl;
 //	HashTest hashTests;
 //	hashTests.run();
-
-
-
-	cout << "Tree Tests" << endl;
-	TreeTests treeTests;
-	treeTests.run();
-	/*
-	cout << "Elections List Tests" << endl;
-	ElectionsListTests electionTests;
-	electionTests.run();
-
-	cout << "Candidate Tests" << endl;
-	CandidateTests ct;
-	ct.run();
-
-	cout << "Administrator Tests" << endl;
-	AdministratorTests at;
-	at.run();
-
-	cout << "Count Tests" << endl;
-	CountTests countTests;
-	countTests.run();
-
-	cout << "Charge Tests" << endl;
-	ChargeTests chargeTests;
-	chargeTests.run();*/
+//
+//
+//	cout << "Tree Tests" << endl;
+//	TreeTests treeTests;
+//	treeTests.run();
+//
+//	cout << "Elections List Tests" << endl;
+//	ElectionsListTests electionTests;
+//	electionTests.run();
+//
+//	cout << "Candidate Tests" << endl;
+//	CandidateTests ct;
+//	ct.run();
+//
+//	cout << "Administrator Tests" << endl;
+//	AdministratorTests at;
+//	at.run();
+//
+//	cout << "Count Tests" << endl;
+//	CountTests countTests;
+//	countTests.run();
+//
+//	cout << "Charge Tests" << endl;
+//	ChargeTests chargeTests;
+//	chargeTests.run();
 
 	return 0;
 }

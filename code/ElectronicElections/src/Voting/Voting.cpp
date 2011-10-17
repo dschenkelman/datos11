@@ -28,15 +28,16 @@
 
 static const int MAX_LINE_SIZE = 400;
 
-Voting::Voting(ConfigurationEntry& entry):voterEntry(entry)
+Voting::Voting(Configuration* configuration):config(configuration)
 {
     this->voter = NULL;
 }
 
 bool Voting::login(int voterBlockAmount)
 {
-    string voterFileName = this->voterEntry.getDataFileName();
-    int voterBlockSize = this->voterEntry.getBlockSize();
+	ConfigurationEntry& voterEntry = this->config->getEntry("Voter");
+    string voterFileName = voterEntry.getDataFileName();
+    int voterBlockSize = voterEntry.getBlockSize();
 
     VoterMethods vm;
     VoterHashingFunction vhf;
@@ -88,13 +89,13 @@ bool Voting::vote()
 	District d(this->voter->getDistrict());
     vector<Election> districtElection = this->getElectionByDistrict(&d);
 
+	ConfigurationEntry& countEntry = this->config->getEntry("Count");
+	string countFileName = countEntry.getDataFileName();
+	int countBlockSize = countEntry.getBlockSize();
+	Tree countTree(countFileName, countBlockSize, new CountMethods, false);
+
     for(unsigned int i = 0; i < districtElection.size(); i++)
     {
-        /*string electionsListFileName = this->dataFiles->getElectionListFileName();
-        int electionsListBlockSize = this->dataFiles->getElectionListBlockSize();
-        Tree electionsListTree(electionsListFileName, electionsListBlockSize, &ElectionsListMethods(), true);*/
-
-        // acá necesito las listas que tengan a esta eleccion como parte de su identificador.. indice?
         vector<ElectionsList> electionsLists = this->getElectionsListsByElection(&(districtElection.at(i)));
 
         if(electionsLists.size() != 0)
@@ -113,10 +114,6 @@ bool Voting::vote()
 					districtElection.at(i).getDay(), districtElection.at(i).getCharge()};
 			this->voter->getElectionKeyList().push_back(eKey); // para que esto funque bien si no me equivoco getElectionKeyList tiene que devolver vector& no?
 
-			/*string countFileName = this->dataFiles->getCountFileName();
-			int countBlockSize = this->dataFiles->getCountBlockSize();
-			Tree countTree(countFileName, countBlockSize, &CountMethods(), false);
-
 			Count c(districtElection.at(i).getDay(), districtElection.at(i).getMonth(), districtElection.at(i).getYear(),
 					districtElection.at(i).getCharge(), list.getName(), this->voter->getDistrict(), 0);
 
@@ -124,18 +121,23 @@ bool Voting::vote()
 			memcpy(key, c.getKey(), c.getKeySize());
 
 			VariableRecord record;
-			bool found = countTree.get(c.getKey(), &record);
+			/*bool found = countTree.get(c.getKey(), &record);
 
 			if(!found)
 			{
-				continue;
+				c.increaseQuantity();
+				VariableRecord keyRecord(c.getKey(), c.getKeySize());
+				countTree.insert(&keyRecord, &record);
 			}
 
-			c.setBytes(record.getBytes());
-			c.increaseQuantity();
-			record.setBytes(c.getBytes(), c.getSize());
+			else
+			{
+				c.setBytes(record.getBytes());
+				c.increaseQuantity();
+				record.setBytes(c.getBytes(), c.getSize());
 
-			countTree.update(key, &record);*/
+				countTree.update(key, &record);
+			}*/
         }
 
         else return false;
@@ -145,21 +147,22 @@ bool Voting::vote()
 
 /*vector<ElectionsList> Voting::getElectionsListsByElection(Election* e)
 {
-	string electionsListFileName = this->dataFiles->getElectionListFileName();
-	int electionsListBlockSize = this->dataFiles->getElectionListBlockSize();
+	ConfigurationEntry& electionsListEntry = this->config->getEntry("ElectionsList");
+	string electionsListFileName = electionsListEntry.getDataFileName();
+	int electionsListBlockSize = electionsListEntry.getBlockSize();
 
 	ElectionsListMethods elm;
-	Tree electionsListTree(electionsListFileName, electionsListBlockSize, &elm, false);
+	Tree electionsListTree(electionsListFileName, electionsListBlockSize, new ElectionsListMethods, false);
 
 	vector<ElectionsList> electionsListVector;
 
-	VariableRecord record;
-	electionsListTree.returnFirst(&record);
+	VariableRecord* record = new VariableRecord();
+	record = electionsListTree.returnFirst(record);
 
 	while(record != NULL)
 	{
 		ElectionsList eList("invalid", 0, 0, 0, "invalid");
-		eList.setBytes(record.getBytes());
+		eList.setBytes(record->getBytes());
 		int compareResult = elm.compare(eList.getKey(), e->getBytes(), e->getSize());
 
 		if(compareResult == 0)
@@ -167,7 +170,7 @@ bool Voting::vote()
 			electionsListVector.push_back(eList);
 		}
 
-		record = electionsListTree.getNext(&record);
+		record = electionsListTree.getNext(record);
 	}
 
 	return electionsListVector;

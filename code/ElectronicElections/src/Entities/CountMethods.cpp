@@ -36,9 +36,18 @@ int CountMethods::compare(const char* key, const char* recordBytes, int recordSi
 	memcpy(&month, key+i, sizeof(char)); i += sizeof(char);
 	memcpy(&day, key+i, sizeof(char)); i += sizeof(char);
 
+	// charge
 	char len = (key+i)[0]; i += Constants::FIELD_HEADER_SIZE;
 	char charge[len];
-	memcpy(charge, key+i, len);
+	memcpy(charge, key+i, len); i+= len;
+
+	// name
+	len = (key+i)[0]; i += Constants::FIELD_HEADER_SIZE;
+	i += len;
+
+	len = (key+i)[0]; i += Constants::FIELD_HEADER_SIZE;
+	char district[len];
+	memcpy(district, key+i, len);
 
 	if(year > c.getYear())
 	{
@@ -78,7 +87,11 @@ int CountMethods::compare(const char* key, const char* recordBytes, int recordSi
 
 				else
 				{
-					return strcmp(charge, c.getCharge().c_str());
+					int chargeCompareResult = strcmp(charge, c.getCharge().c_str());
+
+					if(chargeCompareResult == 0) return strcmp(district, c.getDistrict().c_str());
+
+					else return chargeCompareResult;
 				}
 			}
 		}

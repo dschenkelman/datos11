@@ -6,7 +6,6 @@
  */
 
 #include "DistrictElectionsIndex.h"
-#include "DistrictElectionMethods.h"
 #include "DistrictElections.h"
 
 using namespace std;
@@ -14,8 +13,8 @@ using namespace std;
 DistrictElectionsIndex::DistrictElectionsIndex(string& fName, int blockSize, bool createNew)
 :fileName(fName)
 {
-	DistrictElectionsMethods methods;
-	this->file = new Tree(this->fileName,blockSize, &methods, createNew);
+	this->methods = new DistrictElectionsMethods;
+	this->file = new Tree(this->fileName,blockSize, this->methods, createNew);
 }
 
 void DistrictElectionsIndex::addElectionToDistrict(std::string district, char day, char month, char year, std::string charge)
@@ -88,4 +87,5 @@ void DistrictElectionsIndex::indexElection(Election & e)
 DistrictElectionsIndex::~DistrictElectionsIndex()
 {
 	delete this->file;
+	delete this->methods;
 }

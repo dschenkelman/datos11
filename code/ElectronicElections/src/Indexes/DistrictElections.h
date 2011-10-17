@@ -29,6 +29,8 @@ public:
 	std::string& getDistrict();
 	void setDistrict(std::string& value);
 	void addElection(char d, char m, short y, std::string& c);
+	void removeElection(char d, char m, short y, std::string& c);
+	bool hasElections();
 	virtual ~DistrictElections();
 };
 

@@ -10,14 +10,18 @@
 
 #include "../BPlusTree/Tree.h"
 #include <string>
+#include "../Entities/Election.h"
 
 class DistrictElectionsIndex
 {
 	std::string fileName;
 	Tree* file;
-public:
-	DistrictElectionsIndex(int blockSize, bool createNew);
 	void addElectionToDistrict(std::string district, char day, char month, char year, std::string charge);
+	void removeElectionFromDistrict(std::string district, char day, char month, char year, std::string charge);
+public:
+	DistrictElectionsIndex(std::string& fName, int blockSize, bool createNew);
+	void indexElection(Election& e);
+	void unIndexElection(Election& e);
 	bool getDistrictElections(std::string district, VariableRecord* record);
 
 	virtual ~DistrictElectionsIndex();

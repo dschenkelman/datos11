@@ -26,9 +26,9 @@ private:
 	bool isInVoterElectionList(Election* e);
 	vector<Election> getElectionByDistrict(District* d);
 	vector<ElectionsList> getElectionsListsByElection(Election* e);
-	ConfigurationEntry voterEntry;
+	Configuration* config;
 public:
-	Voting(ConfigurationEntry& vEntry);
+	Voting(Configuration* config);
 	bool login(int voterBlockAmount);
 	bool vote();
 	virtual ~Voting();

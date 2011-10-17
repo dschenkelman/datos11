@@ -141,8 +141,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 			case 0:
 				{
 					bool voting = true;
-					ConfigurationEntry& voterEntry = configuration.getEntry("Voter");
-					Voting vot(voterEntry);
+					Voting vot(&configuration);
 					vot.login(dataFiles.getVoterBlockAmount());
 					voting = false;
 				}

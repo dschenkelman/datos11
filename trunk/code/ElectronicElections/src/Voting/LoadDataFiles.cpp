@@ -7,18 +7,20 @@
 
 #include "LoadDataFiles.h"
 #include <iostream>
+#include "../Indexes/DistrictElectionsIndex.h"
+
 using namespace std;
 
-LoadDataFiles::LoadDataFiles(Configuration& config):configuration(config)
+DataFileLoader::DataFileLoader(Configuration& config):configuration(config)
 {
 }
 
-int LoadDataFiles::getVoterBlockAmount()
+int DataFileLoader::getVoterBlockAmount()
 {
 	return this->voterBlockAmount;
 }
 
-void LoadDataFiles::loadDistrictsFile()
+void DataFileLoader::loadDistrictsFile()
 {
     cout << "Generando archivo de distritos" << endl;
     DistrictMethods districtMethods;
@@ -27,7 +29,7 @@ void LoadDataFiles::loadDistrictsFile()
     this->readDistrictFile(&treeDistrictFile, entry);
 }
 
-void LoadDataFiles::loadElectionsFile()
+void DataFileLoader::loadElectionsFile()
 {
     ConfigurationEntry & entry = this->configuration.getEntry("Election");
     cout << "Generando archivo de elecciones" << endl;
@@ -37,7 +39,7 @@ void LoadDataFiles::loadElectionsFile()
     this->readElectionFile(&electionTree, entry);
 }
 
-void LoadDataFiles::loadElectionListsFile()
+void DataFileLoader::loadElectionListsFile()
 {
     ConfigurationEntry & entry = this->configuration.getEntry("ElectionList");
     cout << "Generando archivo de listas" << endl;
@@ -46,7 +48,7 @@ void LoadDataFiles::loadElectionListsFile()
     this->readListFile(&listTree, entry);
 }
 
-void LoadDataFiles::loadCountsFile()
+void DataFileLoader::loadCountsFile()
 {
     ConfigurationEntry & entry = this->configuration.getEntry("Count");
     cout << "Generando archivo de conteo" << endl;
@@ -54,7 +56,7 @@ void LoadDataFiles::loadCountsFile()
     Tree(entry.getDataFileName(), entry.blockSize, &cm, true);
 }
 
-void LoadDataFiles::loadCandidatesFile()
+void DataFileLoader::loadCandidatesFile()
 {
     ConfigurationEntry & entry = this->configuration.getEntry("Candidate");
     cout << "Generando archivo de candidato" << endl;
@@ -63,7 +65,7 @@ void LoadDataFiles::loadCandidatesFile()
     this->readCandidateFile(&candidateTree, entry);
 }
 
-void LoadDataFiles::loadVotersFile()
+void DataFileLoader::loadVotersFile()
 {
     ConfigurationEntry & entry = this->configuration.getEntry("Voter");
     int efficientBSize = entry.getBlockSize() * 4 / 5;
@@ -75,7 +77,7 @@ void LoadDataFiles::loadVotersFile()
     this->readVoterFile(&hashVoterFile, entry);
 }
 
-void LoadDataFiles::loadFiles()
+void DataFileLoader::loadFiles()
 {
     this->loadDistrictsFile();
     this->loadElectionsFile();
@@ -92,7 +94,7 @@ void LoadDataFiles::loadFiles()
 	this->readChargeFile(&hashChargeFile, entry);
 }
 
-bool LoadDataFiles::canOpenAdminFile()
+bool DataFileLoader::canOpenAdminFile()
 {
 	fstream adminFile;
 	ConfigurationEntry& entry = this->configuration.getEntry("Administrator");
@@ -106,21 +108,21 @@ bool LoadDataFiles::canOpenAdminFile()
 	return valid;
 }
 
-Tree* LoadDataFiles::createAdminFile()
+Tree* DataFileLoader::createAdminFile()
 {
 	cout << "Generando archivo de administrador" << endl;
 	ConfigurationEntry& entry = this->configuration.getEntry("Administrator");
 	AdministratorMethods am;
 	return new Tree(entry.getDataFileName().c_str(), entry.getBlockSize(), &am, true);
 }
-Tree* LoadDataFiles::getAdminFile()
+Tree* DataFileLoader::getAdminFile()
 {
 	ConfigurationEntry& entry = this->configuration.getEntry("Administrator");
 	AdministratorMethods am;
 	return new Tree(entry.getDataFileName().c_str(), entry.getBlockSize(), &am, true);
 }
 
-void LoadDataFiles::readDistrictFile(Tree* treeDistrictFile, ConfigurationEntry& entry)
+void DataFileLoader::readDistrictFile(Tree* treeDistrictFile, ConfigurationEntry& entry)
 {
 	fstream dataFile;
 	dataFile.open(entry.getLoadFileName().c_str(), ios::in |  ios::binary);
@@ -140,7 +142,7 @@ void LoadDataFiles::readDistrictFile(Tree* treeDistrictFile, ConfigurationEntry&
 	dataFile.close();
 }
 
-void LoadDataFiles::readCandidateFile(Tree* treeCandidateFile, ConfigurationEntry & entry)
+void DataFileLoader::readCandidateFile(Tree* treeCandidateFile, ConfigurationEntry & entry)
 {
 	fstream dataFile;
 	dataFile.open(entry.getLoadFileName().c_str(), ios::in |  ios::binary);
@@ -171,8 +173,12 @@ void LoadDataFiles::readCandidateFile(Tree* treeCandidateFile, ConfigurationEntr
 	dataFile.close();
 }
 
-void LoadDataFiles::readElectionFile(Tree* treeElectionFile, ConfigurationEntry& entry)
+void DataFileLoader::readElectionFile(Tree* treeElectionFile, ConfigurationEntry& entry)
 {
+	ConfigurationEntry& districtElectionsEntry = this->configuration.getEntry("DistrictElections");
+	DistrictElectionsIndex indexFile(districtElectionsEntry.getDataFileName(),
+			districtElectionsEntry.getBlockSize(), true);
+
 	fstream dataFile;
 	dataFile.open(entry.getLoadFileName().c_str(), ios::in |  ios::binary);
 	std::string line;
@@ -205,11 +211,13 @@ void LoadDataFiles::readElectionFile(Tree* treeElectionFile, ConfigurationEntry&
 		record->setBytes(election.getBytes(), election.getSize());
 		VariableRecord* key = new VariableRecord(election.getKey(), election.getKeySize());
 		cout << treeElectionFile->insert(key, record)<<endl;
+
+		indexFile.indexElection(election);
 	}
 	dataFile.close();
 }
 
-void LoadDataFiles::readListFile(Tree* treeListFile, ConfigurationEntry & entry)
+void DataFileLoader::readListFile(Tree* treeListFile, ConfigurationEntry & entry)
 {
 	fstream dataFile;
 	dataFile.open(entry.getLoadFileName().c_str(), ios::in |  ios::binary);
@@ -237,7 +245,7 @@ void LoadDataFiles::readListFile(Tree* treeListFile, ConfigurationEntry & entry)
 	dataFile.close();
 }
 
-void LoadDataFiles::readVoterFile(HashBlockFile* hashVoterFile, ConfigurationEntry & entry)
+void DataFileLoader::readVoterFile(HashBlockFile* hashVoterFile, ConfigurationEntry & entry)
 {
 	fstream dataFile;
 	dataFile.open(entry.getLoadFileName().c_str(), ios::in |  ios::binary);
@@ -286,7 +294,7 @@ void LoadDataFiles::readVoterFile(HashBlockFile* hashVoterFile, ConfigurationEnt
 	dataFile.close();
 }
 
-void LoadDataFiles::readChargeFile(HashBlockFile* hashChargeFile, ConfigurationEntry & entry)
+void DataFileLoader::readChargeFile(HashBlockFile* hashChargeFile, ConfigurationEntry & entry)
 {
 	fstream dataFile;
 	dataFile.open(entry.getLoadFileName().c_str(), ios::in |  ios::binary);
@@ -313,11 +321,11 @@ void LoadDataFiles::readChargeFile(HashBlockFile* hashChargeFile, ConfigurationE
 	dataFile.close();
 }
 
-int LoadDataFiles::getChargeBlockAmount()
+int DataFileLoader::getChargeBlockAmount()
 {
 	return this->chargeBlockAmount;
 }
 
-LoadDataFiles::~LoadDataFiles()
+DataFileLoader::~DataFileLoader()
 {
 }

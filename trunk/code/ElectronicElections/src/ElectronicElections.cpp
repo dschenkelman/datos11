@@ -50,6 +50,7 @@
 #include <sstream>
 
 #include "Voting/LoadDataFiles.h"
+#include "Indexes/DistrictElectionsIndex.h"
 
 using namespace std;
 
@@ -118,7 +119,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 
 	Configuration configuration("config.txt");
 	configuration.read();
-	LoadDataFiles dataFiles(configuration);
+	DataFileLoader dataFiles(configuration);
 	dataFiles.loadFiles();
 
 	Log log;
@@ -278,6 +279,9 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							hash_voter.printContent();
 						}
 					} else if (action==2) {
+						ConfigurationEntry& districtElectionsEntry = configuration.getEntry("DistrictElections");
+						DistrictElectionsIndex indexFile(districtElectionsEntry.getDataFileName(),
+								districtElectionsEntry.getBlockSize(), false);
 						ConfigurationEntry& entry = configuration.getEntry("Election");
 						ElectionMethods em;
 						Tree election_tree(entry.getDataFileName(), entry.getBlockSize(), &em, false);
@@ -324,6 +328,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							VariableRecord dataRecord(e.getBytes(), e.getSize());
 
 							int res = election_tree.insert(&keyRecord, &dataRecord);
+							indexFile.indexElection(e);
 							stringstream elec;
 							elec << e.getDay(); elec << "/"; elec << e.getMonth(); elec <<  "/"; elec << e.getYear();
 							elec << " "; elec << e.getCharge();
@@ -335,6 +340,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							Election e ((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()),
 							(short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"));
 							int res = election_tree.remove(e.getKey());
+							indexFile.unIndexElection(e);
 							stringstream elec;
 							elec << e.getDay(); elec << "/"; elec << e.getMonth(); elec <<  "/"; elec << e.getYear();
 							elec << " "; elec << e.getCharge();
@@ -343,11 +349,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							// imprimir eleccion
 							election_tree.print();
 						}
-
 					} else if (action==3) {
-//						HashBlockFile charge_hash = HashBlockFile("Charge.dat", 512, new ChargeMethods, new ChargeHashingFunction, 300, false);
-						// POR QUE NO ANDA CON LA LINEA DE ARRIBA???
-						// Deberia andar así: HashBlockFile charge_hash("Charge.dat", 512, new ChargeMethods, new ChargeHashingFunction, 300, false);
 						ConfigurationEntry& entry = configuration.getEntry("Charge");
 						ChargeMethods cm;
 						ChargeHashingFunction chf;

@@ -36,7 +36,7 @@
 #include "Configuration.h"
 
 
-class LoadDataFiles
+class DataFileLoader
 {
     std::string districtFileName;
     std::string electionFileName;
@@ -62,14 +62,14 @@ class LoadDataFiles
     void loadCandidatesFile();
     void loadVotersFile();
 public:
-	LoadDataFiles(Configuration& config);
+	DataFileLoader(Configuration& config);
 	void loadFiles();
 	bool canOpenAdminFile();
 	Tree* createAdminFile();
 	Tree* getAdminFile();
 	int getVoterBlockAmount();
 	int getChargeBlockAmount();
-	~LoadDataFiles();
+	~DataFileLoader();
 };
 
 #endif /* LOADDATAFILES_H_ */

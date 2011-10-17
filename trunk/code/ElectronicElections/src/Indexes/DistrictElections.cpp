@@ -171,6 +171,34 @@ int DistrictElections::getKeySize()
 	return districtLength + Constants::FIELD_HEADER_SIZE;
 }
 
+void DistrictElections::removeElection(char d, char m, short  y, std::string & c)
+{
+	vector<ElectionId> buffer;
+	ElectionId ei;
+	while(!this->elections.empty())
+	{
+		ei = this->elections.at(this->elections.size() - 1);
+		this->elections.pop_back();
+		if (ei.getDay() == d && ei.getMonth() == m && ei.getYear() == y && ei.getCharge() == c)
+		{
+			break;
+		}
+		buffer.push_back(ei);
+	}
+
+	while(!buffer.empty())
+	{
+		ei = buffer.at(buffer.size() - 1);
+		buffer.pop_back();
+		this->elections.push_back(ei);
+	}
+}
+
+bool DistrictElections::hasElections()
+{
+	return !this->elections.empty();
+}
+
 DistrictElections::~DistrictElections()
 {
 	if (this->bytes != NULL)

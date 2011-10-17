@@ -21,7 +21,7 @@ using namespace std;
 
 class Voting {
 private:
-	LoadDataFiles* dataFiles;
+	DataFileLoader* dataFiles;
 	Voter* voter;
 	bool isInVoterElectionList(Election* e);
 	vector<Election> getElectionByDistrict(District* d);

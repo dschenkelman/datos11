@@ -42,6 +42,7 @@
 #include "Entities/ElectionsListMethods.h"
 #include "Entities/Candidate.h"
 #include "Entities/CandidateMethods.h"
+#include "Entities/Count.h"
 #include "VariableBlocks/VariableRecord.h"
 #include "BPlusTree/Tree.h"
 #include "Voting/Log.h"
@@ -61,9 +62,9 @@ int run_tests()
 
 	cout << "***** RUNNING TESTS *****" << endl;
 
-	srand(time(NULL));
-	//SimpleVariableBlockFileTests rlvTest;
-	//rlvTest.run();
+//	srand(time(NULL));
+//	SimpleVariableBlockFileTests rlvTest;
+//	rlvTest.run();
 
 	/* Does not work yet
 	TreeBlockFileTests treeBlocktests;
@@ -457,6 +458,72 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							admin_tree->print();
 						}
 					} else if (action==7) {
+						option list_action[4];
+						list_action[0].label = "Reporte por Distrito";
+						list_action[1].label = "Reporte por Lista";
+						list_action[2].label = "Reporte por Eleccion";
+						list_action[3].label = "Volver";
+						action = Menu(list_action,4).ask();
+						if(action == 0)
+						{
+
+						}
+						if(action == 1)
+						{
+							ConfigurationEntry& entry = configuration.getEntry("Candidate");
+							Tree candidate_tree (entry.getDataFileName(), entry.getBlockSize(), &CandidateMethods(), false);
+							Candidate candidate((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()), (short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Nombre Lista"), "", 0);
+							VariableRecord candRecord;
+							candidate_tree.get(candidate.getKey(), &candRecord);
+							candidate.setBytes(candRecord.getBytes());//got candidate of list
+							//get name from dni
+							entry = configuration.getEntry("Voter");
+							HashBlockFile hash_voter(entry.getDataFileName(), entry.getBlockSize(),&VoterMethods(), &VoterHashingFunction(),dataFiles.getVoterBlockAmount(), false);
+							VariableRecord* voterRecord = new VariableRecord();
+							Voter voter(0, "invalid", "invalid", "invalid", "invalid", std::vector<ElectionKey>());
+							int dni = candidate.getDni();
+							char keyDni[sizeof(int)];
+							memcpy(keyDni, &dni, sizeof(int));
+							hash_voter.getRecord(keyDni, &voterRecord);
+							voter.setBytes(voterRecord->getBytes());
+							if(voterRecord!= NULL){ delete voterRecord; }
+
+							//get districts from election
+							entry = configuration.getEntry("Election");
+							Tree electionTree(entry.getDataFileName(), entry.getBlockSize(),&CountMethods(), false);
+							Election election(candidate.getDay(), candidate.getMonth(), candidate.getYear(), candidate.getCharge() );
+							Election nextElec(candidate.getDay(), candidate.getMonth(), candidate.getYear(), candidate.getCharge());
+							VariableRecord electionRec;
+							int res = electionTree.get(election.getKey(), &electionRec);
+							entry = configuration.getEntry("Count");
+							Tree list_count(entry.getDataFileName(), entry.getBlockSize(),&CountMethods(), false);
+							VariableRecord* countRecord = NULL;
+							std::cout << "Lista: " << candidate.getDay() << candidate.getMonth() << candidate.getYear()<< candidate.getName() << endl;
+							std::cout << "Candidato: " << candidate.getCharge() << ", " << voter.getNames() << endl;
+							log.write(string("Reportando lista ").append(candidate.getName()), res!=4, true);
+							int totalCount = 0;
+							char votes[sizeof(int)];
+							int countVotes;
+							while(strcmp(election.getKey(), nextElec.getKey())){
+								election.setBytes(electionRec.getBytes());
+								std::string district = election.getDistrictList().at(0);
+								Count count(candidate.getDay(), candidate.getMonth(), candidate.getYear(), candidate.getCharge(), candidate.getName(),district, 0);
+								res = list_count.get(count.getKey(),countRecord );
+								count.setBytes(countRecord->getBytes());
+								countVotes = count.getQuantity();
+								std::cout << "Distrito: " << district << endl;
+								std::cout << "Votos: " << countVotes << endl;
+								memcpy(votes, &(countVotes), sizeof(int));
+								log.write(string("Distrito: ").append(district).append(", Votos: ").append(string(votes)), res!=4, true);
+								electionTree.getNext(&electionRec);
+								nextElec.setBytes(electionRec.getBytes());
+								totalCount+= countVotes;
+							}
+							char total[sizeof(int)];
+							memcpy(total, &totalCount, sizeof(int));
+							std::cout << "Votos Totales: " << totalCount << endl;
+							log.write(string("Votos Totales Lista: ").append(candidate.getName()).append(", ").append(string(total)), res!=4, true);
+						}
 					} else if (action == 8) {
 						dataFiles.loadFiles();
 					} else if (action == 9) {

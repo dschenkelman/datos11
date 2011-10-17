@@ -121,7 +121,7 @@ bool Voting::vote()
 			memcpy(key, c.getKey(), c.getKeySize());
 
 			VariableRecord record;
-			/*bool found = countTree.get(c.getKey(), &record);
+			bool found = countTree.get(c.getKey(), &record);
 
 			if(!found)
 			{
@@ -137,7 +137,7 @@ bool Voting::vote()
 				record.setBytes(c.getBytes(), c.getSize());
 
 				countTree.update(key, &record);
-			}*/
+			}
         }
 
         else return false;

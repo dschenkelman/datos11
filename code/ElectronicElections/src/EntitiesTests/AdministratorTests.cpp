@@ -69,7 +69,7 @@ bool AdministratorTests::testSetBytes()
 	int i = 0;
 
 	memcpy(bytes, &len, Constants::FIELD_HEADER_SIZE); i += Constants::FIELD_HEADER_SIZE;
-	memcpy(bytes+i, name.c_str(), len); i += len;
+	memcpy(bytes+i, name.c_str(), len - Constants::FIELD_HEADER_SIZE); i += len;
 	memcpy(bytes+i, pass.c_str(), 4);
 
 	adm.setBytes(bytes);
@@ -119,7 +119,7 @@ bool AdministratorTests::testGetKey()
 
 	char key[size];
 	memcpy(key, &size, Constants::FIELD_HEADER_SIZE);
-	memcpy(key+Constants::FIELD_HEADER_SIZE, name.c_str(), size);
+	memcpy(key+Constants::FIELD_HEADER_SIZE, name.c_str(), size - Constants::FIELD_HEADER_SIZE);
 
 	if(strcmp(adm.getKey(), key) != 0)
 	{

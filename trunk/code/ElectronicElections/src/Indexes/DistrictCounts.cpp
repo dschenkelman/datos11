@@ -143,6 +143,7 @@ char *DistrictCounts::getBytes()
 		position += Constants::FIELD_HEADER_SIZE;
 		const char* listName = ci.getListName().c_str();
 		memcpy(this->bytes + position, &listName, listNameSize);
+		position += listNameSize;
 	}
 
 	return this->bytes;
@@ -200,6 +201,7 @@ void DistrictCounts::setBytes(const char *value)
 
 		char listNameBuffer[listNameSize];
 		memcpy(listNameBuffer, value + position, listNameSize);
+		position += listNameSize;
 
 		string charge = chargeBuffer;
 		string listName = listNameBuffer;

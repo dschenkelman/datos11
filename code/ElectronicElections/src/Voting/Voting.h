@@ -24,6 +24,7 @@ private:
 	DataFileLoader* dataFiles;
 	Voter* voter;
 	bool isInVoterElectionList(Election* e);
+	bool verifyElectionKeyChanges(ElectionsList& eList, Election* election);
 	vector<Election> getElectionByDistrict(District* d);
 	vector<ElectionsList> getElectionsListsByElection(Election* e);
 	Configuration* config;

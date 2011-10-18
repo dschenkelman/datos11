@@ -21,8 +21,8 @@ class DistrictCounts
 public:
 	DistrictCounts();
 	DistrictCounts(std::string& d);
-	DistrictCounts(DistrictCounts& other);
-	DistrictCounts& operator=(DistrictCounts& other);
+	DistrictCounts(const DistrictCounts& other);
+	DistrictCounts& operator=(const DistrictCounts& other);
 	int getSize();
 	int getKeySize();
 	void setBytes(const char* value);

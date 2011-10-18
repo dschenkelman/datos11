@@ -34,6 +34,8 @@ private:
 public:
 	Voter(int dni, std::string names, std::string password, std::string address,
 			std::string district, std::vector<ElectionKey> electionKeyList);
+	Voter(const Voter& other);
+	Voter& operator=(const Voter& other);
 	char* getBytes();
 	int getSize();
 	char* getKey();

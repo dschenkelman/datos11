@@ -22,8 +22,8 @@ private:
 	int dni;
 public:
 	Candidate(char day, char month, short year, std::string name, std::string charge, int dni);
-	Candidate(Candidate& other);
-	Candidate& operator=(Candidate& other);
+	Candidate(const Candidate& other);
+	Candidate& operator=(const Candidate& other);
 	char* getBytes();
 	int getSize();
 	char* getKey();

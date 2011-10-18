@@ -199,7 +199,7 @@ bool DistrictElections::hasElections()
 	return !this->elections.empty();
 }
 
-DistrictElections & DistrictElections::operator =(DistrictElections & other)
+DistrictElections & DistrictElections::operator =(const DistrictElections & other)
 {
 	if (this == &other)
 	{
@@ -224,8 +224,10 @@ DistrictElections & DistrictElections::operator =(DistrictElections & other)
 	return *this;
 }
 
-DistrictElections::DistrictElections(DistrictElections & other)
+DistrictElections::DistrictElections(const DistrictElections & other)
 {
+	this->bytes = NULL;
+	this->key = NULL;
 	this->elections = other.elections;
 	this->district = other.district;
 }

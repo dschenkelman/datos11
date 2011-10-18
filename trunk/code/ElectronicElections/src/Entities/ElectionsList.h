@@ -21,6 +21,8 @@ private:
 	std::string charge;
 public:
 	ElectionsList(std::string name, char day, char month, short year, std::string charge);
+	ElectionsList(const ElectionsList& other);
+	ElectionsList& operator=(const ElectionsList& other);
 	int getSize();
 	char* getKey();
 	int getKeySize();

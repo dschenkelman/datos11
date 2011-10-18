@@ -25,6 +25,8 @@ private:
 public:
 	Election(char day, char month, short year, std::string charge);
 	Election(char day, char month, short year, std::string charge, vector<string>& districts);
+	Election(const Election& other);
+	Election& operator=(const Election& other);
 	char* getBytes();
 	int getSize();
 	char* getKey();

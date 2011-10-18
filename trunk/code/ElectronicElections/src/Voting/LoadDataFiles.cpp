@@ -135,7 +135,9 @@ void DataFileLoader::readDistrictFile(Tree* treeDistrictFile, ConfigurationEntry
 		char* districtName = strdup(line.c_str());
 		strtok(districtName, ",");
 
-		District d = District (string(districtName));
+		District d(districtName);
+
+//		District d(string(districtName));
 		VariableRecord record (d.getBytes(), d.getSize());
 		int res = treeDistrictFile->insert(&record, &record);
 		Log().write(string("Agregando distrito ").append(d.getName()), res!=5, true);

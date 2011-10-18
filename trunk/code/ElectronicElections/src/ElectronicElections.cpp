@@ -250,22 +250,28 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 						option district_action[3];
 						district_action[0].label = "Agregar distrito";
 						district_action[1].label = "Eliminar distrito";
-						district_action[2].label = "Imprimir arbol de distritos";
-						action = Menu(district_action,3).ask();
-						if (action==0)
+						district_action[2].label = "Volver";
+						while (1)
 						{
-							District d(Menu::raw_input("Nombre del distrito"));
-							VariableRecord record (d.getBytes(), d.getSize());
-							int res = district_tree.insert(&record, &record);
-							log.write(string("Agregando distrito ").append(d.getName()), res!=5, true);
+							action = Menu(district_action,3).ask();
+							if (action==0)
+							{
+								District d(Menu::raw_input("Nombre del distrito"));
+								VariableRecord record (d.getBytes(), d.getSize());
+								int res = district_tree.insert(&record, &record);
+								log.write(string("Agregando distrito ").append(d.getName()), res!=5, true);
+							}
+							else if (action==1)
+							{
+								District d(Menu::raw_input("Nombre del distrito"));
+								int res = district_tree.remove(d.getKey());
+								log.write(string("Eliminando distrito ").append(d.getName()), res!=4, true);
+							}
+							else if (action==2)
+							{
+								break;
+							}
 						}
-						else if (action==1)
-						{
-							District d(Menu::raw_input("Nombre del distrito"));
-							int res = district_tree.remove(d.getKey());
-							log.write(string("Eliminando distrito ").append(d.getName()), res!=4, true);
-						}
-						else if (action==2) district_tree.print();
 					}
 					else if (action == 1) {
 						ConfigurationEntry& entry = configuration.getEntry("Voter");
@@ -273,13 +279,13 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 						VoterHashingFunction vhf;
 						HashBlockFile hash_voter(entry.getDataFileName(), entry.getBlockSize(), &vm,
 								&vhf, dataFiles.getVoterBlockAmount(), false); // para 28 mil votantes
+						option voter_action[4];
+						voter_action[0].label = "Agregar votante";
+						voter_action[1].label = "Modificar votante";
+						voter_action[2].label = "Eliminar votante";
+						voter_action[3].label = "Volver";
 						while (1)
 						{
-							option voter_action[4];
-							voter_action[0].label = "Agregar votante";
-							voter_action[1].label = "Modificar votante";
-							voter_action[2].label = "Eliminar votante";
-							voter_action[3].label = "Volver";
 							action = Menu(voter_action,4).ask();
 							if (action==0)
 							{
@@ -556,104 +562,122 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 						charge_action[1].label = "Eliminar cargo";
 						charge_action[2].label = "Actualizar cargo";
 						charge_action[3].label = "Volver";
-						action = Menu(charge_action,4).ask();
-						if (action==0) {
-							std::vector<string> subcharges;
-							Menu::raw_input("Primero debera seleccionar los subcargos del cargo, continuar");
-							while (1) {
-								option charge_subcharge_action[4];
-								charge_subcharge_action[0].label = "Asignar subcargo";
-								charge_subcharge_action[1].label = "Eliminar subcargo asignado";
-								charge_subcharge_action[2].label = "Ver subcargos asignados";
-								charge_subcharge_action[3].label = "Seleccion terminada, continuar.";
-								action = Menu(charge_subcharge_action,4).ask();
-								if (action==0) {
-									subcharges.push_back(Menu::raw_input("Subcargo"));
-								} else if (action==1) {
-
-								} else if (action==2) {
-									for (std::vector<string>::iterator i = subcharges.begin(); i != subcharges.end(); ++i) {
-										cout << *i << " - ";
-									}
-									cout << endl;
-								} else if (action==3) {
-									break;
-								}
-							}
-							Charge c (Menu::raw_input("Nombre del cargo"), subcharges);
-							VariableRecord chargerecord(c.getBytes(), c.getSize());
-							bool res = charge_hash.insertRecord(c.getKey(), &chargerecord);
-							log.write("Agregando cargo", res, true);
-						} else if (action==1) {
-							bool res = charge_hash.removeRecord(Menu::raw_input("Nombre del cargo").c_str());
-							log.write("Eliminando cargo", res, true);
-						} else if (action==2) {
-							string cargo = Menu::raw_input("Nombre del cargo");
-							vector<string> subCharges;
-							Charge c(cargo, subCharges);
-							VariableRecord* r = NULL;
-							bool success = false;
-
-							if(!charge_hash.getRecord(c.getKey(), &r))
-							{
-								cout << "El cargo no esta registrado" << endl;
-							}
-							else
-							{
-								c.setBytes(r->getBytes());
-								charge_action[0].label = "Agregar sub-cargo";
-								charge_action[1].label = "Eliminar sub-cargo";
-								action = Menu(charge_action,2).ask();
-								string subcargo = Menu::raw_input("Nombre del sub-cargo");
-								if (action == 0)
-								{
-									// agregar sub-cargo
-									c.getChargeList().push_back(subcargo);
-									cout << "Agregado correctamente" << endl;
-									success = true;
-								}
-								else if (action == 1)
-								{
-									// borrar sub-cargo
-									vector<string> buffer;
-									while(!c.getChargeList().empty())
-									{
-										string charge = c.getChargeList().at(c.getChargeList().size() - 1);
-										c.getChargeList().pop_back();
-										if (charge == subcargo)
-										{
-											cout << "Eliminado correctamente" << endl;
-											success = true;
-											break;
-										}
-										buffer.push_back(charge);
-									}
-
-									while(!buffer.empty())
-									{
-										string charge = buffer.at(buffer.size() - 1);
-										buffer.pop_back();
-										c.getChargeList().push_back(charge);
-									}
-								}
-								if (success)
-								{
-									VariableRecord aux;
-									aux.setBytes(c.getBytes(), c.getSize());
-									charge_hash.updateRecord(c.getKey(),&aux);
-								}
-							}
-
-							if (r != NULL)
-							{
-								delete r;
-							}
-						}
-						else if (action == 3)
+						while(1)
 						{
-							// volver
-							break;
+							action = Menu(charge_action,4).ask();
+							if (action==0)
+							{
+								std::vector<string> subcharges;
+								Menu::raw_input("Primero debera seleccionar los subcargos del cargo, continuar");
+								while (1)
+								{
+									option charge_subcharge_action[4];
+									charge_subcharge_action[0].label = "Asignar subcargo";
+									charge_subcharge_action[1].label = "Eliminar subcargo asignado";
+									charge_subcharge_action[2].label = "Ver subcargos asignados";
+									charge_subcharge_action[3].label = "Seleccion terminada, continuar.";
+									action = Menu(charge_subcharge_action,4).ask();
+									if (action==0)
+									{
+										subcharges.push_back(Menu::raw_input("Subcargo"));
+									}
+									else if (action==1)
+									{
+
+									}
+									else if (action==2)
+									{
+										for (std::vector<string>::iterator i = subcharges.begin(); i != subcharges.end(); ++i)
+										{
+											cout << *i << " - ";
+										}
+										cout << endl;
+									}
+									else if (action==3)
+									{
+										break;
+									}
+								}
+								Charge c (Menu::raw_input("Nombre del cargo"), subcharges);
+								VariableRecord chargerecord(c.getBytes(), c.getSize());
+								bool res = charge_hash.insertRecord(c.getKey(), &chargerecord);
+								log.write("Agregando cargo", res, true);
+							}
+							else if (action==1)
+							{
+								bool res = charge_hash.removeRecord(Menu::raw_input("Nombre del cargo").c_str());
+								log.write("Eliminando cargo", res, true);
+							}
+							else if (action==2)
+							{
+								string cargo = Menu::raw_input("Nombre del cargo");
+								vector<string> subCharges;
+								Charge c(cargo, subCharges);
+								VariableRecord* r = NULL;
+								bool success = false;
+
+								if(!charge_hash.getRecord(c.getKey(), &r))
+								{
+									cout << "El cargo no esta registrado" << endl;
+								}
+								else
+								{
+									c.setBytes(r->getBytes());
+									charge_action[0].label = "Agregar sub-cargo";
+									charge_action[1].label = "Eliminar sub-cargo";
+									action = Menu(charge_action,2).ask();
+									string subcargo = Menu::raw_input("Nombre del sub-cargo");
+									if (action == 0)
+									{
+										// agregar sub-cargo
+										c.getChargeList().push_back(subcargo);
+										cout << "Agregado correctamente" << endl;
+										success = true;
+									}
+									else if (action == 1)
+									{
+										// borrar sub-cargo
+										vector<string> buffer;
+										while(!c.getChargeList().empty())
+										{
+											string charge = c.getChargeList().at(c.getChargeList().size() - 1);
+											c.getChargeList().pop_back();
+											if (charge == subcargo)
+											{
+												cout << "Eliminado correctamente" << endl;
+												success = true;
+												break;
+											}
+											buffer.push_back(charge);
+										}
+
+										while(!buffer.empty())
+										{
+											string charge = buffer.at(buffer.size() - 1);
+											buffer.pop_back();
+											c.getChargeList().push_back(charge);
+										}
+									}
+									if (success)
+									{
+										VariableRecord aux;
+										aux.setBytes(c.getBytes(), c.getSize());
+										charge_hash.updateRecord(c.getKey(),&aux);
+									}
+								}
+
+								if (r != NULL)
+								{
+									delete r;
+								}
+							}
+							else if (action == 3)
+							{
+								// volver
+								break;
+							}
 						}
+
 					} else if (action==4) {
 						ConfigurationEntry& entry = configuration.getEntry("Election");
 						ElectionsListMethods elm;

@@ -110,6 +110,37 @@ std::string ElectionsList::getName()
 	return this->name;
 }
 
+ElectionsList & ElectionsList::operator =(const ElectionsList & other)
+{
+	if (this == &other)
+	{
+		return *this;
+	}
+
+	this->name = name;
+	this->day = day;
+	this->month = month;
+	this->year = year;
+	this->charge = charge;
+	if (this->bytes != NULL)
+	{
+		delete[] this->bytes;
+		this->bytes = NULL;
+	}
+
+	return *this;
+}
+
+ElectionsList::ElectionsList(const ElectionsList & other)
+{
+	this->name = name;
+	this->day = day;
+	this->month = month;
+	this->year = year;
+	this->charge = charge;
+	this->bytes = NULL;
+}
+
 std::string ElectionsList::getCharge()
 {
 	return this->charge;

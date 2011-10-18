@@ -21,8 +21,8 @@ private:
 	std::string name;
 public:
 	CandidatesList(char day, char month, short year, std::string charge, std::string name);
-	CandidatesList(CandidatesList& other);
-	CandidatesList& operator=(CandidatesList& other);
+	CandidatesList(const CandidatesList& other);
+	CandidatesList& operator=(const CandidatesList& other);
 	char* getBytes();
 	int getSize();
 	char* getKey();

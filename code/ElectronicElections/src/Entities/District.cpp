@@ -63,6 +63,30 @@ void District::setBytes(char* bytes)
 	this->name.append(bytes + Constants::FIELD_HEADER_SIZE);
 }
 
+District::District(const District& other)
+{
+	this->bytes = NULL;
+	this->name = other.name;
+}
+
+District & District::operator =(const District & other)
+{
+	if (this == &other)
+	{
+		return *this;
+	}
+
+	this->name = other.name;
+
+	if (this->bytes != NULL)
+	{
+		delete[] this->bytes;
+		this->bytes = NULL;
+	}
+
+	return *this;
+}
+
 District::~District()
 {
 	if(this->bytes != NULL)

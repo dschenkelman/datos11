@@ -127,8 +127,9 @@ std::string Candidate::getName()
 	return this->name;
 }
 
-Candidate::Candidate(Candidate & other)
+Candidate::Candidate(const Candidate & other)
 {
+	this->bytes = NULL;
 	this->charge = other.charge;
 	this->day = other.day;
 	this->dni = other.dni;
@@ -137,7 +138,7 @@ Candidate::Candidate(Candidate & other)
 	this->name = other.name;
 }
 
-Candidate & Candidate::operator =(Candidate & other)
+Candidate & Candidate::operator =(const Candidate & other)
 {
 	if (this == &other)
 	{

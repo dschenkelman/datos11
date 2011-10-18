@@ -219,13 +219,15 @@ bool DistrictCounts::hasCounts()
 	return !this->counts.empty();
 }
 
-DistrictCounts::DistrictCounts(DistrictCounts & other)
+DistrictCounts::DistrictCounts(const DistrictCounts & other)
 {
+	this->bytes = NULL;
+	this->key = NULL;
 	this->counts = other.counts;
 	this->district = other.district;
 }
 
-DistrictCounts & DistrictCounts::operator=(DistrictCounts & other)
+DistrictCounts & DistrictCounts::operator=(const DistrictCounts & other)
 {
 	if (this == &other)
 	{

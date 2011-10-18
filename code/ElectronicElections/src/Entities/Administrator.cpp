@@ -101,7 +101,7 @@ std::string Administrator::getName()
 	return this->name;
 }
 
-Administrator& Administrator::operator =(Administrator & other)
+Administrator& Administrator::operator =(const Administrator & other)
 {
 	if (this == &other)
 	{
@@ -126,8 +126,10 @@ Administrator& Administrator::operator =(Administrator & other)
 	return *this;
 }
 
-Administrator::Administrator(Administrator & other)
+Administrator::Administrator(const Administrator & other)
 {
+	this->bytes = NULL;
+	this->key = NULL;
 	this->password = other.password;
 	this->name = other.name;
 }

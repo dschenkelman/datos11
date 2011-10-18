@@ -117,7 +117,7 @@ std::string Charge::getCharge()
 	return this->charge;
 }
 
-Charge & Charge::operator =(Charge & other)
+Charge & Charge::operator =(const Charge & other)
 {
 	if (this == &other)
 	{
@@ -142,8 +142,10 @@ Charge & Charge::operator =(Charge & other)
 	return *this;
 }
 
-Charge::Charge(Charge & other)
+Charge::Charge(const Charge & other)
 {
+	this->bytes = NULL;
+	this->key = NULL;
 	this->chargeList = other.chargeList;
 	this->charge = other.charge;
 }

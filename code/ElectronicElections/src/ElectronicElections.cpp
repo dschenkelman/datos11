@@ -216,14 +216,14 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 						action = Menu(district_action,3).ask();
 						if (action==0)
 						{
-							District d = District (Menu::raw_input("Nombre del distrito"));
+							District d(Menu::raw_input("Nombre del distrito"));
 							VariableRecord record (d.getBytes(), d.getSize());
 							int res = district_tree.insert(&record, &record);
 							log.write(string("Agregando distrito ").append(d.getName()), res!=5, true);
 						}
 						else if (action==1)
 						{
-							District d = District (Menu::raw_input("Nombre del distrito"));
+							District d(Menu::raw_input("Nombre del distrito"));
 							int res = district_tree.remove(d.getKey());
 							log.write(string("Eliminando distrito ").append(d.getName()), res!=4, true);
 						}

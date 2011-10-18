@@ -159,6 +159,44 @@ short Election::getYear()
 	return this->year;
 }
 
+Election::Election(const Election & other)
+{
+	this->bytes = NULL;
+	this->key = NULL;
+	this->charge = other.charge;
+	this->day = other.day;
+	this->month = other.month;
+	this->year = other.year;
+	this->districtList = other.districtList;
+}
+
+Election & Election::operator =(const Election & other)
+{
+	if (this == &other)
+	{
+		return *this;
+	}
+	this->charge = other.charge;
+	this->day = other.day;
+	this->month = other.month;
+	this->year = other.year;
+	this->districtList = other.districtList;
+
+	if (this->key != NULL)
+	{
+		delete[] this->key;
+		this->key = NULL;
+	}
+
+	if (this->bytes != NULL)
+	{
+		delete[] this->bytes;
+		this->bytes = NULL;
+	}
+
+	return *this;
+}
+
 std::vector<std::string>& Election::getDistrictList()
 {
 	return this->districtList;

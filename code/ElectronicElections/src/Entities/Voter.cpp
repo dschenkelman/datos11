@@ -200,6 +200,47 @@ void Voter::setDistrict(std::string district) {
 	this->district = district;
 }
 
+Voter::Voter(const Voter & other)
+{
+	this->key = NULL;
+	this->bytes = NULL;
+	this->address = other.address;
+	this->district = other.district;
+	this->dni = other.dni;
+	this->electionKeyList = other.electionKeyList;
+	this->names = other.names;
+	this->password = other.password;
+}
+
+Voter & Voter::operator =(const Voter & other)
+{
+	if (this == &other)
+	{
+		return *this;
+	}
+
+	this->address = other.address;
+	this->district = other.district;
+	this->dni = other.dni;
+	this->electionKeyList = other.electionKeyList;
+	this->names = other.names;
+	this->password = other.password;
+
+	if (this->key != NULL)
+	{
+		delete[] this->key;
+		this->key = NULL;
+	}
+
+	if (this->bytes != NULL)
+	{
+		delete[] this->bytes;
+		this->bytes = NULL;
+	}
+
+	return *this;
+}
+
 std::vector<ElectionKey> Voter::getElectionKeyList()
 {
 	return this->electionKeyList;

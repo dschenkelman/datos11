@@ -123,7 +123,7 @@ std::string CandidatesList::getCharge()
 	return this->charge;
 }
 
-CandidatesList & CandidatesList::operator =(CandidatesList & other)
+CandidatesList & CandidatesList::operator =(const CandidatesList & other)
 {
 	if (this == &other)
 	{
@@ -151,8 +151,10 @@ CandidatesList & CandidatesList::operator =(CandidatesList & other)
 	return *this;
 }
 
-CandidatesList::CandidatesList(CandidatesList & other)
+CandidatesList::CandidatesList(const CandidatesList & other)
 {
+	this->bytes = NULL;
+	this->key = NULL;
 	this->charge = other.charge;
 	this->day = other.day;
 	this->month = other.month;

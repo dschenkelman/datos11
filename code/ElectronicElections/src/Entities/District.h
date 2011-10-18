@@ -18,6 +18,8 @@ private:
 	char* bytes;
 public:
 	District(std::string name);
+	District(const District& other);
+	District& operator=(const District& other);
 	char* getBytes();
 	int getSize();
 	char* getKey();

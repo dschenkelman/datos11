@@ -160,7 +160,7 @@ unsigned int Count::getQuantity()
 	return this->quantity;
 }
 
-Count & Count::operator =(Count & other)
+Count & Count::operator =(const Count & other)
 {
 	if (this == &other)
 	{
@@ -191,8 +191,10 @@ Count & Count::operator =(Count & other)
 	return *this;
 }
 
-Count::Count(Count & other)
+Count::Count(const Count & other)
 {
+	this->bytes = NULL;
+	this->key = NULL;
 	this->charge = other.charge;
 	this->day = other.day;
 	this->month = other.month;

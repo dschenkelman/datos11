@@ -138,13 +138,13 @@ CandidatesList & CandidatesList::operator =(CandidatesList & other)
 
 	if (this->key != NULL)
 	{
-		delete this->key;
+		delete[] this->key;
 		this->key = NULL;
 	}
 
 	if (this->bytes != NULL)
 	{
-		delete this->bytes;
+		delete[] this->bytes;
 		this->bytes = NULL;
 	}
 
@@ -169,12 +169,12 @@ CandidatesList::~CandidatesList()
 {
 	if(this->key != NULL)
 	{
-		delete this->key;
+		delete[] this->key;
 	}
 
 	if(this->bytes != NULL)
 	{
-		delete this->bytes;
+		delete[] this->bytes;
 	}
 }
 

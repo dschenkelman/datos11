@@ -117,6 +117,37 @@ std::string Charge::getCharge()
 	return this->charge;
 }
 
+Charge & Charge::operator =(Charge & other)
+{
+	if (this == &other)
+	{
+		return *this;
+	}
+
+	this->chargeList = other.chargeList;
+	this->charge = other.charge;
+
+	if (this->key != NULL)
+	{
+		delete[] this->key;
+		this->key = NULL;
+	}
+
+	if (this->bytes != NULL)
+	{
+		delete[] this->bytes;
+		this->bytes = NULL;
+	}
+
+	return *this;
+}
+
+Charge::Charge(Charge & other)
+{
+	this->chargeList = other.chargeList;
+	this->charge = other.charge;
+}
+
 std::vector<std::string> Charge::getChargeList()
 {
 	return this->chargeList;

@@ -52,7 +52,7 @@ public:
 	void setAddress(std::string address);
 	std::string getDistrict();
 	void setDistrict(std::string district);
-	std::vector<ElectionKey> getElectionKeyList();
+	std::vector<ElectionKey>& getElectionKeyList();
 };
 
 #endif /* VOTER_H_ */

@@ -40,7 +40,7 @@ char *DistrictElections::getKey()
 	int keyLength = this->district.length() + 1 + Constants::FIELD_HEADER_SIZE;
 	if (this->key != NULL)
 	{
-		delete this->key;
+		delete[] this->key;
 	}
 
 	this->key = new char[keyLength];
@@ -108,7 +108,7 @@ char* DistrictElections::getBytes()
 	int size = this->getSize();
 	if (this->bytes != NULL)
 	{
-		delete this->bytes;
+		delete[] this->bytes;
 	}
 
 	this->bytes = new char[size];

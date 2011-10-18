@@ -31,9 +31,7 @@ void Configuration::read()
 	char* fields[5];
 	while (getline(configFile,line))
 	{
-		char l[line.length() + 1];
-		strcpy(l, line.c_str());
-		char* fileType = strtok(l, ",");
+		char* fileType = strtok((char*)line.c_str(), ",");
 		for(int i = 0; i<5; i++)
 		{
 			fields[i] = strtok(NULL, ",\r");

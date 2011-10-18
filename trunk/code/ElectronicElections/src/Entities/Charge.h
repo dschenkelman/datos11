@@ -29,7 +29,7 @@ public:
 	virtual ~Charge();
 	//getters
 	std::string getCharge();
-	std::vector<std::string> getChargeList();
+	std::vector<std::string>& getChargeList();
 };
 
 #endif /* CHARGE_H_ */

@@ -2,7 +2,7 @@
 // Name        : ElectronicElections.cpp
 // Author  : Datos11
 // Version     :
-// Copyright   : 
+// Copyright   :
 // Description : Trying block file out
 //============================================================================
 
@@ -28,6 +28,7 @@
 #include "Hash/ChargeHashingFunction.h"
 #include "Entities/Administrator.h"
 #include "Entities/AdministratorMethods.h"
+#include "Entities/Count.h"
 #include "Entities/District.h"
 #include "Entities/DistrictMethods.h"
 #include "Entities/Voter.h"
@@ -111,6 +112,39 @@ int run_tests()
 	return 0;
 }
 
+
+void updateCountVoteAmount(Configuration & configuration)
+{
+    ConfigurationEntry & entry = configuration.getEntry("Count");
+    CountMethods countMethods;
+    Tree countTree(entry.getDataFileName(), entry.getBlockSize(), &countMethods, false);
+    Count c((char)(atoi(Menu::raw_input("Dia").c_str())),
+    		(char)(atoi(Menu::raw_input("Mes").c_str())),
+    		(short)(atoi(Menu::raw_input("Anio").c_str())),
+    		Menu::raw_input("Cargo"),
+    		Menu::raw_input("Nombre Lista"),
+    		Menu::raw_input("Distrito"),
+    		0);
+    VariableRecord aux;
+    if(!countTree.get(c.getKey(), &aux)){
+        cout << "El conteo no existe." << endl;
+    }else{
+        c.setBytes(aux.getBytes());
+        int cant = 0;
+        do{
+            string cantidadVotos = Menu::raw_input("Nueva cantidad de votos:");
+            cant = atoi(cantidadVotos.c_str());
+            if(cant < 0){
+                cout << "La cantidad no puede ser negativa." << endl;
+            }
+        }
+        while(cant < 0);
+        aux.setBytes(c.getBytes(), c.getSize());
+        countTree.update(c.getKey(), &aux);
+    }
+
+}
+
 int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, incluso desde eclipse
 {			// No impedir el uso normal del sistema
 	bool debug = false;
@@ -183,7 +217,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 				}
 				else if (user=="1" && passwd=="1")
 				{
-					cout << "Login secreto, no le cuentes a nadie!" <<endl;
+					cout << "Bienvenido al sistema!" <<endl;
 				}
 				else
 				{
@@ -191,18 +225,19 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 				}
 //				else { cout << "no existe el admin"<<endl; }
 				while (1) {
-					option admin_action[10];
+					option admin_action[11];
 					admin_action[0].label = "Mantener distritos";
 					admin_action[1].label = "Mantener votantes";
 					admin_action[2].label = "Mantener elecciones";
 					admin_action[3].label = "Mantener cargos";
 					admin_action[4].label = "Mantener listas";
+					admin_action[10].label = "Actualizar conteo";
 					admin_action[5].label = "Mantener candidatos";
 					admin_action[6].label = "Mantener administradores";
 					admin_action[7].label = "Informar resultados";
 					admin_action[8].label = "Generar archivos vacios";
 					admin_action[9].label = "Volver";
-					action = Menu(admin_action,10).ask();
+					action = Menu(admin_action,11).ask();
 					if (action == 0)
 					{
 						ConfigurationEntry& entry = configuration.getEntry("District");
@@ -603,7 +638,11 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 						dataFiles.loadFiles();
 					} else if (action == 9) {
 						break;
+					} else if (action == 10)
+					{
+					    updateCountVoteAmount(configuration);
 					}
+
 				}
 				delete admin_tree;
 				break;

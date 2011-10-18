@@ -33,6 +33,7 @@ public:
 	void addElection(char d, char m, short y, std::string& c);
 	void removeElection(char d, char m, short y, std::string& c);
 	bool hasElections();
+	std::vector<ElectionId>& getElectionIds();
 	virtual ~DistrictElections();
 };
 

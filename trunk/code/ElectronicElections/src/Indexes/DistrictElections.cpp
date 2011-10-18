@@ -232,6 +232,11 @@ DistrictElections::DistrictElections(const DistrictElections & other)
 	this->district = other.district;
 }
 
+std::vector<ElectionId> & DistrictElections::getElectionIds()
+{
+	return this->elections;
+}
+
 DistrictElections::~DistrictElections()
 {
 	if (this->bytes != NULL)

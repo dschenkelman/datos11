@@ -252,6 +252,11 @@ DistrictCounts & DistrictCounts::operator=(const DistrictCounts & other)
 	return *this;
 }
 
+std::vector<CountId> & DistrictCounts::getCountIds()
+{
+	return this->counts;
+}
+
 DistrictCounts::~DistrictCounts()
 {
 	if (this->bytes != NULL)

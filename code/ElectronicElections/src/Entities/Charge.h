@@ -19,6 +19,8 @@ private:
 	char* key;
 public:
 	Charge(std::string charge, std::vector<std::string> chargeList);
+	Charge(Charge& other);
+	Charge& operator=(Charge& other);
 	char* getBytes();
 	int getSize();
 	char* getKey();

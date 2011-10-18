@@ -160,6 +160,48 @@ unsigned int Count::getQuantity()
 	return this->quantity;
 }
 
+Count & Count::operator =(Count & other)
+{
+	if (this == &other)
+	{
+		return *this;
+	}
+
+	this->charge = other.charge;
+	this->day = other.day;
+	this->month = other.month;
+	this->year = other.year;
+	this->quantity = other.quantity;
+	this->name = other.name;
+	this->district = other.district;
+
+
+	if (this->key != NULL)
+	{
+		delete[] this->key;
+		this->key = NULL;
+	}
+
+	if (this->bytes != NULL)
+	{
+		delete[] this->bytes;
+		this->bytes = NULL;
+	}
+
+	return *this;
+}
+
+Count::Count(Count & other)
+{
+	this->charge = other.charge;
+	this->day = other.day;
+	this->month = other.month;
+	this->year = other.year;
+	this->quantity = other.quantity;
+	this->name = other.name;
+	this->district = other.district;
+}
+
 void Count::increaseQuantity()
 {
 	this->quantity++;

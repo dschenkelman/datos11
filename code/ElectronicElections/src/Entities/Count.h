@@ -23,6 +23,8 @@ private:
 	unsigned int quantity;
 public:
 	Count(char day, char month, short year, std::string charge, std::string name, std::string district, unsigned int quantity);
+	Count(Count& other);
+	Count& operator=(Count& other);
 	char* getBytes();
 	int getSize();
 	char* getKey();

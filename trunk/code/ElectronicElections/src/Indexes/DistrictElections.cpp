@@ -199,15 +199,46 @@ bool DistrictElections::hasElections()
 	return !this->elections.empty();
 }
 
-DistrictElections::~DistrictElections()
+DistrictElections & DistrictElections::operator =(DistrictElections & other)
 {
+	if (this == &other)
+	{
+		return *this;
+	}
+
+	this->district = other.district;
+	this->elections = other.elections;
+
 	if (this->bytes != NULL)
 	{
-		delete this->bytes;
+		delete[] this->bytes;
+		this->bytes = NULL;
 	}
 
 	if (this->key != NULL)
 	{
-		delete this->key;
+		delete[] this->key;
+		this->key = NULL;
+	}
+
+	return *this;
+}
+
+DistrictElections::DistrictElections(DistrictElections & other)
+{
+	this->elections = other.elections;
+	this->district = other.district;
+}
+
+DistrictElections::~DistrictElections()
+{
+	if (this->bytes != NULL)
+	{
+		delete[] this->bytes;
+	}
+
+	if (this->key != NULL)
+	{
+		delete[] this->key;
 	}
 }

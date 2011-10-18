@@ -20,6 +20,8 @@ private:
 	char* key;
 public:
 	Administrator(std::string name, std::string password);
+	Administrator(Administrator& other);
+	Administrator& operator=(Administrator& other);
 	char* getBytes();
 	int getSize();
 	char* getKey();

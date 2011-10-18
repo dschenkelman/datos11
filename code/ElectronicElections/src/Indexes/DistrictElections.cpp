@@ -93,6 +93,7 @@ void DistrictElections::setBytes(const char *value)
 
 		char chargeBuffer[chargeSize];
 		memcpy(chargeBuffer, value + position, chargeSize);
+		position += chargeSize;
 
 		string charge = chargeBuffer;
 		ElectionId e(d, m, y, charge);
@@ -142,6 +143,7 @@ char* DistrictElections::getBytes()
 		position += Constants::FIELD_HEADER_SIZE;
 		const char* charge = e.getCharge().c_str();
 		memcpy(this->bytes + position, &charge, chargeSize);
+		position += chargeSize;
 	}
 
 	return this->bytes;

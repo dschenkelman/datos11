@@ -45,6 +45,7 @@ public:
 	//getters
 	int getDni();
 	std::string getNames();
+	void setNames(std::string names);
 	std::string getPassword();
 	void setPassword(std::string password);
 	std::string getAddress();

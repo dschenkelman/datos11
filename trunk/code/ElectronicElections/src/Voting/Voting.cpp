@@ -20,6 +20,8 @@
 #include "../Entities/CountMethods.h"
 #include "../Entities/VoterMethods.h"
 #include "../Indexes/DistrictCountsIndex.h"
+#include "../Indexes/DistrictElectionsIndex.h"
+#include "../Indexes/DistrictElections.h"
 #include <vector>
 #include <cstring>
 #include <iostream>
@@ -87,15 +89,59 @@ bool Voting::login(int voterBlockAmount)
 bool Voting::vote()
 {
 	// indice para obtener elecciones por distrito
+	ConfigurationEntry& districtEntry = this->config->getEntry("District");
+	DistrictElectionsIndex districtElectionsIndex(districtEntry.getDataFileName(), districtEntry.getBlockSize(), false);
+	VariableRecord districtRecord;
+	bool electionsFound = districtElectionsIndex.getDistrictElections(this->voter->getDistrict(), &districtRecord);
+
+	if(!electionsFound)
+	{
+		// la eleccion no esta en el indice.. no existe la eleccion?
+		return false;
+	}
+
+	DistrictElections dElections;
+	dElections.setBytes(districtRecord.getBytes());
+
+	if(!dElections.hasElections())
+	{
+		// el distrito no tiene elecciones asignadas
+		return false;
+	}
+
+	vector<ElectionId> electionsId = dElections.getElectionIds();
+	vector<Election> districtElection;
+
+	ConfigurationEntry& electionsEntry = this->config->getEntry("Election");
+	string electionFileName = electionsEntry.getDataFileName();
+	int electionBlockSize = electionsEntry.getBlockSize();
+	ElectionMethods electionMethods;
+	Tree electionTree(electionFileName, electionBlockSize, &electionMethods, false);
+
+	for(int i = 0; i < electionsId.size(); i++)
+	{
+		Election elec(electionsId.at(i).getDay(), electionsId.at(i).getMonth(), electionsId.at(i).getYear(), electionsId.at(i).getCharge());
+		VariableRecord electionRecord;
+		bool electionFounded = electionTree.get(elec.getKey(), &electionRecord);
+
+		if(!electionFounded)
+		{
+			return false;
+		}
+
+		elec.setBytes(electionRecord.getBytes());
+
+		districtElection.push_back(elec);
+	}
+
 	ConfigurationEntry& entry = this->config->getEntry("DistrictCounts");
 	DistrictCountsIndex districtCountsIndex(entry.getDataFileName(), entry.getBlockSize(), true);
-	District d(this->voter->getDistrict());
-    vector<Election> districtElection = this->getElectionByDistrict(&d);
 
 	ConfigurationEntry& countEntry = this->config->getEntry("Count");
 	string countFileName = countEntry.getDataFileName();
 	int countBlockSize = countEntry.getBlockSize();
-	Tree countTree(countFileName, countBlockSize, new CountMethods, false);
+	CountMethods countMethods;
+	Tree countTree(countFileName, countBlockSize, &countMethods, false);
 
     for(unsigned int i = 0; i < districtElection.size(); i++)
     {
@@ -149,38 +195,56 @@ bool Voting::vote()
     return true;
 }
 
-/*vector<ElectionsList> Voting::getElectionsListsByElection(Election* e)
+vector<ElectionsList> Voting::getElectionsListsByElection(Election* e)
 {
-	ConfigurationEntry& electionsListEntry = this->config->getEntry("ElectionsList");
+	ConfigurationEntry& electionsListEntry = this->config->getEntry("ElectionList");
 	string electionsListFileName = electionsListEntry.getDataFileName();
 	int electionsListBlockSize = electionsListEntry.getBlockSize();
 
 	ElectionsListMethods elm;
-	Tree electionsListTree(electionsListFileName, electionsListBlockSize, new ElectionsListMethods, false);
+	Tree electionsListTree(electionsListFileName, electionsListBlockSize, &elm, false);
 
 	vector<ElectionsList> electionsListVector;
 
-	VariableRecord* record = new VariableRecord();
-	record = electionsListTree.returnFirst(record);
+	VariableRecord record;
+	ElectionsList electionList("", e->getDay(), e->getMonth(), e->getYear(), e->getCharge());
 
-	while(record != NULL)
+	bool found = electionsListTree.get(electionList.getKey(), &record);
+
+	if(!found)
 	{
-		ElectionsList eList("invalid", 0, 0, 0, "invalid");
-		eList.setBytes(record->getBytes());
-		int compareResult = elm.compare(eList.getKey(), e->getBytes(), e->getSize());
+		// ??
+		return electionsListVector;
+	}
 
-		if(compareResult == 0)
-		{
-			electionsListVector.push_back(eList);
-		}
+	electionList.setBytes(record.getBytes());
+	bool change = this->verifyElectionKeyChanges(electionList, e);
 
-		record = electionsListTree.getNext(record);
+	while(!change)
+	{
+		electionsListVector.push_back(electionList);
+
+		electionsListTree.getNext(&record);
+
+		if(record.getBytes() == NULL) break;
+
+		electionList.setBytes(record.getBytes());
+
+		change = this->verifyElectionKeyChanges(electionList, e);
 	}
 
 	return electionsListVector;
-}*/
+}
 
-vector<ElectionsList> Voting::getElectionsListsByElection(Election* e)
+bool Voting::verifyElectionKeyChanges(ElectionsList& eList, Election* election)
+{
+	return (eList.getDay() != election->getDay()
+				|| eList.getMonth() != election->getMonth()
+				|| eList.getYear() != election->getYear()
+				|| eList.getCharge() != election->getCharge());
+}
+
+/*vector<ElectionsList> Voting::getElectionsListsByElection(Election* e)
 {
 	vector<ElectionsList> electionsLists;
 	ElectionsList eOne("Lista1", 1, 2, 2009, "Intendente");
@@ -197,7 +261,7 @@ vector<ElectionsList> Voting::getElectionsListsByElection(Election* e)
 	}
 
 	return retVec;
-}
+}*/
 
 vector<Election> Voting::getElectionByDistrict(District* d)
 {

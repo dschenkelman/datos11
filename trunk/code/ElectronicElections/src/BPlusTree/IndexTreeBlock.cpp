@@ -235,12 +235,13 @@ UpdateResult IndexTreeBlock::updateRecord(const char *key, VariableRecord *rec)
 		occupiedSpace += sizeDifference;
 		// there is enough space to perform the update
 		// in the current block
-		int bufferSize = (this->maxSize - this->position) - sizeDifference;
+		int distanceToEnd = this->maxSize - this->position;
+		int bufferSize = distanceToEnd - sizeDifference;
 		char buffer[bufferSize];
 		memset(buffer, 0, bufferSize);
 
 		// copy bytes that are after record
-		memcpy(buffer, this->bytes + this->position, bufferSize);
+		memcpy(buffer, this->bytes + this->position, bufferSize < distanceToEnd ? bufferSize : distanceToEnd);
 
 		// update record
 		short recordSize = rec->getSize();

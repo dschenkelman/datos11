@@ -32,6 +32,7 @@ public:
 	void setDistrict(std::string& value);
 	void addCount(char d, char m, short y, std::string& c, std::string& lName);
 	void removeCount(char d, char m, short y, std::string& c, std::string& lName);
+	std::vector<CountId>& getCountIds();
 	bool hasCounts();
 	virtual ~DistrictCounts();
 };

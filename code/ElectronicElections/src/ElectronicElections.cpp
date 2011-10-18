@@ -736,7 +736,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							VariableRecord countIdRecord;
 							if(! index_districtCount.get(indexDistrict.getKey(), &countIdRecord) )
 							{
-								std::cout << "Invalid District. District was not found." << endl;
+								std::cout << "No election found in: " << indexDistrict.getDistrict() << endl;
 								log.write(string("Reporte distrito invalido: ").append(indexDistrict.getDistrict()),false, true );//lista invalida
 								break;
 							}
@@ -797,8 +797,8 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							Tree candidate_tree (entry.getDataFileName(), entry.getBlockSize(), &cm, false);
 							Candidate candidate((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()), (short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Nombre Lista"), "", 0);
 							VariableRecord candRecord;
-
-							if(! (candidate_tree.get(candidate.getKey(), &candRecord)) )
+							candidate_tree.get(candidate.getKey(), &candRecord);
+							if(candRecord.getSize() == 0)
 							{
 								std::cout << "Invalid list. List was not found." << endl;
 								log.write(string("Reporte Lista invalida: ").append(candidate.getName()),false, true );//lista invalida
@@ -840,6 +840,12 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 
 							Count count(candidate.getDay(), candidate.getMonth(), candidate.getYear(), candidate.getCharge(), candidate.getName(),"", 0);
 							list_count.get(count.getKey(),&countRecord );
+							if(countRecord.getSize() == 0)
+							{
+								std::cout << "No hay votos registrados para lista: " << count.getListName() << endl;
+								log.write(string("Lista sin votos: ").append(candidate.getName()), false, true);
+								break;
+							}
 							count.setBytes(countRecord.getBytes());
 							Count nextCount(candidate.getDay(), candidate.getMonth(), candidate.getYear(), candidate.getCharge(), candidate.getName(),"", 0);
 							while(strcmp(count.getListName().c_str(), nextCount.getListName().c_str())==0 ){
@@ -851,7 +857,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 								log.write(string("Distrito: ").append(district).append(", Votos: ").append(string(votes)), true, true);
 								list_count.getNext(&countRecord);//si es el ultimo, obtengo null?
 								nextCount.setBytes(countRecord.getBytes());
-								if(&countRecord == NULL)
+								if(countRecord.getSize() == 0)
 								{
 									break;//last Record found
 								}
@@ -869,14 +875,14 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							std::string mes = Menu::raw_input("Mes");
 							std::string anio = Menu::raw_input("Anio");
 							std::string charge = Menu::raw_input("Cargo");
-							ConfigurationEntry& entry = configuration.getEntry("List");
-							Tree list_tree (entry.getDataFileName(), entry.getBlockSize(), &CandidateMethods(), false);
+							ConfigurationEntry& entry = configuration.getEntry("ElectionList");
+							Tree list_tree (entry.getDataFileName(), entry.getBlockSize(), &ElectionsListMethods(), false);
 							ElectionsList list("", (char)atoi(dia.c_str()), (char)atoi(mes.c_str()), (short)atoi(anio.c_str()), charge);
 							ElectionsList nextList("", (char)atoi(dia.c_str()), (char)atoi(mes.c_str()), (short)atoi(anio.c_str()), charge);
 							VariableRecord listRecord;
 
 							list_tree.get(list.getKey(), &listRecord);
-							if(&listRecord == NULL)
+							if(listRecord.getSize() == 0)
 							{//reached end of file
 								std::cout << "Invalid Election. Election was not found." << endl;
 								log.write(string("Reporte Eleccion invalida: ").append(dia +"-"+ mes +"-"+ anio),false, true );//lista invalida
@@ -896,26 +902,29 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							Count nextCount(list.getDay(), list.getMonth(), list.getYear(), list.getCharge(), list.getName(),"", 0);
 
 							std::cout << "Eleccion: " << dia << "-" << mes << "-" << anio << endl;
-							log.write(string("Reportando Eleccion: ").append(dia +"-"+ mes +"-"+ anio),true, true );
+							log.write(string("Reportando Eleccion: ").append(dia +"-"+ mes +"-"+ anio+", " +list.getCharge()),true, true );
 							char votos[sizeof(int)];
-							while(count.getDay() != nextCount.getDay() || count.getMonth() != nextCount.getMonth() ||count.getYear() != nextCount.getYear() || list.getCharge()!= nextList.getCharge())
+							list_count.get(count.getKey(), &countRecord);
+							if(countRecord.getSize() == 0)
+							{
+								//No record, end of file
+								std::cout << "No hay votos registrados para eleccion: " << dia << "-" << mes << "-" << anio << ", " << count.getCharge()<< endl;
+								log.write(string("Eleccion sin votos: ").append(dia +"-"+ mes +"-"+ anio+", " +list.getCharge()), false, true);
+								break;
+							}
+							nextCount.setBytes(countRecord.getBytes());
+							while(count.getDay() == nextCount.getDay() && count.getMonth() == nextCount.getMonth() && count.getYear() == nextCount.getYear() && list.getCharge()== nextList.getCharge())
 							{
 								int listVotes = 0;
 								bool lastRecord = false;
 								count.setBytes(nextCount.getBytes());
-								list_count.get(count.getKey(), &countRecord);
-								nextCount.setBytes(countRecord.getBytes());
-								if(&countRecord == NULL)
-								{
-									//No record, end of file
-									break;
-								}
+
 								while( strcmp(count.getListName().c_str(), nextCount.getListName().c_str()) == 0 )
 								{
 									//acumulate votes for one list in each district
 									listVotes+= nextCount.getQuantity();
 									list_count.getNext(&countRecord);
-									if(&countRecord == NULL)
+									if(countRecord.getSize() == 0)
 									{
 										lastRecord = true;
 										break;
@@ -931,9 +940,8 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 									break;//no more districts
 								}
 							}
-							std::cout << "Finalizado reporte Eleccion: " << dia << "-" << mes << "-" << anio << endl;
-							log.write(string("Finalizado reporte Eleccion: ").append(dia +"-"+ mes +"-"+ anio),true, true );
-
+							std::cout << "Finalizado reporte Eleccion: " << dia << "-" << mes << "-" << anio << ", " << count.getCharge() << endl;
+							log.write(string("Finalizado reporte Eleccion: ").append(dia +"-"+ mes +"-"+ anio+", "+list.getCharge()),true, true );
 
 						}//close option for election report
 					} else if (action == 8) {

@@ -173,6 +173,10 @@ std::string Voter::getNames()
 	return this->names;
 }
 
+void Voter::setNames(std::string names) {
+	this->names = names;
+}
+
 std::string Voter::getPassword()
 {
 	return this->password;

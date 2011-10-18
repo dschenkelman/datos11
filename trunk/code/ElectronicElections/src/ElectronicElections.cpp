@@ -390,71 +390,159 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 						ConfigurationEntry& entry = configuration.getEntry("Election");
 						ElectionMethods em;
 						Tree election_tree(entry.getDataFileName(), entry.getBlockSize(), &em, false);
-						option election_action[3];
-						election_action[0].label = "Agregar eleccion";
-						election_action[1].label = "Eliminar eleccion";
-						election_action[2].label = "Imprimir arbol de elecciones";
-						action = Menu(election_action,3).ask();
-						if (action==0) {
-							// agregar eleccion
-							std::vector<string> dist_vector;
-							while (1) {
-								option election_district_action[4];
-								election_district_action[0].label = "Asignar distrito";
-								election_district_action[1].label = "Eliminar distrito asignado";
-								election_district_action[2].label = "Ver distritos asignados";
-								election_district_action[3].label = "Seleccion terminada, continuar.";
-								action = Menu(election_district_action,4).ask();
-								if (action==0) {
-									// asignar distrito
-									string dist = Menu::raw_input("Distrito");
-									dist_vector.push_back(dist);
-								} else if (action==1) {
-									// eliminar distrito asignado
-									string dist = Menu::raw_input("Distrito");
-									for(unsigned int i = 0; i < dist_vector.size(); i++) {
-										if(dist_vector.at(i) == dist){
-											dist_vector.erase(dist_vector.begin() + i);
+						while (1)
+						{
+							option election_action[4];
+							election_action[0].label = "Agregar eleccion";
+							election_action[1].label = "Modificar eleccion";
+							election_action[2].label = "Eliminar eleccion";
+							election_action[3].label = "Volver";
+							action = Menu(election_action,4).ask();
+							if (action==0)
+							{
+								// agregar eleccion
+								std::vector<string> dist_vector;
+								while (1)
+								{
+									option election_district_action[4];
+									election_district_action[0].label = "Asignar distrito";
+									election_district_action[1].label = "Eliminar distrito asignado";
+									election_district_action[2].label = "Ver distritos asignados";
+									election_district_action[3].label = "Seleccion terminada, continuar.";
+									action = Menu(election_district_action,4).ask();
+									if (action==0)
+									{
+										// asignar distrito
+										string dist = Menu::raw_input("Distrito");
+										dist_vector.push_back(dist);
+									}
+									else if (action==1)
+									{
+										// eliminar distrito asignado
+										string dist = Menu::raw_input("Distrito");
+										for(unsigned int i = 0; i < dist_vector.size(); i++)
+										{
+											if(dist_vector.at(i) == dist)
+											{
+												dist_vector.erase(dist_vector.begin() + i);
+											}
 										}
 									}
-								} else if (action==2) {
-									// ver distritos
-									for(unsigned int i = 0; i < dist_vector.size(); i++) {
-										cout << dist_vector.at(i) << endl;
+									else if (action==2)
+									{
+										// ver distritos
+										for(unsigned int i = 0; i < dist_vector.size(); i++)
+										{
+											cout << dist_vector.at(i) << endl;
+										}
 									}
-								} else if (action==3) {
-									break;
+									else if (action==3)
+									{
+										break;
+									}
+								}
+								Election e ((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()),
+										(short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"), dist_vector);
+
+								VariableRecord keyRecord(e.getKey(), e.getKeySize());
+								VariableRecord dataRecord(e.getBytes(), e.getSize());
+
+								int res = election_tree.insert(&keyRecord, &dataRecord);
+								indexFile.indexElection(e);
+								stringstream elec;
+								elec << e.getDay(); elec << "/"; elec << e.getMonth(); elec <<  "/"; elec << e.getYear();
+								elec << " "; elec << e.getCharge();
+								log.write(string("Agregando eleccion ").append(elec.str()), res!=5, true);
+
+							}
+							else if (action == 1)
+							{
+								// Modificar eleccion
+								Election updatedElection ((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()),
+										(short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"));
+								VariableRecord record;
+								bool found = election_tree.get(updatedElection.getKey(),&record);
+								if (!found)
+								{
+									cout << endl << "Eleccion no encontrada!" << endl;
+								}
+								else
+								{
+									updatedElection.setBytes(record.getBytes());
+									while (1)
+									{
+										option election_district_action[4];
+										election_district_action[0].label = "Agregar distrito";
+										election_district_action[1].label = "Eliminar distrito asignado";
+										election_district_action[2].label = "Ver distritos asignados";
+										election_district_action[3].label = "Actualizacion terminada, continuar.";
+										action = Menu(election_district_action,4).ask();
+										if (action==0)
+										{
+											// asignar distrito
+											string dist = Menu::raw_input("Distrito");
+											updatedElection.getDistrictList().push_back(dist);
+										}
+										else if (action==1)
+										{
+											// eliminar distrito asignado
+											string dist = Menu::raw_input("Distrito");
+											for(unsigned int i = 0; i < updatedElection.getDistrictList().size(); i++)
+											{
+												if(updatedElection.getDistrictList().at(i) == dist)
+												{
+													updatedElection.getDistrictList().erase(updatedElection.getDistrictList().begin() + i);
+												}
+											}
+										}
+										else if (action==2)
+										{
+											// ver distritos
+											for(unsigned int i = 0; i < updatedElection.getDistrictList().size(); i++)
+											{
+												cout << updatedElection.getDistrictList().at(i) << endl;
+											}
+										}
+										else if (action==3)
+										{
+											break;
+										}
+									}
+								}
+								record.setBytes(updatedElection.getBytes(), updatedElection.getSize());
+								OpResult result = election_tree.update(updatedElection.getKey(),&record);
+								if (result == Updated)
+								{
+									cout << endl << "Eleccion actualizada correctamente!" << endl;
+								}
+								else
+								{
+									cout << endl << "La eleccion no ha sido actualizada!" << endl;
 								}
 							}
-							Election e ((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()),
-									(short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"), dist_vector);
+							else if (action == 2)
+							{
+								// eliminar eleccion
+								std::vector<string> districts;
+								Election e ((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()),
+								(short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"));
+								int res = election_tree.remove(e.getKey());
+								indexFile.unIndexElection(e);
+								stringstream elec;
+								elec << e.getDay(); elec << "/"; elec << e.getMonth(); elec <<  "/"; elec << e.getYear();
+								elec << " "; elec << e.getCharge();
+								log.write(string("Eliminado eleccion ").append(elec.str()), res != 4, true);
 
-							VariableRecord keyRecord(e.getKey(), e.getKeySize());
-							VariableRecord dataRecord(e.getBytes(), e.getSize());
-
-							int res = election_tree.insert(&keyRecord, &dataRecord);
-							indexFile.indexElection(e);
-							stringstream elec;
-							elec << e.getDay(); elec << "/"; elec << e.getMonth(); elec <<  "/"; elec << e.getYear();
-							elec << " "; elec << e.getCharge();
-							log.write(string("Agregando eleccion ").append(elec.str()), res!=5, true);
-
-						} else if (action == 1) {
-							// eliminar eleccion
-							std::vector<string> districts;
-							Election e ((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()),
-							(short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"));
-							int res = election_tree.remove(e.getKey());
-							indexFile.unIndexElection(e);
-							stringstream elec;
-							elec << e.getDay(); elec << "/"; elec << e.getMonth(); elec <<  "/"; elec << e.getYear();
-							elec << " "; elec << e.getCharge();
-							log.write(string("Eliminado eleccion ").append(elec.str()), res != 4, true);
-						} else if (action == 2) {
-							// imprimir eleccion
-							election_tree.print();
+							}
+							else if (action == 3)
+							{
+								break;
+							}
 						}
-					} else if (action==3) {
+
+					}
+					else if (action==3)
+					{
 						ConfigurationEntry& entry = configuration.getEntry("Charge");
 						ChargeMethods cm;
 						ChargeHashingFunction chf;

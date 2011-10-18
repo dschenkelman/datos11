@@ -21,6 +21,8 @@ class DistrictElections
 public:
 	DistrictElections();
 	DistrictElections(std::string& d);
+	DistrictElections(DistrictElections& other);
+	DistrictElections& operator=(DistrictElections& other);
 	int getSize();
 	int getKeySize();
 	void setBytes(const char* value);

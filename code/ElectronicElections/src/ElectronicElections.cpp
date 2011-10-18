@@ -471,14 +471,17 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 						if(action == 1)
 						{
 							ConfigurationEntry& entry = configuration.getEntry("Candidate");
-							Tree candidate_tree (entry.getDataFileName(), entry.getBlockSize(), &CandidateMethods(), false);
+							CandidateMethods cm;
+							Tree candidate_tree (entry.getDataFileName(), entry.getBlockSize(), &cm, false);
 							Candidate candidate((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()), (short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Nombre Lista"), "", 0);
 							VariableRecord candRecord;
 							candidate_tree.get(candidate.getKey(), &candRecord);
 							candidate.setBytes(candRecord.getBytes());//got candidate of list
 							//get name from dni
 							entry = configuration.getEntry("Voter");
-							HashBlockFile hash_voter(entry.getDataFileName(), entry.getBlockSize(),&VoterMethods(), &VoterHashingFunction(),dataFiles.getVoterBlockAmount(), false);
+							VoterMethods vm;
+							VoterHashingFunction vhf;
+							HashBlockFile hash_voter(entry.getDataFileName(), entry.getBlockSize(),&vm, &vhf,dataFiles.getVoterBlockAmount(), false);
 							VariableRecord* voterRecord = new VariableRecord();
 							Voter voter(0, "invalid", "invalid", "invalid", "invalid", std::vector<ElectionKey>());
 							int dni = candidate.getDni();
@@ -490,13 +493,14 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 
 							//get districts from election
 							entry = configuration.getEntry("Election");
-							Tree electionTree(entry.getDataFileName(), entry.getBlockSize(),&CountMethods(), false);
+							CountMethods countMethods;
+							Tree electionTree(entry.getDataFileName(), entry.getBlockSize(),&countMethods, false);
 							Election election(candidate.getDay(), candidate.getMonth(), candidate.getYear(), candidate.getCharge() );
 							Election nextElec(candidate.getDay(), candidate.getMonth(), candidate.getYear(), candidate.getCharge());
 							VariableRecord electionRec;
 							int res = electionTree.get(election.getKey(), &electionRec);
 							entry = configuration.getEntry("Count");
-							Tree list_count(entry.getDataFileName(), entry.getBlockSize(),&CountMethods(), false);
+							Tree list_count(entry.getDataFileName(), entry.getBlockSize(),&countMethods, false);
 							VariableRecord* countRecord = NULL;
 							std::cout << "Lista: " << candidate.getDay() << candidate.getMonth() << candidate.getYear()<< candidate.getName() << endl;
 							std::cout << "Candidato: " << candidate.getCharge() << ", " << voter.getNames() << endl;

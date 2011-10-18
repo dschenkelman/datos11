@@ -101,6 +101,37 @@ std::string Administrator::getName()
 	return this->name;
 }
 
+Administrator& Administrator::operator =(Administrator & other)
+{
+	if (this == &other)
+	{
+		return *this;
+	}
+
+	this->password = other.password;
+	this->name = other.name;
+
+	if (this->key != NULL)
+	{
+		delete[] this->key;
+		this->key = NULL;
+	}
+
+	if (this->bytes != NULL)
+	{
+		delete[] this->bytes;
+		this->bytes = NULL;
+	}
+
+	return *this;
+}
+
+Administrator::Administrator(Administrator & other)
+{
+	this->password = other.password;
+	this->name = other.name;
+}
+
 void Administrator::setPassword(std::string & value)
 {
 	this->password = value;

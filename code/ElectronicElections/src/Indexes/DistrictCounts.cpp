@@ -219,15 +219,46 @@ bool DistrictCounts::hasCounts()
 	return !this->counts.empty();
 }
 
-DistrictCounts::~DistrictCounts()
+DistrictCounts::DistrictCounts(DistrictCounts & other)
 {
+	this->counts = other.counts;
+	this->district = other.district;
+}
+
+DistrictCounts & DistrictCounts::operator=(DistrictCounts & other)
+{
+	if (this == &other)
+	{
+		return *this;
+	}
+
+	this->district = other.district;
+	this->counts = other.counts;
+
 	if (this->bytes != NULL)
 	{
-		delete this->bytes;
+		delete[] this->bytes;
+		this->bytes = NULL;
 	}
 
 	if (this->key != NULL)
 	{
-		delete this->key;
+		delete[] this->key;
+		this->key = NULL;
+	}
+
+	return *this;
+}
+
+DistrictCounts::~DistrictCounts()
+{
+	if (this->bytes != NULL)
+	{
+		delete[] this->bytes;
+	}
+
+	if (this->key != NULL)
+	{
+		delete[] this->key;
 	}
 }

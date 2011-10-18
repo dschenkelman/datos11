@@ -123,6 +123,43 @@ std::string CandidatesList::getCharge()
 	return this->charge;
 }
 
+CandidatesList & CandidatesList::operator =(CandidatesList & other)
+{
+	if (this == &other)
+	{
+		return *this;
+	}
+
+	this->charge = other.charge;
+	this->day = other.day;
+	this->month = other.month;
+	this->year = other.year;
+	this->name = other.name;
+
+	if (this->key != NULL)
+	{
+		delete this->key;
+		this->key = NULL;
+	}
+
+	if (this->bytes != NULL)
+	{
+		delete this->bytes;
+		this->bytes = NULL;
+	}
+
+	return *this;
+}
+
+CandidatesList::CandidatesList(CandidatesList & other)
+{
+	this->charge = other.charge;
+	this->day = other.day;
+	this->month = other.month;
+	this->year = other.year;
+	this->name = other.name;
+}
+
 std::string CandidatesList::getListName()
 {
 	return this->name;

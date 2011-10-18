@@ -127,6 +127,39 @@ std::string Candidate::getName()
 	return this->name;
 }
 
+Candidate::Candidate(Candidate & other)
+{
+	this->charge = other.charge;
+	this->day = other.day;
+	this->dni = other.dni;
+	this->month = other.month;
+	this->year = other.year;
+	this->name = other.name;
+}
+
+Candidate & Candidate::operator =(Candidate & other)
+{
+	if (this == &other)
+	{
+		return *this;
+	}
+
+	this->charge = other.charge;
+	this->day = other.day;
+	this->dni = other.dni;
+	this->month = other.month;
+	this->year = other.year;
+	this->name = other.name;
+
+	if (this->bytes != NULL)
+	{
+		delete[] this->bytes;
+		this->bytes = NULL;
+	}
+
+	return *this;
+}
+
 int Candidate::getDni()
 {
 	return this->dni;

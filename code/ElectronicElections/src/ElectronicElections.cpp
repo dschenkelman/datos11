@@ -85,9 +85,9 @@ int run_tests()
 //	hashTests.run();
 //
 //
-//	cout << "Tree Tests" << endl;
-//	TreeTests treeTests;
-//	treeTests.run();
+	cout << "Tree Tests" << endl;
+	TreeTests treeTests;
+	treeTests.run();
 //
 //	cout << "Elections List Tests" << endl;
 //	ElectionsListTests electionTests;
@@ -638,7 +638,6 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 									VariableRecord aux;
 									aux.setBytes(c.getBytes(), c.getSize());
 									charge_hash.updateRecord(c.getKey(),&aux);
-									charge_hash.printContent();
 								}
 							}
 

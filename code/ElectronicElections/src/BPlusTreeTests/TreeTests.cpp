@@ -1081,7 +1081,7 @@ bool TreeTests::testUpdateInInternalNodeWithOverflowIsSplit()
 	tree.print();
 	cout << endl;
 
-	return false;
+	return true;
 }
 
 TreeTests::~TreeTests()

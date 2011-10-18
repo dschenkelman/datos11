@@ -151,12 +151,13 @@ UpdateResult HashBlock::updateRecord(const char* key, VariableRecord* rec)
 		occupiedSpace += sizeDifference;
 		// there is enough space to perform the update
 		// in the current block
-		int bufferSize = (this->maxSize - this->position);
+		int distanceToEnd = this->maxSize - this->position;
+		int bufferSize = distanceToEnd - sizeDifference;
 		char buffer[bufferSize];
 		memset(buffer, 0, bufferSize);
 
 		// copy bytes that are after record
-		memcpy(buffer, this->bytes + this->position, bufferSize);
+		memcpy(buffer, this->bytes + this->position, bufferSize < distanceToEnd ? bufferSize : distanceToEnd);
 
 		// update record
 		short recordSize = rec->getSize();
@@ -164,7 +165,9 @@ UpdateResult HashBlock::updateRecord(const char* key, VariableRecord* rec)
 		memcpy(this->bytes + (startPosition + sizeof(short)), rec->getBytes(), recordSize);
 
 		// add
-		memcpy(this->bytes + (startPosition + sizeof(short) + recordSize + sizeDifference), buffer, bufferSize);
+		memcpy(this->bytes +
+				(startPosition + sizeof(short) + recordSize),
+				buffer, bufferSize);
 
 		// update block size
 		memcpy(this->bytes +4, &occupiedSpace, sizeof(int));

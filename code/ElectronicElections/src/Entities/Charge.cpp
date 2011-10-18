@@ -150,7 +150,7 @@ Charge::Charge(const Charge & other)
 	this->charge = other.charge;
 }
 
-std::vector<std::string> Charge::getChargeList()
+std::vector<std::string>& Charge::getChargeList()
 {
 	return this->chargeList;
 }

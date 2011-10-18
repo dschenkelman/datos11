@@ -80,7 +80,11 @@ void Voter::setBytes(char* bytes)
 	memcpy(pass, bytes+i, PASSWORD_SIZE); i += PASSWORD_SIZE;
 	this->password.clear();
 	std::string passStrAux = "";
-	passStrAux.append(pass);
+	if (pass != '\0')
+	{
+		passStrAux = pass;
+	}
+
 	this->password.clear();
 	this->password.append(passStrAux.substr(0, 4));
 
@@ -245,7 +249,7 @@ Voter & Voter::operator =(const Voter & other)
 	return *this;
 }
 
-std::vector<ElectionKey> Voter::getElectionKeyList()
+std::vector<ElectionKey>& Voter::getElectionKeyList()
 {
 	return this->electionKeyList;
 }

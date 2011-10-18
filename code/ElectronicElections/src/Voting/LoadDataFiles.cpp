@@ -132,8 +132,7 @@ void DataFileLoader::readDistrictFile(Tree* treeDistrictFile, ConfigurationEntry
 	while ( getline(dataFile,line) )
 	{
 		//list.clear();
-		char* districtName = strdup(line.c_str());
-		strtok(districtName, ",");
+		char* districtName = strtok((char*)line.c_str(), ",");
 
 		District d(districtName);
 
@@ -141,7 +140,6 @@ void DataFileLoader::readDistrictFile(Tree* treeDistrictFile, ConfigurationEntry
 		VariableRecord record (d.getBytes(), d.getSize());
 		int res = treeDistrictFile->insert(&record, &record);
 		Log().write(string("Agregando distrito ").append(d.getName()), res!=5, true);
-
 	}
 	dataFile.close();
 }
@@ -158,8 +156,7 @@ void DataFileLoader::readCandidateFile(Tree* treeCandidateFile, ConfigurationEnt
 	char* dniVoter;
 	while ( getline(dataFile,line) )
 	{
-		char* day = strdup(line.c_str());
-		strtok(day, ",");
+		char* day = strtok((char*)line.c_str(), ",");
 		month = strtok(NULL, ",");
 		year = strtok(NULL, ",");
 		cargo = strtok(NULL, ",");
@@ -194,8 +191,7 @@ void DataFileLoader::readElectionFile(Tree* treeElectionFile, ConfigurationEntry
 	while ( getline(dataFile,line) )
 	{
 		std::vector<std::string> distlist;
-		char* day = strdup(line.c_str());
-		strtok(day, ",");
+		char* day = strtok((char*)line.c_str(), ",");
 		month = strtok(NULL, ",");
 		year = strtok(NULL, ",");
 		cargo = strtok(NULL, ",");
@@ -217,6 +213,8 @@ void DataFileLoader::readElectionFile(Tree* treeElectionFile, ConfigurationEntry
 		cout << treeElectionFile->insert(key, record)<<endl;
 
 		indexFile.indexElection(election);
+		delete record;
+		delete key;
 	}
 	dataFile.close();
 }
@@ -233,8 +231,7 @@ void DataFileLoader::readListFile(Tree* treeListFile, ConfigurationEntry & entry
 
 	while ( getline(dataFile,line) )
 	{
-		char* day = strdup(line.c_str());
-		strtok(day, ",");
+		char* day = strtok((char*)line.c_str(), ",");
 		month = strtok(NULL, ",");
 		year = strtok(NULL, ",");
 		cargo = strtok(NULL, ",");
@@ -265,8 +262,7 @@ void DataFileLoader::readVoterFile(HashBlockFile* hashVoterFile, ConfigurationEn
 	while ( getline(dataFile,line) )
 	{
 		list.clear();
-		char* dni = strdup(line.c_str());
-		strtok(dni, ",");
+		char* dni = strtok((char*)line.c_str(), ",");
 		nombre = strtok(NULL, ",");
 		pass = strtok(NULL, ",");
 		domicilio = strtok(NULL, ",");
@@ -308,8 +304,7 @@ void DataFileLoader::readChargeFile(HashBlockFile* hashChargeFile, Configuration
 	while ( getline(dataFile,line) )
 	{
 		list.clear();
-		char* ppalCharge = strdup(line.c_str());
-		strtok(ppalCharge, ",");
+		char* ppalCharge = strtok((char*)line.c_str(), ",");
 
 		while((secondCharges = strtok(NULL, ",")) != NULL)
 		{

@@ -296,7 +296,10 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							else if (action==1)
 							{
 								// Modificar votante
-								while (1)
+								VariableRecord *record;
+								Voter v(atoi(Menu::raw_input("DNI").c_str()), "", "", "", "", std::vector<ElectionKey>());
+								bool found = hash_voter.getRecord(v.getKey(), &record);
+								if (found)
 								{
 									option voter_modification[5];
 									voter_modification[0].label = "Cambio de nombre";
@@ -304,86 +307,62 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 									voter_modification[2].label = "Cambio de distrito";
 									voter_modification[3].label = "Cambio de clave";
 									voter_modification[4].label = "Volver";
-									action = Menu(voter_modification,5).ask();
-									if (action==0)
+									while (1)
 									{
-										VariableRecord *record;
-										Voter v(atoi(Menu::raw_input("DNI").c_str()), "", "", "", "", std::vector<ElectionKey>());
-										bool found = hash_voter.getRecord(v.getKey(), &record);
-										if (found)
+										action = Menu(voter_modification,5).ask();
+
+										if (action==0)
 										{
 											v.setBytes(record->getBytes());
 											v.setNames(Menu::raw_input("Nuevo nombre"));
 											record->setBytes(v.getBytes(), v.getSize());
 											hash_voter.updateRecord(v.getKey(), record);
+
 										}
-										else
-										{
-											cout << endl << "Votante no encontrado!" << endl;
-										}
-									}
-									else if (action==1)
-									{
-										VariableRecord *record;
-										Voter v(atoi(Menu::raw_input("DNI").c_str()), "", "", "", "", std::vector<ElectionKey>());
-										bool found = hash_voter.getRecord(v.getKey(), &record);
-										if (found)
+										else if (action==1)
 										{
 											v.setBytes(record->getBytes());
 											v.setAddress(Menu::raw_input("Nueva direccion"));
 											record->setBytes(v.getBytes(), v.getSize());
 											hash_voter.updateRecord(v.getKey(), record);
 										}
-										else
-										{
-											cout << endl << "Votante no encontrado!" << endl;
-										}
-									}
-									else if (action==2)
-									{
-										VariableRecord *record;
-										Voter v(atoi(Menu::raw_input("DNI").c_str()), "", "", "", "", std::vector<ElectionKey>());
-										bool found = hash_voter.getRecord(v.getKey(), &record);
-										if (found)
+										else if (action==2)
 										{
 											v.setBytes(record->getBytes());
 											v.setDistrict(Menu::raw_input("Nuevo distrito"));
 											record->setBytes(v.getBytes(), v.getSize());
 											hash_voter.updateRecord(v.getKey(), record);
 										}
-										else
-										{
-											cout << endl << "Votante no encontrado!" << endl;
-										}
-									}
-									else if (action==3)
-									{
-										VariableRecord *record;
-										Voter v(atoi(Menu::raw_input("DNI").c_str()), "", "", "", "", std::vector<ElectionKey>());
-										bool found = hash_voter.getRecord(v.getKey(), &record);
-										if (found)
+										else if (action==3)
 										{
 											v.setBytes(record->getBytes());
 											v.setPassword(Menu::raw_input("Nueva contraseña"));
 											record->setBytes(v.getBytes(), v.getSize());
 											hash_voter.updateRecord(v.getKey(), record);
 										}
-										else
+										else if (action==4)
 										{
-											cout << endl << "Votante no encontrado!" << endl;
+											break;
 										}
-
 									}
-									else if (action==4)
-									{
-										break;
-									}
+								}
+								else
+								{
+									cout << endl << "Votante no encontrado!" << endl;
 								}
 							}
 							else if (action==2)
 							{
-								Voter v(atoi(Menu::raw_input("DNI").c_str()), NULL, NULL, NULL, NULL, std::vector<ElectionKey>());
-								hash_voter.removeRecord(v.getKey());
+								Voter v(atoi(Menu::raw_input("DNI").c_str()), "", "", "", "", std::vector<ElectionKey>());
+								bool removed = hash_voter.removeRecord(v.getKey());
+								if (removed)
+								{
+									cout << endl << "Votante eliminado correctamente!" << endl;
+								}
+								else
+								{
+									cout << endl << "Votante no encontrado!" << endl;
+								}
 							}
 							else if (action==3)
 							{

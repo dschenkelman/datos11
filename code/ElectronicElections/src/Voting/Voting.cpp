@@ -47,7 +47,7 @@ bool Voting::login(int voterBlockAmount)
     HashBlockFile voterFile(voterFileName, voterBlockSize, &vm, &vhf, voterBlockAmount, false);
 
     ifstream voterFileTxt;
-    voterFileTxt.open("padron.txt");
+    voterFileTxt.open(voterEntry.getLoadFileName().c_str());
 
     char line[MAX_LINE_SIZE];
     while(voterFileTxt.getline(line, MAX_LINE_SIZE))
@@ -62,12 +62,11 @@ bool Voting::login(int voterBlockAmount)
 
         if(!voterFile.getRecord(this->voter->getKey(), &voterRecord))
         {
-        	return false;
+        	// no existe el votante en el arbol
+        	continue;
         }
 
         this->voter->setBytes((char*) voterRecord->getBytes());
-
-        //cout << "Votante encontrado: " << this->voter->getNames() << endl;
 
         if(strcmp(this->voter->getPassword().c_str(), pass.c_str()) != 0)
         {
@@ -89,14 +88,13 @@ bool Voting::login(int voterBlockAmount)
 bool Voting::vote()
 {
 	// indice para obtener elecciones por distrito
-	ConfigurationEntry& districtEntry = this->config->getEntry("District");
+	ConfigurationEntry& districtEntry = this->config->getEntry("DistrictElections");
 	DistrictElectionsIndex districtElectionsIndex(districtEntry.getDataFileName(), districtEntry.getBlockSize(), false);
 	VariableRecord districtRecord;
 	bool electionsFound = districtElectionsIndex.getDistrictElections(this->voter->getDistrict(), &districtRecord);
 
 	if(!electionsFound)
 	{
-		// la eleccion no esta en el indice.. no existe la eleccion?
 		return false;
 	}
 
@@ -105,11 +103,11 @@ bool Voting::vote()
 
 	if(!dElections.hasElections())
 	{
-		// el distrito no tiene elecciones asignadas
+		// el distrito no tiene elecciones asignadas. loguear
 		return false;
 	}
 
-	vector<ElectionId> electionsId = dElections.getElectionIds();
+	vector<ElectionId>& electionsId = dElections.getElectionIds();
 	vector<Election> districtElection;
 
 	ConfigurationEntry& electionsEntry = this->config->getEntry("Election");

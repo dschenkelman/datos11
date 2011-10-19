@@ -911,7 +911,8 @@ int main()
 								std::string district = Menu::raw_input("Distrito");
 								DistrictCounts indexDistrict(district);
 								ConfigurationEntry& entry = configuration.getEntry("DistrictCounts");
-								Tree index_districtCount (entry.getDataFileName(), entry.getBlockSize(), &DistrictCountsMethods(), false);
+								DistrictCountsMethods districtCountsMethods;
+								Tree index_districtCount (entry.getDataFileName(), entry.getBlockSize(), &districtCountsMethods, false);
 								VariableRecord countIdRecord;
 								if(! index_districtCount.get(indexDistrict.getKey(), &countIdRecord) )
 								{
@@ -925,7 +926,8 @@ int main()
 								int totalCountId = countsId.size();
 								Count count(countId.getDay(), countId.getMonth(), countId.getYear(), countId.getCharge(), countId.getListName(), indexDistrict.getDistrict(), 0);
 								entry = configuration.getEntry("Count");
-								Tree list_count(entry.getDataFileName(), entry.getBlockSize(),&CountMethods(), false);
+								CountMethods countMethods;
+								Tree list_count(entry.getDataFileName(), entry.getBlockSize(), &countMethods, false);
 								VariableRecord countRecord;
 
 								list_count.get(count.getKey(), &countRecord);
@@ -1066,7 +1068,8 @@ int main()
 								std::string anio = Menu::raw_input("Anio");
 								std::string charge = Menu::raw_input("Cargo");
 								ConfigurationEntry& entry = configuration.getEntry("ElectionList");
-								Tree list_tree (entry.getDataFileName(), entry.getBlockSize(), &ElectionsListMethods(), false);
+								ElectionsListMethods electionsListMethods;
+								Tree list_tree (entry.getDataFileName(), entry.getBlockSize(), &electionsListMethods, false);
 								ElectionsList list("", (char)atoi(dia.c_str()), (char)atoi(mes.c_str()), (short)atoi(anio.c_str()), charge);
 								ElectionsList nextList("", (char)atoi(dia.c_str()), (char)atoi(mes.c_str()), (short)atoi(anio.c_str()), charge);
 								VariableRecord listRecord;
@@ -1087,7 +1090,8 @@ int main()
 								}
 								Count count(list.getDay(), list.getMonth(), list.getYear(), list.getCharge(), list.getName(),"", 0);
 								entry = configuration.getEntry("Count");
-								Tree list_count(entry.getDataFileName(), entry.getBlockSize(),&CountMethods(), false);
+								CountMethods countMethods;
+								Tree list_count(entry.getDataFileName(), entry.getBlockSize(), &countMethods, false);
 								VariableRecord countRecord;
 								Count nextCount(list.getDay(), list.getMonth(), list.getYear(), list.getCharge(), list.getName(),"", 0);
 

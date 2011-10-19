@@ -28,6 +28,7 @@ private:
 	vector<Election> getElectionByDistrict(District* d);
 	vector<ElectionsList> getElectionsListsByElection(Election* e);
 	Configuration* config;
+	Log* log;
 public:
 	Voting(Configuration* config);
 	bool login(int voterBlockAmount);

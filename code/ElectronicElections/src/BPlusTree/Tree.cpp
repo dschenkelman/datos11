@@ -293,17 +293,11 @@ void Tree::deleteKeptLeaf()
 bool Tree::get(char* key, VariableRecord* r)
 {
 	this->deleteKeptLeaf();
-	bool found = this->root->get(key, r, &currentLeafBlock);
-	if (found)
-	{
-		this->lastKey.setBytes(r->getBytes(),r->getSize());
-	}
-	else
-	{
-		this->lastKey.setBytes(key,strlen(key));
-		this->getNext(r);
-	}
-	return found;
+	bool equal = this->root->get(key, r, &this->currentLeafBlock);
+	VariableRecord* keyRecord = this->methods->getKeyRecord(r->getBytes(), r->getSize());
+	this->lastKey.setBytes(keyRecord->getBytes(),keyRecord->getSize());
+	delete keyRecord;
+	return equal;
 }
 
 VariableRecord* Tree::getNext(VariableRecord* r)

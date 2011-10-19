@@ -40,6 +40,7 @@ public:
 	virtual int getNextNode() = 0;
 	virtual VariableRecord* popFirst() = 0;
 	virtual VariableRecord* popLast() = 0;
+	virtual bool findEqualOrGreaterRecord(const char *key, VariableRecord **rec) = 0;
 	virtual ~TreeBlock();
 };
 

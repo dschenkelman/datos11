@@ -314,6 +314,30 @@ VariableRecord *SequenceTreeBlock::popLast()
 	return ret;
 }
 
+bool SequenceTreeBlock::findEqualOrGreaterRecord(const char *key, VariableRecord **rec)
+{
+	this->position = this->recordsOffset;
+	VariableRecord* record = new VariableRecord();
+	int foundPosition = this->position;
+	while(this->getNextRecord(record) != NULL)
+	{
+		int cmpResult = this->recordMethods->compare(key,
+				record->getBytes(), record->getSize());
+		if (cmpResult <= 0)
+		{
+			*rec = record;
+			return cmpResult == 0;
+		}
+		delete record;
+		record = new VariableRecord();
+		foundPosition = this->position;
+	}
+
+	//shouldn't get here
+	delete record;
+	return false;
+}
+
 SequenceTreeBlock::~SequenceTreeBlock()
 {
 }

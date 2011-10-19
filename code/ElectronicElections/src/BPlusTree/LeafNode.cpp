@@ -230,22 +230,13 @@ bool LeafNode::isUnderflow()
 bool LeafNode::get(char* key, VariableRecord* record, TreeBlock** currentLeafBlock)
 {
 	VariableRecord* rec = NULL;
-	int position = this->block->findRecord(key, &rec);
-	if (position < 0)
-	{
-		if (rec != NULL)
-		{
-			delete rec;
-		}
-
-		return false;
-	}
+	bool equal = this->block->findEqualOrGreaterRecord(key, &rec);
 	record->setBytes(rec->getBytes(),rec->getSize());
 	if (rec != NULL)
 	{
 		delete rec;
 	}
-	return true;
+	return equal;
 }
 
 VariableRecord* LeafNode::returnFirst(VariableRecord* r, TreeBlock** currentLeafBlock)

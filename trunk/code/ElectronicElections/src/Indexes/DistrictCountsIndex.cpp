@@ -29,7 +29,7 @@ void DistrictCountsIndex::indexCount(Count & c)
 				c.getMonth(), c.getYear(), c.getCharge(), c.getListName());
 }
 
-void DistrictCountsIndex::addCountToDistrict(string district, char day, char month, char year, string charge, string listName)
+void DistrictCountsIndex::addCountToDistrict(string district, char day, char month, short year, string charge, string listName)
 {
 	DistrictCounts dc(district);
 	VariableRecord record;
@@ -50,7 +50,7 @@ void DistrictCountsIndex::addCountToDistrict(string district, char day, char mon
 	}
 }
 
-void DistrictCountsIndex::removeCountFromDistrict(string district, char day, char month, char year, string charge, string listName)
+void DistrictCountsIndex::removeCountFromDistrict(string district, char day, char month, short year, string charge, string listName)
 {
 	DistrictCounts dc(district);
 	VariableRecord record;

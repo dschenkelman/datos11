@@ -273,7 +273,8 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							}
 						}
 					}
-					else if (action == 1) {
+					else if (action == 1)
+					{
 						ConfigurationEntry& entry = configuration.getEntry("Voter");
 						VoterMethods vm;
 						VoterHashingFunction vhf;
@@ -370,7 +371,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							}
 						}
 					}
-					else if (action==2)
+					else if (action==2)	// Mantener elecciones
 					{
 						ConfigurationEntry& districtElectionsEntry = configuration.getEntry("DistrictElections");
 						DistrictElectionsIndex indexFile(districtElectionsEntry.getDataFileName(),
@@ -438,7 +439,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 								int res = election_tree.insert(&keyRecord, &dataRecord);
 								indexFile.indexElection(e);
 								stringstream elec;
-								elec << e.getDay(); elec << "/"; elec << e.getMonth(); elec <<  "/"; elec << e.getYear();
+								elec << (short)e.getDay(); elec << "/"; elec << (short)e.getMonth(); elec <<  "/"; elec << e.getYear();
 								elec << " "; elec << e.getCharge();
 								log.write(string("Agregando eleccion ").append(elec.str()), res!=5, true);
 
@@ -515,9 +516,17 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 								Election e ((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()),
 								(short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"));
 								int res = election_tree.remove(e.getKey());
+								if (res == NotFound)
+								{
+									cout << endl << "Eleccion no encontrada!" << endl;
+								}
+								else
+								{
+									cout << endl << "Eleccion eliminada correctamente!" << endl;
+								}
 								indexFile.unIndexElection(e);
 								stringstream elec;
-								elec << e.getDay(); elec << "/"; elec << e.getMonth(); elec <<  "/"; elec << e.getYear();
+								elec << (short) e.getDay(); elec << "/"; elec << (short) e.getMonth(); elec <<  "/"; elec << (short) e.getYear();
 								elec << " "; elec << e.getCharge();
 								log.write(string("Eliminado eleccion ").append(elec.str()), res != 4, true);
 
@@ -529,8 +538,9 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 						}
 
 					}
-					else if (action==3)
+					else if (action==3)	// Mantener cargo
 					{
+
 						ConfigurationEntry& entry = configuration.getEntry("Charge");
 						ChargeMethods cm;
 						ChargeHashingFunction chf;
@@ -584,8 +594,9 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							}
 							else if (action==1)
 							{
-								bool res = charge_hash.removeRecord(Menu::raw_input("Nombre del cargo").c_str());
-								log.write("Eliminando cargo", res, true);
+								Charge c (Menu::raw_input("Nombre del cargo"), vector<string>());
+								bool res = charge_hash.removeRecord(c.getKey());
+								log.write("Eliminando cargo: '" + c.getCharge() + "' ", res, true);
 							}
 							else if (action==2)
 							{
@@ -657,7 +668,10 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							}
 						}
 
-					} else if (action==4) {
+					}
+					else if (action==4)	// Mantener Listas
+					{
+						// Election Lists
 						ConfigurationEntry& entry = configuration.getEntry("Election");
 						ElectionsListMethods elm;
 						Tree electionslist_tree(entry.getDataFileName(), entry.getBlockSize(),
@@ -681,7 +695,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							{
 								ElectionsList elist (Menu::raw_input("Nombre"), (char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()), (short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"));
 								int res = electionslist_tree.remove(elist.getKey());
-								log.write("Eliminando lista", res!=4, true);
+								log.write("Eliminando lista " + elist.getName(), res!=4, true);
 							}
 							else if (action==2)
 							{
@@ -689,11 +703,26 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							}
 						}
 					}
-					else if (action==5)
+					else if (action==5)	// Mantener candidatos
 					{
+						// Arbol candidatos
 						ConfigurationEntry& entry = configuration.getEntry("Candidate");
 						CandidateMethods cm;
 						Tree candidate_tree (entry.getDataFileName(), entry.getBlockSize(), &cm, false);
+
+						// Hash votantes
+						ConfigurationEntry& voterEntry = configuration.getEntry("Voter");
+						VoterMethods vm;
+						VoterHashingFunction vhf;
+						HashBlockFile hash_voter(voterEntry.getDataFileName(), voterEntry.getBlockSize(), &vm,
+								&vhf, dataFiles.getVoterBlockAmount(), false); // para 28 mil votantes
+
+						// Election Lists
+						ConfigurationEntry& electionEntry = configuration.getEntry("Election");
+						ElectionsListMethods elm;
+						Tree electionslist_tree(electionEntry.getDataFileName(), electionEntry.getBlockSize(),
+								&elm, false);
+
 						option candidate_action[3];
 						candidate_action[0].label = "Agregar candidato";
 						candidate_action[1].label = "Eliminar candidato";
@@ -711,7 +740,15 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							}
 							else if (action==1)
 							{
-								Candidate cand ((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()), (short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Nombre"), Menu::raw_input("Cargo"), atoi(Menu::raw_input("DNI").c_str()));
+								int dni = atoi(Menu::raw_input("DNI").c_str());
+								/*VariableRecord *record;
+								Voter v(dni, "", "", "", "", std::vector<ElectionKey>());
+								bool found = hash_voter.getRecord(v.getKey(), &record);
+								if (!found)
+								{
+									cout << endl << "El candidato no pertenece al padron";
+								}*/
+								Candidate cand ((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()), (short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Nombre"), Menu::raw_input("Cargo"), dni);
 								int res = candidate_tree.remove(cand.getKey());
 								log.write("Eliminando candidato", res!=4, true);
 							}

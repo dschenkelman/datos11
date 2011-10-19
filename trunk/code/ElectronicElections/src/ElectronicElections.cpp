@@ -710,6 +710,12 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 						ElectionsListMethods elm;
 						Tree electionslist_tree(entry.getDataFileName(), entry.getBlockSize(),
 								&elm, false);
+
+						// Elections
+						ConfigurationEntry& electionEntry = configuration.getEntry("Election");
+						ElectionMethods em;
+						Tree election_tree(electionEntry.getDataFileName(), electionEntry.getBlockSize(), &em, false);
+
 						option list_action[3];
 						list_action[0].label = "Agregar lista";
 						list_action[1].label = "Eliminar lista";
@@ -719,11 +725,26 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							action = Menu(list_action,3).ask();
 							if (action==0)
 							{
-								ElectionsList elist (Menu::raw_input("Nombre"), (char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()), (short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"));
-								VariableRecord elistkey_vr (elist.getKey(), elist.getKeySize());
-								VariableRecord elist_vr (elist.getBytes(), elist.getSize());
-								int res = electionslist_tree.insert(&elistkey_vr, &elist_vr);
-								log.write("Agregando lista", res!=5, true);
+								ElectionsList elist (Menu::raw_input("Nombre de Lista"), (char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()), (short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"));
+
+								Election e (elist.getDay(), elist.getMonth(),
+										elist.getYear(), elist.getCharge());
+
+								VariableRecord r;
+								bool found = election_tree.get(e.getKey(),&r);
+								int res;
+								if (found)
+								{
+									VariableRecord elistkey_vr (elist.getKey(), elist.getKeySize());
+									VariableRecord elist_vr (elist.getBytes(), elist.getSize());
+									res = electionslist_tree.insert(&elistkey_vr, &elist_vr);
+								}
+								else
+								{
+									cout << endl << "Eleccion no encontrada" << endl;
+									res = NotFound;
+								}
+								log.write("Agregando lista " + elist.getName(), res!=NotFound, true);
 							}
 							else if (action==1)
 							{

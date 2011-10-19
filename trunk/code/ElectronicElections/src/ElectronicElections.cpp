@@ -148,8 +148,8 @@ void updateCountVoteAmount(Configuration & configuration)
 
 }
 
-int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, incluso desde eclipse
-{			// No impedir el uso normal del sistema
+int main()
+{
 	bool debug = false;
 
 	if (debug) return run_tests();

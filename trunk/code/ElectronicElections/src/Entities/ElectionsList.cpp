@@ -117,11 +117,11 @@ ElectionsList & ElectionsList::operator =(const ElectionsList & other)
 		return *this;
 	}
 
-	this->name = name;
-	this->day = day;
-	this->month = month;
-	this->year = year;
-	this->charge = charge;
+	this->name = other.name;
+	this->day = other.day;
+	this->month = other.month;
+	this->year = other.year;
+	this->charge = other.charge;
 	if (this->bytes != NULL)
 	{
 		delete[] this->bytes;
@@ -133,11 +133,11 @@ ElectionsList & ElectionsList::operator =(const ElectionsList & other)
 
 ElectionsList::ElectionsList(const ElectionsList & other)
 {
-	this->name = name;
-	this->day = day;
-	this->month = month;
-	this->year = year;
-	this->charge = charge;
+	this->name = other.name;
+	this->day = other.day;
+	this->month = other.month;
+	this->year = other.year;
+	this->charge = other.charge;
 	this->bytes = NULL;
 }
 

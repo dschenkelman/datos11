@@ -34,6 +34,11 @@ int CandidateMethods::compare(const char* key, const char* recordBytes, int reco
 	char charge[chargeLen];
 	memcpy(&charge, key+i, chargeLen); i += chargeLen;
 
+	char nameLen = 0;
+	memcpy(&nameLen, key+i, Constants::FIELD_HEADER_SIZE); i+= Constants::FIELD_HEADER_SIZE;
+	char name[nameLen];
+	memcpy(&name, key+i, nameLen); i += nameLen;
+
 	if(year > c.getYear())
 	{
 		return 1;
@@ -69,9 +74,13 @@ int CandidateMethods::compare(const char* key, const char* recordBytes, int reco
 				{
 					return -1;
 				}
-				else
+				if( strcmp(charge, c.getCharge().c_str()) != 0)
 				{
 					return strcmp(charge, c.getCharge().c_str());
+				}
+				else
+				{
+					return strcmp(name, c.getName().c_str());
 				}
 			}
 		}

@@ -250,30 +250,26 @@ void DataFileLoader::readVoterFile(HashBlockFile* hashVoterFile, ConfigurationEn
 {
 	fstream dataFile;
 	dataFile.open(entry.getLoadFileName().c_str(), ios::in);
+	bool g = dataFile.good();
 	std::string line;
 	char* nombre;
 	char* pass;
 	char* domicilio;
 	char* district;
-	std::vector<ElectionKey> list;
-	ElectionKey electOne;
-	char* electionField[4];
 
-	while ( getline(dataFile,line) )
+	int i = 0;
+
+	while (getline(dataFile,line) )
 	{
-		list.clear();
 		char* dni = strtok((char*)line.c_str(), ",");
 		nombre = strtok(NULL, ",");
 		pass = strtok(NULL, ",");
 		domicilio = strtok(NULL, ",");
 		district = strtok(NULL, ",");
 		Voter* voter = new Voter(atoi(dni), string(nombre), string(pass), string(domicilio), string(district));
-//		cout<<atoi(dni)<<"-"<<string(nombre)<<"-"<<string(pass)<<"-"<<string(domicilio)<<"-"<<string(district)<<endl;
-//		cout<<voter->getKey()<<endl;
 		VariableRecord* record = new VariableRecord();
 		record->setBytes(voter->getBytes(), voter->getSize());
 		hashVoterFile->insertRecord(voter->getKey(), record);
-//		hashVoterFile->loadRecord(voter->getKey(), record);
 		delete voter;
 		delete record;
 	}

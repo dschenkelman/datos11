@@ -158,7 +158,8 @@ bool Voting::vote()
         if(electionsLists.size() != 0)
         {
             srand(time(NULL));
-            int listIndex = rand() % (electionsLists.size());
+            int size = electionsLists.size();
+            int listIndex = rand() % size;
 
             ElectionsList list = electionsLists.at(listIndex);
 

@@ -23,11 +23,6 @@ int CountMethods::compare(const char* key, const char* recordBytes, int recordSi
 	Count c(1, 1, 1, "Invalid", "Invalid", "Invalid", 0);
 	c.setBytes((char*) recordBytes);
 
-	if(strcmp(key, c.getKey()) == 0)
-	{
-		return 0;
-	}
-
 	int i = 0;
 
 	short year;
@@ -43,7 +38,8 @@ int CountMethods::compare(const char* key, const char* recordBytes, int recordSi
 
 	// name
 	len = (key+i)[0]; i += Constants::FIELD_HEADER_SIZE;
-	i += len;
+	char name[len];
+	memcpy(name, key+i, len); i+= len;
 
 	len = (key+i)[0]; i += Constants::FIELD_HEADER_SIZE;
 	char district[len];
@@ -89,7 +85,16 @@ int CountMethods::compare(const char* key, const char* recordBytes, int recordSi
 				{
 					int chargeCompareResult = strcmp(charge, c.getCharge().c_str());
 
-					if(chargeCompareResult == 0) return strcmp(district, c.getDistrict().c_str());
+					if(chargeCompareResult == 0)
+					{
+						int nameCmpResult = strcmp(name, c.getListName().c_str());
+						if (nameCmpResult == 0)
+						{
+							return strcmp(district, c.getDistrict().c_str());
+						}
+
+						return nameCmpResult;
+					}
 
 					else return chargeCompareResult;
 				}

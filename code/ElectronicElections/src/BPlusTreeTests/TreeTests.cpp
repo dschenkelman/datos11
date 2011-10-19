@@ -55,6 +55,7 @@ void TreeTests::run()
 	this->printResult("testUpdateInLeafWithOverflowIsSplitByParent", testUpdateInLeafWithOverflowIsSplitByParent());
 	this->printResult("testUpdateInInternalRootWithOverflowIsSplit", testUpdateInInternalRootWithOverflowIsSplit());
 	this->printResult("testUpdateInInternalNodeWithOverflowIsSplit", testUpdateInInternalNodeWithOverflowIsSplit());
+	this->printResult("testGetInATree", testGetInATree());
 }
 
 bool TreeTests::testInsertInEmptyTreeWorksCorrectly()

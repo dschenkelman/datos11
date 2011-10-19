@@ -250,7 +250,6 @@ void DataFileLoader::readVoterFile(HashBlockFile* hashVoterFile, ConfigurationEn
 {
 	fstream dataFile;
 	dataFile.open(entry.getLoadFileName().c_str(), ios::in);
-	bool g = dataFile.good();
 	std::string line;
 	char* nombre;
 	char* pass;

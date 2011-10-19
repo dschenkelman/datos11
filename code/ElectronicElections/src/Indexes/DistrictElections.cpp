@@ -113,7 +113,7 @@ char* DistrictElections::getBytes()
 	}
 
 	this->bytes = new char[size];
-
+	memset(this->bytes, 0, size);
 	int position = 0;
 
 	memcpy(this->bytes, &districtLength, Constants::FIELD_HEADER_SIZE);
@@ -142,7 +142,7 @@ char* DistrictElections::getBytes()
 		memcpy(this->bytes + position, &chargeSize, Constants::FIELD_HEADER_SIZE);
 		position += Constants::FIELD_HEADER_SIZE;
 		const char* charge = e.getCharge().c_str();
-		memcpy(this->bytes + position, &charge, chargeSize);
+		memcpy(this->bytes + position, charge, chargeSize);
 		position += chargeSize;
 	}
 

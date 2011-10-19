@@ -50,6 +50,7 @@ bool Voting::login(int voterBlockAmount)
     voterFileTxt.open(voterEntry.getLoadFileName().c_str());
 
     char line[MAX_LINE_SIZE];
+    int i = 0;
     while(voterFileTxt.getline(line, MAX_LINE_SIZE))
     {
         string dni = strtok(line, ","); strtok(NULL, ",");
@@ -76,12 +77,21 @@ bool Voting::login(int voterBlockAmount)
 
         delete voterRecord;
 
+        cout << "Votante: " << i << endl;
+        i++;
         this->vote();
 
         delete this->voter;
     }
 
     voterFileTxt.close();
+
+    ConfigurationEntry& countEntry = this->config->getEntry("Count");
+	string countFileName = countEntry.getDataFileName();
+	int countBlockSize = countEntry.getBlockSize();
+	CountMethods countMethods;
+	Tree countTree(countFileName, countBlockSize, &countMethods, false);
+	countTree.print();
     return true;
 }
 
@@ -207,13 +217,7 @@ vector<ElectionsList> Voting::getElectionsListsByElection(Election* e)
 	VariableRecord record;
 	ElectionsList electionList("", e->getDay(), e->getMonth(), e->getYear(), e->getCharge());
 
-	bool found = electionsListTree.get(electionList.getKey(), &record);
-
-	if(!found)
-	{
-		// ??
-		return electionsListVector;
-	}
+	electionsListTree.get(electionList.getKey(), &record);
 
 	electionList.setBytes(record.getBytes());
 	bool change = this->verifyElectionKeyChanges(electionList, e);
@@ -222,7 +226,10 @@ vector<ElectionsList> Voting::getElectionsListsByElection(Election* e)
 	{
 		electionsListVector.push_back(electionList);
 
-		electionsListTree.getNext(&record);
+		if (electionsListTree.getNext(&record) == NULL)
+		{
+			break;
+		}
 
 		if(record.getBytes() == NULL) break;
 

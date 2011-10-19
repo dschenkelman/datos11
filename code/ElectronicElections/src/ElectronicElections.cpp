@@ -430,19 +430,25 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 										break;
 									}
 								}
-								Election e ((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()),
-										(short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"), dist_vector);
+								if (dist_vector.empty())	// Check if the election has at least one district
+								{
+									cout << endl << "Debe agregar al menos un distrito!" << endl;
+								}
+								else
+								{
+									Election e ((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()),
+											(short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"), dist_vector);
 
-								VariableRecord keyRecord(e.getKey(), e.getKeySize());
-								VariableRecord dataRecord(e.getBytes(), e.getSize());
+									VariableRecord keyRecord(e.getKey(), e.getKeySize());
+									VariableRecord dataRecord(e.getBytes(), e.getSize());
 
-								int res = election_tree.insert(&keyRecord, &dataRecord);
-								indexFile.indexElection(e);
-								stringstream elec;
-								elec << (short)e.getDay(); elec << "/"; elec << (short)e.getMonth(); elec <<  "/"; elec << e.getYear();
-								elec << " "; elec << e.getCharge();
-								log.write(string("Agregando eleccion ").append(elec.str()), res!=5, true);
-
+									int res = election_tree.insert(&keyRecord, &dataRecord);
+									indexFile.indexElection(e);
+									stringstream elec;
+									elec << (short)e.getDay(); elec << "/"; elec << (short)e.getMonth(); elec <<  "/"; elec << e.getYear();
+									elec << " "; elec << e.getCharge();
+									log.write(string("Agregando eleccion ").append(elec.str()), res!=NotFound, true);
+								}
 							}
 							else if (action == 1)
 							{

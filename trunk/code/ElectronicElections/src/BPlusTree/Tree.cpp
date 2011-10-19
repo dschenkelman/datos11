@@ -283,7 +283,7 @@ OpResult Tree::update(char *key, VariableRecord *r)
 
 void Tree::deleteKeptLeaf()
 {
-	if (this->currentLeafBlock != NULL)
+	if (this->currentLeafBlock != NULL && this->currentLeafBlock != this->file->getCurrentBlock())
 	{
 		delete this->currentLeafBlock;
 	}
@@ -294,6 +294,10 @@ bool Tree::get(char* key, VariableRecord* r)
 {
 	this->deleteKeptLeaf();
 	bool equal = this->root->get(key, r, &this->currentLeafBlock);
+	if (this->file->isCurrentLeaf())
+	{
+		this->currentLeafBlock = this->file->getCurrentBlock();
+	}
 	if (r->getSize() != 0)
 	{
 		VariableRecord* keyRecord = this->methods->getKeyRecord(r->getBytes(), r->getSize());

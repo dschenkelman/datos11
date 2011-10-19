@@ -106,6 +106,7 @@ char *DistrictCounts::getBytes()
 	}
 
 	this->bytes = new char[size];
+	memset(this->bytes, 0, size);
 
 	int position = 0;
 
@@ -135,14 +136,14 @@ char *DistrictCounts::getBytes()
 		memcpy(this->bytes + position, &chargeSize, Constants::FIELD_HEADER_SIZE);
 		position += Constants::FIELD_HEADER_SIZE;
 		const char* charge = ci.getCharge().c_str();
-		memcpy(this->bytes + position, &charge, chargeSize);
+		memcpy(this->bytes + position, charge, chargeSize);
 		position += chargeSize;
 
 		char listNameSize = ci.getListName().length() + 1;
 		memcpy(this->bytes + position, &listNameSize, Constants::FIELD_HEADER_SIZE);
 		position += Constants::FIELD_HEADER_SIZE;
 		const char* listName = ci.getListName().c_str();
-		memcpy(this->bytes + position, &listName, listNameSize);
+		memcpy(this->bytes + position, listName, listNameSize);
 		position += listNameSize;
 	}
 

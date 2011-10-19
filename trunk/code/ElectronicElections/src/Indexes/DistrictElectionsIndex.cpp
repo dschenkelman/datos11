@@ -28,6 +28,7 @@ void DistrictElectionsIndex::addElectionToDistrict(std::string district, char da
 		de.addElection(day, month, year, charge);
 		record.setBytes(de.getBytes(), de.getSize());
 		this->file->update(de.getKey(), &record);
+		//this->file->print();
 	}
 	else
 	{
@@ -36,6 +37,7 @@ void DistrictElectionsIndex::addElectionToDistrict(std::string district, char da
 		VariableRecord keyRecord;
 		keyRecord.setBytes(de.getKey(), de.getKeySize());
 		this->file->insert(&keyRecord, &record);
+		this->file->print();
 	}
 }
 

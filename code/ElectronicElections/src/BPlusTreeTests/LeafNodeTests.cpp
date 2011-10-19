@@ -10,7 +10,6 @@
 #include "../BlocksTests/CustomerMethods.h"
 #include "../BPlusTree/LeafNode.h"
 #include "../BPlusTree/TreeBlock.h"
-#include "../Voting/VoterIndexMethods.h"
 #include "../Entities/DistrictMethods.h"
 #include <iostream>
 #include <string.h>
@@ -28,11 +27,9 @@ void LeafNodeTests::printResult(std::string testName, bool result)
 
 void LeafNodeTests::run()
 {
-	printResult("testInsertLessThanFullSizeReturnsCorrectResult", testInsertLessThanFullSizeReturnsCorrectResult());
 	printResult("testInsertDuplicatedRecordReturnsCorrectResult", testInsertDuplicatedRecordReturnsCorrectResult());
 	printResult("testInsertRecordInFullBlockReturnsOverflow",testInsertRecordInFullBlockReturnsOverflow());
 	printResult("testInsertingWithOverflowPutsMiddleRecordInPassedParameter", testInsertingWithOverflowPutsMiddleRecordInPassedParameter());
-	printResult("testUpdateNonExistentRecordReturnsNotFound", testUpdateNonExistentRecordReturnsNotFound());
 	printResult("testUpdateShouldReturnOverflowIfRecordDoesNotFitNode", testUpdateShouldReturnOverflowIfRecordDoesNotFitNode());
 	printResult("testUpdateShouldUpdateRecordAndReturnUpdated", testUpdateShouldUpdateRecordAndReturnUpdated());
 	printResult("testDeleteReturnsNotFoundIfKeyIsNotPresent", testDeleteReturnsNotFoundIfKeyIsNotPresent());
@@ -142,34 +139,6 @@ bool LeafNodeTests::testInsertRecordInFullBlockReturnsOverflow()
 	return success;
 }
 
-bool LeafNodeTests::testInsertLessThanFullSizeReturnsCorrectResult()
-{
-	VoterIndexMethods methods;
-	SequenceTreeBlock block(64, &methods, false);
-	LeafNode node(&block, &methods);
-
-	bool success = true;
-	for(long i = 0;i < 5;++i)
-	{
-		int n = rand() % 20000000 + 30000000;
-		VoterIndex v;
-		v.DNI = n;
-		v.indexPointer = 0;
-		VariableRecord r;
-		char key[sizeof(int)];
-		memcpy(&key,&v.DNI,sizeof(int));
-		VariableRecord keyRecord(key,sizeof(int));
-		r.setBytes(keyRecord.getBytes(), 2*sizeof(int));
-		OverflowParameter parameter;
-		success = success && node.insert(&keyRecord, &r, parameter) == Updated;
-	}
-
-	node.print();
-
-	return success;
-}
-
-
 bool LeafNodeTests::testInsertingWithOverflowPutsMiddleRecordInPassedParameter()
 {
 	CustomerMethods methods;
@@ -243,24 +212,6 @@ bool LeafNodeTests::testInsertingWithOverflowPutsMiddleRecordInPassedParameter()
 
 	// falta verificar que los bytes los traiga bien!
 	return true;
-}
-
-bool LeafNodeTests::testUpdateNonExistentRecordReturnsNotFound()
-{
-	VoterIndexMethods methods;
-	SequenceTreeBlock block(64, &methods, false);
-	LeafNode node(&block, &methods);
-
-	int n = rand() % 20000000 + 30000000;
-	VoterIndex v;
-	v.DNI = n;
-	v.indexPointer = 0;
-	VariableRecord r;
-	char key[sizeof(int)];
-	memcpy(&key, &v.DNI, sizeof(int));
-	r.setBytes(key, 2*sizeof(int));
-	OverflowParameter ov;
-	return node.update(key, &r, ov) == NotFound;
 }
 
 bool LeafNodeTests::testUpdateShouldReturnOverflowIfRecordDoesNotFitNode()

@@ -5,8 +5,8 @@
  *      Author: gabriel
  */
 
-#ifndef LOADDATAFILES_H_
-#define LOADDATAFILES_H_
+#ifndef DATAFILELOADER_H_
+#define DATAFILELOADER_H_
 #include <fstream>
 
 #include "../Hash/HashBlockFile.h"
@@ -72,4 +72,4 @@ public:
 	~DataFileLoader();
 };
 
-#endif /* LOADDATAFILES_H_ */
+#endif /* DATAFILELOADER_H_ */

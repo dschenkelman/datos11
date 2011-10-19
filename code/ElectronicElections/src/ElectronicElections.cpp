@@ -51,7 +51,7 @@
 #include <time.h>
 #include <sstream>
 
-#include "Voting/LoadDataFiles.h"
+#include "Voting/DataFileLoader.h"
 #include "Indexes/DistrictElectionsIndex.h"
 #include "Indexes/DistrictCounts.h"
 #include "Indexes/DistrictCountsMethods.h"

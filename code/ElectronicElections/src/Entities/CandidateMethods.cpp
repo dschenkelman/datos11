@@ -69,7 +69,6 @@ int CandidateMethods::compare(const char* key, const char* recordBytes, int reco
 				{
 					return -1;
 				}
-
 				else
 				{
 					return strcmp(charge, c.getCharge().c_str());

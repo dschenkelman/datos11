@@ -9,7 +9,7 @@
 #define VOTING_H_
 
 #include <string>
-#include "LoadDataFiles.h"
+#include "DataFileLoader.h"
 #include "../Entities/Voter.h"
 #include "../Entities/Election.h"
 #include "../Entities/District.h"

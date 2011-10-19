@@ -249,7 +249,7 @@ void DataFileLoader::readListFile(Tree* treeListFile, ConfigurationEntry & entry
 void DataFileLoader::readVoterFile(HashBlockFile* hashVoterFile, ConfigurationEntry & entry)
 {
 	fstream dataFile;
-	dataFile.open(entry.getLoadFileName().c_str(), ios::in |  ios::binary);
+	dataFile.open(entry.getLoadFileName().c_str(), ios::in);
 	std::string line;
 	char* nombre;
 	char* pass;
@@ -267,21 +267,7 @@ void DataFileLoader::readVoterFile(HashBlockFile* hashVoterFile, ConfigurationEn
 		pass = strtok(NULL, ",");
 		domicilio = strtok(NULL, ",");
 		district = strtok(NULL, ",");
-		int i = 0;
-		while((electionField[i] = strtok(NULL, ",")) != NULL)
-		{
-			if(i == 3)
-			{
-				electOne.year = atoi(electionField[0]);
-				electOne.month = atoi(electionField[1]);
-				electOne.day = atoi(electionField[2]);
-				electOne.charge = string(electionField[3]);
-				list.push_back(electOne);
-			}
-			i++;
-			if(i > 3) i = 0;
-		}
-		Voter* voter = new Voter(atoi(dni), string(nombre), string(pass), string(domicilio), string(district), list);
+		Voter* voter = new Voter(atoi(dni), string(nombre), string(pass), string(domicilio), string(district));
 //		cout<<atoi(dni)<<"-"<<string(nombre)<<"-"<<string(pass)<<"-"<<string(domicilio)<<"-"<<string(district)<<endl;
 //		cout<<voter->getKey()<<endl;
 		VariableRecord* record = new VariableRecord();

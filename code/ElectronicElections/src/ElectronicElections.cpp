@@ -309,7 +309,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 								{
 									Voter v(atoi(Menu::raw_input("DNI").c_str()), Menu::raw_input("Nombre"), Menu::raw_input("Contraseña"), Menu::raw_input("Direccion"), district.getName(), std::vector<ElectionKey>());
 									VariableRecord vr(v.getBytes(), v.getSize());
-									hash_voter.insertRecord(v.getKey(), &vr) ? cout << "OK" : cout << "FAILED";
+									hash_voter.insertRecord(v.getKey(), &vr);
 								}
 							}
 							else if (action==1)

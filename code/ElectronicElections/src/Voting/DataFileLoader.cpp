@@ -286,7 +286,7 @@ void DataFileLoader::readVoterFile(HashBlockFile* hashVoterFile, ConfigurationEn
 //		cout<<voter->getKey()<<endl;
 		VariableRecord* record = new VariableRecord();
 		record->setBytes(voter->getBytes(), voter->getSize());
-		hashVoterFile->insertRecord(voter->getKey(), record) ? cout <<"ok"<<endl : cout<<"fallo"<<endl;
+		hashVoterFile->insertRecord(voter->getKey(), record);
 //		hashVoterFile->loadRecord(voter->getKey(), record);
 		delete voter;
 		delete record;

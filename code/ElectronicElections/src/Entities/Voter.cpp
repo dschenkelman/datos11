@@ -24,6 +24,19 @@ Voter::Voter(int dni, std::string names, std::string password, std::string addre
 	this->key = NULL;
 }
 
+
+Voter::Voter(int dni, std::string names, std::string password, std::string address, std::string district)
+{
+	this->dni = dni;
+	this->names = names;
+	this->password.append(password, 0, PASSWORD_SIZE);
+	this->address = address;
+	this->district = district;
+	this->electionKeyList = electionKeyList;
+	this->bytes = NULL;
+	this->key = NULL;
+}
+
 int Voter::getSize()
 {
 	int size = 0;

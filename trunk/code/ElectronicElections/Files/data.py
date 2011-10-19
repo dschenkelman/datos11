@@ -26,7 +26,19 @@ def unify_voters(fname):
 		else:
 			print "Duplicated: " + row[0]
 		entries[row[0]]	= 1
-		
+
+def remove_empty_lines(fname):
+	f = open(fname)
+	g = open(fname + ".rel", 'w')
+	i = 0
+	for l in f:
+		i += 1	
+		if len(l) != 1:
+			g.write(l)
+		else:
+			print "Line " + str(i) + " empty."
+
+
 
 #fields = [cities, counties, countries, first_names, provinces, provinces_netherlands, states, surnames]
 

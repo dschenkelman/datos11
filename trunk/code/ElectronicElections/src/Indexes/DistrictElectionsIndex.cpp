@@ -21,6 +21,7 @@ void DistrictElectionsIndex::addElectionToDistrict(std::string district, char da
 {
 	DistrictElections de(district);
 	VariableRecord record;
+
 	if (this->file->get(de.getKey(), &record))
 	{
 		de.setBytes(record.getBytes());

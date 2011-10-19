@@ -231,11 +231,13 @@ bool LeafNode::get(char* key, VariableRecord* record, TreeBlock** currentLeafBlo
 {
 	VariableRecord* rec = NULL;
 	bool equal = this->block->findEqualOrGreaterRecord(key, &rec);
-	record->setBytes(rec->getBytes(),rec->getSize());
+
 	if (rec != NULL)
 	{
+		record->setBytes(rec->getBytes(),rec->getSize());
 		delete rec;
 	}
+
 	return equal;
 }
 

@@ -28,12 +28,14 @@
 #include <fstream>
 #include <cstdlib>
 #include <ctime>
+#include <sstream>
 
 static const int MAX_LINE_SIZE = 400;
 
 Voting::Voting(Configuration* configuration):config(configuration)
 {
     this->voter = NULL;
+    this->log = new Log("log.txt");
 }
 
 bool Voting::login(int voterBlockAmount)
@@ -63,7 +65,6 @@ bool Voting::login(int voterBlockAmount)
 
         if(!voterFile.getRecord(this->voter->getKey(), &voterRecord))
         {
-        	// no existe el votante en el arbol
         	continue;
         }
 
@@ -71,13 +72,18 @@ bool Voting::login(int voterBlockAmount)
 
         if(strcmp(this->voter->getPassword().c_str(), pass.c_str()) != 0)
         {
-            // loguear error
+        	stringstream logStr; logStr << "No existe el votante en el arbol de votantes";
+        	this->log->operator <<(logStr.str());
             continue;
         }
 
+        stringstream logStr;
+        logStr << "El usuario: " << this->voter->getNames() << this->voter->getNames() << " ha ingresado al sistema correctamente";
+        this->log->operator <<(logStr.str());
+
         delete voterRecord;
 
-        cout << "Votante: " << i << endl;
+        //cout << "Votante: " << i << endl;
         i++;
         this->vote();
 
@@ -86,12 +92,12 @@ bool Voting::login(int voterBlockAmount)
 
     voterFileTxt.close();
 
-    ConfigurationEntry& countEntry = this->config->getEntry("Count");
+    /*ConfigurationEntry& countEntry = this->config->getEntry("Count");
 	string countFileName = countEntry.getDataFileName();
 	int countBlockSize = countEntry.getBlockSize();
 	CountMethods countMethods;
 	Tree countTree(countFileName, countBlockSize, &countMethods, false);
-	countTree.print();
+	countTree.print();*/
     return true;
 }
 
@@ -105,6 +111,8 @@ bool Voting::vote()
 
 	if(!electionsFound)
 	{
+		stringstream logStr; logStr << "No se encontraron elecciones para el distrito: " << this->voter->getDistrict();
+		this->log->operator <<(logStr.str());
 		return false;
 	}
 
@@ -113,7 +121,8 @@ bool Voting::vote()
 
 	if(!dElections.hasElections())
 	{
-		// el distrito no tiene elecciones asignadas. loguear
+		stringstream logStr; logStr << "No se encontraron elecciones para el distrito: " << this->voter->getDistrict();
+		this->log->operator <<(logStr.str());
 		return false;
 	}
 
@@ -134,6 +143,10 @@ bool Voting::vote()
 
 		if(!electionFounded)
 		{
+			stringstream logStr;
+			logStr << "No se encontro la eleccion: (" << electionsId.at(i).getDay() << "/" << electionsId.at(i).getMonth()
+					<< "/"<< electionsId.at(i).getYear() << ", " << electionsId.at(i).getCharge() << ")" << "en el arbol de elecciones";
+			this->log->operator <<(logStr.str());
 			return false;
 		}
 
@@ -165,6 +178,10 @@ bool Voting::vote()
 
             if(this->isInVoterElectionList(&(districtElection.at(i))))
             {
+            	stringstream logStr;
+            	logStr << "El votante con DNI: " << this->voter->getDni() << " ya tiene registrado su voto en la eleccion: ("
+            			<< list.getDay() << "/" << list.getMonth() << "/" << list.getYear() << ", " << list.getCharge() << ")";
+            	this->log->operator <<(logStr.str());
             	continue;
             }
 
@@ -197,6 +214,10 @@ bool Voting::vote()
 				record.setBytes(c.getBytes(), c.getSize());
 				countTree.update(key, &record);
 			}
+
+			stringstream logStr; logStr << "El votante con DNI: " << this->voter->getDni() << " voto en la eleccion: ("
+					<< list.getDay() << "/" << list.getMonth() << "/" << list.getYear() << ", " << list.getCharge() << ")";
+			this->log->operator << (logStr.str());
         }
 
         else return false;
@@ -321,4 +342,5 @@ bool Voting::isInVoterElectionList(Election* e)
 
 Voting::~Voting()
 {
+	delete this->log;
 }

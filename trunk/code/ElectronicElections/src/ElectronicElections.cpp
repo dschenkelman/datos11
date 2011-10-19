@@ -275,11 +275,19 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 					}
 					else if (action == 1)
 					{
+						// Hash votantes
 						ConfigurationEntry& entry = configuration.getEntry("Voter");
 						VoterMethods vm;
 						VoterHashingFunction vhf;
 						HashBlockFile hash_voter(entry.getDataFileName(), entry.getBlockSize(), &vm,
 								&vhf, dataFiles.getVoterBlockAmount(), false); // para 28 mil votantes
+
+						// Distritos
+						ConfigurationEntry& districtEntry = configuration.getEntry("District");
+						DistrictMethods dm;
+						Tree district_tree (districtEntry.getDataFileName(),
+								districtEntry.getBlockSize(), &dm, false);
+
 						option voter_action[4];
 						voter_action[0].label = "Agregar votante";
 						voter_action[1].label = "Modificar votante";
@@ -290,9 +298,19 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							action = Menu(voter_action,4).ask();
 							if (action==0)
 							{
-								Voter v(atoi(Menu::raw_input("DNI").c_str()), Menu::raw_input("Nombre"), Menu::raw_input("Contraseña"), Menu::raw_input("Direccion"), Menu::raw_input("Distrito"), std::vector<ElectionKey>());
-								VariableRecord vr(v.getBytes(), v.getSize());
-								hash_voter.insertRecord(v.getKey(), &vr) ? cout << "OK" : cout << "FAILED";
+								District district(Menu::raw_input("Distrito"));
+								VariableRecord r;
+								bool found = district_tree.get(district.getKey(),&r);
+								if (!found)
+								{
+									cout << endl << "Distrito invalido!" << endl;
+								}
+								else
+								{
+									Voter v(atoi(Menu::raw_input("DNI").c_str()), Menu::raw_input("Nombre"), Menu::raw_input("Contraseña"), Menu::raw_input("Direccion"), district.getName(), std::vector<ElectionKey>());
+									VariableRecord vr(v.getBytes(), v.getSize());
+									hash_voter.insertRecord(v.getKey(), &vr) ? cout << "OK" : cout << "FAILED";
+								}
 							}
 							else if (action==1)
 							{
@@ -329,10 +347,20 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 										}
 										else if (action==2)
 										{
-											v.setBytes(record->getBytes());
-											v.setDistrict(Menu::raw_input("Nuevo distrito"));
-											record->setBytes(v.getBytes(), v.getSize());
-											hash_voter.updateRecord(v.getKey(), record);
+											District district(Menu::raw_input("Nuevo Distrito"));
+											VariableRecord r;
+											bool districtFound = district_tree.get(district.getKey(),&r);
+											if (!districtFound)
+											{
+												cout << endl << "Distrito invalido!" << endl;
+											}
+											else
+											{
+												v.setBytes(record->getBytes());
+												v.setDistrict(district.getName());
+												record->setBytes(v.getBytes(), v.getSize());
+												hash_voter.updateRecord(v.getKey(), record);
+											}
 										}
 										else if (action==3)
 										{

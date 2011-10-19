@@ -333,7 +333,8 @@ bool SequenceTreeBlock::findEqualOrGreaterRecord(const char *key, VariableRecord
 		foundPosition = this->position;
 	}
 
-	//shouldn't get here
+	//should get here only if there are no records
+	// or is the last one in the block
 	delete record;
 	return false;
 }

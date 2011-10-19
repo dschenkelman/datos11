@@ -22,7 +22,12 @@ int DistrictCountsMethods::compare(const char *key, const char *recordBytes, int
 	DistrictCounts dc;
 	dc.setBytes(recordBytes);
 
-	return strcmp(key, dc.getDistrict().c_str());
+	char keyLength = 0;
+	memcpy(&keyLength, key, sizeof(char));
+	char keyString[keyLength];
+	memcpy(keyString, key + sizeof(char), keyLength);
+
+	return strcmp(keyString, dc.getDistrict().c_str());
 }
 
 VariableRecord *DistrictCountsMethods::getKeyRecord(const char *recordBytes, int recordSize)

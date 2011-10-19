@@ -84,7 +84,7 @@ bool CandidateTests::testSetBytes()
 		return false;
 	}
 
-	if(c.getName() != name)
+	if(c.getListName() != name)
 	{
 		return false;
 	}
@@ -138,7 +138,7 @@ bool CandidateTests::testGetBytes()
 	Candidate cTwo(11, 11, 2011, "Lista9", "Gobernador", 12121212);
 	cTwo.setBytes(c.getBytes());
 
-	if(c.getName() != cTwo.getName())
+	if(c.getListName() != cTwo.getListName())
 	{
 		return false;
 	}

@@ -18,7 +18,7 @@ private:
 	char month;
 	char day;
 	std::string charge;
-	std::string name;
+	std::string listName;
 	int dni;
 public:
 	Candidate(char day, char month, short year, std::string name, std::string charge, int dni);
@@ -35,7 +35,7 @@ public:
 	char getMonth();
 	char getDay();
 	std::string getCharge();
-	std::string getName();
+	std::string getListName();
 	int getDni();
 };
 

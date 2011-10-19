@@ -80,7 +80,7 @@ int CandidateMethods::compare(const char* key, const char* recordBytes, int reco
 				}
 				else
 				{
-					return strcmp(name, c.getName().c_str());
+					return strcmp(name, c.getListName().c_str());
 				}
 			}
 		}
@@ -92,7 +92,7 @@ void CandidateMethods::print(const char* recordBytes, int recordSize)
 	Candidate c(12, 12, 2000, "Invalid", "Invalid", 10101010);
 	c.setBytes((char*)recordBytes);
 
-	cout << "(" << c.getName() << " " << c.getCharge() << " " << c.getDni() << ")" << endl;
+	cout << "(" << c.getListName() << " " << c.getCharge() << " " << c.getDni() << ")" << endl;
 }
 
 void CandidateMethods::printKey(const char* key, int recordSize)
@@ -101,7 +101,7 @@ void CandidateMethods::printKey(const char* key, int recordSize)
 	c.setBytes((char*)key);
 
 	cout << "(" << c.getYear() << ", " << c.getMonth() << ", " << c.getDay() << ", " << c.getCharge() <<
-			", " << c.getName() << ", " << c.getDni() << ")" << endl;
+			", " << c.getListName() << ", " << c.getDni() << ")" << endl;
 }
 
 VariableRecord* CandidateMethods::getKeyRecord(const char* recordBytes, int recordSize)

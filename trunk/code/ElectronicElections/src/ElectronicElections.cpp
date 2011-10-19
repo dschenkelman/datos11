@@ -154,7 +154,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 
 	if (debug) return run_tests();
 
-	Configuration configuration("config.txt");
+	Configuration configuration("Files/config.txt");
 	configuration.read();
 	DataFileLoader dataFiles(configuration);
 	dataFiles.loadFiles();

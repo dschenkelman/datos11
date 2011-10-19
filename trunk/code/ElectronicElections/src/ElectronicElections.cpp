@@ -200,7 +200,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 				}
 				Administrator admin (user, passwd);
 				VariableRecord adminrecord;
-				if ( admin_tree->get(admin.getKey(), &adminrecord) )
+				/*if ( admin_tree->get(admin.getKey(), &adminrecord) )
 				{
 //					cout << "admin existe" << endl;
 					Administrator realadmin("","");
@@ -217,8 +217,8 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 					{
 						cout << "Contraseña erronea" <<endl; break;
 					}
-				}
-				else if (user=="1" && passwd=="1")
+				}*/
+				if (user=="1" && passwd=="1")
 				{
 					cout << "Bienvenido al sistema!" <<endl;
 				}
@@ -923,8 +923,12 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 							{
 								ConfigurationEntry& entry = configuration.getEntry("Candidate");
 								CandidateMethods cm;
+								std::string dia = Menu::raw_input("Dia");
+								std::string mes = Menu::raw_input("Mes");
+								std::string anio = Menu::raw_input("Anio");
+								std::string listName = Menu::raw_input("Lista");
 								Tree candidate_tree (entry.getDataFileName(), entry.getBlockSize(), &cm, false);
-								Candidate candidate((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()), (short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Nombre Lista"), "", 0);
+								Candidate candidate((char)atoi(dia.c_str()), (char)atoi(mes.c_str()), (short)atoi(anio.c_str()), listName, "", 0);
 								VariableRecord candRecord;
 								candidate_tree.get(candidate.getKey(), &candRecord);
 								if(candRecord.getSize() == 0)
@@ -934,6 +938,12 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 									break;
 								}
 								candidate.setBytes(candRecord.getBytes());//got candidate of list
+								if(((char)atoi(dia.c_str())!= candidate.getDay() )||( (char)atoi(mes.c_str())!= candidate.getMonth() )||( (short)atoi(anio.c_str())!= candidate.getYear() )|| (strcmp(listName.c_str(), candidate.getName().c_str()) !=0) )
+								{
+									std::cout << "Invalid list. List was not found." << endl;
+									log.write(string("Reporte Lista invalida: ").append(candidate.getName()),false, true );//lista invalida
+									break;
+								}
 								//get name from dni
 								entry = configuration.getEntry("Voter");
 								VoterMethods vm;
@@ -949,15 +959,16 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 								if(voterRecord!= NULL){ delete voterRecord; }
 
 								//get districts from election
-								entry = configuration.getEntry("Election");
-								CountMethods countMethods;
-								Tree electionTree(entry.getDataFileName(), entry.getBlockSize(),&countMethods, false);
-								Election election(candidate.getDay(), candidate.getMonth(), candidate.getYear(), candidate.getCharge() );
-								Election nextElec(candidate.getDay(), candidate.getMonth(), candidate.getYear(), candidate.getCharge());
-								VariableRecord electionRec;
-								int res = electionTree.get(election.getKey(), &electionRec);
+								//entry = configuration.getEntry("Election");
+								//ElectionMethods electionMethods;
+								//Tree electionTree(entry.getDataFileName(), entry.getBlockSize(),&electionMethods, false);
+								//Election election(candidate.getDay(), candidate.getMonth(), candidate.getYear(), candidate.getCharge() );
+								//Election nextElec(candidate.getDay(), candidate.getMonth(), candidate.getYear(), candidate.getCharge());
+								//VariableRecord electionRec;
+								//int res = electionTree.get(election.getKey(), &electionRec);
 
 								entry = configuration.getEntry("Count");
+								CountMethods countMethods;
 								Tree list_count(entry.getDataFileName(), entry.getBlockSize(),&countMethods, false);
 								VariableRecord countRecord;
 								std::cout << "Lista: " << candidate.getDay() << candidate.getMonth() << candidate.getYear()<< candidate.getName() << endl;
@@ -1018,7 +1029,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 									break;
 								}
 								list.setBytes(listRecord.getBytes());
-								if(list.getDay() != nextList.getDay() || list.getMonth() != nextList.getMonth() ||list.getYear() != nextList.getYear() || list.getCharge()!= nextList.getCharge())
+								if((list.getDay() != nextList.getDay() )||( list.getMonth() != nextList.getMonth() )||( list.getYear() != nextList.getYear() )||( strcmp(list.getCharge().c_str(), nextList.getCharge().c_str()) != 0 ))
 								{//got next election
 									std::cout << "Invalid Election. Election was not found." << endl;
 									log.write(string("Reporte Eleccion invalida: ").append(dia +"-"+ mes +"-"+ anio),false, true );//lista invalida

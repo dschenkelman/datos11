@@ -39,7 +39,7 @@ src/ElectronicElections.d src/ElectronicElections.o: \
  ../src/EntitiesTests/AdministratorTests.h \
  ../src/EntitiesTests/CountTests.h ../src/EntitiesTests/ChargeTests.h \
  ../src/Voting/Menu.h ../src/Voting/Voting.h \
- ../src/Voting/LoadDataFiles.h ../src/Voting/../Hash/HashBlockFile.h \
+ ../src/Voting/DataFileLoader.h ../src/Voting/../Hash/HashBlockFile.h \
  ../src/Voting/../BPlusTree/Tree.h ../src/Voting/../Entities/Voter.h \
  ../src/Voting/../Hash/VoterHashingFunction.h \
  ../src/Voting/../Hash/HashingFunction.h \
@@ -74,7 +74,7 @@ src/ElectronicElections.d src/ElectronicElections.o: \
  ../src/Entities/Candidate.h ../src/Entities/CandidateMethods.h \
  ../src/VariableBlocks/VariableRecord.h ../src/BPlusTree/Tree.h \
  ../src/Voting/Log.h ../src/Voting/Configuration.h \
- ../src/Voting/LoadDataFiles.h ../src/Indexes/DistrictElectionsIndex.h \
+ ../src/Voting/DataFileLoader.h ../src/Indexes/DistrictElectionsIndex.h \
  ../src/Indexes/../BPlusTree/Tree.h ../src/Indexes/../Entities/Election.h \
  ../src/Indexes/DistrictElectionsMethods.h \
  ../src/Indexes/../VariableBlocks/RecordMethods.h \
@@ -169,7 +169,7 @@ src/ElectronicElections.d src/ElectronicElections.o: \
 
 ../src/Voting/Voting.h:
 
-../src/Voting/LoadDataFiles.h:
+../src/Voting/DataFileLoader.h:
 
 ../src/Voting/../Hash/HashBlockFile.h:
 
@@ -271,7 +271,7 @@ src/ElectronicElections.d src/ElectronicElections.o: \
 
 ../src/Voting/Configuration.h:
 
-../src/Voting/LoadDataFiles.h:
+../src/Voting/DataFileLoader.h:
 
 ../src/Indexes/DistrictElectionsIndex.h:
 

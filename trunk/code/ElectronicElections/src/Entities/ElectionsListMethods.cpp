@@ -34,6 +34,11 @@ int ElectionsListMethods::compare(const char* key, const char* recordBytes, int 
 	char charge[chargeLen];
 	memcpy(&charge, key+i, chargeLen); i += chargeLen;
 
+	char nameLen = 0;
+	memcpy(&nameLen, key+i, Constants::FIELD_HEADER_SIZE); i+= Constants::FIELD_HEADER_SIZE;
+	char name[nameLen];
+	memcpy(&name, key+i, nameLen); i += nameLen;
+
 	if(year > list.getYear())
 	{
 		return 1;
@@ -72,7 +77,14 @@ int ElectionsListMethods::compare(const char* key, const char* recordBytes, int 
 
 				else
 				{
-					return strcmp(charge, list.getCharge().c_str());
+					if( strcmp(charge, list.getCharge().c_str()) != 0)
+					{
+						return strcmp(charge, list.getCharge().c_str());
+					}
+					else
+					{
+						return strcmp(name, list.getName().c_str());
+					}
 				}
 			}
 		}

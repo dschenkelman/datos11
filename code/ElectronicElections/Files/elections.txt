@@ -1,6 +1,6 @@
-1,1,2011,Gobernador,Buenos Aires,La Plata,Quilmes
+1,1,2011,Gobernador,Buenos Aires,La Plata,Edina
 1,2,2011,Gobernador,Rosario,Buenos Aires,La Plata,Quilmes
 1,1,2011,Presidente,La Pampa,Rosario,Buenos Aires,La Plata,Quilmes
-1,1,2012,Presidente,Rosario,Buenos Aires,La Plata,Quilmes
+1,1,2012,Presidente,Rosario,Buenos Aires,La Plata,Edina
 5,1,2011,Presidente,Rosario,Buenos Aires,La Plata,Quilmes
-1,3,2011,Presidente,Rosario,La Pampa
+1,3,2011,Presidente,Rosario,Edina

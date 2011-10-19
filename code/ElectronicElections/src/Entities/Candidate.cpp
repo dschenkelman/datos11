@@ -12,13 +12,13 @@
 
 using namespace std;
 
-Candidate::Candidate(char day, char month, short year, std::string name, std::string charge, int dni)
+Candidate::Candidate(char day, char month, short year, std::string listName, std::string charge, int dni)
 {
 	this->day = day;
 	this->month = month;
 	this->year = year;
 	this->charge = charge;
-	this->name = name;
+	this->listName = listName;
 	this->dni = dni;
 	this->bytes = NULL;
 }
@@ -31,7 +31,7 @@ int Candidate::getSize()
 	size += sizeof(this->month);
 	size += sizeof(this->day);
 	size += Constants::FIELD_HEADER_SIZE + this->charge.size() + 1;
-	size += Constants::FIELD_HEADER_SIZE + this->name.size() + 1;
+	size += Constants::FIELD_HEADER_SIZE + this->listName.size() + 1;
 	size += sizeof(this->dni);
 
 	return size;
@@ -63,9 +63,9 @@ char* Candidate::getBytes()
 	memcpy(this->bytes+i, &chargeLen, Constants::FIELD_HEADER_SIZE); i += Constants::FIELD_HEADER_SIZE;
 	memcpy(this->bytes+i, this->charge.c_str(), chargeLen); i += chargeLen;
 
-	char nameLen = this->name.size() + 1;
+	char nameLen = this->listName.size() + 1;
 	memcpy(this->bytes+i, &nameLen, Constants::FIELD_HEADER_SIZE); i += Constants::FIELD_HEADER_SIZE;
-	memcpy(this->bytes+i, this->name.c_str(), nameLen); i += nameLen;
+	memcpy(this->bytes+i, this->listName.c_str(), nameLen); i += nameLen;
 
 	memcpy(this->bytes+i, &(this->dni), sizeof(int));
 
@@ -94,8 +94,8 @@ void Candidate::setBytes(char* bytes)
 	len = (bytes+i)[0]; i += sizeof(char);
 	char nameAux[len];
 	memcpy(nameAux, bytes+i, len); i+= len;
-	this->name.clear();
-	this->name.append(nameAux);
+	this->listName.clear();
+	this->listName.append(nameAux);
 
 	memcpy(&(this->dni), bytes+i, sizeof(int));
 }
@@ -122,9 +122,9 @@ std::string Candidate::getCharge()
 	return this->charge;
 }
 
-std::string Candidate::getName()
+std::string Candidate::getListName()
 {
-	return this->name;
+	return this->listName;
 }
 
 Candidate::Candidate(const Candidate & other)
@@ -135,7 +135,7 @@ Candidate::Candidate(const Candidate & other)
 	this->dni = other.dni;
 	this->month = other.month;
 	this->year = other.year;
-	this->name = other.name;
+	this->listName = other.listName;
 }
 
 Candidate & Candidate::operator =(const Candidate & other)
@@ -150,7 +150,7 @@ Candidate & Candidate::operator =(const Candidate & other)
 	this->dni = other.dni;
 	this->month = other.month;
 	this->year = other.year;
-	this->name = other.name;
+	this->listName = other.listName;
 
 	if (this->bytes != NULL)
 	{

@@ -17,7 +17,7 @@ DistrictElectionsIndex::DistrictElectionsIndex(string& fName, int blockSize, boo
 	this->file = new Tree(this->fileName,blockSize, this->methods, createNew);
 }
 
-void DistrictElectionsIndex::addElectionToDistrict(std::string district, char day, char month, char year, std::string charge)
+void DistrictElectionsIndex::addElectionToDistrict(std::string district, char day, char month, short year, std::string charge)
 {
 	DistrictElections de(district);
 	VariableRecord record;
@@ -39,7 +39,7 @@ void DistrictElectionsIndex::addElectionToDistrict(std::string district, char da
 	}
 }
 
-void DistrictElectionsIndex::removeElectionFromDistrict(std::string district, char day, char month, char year, std::string charge)
+void DistrictElectionsIndex::removeElectionFromDistrict(std::string district, char day, char month, short year, std::string charge)
 {
 	DistrictElections de(district);
 	VariableRecord record;

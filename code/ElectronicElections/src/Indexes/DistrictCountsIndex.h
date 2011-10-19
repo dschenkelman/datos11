@@ -17,8 +17,8 @@ class DistrictCountsIndex {
 	DistrictCountsMethods* methods;
 	std::string fileName;
 	Tree* file;
-	void addCountToDistrict(std::string district, char day, char month, char year, std::string charge, std::string listName);
-	void removeCountFromDistrict(std::string district, char day, char month, char year, std::string charge, std::string listName);
+	void addCountToDistrict(std::string district, char day, char month, short year, std::string charge, std::string listName);
+	void removeCountFromDistrict(std::string district, char day, char month, short year, std::string charge, std::string listName);
 public:
 	DistrictCountsIndex(std::string& fName, int blockSize, bool createNew);
 	void indexCount(Count& c);

@@ -404,9 +404,26 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 						ConfigurationEntry& districtElectionsEntry = configuration.getEntry("DistrictElections");
 						DistrictElectionsIndex indexFile(districtElectionsEntry.getDataFileName(),
 								districtElectionsEntry.getBlockSize(), false);
+
+						// Arbol elecciones
 						ConfigurationEntry& entry = configuration.getEntry("Election");
 						ElectionMethods em;
 						Tree election_tree(entry.getDataFileName(), entry.getBlockSize(), &em, false);
+
+						// Distritos
+						ConfigurationEntry& districtEntry = configuration.getEntry("District");
+						DistrictMethods dm;
+						Tree district_tree (districtEntry.getDataFileName(),
+								districtEntry.getBlockSize(), &dm, false);
+
+						// Hash cargos
+						ConfigurationEntry& chargeEntry = configuration.getEntry("Charge");
+						ChargeMethods cm;
+						ChargeHashingFunction chf;
+						HashBlockFile charge_hash (chargeEntry.getDataFileName(), chargeEntry.getBlockSize(),
+								&cm, &chf, dataFiles.getChargeBlockAmount(), false);
+
+
 						while (1)
 						{
 							option election_action[4];
@@ -431,7 +448,17 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 									{
 										// asignar distrito
 										string dist = Menu::raw_input("Distrito");
-										dist_vector.push_back(dist);
+										District district(dist);
+										VariableRecord r;
+										bool found = district_tree.get(district.getKey(),&r);
+										if (!found)
+										{
+											cout << endl << "Distrito invalido!" << endl;
+										}
+										else
+										{
+											dist_vector.push_back(dist);
+										}
 									}
 									else if (action==1)
 									{
@@ -467,11 +494,23 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 									Election e ((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()),
 											(short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"), dist_vector);
 
-									VariableRecord keyRecord(e.getKey(), e.getKeySize());
-									VariableRecord dataRecord(e.getBytes(), e.getSize());
+									Charge c (e.getCharge(), vector<string>());
+									VariableRecord *r;
+									bool chargeFound = charge_hash.getRecord(c.getKey(),&r);
 
-									int res = election_tree.insert(&keyRecord, &dataRecord);
-									indexFile.indexElection(e);
+									OpResult res;
+									if (chargeFound)
+									{
+										VariableRecord keyRecord(e.getKey(), e.getKeySize());
+										VariableRecord dataRecord(e.getBytes(), e.getSize());
+										res = election_tree.insert(&keyRecord, &dataRecord);
+										indexFile.indexElection(e);
+									}
+									else
+									{
+										cout << endl << "Cargo no encontrado!" << endl;
+										res = NotFound;
+									}
 									stringstream elec;
 									elec << (short)e.getDay(); elec << "/"; elec << (short)e.getMonth(); elec <<  "/"; elec << e.getYear();
 									elec << " "; elec << e.getCharge();
@@ -503,8 +542,18 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 										if (action==0)
 										{
 											// asignar distrito
-											string dist = Menu::raw_input("Distrito");
-											updatedElection.getDistrictList().push_back(dist);
+											string dist = Menu::raw_input("Nuevo Distrito");
+											District district(dist);
+											VariableRecord r;
+											bool found = district_tree.get(district.getKey(),&r);
+											if (!found)
+											{
+												cout << endl << "Distrito invalido!" << endl;
+											}
+											else
+											{
+												updatedElection.getDistrictList().push_back(dist);
+											}
 										}
 										else if (action==1)
 										{
@@ -531,17 +580,18 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 											break;
 										}
 									}
+									record.setBytes(updatedElection.getBytes(), updatedElection.getSize());
+									OpResult result = election_tree.update(updatedElection.getKey(),&record);
+									if (result == Updated)
+									{
+										cout << endl << "Eleccion actualizada correctamente!" << endl;
+									}
+									else
+									{
+										cout << endl << "La eleccion no ha sido actualizada!" << endl;
+									}
 								}
-								record.setBytes(updatedElection.getBytes(), updatedElection.getSize());
-								OpResult result = election_tree.update(updatedElection.getKey(),&record);
-								if (result == Updated)
-								{
-									cout << endl << "Eleccion actualizada correctamente!" << endl;
-								}
-								else
-								{
-									cout << endl << "La eleccion no ha sido actualizada!" << endl;
-								}
+
 							}
 							else if (action == 2)
 							{
@@ -549,7 +599,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 								std::vector<string> districts;
 								Election e ((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()),
 								(short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"));
-								int res = election_tree.remove(e.getKey());
+								OpResult res = election_tree.remove(e.getKey());
 								if (res == NotFound)
 								{
 									cout << endl << "Eleccion no encontrada!" << endl;
@@ -557,8 +607,8 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 								else
 								{
 									cout << endl << "Eleccion eliminada correctamente!" << endl;
+									indexFile.unIndexElection(e);
 								}
-								indexFile.unIndexElection(e);
 								stringstream elec;
 								elec << (short) e.getDay(); elec << "/"; elec << (short) e.getMonth(); elec <<  "/"; elec << (short) e.getYear();
 								elec << " "; elec << e.getCharge();
@@ -574,7 +624,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 					}
 					else if (action==3)	// Mantener cargo
 					{
-
+						// Hash cargos
 						ConfigurationEntry& entry = configuration.getEntry("Charge");
 						ChargeMethods cm;
 						ChargeHashingFunction chf;
@@ -732,7 +782,7 @@ int main() // Las pruebas se pueden correr con la opcion 1 muy facilmente, inclu
 
 								VariableRecord r;
 								bool found = election_tree.get(e.getKey(),&r);
-								int res;
+								OpResult res;
 								if (found)
 								{
 									VariableRecord elistkey_vr (elist.getKey(), elist.getKeySize());

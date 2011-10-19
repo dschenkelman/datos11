@@ -5,7 +5,7 @@
  *      Author: gabriel
  */
 
-#include "LoadDataFiles.h"
+#include "DataFileLoader.h"
 #include <iostream>
 #include "../Indexes/DistrictElectionsIndex.h"
 

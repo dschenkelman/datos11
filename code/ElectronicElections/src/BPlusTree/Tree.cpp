@@ -294,9 +294,13 @@ bool Tree::get(char* key, VariableRecord* r)
 {
 	this->deleteKeptLeaf();
 	bool equal = this->root->get(key, r, &this->currentLeafBlock);
-	VariableRecord* keyRecord = this->methods->getKeyRecord(r->getBytes(), r->getSize());
-	this->lastKey.setBytes(keyRecord->getBytes(),keyRecord->getSize());
-	delete keyRecord;
+	if (r->getSize() != 0)
+	{
+		VariableRecord* keyRecord = this->methods->getKeyRecord(r->getBytes(), r->getSize());
+		this->lastKey.setBytes(keyRecord->getBytes(),keyRecord->getSize());
+		delete keyRecord;
+	}
+
 	return equal;
 }
 

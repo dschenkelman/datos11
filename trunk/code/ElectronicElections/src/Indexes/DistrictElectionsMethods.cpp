@@ -40,7 +40,12 @@ int DistrictElectionsMethods::compare(const char *key, const char *recordBytes, 
 	DistrictElections de;
 	de.setBytes(recordBytes);
 
-	return strcmp(key, de.getDistrict().c_str());
+	char len = key[0];
+	char district[len];
+
+	memcpy(district, key + Constants::FIELD_HEADER_SIZE, len);
+
+	return strcmp(district, de.getDistrict().c_str());
 }
 
 VariableRecord *DistrictElectionsMethods::getKeyRecord(const char *recordBytes, int recordSize)

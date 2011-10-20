@@ -27,7 +27,7 @@ HashBlockFile::HashBlockFile(std::string fileName, int bSize, RecordMethods *met
 		this->dataFile.open(this->fileName.c_str(), ios::binary | ios::in | ios::out);
 	}
 	string ovflw = fileName + "ovflow";
-	this->overflowFile = new SimpleVariableBlockFile(ovflw, 512, methods, createNew);
+	this->overflowFile = new SimpleVariableBlockFile(ovflw, bSize/4, methods, createNew);
 }
 
 void HashBlockFile::initializefile()

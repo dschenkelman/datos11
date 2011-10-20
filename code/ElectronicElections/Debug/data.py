@@ -1,21 +1,4 @@
-def generate_voter(size):
-	from random import choice, randrange
-	for i in range(size): yield [randrange(10000000,99999999),\
-			choice(first_names)[0]+" "+choice(surnames),\
-			randrange(1000,9999),\
-			choice(counties)[0],\
-			choice(cities)]
-			
-def generate_district(size):
-	from random import choice, randrange
-	for i in range(size): yield [choice(cities)]
-			
-def gen_file(fname, generator, size): # LLAMAR ACA
-	import csv
-	csvout = csv.writer(open(fname, 'wb'), delimiter=',')
-	for row in generator(size): csvout.writerow(row)
-
-#fields = [cities, counties, countries, first_names, provinces, provinces_netherlands, states, surnames]
+#!/usr/bin/env python
 
 cities = [
 "Aberdeen",
@@ -3735,3 +3718,49 @@ surnames = [
 "Zamora",
 "Zimmerman"
 ]
+
+def gen_voter(size):
+	from random import choice, randrange
+	cur_dni = 10000000
+	while size:
+		size-=1
+		cur_dni += randrange(10,20)
+		yield [cur_dni,\
+				choice(first_names)[0]+" "+choice(surnames),\
+				randrange(1000,9999),\
+				choice(counties)[0],\
+				choice(cities)]
+			
+def gen_district(size):
+	from random import choice, randrange
+	for i in range(size): yield [choice(cities)]
+			
+def gen_file(fname, list):
+	import csv
+	csvout = csv.writer(open(fname, 'wb'), delimiter=',')
+	for row in list: csvout.writerow(row)
+	
+voters = [v for v in gen_voter(50000)]
+
+districts = set()
+for v in voters: districts.add((v[4],))
+
+from random import randrange
+charges = []
+for d in districts:
+	newc = ["Intendente de %s"%d]
+	for i in range(1,randrange(1,8)): newc += ["Concejal %d"%i]
+	charges.append(newc)
+for i in range(1,51):
+	newc = ["Gobernador provincia nro %d"%i, "ViceGobernador provincia nro %d"%i]
+	charges.append(newc)
+for i in range(1,6):
+	newc = ["Presidente nro %d"%i, "VicePresidente nro %d"%i]
+	charges.append(newc)
+
+gen_file("padron.txt", voters)
+gen_file("districts.txt", districts)
+gen_file("charges.txt", charges)
+
+#fields = [cities, counties, countries, first_names, provinces, provinces_netherlands, states, surnames]
+

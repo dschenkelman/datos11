@@ -89,8 +89,9 @@ void Voter::setBytes(char* bytes)
 	memcpy(nameAux, bytes+i, len); i += len;
 	this->names.clear(); this->names.append(nameAux);
 
-	char pass[PASSWORD_SIZE];
-	memcpy(pass, bytes+i, PASSWORD_SIZE); i += PASSWORD_SIZE;
+	char pass[PASSWORD_SIZE+1];
+	memset(pass, 0, PASSWORD_SIZE+1);
+	memcpy(pass, bytes+i, PASSWORD_SIZE+1); i += PASSWORD_SIZE+1;
 	this->password.clear();
 	std::string passStrAux = "";
 	if (pass != '\0')
@@ -153,7 +154,7 @@ char* Voter::getBytes()
 	memcpy(this->bytes+i, &len, Constants::FIELD_HEADER_SIZE); i += Constants::FIELD_HEADER_SIZE;
 	memcpy(this->bytes+i, this->names.c_str(), len); i += len;
 
-	memcpy(this->bytes+i, this->password.c_str(), PASSWORD_SIZE); i += PASSWORD_SIZE;
+	memcpy(this->bytes+i, this->password.c_str(), PASSWORD_SIZE+1); i += PASSWORD_SIZE+1;
 
 	len = this->address.size() + 1;
 	memcpy(this->bytes+i, &len, Constants::FIELD_HEADER_SIZE); i += Constants::FIELD_HEADER_SIZE;

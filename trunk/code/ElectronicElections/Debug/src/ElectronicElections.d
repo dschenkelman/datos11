@@ -62,16 +62,22 @@ src/ElectronicElections.d src/ElectronicElections.o: \
  ../src/Voting/../Entities/Election.h \
  ../src/Voting/../Entities/ElectionMethods.h ../src/Voting/Log.h \
  ../src/Voting/Configuration.h ../src/Voting/ConfigurationEntry.h \
- ../src/Voting/../Entities/District.h ../src/Hash/HashBlockFile.h \
- ../src/Hash/DistrictHashingFunction.h ../src/Hash/VoterHashingFunction.h \
- ../src/Hash/ChargeHashingFunction.h ../src/Entities/Administrator.h \
- ../src/Entities/AdministratorMethods.h ../src/Entities/Count.h \
- ../src/Entities/District.h ../src/Entities/DistrictMethods.h \
- ../src/Entities/Voter.h ../src/Entities/VoterMethods.h \
- ../src/Entities/Election.h ../src/Entities/ElectionMethods.h \
- ../src/Entities/Charge.h ../src/Entities/ChargeMethods.h \
- ../src/Entities/ElectionsList.h ../src/Entities/ElectionsListMethods.h \
- ../src/Entities/Candidate.h ../src/Entities/CandidateMethods.h \
+ ../src/Voting/../Entities/District.h \
+ ../src/Voting/../Indexes/DistrictCountsIndex.h \
+ ../src/Voting/../Indexes/../BPlusTree/Tree.h \
+ ../src/Voting/../Indexes/../Entities/Count.h \
+ ../src/Voting/../Indexes/DistrictCountsMethods.h \
+ ../src/Voting/../Indexes/../VariableBlocks/RecordMethods.h \
+ ../src/Hash/HashBlockFile.h ../src/Hash/DistrictHashingFunction.h \
+ ../src/Hash/VoterHashingFunction.h ../src/Hash/ChargeHashingFunction.h \
+ ../src/Entities/Administrator.h ../src/Entities/AdministratorMethods.h \
+ ../src/Entities/Count.h ../src/Entities/District.h \
+ ../src/Entities/DistrictMethods.h ../src/Entities/Voter.h \
+ ../src/Entities/VoterMethods.h ../src/Entities/Election.h \
+ ../src/Entities/ElectionMethods.h ../src/Entities/Charge.h \
+ ../src/Entities/ChargeMethods.h ../src/Entities/ElectionsList.h \
+ ../src/Entities/ElectionsListMethods.h ../src/Entities/Candidate.h \
+ ../src/Entities/CandidateMethods.h \
  ../src/VariableBlocks/VariableRecord.h ../src/BPlusTree/Tree.h \
  ../src/Voting/Log.h ../src/Voting/Configuration.h \
  ../src/Voting/DataFileLoader.h ../src/Indexes/DistrictElectionsIndex.h \
@@ -224,6 +230,16 @@ src/ElectronicElections.d src/ElectronicElections.o: \
 ../src/Voting/ConfigurationEntry.h:
 
 ../src/Voting/../Entities/District.h:
+
+../src/Voting/../Indexes/DistrictCountsIndex.h:
+
+../src/Voting/../Indexes/../BPlusTree/Tree.h:
+
+../src/Voting/../Indexes/../Entities/Count.h:
+
+../src/Voting/../Indexes/DistrictCountsMethods.h:
+
+../src/Voting/../Indexes/../VariableBlocks/RecordMethods.h:
 
 ../src/Hash/HashBlockFile.h:
 

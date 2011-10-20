@@ -3748,7 +3748,7 @@ voters = [v for v in gen_voter(50000)]
 districts = set()
 for v in voters: districts.add((v[4],))
 
-from random import randrange, sample
+from random import randrange, sample, choice
 charges = []
 for d in districts:
 	newc = ["Intendente de %s"%d[0]]
@@ -3760,9 +3760,9 @@ for i in range(1,201):
 	newc = ["Gobernador provincia nro %d"%i, "ViceGobernador provincia nro %d"%i]
 	charges.append(newc)
 	provinces[i] = [a[0] for a in distlist[(i-1)*5: (i-1)*5+5]] #5 dist por provincia
-print len(distlist)
-print (i-1)*5
-print provinces[200]
+#~ print len(distlist)
+#~ print (i-1)*5
+#~ print provinces[200]
 countries = {}
 for i in range(1,21):
 	newc = ["Presidente nro %d"%i, "VicePresidente nro %d"%i]
@@ -3782,13 +3782,25 @@ for i in range(1,21):
 elist = []
 for e in elections:
 	for i in range(1, randrange(2,4)):
-		elist.append((e[0],e[1],e[2],e[3],"Lista nro %d"%i))
+		elist.append((e[0],e[1],e[2],e[3],"Lista nro %d"%i)+tuple(e[4:]))
+
+simple_elist = [a[:5] for a in elist]
+		
+candidates = []
+selected_dnis = set()
+for el in elist:
+	while True:
+		cand = choice(voters)
+		break
+		#verificar aca que el candidato pertenezca a uno de los distritos
+	candidates.append((el[4],el[0],el[1],el[2],12312312,el[3]))
 
 gen_file("padron.txt", voters)
 gen_file("districts.txt", districts)
 gen_file("charges.txt", charges)
 gen_file("elections.txt", elections)
-gen_file("electionList.txt", elist)
+gen_file("electionList.txt", simple_elist)
+gen_file("candidates.txt", candidates)
 
 #fields = [cities, counties, countries, first_names, provinces, provinces_netherlands, states, surnames]
 

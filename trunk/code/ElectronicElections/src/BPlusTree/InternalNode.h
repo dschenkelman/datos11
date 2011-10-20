@@ -43,8 +43,8 @@ public:
 	virtual OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord, OverflowParameter& overflowParameter);
 	virtual OpResult update(char* key, VariableRecord* r, OverflowParameter& overflowParameter);
 	virtual OpResult remove(char* key);
-	bool get(char* key, VariableRecord* record, TreeBlock** currentLeafBlock);
-	virtual VariableRecord* returnFirst(VariableRecord* r, TreeBlock** currentLeafBlock);
+	bool get(char* key, VariableRecord* record);
+	virtual VariableRecord* returnFirst(VariableRecord* r);
 	virtual void print();
 	virtual bool isUnderflow();
 	virtual int getMaxSize();

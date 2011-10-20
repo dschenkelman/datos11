@@ -53,6 +53,10 @@ bool Voting::login(int voterBlockAmount)
 
     char line[MAX_LINE_SIZE];
     int i = 0;
+
+	ConfigurationEntry& entry = this->config->getEntry("DistrictCounts");
+	DistrictCountsIndex districtCountsIndex(entry.getDataFileName(), entry.getBlockSize(), true);
+
     while(voterFileTxt.getline(line, MAX_LINE_SIZE))
     {
         string dni = strtok(line, ","); strtok(NULL, ",");
@@ -85,7 +89,7 @@ bool Voting::login(int voterBlockAmount)
 
         //cout << "Votante: " << i << endl;
         i++;
-        this->vote();
+        this->vote(districtCountsIndex);
 
         delete this->voter;
     }
@@ -101,7 +105,7 @@ bool Voting::login(int voterBlockAmount)
     return true;
 }
 
-bool Voting::vote()
+bool Voting::vote(DistrictCountsIndex& districtCountsIndex)
 {
 	// indice para obtener elecciones por distrito
 	ConfigurationEntry& districtEntry = this->config->getEntry("DistrictElections");
@@ -154,9 +158,6 @@ bool Voting::vote()
 
 		districtElection.push_back(elec);
 	}
-
-	ConfigurationEntry& entry = this->config->getEntry("DistrictCounts");
-	DistrictCountsIndex districtCountsIndex(entry.getDataFileName(), entry.getBlockSize(), true);
 
 	ConfigurationEntry& countEntry = this->config->getEntry("Count");
 	string countFileName = countEntry.getDataFileName();

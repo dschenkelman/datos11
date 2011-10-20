@@ -227,7 +227,7 @@ bool LeafNode::isUnderflow()
 	return false;
 }
 
-bool LeafNode::get(char* key, VariableRecord* record, TreeBlock** currentLeafBlock)
+bool LeafNode::get(char* key, VariableRecord* record)
 {
 	VariableRecord* rec = NULL;
 	bool equal = this->block->findEqualOrGreaterRecord(key, &rec);
@@ -241,7 +241,7 @@ bool LeafNode::get(char* key, VariableRecord* record, TreeBlock** currentLeafBlo
 	return equal;
 }
 
-VariableRecord* LeafNode::returnFirst(VariableRecord* r, TreeBlock** currentLeafBlock)
+VariableRecord* LeafNode::returnFirst(VariableRecord* r)
 {
 	this->block->positionAtBegin();
 	this->block->getNextRecord(r);

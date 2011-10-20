@@ -283,7 +283,7 @@ OpResult Tree::update(char *key, VariableRecord *r)
 bool Tree::get(char* key, VariableRecord* r)
 {
 	this->file->deleteKeptBlock();
-	bool equal = this->root->get(key, r);
+	GetResult result = this->root->get(key, r);
 	if (this->file->isCurrentLeaf())
 	{
 		this->file->setKeptBlock(this->file->getCurrentBlock());
@@ -295,7 +295,7 @@ bool Tree::get(char* key, VariableRecord* r)
 		delete keyRecord;
 	}
 
-	return equal;
+	return result == Equal;
 }
 
 VariableRecord* Tree::getNext(VariableRecord* r)

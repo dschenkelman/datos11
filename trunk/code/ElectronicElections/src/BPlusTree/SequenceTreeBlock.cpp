@@ -314,19 +314,28 @@ VariableRecord *SequenceTreeBlock::popLast()
 	return ret;
 }
 
-bool SequenceTreeBlock::findEqualOrGreaterRecord(const char *key, VariableRecord **rec)
+GetResult SequenceTreeBlock::findEqualOrGreaterRecord(const char *key, VariableRecord **rec)
 {
 	this->position = this->recordsOffset;
 	VariableRecord* record = new VariableRecord();
 	int foundPosition = this->position;
+	bool exist = false;
 	while(this->getNextRecord(record) != NULL)
 	{
+		exist = true;
 		int cmpResult = this->recordMethods->compare(key,
 				record->getBytes(), record->getSize());
 		if (cmpResult <= 0)
 		{
 			*rec = record;
-			return cmpResult == 0;
+			if (cmpResult == 0)
+			{
+				return Equal;
+			}
+			else
+			{
+				return Greater;
+			}
 		}
 		delete record;
 		record = new VariableRecord();
@@ -336,7 +345,12 @@ bool SequenceTreeBlock::findEqualOrGreaterRecord(const char *key, VariableRecord
 	//should get here only if there are no records
 	// or is the last one in the block
 	delete record;
-	return false;
+	if (exist)
+	{
+		return NextBlock;
+	}
+
+	return None;
 }
 
 SequenceTreeBlock::~SequenceTreeBlock()

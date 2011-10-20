@@ -1003,14 +1003,14 @@ int main()
 							}
 							if(action == 1)
 							{
-								ConfigurationEntry& entry = configuration.getEntry("Candidate");
+								ConfigurationEntry& candidateEntry = configuration.getEntry("Candidate");
 								CandidateMethods cm;
 								std::string dia = Menu::raw_input("Dia");
 								std::string mes = Menu::raw_input("Mes");
 								std::string anio = Menu::raw_input("Anio");
 								std::string listName = Menu::raw_input("Lista");
 								std::string charge = Menu::raw_input("Cargo");
-								Tree candidate_tree (entry.getDataFileName(), entry.getBlockSize(), &cm, false);
+								Tree candidate_tree (candidateEntry.getDataFileName(), candidateEntry.getBlockSize(), &cm, false);
 								Candidate candidate((char)atoi(dia.c_str()), (char)atoi(mes.c_str()), (short)atoi(anio.c_str()), listName, charge, 0);
 								VariableRecord candRecord;
 								candidate_tree.get(candidate.getKey(), &candRecord);
@@ -1029,10 +1029,10 @@ int main()
 									break;
 								}
 								//get name from dni
-								entry = configuration.getEntry("Voter");
+								ConfigurationEntry& voterEntry = configuration.getEntry("Voter");
 								VoterMethods vm;
 								VoterHashingFunction vhf;
-								HashBlockFile hash_voter(entry.getDataFileName(), entry.getBlockSize(),&vm, &vhf,dataFiles.getVoterBlockAmount(), false);
+								HashBlockFile hash_voter(voterEntry.getDataFileName(), voterEntry.getBlockSize(),&vm, &vhf,dataFiles.getVoterBlockAmount(), false);
 								VariableRecord* voterRecord = NULL;
 								Voter voter(0, "invalid", "invalid", "invalid", "invalid", std::vector<ElectionKey>());
 								int dni = candidate.getDni();
@@ -1042,9 +1042,9 @@ int main()
 								voter.setBytes(voterRecord->getBytes());
 								if(voterRecord!= NULL){ delete voterRecord; }
 
-								entry = configuration.getEntry("Count");
+								ConfigurationEntry& countEntry = configuration.getEntry("Count");
 								CountMethods countMethods;
-								Tree list_count(entry.getDataFileName(), entry.getBlockSize(),&countMethods, false);
+								Tree list_count(countEntry.getDataFileName(), countEntry.getBlockSize(),&countMethods, false);
 								VariableRecord countRecord;
 								std::cout << "Lista: " << candidate.getDay() << candidate.getMonth() << candidate.getYear()<< candidate.getListName() << endl;
 								std::cout << "Candidato: " << candidate.getCharge() << ", " << voter.getNames() << endl;

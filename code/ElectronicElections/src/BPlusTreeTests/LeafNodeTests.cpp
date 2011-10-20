@@ -427,7 +427,7 @@ bool LeafNodeTests::testGetNonExistentRecordReturnsFalse()
 	{
 		insertDistrict(&node,districts[i]);
 	}
-	return !node.get(d.getKey(),&record, NULL);
+	return !node.get(d.getKey(),&record);
 }
 
 bool LeafNodeTests::testGetShouldGetRecordAndReturnTrue()
@@ -448,7 +448,7 @@ bool LeafNodeTests::testGetShouldGetRecordAndReturnTrue()
 	{
 		insertDistrict(&node,districts[i]);
 	}
-	bool result = node.get(d.getKey(),&record, NULL);
+	bool result = node.get(d.getKey(),&record);
 	bool recordInsertedIsTheSameThanReturned = districtMethods.compare(d.getBytes(),record.getBytes(),d.getSize()) == 0;
 
 	return (recordInsertedIsTheSameThanReturned && (result));

@@ -19,6 +19,7 @@ TreeBlockFile::TreeBlockFile(std::string& fileName, int bSize,
 		freeBlockManager(fileName.replace(fileName.length() - 4, 4, ".adm"), createNew),
 		isLeaf(false)
 {
+	this->currentKeptBlock = NULL;
 	this->currentBlock = NULL;
 	if (createNew)
 	{
@@ -120,14 +121,13 @@ void TreeBlockFile::pushBlock()
 	this->isLeaf = this->currentBlock->getLevel() == 0;
 }
 
-TreeBlock* TreeBlockFile::popAndKeep()
+void TreeBlockFile::popAndKeep()
 {
-	TreeBlock* currentLeaf = this->blockStack.top();
+	this->currentKeptBlock = this->blockStack.top();
 	this->blockStack.pop();
 	this->blockNumberStack.pop();
 	this->currentBlock = this->blockStack.top();
 	this->isLeaf = this->currentBlock->getLevel() == 0;
-	return currentLeaf;
 }
 
 
@@ -153,6 +153,26 @@ void TreeBlockFile::swapBlockKind()
 	this->currentBlock->clear();
 
 	this->blockStack.push(this->currentBlock);
+}
+
+void TreeBlockFile::setKeptBlock(TreeBlock *value)
+{
+	this->currentKeptBlock = value;
+}
+
+void TreeBlockFile::deleteKeptBlock()
+{
+	if (this->currentKeptBlock != NULL && this->currentBlock != this->currentKeptBlock)
+	{
+		delete this->currentKeptBlock;
+	}
+
+	this->currentKeptBlock = NULL;
+}
+
+TreeBlock *TreeBlockFile::getKeptBlock()
+{
+	return this->currentKeptBlock;
 }
 
 TreeBlockFile::~TreeBlockFile()

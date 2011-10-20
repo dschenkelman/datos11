@@ -77,6 +77,7 @@ void DistrictCountsIndex::unIndexCount(Count & c)
 }
 
 DistrictCountsIndex::~DistrictCountsIndex() {
+	this->file->print();
 	delete this->file;
 	delete this->methods;
 }

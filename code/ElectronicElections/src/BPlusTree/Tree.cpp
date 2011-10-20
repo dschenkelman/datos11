@@ -24,7 +24,6 @@ Tree::Tree(string fileName, int blockSize, RecordMethods* methods, bool createNe
 	}
 
 	this->file = new TreeBlockFile(fileName, blockSize, methods, createNew);
-	this->currentLeafBlock = NULL;
 	// load root
 	this->file->loadBlock(0);
 	this->file->pushBlock();
@@ -281,22 +280,13 @@ OpResult Tree::update(char *key, VariableRecord *r)
 	return result;
 }
 
-void Tree::deleteKeptLeaf()
-{
-	if (this->currentLeafBlock != NULL && this->currentLeafBlock != this->file->getCurrentBlock())
-	{
-		delete this->currentLeafBlock;
-	}
-	this->currentLeafBlock = NULL;
-}
-
 bool Tree::get(char* key, VariableRecord* r)
 {
-	this->deleteKeptLeaf();
-	bool equal = this->root->get(key, r, &this->currentLeafBlock);
+	this->file->deleteKeptBlock();
+	bool equal = this->root->get(key, r);
 	if (this->file->isCurrentLeaf())
 	{
-		this->currentLeafBlock = this->file->getCurrentBlock();
+		this->file->setKeptBlock(this->file->getCurrentBlock());
 	}
 	if (r->getSize() != 0)
 	{
@@ -312,18 +302,18 @@ VariableRecord* Tree::getNext(VariableRecord* r)
 {
 	// Check if key is in currentBlock or next
 	VariableRecord aux;
-	if (this->currentLeafBlock == NULL)
+	if (this->file->getKeptBlock() == NULL)
 	{
 		this->returnFirst(r);
 		return r;
 	}
-	this->currentLeafBlock->positionAtBegin();
-	while (this->currentLeafBlock->getNextRecord(&aux) != NULL){}
+	this->file->getKeptBlock()->positionAtBegin();
+	while (this->file->getKeptBlock()->getNextRecord(&aux) != NULL){}
 	if (this->methods->compare
 			(this->lastKey.getBytes(), aux.getBytes(), aux.getSize()) >= 0 )
 	{
 		// Load next block
-		int nextNode = this->currentLeafBlock->getNextNode();
+		int nextNode = this->file->getKeptBlock()->getNextNode();
 		if (nextNode == 0)
 		{
 			r = NULL;
@@ -331,11 +321,11 @@ VariableRecord* Tree::getNext(VariableRecord* r)
 		}
 		this->file->loadBlock(nextNode);
 		this->file->pushBlock();
-		this->deleteKeptLeaf();
-		this->currentLeafBlock = this->file->popAndKeep();
+		this->file->deleteKeptBlock();
+		this->file->popAndKeep();
 	}
-	this->currentLeafBlock->positionAtBegin();
-	while (this->currentLeafBlock->getNextRecord(&aux) != NULL)
+	this->file->getKeptBlock()->positionAtBegin();
+	while (this->file->getKeptBlock()->getNextRecord(&aux) != NULL)
 	{
 		if (this->methods->compare
 					(this->lastKey.getBytes(), aux.getBytes(), aux.getSize()) < 0 )
@@ -350,7 +340,7 @@ VariableRecord* Tree::getNext(VariableRecord* r)
 
 VariableRecord* Tree::returnFirst(VariableRecord* r)
 {
-	this->root->returnFirst(r, &(this->currentLeafBlock));
+	this->root->returnFirst(r);
 	this->lastKey.setBytes(r->getBytes(),r->getSize());
 	return r;
 }

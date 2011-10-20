@@ -16,7 +16,6 @@
 
 class Tree {
 	VariableRecord lastKey;
-	TreeBlock* currentLeafBlock;
 	Node* root;
 	RecordMethods* methods;
 	TreeBlockFile* file;
@@ -28,7 +27,6 @@ public:
 	Tree(std::string fileName, int blockSize, RecordMethods* methods, bool createNew);
 	OpResult insert(VariableRecord* keyRecord, VariableRecord* dataRecord);
 	OpResult update(char* key, VariableRecord* r);
-	void deleteKeptLeaf();
 	bool get(char* key, VariableRecord* r);
 	VariableRecord* getNext(VariableRecord* r);
 	VariableRecord* returnFirst(VariableRecord* r);

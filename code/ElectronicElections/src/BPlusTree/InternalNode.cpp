@@ -894,7 +894,7 @@ bool InternalNode::isUnderflow()
 	return (this->block->getOccupiedSize() - IndexTreeBlock::RECORD_OFFSET) < this->minimumSize;
 }
 
-bool InternalNode::get(char* key, VariableRecord* record, TreeBlock** currentLeafBlock)
+bool InternalNode::get(char* key, VariableRecord* record)
 {
 	VariableRecord aux;
 	bool result;
@@ -918,20 +918,20 @@ bool InternalNode::get(char* key, VariableRecord* record, TreeBlock** currentLea
 	if (this->file->isCurrentLeaf())
 	{
 		LeafNode leaf(this->file->getCurrentBlock(), this->recordMethods);
-		bool found = leaf.get(key, record, currentLeafBlock);
-		*currentLeafBlock = this->file->popAndKeep();
+		bool found = leaf.get(key, record);
+		this->file->popAndKeep();
 		return found;
 	}
 
 	// Internal Node
 	InternalNode internal(this->file, this->file->getCurrentBlock(), this->recordMethods);
-	result = internal.get(key, record, currentLeafBlock);
+	result = internal.get(key, record);
 	this->file->popBlock();
 	return result;
 
 }
 
-VariableRecord* InternalNode::returnFirst(VariableRecord* r, TreeBlock** currentLeafBlock)
+VariableRecord* InternalNode::returnFirst(VariableRecord* r)
 {
 	VariableRecord aux;
 	bool result;
@@ -944,14 +944,14 @@ VariableRecord* InternalNode::returnFirst(VariableRecord* r, TreeBlock** current
 	if (this->file->isCurrentLeaf())
 	{
 		LeafNode leaf(this->file->getCurrentBlock(), this->recordMethods);
-		leaf.returnFirst(r, currentLeafBlock);
-		*currentLeafBlock = this->file->popAndKeep();
+		leaf.returnFirst(r);
+		this->file->popAndKeep();
 		return r;
 	}
 
 	// Internal Node
 	InternalNode internal(this->file, this->file->getCurrentBlock(), this->recordMethods);
-	result = internal.returnFirst(r, currentLeafBlock);
+	result = internal.returnFirst(r);
 	this->file->popBlock();
 	return r;
 }

@@ -16,6 +16,7 @@
 #include "../Entities/ElectionsList.h"
 #include "Configuration.h"
 #include "ConfigurationEntry.h"
+#include "../Indexes/DistrictCountsIndex.h"
 
 using namespace std;
 
@@ -32,7 +33,7 @@ private:
 public:
 	Voting(Configuration* config);
 	bool login(int voterBlockAmount);
-	bool vote();
+	bool vote(DistrictCountsIndex& districtCountsIndex);
 	virtual ~Voting();
 };
 

@@ -63,7 +63,14 @@ void DistrictCountsMethods::print(const char *recordBytes, int recordSize)
 	DistrictCounts dc;
 	dc.setBytes(recordBytes);
 
-	cout << "(" << dc.getDistrict() << ")";
+	cout << "(" << dc.getDistrict()  << "(";
+	for (unsigned int i = 0;  i < dc.getCountIds().size(); i++)
+	{
+		cout << "(" <<
+				dc.getCountIds().at(i).getCharge() << " , " << dc.getCountIds().at(i).getListName() << "),";
+
+	}
+	cout << "))";
 }
 
 DistrictCountsMethods::~DistrictCountsMethods()

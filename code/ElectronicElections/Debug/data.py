@@ -3756,10 +3756,14 @@ for d in districts:
 	charges.append(newc)
 provinces = {}
 distlist = list(districts)
+useddists = 0
 for i in range(1,201):
 	newc = ["Gobernador provincia nro %d"%i, "ViceGobernador provincia nro %d"%i]
 	charges.append(newc)
-	provinces[i] = [a[0] for a in distlist[(i-1)*5: (i-1)*5+5]] #5 dist por provincia
+	n = choice([4,4,5,5,5,5])
+	if i == 200: n = len(distlist)-useddists
+	provinces[i] = [a[0] for a in distlist[useddists: useddists+n]] #n dist por provincia
+	useddists += n
 #~ print len(distlist)
 #~ print (i-1)*5
 #~ print provinces[200]
@@ -3775,25 +3779,42 @@ for d in districts:
 for i in range(1,201):
 	#~ print (randrange(1,31), randrange(1,13), 2011, "Gobernador provincia nro %d"%i)+tuple(provinces[i])
 	#~ exit(0)
+	provinces[i].sort()
 	elections.append((randrange(10,31), randrange(10,13), 2011, "Gobernador provincia nro %d"%i)+tuple(provinces[i]))
 for i in range(1,21):
+	countries[i].sort()
 	elections.append((randrange(10,31), randrange(10,13), 2011, "Presidente nro %d"%i)+tuple(countries[i]))
+
+def electionscmp(a,b):
+	return cmp(a[4:],b[4:])
+elections.sort(electionscmp)
+
 
 elist = []
 for e in elections:
 	for i in range(1, randrange(2,4)):
 		elist.append((e[0],e[1],e[2],e[3],"Lista nro %d"%i)+tuple(e[4:]))
+#~ print elist
 
 simple_elist = [a[:5] for a in elist]
-		
+
+import sys
 candidates = []
 selected_dnis = set()
 for el in elist:
-	while True:
+	sys.stdout.write('.')
+	sys.stdout.flush()
+	okdists = el[5:]
+	tries = 10000
+	while tries:
+		tries -= 1
 		cand = choice(voters)
+		if cand[0] in selected_dnis or cand[4] not in okdists: continue
 		break
-		#verificar aca que el candidato pertenezca a uno de los distritos
-	candidates.append((el[4],el[0],el[1],el[2],12312312,el[3]))
+	if not tries:
+		print "No se genero candidato para %s"%(str(okdists))
+		print el
+	candidates.append((el[4],el[0],el[1],el[2],cand[0],el[3]))
 
 gen_file("padron.txt", voters)
 gen_file("districts.txt", districts)

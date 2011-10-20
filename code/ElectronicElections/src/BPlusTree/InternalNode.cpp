@@ -919,7 +919,30 @@ GetResult InternalNode::get(char* key, VariableRecord* record)
 	{
 		LeafNode leaf(this->file->getCurrentBlock(), this->recordMethods);
 		result = leaf.get(key, record);
-		this->file->popAndKeep();
+
+		if (result == NextBlock)
+		{
+			int nextNode = this->file->getCurrentBlock()->getNextNode();
+			this->file->popBlock();
+			if (nextNode != 0)
+			{
+				this->file->loadBlock(nextNode);
+				this->file->pushBlock();
+				this->file->getCurrentBlock()->positionAtBegin();
+				this->file->getCurrentBlock()->getNextRecord(record);
+				this->file->popAndKeep();
+				result = Greater;
+			}
+			else
+			{
+				result = None;
+			}
+		}
+		else
+		{
+			this->file->popAndKeep();
+		}
+
 		return result;
 	}
 

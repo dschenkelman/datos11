@@ -232,7 +232,7 @@ GetResult LeafNode::get(char* key, VariableRecord* record)
 	VariableRecord* rec = NULL;
 	GetResult result = this->block->findEqualOrGreaterRecord(key, &rec);
 
-	if (rec != NULL)
+	if (result == Equal || result == Greater)
 	{
 		record->setBytes(rec->getBytes(),rec->getSize());
 		delete rec;

@@ -1,5 +1,1210 @@
-Presidente,Vicepresidente,Gobernador,Intendente,Consejales
-Gobernador,Vicegobernador,Intendente
-Diputado,segundoDiputado,tercerDiputado
-Senador,segundoSenador,tercerSenador
-Intendente
+Intendente de West Haven,Concejal de West Haven nro 1
+Intendente de Laredo,Concejal de Laredo nro 1,Concejal de Laredo nro 2,Concejal de Laredo nro 3,Concejal de Laredo nro 4
+Intendente de West Springfield,Concejal de West Springfield nro 1,Concejal de West Springfield nro 2,Concejal de West Springfield nro 3,Concejal de West Springfield nro 4,Concejal de West Springfield nro 5
+Intendente de Houston,Concejal de Houston nro 1,Concejal de Houston nro 2,Concejal de Houston nro 3,Concejal de Houston nro 4,Concejal de Houston nro 5,Concejal de Houston nro 6
+Intendente de Portland,Concejal de Portland nro 1,Concejal de Portland nro 2,Concejal de Portland nro 3
+Intendente de Santa Fe Springs,Concejal de Santa Fe Springs nro 1,Concejal de Santa Fe Springs nro 2,Concejal de Santa Fe Springs nro 3
+Intendente de Hermitage,Concejal de Hermitage nro 1
+Intendente de Gold Beach,Concejal de Gold Beach nro 1,Concejal de Gold Beach nro 2
+Intendente de Sherrill,Concejal de Sherrill nro 1,Concejal de Sherrill nro 2,Concejal de Sherrill nro 3,Concejal de Sherrill nro 4,Concejal de Sherrill nro 5
+Intendente de Phoenix,Concejal de Phoenix nro 1,Concejal de Phoenix nro 2,Concejal de Phoenix nro 3,Concejal de Phoenix nro 4,Concejal de Phoenix nro 5
+Intendente de Iowa City,Concejal de Iowa City nro 1,Concejal de Iowa City nro 2,Concejal de Iowa City nro 3,Concejal de Iowa City nro 4,Concejal de Iowa City nro 5,Concejal de Iowa City nro 6
+Intendente de City of Industry,Concejal de City of Industry nro 1,Concejal de City of Industry nro 2,Concejal de City of Industry nro 3,Concejal de City of Industry nro 4,Concejal de City of Industry nro 5
+Intendente de Athens,Concejal de Athens nro 1,Concejal de Athens nro 2,Concejal de Athens nro 3
+Intendente de Minot,Concejal de Minot nro 1,Concejal de Minot nro 2,Concejal de Minot nro 3
+Intendente de Corinth,Concejal de Corinth nro 1,Concejal de Corinth nro 2,Concejal de Corinth nro 3,Concejal de Corinth nro 4,Concejal de Corinth nro 5
+Intendente de Wilkes-Barre,Concejal de Wilkes-Barre nro 1,Concejal de Wilkes-Barre nro 2,Concejal de Wilkes-Barre nro 3,Concejal de Wilkes-Barre nro 4
+Intendente de Needham,Concejal de Needham nro 1,Concejal de Needham nro 2,Concejal de Needham nro 3,Concejal de Needham nro 4,Concejal de Needham nro 5,Concejal de Needham nro 6
+Intendente de Carson City,Concejal de Carson City nro 1,Concejal de Carson City nro 2,Concejal de Carson City nro 3,Concejal de Carson City nro 4,Concejal de Carson City nro 5,Concejal de Carson City nro 6
+Intendente de New Madrid,Concejal de New Madrid nro 1
+Intendente de Marshall
+Intendente de Las Vegas,Concejal de Las Vegas nro 1,Concejal de Las Vegas nro 2
+Intendente de Aguadilla,Concejal de Aguadilla nro 1,Concejal de Aguadilla nro 2,Concejal de Aguadilla nro 3
+Intendente de Branson,Concejal de Branson nro 1,Concejal de Branson nro 2,Concejal de Branson nro 3,Concejal de Branson nro 4,Concejal de Branson nro 5,Concejal de Branson nro 6
+Intendente de Springfield,Concejal de Springfield nro 1,Concejal de Springfield nro 2,Concejal de Springfield nro 3,Concejal de Springfield nro 4
+Intendente de Wisconsin Rapids,Concejal de Wisconsin Rapids nro 1,Concejal de Wisconsin Rapids nro 2,Concejal de Wisconsin Rapids nro 3
+Intendente de Pulaski,Concejal de Pulaski nro 1,Concejal de Pulaski nro 2
+Intendente de Orlando,Concejal de Orlando nro 1,Concejal de Orlando nro 2
+Intendente de Washington,Concejal de Washington nro 1,Concejal de Washington nro 2,Concejal de Washington nro 3,Concejal de Washington nro 4,Concejal de Washington nro 5,Concejal de Washington nro 6
+Intendente de Bowie,Concejal de Bowie nro 1,Concejal de Bowie nro 2
+Intendente de Kemmerer,Concejal de Kemmerer nro 1,Concejal de Kemmerer nro 2,Concejal de Kemmerer nro 3,Concejal de Kemmerer nro 4
+Intendente de Oxford,Concejal de Oxford nro 1,Concejal de Oxford nro 2,Concejal de Oxford nro 3,Concejal de Oxford nro 4,Concejal de Oxford nro 5
+Intendente de Thousand Oaks,Concejal de Thousand Oaks nro 1,Concejal de Thousand Oaks nro 2,Concejal de Thousand Oaks nro 3,Concejal de Thousand Oaks nro 4,Concejal de Thousand Oaks nro 5,Concejal de Thousand Oaks nro 6
+Intendente de Laurel,Concejal de Laurel nro 1
+Intendente de Hammond,Concejal de Hammond nro 1,Concejal de Hammond nro 2,Concejal de Hammond nro 3,Concejal de Hammond nro 4,Concejal de Hammond nro 5
+Intendente de Edmond,Concejal de Edmond nro 1,Concejal de Edmond nro 2,Concejal de Edmond nro 3,Concejal de Edmond nro 4,Concejal de Edmond nro 5,Concejal de Edmond nro 6
+Intendente de Eureka,Concejal de Eureka nro 1,Concejal de Eureka nro 2
+Intendente de Oakland,Concejal de Oakland nro 1
+Intendente de Forrest City,Concejal de Forrest City nro 1
+Intendente de San Dimas,Concejal de San Dimas nro 1,Concejal de San Dimas nro 2,Concejal de San Dimas nro 3,Concejal de San Dimas nro 4
+Intendente de Liberal,Concejal de Liberal nro 1,Concejal de Liberal nro 2,Concejal de Liberal nro 3,Concejal de Liberal nro 4,Concejal de Liberal nro 5
+Intendente de El Segundo,Concejal de El Segundo nro 1,Concejal de El Segundo nro 2,Concejal de El Segundo nro 3,Concejal de El Segundo nro 4,Concejal de El Segundo nro 5,Concejal de El Segundo nro 6
+Intendente de Pine Bluff,Concejal de Pine Bluff nro 1,Concejal de Pine Bluff nro 2,Concejal de Pine Bluff nro 3,Concejal de Pine Bluff nro 4,Concejal de Pine Bluff nro 5,Concejal de Pine Bluff nro 6
+Intendente de Battle Creek
+Intendente de Cortland,Concejal de Cortland nro 1,Concejal de Cortland nro 2
+Intendente de Missoula,Concejal de Missoula nro 1
+Intendente de Whittier,Concejal de Whittier nro 1
+Intendente de Douglas,Concejal de Douglas nro 1,Concejal de Douglas nro 2,Concejal de Douglas nro 3,Concejal de Douglas nro 4,Concejal de Douglas nro 5
+Intendente de San Francisco,Concejal de San Francisco nro 1,Concejal de San Francisco nro 2,Concejal de San Francisco nro 3,Concejal de San Francisco nro 4,Concejal de San Francisco nro 5,Concejal de San Francisco nro 6
+Intendente de La Crosse,Concejal de La Crosse nro 1
+Intendente de Idabel,Concejal de Idabel nro 1
+Intendente de Kearney,Concejal de Kearney nro 1,Concejal de Kearney nro 2,Concejal de Kearney nro 3,Concejal de Kearney nro 4,Concejal de Kearney nro 5,Concejal de Kearney nro 6
+Intendente de La Habra,Concejal de La Habra nro 1,Concejal de La Habra nro 2,Concejal de La Habra nro 3,Concejal de La Habra nro 4
+Intendente de Chelsea,Concejal de Chelsea nro 1,Concejal de Chelsea nro 2,Concejal de Chelsea nro 3,Concejal de Chelsea nro 4,Concejal de Chelsea nro 5
+Intendente de Bethany,Concejal de Bethany nro 1,Concejal de Bethany nro 2
+Intendente de Kingston,Concejal de Kingston nro 1,Concejal de Kingston nro 2,Concejal de Kingston nro 3
+Intendente de Calumet City
+Intendente de Jordan Valley
+Intendente de Plymouth,Concejal de Plymouth nro 1,Concejal de Plymouth nro 2,Concejal de Plymouth nro 3,Concejal de Plymouth nro 4,Concejal de Plymouth nro 5,Concejal de Plymouth nro 6
+Intendente de Fort Worth,Concejal de Fort Worth nro 1
+Intendente de Lockport,Concejal de Lockport nro 1
+Intendente de Dana Point
+Intendente de Lakewood,Concejal de Lakewood nro 1,Concejal de Lakewood nro 2,Concejal de Lakewood nro 3
+Intendente de Rolla,Concejal de Rolla nro 1,Concejal de Rolla nro 2,Concejal de Rolla nro 3,Concejal de Rolla nro 4,Concejal de Rolla nro 5,Concejal de Rolla nro 6
+Intendente de Rehoboth Beach
+Intendente de Auburn,Concejal de Auburn nro 1,Concejal de Auburn nro 2,Concejal de Auburn nro 3,Concejal de Auburn nro 4,Concejal de Auburn nro 5
+Intendente de Sunnyvale,Concejal de Sunnyvale nro 1,Concejal de Sunnyvale nro 2
+Intendente de Danville,Concejal de Danville nro 1,Concejal de Danville nro 2,Concejal de Danville nro 3,Concejal de Danville nro 4,Concejal de Danville nro 5
+Intendente de Milford,Concejal de Milford nro 1
+Intendente de San Antonio
+Intendente de Grand Junction
+Intendente de Farrell
+Intendente de Arlington,Concejal de Arlington nro 1,Concejal de Arlington nro 2,Concejal de Arlington nro 3,Concejal de Arlington nro 4
+Intendente de Thiensville,Concejal de Thiensville nro 1,Concejal de Thiensville nro 2,Concejal de Thiensville nro 3
+Intendente de Moline,Concejal de Moline nro 1,Concejal de Moline nro 2,Concejal de Moline nro 3,Concejal de Moline nro 4,Concejal de Moline nro 5,Concejal de Moline nro 6
+Intendente de Knoxville,Concejal de Knoxville nro 1,Concejal de Knoxville nro 2,Concejal de Knoxville nro 3,Concejal de Knoxville nro 4,Concejal de Knoxville nro 5
+Intendente de Rancho Palos Verdes,Concejal de Rancho Palos Verdes nro 1,Concejal de Rancho Palos Verdes nro 2
+Intendente de Lima,Concejal de Lima nro 1,Concejal de Lima nro 2,Concejal de Lima nro 3
+Intendente de Middletown,Concejal de Middletown nro 1
+Intendente de West Palm Beach,Concejal de West Palm Beach nro 1,Concejal de West Palm Beach nro 2,Concejal de West Palm Beach nro 3,Concejal de West Palm Beach nro 4,Concejal de West Palm Beach nro 5
+Intendente de Rutland,Concejal de Rutland nro 1,Concejal de Rutland nro 2,Concejal de Rutland nro 3,Concejal de Rutland nro 4,Concejal de Rutland nro 5
+Intendente de Myrtle Beach,Concejal de Myrtle Beach nro 1,Concejal de Myrtle Beach nro 2,Concejal de Myrtle Beach nro 3,Concejal de Myrtle Beach nro 4,Concejal de Myrtle Beach nro 5
+Intendente de Appleton,Concejal de Appleton nro 1,Concejal de Appleton nro 2,Concejal de Appleton nro 3
+Intendente de Nampa,Concejal de Nampa nro 1,Concejal de Nampa nro 2,Concejal de Nampa nro 3,Concejal de Nampa nro 4,Concejal de Nampa nro 5,Concejal de Nampa nro 6
+Intendente de Eau Claire
+Intendente de McAlester
+Intendente de Miami Gardens,Concejal de Miami Gardens nro 1,Concejal de Miami Gardens nro 2,Concejal de Miami Gardens nro 3,Concejal de Miami Gardens nro 4
+Intendente de Sheridan,Concejal de Sheridan nro 1
+Intendente de Waltham,Concejal de Waltham nro 1,Concejal de Waltham nro 2,Concejal de Waltham nro 3,Concejal de Waltham nro 4,Concejal de Waltham nro 5,Concejal de Waltham nro 6
+Intendente de Barrow,Concejal de Barrow nro 1,Concejal de Barrow nro 2,Concejal de Barrow nro 3,Concejal de Barrow nro 4
+Intendente de Santa Clara,Concejal de Santa Clara nro 1,Concejal de Santa Clara nro 2,Concejal de Santa Clara nro 3
+Intendente de Westminster
+Intendente de Aliquippa,Concejal de Aliquippa nro 1
+Intendente de Scottsdale,Concejal de Scottsdale nro 1,Concejal de Scottsdale nro 2
+Intendente de Covington,Concejal de Covington nro 1,Concejal de Covington nro 2,Concejal de Covington nro 3
+Intendente de Waukegan
+Intendente de Billings,Concejal de Billings nro 1,Concejal de Billings nro 2,Concejal de Billings nro 3
+Intendente de Waco,Concejal de Waco nro 1,Concejal de Waco nro 2,Concejal de Waco nro 3
+Intendente de Mentor,Concejal de Mentor nro 1,Concejal de Mentor nro 2,Concejal de Mentor nro 3
+Intendente de Georgetown,Concejal de Georgetown nro 1,Concejal de Georgetown nro 2,Concejal de Georgetown nro 3
+Intendente de Moreno Valley,Concejal de Moreno Valley nro 1,Concejal de Moreno Valley nro 2,Concejal de Moreno Valley nro 3
+Intendente de Green River,Concejal de Green River nro 1,Concejal de Green River nro 2
+Intendente de Guayama,Concejal de Guayama nro 1,Concejal de Guayama nro 2,Concejal de Guayama nro 3,Concejal de Guayama nro 4,Concejal de Guayama nro 5,Concejal de Guayama nro 6
+Intendente de San Marino,Concejal de San Marino nro 1,Concejal de San Marino nro 2,Concejal de San Marino nro 3,Concejal de San Marino nro 4,Concejal de San Marino nro 5,Concejal de San Marino nro 6
+Intendente de New Iberia,Concejal de New Iberia nro 1,Concejal de New Iberia nro 2,Concejal de New Iberia nro 3,Concejal de New Iberia nro 4,Concejal de New Iberia nro 5
+Intendente de Newburyport,Concejal de Newburyport nro 1,Concejal de Newburyport nro 2,Concejal de Newburyport nro 3,Concejal de Newburyport nro 4,Concejal de Newburyport nro 5,Concejal de Newburyport nro 6
+Intendente de DeKalb,Concejal de DeKalb nro 1,Concejal de DeKalb nro 2
+Intendente de Flint,Concejal de Flint nro 1,Concejal de Flint nro 2,Concejal de Flint nro 3
+Intendente de Tustin,Concejal de Tustin nro 1,Concejal de Tustin nro 2,Concejal de Tustin nro 3,Concejal de Tustin nro 4,Concejal de Tustin nro 5
+Intendente de Salisbury,Concejal de Salisbury nro 1,Concejal de Salisbury nro 2,Concejal de Salisbury nro 3,Concejal de Salisbury nro 4,Concejal de Salisbury nro 5
+Intendente de Lancaster,Concejal de Lancaster nro 1,Concejal de Lancaster nro 2
+Intendente de Brunswick,Concejal de Brunswick nro 1
+Intendente de Ogdensburg,Concejal de Ogdensburg nro 1,Concejal de Ogdensburg nro 2
+Intendente de South Portland,Concejal de South Portland nro 1
+Intendente de Burlingame,Concejal de Burlingame nro 1,Concejal de Burlingame nro 2,Concejal de Burlingame nro 3,Concejal de Burlingame nro 4,Concejal de Burlingame nro 5,Concejal de Burlingame nro 6
+Intendente de Ocean City
+Intendente de Laughlin,Concejal de Laughlin nro 1,Concejal de Laughlin nro 2
+Intendente de Waterloo,Concejal de Waterloo nro 1,Concejal de Waterloo nro 2
+Intendente de Blythe,Concejal de Blythe nro 1,Concejal de Blythe nro 2,Concejal de Blythe nro 3,Concejal de Blythe nro 4,Concejal de Blythe nro 5,Concejal de Blythe nro 6
+Intendente de Compton,Concejal de Compton nro 1,Concejal de Compton nro 2,Concejal de Compton nro 3,Concejal de Compton nro 4,Concejal de Compton nro 5
+Intendente de Lafayette,Concejal de Lafayette nro 1,Concejal de Lafayette nro 2,Concejal de Lafayette nro 3,Concejal de Lafayette nro 4,Concejal de Lafayette nro 5
+Intendente de Hialeah
+Intendente de Eden Prairie
+Intendente de Kenosha
+Intendente de Saukville,Concejal de Saukville nro 1,Concejal de Saukville nro 2,Concejal de Saukville nro 3
+Intendente de Florence,Concejal de Florence nro 1,Concejal de Florence nro 2,Concejal de Florence nro 3,Concejal de Florence nro 4,Concejal de Florence nro 5
+Intendente de Hazleton,Concejal de Hazleton nro 1,Concejal de Hazleton nro 2,Concejal de Hazleton nro 3
+Intendente de Bridgeport
+Intendente de Placentia,Concejal de Placentia nro 1,Concejal de Placentia nro 2,Concejal de Placentia nro 3
+Intendente de Monroe,Concejal de Monroe nro 1,Concejal de Monroe nro 2,Concejal de Monroe nro 3,Concejal de Monroe nro 4,Concejal de Monroe nro 5
+Intendente de Springdale,Concejal de Springdale nro 1,Concejal de Springdale nro 2,Concejal de Springdale nro 3
+Intendente de Stanton
+Intendente de Chula Vista,Concejal de Chula Vista nro 1
+Intendente de Lawrence,Concejal de Lawrence nro 1,Concejal de Lawrence nro 2,Concejal de Lawrence nro 3,Concejal de Lawrence nro 4,Concejal de Lawrence nro 5
+Intendente de Greenville,Concejal de Greenville nro 1,Concejal de Greenville nro 2,Concejal de Greenville nro 3,Concejal de Greenville nro 4,Concejal de Greenville nro 5,Concejal de Greenville nro 6
+Intendente de Charlotte Amalie,Concejal de Charlotte Amalie nro 1,Concejal de Charlotte Amalie nro 2,Concejal de Charlotte Amalie nro 3
+Intendente de Woodruff
+Intendente de Agawam
+Intendente de Brea
+Intendente de Seaford,Concejal de Seaford nro 1
+Intendente de Saint Joseph,Concejal de Saint Joseph nro 1,Concejal de Saint Joseph nro 2,Concejal de Saint Joseph nro 3
+Intendente de El Cerrito,Concejal de El Cerrito nro 1,Concejal de El Cerrito nro 2,Concejal de El Cerrito nro 3,Concejal de El Cerrito nro 4,Concejal de El Cerrito nro 5,Concejal de El Cerrito nro 6
+Intendente de York,Concejal de York nro 1,Concejal de York nro 2,Concejal de York nro 3,Concejal de York nro 4,Concejal de York nro 5
+Intendente de Highland Park,Concejal de Highland Park nro 1,Concejal de Highland Park nro 2,Concejal de Highland Park nro 3
+Intendente de Woburn,Concejal de Woburn nro 1,Concejal de Woburn nro 2,Concejal de Woburn nro 3,Concejal de Woburn nro 4,Concejal de Woburn nro 5
+Intendente de Oswego,Concejal de Oswego nro 1,Concejal de Oswego nro 2,Concejal de Oswego nro 3,Concejal de Oswego nro 4,Concejal de Oswego nro 5,Concejal de Oswego nro 6
+Intendente de Rohnert Park,Concejal de Rohnert Park nro 1,Concejal de Rohnert Park nro 2,Concejal de Rohnert Park nro 3,Concejal de Rohnert Park nro 4
+Intendente de Rock Springs
+Intendente de St. Petersburg,Concejal de St. Petersburg nro 1,Concejal de St. Petersburg nro 2,Concejal de St. Petersburg nro 3,Concejal de St. Petersburg nro 4,Concejal de St. Petersburg nro 5,Concejal de St. Petersburg nro 6
+Intendente de Clairton,Concejal de Clairton nro 1,Concejal de Clairton nro 2,Concejal de Clairton nro 3,Concejal de Clairton nro 4,Concejal de Clairton nro 5
+Intendente de Idaho Falls,Concejal de Idaho Falls nro 1
+Intendente de Sunbury,Concejal de Sunbury nro 1,Concejal de Sunbury nro 2
+Intendente de Jacksonville,Concejal de Jacksonville nro 1,Concejal de Jacksonville nro 2,Concejal de Jacksonville nro 3,Concejal de Jacksonville nro 4
+Intendente de Macomb,Concejal de Macomb nro 1,Concejal de Macomb nro 2,Concejal de Macomb nro 3,Concejal de Macomb nro 4,Concejal de Macomb nro 5
+Intendente de Mesa,Concejal de Mesa nro 1,Concejal de Mesa nro 2,Concejal de Mesa nro 3,Concejal de Mesa nro 4
+Intendente de Miami,Concejal de Miami nro 1,Concejal de Miami nro 2,Concejal de Miami nro 3,Concejal de Miami nro 4
+Intendente de Erie,Concejal de Erie nro 1
+Intendente de Fort Lauderdale,Concejal de Fort Lauderdale nro 1,Concejal de Fort Lauderdale nro 2,Concejal de Fort Lauderdale nro 3,Concejal de Fort Lauderdale nro 4,Concejal de Fort Lauderdale nro 5
+Intendente de Fayetteville
+Intendente de Madison,Concejal de Madison nro 1,Concejal de Madison nro 2,Concejal de Madison nro 3,Concejal de Madison nro 4
+Intendente de Rye,Concejal de Rye nro 1,Concejal de Rye nro 2,Concejal de Rye nro 3,Concejal de Rye nro 4,Concejal de Rye nro 5
+Intendente de Fredericksburg,Concejal de Fredericksburg nro 1,Concejal de Fredericksburg nro 2,Concejal de Fredericksburg nro 3
+Intendente de Norman
+Intendente de Morgantown,Concejal de Morgantown nro 1,Concejal de Morgantown nro 2,Concejal de Morgantown nro 3,Concejal de Morgantown nro 4,Concejal de Morgantown nro 5
+Intendente de South Pasadena,Concejal de South Pasadena nro 1,Concejal de South Pasadena nro 2,Concejal de South Pasadena nro 3,Concejal de South Pasadena nro 4,Concejal de South Pasadena nro 5,Concejal de South Pasadena nro 6
+Intendente de Long Beach,Concejal de Long Beach nro 1,Concejal de Long Beach nro 2,Concejal de Long Beach nro 3,Concejal de Long Beach nro 4,Concejal de Long Beach nro 5
+Intendente de Glendora
+Intendente de Vernon,Concejal de Vernon nro 1,Concejal de Vernon nro 2
+Intendente de Oil City,Concejal de Oil City nro 1,Concejal de Oil City nro 2,Concejal de Oil City nro 3
+Intendente de New Britain,Concejal de New Britain nro 1,Concejal de New Britain nro 2
+Intendente de Rancho Cordova,Concejal de Rancho Cordova nro 1,Concejal de Rancho Cordova nro 2,Concejal de Rancho Cordova nro 3,Concejal de Rancho Cordova nro 4
+Intendente de Monongahela,Concejal de Monongahela nro 1,Concejal de Monongahela nro 2,Concejal de Monongahela nro 3
+Intendente de Waterbury,Concejal de Waterbury nro 1
+Intendente de Scottsbluff,Concejal de Scottsbluff nro 1,Concejal de Scottsbluff nro 2,Concejal de Scottsbluff nro 3
+Intendente de Dunkirk,Concejal de Dunkirk nro 1,Concejal de Dunkirk nro 2,Concejal de Dunkirk nro 3,Concejal de Dunkirk nro 4,Concejal de Dunkirk nro 5
+Intendente de Hermosa Beach,Concejal de Hermosa Beach nro 1
+Intendente de Austin,Concejal de Austin nro 1,Concejal de Austin nro 2
+Intendente de Des Moines,Concejal de Des Moines nro 1
+Intendente de Lawndale
+Intendente de Wausau,Concejal de Wausau nro 1
+Intendente de Kona,Concejal de Kona nro 1
+Intendente de Sandpoint,Concejal de Sandpoint nro 1,Concejal de Sandpoint nro 2,Concejal de Sandpoint nro 3,Concejal de Sandpoint nro 4
+Intendente de Fairmont,Concejal de Fairmont nro 1,Concejal de Fairmont nro 2,Concejal de Fairmont nro 3
+Intendente de Paducah
+Intendente de Tucson,Concejal de Tucson nro 1,Concejal de Tucson nro 2,Concejal de Tucson nro 3,Concejal de Tucson nro 4,Concejal de Tucson nro 5
+Intendente de North Platte,Concejal de North Platte nro 1,Concejal de North Platte nro 2,Concejal de North Platte nro 3
+Intendente de Juneau,Concejal de Juneau nro 1
+Intendente de Signal Hill
+Intendente de Claremore,Concejal de Claremore nro 1,Concejal de Claremore nro 2,Concejal de Claremore nro 3
+Intendente de Irvine
+Intendente de Lahaina,Concejal de Lahaina nro 1,Concejal de Lahaina nro 2,Concejal de Lahaina nro 3,Concejal de Lahaina nro 4,Concejal de Lahaina nro 5,Concejal de Lahaina nro 6
+Intendente de East Hartford,Concejal de East Hartford nro 1,Concejal de East Hartford nro 2,Concejal de East Hartford nro 3,Concejal de East Hartford nro 4
+Intendente de Maywood,Concejal de Maywood nro 1,Concejal de Maywood nro 2,Concejal de Maywood nro 3
+Intendente de Baytown,Concejal de Baytown nro 1,Concejal de Baytown nro 2,Concejal de Baytown nro 3
+Intendente de Decatur,Concejal de Decatur nro 1,Concejal de Decatur nro 2,Concejal de Decatur nro 3
+Intendente de Portsmouth,Concejal de Portsmouth nro 1,Concejal de Portsmouth nro 2
+Intendente de Las Cruces,Concejal de Las Cruces nro 1,Concejal de Las Cruces nro 2,Concejal de Las Cruces nro 3,Concejal de Las Cruces nro 4,Concejal de Las Cruces nro 5,Concejal de Las Cruces nro 6
+Intendente de Lander,Concejal de Lander nro 1,Concejal de Lander nro 2,Concejal de Lander nro 3
+Intendente de Fallon,Concejal de Fallon nro 1,Concejal de Fallon nro 2,Concejal de Fallon nro 3,Concejal de Fallon nro 4,Concejal de Fallon nro 5
+Intendente de Stockton
+Intendente de Boulder Junction,Concejal de Boulder Junction nro 1,Concejal de Boulder Junction nro 2,Concejal de Boulder Junction nro 3,Concejal de Boulder Junction nro 4
+Intendente de Orange,Concejal de Orange nro 1,Concejal de Orange nro 2
+Intendente de Newport Beach,Concejal de Newport Beach nro 1,Concejal de Newport Beach nro 2,Concejal de Newport Beach nro 3
+Intendente de Tonawanda
+Intendente de Fort Dodge,Concejal de Fort Dodge nro 1,Concejal de Fort Dodge nro 2,Concejal de Fort Dodge nro 3
+Intendente de Hollywood,Concejal de Hollywood nro 1
+Intendente de Phenix City,Concejal de Phenix City nro 1,Concejal de Phenix City nro 2
+Intendente de Vincennes,Concejal de Vincennes nro 1,Concejal de Vincennes nro 2,Concejal de Vincennes nro 3,Concejal de Vincennes nro 4,Concejal de Vincennes nro 5,Concejal de Vincennes nro 6
+Intendente de Arcadia,Concejal de Arcadia nro 1,Concejal de Arcadia nro 2,Concejal de Arcadia nro 3,Concejal de Arcadia nro 4
+Intendente de New Brunswick,Concejal de New Brunswick nro 1,Concejal de New Brunswick nro 2,Concejal de New Brunswick nro 3,Concejal de New Brunswick nro 4
+Intendente de Independence,Concejal de Independence nro 1,Concejal de Independence nro 2,Concejal de Independence nro 3
+Intendente de Bellflower,Concejal de Bellflower nro 1,Concejal de Bellflower nro 2,Concejal de Bellflower nro 3,Concejal de Bellflower nro 4,Concejal de Bellflower nro 5,Concejal de Bellflower nro 6
+Intendente de Dover,Concejal de Dover nro 1,Concejal de Dover nro 2,Concejal de Dover nro 3
+Intendente de Jersey City,Concejal de Jersey City nro 1
+Intendente de Duncan,Concejal de Duncan nro 1,Concejal de Duncan nro 2,Concejal de Duncan nro 3,Concejal de Duncan nro 4
+Intendente de Louisville,Concejal de Louisville nro 1,Concejal de Louisville nro 2,Concejal de Louisville nro 3,Concejal de Louisville nro 4,Concejal de Louisville nro 5,Concejal de Louisville nro 6
+Intendente de Jonesboro
+Intendente de Murray,Concejal de Murray nro 1,Concejal de Murray nro 2
+Intendente de Downey,Concejal de Downey nro 1,Concejal de Downey nro 2,Concejal de Downey nro 3,Concejal de Downey nro 4,Concejal de Downey nro 5
+Intendente de North Pole,Concejal de North Pole nro 1,Concejal de North Pole nro 2,Concejal de North Pole nro 3,Concejal de North Pole nro 4,Concejal de North Pole nro 5,Concejal de North Pole nro 6
+Intendente de Malden
+Intendente de Scarborough,Concejal de Scarborough nro 1,Concejal de Scarborough nro 2,Concejal de Scarborough nro 3,Concejal de Scarborough nro 4
+Intendente de Alpharetta,Concejal de Alpharetta nro 1,Concejal de Alpharetta nro 2,Concejal de Alpharetta nro 3,Concejal de Alpharetta nro 4,Concejal de Alpharetta nro 5,Concejal de Alpharetta nro 6
+Intendente de Hattiesburg,Concejal de Hattiesburg nro 1,Concejal de Hattiesburg nro 2,Concejal de Hattiesburg nro 3
+Intendente de Homer,Concejal de Homer nro 1,Concejal de Homer nro 2,Concejal de Homer nro 3,Concejal de Homer nro 4
+Intendente de San Jose,Concejal de San Jose nro 1,Concejal de San Jose nro 2
+Intendente de Ventura,Concejal de Ventura nro 1
+Intendente de Laguna Niguel,Concejal de Laguna Niguel nro 1
+Intendente de Cincinnati,Concejal de Cincinnati nro 1,Concejal de Cincinnati nro 2
+Intendente de North Little Rock,Concejal de North Little Rock nro 1
+Intendente de Meadville,Concejal de Meadville nro 1
+Intendente de Centennial,Concejal de Centennial nro 1,Concejal de Centennial nro 2,Concejal de Centennial nro 3
+Intendente de Broken Arrow,Concejal de Broken Arrow nro 1,Concejal de Broken Arrow nro 2
+Intendente de Vergennes,Concejal de Vergennes nro 1
+Intendente de Tyler,Concejal de Tyler nro 1,Concejal de Tyler nro 2
+Intendente de Geneva,Concejal de Geneva nro 1,Concejal de Geneva nro 2,Concejal de Geneva nro 3
+Intendente de Brigham City,Concejal de Brigham City nro 1,Concejal de Brigham City nro 2
+Intendente de New Orleans,Concejal de New Orleans nro 1
+Intendente de Rapid City,Concejal de Rapid City nro 1,Concejal de Rapid City nro 2
+Intendente de Alhambra,Concejal de Alhambra nro 1
+Intendente de Olean,Concejal de Olean nro 1,Concejal de Olean nro 2,Concejal de Olean nro 3,Concejal de Olean nro 4
+Intendente de Batavia,Concejal de Batavia nro 1,Concejal de Batavia nro 2,Concejal de Batavia nro 3
+Intendente de Wilson,Concejal de Wilson nro 1,Concejal de Wilson nro 2
+Intendente de Bozeman
+Intendente de Cedar Falls,Concejal de Cedar Falls nro 1,Concejal de Cedar Falls nro 2,Concejal de Cedar Falls nro 3,Concejal de Cedar Falls nro 4,Concejal de Cedar Falls nro 5,Concejal de Cedar Falls nro 6
+Intendente de Gloversville,Concejal de Gloversville nro 1,Concejal de Gloversville nro 2,Concejal de Gloversville nro 3
+Intendente de Utica,Concejal de Utica nro 1,Concejal de Utica nro 2
+Intendente de Moscow
+Intendente de Benton Harbor,Concejal de Benton Harbor nro 1,Concejal de Benton Harbor nro 2,Concejal de Benton Harbor nro 3,Concejal de Benton Harbor nro 4
+Intendente de Toledo,Concejal de Toledo nro 1
+Intendente de Malibu,Concejal de Malibu nro 1,Concejal de Malibu nro 2,Concejal de Malibu nro 3,Concejal de Malibu nro 4
+Intendente de Alexandria,Concejal de Alexandria nro 1,Concejal de Alexandria nro 2
+Intendente de Johnstown,Concejal de Johnstown nro 1,Concejal de Johnstown nro 2,Concejal de Johnstown nro 3,Concejal de Johnstown nro 4,Concejal de Johnstown nro 5
+Intendente de Beckley
+Intendente de Cranston,Concejal de Cranston nro 1,Concejal de Cranston nro 2,Concejal de Cranston nro 3,Concejal de Cranston nro 4,Concejal de Cranston nro 5
+Intendente de Blacksburg,Concejal de Blacksburg nro 1
+Intendente de Concord,Concejal de Concord nro 1,Concejal de Concord nro 2,Concejal de Concord nro 3,Concejal de Concord nro 4,Concejal de Concord nro 5,Concejal de Concord nro 6
+Intendente de Salinas,Concejal de Salinas nro 1
+Intendente de West Warwick,Concejal de West Warwick nro 1,Concejal de West Warwick nro 2,Concejal de West Warwick nro 3,Concejal de West Warwick nro 4,Concejal de West Warwick nro 5,Concejal de West Warwick nro 6
+Intendente de Detroit,Concejal de Detroit nro 1
+Intendente de Los Alamitos,Concejal de Los Alamitos nro 1,Concejal de Los Alamitos nro 2
+Intendente de North Las Vegas,Concejal de North Las Vegas nro 1,Concejal de North Las Vegas nro 2,Concejal de North Las Vegas nro 3,Concejal de North Las Vegas nro 4
+Intendente de Syracuse,Concejal de Syracuse nro 1,Concejal de Syracuse nro 2,Concejal de Syracuse nro 3,Concejal de Syracuse nro 4
+Intendente de Grand Island,Concejal de Grand Island nro 1,Concejal de Grand Island nro 2,Concejal de Grand Island nro 3
+Intendente de Muskegon,Concejal de Muskegon nro 1,Concejal de Muskegon nro 2,Concejal de Muskegon nro 3,Concejal de Muskegon nro 4,Concejal de Muskegon nro 5,Concejal de Muskegon nro 6
+Intendente de Ontario,Concejal de Ontario nro 1,Concejal de Ontario nro 2,Concejal de Ontario nro 3,Concejal de Ontario nro 4,Concejal de Ontario nro 5,Concejal de Ontario nro 6
+Intendente de Torrance,Concejal de Torrance nro 1
+Intendente de Sacramento,Concejal de Sacramento nro 1,Concejal de Sacramento nro 2,Concejal de Sacramento nro 3,Concejal de Sacramento nro 4,Concejal de Sacramento nro 5
+Intendente de San Fernando,Concejal de San Fernando nro 1,Concejal de San Fernando nro 2,Concejal de San Fernando nro 3,Concejal de San Fernando nro 4,Concejal de San Fernando nro 5
+Intendente de Ada,Concejal de Ada nro 1,Concejal de Ada nro 2,Concejal de Ada nro 3
+Intendente de Healdsburg,Concejal de Healdsburg nro 1,Concejal de Healdsburg nro 2,Concejal de Healdsburg nro 3,Concejal de Healdsburg nro 4
+Intendente de West Hollywood,Concejal de West Hollywood nro 1,Concejal de West Hollywood nro 2,Concejal de West Hollywood nro 3,Concejal de West Hollywood nro 4
+Intendente de Leominster,Concejal de Leominster nro 1,Concejal de Leominster nro 2,Concejal de Leominster nro 3,Concejal de Leominster nro 4,Concejal de Leominster nro 5
+Intendente de Kingsport,Concejal de Kingsport nro 1,Concejal de Kingsport nro 2,Concejal de Kingsport nro 3,Concejal de Kingsport nro 4,Concejal de Kingsport nro 5,Concejal de Kingsport nro 6
+Intendente de Rome,Concejal de Rome nro 1,Concejal de Rome nro 2,Concejal de Rome nro 3,Concejal de Rome nro 4,Concejal de Rome nro 5
+Intendente de Terre Haute,Concejal de Terre Haute nro 1
+Intendente de San Juan Capistrano,Concejal de San Juan Capistrano nro 1,Concejal de San Juan Capistrano nro 2
+Intendente de Kalamazoo,Concejal de Kalamazoo nro 1,Concejal de Kalamazoo nro 2,Concejal de Kalamazoo nro 3,Concejal de Kalamazoo nro 4,Concejal de Kalamazoo nro 5,Concejal de Kalamazoo nro 6
+Intendente de Turlock,Concejal de Turlock nro 1,Concejal de Turlock nro 2,Concejal de Turlock nro 3,Concejal de Turlock nro 4,Concejal de Turlock nro 5
+Intendente de Bell Gardens
+Intendente de Durango,Concejal de Durango nro 1,Concejal de Durango nro 2
+Intendente de Hampton,Concejal de Hampton nro 1,Concejal de Hampton nro 2,Concejal de Hampton nro 3,Concejal de Hampton nro 4,Concejal de Hampton nro 5,Concejal de Hampton nro 6
+Intendente de Santa Barbara,Concejal de Santa Barbara nro 1,Concejal de Santa Barbara nro 2,Concejal de Santa Barbara nro 3,Concejal de Santa Barbara nro 4,Concejal de Santa Barbara nro 5
+Intendente de Riverton,Concejal de Riverton nro 1,Concejal de Riverton nro 2,Concejal de Riverton nro 3
+Intendente de Dodge City,Concejal de Dodge City nro 1,Concejal de Dodge City nro 2,Concejal de Dodge City nro 3,Concejal de Dodge City nro 4,Concejal de Dodge City nro 5
+Intendente de Garden Grove,Concejal de Garden Grove nro 1,Concejal de Garden Grove nro 2,Concejal de Garden Grove nro 3,Concejal de Garden Grove nro 4,Concejal de Garden Grove nro 5
+Intendente de Suffolk,Concejal de Suffolk nro 1,Concejal de Suffolk nro 2,Concejal de Suffolk nro 3,Concejal de Suffolk nro 4,Concejal de Suffolk nro 5,Concejal de Suffolk nro 6
+Intendente de Roanoke,Concejal de Roanoke nro 1,Concejal de Roanoke nro 2
+Intendente de West Valley City,Concejal de West Valley City nro 1,Concejal de West Valley City nro 2,Concejal de West Valley City nro 3,Concejal de West Valley City nro 4,Concejal de West Valley City nro 5
+Intendente de Clearwater,Concejal de Clearwater nro 1,Concejal de Clearwater nro 2,Concejal de Clearwater nro 3,Concejal de Clearwater nro 4,Concejal de Clearwater nro 5
+Intendente de Beacon
+Intendente de Statesboro,Concejal de Statesboro nro 1,Concejal de Statesboro nro 2,Concejal de Statesboro nro 3
+Intendente de Clarksburg
+Intendente de Shreveport,Concejal de Shreveport nro 1,Concejal de Shreveport nro 2,Concejal de Shreveport nro 3,Concejal de Shreveport nro 4,Concejal de Shreveport nro 5
+Intendente de Sedalia,Concejal de Sedalia nro 1,Concejal de Sedalia nro 2,Concejal de Sedalia nro 3
+Intendente de Reading
+Intendente de Seward,Concejal de Seward nro 1,Concejal de Seward nro 2,Concejal de Seward nro 3,Concejal de Seward nro 4,Concejal de Seward nro 5,Concejal de Seward nro 6
+Intendente de Sutter Creek,Concejal de Sutter Creek nro 1,Concejal de Sutter Creek nro 2,Concejal de Sutter Creek nro 3,Concejal de Sutter Creek nro 4,Concejal de Sutter Creek nro 5,Concejal de Sutter Creek nro 6
+Intendente de Mankato
+Intendente de Fulton,Concejal de Fulton nro 1
+Intendente de The Dalles,Concejal de The Dalles nro 1
+Intendente de Cypress,Concejal de Cypress nro 1,Concejal de Cypress nro 2,Concejal de Cypress nro 3,Concejal de Cypress nro 4
+Intendente de Durant
+Intendente de Vineland
+Intendente de Duluth,Concejal de Duluth nro 1,Concejal de Duluth nro 2,Concejal de Duluth nro 3
+Intendente de Bandon
+Intendente de Plano,Concejal de Plano nro 1
+Intendente de Victoria,Concejal de Victoria nro 1,Concejal de Victoria nro 2,Concejal de Victoria nro 3,Concejal de Victoria nro 4,Concejal de Victoria nro 5
+Intendente de Huntsville,Concejal de Huntsville nro 1
+Intendente de Biloxi,Concejal de Biloxi nro 1,Concejal de Biloxi nro 2,Concejal de Biloxi nro 3,Concejal de Biloxi nro 4,Concejal de Biloxi nro 5
+Intendente de Monterey,Concejal de Monterey nro 1
+Intendente de Brookings,Concejal de Brookings nro 1,Concejal de Brookings nro 2
+Intendente de Wichita,Concejal de Wichita nro 1
+Intendente de Peekskill,Concejal de Peekskill nro 1,Concejal de Peekskill nro 2,Concejal de Peekskill nro 3,Concejal de Peekskill nro 4
+Intendente de Moraga,Concejal de Moraga nro 1,Concejal de Moraga nro 2,Concejal de Moraga nro 3,Concejal de Moraga nro 4,Concejal de Moraga nro 5,Concejal de Moraga nro 6
+Intendente de Aspen,Concejal de Aspen nro 1,Concejal de Aspen nro 2,Concejal de Aspen nro 3,Concejal de Aspen nro 4,Concejal de Aspen nro 5
+Intendente de Elizabeth City
+Intendente de Johnson City
+Intendente de Sturgis,Concejal de Sturgis nro 1
+Intendente de Cape Coral,Concejal de Cape Coral nro 1,Concejal de Cape Coral nro 2,Concejal de Cape Coral nro 3
+Intendente de Bandera,Concejal de Bandera nro 1,Concejal de Bandera nro 2,Concejal de Bandera nro 3,Concejal de Bandera nro 4,Concejal de Bandera nro 5
+Intendente de Gatlinburg,Concejal de Gatlinburg nro 1,Concejal de Gatlinburg nro 2,Concejal de Gatlinburg nro 3,Concejal de Gatlinburg nro 4
+Intendente de Pass Christian
+Intendente de Fort Wayne,Concejal de Fort Wayne nro 1,Concejal de Fort Wayne nro 2,Concejal de Fort Wayne nro 3,Concejal de Fort Wayne nro 4,Concejal de Fort Wayne nro 5,Concejal de Fort Wayne nro 6
+Intendente de Burbank,Concejal de Burbank nro 1,Concejal de Burbank nro 2,Concejal de Burbank nro 3,Concejal de Burbank nro 4,Concejal de Burbank nro 5
+Intendente de Menomonee Falls,Concejal de Menomonee Falls nro 1,Concejal de Menomonee Falls nro 2,Concejal de Menomonee Falls nro 3,Concejal de Menomonee Falls nro 4,Concejal de Menomonee Falls nro 5
+Intendente de Gallup,Concejal de Gallup nro 1,Concejal de Gallup nro 2,Concejal de Gallup nro 3
+Intendente de Wynne
+Intendente de Wheeling,Concejal de Wheeling nro 1,Concejal de Wheeling nro 2,Concejal de Wheeling nro 3,Concejal de Wheeling nro 4,Concejal de Wheeling nro 5
+Intendente de Darlington,Concejal de Darlington nro 1,Concejal de Darlington nro 2
+Intendente de La Verne,Concejal de La Verne nro 1,Concejal de La Verne nro 2
+Intendente de Chico,Concejal de Chico nro 1,Concejal de Chico nro 2,Concejal de Chico nro 3,Concejal de Chico nro 4,Concejal de Chico nro 5
+Intendente de Vacaville,Concejal de Vacaville nro 1,Concejal de Vacaville nro 2,Concejal de Vacaville nro 3,Concejal de Vacaville nro 4
+Intendente de Gulfport
+Intendente de Glens Falls,Concejal de Glens Falls nro 1,Concejal de Glens Falls nro 2
+Intendente de Pascagoula,Concejal de Pascagoula nro 1,Concejal de Pascagoula nro 2,Concejal de Pascagoula nro 3,Concejal de Pascagoula nro 4
+Intendente de West Hartford,Concejal de West Hartford nro 1,Concejal de West Hartford nro 2,Concejal de West Hartford nro 3
+Intendente de Plantation,Concejal de Plantation nro 1,Concejal de Plantation nro 2
+Intendente de Union City,Concejal de Union City nro 1,Concejal de Union City nro 2,Concejal de Union City nro 3,Concejal de Union City nro 4
+Intendente de Steubenville,Concejal de Steubenville nro 1,Concejal de Steubenville nro 2
+Intendente de Hawthorne,Concejal de Hawthorne nro 1,Concejal de Hawthorne nro 2,Concejal de Hawthorne nro 3,Concejal de Hawthorne nro 4,Concejal de Hawthorne nro 5
+Intendente de Akron,Concejal de Akron nro 1,Concejal de Akron nro 2,Concejal de Akron nro 3,Concejal de Akron nro 4
+Intendente de Marquette,Concejal de Marquette nro 1,Concejal de Marquette nro 2,Concejal de Marquette nro 3,Concejal de Marquette nro 4
+Intendente de Melrose,Concejal de Melrose nro 1,Concejal de Melrose nro 2,Concejal de Melrose nro 3,Concejal de Melrose nro 4,Concejal de Melrose nro 5,Concejal de Melrose nro 6
+Intendente de Weirton,Concejal de Weirton nro 1
+Intendente de Lansing,Concejal de Lansing nro 1
+Intendente de North Tonawanda,Concejal de North Tonawanda nro 1,Concejal de North Tonawanda nro 2,Concejal de North Tonawanda nro 3
+Intendente de Jeffersonville,Concejal de Jeffersonville nro 1
+Intendente de Buena Park,Concejal de Buena Park nro 1,Concejal de Buena Park nro 2,Concejal de Buena Park nro 3,Concejal de Buena Park nro 4,Concejal de Buena Park nro 5
+Intendente de Hoboken,Concejal de Hoboken nro 1,Concejal de Hoboken nro 2,Concejal de Hoboken nro 3,Concejal de Hoboken nro 4
+Intendente de Lower Burrell,Concejal de Lower Burrell nro 1,Concejal de Lower Burrell nro 2,Concejal de Lower Burrell nro 3,Concejal de Lower Burrell nro 4
+Intendente de Christiansted,Concejal de Christiansted nro 1
+Intendente de Tallahassee,Concejal de Tallahassee nro 1,Concejal de Tallahassee nro 2,Concejal de Tallahassee nro 3,Concejal de Tallahassee nro 4,Concejal de Tallahassee nro 5,Concejal de Tallahassee nro 6
+Intendente de Perth Amboy,Concejal de Perth Amboy nro 1,Concejal de Perth Amboy nro 2,Concejal de Perth Amboy nro 3,Concejal de Perth Amboy nro 4,Concejal de Perth Amboy nro 5
+Intendente de International Falls,Concejal de International Falls nro 1
+Intendente de Forest Lake,Concejal de Forest Lake nro 1,Concejal de Forest Lake nro 2,Concejal de Forest Lake nro 3,Concejal de Forest Lake nro 4,Concejal de Forest Lake nro 5
+Intendente de Kokomo,Concejal de Kokomo nro 1,Concejal de Kokomo nro 2,Concejal de Kokomo nro 3
+Intendente de New Albany
+Intendente de Lexington,Concejal de Lexington nro 1,Concejal de Lexington nro 2,Concejal de Lexington nro 3
+Intendente de Port Orford,Concejal de Port Orford nro 1,Concejal de Port Orford nro 2,Concejal de Port Orford nro 3,Concejal de Port Orford nro 4
+Intendente de Oak Ridge
+Intendente de Ponce,Concejal de Ponce nro 1,Concejal de Ponce nro 2,Concejal de Ponce nro 3,Concejal de Ponce nro 4,Concejal de Ponce nro 5,Concejal de Ponce nro 6
+Intendente de Valencia,Concejal de Valencia nro 1,Concejal de Valencia nro 2,Concejal de Valencia nro 3,Concejal de Valencia nro 4,Concejal de Valencia nro 5
+Intendente de Joplin,Concejal de Joplin nro 1,Concejal de Joplin nro 2,Concejal de Joplin nro 3,Concejal de Joplin nro 4
+Intendente de Lake Charles,Concejal de Lake Charles nro 1,Concejal de Lake Charles nro 2,Concejal de Lake Charles nro 3,Concejal de Lake Charles nro 4,Concejal de Lake Charles nro 5
+Intendente de Gary,Concejal de Gary nro 1
+Intendente de Meridian
+Intendente de Yigo,Concejal de Yigo nro 1,Concejal de Yigo nro 2,Concejal de Yigo nro 3,Concejal de Yigo nro 4,Concejal de Yigo nro 5
+Intendente de Auburn Hills,Concejal de Auburn Hills nro 1,Concejal de Auburn Hills nro 2,Concejal de Auburn Hills nro 3,Concejal de Auburn Hills nro 4,Concejal de Auburn Hills nro 5,Concejal de Auburn Hills nro 6
+Intendente de Webster Groves,Concejal de Webster Groves nro 1
+Intendente de Kahului,Concejal de Kahului nro 1,Concejal de Kahului nro 2
+Intendente de Elko,Concejal de Elko nro 1,Concejal de Elko nro 2
+Intendente de Dalton,Concejal de Dalton nro 1,Concejal de Dalton nro 2,Concejal de Dalton nro 3,Concejal de Dalton nro 4
+Intendente de Edina,Concejal de Edina nro 1,Concejal de Edina nro 2
+Intendente de Cheyenne,Concejal de Cheyenne nro 1,Concejal de Cheyenne nro 2,Concejal de Cheyenne nro 3,Concejal de Cheyenne nro 4,Concejal de Cheyenne nro 5,Concejal de Cheyenne nro 6
+Intendente de Sierra Madre,Concejal de Sierra Madre nro 1,Concejal de Sierra Madre nro 2,Concejal de Sierra Madre nro 3
+Intendente de Weymouth
+Intendente de Stevens Point,Concejal de Stevens Point nro 1,Concejal de Stevens Point nro 2,Concejal de Stevens Point nro 3
+Intendente de Jeannette,Concejal de Jeannette nro 1,Concejal de Jeannette nro 2,Concejal de Jeannette nro 3,Concejal de Jeannette nro 4,Concejal de Jeannette nro 5,Concejal de Jeannette nro 6
+Intendente de Roswell,Concejal de Roswell nro 1,Concejal de Roswell nro 2,Concejal de Roswell nro 3,Concejal de Roswell nro 4,Concejal de Roswell nro 5
+Intendente de Davenport,Concejal de Davenport nro 1,Concejal de Davenport nro 2,Concejal de Davenport nro 3
+Intendente de Pittsfield,Concejal de Pittsfield nro 1,Concejal de Pittsfield nro 2,Concejal de Pittsfield nro 3,Concejal de Pittsfield nro 4
+Intendente de Frederick,Concejal de Frederick nro 1,Concejal de Frederick nro 2,Concejal de Frederick nro 3
+Intendente de Fresno,Concejal de Fresno nro 1,Concejal de Fresno nro 2,Concejal de Fresno nro 3,Concejal de Fresno nro 4,Concejal de Fresno nro 5
+Intendente de Holyoke,Concejal de Holyoke nro 1
+Intendente de Littleton,Concejal de Littleton nro 1,Concejal de Littleton nro 2,Concejal de Littleton nro 3,Concejal de Littleton nro 4,Concejal de Littleton nro 5
+Intendente de Gloucester,Concejal de Gloucester nro 1,Concejal de Gloucester nro 2,Concejal de Gloucester nro 3,Concejal de Gloucester nro 4,Concejal de Gloucester nro 5,Concejal de Gloucester nro 6
+Intendente de Mequon,Concejal de Mequon nro 1,Concejal de Mequon nro 2,Concejal de Mequon nro 3,Concejal de Mequon nro 4
+Intendente de Rockford,Concejal de Rockford nro 1
+Intendente de Rialto,Concejal de Rialto nro 1,Concejal de Rialto nro 2,Concejal de Rialto nro 3,Concejal de Rialto nro 4,Concejal de Rialto nro 5,Concejal de Rialto nro 6
+Intendente de Vail
+Intendente de Duarte,Concejal de Duarte nro 1,Concejal de Duarte nro 2,Concejal de Duarte nro 3,Concejal de Duarte nro 4,Concejal de Duarte nro 5
+Intendente de Keene,Concejal de Keene nro 1
+Intendente de Kennewick,Concejal de Kennewick nro 1,Concejal de Kennewick nro 2
+Intendente de Oro Valley,Concejal de Oro Valley nro 1,Concejal de Oro Valley nro 2,Concejal de Oro Valley nro 3,Concejal de Oro Valley nro 4,Concejal de Oro Valley nro 5
+Intendente de Valdez,Concejal de Valdez nro 1,Concejal de Valdez nro 2,Concejal de Valdez nro 3,Concejal de Valdez nro 4,Concejal de Valdez nro 5
+Intendente de Nashville,Concejal de Nashville nro 1,Concejal de Nashville nro 2
+Intendente de Farmer City,Concejal de Farmer City nro 1,Concejal de Farmer City nro 2,Concejal de Farmer City nro 3,Concejal de Farmer City nro 4,Concejal de Farmer City nro 5
+Intendente de Spokane Valley,Concejal de Spokane Valley nro 1,Concejal de Spokane Valley nro 2,Concejal de Spokane Valley nro 3,Concejal de Spokane Valley nro 4
+Intendente de Plainfield,Concejal de Plainfield nro 1
+Intendente de Kennesaw,Concejal de Kennesaw nro 1
+Intendente de Stillwater,Concejal de Stillwater nro 1
+Intendente de Sioux City,Concejal de Sioux City nro 1,Concejal de Sioux City nro 2,Concejal de Sioux City nro 3
+Intendente de Twin Falls,Concejal de Twin Falls nro 1,Concejal de Twin Falls nro 2,Concejal de Twin Falls nro 3,Concejal de Twin Falls nro 4,Concejal de Twin Falls nro 5,Concejal de Twin Falls nro 6
+Intendente de Altoona,Concejal de Altoona nro 1,Concejal de Altoona nro 2
+Intendente de Monrovia,Concejal de Monrovia nro 1,Concejal de Monrovia nro 2,Concejal de Monrovia nro 3,Concejal de Monrovia nro 4,Concejal de Monrovia nro 5,Concejal de Monrovia nro 6
+Intendente de Pembroke Pines,Concejal de Pembroke Pines nro 1,Concejal de Pembroke Pines nro 2,Concejal de Pembroke Pines nro 3
+Intendente de Bentonville
+Intendente de Lebanon,Concejal de Lebanon nro 1,Concejal de Lebanon nro 2,Concejal de Lebanon nro 3,Concejal de Lebanon nro 4
+Intendente de Tampa,Concejal de Tampa nro 1,Concejal de Tampa nro 2,Concejal de Tampa nro 3,Concejal de Tampa nro 4,Concejal de Tampa nro 5
+Intendente de Rocky Mount,Concejal de Rocky Mount nro 1,Concejal de Rocky Mount nro 2,Concejal de Rocky Mount nro 3
+Intendente de Yukon,Concejal de Yukon nro 1,Concejal de Yukon nro 2,Concejal de Yukon nro 3
+Intendente de Gilette
+Intendente de Hutchinson,Concejal de Hutchinson nro 1,Concejal de Hutchinson nro 2,Concejal de Hutchinson nro 3,Concejal de Hutchinson nro 4
+Intendente de Laguna Woods,Concejal de Laguna Woods nro 1
+Intendente de Owensboro,Concejal de Owensboro nro 1,Concejal de Owensboro nro 2,Concejal de Owensboro nro 3,Concejal de Owensboro nro 4
+Intendente de Denver,Concejal de Denver nro 1,Concejal de Denver nro 2,Concejal de Denver nro 3
+Intendente de Carbondale
+Intendente de Michigan City,Concejal de Michigan City nro 1,Concejal de Michigan City nro 2,Concejal de Michigan City nro 3,Concejal de Michigan City nro 4,Concejal de Michigan City nro 5,Concejal de Michigan City nro 6
+Intendente de Bethlehem,Concejal de Bethlehem nro 1,Concejal de Bethlehem nro 2,Concejal de Bethlehem nro 3
+Intendente de Hot Springs
+Intendente de Mandan,Concejal de Mandan nro 1,Concejal de Mandan nro 2,Concejal de Mandan nro 3,Concejal de Mandan nro 4,Concejal de Mandan nro 5,Concejal de Mandan nro 6
+Intendente de San Clemente,Concejal de San Clemente nro 1,Concejal de San Clemente nro 2,Concejal de San Clemente nro 3,Concejal de San Clemente nro 4,Concejal de San Clemente nro 5
+Intendente de Commerce,Concejal de Commerce nro 1,Concejal de Commerce nro 2,Concejal de Commerce nro 3,Concejal de Commerce nro 4,Concejal de Commerce nro 5,Concejal de Commerce nro 6
+Intendente de Temecula,Concejal de Temecula nro 1,Concejal de Temecula nro 2,Concejal de Temecula nro 3
+Intendente de Pittsburgh,Concejal de Pittsburgh nro 1,Concejal de Pittsburgh nro 2,Concejal de Pittsburgh nro 3,Concejal de Pittsburgh nro 4,Concejal de Pittsburgh nro 5
+Intendente de New Bedford
+Intendente de Shawnee,Concejal de Shawnee nro 1,Concejal de Shawnee nro 2,Concejal de Shawnee nro 3,Concejal de Shawnee nro 4
+Intendente de Carolina,Concejal de Carolina nro 1,Concejal de Carolina nro 2
+Intendente de South Bend,Concejal de South Bend nro 1,Concejal de South Bend nro 2
+Intendente de Omaha,Concejal de Omaha nro 1,Concejal de Omaha nro 2,Concejal de Omaha nro 3,Concejal de Omaha nro 4,Concejal de Omaha nro 5,Concejal de Omaha nro 6
+Intendente de Tuscaloosa,Concejal de Tuscaloosa nro 1,Concejal de Tuscaloosa nro 2,Concejal de Tuscaloosa nro 3,Concejal de Tuscaloosa nro 4
+Intendente de Northampton,Concejal de Northampton nro 1
+Intendente de Merizo,Concejal de Merizo nro 1,Concejal de Merizo nro 2,Concejal de Merizo nro 3,Concejal de Merizo nro 4
+Intendente de Alamogordo,Concejal de Alamogordo nro 1,Concejal de Alamogordo nro 2,Concejal de Alamogordo nro 3,Concejal de Alamogordo nro 4
+Intendente de Aliso Viejo,Concejal de Aliso Viejo nro 1,Concejal de Aliso Viejo nro 2,Concejal de Aliso Viejo nro 3,Concejal de Aliso Viejo nro 4
+Intendente de West Bend,Concejal de West Bend nro 1
+Intendente de New Rochelle,Concejal de New Rochelle nro 1,Concejal de New Rochelle nro 2
+Intendente de Coral Springs,Concejal de Coral Springs nro 1,Concejal de Coral Springs nro 2,Concejal de Coral Springs nro 3,Concejal de Coral Springs nro 4,Concejal de Coral Springs nro 5,Concejal de Coral Springs nro 6
+Intendente de Butte,Concejal de Butte nro 1,Concejal de Butte nro 2,Concejal de Butte nro 3,Concejal de Butte nro 4,Concejal de Butte nro 5,Concejal de Butte nro 6
+Intendente de North Chicago,Concejal de North Chicago nro 1
+Intendente de La Puente
+Intendente de St. Marys,Concejal de St. Marys nro 1,Concejal de St. Marys nro 2,Concejal de St. Marys nro 3,Concejal de St. Marys nro 4,Concejal de St. Marys nro 5,Concejal de St. Marys nro 6
+Intendente de Warner Robins,Concejal de Warner Robins nro 1,Concejal de Warner Robins nro 2,Concejal de Warner Robins nro 3,Concejal de Warner Robins nro 4
+Intendente de Pullman
+Intendente de Kenner,Concejal de Kenner nro 1
+Intendente de Scranton,Concejal de Scranton nro 1,Concejal de Scranton nro 2,Concejal de Scranton nro 3
+Intendente de Hartland,Concejal de Hartland nro 1,Concejal de Hartland nro 2
+Intendente de San Luis Obispo,Concejal de San Luis Obispo nro 1
+Intendente de Greenfield,Concejal de Greenfield nro 1,Concejal de Greenfield nro 2,Concejal de Greenfield nro 3,Concejal de Greenfield nro 4,Concejal de Greenfield nro 5
+Intendente de Bessemer,Concejal de Bessemer nro 1,Concejal de Bessemer nro 2,Concejal de Bessemer nro 3,Concejal de Bessemer nro 4,Concejal de Bessemer nro 5
+Intendente de Roseville,Concejal de Roseville nro 1,Concejal de Roseville nro 2,Concejal de Roseville nro 3
+Intendente de Ardmore,Concejal de Ardmore nro 1
+Intendente de Troy
+Intendente de Clarksville,Concejal de Clarksville nro 1,Concejal de Clarksville nro 2
+Intendente de Port St. Lucie,Concejal de Port St. Lucie nro 1,Concejal de Port St. Lucie nro 2,Concejal de Port St. Lucie nro 3,Concejal de Port St. Lucie nro 4
+Intendente de Cerritos
+Intendente de Peru,Concejal de Peru nro 1,Concejal de Peru nro 2
+Intendente de Walnut,Concejal de Walnut nro 1,Concejal de Walnut nro 2,Concejal de Walnut nro 3,Concejal de Walnut nro 4,Concejal de Walnut nro 5,Concejal de Walnut nro 6
+Intendente de Riverside,Concejal de Riverside nro 1,Concejal de Riverside nro 2,Concejal de Riverside nro 3
+Intendente de Hidden Hills,Concejal de Hidden Hills nro 1,Concejal de Hidden Hills nro 2,Concejal de Hidden Hills nro 3,Concejal de Hidden Hills nro 4,Concejal de Hidden Hills nro 5
+Intendente de Sugar Land,Concejal de Sugar Land nro 1
+Intendente de Casper,Concejal de Casper nro 1,Concejal de Casper nro 2
+Intendente de Aurora,Concejal de Aurora nro 1,Concejal de Aurora nro 2,Concejal de Aurora nro 3,Concejal de Aurora nro 4,Concejal de Aurora nro 5,Concejal de Aurora nro 6
+Intendente de Paramount,Concejal de Paramount nro 1,Concejal de Paramount nro 2
+Intendente de Belpre,Concejal de Belpre nro 1,Concejal de Belpre nro 2,Concejal de Belpre nro 3,Concejal de Belpre nro 4
+Intendente de Corry,Concejal de Corry nro 1,Concejal de Corry nro 2,Concejal de Corry nro 3,Concejal de Corry nro 4,Concejal de Corry nro 5
+Intendente de Redondo Beach,Concejal de Redondo Beach nro 1,Concejal de Redondo Beach nro 2
+Intendente de Baton Rouge,Concejal de Baton Rouge nro 1,Concejal de Baton Rouge nro 2
+Intendente de Atlantic City,Concejal de Atlantic City nro 1,Concejal de Atlantic City nro 2,Concejal de Atlantic City nro 3,Concejal de Atlantic City nro 4
+Intendente de Nome,Concejal de Nome nro 1
+Intendente de Beaumont,Concejal de Beaumont nro 1,Concejal de Beaumont nro 2,Concejal de Beaumont nro 3,Concejal de Beaumont nro 4,Concejal de Beaumont nro 5
+Intendente de Irving
+Intendente de Grambling,Concejal de Grambling nro 1,Concejal de Grambling nro 2,Concejal de Grambling nro 3
+Intendente de Oxnard,Concejal de Oxnard nro 1,Concejal de Oxnard nro 2,Concejal de Oxnard nro 3,Concejal de Oxnard nro 4
+Intendente de Moorhead,Concejal de Moorhead nro 1
+Intendente de Midland,Concejal de Midland nro 1,Concejal de Midland nro 2,Concejal de Midland nro 3
+Intendente de Mechanicville,Concejal de Mechanicville nro 1
+Intendente de Galveston,Concejal de Galveston nro 1,Concejal de Galveston nro 2
+Intendente de Kent,Concejal de Kent nro 1,Concejal de Kent nro 2,Concejal de Kent nro 3,Concejal de Kent nro 4,Concejal de Kent nro 5,Concejal de Kent nro 6
+Intendente de Nacogdoches,Concejal de Nacogdoches nro 1,Concejal de Nacogdoches nro 2
+Intendente de La Palma,Concejal de La Palma nro 1,Concejal de La Palma nro 2
+Intendente de Agat,Concejal de Agat nro 1,Concejal de Agat nro 2,Concejal de Agat nro 3,Concejal de Agat nro 4
+Intendente de Indio
+Intendente de Cary,Concejal de Cary nro 1,Concejal de Cary nro 2,Concejal de Cary nro 3,Concejal de Cary nro 4,Concejal de Cary nro 5,Concejal de Cary nro 6
+Intendente de Newport News,Concejal de Newport News nro 1,Concejal de Newport News nro 2,Concejal de Newport News nro 3,Concejal de Newport News nro 4
+Intendente de Cody
+Intendente de Chicopee,Concejal de Chicopee nro 1,Concejal de Chicopee nro 2,Concejal de Chicopee nro 3,Concejal de Chicopee nro 4
+Intendente de Derby,Concejal de Derby nro 1
+Intendente de Mission Viejo,Concejal de Mission Viejo nro 1,Concejal de Mission Viejo nro 2,Concejal de Mission Viejo nro 3,Concejal de Mission Viejo nro 4
+Intendente de Cedar Rapids
+Intendente de Del Rio,Concejal de Del Rio nro 1,Concejal de Del Rio nro 2,Concejal de Del Rio nro 3,Concejal de Del Rio nro 4,Concejal de Del Rio nro 5,Concejal de Del Rio nro 6
+Intendente de Wichita Falls,Concejal de Wichita Falls nro 1,Concejal de Wichita Falls nro 2,Concejal de Wichita Falls nro 3,Concejal de Wichita Falls nro 4,Concejal de Wichita Falls nro 5,Concejal de Wichita Falls nro 6
+Intendente de Livonia,Concejal de Livonia nro 1,Concejal de Livonia nro 2
+Intendente de Sun Valley,Concejal de Sun Valley nro 1,Concejal de Sun Valley nro 2
+Intendente de Redding,Concejal de Redding nro 1,Concejal de Redding nro 2
+Intendente de San Juan,Concejal de San Juan nro 1,Concejal de San Juan nro 2,Concejal de San Juan nro 3,Concejal de San Juan nro 4
+Intendente de Redlands,Concejal de Redlands nro 1,Concejal de Redlands nro 2
+Intendente de Buffalo,Concejal de Buffalo nro 1,Concejal de Buffalo nro 2,Concejal de Buffalo nro 3,Concejal de Buffalo nro 4,Concejal de Buffalo nro 5
+Intendente de Chandler,Concejal de Chandler nro 1,Concejal de Chandler nro 2,Concejal de Chandler nro 3,Concejal de Chandler nro 4,Concejal de Chandler nro 5,Concejal de Chandler nro 6
+Intendente de Bakersfield,Concejal de Bakersfield nro 1,Concejal de Bakersfield nro 2,Concejal de Bakersfield nro 3
+Intendente de Henderson,Concejal de Henderson nro 1,Concejal de Henderson nro 2,Concejal de Henderson nro 3
+Intendente de Everett,Concejal de Everett nro 1,Concejal de Everett nro 2,Concejal de Everett nro 3
+Intendente de Cedar City,Concejal de Cedar City nro 1
+Intendente de Newton,Concejal de Newton nro 1
+Intendente de Claremont,Concejal de Claremont nro 1,Concejal de Claremont nro 2,Concejal de Claremont nro 3
+Intendente de Cape Girardeau,Concejal de Cape Girardeau nro 1,Concejal de Cape Girardeau nro 2,Concejal de Cape Girardeau nro 3,Concejal de Cape Girardeau nro 4,Concejal de Cape Girardeau nro 5
+Intendente de Kankakee,Concejal de Kankakee nro 1,Concejal de Kankakee nro 2,Concejal de Kankakee nro 3
+Intendente de High Point
+Intendente de Pasadena
+Intendente de West Lafayette,Concejal de West Lafayette nro 1,Concejal de West Lafayette nro 2,Concejal de West Lafayette nro 3,Concejal de West Lafayette nro 4
+Intendente de Williston,Concejal de Williston nro 1,Concejal de Williston nro 2,Concejal de Williston nro 3,Concejal de Williston nro 4
+Intendente de Yuma,Concejal de Yuma nro 1,Concejal de Yuma nro 2,Concejal de Yuma nro 3,Concejal de Yuma nro 4
+Intendente de Cedarburg,Concejal de Cedarburg nro 1,Concejal de Cedarburg nro 2,Concejal de Cedarburg nro 3,Concejal de Cedarburg nro 4
+Intendente de Corpus Christi,Concejal de Corpus Christi nro 1,Concejal de Corpus Christi nro 2,Concejal de Corpus Christi nro 3,Concejal de Corpus Christi nro 4,Concejal de Corpus Christi nro 5,Concejal de Corpus Christi nro 6
+Intendente de Warwick,Concejal de Warwick nro 1,Concejal de Warwick nro 2,Concejal de Warwick nro 3,Concejal de Warwick nro 4
+Intendente de Williamsburg,Concejal de Williamsburg nro 1
+Intendente de Parker,Concejal de Parker nro 1,Concejal de Parker nro 2,Concejal de Parker nro 3
+Intendente de Parkersburg,Concejal de Parkersburg nro 1
+Intendente de Stafford,Concejal de Stafford nro 1,Concejal de Stafford nro 2,Concejal de Stafford nro 3,Concejal de Stafford nro 4
+Intendente de Egg Harbor,Concejal de Egg Harbor nro 1,Concejal de Egg Harbor nro 2
+Intendente de Costa Mesa,Concejal de Costa Mesa nro 1,Concejal de Costa Mesa nro 2
+Intendente de Urbana,Concejal de Urbana nro 1,Concejal de Urbana nro 2,Concejal de Urbana nro 3,Concejal de Urbana nro 4
+Intendente de Staunton,Concejal de Staunton nro 1
+Intendente de El Paso,Concejal de El Paso nro 1,Concejal de El Paso nro 2
+Intendente de Shamokin,Concejal de Shamokin nro 1,Concejal de Shamokin nro 2,Concejal de Shamokin nro 3,Concejal de Shamokin nro 4,Concejal de Shamokin nro 5
+Intendente de Martinsburg
+Intendente de Williamsport,Concejal de Williamsport nro 1,Concejal de Williamsport nro 2,Concejal de Williamsport nro 3,Concejal de Williamsport nro 4,Concejal de Williamsport nro 5
+Intendente de Goose Creek
+Intendente de Norton,Concejal de Norton nro 1,Concejal de Norton nro 2
+Intendente de Deadwood,Concejal de Deadwood nro 1,Concejal de Deadwood nro 2,Concejal de Deadwood nro 3,Concejal de Deadwood nro 4,Concejal de Deadwood nro 5,Concejal de Deadwood nro 6
+Intendente de Radford,Concejal de Radford nro 1,Concejal de Radford nro 2
+Intendente de La Mirada,Concejal de La Mirada nro 1,Concejal de La Mirada nro 2,Concejal de La Mirada nro 3,Concejal de La Mirada nro 4,Concejal de La Mirada nro 5,Concejal de La Mirada nro 6
+Intendente de Superior
+Intendente de Hackensack,Concejal de Hackensack nro 1,Concejal de Hackensack nro 2
+Intendente de Revere,Concejal de Revere nro 1,Concejal de Revere nro 2,Concejal de Revere nro 3,Concejal de Revere nro 4,Concejal de Revere nro 5
+Intendente de Lawrenceville,Concejal de Lawrenceville nro 1,Concejal de Lawrenceville nro 2,Concejal de Lawrenceville nro 3,Concejal de Lawrenceville nro 4,Concejal de Lawrenceville nro 5,Concejal de Lawrenceville nro 6
+Intendente de Oshkosh,Concejal de Oshkosh nro 1,Concejal de Oshkosh nro 2
+Intendente de Champaign
+Intendente de North Charleston,Concejal de North Charleston nro 1
+Intendente de Hastings,Concejal de Hastings nro 1,Concejal de Hastings nro 2,Concejal de Hastings nro 3,Concejal de Hastings nro 4
+Intendente de Nashua,Concejal de Nashua nro 1,Concejal de Nashua nro 2,Concejal de Nashua nro 3,Concejal de Nashua nro 4
+Intendente de Newark,Concejal de Newark nro 1
+Intendente de San Diego,Concejal de San Diego nro 1,Concejal de San Diego nro 2,Concejal de San Diego nro 3
+Intendente de Artesia,Concejal de Artesia nro 1,Concejal de Artesia nro 2,Concejal de Artesia nro 3,Concejal de Artesia nro 4,Concejal de Artesia nro 5,Concejal de Artesia nro 6
+Intendente de Bossier City
+Intendente de Pittston,Concejal de Pittston nro 1,Concejal de Pittston nro 2,Concejal de Pittston nro 3,Concejal de Pittston nro 4,Concejal de Pittston nro 5
+Intendente de Anderson,Concejal de Anderson nro 1
+Intendente de Carrollton,Concejal de Carrollton nro 1
+Intendente de Waycross,Concejal de Waycross nro 1,Concejal de Waycross nro 2,Concejal de Waycross nro 3,Concejal de Waycross nro 4,Concejal de Waycross nro 5
+Intendente de Seal Beach,Concejal de Seal Beach nro 1,Concejal de Seal Beach nro 2,Concejal de Seal Beach nro 3
+Intendente de Atlanta,Concejal de Atlanta nro 1,Concejal de Atlanta nro 2
+Intendente de Chester,Concejal de Chester nro 1,Concejal de Chester nro 2,Concejal de Chester nro 3,Concejal de Chester nro 4
+Intendente de Lakeland,Concejal de Lakeland nro 1
+Intendente de Paterson,Concejal de Paterson nro 1,Concejal de Paterson nro 2,Concejal de Paterson nro 3,Concejal de Paterson nro 4,Concejal de Paterson nro 5,Concejal de Paterson nro 6
+Intendente de Bellingham,Concejal de Bellingham nro 1,Concejal de Bellingham nro 2,Concejal de Bellingham nro 3,Concejal de Bellingham nro 4
+Intendente de Coos Bay,Concejal de Coos Bay nro 1,Concejal de Coos Bay nro 2
+Intendente de Texarkana,Concejal de Texarkana nro 1,Concejal de Texarkana nro 2,Concejal de Texarkana nro 3
+Intendente de Abilene,Concejal de Abilene nro 1,Concejal de Abilene nro 2,Concejal de Abilene nro 3,Concejal de Abilene nro 4
+Intendente de Uniontown,Concejal de Uniontown nro 1,Concejal de Uniontown nro 2,Concejal de Uniontown nro 3,Concejal de Uniontown nro 4
+Intendente de Helena,Concejal de Helena nro 1,Concejal de Helena nro 2,Concejal de Helena nro 3
+Intendente de Fullerton,Concejal de Fullerton nro 1,Concejal de Fullerton nro 2
+Intendente de Fond du Lac,Concejal de Fond du Lac nro 1,Concejal de Fond du Lac nro 2,Concejal de Fond du Lac nro 3,Concejal de Fond du Lac nro 4
+Intendente de Beverly,Concejal de Beverly nro 1,Concejal de Beverly nro 2,Concejal de Beverly nro 3,Concejal de Beverly nro 4,Concejal de Beverly nro 5
+Intendente de Texas City,Concejal de Texas City nro 1,Concejal de Texas City nro 2,Concejal de Texas City nro 3
+Intendente de Pico Rivera,Concejal de Pico Rivera nro 1,Concejal de Pico Rivera nro 2,Concejal de Pico Rivera nro 3,Concejal de Pico Rivera nro 4
+Intendente de Hamilton,Concejal de Hamilton nro 1,Concejal de Hamilton nro 2,Concejal de Hamilton nro 3,Concejal de Hamilton nro 4,Concejal de Hamilton nro 5,Concejal de Hamilton nro 6
+Intendente de Lake Forest,Concejal de Lake Forest nro 1,Concejal de Lake Forest nro 2,Concejal de Lake Forest nro 3
+Intendente de Fort Smith,Concejal de Fort Smith nro 1,Concejal de Fort Smith nro 2,Concejal de Fort Smith nro 3,Concejal de Fort Smith nro 4
+Intendente de Evansville,Concejal de Evansville nro 1,Concejal de Evansville nro 2,Concejal de Evansville nro 3,Concejal de Evansville nro 4,Concejal de Evansville nro 5
+Intendente de Great Falls
+Intendente de Sioux Falls,Concejal de Sioux Falls nro 1
+Intendente de Santa Monica,Concejal de Santa Monica nro 1,Concejal de Santa Monica nro 2
+Intendente de East St. Louis
+Intendente de Brownsville,Concejal de Brownsville nro 1,Concejal de Brownsville nro 2,Concejal de Brownsville nro 3,Concejal de Brownsville nro 4,Concejal de Brownsville nro 5
+Intendente de Worland,Concejal de Worland nro 1,Concejal de Worland nro 2
+Intendente de Princeton,Concejal de Princeton nro 1
+Intendente de Topeka,Concejal de Topeka nro 1,Concejal de Topeka nro 2
+Intendente de Schaumburg,Concejal de Schaumburg nro 1,Concejal de Schaumburg nro 2
+Intendente de Schenectady
+Intendente de Ithaca
+Intendente de Lodi,Concejal de Lodi nro 1,Concejal de Lodi nro 2,Concejal de Lodi nro 3
+Intendente de Sault Ste. Marie,Concejal de Sault Ste. Marie nro 1,Concejal de Sault Ste. Marie nro 2,Concejal de Sault Ste. Marie nro 3,Concejal de Sault Ste. Marie nro 4
+Intendente de Sandy,Concejal de Sandy nro 1,Concejal de Sandy nro 2,Concejal de Sandy nro 3,Concejal de Sandy nro 4
+Intendente de Baltimore
+Intendente de Chesapeake,Concejal de Chesapeake nro 1,Concejal de Chesapeake nro 2,Concejal de Chesapeake nro 3,Concejal de Chesapeake nro 4,Concejal de Chesapeake nro 5
+Intendente de Moore,Concejal de Moore nro 1,Concejal de Moore nro 2,Concejal de Moore nro 3
+Intendente de Harrisburg,Concejal de Harrisburg nro 1,Concejal de Harrisburg nro 2,Concejal de Harrisburg nro 3
+Intendente de Logan,Concejal de Logan nro 1,Concejal de Logan nro 2
+Intendente de Ypsilanti,Concejal de Ypsilanti nro 1,Concejal de Ypsilanti nro 2,Concejal de Ypsilanti nro 3,Concejal de Ypsilanti nro 4,Concejal de Ypsilanti nro 5
+Intendente de Stamford,Concejal de Stamford nro 1,Concejal de Stamford nro 2,Concejal de Stamford nro 3,Concejal de Stamford nro 4
+Intendente de Hayward,Concejal de Hayward nro 1,Concejal de Hayward nro 2,Concejal de Hayward nro 3,Concejal de Hayward nro 4
+Intendente de Enfield,Concejal de Enfield nro 1
+Intendente de Lowell,Concejal de Lowell nro 1
+Intendente de Sierra Vista,Concejal de Sierra Vista nro 1,Concejal de Sierra Vista nro 2,Concejal de Sierra Vista nro 3
+Intendente de Rosemead,Concejal de Rosemead nro 1,Concejal de Rosemead nro 2,Concejal de Rosemead nro 3,Concejal de Rosemead nro 4,Concejal de Rosemead nro 5
+Intendente de Attleboro,Concejal de Attleboro nro 1,Concejal de Attleboro nro 2,Concejal de Attleboro nro 3,Concejal de Attleboro nro 4
+Intendente de Natchez,Concejal de Natchez nro 1,Concejal de Natchez nro 2
+Intendente de Thibodaux,Concejal de Thibodaux nro 1,Concejal de Thibodaux nro 2,Concejal de Thibodaux nro 3,Concejal de Thibodaux nro 4,Concejal de Thibodaux nro 5
+Intendente de Sister Bay,Concejal de Sister Bay nro 1,Concejal de Sister Bay nro 2,Concejal de Sister Bay nro 3,Concejal de Sister Bay nro 4,Concejal de Sister Bay nro 5
+Intendente de Middlebury,Concejal de Middlebury nro 1,Concejal de Middlebury nro 2,Concejal de Middlebury nro 3,Concejal de Middlebury nro 4,Concejal de Middlebury nro 5
+Intendente de Carson,Concejal de Carson nro 1
+Intendente de Marlborough,Concejal de Marlborough nro 1,Concejal de Marlborough nro 2,Concejal de Marlborough nro 3,Concejal de Marlborough nro 4,Concejal de Marlborough nro 5
+Intendente de Chicago,Concejal de Chicago nro 1,Concejal de Chicago nro 2,Concejal de Chicago nro 3
+Intendente de Camden,Concejal de Camden nro 1,Concejal de Camden nro 2,Concejal de Camden nro 3,Concejal de Camden nro 4
+Intendente de Connellsville,Concejal de Connellsville nro 1,Concejal de Connellsville nro 2,Concejal de Connellsville nro 3
+Intendente de Minneapolis,Concejal de Minneapolis nro 1,Concejal de Minneapolis nro 2,Concejal de Minneapolis nro 3,Concejal de Minneapolis nro 4,Concejal de Minneapolis nro 5
+Intendente de Burlington,Concejal de Burlington nro 1
+Intendente de Plattsburgh,Concejal de Plattsburgh nro 1,Concejal de Plattsburgh nro 2,Concejal de Plattsburgh nro 3,Concejal de Plattsburgh nro 4
+Intendente de Saint Louis,Concejal de Saint Louis nro 1,Concejal de Saint Louis nro 2,Concejal de Saint Louis nro 3
+Intendente de Providence
+Intendente de LaGrange,Concejal de LaGrange nro 1
+Intendente de Montebello,Concejal de Montebello nro 1
+Intendente de Bismarck,Concejal de Bismarck nro 1,Concejal de Bismarck nro 2,Concejal de Bismarck nro 3
+Intendente de Hoover,Concejal de Hoover nro 1,Concejal de Hoover nro 2,Concejal de Hoover nro 3,Concejal de Hoover nro 4,Concejal de Hoover nro 5,Concejal de Hoover nro 6
+Intendente de Saint Paul,Concejal de Saint Paul nro 1,Concejal de Saint Paul nro 2,Concejal de Saint Paul nro 3,Concejal de Saint Paul nro 4,Concejal de Saint Paul nro 5
+Intendente de Simi Valley,Concejal de Simi Valley nro 1,Concejal de Simi Valley nro 2,Concejal de Simi Valley nro 3,Concejal de Simi Valley nro 4,Concejal de Simi Valley nro 5,Concejal de Simi Valley nro 6
+Intendente de Warren,Concejal de Warren nro 1,Concejal de Warren nro 2,Concejal de Warren nro 3,Concejal de Warren nro 4,Concejal de Warren nro 5
+Intendente de Agoura Hills,Concejal de Agoura Hills nro 1,Concejal de Agoura Hills nro 2,Concejal de Agoura Hills nro 3,Concejal de Agoura Hills nro 4,Concejal de Agoura Hills nro 5
+Intendente de Ogden
+Intendente de Methuen,Concejal de Methuen nro 1,Concejal de Methuen nro 2,Concejal de Methuen nro 3,Concejal de Methuen nro 4,Concejal de Methuen nro 5,Concejal de Methuen nro 6
+Intendente de Gainesville,Concejal de Gainesville nro 1,Concejal de Gainesville nro 2
+Intendente de Hannibal,Concejal de Hannibal nro 1,Concejal de Hannibal nro 2,Concejal de Hannibal nro 3
+Intendente de New York,Concejal de New York nro 1,Concejal de New York nro 2,Concejal de New York nro 3,Concejal de New York nro 4
+Intendente de Saratoga Springs,Concejal de Saratoga Springs nro 1,Concejal de Saratoga Springs nro 2,Concejal de Saratoga Springs nro 3,Concejal de Saratoga Springs nro 4,Concejal de Saratoga Springs nro 5
+Intendente de McKeesport,Concejal de McKeesport nro 1,Concejal de McKeesport nro 2,Concejal de McKeesport nro 3
+Intendente de South El Monte,Concejal de South El Monte nro 1,Concejal de South El Monte nro 2,Concejal de South El Monte nro 3,Concejal de South El Monte nro 4,Concejal de South El Monte nro 5
+Intendente de Los Angeles,Concejal de Los Angeles nro 1,Concejal de Los Angeles nro 2,Concejal de Los Angeles nro 3,Concejal de Los Angeles nro 4,Concejal de Los Angeles nro 5,Concejal de Los Angeles nro 6
+Intendente de Vermillion,Concejal de Vermillion nro 1,Concejal de Vermillion nro 2,Concejal de Vermillion nro 3
+Intendente de Yorba Linda,Concejal de Yorba Linda nro 1,Concejal de Yorba Linda nro 2
+Intendente de San Mateo,Concejal de San Mateo nro 1,Concejal de San Mateo nro 2,Concejal de San Mateo nro 3,Concejal de San Mateo nro 4,Concejal de San Mateo nro 5,Concejal de San Mateo nro 6
+Intendente de Rolling Hills,Concejal de Rolling Hills nro 1,Concejal de Rolling Hills nro 2,Concejal de Rolling Hills nro 3,Concejal de Rolling Hills nro 4,Concejal de Rolling Hills nro 5
+Intendente de Natchitoches,Concejal de Natchitoches nro 1,Concejal de Natchitoches nro 2,Concejal de Natchitoches nro 3,Concejal de Natchitoches nro 4
+Intendente de Virginia Beach,Concejal de Virginia Beach nro 1,Concejal de Virginia Beach nro 2
+Intendente de Jackson,Concejal de Jackson nro 1,Concejal de Jackson nro 2,Concejal de Jackson nro 3,Concejal de Jackson nro 4,Concejal de Jackson nro 5,Concejal de Jackson nro 6
+Intendente de Colorado Springs,Concejal de Colorado Springs nro 1,Concejal de Colorado Springs nro 2,Concejal de Colorado Springs nro 3,Concejal de Colorado Springs nro 4,Concejal de Colorado Springs nro 5,Concejal de Colorado Springs nro 6
+Intendente de Saginaw,Concejal de Saginaw nro 1,Concejal de Saginaw nro 2,Concejal de Saginaw nro 3
+Intendente de Watertown,Concejal de Watertown nro 1
+Intendente de Saint Cloud
+Intendente de Brown Deer,Concejal de Brown Deer nro 1,Concejal de Brown Deer nro 2,Concejal de Brown Deer nro 3,Concejal de Brown Deer nro 4,Concejal de Brown Deer nro 5
+Intendente de Fremont,Concejal de Fremont nro 1,Concejal de Fremont nro 2,Concejal de Fremont nro 3
+Intendente de Chickasha
+Intendente de Morgan City,Concejal de Morgan City nro 1,Concejal de Morgan City nro 2,Concejal de Morgan City nro 3,Concejal de Morgan City nro 4,Concejal de Morgan City nro 5
+Intendente de McAllen,Concejal de McAllen nro 1
+Intendente de Manhattan Beach,Concejal de Manhattan Beach nro 1
+Intendente de Shelton,Concejal de Shelton nro 1,Concejal de Shelton nro 2,Concejal de Shelton nro 3,Concejal de Shelton nro 4,Concejal de Shelton nro 5
+Intendente de Greensburg,Concejal de Greensburg nro 1,Concejal de Greensburg nro 2,Concejal de Greensburg nro 3,Concejal de Greensburg nro 4,Concejal de Greensburg nro 5,Concejal de Greensburg nro 6
+Intendente de Sonoma
+Intendente de Amesbury,Concejal de Amesbury nro 1,Concejal de Amesbury nro 2
+Intendente de Farmington,Concejal de Farmington nro 1,Concejal de Farmington nro 2
+Intendente de College Station,Concejal de College Station nro 1,Concejal de College Station nro 2
+Intendente de Laconia,Concejal de Laconia nro 1
+Intendente de Berlin,Concejal de Berlin nro 1,Concejal de Berlin nro 2,Concejal de Berlin nro 3,Concejal de Berlin nro 4
+Intendente de Visalia,Concejal de Visalia nro 1,Concejal de Visalia nro 2,Concejal de Visalia nro 3
+Intendente de Ruston,Concejal de Ruston nro 1
+Intendente de Santa Cruz,Concejal de Santa Cruz nro 1,Concejal de Santa Cruz nro 2,Concejal de Santa Cruz nro 3,Concejal de Santa Cruz nro 4,Concejal de Santa Cruz nro 5,Concejal de Santa Cruz nro 6
+Intendente de Laguna Beach,Concejal de Laguna Beach nro 1,Concejal de Laguna Beach nro 2,Concejal de Laguna Beach nro 3
+Intendente de Arvada
+Intendente de Houma,Concejal de Houma nro 1,Concejal de Houma nro 2,Concejal de Houma nro 3
+Intendente de Oneida,Concejal de Oneida nro 1,Concejal de Oneida nro 2,Concejal de Oneida nro 3,Concejal de Oneida nro 4,Concejal de Oneida nro 5,Concejal de Oneida nro 6
+Intendente de Hollister,Concejal de Hollister nro 1,Concejal de Hollister nro 2,Concejal de Hollister nro 3,Concejal de Hollister nro 4,Concejal de Hollister nro 5,Concejal de Hollister nro 6
+Intendente de Birmingham,Concejal de Birmingham nro 1,Concejal de Birmingham nro 2,Concejal de Birmingham nro 3,Concejal de Birmingham nro 4,Concejal de Birmingham nro 5
+Intendente de Fairfield,Concejal de Fairfield nro 1,Concejal de Fairfield nro 2
+Intendente de Hawaiian Gardens,Concejal de Hawaiian Gardens nro 1,Concejal de Hawaiian Gardens nro 2,Concejal de Hawaiian Gardens nro 3,Concejal de Hawaiian Gardens nro 4,Concejal de Hawaiian Gardens nro 5
+Intendente de Sharon,Concejal de Sharon nro 1,Concejal de Sharon nro 2,Concejal de Sharon nro 3,Concejal de Sharon nro 4,Concejal de Sharon nro 5
+Intendente de Beverly Hills,Concejal de Beverly Hills nro 1,Concejal de Beverly Hills nro 2,Concejal de Beverly Hills nro 3,Concejal de Beverly Hills nro 4
+Intendente de Ansonia,Concejal de Ansonia nro 1,Concejal de Ansonia nro 2,Concejal de Ansonia nro 3,Concejal de Ansonia nro 4,Concejal de Ansonia nro 5
+Intendente de Savannah,Concejal de Savannah nro 1,Concejal de Savannah nro 2,Concejal de Savannah nro 3,Concejal de Savannah nro 4,Concejal de Savannah nro 5,Concejal de Savannah nro 6
+Intendente de Cumberland,Concejal de Cumberland nro 1,Concejal de Cumberland nro 2
+Intendente de Santa Fe,Concejal de Santa Fe nro 1
+Intendente de Richmond,Concejal de Richmond nro 1,Concejal de Richmond nro 2,Concejal de Richmond nro 3,Concejal de Richmond nro 4,Concejal de Richmond nro 5
+Intendente de Bradbury,Concejal de Bradbury nro 1,Concejal de Bradbury nro 2,Concejal de Bradbury nro 3
+Intendente de Hickory,Concejal de Hickory nro 1,Concejal de Hickory nro 2,Concejal de Hickory nro 3,Concejal de Hickory nro 4,Concejal de Hickory nro 5,Concejal de Hickory nro 6
+Intendente de Youngstown,Concejal de Youngstown nro 1,Concejal de Youngstown nro 2,Concejal de Youngstown nro 3,Concejal de Youngstown nro 4,Concejal de Youngstown nro 5,Concejal de Youngstown nro 6
+Intendente de Gettysburg,Concejal de Gettysburg nro 1
+Intendente de Sandy Springs,Concejal de Sandy Springs nro 1
+Intendente de Boise,Concejal de Boise nro 1,Concejal de Boise nro 2
+Intendente de Ames
+Intendente de Raleigh
+Intendente de Pocatello,Concejal de Pocatello nro 1,Concejal de Pocatello nro 2,Concejal de Pocatello nro 3,Concejal de Pocatello nro 4,Concejal de Pocatello nro 5,Concejal de Pocatello nro 6
+Intendente de Asbury Park,Concejal de Asbury Park nro 1,Concejal de Asbury Park nro 2,Concejal de Asbury Park nro 3,Concejal de Asbury Park nro 4
+Intendente de Grand Forks,Concejal de Grand Forks nro 1,Concejal de Grand Forks nro 2,Concejal de Grand Forks nro 3,Concejal de Grand Forks nro 4,Concejal de Grand Forks nro 5
+Intendente de Coatesville,Concejal de Coatesville nro 1,Concejal de Coatesville nro 2,Concejal de Coatesville nro 3,Concejal de Coatesville nro 4
+Intendente de Half Moon Bay,Concejal de Half Moon Bay nro 1,Concejal de Half Moon Bay nro 2,Concejal de Half Moon Bay nro 3,Concejal de Half Moon Bay nro 4,Concejal de Half Moon Bay nro 5,Concejal de Half Moon Bay nro 6
+Intendente de Kettering
+Intendente de Annapolis,Concejal de Annapolis nro 1
+Intendente de La Habra Heights,Concejal de La Habra Heights nro 1,Concejal de La Habra Heights nro 2,Concejal de La Habra Heights nro 3,Concejal de La Habra Heights nro 4
+Intendente de Manassas Park,Concejal de Manassas Park nro 1
+Intendente de Passaic,Concejal de Passaic nro 1,Concejal de Passaic nro 2,Concejal de Passaic nro 3,Concejal de Passaic nro 4
+Intendente de Asheville,Concejal de Asheville nro 1,Concejal de Asheville nro 2,Concejal de Asheville nro 3,Concejal de Asheville nro 4,Concejal de Asheville nro 5,Concejal de Asheville nro 6
+Intendente de Nanticoke,Concejal de Nanticoke nro 1,Concejal de Nanticoke nro 2,Concejal de Nanticoke nro 3
+Intendente de Fernley,Concejal de Fernley nro 1,Concejal de Fernley nro 2,Concejal de Fernley nro 3,Concejal de Fernley nro 4,Concejal de Fernley nro 5
+Intendente de South Burlington,Concejal de South Burlington nro 1
+Intendente de Evanston,Concejal de Evanston nro 1
+Intendente de Beaver Falls,Concejal de Beaver Falls nro 1,Concejal de Beaver Falls nro 2
+Intendente de Augusta,Concejal de Augusta nro 1,Concejal de Augusta nro 2,Concejal de Augusta nro 3
+Intendente de Rancho Santa Margarita,Concejal de Rancho Santa Margarita nro 1,Concejal de Rancho Santa Margarita nro 2,Concejal de Rancho Santa Margarita nro 3,Concejal de Rancho Santa Margarita nro 4,Concejal de Rancho Santa Margarita nro 5
+Intendente de Janesville,Concejal de Janesville nro 1,Concejal de Janesville nro 2,Concejal de Janesville nro 3
+Intendente de Brookfield,Concejal de Brookfield nro 1,Concejal de Brookfield nro 2
+Intendente de Wisconsin Dells,Concejal de Wisconsin Dells nro 1,Concejal de Wisconsin Dells nro 2,Concejal de Wisconsin Dells nro 3
+Intendente de Morrison,Concejal de Morrison nro 1,Concejal de Morrison nro 2,Concejal de Morrison nro 3,Concejal de Morrison nro 4,Concejal de Morrison nro 5
+Intendente de Elkhart,Concejal de Elkhart nro 1,Concejal de Elkhart nro 2,Concejal de Elkhart nro 3,Concejal de Elkhart nro 4,Concejal de Elkhart nro 5,Concejal de Elkhart nro 6
+Intendente de Gaithersburg,Concejal de Gaithersburg nro 1,Concejal de Gaithersburg nro 2,Concejal de Gaithersburg nro 3,Concejal de Gaithersburg nro 4,Concejal de Gaithersburg nro 5,Concejal de Gaithersburg nro 6
+Intendente de Sitka,Concejal de Sitka nro 1,Concejal de Sitka nro 2,Concejal de Sitka nro 3
+Intendente de Port Washington,Concejal de Port Washington nro 1,Concejal de Port Washington nro 2,Concejal de Port Washington nro 3
+Intendente de Worcester,Concejal de Worcester nro 1,Concejal de Worcester nro 2
+Intendente de Watervliet,Concejal de Watervliet nro 1,Concejal de Watervliet nro 2,Concejal de Watervliet nro 3,Concejal de Watervliet nro 4,Concejal de Watervliet nro 5
+Intendente de Calabasas,Concejal de Calabasas nro 1,Concejal de Calabasas nro 2
+Intendente de Effingham,Concejal de Effingham nro 1,Concejal de Effingham nro 2,Concejal de Effingham nro 3
+Intendente de Saipan,Concejal de Saipan nro 1
+Intendente de Fajardo,Concejal de Fajardo nro 1,Concejal de Fajardo nro 2,Concejal de Fajardo nro 3,Concejal de Fajardo nro 4
+Intendente de Aberdeen
+Intendente de Huntington Park,Concejal de Huntington Park nro 1
+Intendente de Columbus,Concejal de Columbus nro 1,Concejal de Columbus nro 2,Concejal de Columbus nro 3
+Intendente de Mount Vernon,Concejal de Mount Vernon nro 1,Concejal de Mount Vernon nro 2
+Intendente de Mobile,Concejal de Mobile nro 1,Concejal de Mobile nro 2,Concejal de Mobile nro 3,Concejal de Mobile nro 4
+Intendente de Bloomington,Concejal de Bloomington nro 1,Concejal de Bloomington nro 2,Concejal de Bloomington nro 3,Concejal de Bloomington nro 4
+Intendente de Areceibo,Concejal de Areceibo nro 1,Concejal de Areceibo nro 2,Concejal de Areceibo nro 3
+Intendente de Medford,Concejal de Medford nro 1,Concejal de Medford nro 2,Concejal de Medford nro 3,Concejal de Medford nro 4,Concejal de Medford nro 5
+Intendente de Beloit,Concejal de Beloit nro 1,Concejal de Beloit nro 2,Concejal de Beloit nro 3
+Intendente de Fall River
+Intendente de Muskogee
+Intendente de Hudson
+Intendente de Kearns,Concejal de Kearns nro 1,Concejal de Kearns nro 2,Concejal de Kearns nro 3
+Intendente de Little Rock,Concejal de Little Rock nro 1,Concejal de Little Rock nro 2,Concejal de Little Rock nro 3
+Intendente de Provo,Concejal de Provo nro 1,Concejal de Provo nro 2,Concejal de Provo nro 3,Concejal de Provo nro 4,Concejal de Provo nro 5
+Intendente de Butler,Concejal de Butler nro 1,Concejal de Butler nro 2,Concejal de Butler nro 3,Concejal de Butler nro 4,Concejal de Butler nro 5
+Intendente de Temple City,Concejal de Temple City nro 1
+Intendente de Corvallis,Concejal de Corvallis nro 1,Concejal de Corvallis nro 2,Concejal de Corvallis nro 3,Concejal de Corvallis nro 4
+Intendente de Palm Springs,Concejal de Palm Springs nro 1,Concejal de Palm Springs nro 2,Concejal de Palm Springs nro 3,Concejal de Palm Springs nro 4,Concejal de Palm Springs nro 5
+Intendente de Norwalk,Concejal de Norwalk nro 1,Concejal de Norwalk nro 2
+Intendente de Taunton,Concejal de Taunton nro 1,Concejal de Taunton nro 2,Concejal de Taunton nro 3,Concejal de Taunton nro 4
+Intendente de Pomona,Concejal de Pomona nro 1,Concejal de Pomona nro 2,Concejal de Pomona nro 3,Concejal de Pomona nro 4,Concejal de Pomona nro 5
+Intendente de Port Arthur,Concejal de Port Arthur nro 1,Concejal de Port Arthur nro 2,Concejal de Port Arthur nro 3
+Intendente de West Covina,Concejal de West Covina nro 1,Concejal de West Covina nro 2,Concejal de West Covina nro 3,Concejal de West Covina nro 4,Concejal de West Covina nro 5,Concejal de West Covina nro 6
+Intendente de Guthrie,Concejal de Guthrie nro 1,Concejal de Guthrie nro 2
+Intendente de Port Huron,Concejal de Port Huron nro 1,Concejal de Port Huron nro 2,Concejal de Port Huron nro 3,Concejal de Port Huron nro 4,Concejal de Port Huron nro 5,Concejal de Port Huron nro 6
+Intendente de Eatontown,Concejal de Eatontown nro 1,Concejal de Eatontown nro 2,Concejal de Eatontown nro 3
+Intendente de Starkville,Concejal de Starkville nro 1,Concejal de Starkville nro 2,Concejal de Starkville nro 3
+Intendente de Vancouver,Concejal de Vancouver nro 1
+Intendente de Franklin
+Intendente de Seattle
+Intendente de Santa Rosa,Concejal de Santa Rosa nro 1,Concejal de Santa Rosa nro 2
+Intendente de Quincy,Concejal de Quincy nro 1,Concejal de Quincy nro 2,Concejal de Quincy nro 3
+Intendente de Lufkin,Concejal de Lufkin nro 1,Concejal de Lufkin nro 2,Concejal de Lufkin nro 3
+Intendente de Longview,Concejal de Longview nro 1,Concejal de Longview nro 2,Concejal de Longview nro 3,Concejal de Longview nro 4,Concejal de Longview nro 5
+Intendente de Midwest City,Concejal de Midwest City nro 1,Concejal de Midwest City nro 2,Concejal de Midwest City nro 3
+Intendente de San Angelo,Concejal de San Angelo nro 1,Concejal de San Angelo nro 2
+Intendente de Nenana,Concejal de Nenana nro 1,Concejal de Nenana nro 2,Concejal de Nenana nro 3
+Intendente de Rhinelander,Concejal de Rhinelander nro 1
+Intendente de Anaheim,Concejal de Anaheim nro 1
+Intendente de Canandaigua,Concejal de Canandaigua nro 1,Concejal de Canandaigua nro 2,Concejal de Canandaigua nro 3,Concejal de Canandaigua nro 4,Concejal de Canandaigua nro 5
+Intendente de Prescott,Concejal de Prescott nro 1,Concejal de Prescott nro 2,Concejal de Prescott nro 3,Concejal de Prescott nro 4
+Intendente de Durham,Concejal de Durham nro 1,Concejal de Durham nro 2
+Intendente de Jamestown,Concejal de Jamestown nro 1,Concejal de Jamestown nro 2,Concejal de Jamestown nro 3,Concejal de Jamestown nro 4
+Intendente de Valdosta,Concejal de Valdosta nro 1
+Intendente de Gardena,Concejal de Gardena nro 1,Concejal de Gardena nro 2,Concejal de Gardena nro 3,Concejal de Gardena nro 4,Concejal de Gardena nro 5,Concejal de Gardena nro 6
+Intendente de Rock Island
+Intendente de Manhattan,Concejal de Manhattan nro 1,Concejal de Manhattan nro 2,Concejal de Manhattan nro 3,Concejal de Manhattan nro 4
+Intendente de Greensboro,Concejal de Greensboro nro 1
+Intendente de Crown Point,Concejal de Crown Point nro 1
+Intendente de Berkeley
+Intendente de New Kensington,Concejal de New Kensington nro 1,Concejal de New Kensington nro 2,Concejal de New Kensington nro 3,Concejal de New Kensington nro 4,Concejal de New Kensington nro 5
+Intendente de Peabody,Concejal de Peabody nro 1
+Intendente de Gardner,Concejal de Gardner nro 1
+Intendente de San Rafael,Concejal de San Rafael nro 1,Concejal de San Rafael nro 2,Concejal de San Rafael nro 3
+Intendente de Trenton,Concejal de Trenton nro 1,Concejal de Trenton nro 2,Concejal de Trenton nro 3,Concejal de Trenton nro 4,Concejal de Trenton nro 5
+Intendente de Hanahan,Concejal de Hanahan nro 1,Concejal de Hanahan nro 2,Concejal de Hanahan nro 3,Concejal de Hanahan nro 4
+Intendente de San Gabriel,Concejal de San Gabriel nro 1,Concejal de San Gabriel nro 2,Concejal de San Gabriel nro 3
+Intendente de East Lansing,Concejal de East Lansing nro 1,Concejal de East Lansing nro 2
+Intendente de Lincoln,Concejal de Lincoln nro 1,Concejal de Lincoln nro 2
+Intendente de Mount Pleasant
+Intendente de Tempe,Concejal de Tempe nro 1,Concejal de Tempe nro 2
+Intendente de Ann Arbor,Concejal de Ann Arbor nro 1,Concejal de Ann Arbor nro 2,Concejal de Ann Arbor nro 3,Concejal de Ann Arbor nro 4,Concejal de Ann Arbor nro 5,Concejal de Ann Arbor nro 6
+Intendente de Bell
+Intendente de Philadelphia,Concejal de Philadelphia nro 1,Concejal de Philadelphia nro 2,Concejal de Philadelphia nro 3,Concejal de Philadelphia nro 4,Concejal de Philadelphia nro 5,Concejal de Philadelphia nro 6
+Intendente de Spartanburg
+Intendente de Hagerstown,Concejal de Hagerstown nro 1,Concejal de Hagerstown nro 2,Concejal de Hagerstown nro 3,Concejal de Hagerstown nro 4,Concejal de Hagerstown nro 5
+Intendente de Manchester,Concejal de Manchester nro 1
+Intendente de Montgomery,Concejal de Montgomery nro 1,Concejal de Montgomery nro 2,Concejal de Montgomery nro 3,Concejal de Montgomery nro 4,Concejal de Montgomery nro 5
+Intendente de Binghamton,Concejal de Binghamton nro 1,Concejal de Binghamton nro 2,Concejal de Binghamton nro 3,Concejal de Binghamton nro 4
+Intendente de Galesburg,Concejal de Galesburg nro 1,Concejal de Galesburg nro 2,Concejal de Galesburg nro 3
+Intendente de Council Bluffs,Concejal de Council Bluffs nro 1,Concejal de Council Bluffs nro 2,Concejal de Council Bluffs nro 3,Concejal de Council Bluffs nro 4
+Intendente de Pottsville
+Intendente de Pasco,Concejal de Pasco nro 1,Concejal de Pasco nro 2
+Intendente de Hope,Concejal de Hope nro 1
+Intendente de Gilbert,Concejal de Gilbert nro 1,Concejal de Gilbert nro 2,Concejal de Gilbert nro 3
+Intendente de Wheaton
+Intendente de Newburgh
+Intendente de Clovis,Concejal de Clovis nro 1
+Intendente de Avalon,Concejal de Avalon nro 1,Concejal de Avalon nro 2,Concejal de Avalon nro 3
+Intendente de Azusa,Concejal de Azusa nro 1,Concejal de Azusa nro 2,Concejal de Azusa nro 3
+Intendente de San Bernardino,Concejal de San Bernardino nro 1,Concejal de San Bernardino nro 2,Concejal de San Bernardino nro 3,Concejal de San Bernardino nro 4
+Intendente de Falls Church,Concejal de Falls Church nro 1,Concejal de Falls Church nro 2,Concejal de Falls Church nro 3,Concejal de Falls Church nro 4,Concejal de Falls Church nro 5
+Intendente de Pawtucket,Concejal de Pawtucket nro 1,Concejal de Pawtucket nro 2,Concejal de Pawtucket nro 3,Concejal de Pawtucket nro 4
+Intendente de Anchorage,Concejal de Anchorage nro 1,Concejal de Anchorage nro 2,Concejal de Anchorage nro 3,Concejal de Anchorage nro 4,Concejal de Anchorage nro 5
+Intendente de Rancho Cucamonga
+Intendente de Palo Alto,Concejal de Palo Alto nro 1,Concejal de Palo Alto nro 2,Concejal de Palo Alto nro 3,Concejal de Palo Alto nro 4
+Intendente de Lubbock,Concejal de Lubbock nro 1,Concejal de Lubbock nro 2,Concejal de Lubbock nro 3
+Intendente de Norwich,Concejal de Norwich nro 1,Concejal de Norwich nro 2,Concejal de Norwich nro 3,Concejal de Norwich nro 4
+Intendente de Glen Cove,Concejal de Glen Cove nro 1,Concejal de Glen Cove nro 2,Concejal de Glen Cove nro 3
+Intendente de West Jordan,Concejal de West Jordan nro 1,Concejal de West Jordan nro 2,Concejal de West Jordan nro 3
+Intendente de Bayamon,Concejal de Bayamon nro 1,Concejal de Bayamon nro 2,Concejal de Bayamon nro 3,Concejal de Bayamon nro 4
+Intendente de Saint Albans
+Intendente de Klamath Falls,Concejal de Klamath Falls nro 1,Concejal de Klamath Falls nro 2,Concejal de Klamath Falls nro 3,Concejal de Klamath Falls nro 4,Concejal de Klamath Falls nro 5
+Intendente de Lynn,Concejal de Lynn nro 1,Concejal de Lynn nro 2,Concejal de Lynn nro 3,Concejal de Lynn nro 4
+Intendente de Pueblo,Concejal de Pueblo nro 1,Concejal de Pueblo nro 2,Concejal de Pueblo nro 3,Concejal de Pueblo nro 4
+Intendente de Little Falls
+Intendente de Citrus Heights,Concejal de Citrus Heights nro 1,Concejal de Citrus Heights nro 2,Concejal de Citrus Heights nro 3
+Intendente de Fountain Valley,Concejal de Fountain Valley nro 1
+Intendente de Woodward
+Intendente de Odessa,Concejal de Odessa nro 1,Concejal de Odessa nro 2,Concejal de Odessa nro 3,Concejal de Odessa nro 4,Concejal de Odessa nro 5
+Intendente de Slidell,Concejal de Slidell nro 1,Concejal de Slidell nro 2,Concejal de Slidell nro 3,Concejal de Slidell nro 4,Concejal de Slidell nro 5,Concejal de Slidell nro 6
+Intendente de Rolling Hills Estates,Concejal de Rolling Hills Estates nro 1,Concejal de Rolling Hills Estates nro 2
+Intendente de Apple Valley,Concejal de Apple Valley nro 1,Concejal de Apple Valley nro 2,Concejal de Apple Valley nro 3,Concejal de Apple Valley nro 4,Concejal de Apple Valley nro 5
+Intendente de Haverhill,Concejal de Haverhill nro 1,Concejal de Haverhill nro 2,Concejal de Haverhill nro 3,Concejal de Haverhill nro 4
+Intendente de Latrobe,Concejal de Latrobe nro 1,Concejal de Latrobe nro 2,Concejal de Latrobe nro 3,Concejal de Latrobe nro 4,Concejal de Latrobe nro 5,Concejal de Latrobe nro 6
+Intendente de Atwater,Concejal de Atwater nro 1,Concejal de Atwater nro 2,Concejal de Atwater nro 3,Concejal de Atwater nro 4,Concejal de Atwater nro 5,Concejal de Atwater nro 6
+Intendente de Jenks,Concejal de Jenks nro 1,Concejal de Jenks nro 2,Concejal de Jenks nro 3
+Intendente de Joliet,Concejal de Joliet nro 1,Concejal de Joliet nro 2,Concejal de Joliet nro 3
+Intendente de Newport,Concejal de Newport nro 1,Concejal de Newport nro 2,Concejal de Newport nro 3
+Intendente de Layton,Concejal de Layton nro 1,Concejal de Layton nro 2,Concejal de Layton nro 3,Concejal de Layton nro 4,Concejal de Layton nro 5
+Intendente de Oklahoma City,Concejal de Oklahoma City nro 1,Concejal de Oklahoma City nro 2,Concejal de Oklahoma City nro 3,Concejal de Oklahoma City nro 4,Concejal de Oklahoma City nro 5,Concejal de Oklahoma City nro 6
+Intendente de Meriden,Concejal de Meriden nro 1,Concejal de Meriden nro 2,Concejal de Meriden nro 3
+Intendente de Elsmere,Concejal de Elsmere nro 1,Concejal de Elsmere nro 2,Concejal de Elsmere nro 3,Concejal de Elsmere nro 4
+Intendente de Winooski,Concejal de Winooski nro 1,Concejal de Winooski nro 2,Concejal de Winooski nro 3,Concejal de Winooski nro 4,Concejal de Winooski nro 5,Concejal de Winooski nro 6
+Intendente de Hopkinsville,Concejal de Hopkinsville nro 1,Concejal de Hopkinsville nro 2,Concejal de Hopkinsville nro 3,Concejal de Hopkinsville nro 4,Concejal de Hopkinsville nro 5
+Intendente de New Haven,Concejal de New Haven nro 1,Concejal de New Haven nro 2,Concejal de New Haven nro 3,Concejal de New Haven nro 4,Concejal de New Haven nro 5,Concejal de New Haven nro 6
+Intendente de Chicago Heights,Concejal de Chicago Heights nro 1,Concejal de Chicago Heights nro 2
+Intendente de Bay St. Louis,Concejal de Bay St. Louis nro 1,Concejal de Bay St. Louis nro 2,Concejal de Bay St. Louis nro 3,Concejal de Bay St. Louis nro 4,Concejal de Bay St. Louis nro 5,Concejal de Bay St. Louis nro 6
+Intendente de Danbury
+Intendente de Walla Walla,Concejal de Walla Walla nro 1,Concejal de Walla Walla nro 2,Concejal de Walla Walla nro 3,Concejal de Walla Walla nro 4
+Intendente de Oneonta,Concejal de Oneonta nro 1,Concejal de Oneonta nro 2,Concejal de Oneonta nro 3,Concejal de Oneonta nro 4
+Intendente de North Adams,Concejal de North Adams nro 1,Concejal de North Adams nro 2,Concejal de North Adams nro 3,Concejal de North Adams nro 4
+Intendente de Charleston,Concejal de Charleston nro 1,Concejal de Charleston nro 2,Concejal de Charleston nro 3,Concejal de Charleston nro 4,Concejal de Charleston nro 5
+Intendente de Hilo,Concejal de Hilo nro 1,Concejal de Hilo nro 2,Concejal de Hilo nro 3
+Intendente de Lock Haven,Concejal de Lock Haven nro 1,Concejal de Lock Haven nro 2,Concejal de Lock Haven nro 3,Concejal de Lock Haven nro 4,Concejal de Lock Haven nro 5,Concejal de Lock Haven nro 6
+Intendente de Biddeford
+Intendente de Palos Verdes Estates,Concejal de Palos Verdes Estates nro 1,Concejal de Palos Verdes Estates nro 2,Concejal de Palos Verdes Estates nro 3,Concejal de Palos Verdes Estates nro 4
+Intendente de Bradford,Concejal de Bradford nro 1,Concejal de Bradford nro 2,Concejal de Bradford nro 3,Concejal de Bradford nro 4,Concejal de Bradford nro 5
+Intendente de College Park,Concejal de College Park nro 1,Concejal de College Park nro 2
+Intendente de Albany,Concejal de Albany nro 1,Concejal de Albany nro 2,Concejal de Albany nro 3,Concejal de Albany nro 4,Concejal de Albany nro 5,Concejal de Albany nro 6
+Intendente de Manitowoc,Concejal de Manitowoc nro 1,Concejal de Manitowoc nro 2,Concejal de Manitowoc nro 3,Concejal de Manitowoc nro 4
+Intendente de Escondido,Concejal de Escondido nro 1
+Intendente de Chattanooga,Concejal de Chattanooga nro 1,Concejal de Chattanooga nro 2
+Intendente de Olympia,Concejal de Olympia nro 1,Concejal de Olympia nro 2,Concejal de Olympia nro 3
+Intendente de Memphis
+Intendente de Racine
+Intendente de Nogales,Concejal de Nogales nro 1,Concejal de Nogales nro 2,Concejal de Nogales nro 3
+Intendente de Macon,Concejal de Macon nro 1,Concejal de Macon nro 2,Concejal de Macon nro 3,Concejal de Macon nro 4,Concejal de Macon nro 5
+Intendente de La Jolla,Concejal de La Jolla nro 1,Concejal de La Jolla nro 2,Concejal de La Jolla nro 3,Concejal de La Jolla nro 4
+Intendente de Hornell
+Intendente de Inglewood,Concejal de Inglewood nro 1,Concejal de Inglewood nro 2
+Intendente de Albuquerque,Concejal de Albuquerque nro 1,Concejal de Albuquerque nro 2,Concejal de Albuquerque nro 3,Concejal de Albuquerque nro 4,Concejal de Albuquerque nro 5,Concejal de Albuquerque nro 6
+Intendente de Bangor,Concejal de Bangor nro 1,Concejal de Bangor nro 2,Concejal de Bangor nro 3,Concejal de Bangor nro 4
+Intendente de Palmdale,Concejal de Palmdale nro 1,Concejal de Palmdale nro 2
+Intendente de Yonkers,Concejal de Yonkers nro 1,Concejal de Yonkers nro 2,Concejal de Yonkers nro 3,Concejal de Yonkers nro 4
+Intendente de Allentown,Concejal de Allentown nro 1,Concejal de Allentown nro 2,Concejal de Allentown nro 3,Concejal de Allentown nro 4
+Intendente de Port Jervis,Concejal de Port Jervis nro 1,Concejal de Port Jervis nro 2,Concejal de Port Jervis nro 3,Concejal de Port Jervis nro 4,Concejal de Port Jervis nro 5,Concejal de Port Jervis nro 6
+Intendente de Cicero,Concejal de Cicero nro 1,Concejal de Cicero nro 2
+Intendente de Opelousas,Concejal de Opelousas nro 1,Concejal de Opelousas nro 2,Concejal de Opelousas nro 3,Concejal de Opelousas nro 4,Concejal de Opelousas nro 5,Concejal de Opelousas nro 6
+Intendente de Dayton,Concejal de Dayton nro 1
+Intendente de Davis,Concejal de Davis nro 1,Concejal de Davis nro 2,Concejal de Davis nro 3,Concejal de Davis nro 4,Concejal de Davis nro 5
+Intendente de Salem,Concejal de Salem nro 1,Concejal de Salem nro 2,Concejal de Salem nro 3,Concejal de Salem nro 4,Concejal de Salem nro 5
+Intendente de Bay City,Concejal de Bay City nro 1,Concejal de Bay City nro 2,Concejal de Bay City nro 3,Concejal de Bay City nro 4
+Intendente de Grass Valley,Concejal de Grass Valley nro 1,Concejal de Grass Valley nro 2,Concejal de Grass Valley nro 3
+Intendente de Cape May,Concejal de Cape May nro 1,Concejal de Cape May nro 2,Concejal de Cape May nro 3,Concejal de Cape May nro 4
+Intendente de Frederiksted,Concejal de Frederiksted nro 1,Concejal de Frederiksted nro 2
+Intendente de DuBois,Concejal de DuBois nro 1,Concejal de DuBois nro 2
+Intendente de New London,Concejal de New London nro 1,Concejal de New London nro 2
+Intendente de Alameda,Concejal de Alameda nro 1,Concejal de Alameda nro 2,Concejal de Alameda nro 3
+Intendente de Rochester,Concejal de Rochester nro 1
+Intendente de Grafton
+Intendente de Catskill,Concejal de Catskill nro 1,Concejal de Catskill nro 2,Concejal de Catskill nro 3,Concejal de Catskill nro 4,Concejal de Catskill nro 5
+Intendente de Isle of Palms,Concejal de Isle of Palms nro 1,Concejal de Isle of Palms nro 2,Concejal de Isle of Palms nro 3,Concejal de Isle of Palms nro 4
+Intendente de Gadsden,Concejal de Gadsden nro 1
+Intendente de Belleville,Concejal de Belleville nro 1
+Intendente de Pierre,Concejal de Pierre nro 1,Concejal de Pierre nro 2,Concejal de Pierre nro 3,Concejal de Pierre nro 4,Concejal de Pierre nro 5
+Intendente de Frisco,Concejal de Frisco nro 1,Concejal de Frisco nro 2
+Intendente de West Sacramento,Concejal de West Sacramento nro 1,Concejal de West Sacramento nro 2,Concejal de West Sacramento nro 3,Concejal de West Sacramento nro 4
+Intendente de Huntington,Concejal de Huntington nro 1,Concejal de Huntington nro 2,Concejal de Huntington nro 3,Concejal de Huntington nro 4
+Intendente de Boulder,Concejal de Boulder nro 1,Concejal de Boulder nro 2,Concejal de Boulder nro 3,Concejal de Boulder nro 4,Concejal de Boulder nro 5,Concejal de Boulder nro 6
+Intendente de Torrington
+Intendente de Somerville,Concejal de Somerville nro 1,Concejal de Somerville nro 2,Concejal de Somerville nro 3,Concejal de Somerville nro 4,Concejal de Somerville nro 5
+Intendente de Dickinson,Concejal de Dickinson nro 1,Concejal de Dickinson nro 2
+Intendente de Villa Park
+Intendente de Murrieta
+Intendente de Columbia,Concejal de Columbia nro 1,Concejal de Columbia nro 2,Concejal de Columbia nro 3,Concejal de Columbia nro 4,Concejal de Columbia nro 5,Concejal de Columbia nro 6
+Intendente de Lynchburg,Concejal de Lynchburg nro 1,Concejal de Lynchburg nro 2,Concejal de Lynchburg nro 3
+Intendente de Mason City,Concejal de Mason City nro 1,Concejal de Mason City nro 2,Concejal de Mason City nro 3,Concejal de Mason City nro 4
+Intendente de Wilmington,Concejal de Wilmington nro 1,Concejal de Wilmington nro 2,Concejal de Wilmington nro 3
+Intendente de West Memphis,Concejal de West Memphis nro 1
+Intendente de Santa Ana,Concejal de Santa Ana nro 1,Concejal de Santa Ana nro 2,Concejal de Santa Ana nro 3,Concejal de Santa Ana nro 4,Concejal de Santa Ana nro 5
+Intendente de Grand Rapids,Concejal de Grand Rapids nro 1,Concejal de Grand Rapids nro 2,Concejal de Grand Rapids nro 3,Concejal de Grand Rapids nro 4
+Intendente de Corona,Concejal de Corona nro 1,Concejal de Corona nro 2,Concejal de Corona nro 3
+Intendente de Canton,Concejal de Canton nro 1
+Intendente de Glendale,Concejal de Glendale nro 1,Concejal de Glendale nro 2,Concejal de Glendale nro 3,Concejal de Glendale nro 4,Concejal de Glendale nro 5,Concejal de Glendale nro 6
+Intendente de Lewiston,Concejal de Lewiston nro 1,Concejal de Lewiston nro 2,Concejal de Lewiston nro 3,Concejal de Lewiston nro 4,Concejal de Lewiston nro 5
+Intendente de Orangeburg,Concejal de Orangeburg nro 1,Concejal de Orangeburg nro 2,Concejal de Orangeburg nro 3,Concejal de Orangeburg nro 4,Concejal de Orangeburg nro 5,Concejal de Orangeburg nro 6
+Intendente de Gastonia,Concejal de Gastonia nro 1,Concejal de Gastonia nro 2,Concejal de Gastonia nro 3,Concejal de Gastonia nro 4,Concejal de Gastonia nro 5,Concejal de Gastonia nro 6
+Intendente de Bowling Green,Concejal de Bowling Green nro 1,Concejal de Bowling Green nro 2
+Intendente de Dallas
+Intendente de Eufaula,Concejal de Eufaula nro 1,Concejal de Eufaula nro 2
+Intendente de Dothan
+Intendente de Pendleton,Concejal de Pendleton nro 1,Concejal de Pendleton nro 2,Concejal de Pendleton nro 3
+Intendente de Culver City,Concejal de Culver City nro 1,Concejal de Culver City nro 2
+Intendente de Enid,Concejal de Enid nro 1,Concejal de Enid nro 2
+Intendente de Ketchikan,Concejal de Ketchikan nro 1,Concejal de Ketchikan nro 2,Concejal de Ketchikan nro 3,Concejal de Ketchikan nro 4,Concejal de Ketchikan nro 5,Concejal de Ketchikan nro 6
+Intendente de El Monte,Concejal de El Monte nro 1,Concejal de El Monte nro 2,Concejal de El Monte nro 3,Concejal de El Monte nro 4
+Intendente de Westlake Village,Concejal de Westlake Village nro 1,Concejal de Westlake Village nro 2,Concejal de Westlake Village nro 3,Concejal de Westlake Village nro 4,Concejal de Westlake Village nro 5,Concejal de Westlake Village nro 6
+Intendente de Kansas City,Concejal de Kansas City nro 1
+Intendente de Laramie,Concejal de Laramie nro 1,Concejal de Laramie nro 2,Concejal de Laramie nro 3,Concejal de Laramie nro 4,Concejal de Laramie nro 5,Concejal de Laramie nro 6
+Intendente de Hartford
+Intendente de Naperville
+Intendente de Westfield
+Intendente de Flagstaff,Concejal de Flagstaff nro 1
+Intendente de Fairfax,Concejal de Fairfax nro 1,Concejal de Fairfax nro 2
+Intendente de Anaconda,Concejal de Anaconda nro 1,Concejal de Anaconda nro 2,Concejal de Anaconda nro 3,Concejal de Anaconda nro 4
+Intendente de Powell,Concejal de Powell nro 1,Concejal de Powell nro 2,Concejal de Powell nro 3,Concejal de Powell nro 4,Concejal de Powell nro 5
+Intendente de Boulder City
+Intendente de Lomita,Concejal de Lomita nro 1,Concejal de Lomita nro 2,Concejal de Lomita nro 3,Concejal de Lomita nro 4
+Intendente de Cairo,Concejal de Cairo nro 1
+Intendente de Parma,Concejal de Parma nro 1,Concejal de Parma nro 2,Concejal de Parma nro 3,Concejal de Parma nro 4,Concejal de Parma nro 5
+Intendente de Eugene,Concejal de Eugene nro 1
+Intendente de Winston-Salem,Concejal de Winston-Salem nro 1
+Intendente de Frankfort,Concejal de Frankfort nro 1,Concejal de Frankfort nro 2,Concejal de Frankfort nro 3,Concejal de Frankfort nro 4
+Intendente de Tok,Concejal de Tok nro 1,Concejal de Tok nro 2
+Intendente de Merced,Concejal de Merced nro 1,Concejal de Merced nro 2
+Intendente de Astoria
+Intendente de Easthampton,Concejal de Easthampton nro 1
+Intendente de Dixon,Concejal de Dixon nro 1,Concejal de Dixon nro 2
+Intendente de Minnetonka
+Intendente de Garland,Concejal de Garland nro 1,Concejal de Garland nro 2,Concejal de Garland nro 3,Concejal de Garland nro 4
+Intendente de Bristol
+Intendente de Charlotte,Concejal de Charlotte nro 1,Concejal de Charlotte nro 2,Concejal de Charlotte nro 3
+Intendente de Nevada City,Concejal de Nevada City nro 1,Concejal de Nevada City nro 2
+Intendente de Cambridge,Concejal de Cambridge nro 1,Concejal de Cambridge nro 2,Concejal de Cambridge nro 3,Concejal de Cambridge nro 4,Concejal de Cambridge nro 5,Concejal de Cambridge nro 6
+Intendente de Jeffersontown,Concejal de Jeffersontown nro 1,Concejal de Jeffersontown nro 2,Concejal de Jeffersontown nro 3
+Intendente de Moultrie,Concejal de Moultrie nro 1,Concejal de Moultrie nro 2,Concejal de Moultrie nro 3
+Intendente de Elmira
+Intendente de East Rutherford,Concejal de East Rutherford nro 1,Concejal de East Rutherford nro 2,Concejal de East Rutherford nro 3,Concejal de East Rutherford nro 4,Concejal de East Rutherford nro 5,Concejal de East Rutherford nro 6
+Intendente de Tulsa,Concejal de Tulsa nro 1,Concejal de Tulsa nro 2,Concejal de Tulsa nro 3
+Intendente de Laguna Hills,Concejal de Laguna Hills nro 1,Concejal de Laguna Hills nro 2,Concejal de Laguna Hills nro 3,Concejal de Laguna Hills nro 4
+Intendente de Reedsport,Concejal de Reedsport nro 1,Concejal de Reedsport nro 2,Concejal de Reedsport nro 3
+Intendente de Brooklyn Park,Concejal de Brooklyn Park nro 1,Concejal de Brooklyn Park nro 2,Concejal de Brooklyn Park nro 3,Concejal de Brooklyn Park nro 4,Concejal de Brooklyn Park nro 5,Concejal de Brooklyn Park nro 6
+Intendente de Fargo,Concejal de Fargo nro 1
+Intendente de Guayanilla,Concejal de Guayanilla nro 1,Concejal de Guayanilla nro 2,Concejal de Guayanilla nro 3,Concejal de Guayanilla nro 4,Concejal de Guayanilla nro 5,Concejal de Guayanilla nro 6
+Intendente de Idaho Springs,Concejal de Idaho Springs nro 1,Concejal de Idaho Springs nro 2,Concejal de Idaho Springs nro 3
+Intendente de Basin,Concejal de Basin nro 1
+Intendente de Bartlesville
+Intendente de Fitchburg,Concejal de Fitchburg nro 1,Concejal de Fitchburg nro 2
+Intendente de Daly City,Concejal de Daly City nro 1,Concejal de Daly City nro 2
+Intendente de Peoria,Concejal de Peoria nro 1,Concejal de Peoria nro 2,Concejal de Peoria nro 3,Concejal de Peoria nro 4,Concejal de Peoria nro 5
+Intendente de Newcastle
+Intendente de Marietta,Concejal de Marietta nro 1,Concejal de Marietta nro 2,Concejal de Marietta nro 3
+Intendente de Wahoo,Concejal de Wahoo nro 1,Concejal de Wahoo nro 2,Concejal de Wahoo nro 3,Concejal de Wahoo nro 4,Concejal de Wahoo nro 5
+Intendente de Mesquite,Concejal de Mesquite nro 1,Concejal de Mesquite nro 2,Concejal de Mesquite nro 3,Concejal de Mesquite nro 4,Concejal de Mesquite nro 5
+Intendente de Richland,Concejal de Richland nro 1
+Intendente de Selma
+Intendente de Lawton,Concejal de Lawton nro 1,Concejal de Lawton nro 2,Concejal de Lawton nro 3,Concejal de Lawton nro 4,Concejal de Lawton nro 5
+Intendente de Jefferson City,Concejal de Jefferson City nro 1,Concejal de Jefferson City nro 2
+Intendente de Valparaiso,Concejal de Valparaiso nro 1,Concejal de Valparaiso nro 2,Concejal de Valparaiso nro 3,Concejal de Valparaiso nro 4,Concejal de Valparaiso nro 5
+Intendente de Chino,Concejal de Chino nro 1,Concejal de Chino nro 2,Concejal de Chino nro 3,Concejal de Chino nro 4,Concejal de Chino nro 5
+Intendente de New Castle,Concejal de New Castle nro 1,Concejal de New Castle nro 2,Concejal de New Castle nro 3
+Intendente de Murfreesboro,Concejal de Murfreesboro nro 1,Concejal de Murfreesboro nro 2,Concejal de Murfreesboro nro 3,Concejal de Murfreesboro nro 4
+Intendente de Manassas,Concejal de Manassas nro 1,Concejal de Manassas nro 2,Concejal de Manassas nro 3,Concejal de Manassas nro 4,Concejal de Manassas nro 5,Concejal de Manassas nro 6
+Intendente de Truth or Consequences,Concejal de Truth or Consequences nro 1,Concejal de Truth or Consequences nro 2,Concejal de Truth or Consequences nro 3,Concejal de Truth or Consequences nro 4
+Intendente de Kalispell,Concejal de Kalispell nro 1,Concejal de Kalispell nro 2,Concejal de Kalispell nro 3,Concejal de Kalispell nro 4,Concejal de Kalispell nro 5
+Intendente de Indianapolis
+Intendente de Easton,Concejal de Easton nro 1,Concejal de Easton nro 2,Concejal de Easton nro 3,Concejal de Easton nro 4
+Intendente de Fairbanks,Concejal de Fairbanks nro 1,Concejal de Fairbanks nro 2,Concejal de Fairbanks nro 3,Concejal de Fairbanks nro 4,Concejal de Fairbanks nro 5,Concejal de Fairbanks nro 6
+Intendente de Marshfield
+Intendente de Green Bay,Concejal de Green Bay nro 1,Concejal de Green Bay nro 2,Concejal de Green Bay nro 3
+Intendente de Montpelier,Concejal de Montpelier nro 1
+Intendente de Zanesville,Concejal de Zanesville nro 1,Concejal de Zanesville nro 2,Concejal de Zanesville nro 3
+Intendente de Ashland,Concejal de Ashland nro 1,Concejal de Ashland nro 2,Concejal de Ashland nro 3,Concejal de Ashland nro 4
+Intendente de Clemson,Concejal de Clemson nro 1,Concejal de Clemson nro 2,Concejal de Clemson nro 3,Concejal de Clemson nro 4,Concejal de Clemson nro 5
+Intendente de Diamond Bar,Concejal de Diamond Bar nro 1,Concejal de Diamond Bar nro 2,Concejal de Diamond Bar nro 3,Concejal de Diamond Bar nro 4,Concejal de Diamond Bar nro 5,Concejal de Diamond Bar nro 6
+Intendente de Thomasville,Concejal de Thomasville nro 1,Concejal de Thomasville nro 2
+Intendente de Orem,Concejal de Orem nro 1,Concejal de Orem nro 2,Concejal de Orem nro 3,Concejal de Orem nro 4
+Intendente de Cleveland,Concejal de Cleveland nro 1,Concejal de Cleveland nro 2,Concejal de Cleveland nro 3,Concejal de Cleveland nro 4,Concejal de Cleveland nro 5,Concejal de Cleveland nro 6
+Intendente de Sanford,Concejal de Sanford nro 1,Concejal de Sanford nro 2,Concejal de Sanford nro 3,Concejal de Sanford nro 4,Concejal de Sanford nro 5
+Intendente de Loudon,Concejal de Loudon nro 1,Concejal de Loudon nro 2,Concejal de Loudon nro 3
+Intendente de Miami Beach,Concejal de Miami Beach nro 1,Concejal de Miami Beach nro 2,Concejal de Miami Beach nro 3,Concejal de Miami Beach nro 4,Concejal de Miami Beach nro 5,Concejal de Miami Beach nro 6
+Intendente de Tupelo,Concejal de Tupelo nro 1,Concejal de Tupelo nro 2,Concejal de Tupelo nro 3,Concejal de Tupelo nro 4,Concejal de Tupelo nro 5
+Intendente de Irwindale,Concejal de Irwindale nro 1,Concejal de Irwindale nro 2,Concejal de Irwindale nro 3,Concejal de Irwindale nro 4,Concejal de Irwindale nro 5
+Intendente de Yakima,Concejal de Yakima nro 1,Concejal de Yakima nro 2,Concejal de Yakima nro 3,Concejal de Yakima nro 4,Concejal de Yakima nro 5
+Intendente de Rawlins,Concejal de Rawlins nro 1,Concejal de Rawlins nro 2,Concejal de Rawlins nro 3,Concejal de Rawlins nro 4
+Intendente de South Gate,Concejal de South Gate nro 1,Concejal de South Gate nro 2,Concejal de South Gate nro 3,Concejal de South Gate nro 4,Concejal de South Gate nro 5,Concejal de South Gate nro 6
+Intendente de Cudahy,Concejal de Cudahy nro 1,Concejal de Cudahy nro 2,Concejal de Cudahy nro 3,Concejal de Cudahy nro 4
+Intendente de Dearborn,Concejal de Dearborn nro 1,Concejal de Dearborn nro 2,Concejal de Dearborn nro 3,Concejal de Dearborn nro 4
+Gobernador provincia nro 1,ViceGobernador provincia nro 1
+Gobernador provincia nro 2,ViceGobernador provincia nro 2
+Gobernador provincia nro 3,ViceGobernador provincia nro 3
+Gobernador provincia nro 4,ViceGobernador provincia nro 4
+Gobernador provincia nro 5,ViceGobernador provincia nro 5
+Gobernador provincia nro 6,ViceGobernador provincia nro 6
+Gobernador provincia nro 7,ViceGobernador provincia nro 7
+Gobernador provincia nro 8,ViceGobernador provincia nro 8
+Gobernador provincia nro 9,ViceGobernador provincia nro 9
+Gobernador provincia nro 10,ViceGobernador provincia nro 10
+Gobernador provincia nro 11,ViceGobernador provincia nro 11
+Gobernador provincia nro 12,ViceGobernador provincia nro 12
+Gobernador provincia nro 13,ViceGobernador provincia nro 13
+Gobernador provincia nro 14,ViceGobernador provincia nro 14
+Gobernador provincia nro 15,ViceGobernador provincia nro 15
+Gobernador provincia nro 16,ViceGobernador provincia nro 16
+Gobernador provincia nro 17,ViceGobernador provincia nro 17
+Gobernador provincia nro 18,ViceGobernador provincia nro 18
+Gobernador provincia nro 19,ViceGobernador provincia nro 19
+Gobernador provincia nro 20,ViceGobernador provincia nro 20
+Gobernador provincia nro 21,ViceGobernador provincia nro 21
+Gobernador provincia nro 22,ViceGobernador provincia nro 22
+Gobernador provincia nro 23,ViceGobernador provincia nro 23
+Gobernador provincia nro 24,ViceGobernador provincia nro 24
+Gobernador provincia nro 25,ViceGobernador provincia nro 25
+Gobernador provincia nro 26,ViceGobernador provincia nro 26
+Gobernador provincia nro 27,ViceGobernador provincia nro 27
+Gobernador provincia nro 28,ViceGobernador provincia nro 28
+Gobernador provincia nro 29,ViceGobernador provincia nro 29
+Gobernador provincia nro 30,ViceGobernador provincia nro 30
+Gobernador provincia nro 31,ViceGobernador provincia nro 31
+Gobernador provincia nro 32,ViceGobernador provincia nro 32
+Gobernador provincia nro 33,ViceGobernador provincia nro 33
+Gobernador provincia nro 34,ViceGobernador provincia nro 34
+Gobernador provincia nro 35,ViceGobernador provincia nro 35
+Gobernador provincia nro 36,ViceGobernador provincia nro 36
+Gobernador provincia nro 37,ViceGobernador provincia nro 37
+Gobernador provincia nro 38,ViceGobernador provincia nro 38
+Gobernador provincia nro 39,ViceGobernador provincia nro 39
+Gobernador provincia nro 40,ViceGobernador provincia nro 40
+Gobernador provincia nro 41,ViceGobernador provincia nro 41
+Gobernador provincia nro 42,ViceGobernador provincia nro 42
+Gobernador provincia nro 43,ViceGobernador provincia nro 43
+Gobernador provincia nro 44,ViceGobernador provincia nro 44
+Gobernador provincia nro 45,ViceGobernador provincia nro 45
+Gobernador provincia nro 46,ViceGobernador provincia nro 46
+Gobernador provincia nro 47,ViceGobernador provincia nro 47
+Gobernador provincia nro 48,ViceGobernador provincia nro 48
+Gobernador provincia nro 49,ViceGobernador provincia nro 49
+Gobernador provincia nro 50,ViceGobernador provincia nro 50
+Gobernador provincia nro 51,ViceGobernador provincia nro 51
+Gobernador provincia nro 52,ViceGobernador provincia nro 52
+Gobernador provincia nro 53,ViceGobernador provincia nro 53
+Gobernador provincia nro 54,ViceGobernador provincia nro 54
+Gobernador provincia nro 55,ViceGobernador provincia nro 55
+Gobernador provincia nro 56,ViceGobernador provincia nro 56
+Gobernador provincia nro 57,ViceGobernador provincia nro 57
+Gobernador provincia nro 58,ViceGobernador provincia nro 58
+Gobernador provincia nro 59,ViceGobernador provincia nro 59
+Gobernador provincia nro 60,ViceGobernador provincia nro 60
+Gobernador provincia nro 61,ViceGobernador provincia nro 61
+Gobernador provincia nro 62,ViceGobernador provincia nro 62
+Gobernador provincia nro 63,ViceGobernador provincia nro 63
+Gobernador provincia nro 64,ViceGobernador provincia nro 64
+Gobernador provincia nro 65,ViceGobernador provincia nro 65
+Gobernador provincia nro 66,ViceGobernador provincia nro 66
+Gobernador provincia nro 67,ViceGobernador provincia nro 67
+Gobernador provincia nro 68,ViceGobernador provincia nro 68
+Gobernador provincia nro 69,ViceGobernador provincia nro 69
+Gobernador provincia nro 70,ViceGobernador provincia nro 70
+Gobernador provincia nro 71,ViceGobernador provincia nro 71
+Gobernador provincia nro 72,ViceGobernador provincia nro 72
+Gobernador provincia nro 73,ViceGobernador provincia nro 73
+Gobernador provincia nro 74,ViceGobernador provincia nro 74
+Gobernador provincia nro 75,ViceGobernador provincia nro 75
+Gobernador provincia nro 76,ViceGobernador provincia nro 76
+Gobernador provincia nro 77,ViceGobernador provincia nro 77
+Gobernador provincia nro 78,ViceGobernador provincia nro 78
+Gobernador provincia nro 79,ViceGobernador provincia nro 79
+Gobernador provincia nro 80,ViceGobernador provincia nro 80
+Gobernador provincia nro 81,ViceGobernador provincia nro 81
+Gobernador provincia nro 82,ViceGobernador provincia nro 82
+Gobernador provincia nro 83,ViceGobernador provincia nro 83
+Gobernador provincia nro 84,ViceGobernador provincia nro 84
+Gobernador provincia nro 85,ViceGobernador provincia nro 85
+Gobernador provincia nro 86,ViceGobernador provincia nro 86
+Gobernador provincia nro 87,ViceGobernador provincia nro 87
+Gobernador provincia nro 88,ViceGobernador provincia nro 88
+Gobernador provincia nro 89,ViceGobernador provincia nro 89
+Gobernador provincia nro 90,ViceGobernador provincia nro 90
+Gobernador provincia nro 91,ViceGobernador provincia nro 91
+Gobernador provincia nro 92,ViceGobernador provincia nro 92
+Gobernador provincia nro 93,ViceGobernador provincia nro 93
+Gobernador provincia nro 94,ViceGobernador provincia nro 94
+Gobernador provincia nro 95,ViceGobernador provincia nro 95
+Gobernador provincia nro 96,ViceGobernador provincia nro 96
+Gobernador provincia nro 97,ViceGobernador provincia nro 97
+Gobernador provincia nro 98,ViceGobernador provincia nro 98
+Gobernador provincia nro 99,ViceGobernador provincia nro 99
+Gobernador provincia nro 100,ViceGobernador provincia nro 100
+Gobernador provincia nro 101,ViceGobernador provincia nro 101
+Gobernador provincia nro 102,ViceGobernador provincia nro 102
+Gobernador provincia nro 103,ViceGobernador provincia nro 103
+Gobernador provincia nro 104,ViceGobernador provincia nro 104
+Gobernador provincia nro 105,ViceGobernador provincia nro 105
+Gobernador provincia nro 106,ViceGobernador provincia nro 106
+Gobernador provincia nro 107,ViceGobernador provincia nro 107
+Gobernador provincia nro 108,ViceGobernador provincia nro 108
+Gobernador provincia nro 109,ViceGobernador provincia nro 109
+Gobernador provincia nro 110,ViceGobernador provincia nro 110
+Gobernador provincia nro 111,ViceGobernador provincia nro 111
+Gobernador provincia nro 112,ViceGobernador provincia nro 112
+Gobernador provincia nro 113,ViceGobernador provincia nro 113
+Gobernador provincia nro 114,ViceGobernador provincia nro 114
+Gobernador provincia nro 115,ViceGobernador provincia nro 115
+Gobernador provincia nro 116,ViceGobernador provincia nro 116
+Gobernador provincia nro 117,ViceGobernador provincia nro 117
+Gobernador provincia nro 118,ViceGobernador provincia nro 118
+Gobernador provincia nro 119,ViceGobernador provincia nro 119
+Gobernador provincia nro 120,ViceGobernador provincia nro 120
+Gobernador provincia nro 121,ViceGobernador provincia nro 121
+Gobernador provincia nro 122,ViceGobernador provincia nro 122
+Gobernador provincia nro 123,ViceGobernador provincia nro 123
+Gobernador provincia nro 124,ViceGobernador provincia nro 124
+Gobernador provincia nro 125,ViceGobernador provincia nro 125
+Gobernador provincia nro 126,ViceGobernador provincia nro 126
+Gobernador provincia nro 127,ViceGobernador provincia nro 127
+Gobernador provincia nro 128,ViceGobernador provincia nro 128
+Gobernador provincia nro 129,ViceGobernador provincia nro 129
+Gobernador provincia nro 130,ViceGobernador provincia nro 130
+Gobernador provincia nro 131,ViceGobernador provincia nro 131
+Gobernador provincia nro 132,ViceGobernador provincia nro 132
+Gobernador provincia nro 133,ViceGobernador provincia nro 133
+Gobernador provincia nro 134,ViceGobernador provincia nro 134
+Gobernador provincia nro 135,ViceGobernador provincia nro 135
+Gobernador provincia nro 136,ViceGobernador provincia nro 136
+Gobernador provincia nro 137,ViceGobernador provincia nro 137
+Gobernador provincia nro 138,ViceGobernador provincia nro 138
+Gobernador provincia nro 139,ViceGobernador provincia nro 139
+Gobernador provincia nro 140,ViceGobernador provincia nro 140
+Gobernador provincia nro 141,ViceGobernador provincia nro 141
+Gobernador provincia nro 142,ViceGobernador provincia nro 142
+Gobernador provincia nro 143,ViceGobernador provincia nro 143
+Gobernador provincia nro 144,ViceGobernador provincia nro 144
+Gobernador provincia nro 145,ViceGobernador provincia nro 145
+Gobernador provincia nro 146,ViceGobernador provincia nro 146
+Gobernador provincia nro 147,ViceGobernador provincia nro 147
+Gobernador provincia nro 148,ViceGobernador provincia nro 148
+Gobernador provincia nro 149,ViceGobernador provincia nro 149
+Gobernador provincia nro 150,ViceGobernador provincia nro 150
+Gobernador provincia nro 151,ViceGobernador provincia nro 151
+Gobernador provincia nro 152,ViceGobernador provincia nro 152
+Gobernador provincia nro 153,ViceGobernador provincia nro 153
+Gobernador provincia nro 154,ViceGobernador provincia nro 154
+Gobernador provincia nro 155,ViceGobernador provincia nro 155
+Gobernador provincia nro 156,ViceGobernador provincia nro 156
+Gobernador provincia nro 157,ViceGobernador provincia nro 157
+Gobernador provincia nro 158,ViceGobernador provincia nro 158
+Gobernador provincia nro 159,ViceGobernador provincia nro 159
+Gobernador provincia nro 160,ViceGobernador provincia nro 160
+Gobernador provincia nro 161,ViceGobernador provincia nro 161
+Gobernador provincia nro 162,ViceGobernador provincia nro 162
+Gobernador provincia nro 163,ViceGobernador provincia nro 163
+Gobernador provincia nro 164,ViceGobernador provincia nro 164
+Gobernador provincia nro 165,ViceGobernador provincia nro 165
+Gobernador provincia nro 166,ViceGobernador provincia nro 166
+Gobernador provincia nro 167,ViceGobernador provincia nro 167
+Gobernador provincia nro 168,ViceGobernador provincia nro 168
+Gobernador provincia nro 169,ViceGobernador provincia nro 169
+Gobernador provincia nro 170,ViceGobernador provincia nro 170
+Gobernador provincia nro 171,ViceGobernador provincia nro 171
+Gobernador provincia nro 172,ViceGobernador provincia nro 172
+Gobernador provincia nro 173,ViceGobernador provincia nro 173
+Gobernador provincia nro 174,ViceGobernador provincia nro 174
+Gobernador provincia nro 175,ViceGobernador provincia nro 175
+Gobernador provincia nro 176,ViceGobernador provincia nro 176
+Gobernador provincia nro 177,ViceGobernador provincia nro 177
+Gobernador provincia nro 178,ViceGobernador provincia nro 178
+Gobernador provincia nro 179,ViceGobernador provincia nro 179
+Gobernador provincia nro 180,ViceGobernador provincia nro 180
+Gobernador provincia nro 181,ViceGobernador provincia nro 181
+Gobernador provincia nro 182,ViceGobernador provincia nro 182
+Gobernador provincia nro 183,ViceGobernador provincia nro 183
+Gobernador provincia nro 184,ViceGobernador provincia nro 184
+Gobernador provincia nro 185,ViceGobernador provincia nro 185
+Gobernador provincia nro 186,ViceGobernador provincia nro 186
+Gobernador provincia nro 187,ViceGobernador provincia nro 187
+Gobernador provincia nro 188,ViceGobernador provincia nro 188
+Gobernador provincia nro 189,ViceGobernador provincia nro 189
+Gobernador provincia nro 190,ViceGobernador provincia nro 190
+Gobernador provincia nro 191,ViceGobernador provincia nro 191
+Gobernador provincia nro 192,ViceGobernador provincia nro 192
+Gobernador provincia nro 193,ViceGobernador provincia nro 193
+Gobernador provincia nro 194,ViceGobernador provincia nro 194
+Gobernador provincia nro 195,ViceGobernador provincia nro 195
+Gobernador provincia nro 196,ViceGobernador provincia nro 196
+Gobernador provincia nro 197,ViceGobernador provincia nro 197
+Gobernador provincia nro 198,ViceGobernador provincia nro 198
+Gobernador provincia nro 199,ViceGobernador provincia nro 199
+Gobernador provincia nro 200,ViceGobernador provincia nro 200
+Presidente nro 1,VicePresidente nro 1
+Presidente nro 2,VicePresidente nro 2
+Presidente nro 3,VicePresidente nro 3
+Presidente nro 4,VicePresidente nro 4
+Presidente nro 5,VicePresidente nro 5
+Presidente nro 6,VicePresidente nro 6
+Presidente nro 7,VicePresidente nro 7
+Presidente nro 8,VicePresidente nro 8
+Presidente nro 9,VicePresidente nro 9
+Presidente nro 10,VicePresidente nro 10
+Presidente nro 11,VicePresidente nro 11
+Presidente nro 12,VicePresidente nro 12
+Presidente nro 13,VicePresidente nro 13
+Presidente nro 14,VicePresidente nro 14
+Presidente nro 15,VicePresidente nro 15
+Presidente nro 16,VicePresidente nro 16
+Presidente nro 17,VicePresidente nro 17
+Presidente nro 18,VicePresidente nro 18
+Presidente nro 19,VicePresidente nro 19
+Presidente nro 20,VicePresidente nro 20

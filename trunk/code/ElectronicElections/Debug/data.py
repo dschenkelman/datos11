@@ -3719,6 +3719,9 @@ surnames = [
 "Zimmerman"
 ]
 
+from random import sample
+cities = sample(cities, 1000)
+
 def gen_voter(size):
 	from random import choice, randrange
 	cur_dni = 10000000
@@ -3745,22 +3748,47 @@ voters = [v for v in gen_voter(50000)]
 districts = set()
 for v in voters: districts.add((v[4],))
 
-from random import randrange
+from random import randrange, sample
 charges = []
 for d in districts:
-	newc = ["Intendente de %s"%d]
-	for i in range(1,randrange(1,8)): newc += ["Concejal %d"%i]
+	newc = ["Intendente de %s"%d[0]]
+	for i in range(1,randrange(1,8)): newc += ["Concejal de %s nro %d"%(d[0],i)]
 	charges.append(newc)
-for i in range(1,51):
+provinces = {}
+distlist = list(districts)
+for i in range(1,201):
 	newc = ["Gobernador provincia nro %d"%i, "ViceGobernador provincia nro %d"%i]
 	charges.append(newc)
-for i in range(1,6):
+	provinces[i] = [a[0] for a in distlist[(i-1)*5: (i-1)*5+5]] #5 dist por provincia
+print len(distlist)
+print (i-1)*5
+print provinces[200]
+countries = {}
+for i in range(1,21):
 	newc = ["Presidente nro %d"%i, "VicePresidente nro %d"%i]
 	charges.append(newc)
+	countries[i] = [a[0] for a in distlist[(i-1)*50: (i-1)*50+50]] #50 dist por pais
+
+elections = []
+for d in districts:
+	elections.append((randrange(10,31), randrange(10,13), 2011, "Intendente de %s"%d[0], d[0]))
+for i in range(1,201):
+	#~ print (randrange(1,31), randrange(1,13), 2011, "Gobernador provincia nro %d"%i)+tuple(provinces[i])
+	#~ exit(0)
+	elections.append((randrange(10,31), randrange(10,13), 2011, "Gobernador provincia nro %d"%i)+tuple(provinces[i]))
+for i in range(1,21):
+	elections.append((randrange(10,31), randrange(10,13), 2011, "Presidente nro %d"%i)+tuple(countries[i]))
+
+elist = []
+for e in elections:
+	for i in range(1, randrange(2,4)):
+		elist.append((e[0],e[1],e[2],e[3],"Lista nro %d"%i))
 
 gen_file("padron.txt", voters)
 gen_file("districts.txt", districts)
 gen_file("charges.txt", charges)
+gen_file("elections.txt", elections)
+gen_file("electionList.txt", elist)
 
 #fields = [cities, counties, countries, first_names, provinces, provinces_netherlands, states, surnames]
 

@@ -168,7 +168,7 @@ void DataFileLoader::readCandidateFile(Tree* treeCandidateFile, ConfigurationEnt
 		VariableRecord candkey_vr (cand.getKey(), cand.getKeySize());
 		VariableRecord cand_vr (cand.getBytes(), cand.getSize());
 		int res = treeCandidateFile->insert(&candkey_vr, &cand_vr);
-		Log().write("Agregando candidato", res!=5, true);
+		Log().write(string("Agregando candidato ").append(dniVoter), res!=5, true);
 
 	}
 	dataFile.close();

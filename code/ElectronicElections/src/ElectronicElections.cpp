@@ -938,9 +938,9 @@ int main()
 								//District report
 								std::string district = Menu::raw_input("Distrito");
 								DistrictCounts indexDistrict(district);
-								ConfigurationEntry& entry = configuration.getEntry("DistrictCounts");
+								ConfigurationEntry& disRprt_disCountentry = configuration.getEntry("DistrictCounts");
 								DistrictCountsMethods districtCountsMethods;
-								Tree index_districtCount (entry.getDataFileName(), entry.getBlockSize(), &districtCountsMethods, false);
+								Tree index_districtCount (disRprt_disCountentry.getDataFileName(), disRprt_disCountentry.getBlockSize(), &districtCountsMethods, false);
 								VariableRecord countIdRecord;
 								if(! index_districtCount.get(indexDistrict.getKey(), &countIdRecord) )
 								{
@@ -953,10 +953,12 @@ int main()
 								CountId countId = countsId.at(0);//first count id
 								int totalCountId = countsId.size();
 								Count count(countId.getDay(), countId.getMonth(), countId.getYear(), countId.getCharge(), countId.getListName(), indexDistrict.getDistrict(), 0);
-								entry = configuration.getEntry("Count");
+								ConfigurationEntry& disRprt_entry = configuration.getEntry("Count");
 								CountMethods countMethods;
-								Tree list_count(entry.getDataFileName(), entry.getBlockSize(), &countMethods, false);
+								Tree list_count(disRprt_entry.getDataFileName(), disRprt_entry.getBlockSize(), &countMethods, false);
 								VariableRecord countRecord;
+								std::cout << "Distrito: " << district << endl;
+								log.write(string("Reportando distrito: ").append(district), true, true);
 
 								list_count.get(count.getKey(), &countRecord);
 								count.setBytes(countRecord.getBytes());
@@ -967,12 +969,12 @@ int main()
 								{
 									countId = countsId.at(i);
 									Count nextCount(countId.getDay(), countId.getMonth(), countId.getYear(), countId.getCharge(), countId.getListName(), indexDistrict.getDistrict(), 0);
+									list_count.get(nextCount.getKey(), &countRecord);
+									nextCount.setBytes(countRecord.getBytes());
 
 									if(( count.getDay() == nextCount.getDay() )&&( count.getMonth() == nextCount.getMonth() )&&( count.getYear() == nextCount.getYear() )&&( count.getCharge()== nextCount.getCharge()))
 									{
 										//same election
-										list_count.get(nextCount.getKey(), &countRecord);
-										nextCount.setBytes(countRecord.getBytes());
 										if(nextCount.getQuantity() == listVotes )
 										{
 											listNames.push_back(nextCount.getListName());
@@ -987,7 +989,7 @@ int main()
 									else
 									{
 										//change of election. print previous one
-										std::cout << "Ganador de Eleccion: " << count.getCharge()<<" "<< count.getDay()<<"-"<<count.getMonth()<<"-"<<count.getYear() << endl;
+										std::cout << "Ganador de Eleccion: " << count.getCharge()<<", "<< (int)count.getDay()<<"-"<< (int)count.getMonth()<<"-"<< count.getYear() << endl;
 										//log.write(string("Eleccion: ").append(indexDistrict.getDistrict()), true, true);
 										for(int j=0;j< listNames.size();j++)
 										{
@@ -999,25 +1001,31 @@ int main()
 										listNames.push_back(count.getListName());
 									}
 								}
+								//print last election
+								std::cout << "Ganador de Eleccion: " << count.getCharge()<<", "<< (int)count.getDay()<<"-"<< (int)count.getMonth()<<"-"<< count.getYear() << endl;
+								for(int j=0;j< listNames.size();j++)
+								{
+									std::cout << "--Lista: " << listNames.at(j) << ", votos: " << listVotes << endl;
+								}
 								log.write(string("Finalizado Reporte por Distrito: ").append(indexDistrict.getDistrict()), true, true);
 							}
 							if(action == 1)
 							{
-								ConfigurationEntry& candidateEntry = configuration.getEntry("Candidate");
+								ConfigurationEntry& listRprt_candidateEntry = configuration.getEntry("Candidate");
 								CandidateMethods cm;
 								std::string dia = Menu::raw_input("Dia");
 								std::string mes = Menu::raw_input("Mes");
 								std::string anio = Menu::raw_input("Anio");
 								std::string listName = Menu::raw_input("Lista");
 								std::string charge = Menu::raw_input("Cargo");
-								Tree candidate_tree (candidateEntry.getDataFileName(), candidateEntry.getBlockSize(), &cm, false);
+								Tree candidate_tree (listRprt_candidateEntry.getDataFileName(), listRprt_candidateEntry.getBlockSize(), &cm, false);
 								Candidate candidate((char)atoi(dia.c_str()), (char)atoi(mes.c_str()), (short)atoi(anio.c_str()), listName, charge, 0);
 								VariableRecord candRecord;
 								candidate_tree.get(candidate.getKey(), &candRecord);
 								if(candRecord.getSize() == 0)
 								{
 									std::cout << "Invalid list. List was not found." << endl;
-									log.write(string("Reporte Lista invalida: ").append(candidate.getListName()),false, true );//lista invalida
+									log.write(string("Reporte Lista invalida: ").append(listName),false, true );//lista invalida
 									break;
 								}
 								candidate.setBytes(candRecord.getBytes());//got candidate of list
@@ -1025,14 +1033,14 @@ int main()
 								if(((char)atoi(dia.c_str())!= candidate.getDay() )||( (char)atoi(mes.c_str())!= candidate.getMonth() )||( (short)atoi(anio.c_str())!= candidate.getYear() )|| (strcmp(listName.c_str(), candidate.getListName().c_str()) !=0)|| (strcmp(charge.c_str(), candidate.getCharge().c_str()) !=0) )
 								{
 									std::cout << "Invalid list. List was not found." << endl;
-									log.write(string("Reporte Lista invalida: ").append(candidate.getListName()),false, true );//lista invalida
+									log.write(string("Reporte Lista invalida: ").append(listName),false, true );//lista invalida
 									break;
 								}
 								//get name from dni
-								ConfigurationEntry& voterEntry = configuration.getEntry("Voter");
+								ConfigurationEntry& listRprt_voterEntry = configuration.getEntry("Voter");
 								VoterMethods vm;
 								VoterHashingFunction vhf;
-								HashBlockFile hash_voter(voterEntry.getDataFileName(), voterEntry.getBlockSize(),&vm, &vhf,dataFiles.getVoterBlockAmount(), false);
+								HashBlockFile hash_voter(listRprt_voterEntry.getDataFileName(), listRprt_voterEntry.getBlockSize(),&vm, &vhf,dataFiles.getVoterBlockAmount(), false);
 								VariableRecord* voterRecord = NULL;
 								Voter voter(0, "invalid", "invalid", "invalid", "invalid", std::vector<ElectionKey>());
 								int dni = candidate.getDni();
@@ -1042,13 +1050,13 @@ int main()
 								voter.setBytes(voterRecord->getBytes());
 								if(voterRecord!= NULL){ delete voterRecord; }
 
-								ConfigurationEntry& countEntry = configuration.getEntry("Count");
+								ConfigurationEntry& listRprt_countEntry = configuration.getEntry("Count");
 								CountMethods countMethods;
-								Tree list_count(countEntry.getDataFileName(), countEntry.getBlockSize(),&countMethods, false);
+								Tree list_count(listRprt_countEntry.getDataFileName(), listRprt_countEntry.getBlockSize(),&countMethods, false);
 								VariableRecord countRecord;
-								std::cout << "Lista: " << candidate.getDay() << candidate.getMonth() << candidate.getYear()<< candidate.getListName() << endl;
+								std::cout << "Lista: " << candidate.getCharge() <<", "<< (int)candidate.getDay() <<"-"<< (int)candidate.getMonth() <<"-"<< candidate.getYear() <<", lista: "<< candidate.getListName() << endl;
 								std::cout << "Candidato: " << candidate.getCharge() << ", " << voter.getNames() << endl;
-								log.write(string("Reportando lista ").append(candidate.getListName()), true, true);
+								log.write(string("Reportando lista ").append(candidate.getListName()+ ", "+ candidate.getCharge()), true, true);
 								int totalCount = 0;
 								char votes[sizeof(int)];
 								int countVotes;
@@ -1071,7 +1079,7 @@ int main()
 									std::cout << "Distrito: " << district << endl;
 									std::cout << "Votos: " << countVotes << endl;
 									memcpy(votes, &(countVotes), sizeof(int));
-									log.write(string("Distrito: ").append(district).append(", Votos: ").append(string(votes)), true, true);
+									log.write(string("Distrito: ").append(district).append(", Votos: "+countVotes), true, true);
 									totalCount+= countVotes;
 									if(list_count.getNext(&countRecord) == NULL)
 									{
@@ -1082,7 +1090,7 @@ int main()
 								char total[sizeof(int)];
 								memcpy(total, &totalCount, sizeof(int));
 								std::cout << "Votos Totales: " << totalCount << endl;
-								log.write(string("Votos Totales Lista: ").append(candidate.getListName()).append(", ").append(string(total)), true, true);
+								log.write(string("Votos Totales Lista: ").append(candidate.getListName()+", "+ candidate.getCharge()+", "+string(total)), true, true);
 							}
 							if(action == 2)
 							{
@@ -1091,9 +1099,9 @@ int main()
 								std::string mes = Menu::raw_input("Mes");
 								std::string anio = Menu::raw_input("Anio");
 								std::string charge = Menu::raw_input("Cargo");
-								ConfigurationEntry& entry = configuration.getEntry("ElectionList");
+								ConfigurationEntry& elctnRprt_listEntry = configuration.getEntry("ElectionList");
 								ElectionsListMethods electionsListMethods;
-								Tree list_tree (entry.getDataFileName(), entry.getBlockSize(), &electionsListMethods, false);
+								Tree list_tree (elctnRprt_listEntry.getDataFileName(), elctnRprt_listEntry.getBlockSize(), &electionsListMethods, false);
 								ElectionsList list("", (char)atoi(dia.c_str()), (char)atoi(mes.c_str()), (short)atoi(anio.c_str()), charge);
 								ElectionsList nextList("", (char)atoi(dia.c_str()), (char)atoi(mes.c_str()), (short)atoi(anio.c_str()), charge);
 								VariableRecord listRecord;
@@ -1102,33 +1110,33 @@ int main()
 								if(listRecord.getSize() == 0)
 								{//reached end of file
 									std::cout << "Invalid Election. Election was not found." << endl;
-									log.write(string("Reporte Eleccion invalida: ").append(dia +"-"+ mes +"-"+ anio),false, true );//lista invalida
+									log.write(string("Reporte Eleccion invalida: ").append(charge+", "+dia +"-"+ mes +"-"+ anio),false, true );//lista invalida
 									break;
 								}
 								list.setBytes(listRecord.getBytes());
 								if((list.getDay() != nextList.getDay() )||( list.getMonth() != nextList.getMonth() )||( list.getYear() != nextList.getYear() )||( strcmp(list.getCharge().c_str(), nextList.getCharge().c_str()) != 0 ))
 								{//got next election
 									std::cout << "Invalid Election. Election was not found." << endl;
-									log.write(string("Reporte Eleccion invalida: ").append(dia +"-"+ mes +"-"+ anio),false, true );//lista invalida
+									log.write(string("Reporte Eleccion invalida: ").append(charge+", "+dia +"-"+ mes +"-"+ anio),false, true );//lista invalida
 									break;
 								}
 								nextList.setBytes(list.getBytes());
 								Count count(list.getDay(), list.getMonth(), list.getYear(), list.getCharge(), list.getName(),"", 0);
-								entry = configuration.getEntry("Count");
+								ConfigurationEntry& elctnRprt_countEntry = configuration.getEntry("Count");
 								CountMethods countMethods;
-								Tree list_count(entry.getDataFileName(), entry.getBlockSize(), &countMethods, false);
+								Tree list_count(elctnRprt_countEntry.getDataFileName(), elctnRprt_countEntry.getBlockSize(), &countMethods, false);
 								VariableRecord countRecord;
 								Count nextCount(list.getDay(), list.getMonth(), list.getYear(), list.getCharge(), list.getName(),"", 0);
 
-								std::cout << "Eleccion: " << dia << "-" << mes << "-" << anio << endl;
-								log.write(string("Reportando Eleccion: ").append(dia +"-"+ mes +"-"+ anio+", " +list.getCharge()),true, true );
+								std::cout << "Eleccion: " << list.getCharge() <<", "<< dia <<"-"<< mes <<"-"<< anio << endl;
+								log.write(string("Reportando Eleccion: ").append(list.getCharge()+", "+dia +"-"+ mes +"-"+ anio),true, true );
 								char votos[sizeof(int)];
 								list_count.get(count.getKey(), &countRecord);
 								if(countRecord.getSize() == 0)
 								{
 									//No record, end of file
 									std::cout << "No hay votos registrados para eleccion: " << dia << "-" << mes << "-" << anio << ", " << count.getCharge()<< endl;
-									log.write(string("Eleccion sin votos: ").append(dia +"-"+ mes +"-"+ anio+", " +list.getCharge()), false, true);
+									log.write(string("Eleccion sin votos: ").append(list.getCharge()+", "+dia +"-"+ mes +"-"+ anio), false, true);
 									break;
 								}
 								nextCount.setBytes(countRecord.getBytes());
@@ -1195,8 +1203,8 @@ int main()
 										nextList.setBytes(listRecord.getBytes());
 									}
 								}
-								std::cout << "Finalizado reporte Eleccion: " << dia << "-" << mes << "-" << anio << ", " << count.getCharge() << endl;
-								log.write(string("Finalizado reporte Eleccion: ").append(dia +"-"+ mes +"-"+ anio+", "+list.getCharge()),true, true );
+								std::cout << "Finalizado reporte Eleccion: " << count.getCharge() <<", "<< dia << "-" << mes << "-" << anio << endl;
+								log.write(string("Finalizado reporte Eleccion: ").append(list.getCharge()+", "+dia +"-"+ mes +"-"+ anio),true, true );
 
 							}//close option for election report
 							else if (action==3)

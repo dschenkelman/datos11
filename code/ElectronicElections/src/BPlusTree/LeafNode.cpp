@@ -227,10 +227,10 @@ bool LeafNode::isUnderflow()
 	return false;
 }
 
-bool LeafNode::get(char* key, VariableRecord* record)
+GetResult LeafNode::get(char* key, VariableRecord* record)
 {
 	VariableRecord* rec = NULL;
-	bool equal = this->block->findEqualOrGreaterRecord(key, &rec);
+	GetResult result = this->block->findEqualOrGreaterRecord(key, &rec);
 
 	if (rec != NULL)
 	{
@@ -238,7 +238,7 @@ bool LeafNode::get(char* key, VariableRecord* record)
 		delete rec;
 	}
 
-	return equal;
+	return result;
 }
 
 VariableRecord* LeafNode::returnFirst(VariableRecord* r)

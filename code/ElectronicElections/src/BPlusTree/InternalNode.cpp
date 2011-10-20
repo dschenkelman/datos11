@@ -894,11 +894,11 @@ bool InternalNode::isUnderflow()
 	return (this->block->getOccupiedSize() - IndexTreeBlock::RECORD_OFFSET) < this->minimumSize;
 }
 
-bool InternalNode::get(char* key, VariableRecord* record)
+GetResult InternalNode::get(char* key, VariableRecord* record)
 {
 	VariableRecord aux;
-	bool result;
 	int index = 0;
+	GetResult result = None;
 	this->block->positionAtBegin();
 	while(this->block->getNextRecord(&aux) != NULL)
 	{
@@ -918,9 +918,9 @@ bool InternalNode::get(char* key, VariableRecord* record)
 	if (this->file->isCurrentLeaf())
 	{
 		LeafNode leaf(this->file->getCurrentBlock(), this->recordMethods);
-		bool found = leaf.get(key, record);
+		result = leaf.get(key, record);
 		this->file->popAndKeep();
-		return found;
+		return result;
 	}
 
 	// Internal Node

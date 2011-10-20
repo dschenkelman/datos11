@@ -40,6 +40,7 @@ public:
 	bool testUpdateInLeafWithOverflowIsSplitByParent();
 	bool testUpdateInInternalRootWithOverflowIsSplit();
 	bool testUpdateInInternalNodeWithOverflowIsSplit();
+	bool testGetGreaterThanLastElementInLeafReturnsFirstOfCurrentLeaf();
 	virtual ~TreeTests();
 };
 

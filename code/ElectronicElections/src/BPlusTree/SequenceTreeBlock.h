@@ -23,7 +23,7 @@ public:
 						TreeBlock::LEVEL_SIZE +
 						TreeBlock::FREE_SPACE_SIZE;
 	SequenceTreeBlock(int size, RecordMethods* methods, bool existing);
-	virtual bool findEqualOrGreaterRecord(const char *key, VariableRecord **rec);
+	virtual GetResult findEqualOrGreaterRecord(const char *key, VariableRecord **rec);
 	virtual void updateInformation();
 	virtual void clear();
 	virtual bool canInsertRecord(int size);

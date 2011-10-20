@@ -362,9 +362,9 @@ VariableRecord *IndexTreeBlock::popLast()
 	return ret;
 }
 
-bool IndexTreeBlock::findEqualOrGreaterRecord(const char *key, VariableRecord **rec)
+GetResult IndexTreeBlock::findEqualOrGreaterRecord(const char *key, VariableRecord **rec)
 {
-	return false;
+	return None;
 }
 
 IndexTreeBlock::~IndexTreeBlock()

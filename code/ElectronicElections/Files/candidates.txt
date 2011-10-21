@@ -1,9 +1,1838 @@
-1,1,2011,Presidente,125,11111111
-1,1,2011,Presidente,126,11111112
-1,1,2011,Presidente,127,11111113
-1,3,2011,Presidente,135,11111114
-1,1,2011,Gobernador,121,11111115
-1,1,2011,Gobernador,120,11111116
-7,1,2011,Gobernador,131,11111117
-8,1,2011,Vicegobernador,133,11111118
-9,1,2011,Intendente,134,11111119
+Lista nro 1,27,10,2011,89217939,Intendente de Aberdeen
+Lista nro 1,22,10,2011,55210371,Presidente nro 15
+Lista nro 1,12,11,2011,46328652,Gobernador provincia nro 152
+Lista nro 1,18,11,2011,77788599,Intendente de Abilene
+Lista nro 1,24,11,2011,52780415,Presidente nro 13
+Lista nro 1,20,12,2011,86976143,Gobernador provincia nro 130
+Lista nro 2,20,12,2011,22073759,Gobernador provincia nro 130
+Lista nro 1,22,11,2011,83341373,Intendente de Agat
+Lista nro 1,18,12,2011,71104568,Presidente nro 19
+Lista nro 1,17,10,2011,18468646,Gobernador provincia nro 194
+Lista nro 2,17,10,2011,89910982,Gobernador provincia nro 194
+Lista nro 1,28,11,2011,50494118,Intendente de Agawam
+Lista nro 2,28,11,2011,17793271,Intendente de Agawam
+Lista nro 1,14,11,2011,85129892,Presidente nro 3
+Lista nro 2,14,11,2011,65257330,Presidente nro 3
+Lista nro 1,19,11,2011,40800961,Gobernador provincia nro 29
+Lista nro 1,27,12,2011,67116773,Intendente de Agoura Hills
+Lista nro 2,27,12,2011,34853516,Intendente de Agoura Hills
+Lista nro 1,30,10,2011,61301263,Presidente nro 9
+Lista nro 1,11,12,2011,49361185,Gobernador provincia nro 94
+Lista nro 1,27,12,2011,21971867,Intendente de Aguadilla
+Lista nro 2,27,12,2011,21971867,Intendente de Aguadilla
+Lista nro 1,30,12,2011,76492388,Presidente nro 1
+Lista nro 2,30,12,2011,25610398,Presidente nro 1
+Lista nro 1,18,12,2011,69476204,Gobernador provincia nro 5
+Lista nro 1,20,10,2011,23596876,Intendente de Akron
+Lista nro 1,24,12,2011,38130003,Presidente nro 7
+Lista nro 2,24,12,2011,64627770,Presidente nro 7
+Lista nro 1,13,12,2011,14792807,Gobernador provincia nro 73
+Lista nro 2,13,12,2011,38618394,Gobernador provincia nro 73
+Lista nro 1,21,12,2011,89832123,Intendente de Alameda
+Lista nro 1,22,10,2011,37105002,Presidente nro 18
+Lista nro 2,22,10,2011,33381301,Presidente nro 18
+Lista nro 1,15,12,2011,60144429,Gobernador provincia nro 185
+Lista nro 1,15,12,2011,71965326,Intendente de Alamogordo
+Lista nro 2,15,12,2011,51996944,Intendente de Alamogordo
+Lista nro 1,29,11,2011,51727456,Gobernador provincia nro 93
+Lista nro 1,19,11,2011,17232268,Intendente de Albany
+Lista nro 1,15,10,2011,36435160,Presidente nro 17
+Lista nro 2,15,10,2011,31753527,Presidente nro 17
+Lista nro 1,28,11,2011,92407645,Gobernador provincia nro 180
+Lista nro 2,28,11,2011,62787199,Gobernador provincia nro 180
+Lista nro 1,30,11,2011,82100031,Intendente de Albuquerque
+Lista nro 1,22,12,2011,83201377,Gobernador provincia nro 182
+Lista nro 1,13,11,2011,20018107,Intendente de Alexandria
+Lista nro 2,13,11,2011,24119085,Intendente de Alexandria
+Lista nro 1,13,11,2011,72273547,Presidente nro 12
+Lista nro 2,13,11,2011,35020409,Presidente nro 12
+Lista nro 1,28,11,2011,93463593,Gobernador provincia nro 118
+Lista nro 1,14,11,2011,14790964,Intendente de Alhambra
+Lista nro 1,27,12,2011,23348505,Presidente nro 5
+Lista nro 1,25,11,2011,62058850,Gobernador provincia nro 52
+Lista nro 2,25,11,2011,34008594,Gobernador provincia nro 52
+Lista nro 1,27,12,2011,25228309,Intendente de Aliquippa
+Lista nro 1,17,10,2011,10697824,Gobernador provincia nro 200
+Lista nro 2,17,10,2011,24778880,Gobernador provincia nro 200
+Lista nro 1,12,11,2011,56276966,Presidente nro 20
+Lista nro 1,30,10,2011,23882559,Intendente de Aliso Viejo
+Lista nro 1,19,10,2011,89846765,Gobernador provincia nro 135
+Lista nro 2,19,10,2011,13134046,Gobernador provincia nro 135
+Lista nro 1,27,12,2011,75356843,Intendente de Allentown
+Lista nro 1,19,10,2011,33341974,Gobernador provincia nro 183
+Lista nro 1,21,10,2011,62805608,Intendente de Alpharetta
+Lista nro 2,21,10,2011,85459011,Intendente de Alpharetta
+Lista nro 1,28,10,2011,94389704,Gobernador provincia nro 48
+Lista nro 2,28,10,2011,80565960,Gobernador provincia nro 48
+Lista nro 1,18,10,2011,61738794,Intendente de Altoona
+Lista nro 2,18,10,2011,32137452,Intendente de Altoona
+Lista nro 1,14,11,2011,26201614,Gobernador provincia nro 184
+Lista nro 1,25,11,2011,82697773,Intendente de Ames
+Lista nro 2,25,11,2011,24574766,Intendente de Ames
+Lista nro 1,24,12,2011,51988364,Presidente nro 14
+Lista nro 2,24,12,2011,80306381,Presidente nro 14
+Lista nro 1,27,12,2011,78977358,Gobernador provincia nro 144
+Lista nro 1,17,12,2011,50736877,Intendente de Amesbury
+Lista nro 1,29,11,2011,11487475,Gobernador provincia nro 139
+Lista nro 1,12,11,2011,75593514,Intendente de Anaconda
+Lista nro 1,18,11,2011,38367582,Gobernador provincia nro 196
+Lista nro 2,18,11,2011,21438069,Gobernador provincia nro 196
+Lista nro 1,10,11,2011,10475164,Intendente de Anaheim
+Lista nro 1,13,11,2011,23039319,Gobernador provincia nro 137
+Lista nro 2,13,11,2011,55185719,Gobernador provincia nro 137
+Lista nro 1,19,11,2011,95120447,Intendente de Anchorage
+Lista nro 2,19,11,2011,45419476,Intendente de Anchorage
+Lista nro 1,19,11,2011,38110037,Presidente nro 16
+Lista nro 1,23,10,2011,23251346,Gobernador provincia nro 171
+Lista nro 2,23,10,2011,77610865,Gobernador provincia nro 171
+Lista nro 1,17,11,2011,22476865,Intendente de Anderson
+Lista nro 2,17,11,2011,26519763,Intendente de Anderson
+Lista nro 1,21,10,2011,61810869,Presidente nro 11
+Lista nro 2,21,10,2011,45806051,Presidente nro 11
+Lista nro 1,30,12,2011,36161552,Gobernador provincia nro 116
+Lista nro 2,30,12,2011,58246386,Gobernador provincia nro 116
+Lista nro 1,13,10,2011,74093430,Intendente de Ann Arbor
+Lista nro 1,21,12,2011,32996747,Presidente nro 6
+Lista nro 1,22,11,2011,69312563,Gobernador provincia nro 62
+Lista nro 1,14,10,2011,79291100,Intendente de Ansonia
+Lista nro 1,24,12,2011,23857919,Intendente de Apple Valley
+Lista nro 2,24,12,2011,93515156,Intendente de Apple Valley
+Lista nro 1,11,12,2011,26231050,Gobernador provincia nro 174
+Lista nro 1,28,11,2011,95881811,Intendente de Appleton
+Lista nro 1,17,12,2011,58038407,Presidente nro 2
+Lista nro 1,17,12,2011,78248900,Gobernador provincia nro 16
+Lista nro 2,17,12,2011,57598255,Gobernador provincia nro 16
+Lista nro 1,19,10,2011,18400185,Intendente de Arcadia
+Lista nro 2,19,10,2011,59121291,Intendente de Arcadia
+Lista nro 1,11,11,2011,20327525,Gobernador provincia nro 44
+Lista nro 2,11,11,2011,90525070,Gobernador provincia nro 44
+Lista nro 1,29,12,2011,37227553,Intendente de Ardmore
+Lista nro 2,29,12,2011,25503598,Intendente de Ardmore
+Lista nro 1,29,11,2011,82282658,Presidente nro 10
+Lista nro 2,29,11,2011,37937799,Presidente nro 10
+Lista nro 1,19,11,2011,10582605,Gobernador provincia nro 97
+Lista nro 2,19,11,2011,59965211,Gobernador provincia nro 97
+Lista nro 1,28,12,2011,46007022,Intendente de Areceibo
+Lista nro 1,11,12,2011,22479136,Gobernador provincia nro 153
+Lista nro 2,11,12,2011,60906513,Gobernador provincia nro 153
+Lista nro 1,24,12,2011,64013395,Intendente de Arlington
+Lista nro 1,15,10,2011,95034834,Gobernador provincia nro 14
+Lista nro 1,12,11,2011,58246386,Intendente de Artesia
+Lista nro 2,12,11,2011,68936011,Intendente de Artesia
+Lista nro 1,30,10,2011,89268815,Intendente de Arvada
+Lista nro 1,17,12,2011,23222496,Gobernador provincia nro 140
+Lista nro 2,17,12,2011,14167307,Gobernador provincia nro 140
+Lista nro 1,29,12,2011,23345145,Intendente de Asheville
+Lista nro 1,18,11,2011,17703947,Gobernador provincia nro 112
+Lista nro 2,18,11,2011,88342644,Gobernador provincia nro 112
+Lista nro 1,28,12,2011,27988891,Intendente de Ashland
+Lista nro 1,25,12,2011,33527513,Intendente de Aspen
+Lista nro 1,10,11,2011,11911220,Gobernador provincia nro 68
+Lista nro 1,14,11,2011,68596956,Intendente de Astoria
+Lista nro 2,14,11,2011,95349749,Intendente de Astoria
+Lista nro 1,14,10,2011,61801254,Gobernador provincia nro 198
+Lista nro 2,14,10,2011,19573644,Gobernador provincia nro 198
+Lista nro 1,14,10,2011,56090191,Intendente de Athens
+Lista nro 1,23,12,2011,88314955,Gobernador provincia nro 3
+Lista nro 2,23,12,2011,28638968,Gobernador provincia nro 3
+Lista nro 1,26,11,2011,67300752,Intendente de Atlanta
+Lista nro 1,16,12,2011,10416402,Gobernador provincia nro 117
+Lista nro 2,16,12,2011,70489794,Gobernador provincia nro 117
+Lista nro 1,20,10,2011,60920848,Intendente de Atlantic City
+Lista nro 2,20,10,2011,60920848,Intendente de Atlantic City
+Lista nro 1,30,12,2011,56721340,Gobernador provincia nro 101
+Lista nro 2,30,12,2011,61052179,Gobernador provincia nro 101
+Lista nro 1,13,10,2011,89657846,Intendente de Attleboro
+Lista nro 1,15,10,2011,50201505,Gobernador provincia nro 128
+Lista nro 1,23,12,2011,72232836,Intendente de Atwater
+Lista nro 2,23,12,2011,51749728,Intendente de Atwater
+Lista nro 1,12,12,2011,67005280,Gobernador provincia nro 13
+Lista nro 2,12,12,2011,60743608,Gobernador provincia nro 13
+Lista nro 1,20,10,2011,70255731,Intendente de Auburn
+Lista nro 1,29,10,2011,72995365,Gobernador provincia nro 1
+Lista nro 2,29,10,2011,26072186,Gobernador provincia nro 1
+Lista nro 1,10,12,2011,11799596,Intendente de Auburn Hills
+Lista nro 1,13,10,2011,29507807,Presidente nro 8
+Lista nro 1,12,11,2011,23381721,Gobernador provincia nro 78
+Lista nro 2,12,11,2011,49758675,Gobernador provincia nro 78
+Lista nro 1,20,12,2011,47068629,Intendente de Augusta
+Lista nro 1,22,12,2011,44408231,Gobernador provincia nro 148
+Lista nro 2,22,12,2011,25963024,Gobernador provincia nro 148
+Lista nro 1,28,12,2011,55088873,Intendente de Aurora
+Lista nro 1,13,12,2011,80540301,Gobernador provincia nro 99
+Lista nro 1,29,11,2011,46700803,Intendente de Austin
+Lista nro 1,14,12,2011,87232355,Gobernador provincia nro 11
+Lista nro 2,14,12,2011,19513750,Gobernador provincia nro 11
+Lista nro 1,23,10,2011,38727608,Intendente de Avalon
+Lista nro 2,23,10,2011,62908721,Intendente de Avalon
+Lista nro 1,28,12,2011,38945071,Gobernador provincia nro 170
+Lista nro 1,29,10,2011,45384332,Intendente de Azusa
+Lista nro 1,28,10,2011,49691883,Gobernador provincia nro 127
+Lista nro 1,14,11,2011,38041366,Intendente de Bakersfield
+Lista nro 2,14,11,2011,69814704,Intendente de Bakersfield
+Lista nro 1,11,12,2011,48096077,Gobernador provincia nro 131
+Lista nro 1,18,10,2011,46511930,Intendente de Baldwin Park
+Lista nro 1,23,10,2011,19183101,Gobernador provincia nro 50
+Lista nro 1,23,10,2011,63298563,Intendente de Baltimore
+Lista nro 2,23,10,2011,28761276,Intendente de Baltimore
+Lista nro 1,30,12,2011,17622326,Intendente de Bandera
+Lista nro 1,15,11,2011,52626830,Intendente de Bandon
+Lista nro 2,15,11,2011,91451573,Intendente de Bandon
+Lista nro 1,20,11,2011,84898932,Gobernador provincia nro 65
+Lista nro 1,17,12,2011,72089443,Intendente de Bangor
+Lista nro 2,17,12,2011,67032623,Intendente de Bangor
+Lista nro 1,26,11,2011,78321438,Intendente de Barre
+Lista nro 2,26,11,2011,58428214,Intendente de Barre
+Lista nro 1,18,10,2011,38594137,Presidente nro 4
+Lista nro 1,20,11,2011,55933641,Gobernador provincia nro 41
+Lista nro 2,20,11,2011,65967168,Gobernador provincia nro 41
+Lista nro 1,22,10,2011,41347495,Intendente de Barrow
+Lista nro 1,27,12,2011,45130168,Gobernador provincia nro 18
+Lista nro 2,27,12,2011,23583287,Gobernador provincia nro 18
+Lista nro 1,15,11,2011,43059794,Intendente de Bartlesville
+Lista nro 2,15,11,2011,23395524,Intendente de Bartlesville
+Lista nro 1,10,11,2011,28706161,Intendente de Basin
+Lista nro 1,24,12,2011,32372945,Intendente de Batavia
+Lista nro 2,24,12,2011,74750259,Intendente de Batavia
+Lista nro 1,15,12,2011,31555958,Gobernador provincia nro 53
+Lista nro 2,15,12,2011,40879110,Gobernador provincia nro 53
+Lista nro 1,17,10,2011,37592110,Intendente de Baton Rouge
+Lista nro 2,17,10,2011,75657391,Intendente de Baton Rouge
+Lista nro 1,28,11,2011,26745547,Gobernador provincia nro 100
+Lista nro 1,11,12,2011,59733625,Intendente de Battle Creek
+Lista nro 1,24,12,2011,18002054,Gobernador provincia nro 9
+Lista nro 2,24,12,2011,27550250,Gobernador provincia nro 9
+Lista nro 1,17,10,2011,69047523,Intendente de Bay City
+Lista nro 2,17,10,2011,74891328,Intendente de Bay City
+Lista nro 1,12,12,2011,58235534,Intendente de Bay St. Louis
+Lista nro 2,12,12,2011,96684977,Intendente de Bay St. Louis
+Lista nro 1,10,12,2011,42562766,Gobernador provincia nro 177
+Lista nro 2,10,12,2011,34803171,Gobernador provincia nro 177
+Lista nro 1,13,11,2011,28490551,Intendente de Bayamon
+Lista nro 1,14,12,2011,23560027,Gobernador provincia nro 172
+Lista nro 2,14,12,2011,23073012,Gobernador provincia nro 172
+Lista nro 1,15,11,2011,80727441,Intendente de Baytown
+Lista nro 1,23,10,2011,27753682,Gobernador provincia nro 42
+Lista nro 2,23,10,2011,78951199,Gobernador provincia nro 42
+Lista nro 1,15,10,2011,77760509,Intendente de Beacon
+Lista nro 2,15,10,2011,61872915,Intendente de Beacon
+Lista nro 1,11,11,2011,87575569,Gobernador provincia nro 166
+Lista nro 1,13,10,2011,93880013,Intendente de Beaumont
+Lista nro 1,11,12,2011,45243298,Intendente de Beaver Falls
+Lista nro 2,11,12,2011,56212829,Intendente de Beaver Falls
+Lista nro 1,16,11,2011,59837287,Intendente de Beckley
+Lista nro 2,16,11,2011,95761613,Intendente de Beckley
+Lista nro 1,12,11,2011,80130631,Gobernador provincia nro 55
+Lista nro 2,12,11,2011,52705053,Gobernador provincia nro 55
+Lista nro 1,28,10,2011,75472556,Intendente de Bell
+Lista nro 2,28,10,2011,28450697,Intendente de Bell
+Lista nro 1,17,12,2011,18934003,Intendente de Bell Gardens
+Lista nro 2,17,12,2011,43464983,Intendente de Bell Gardens
+Lista nro 1,17,12,2011,81667292,Gobernador provincia nro 60
+Lista nro 1,13,10,2011,48587176,Intendente de Belleville
+Lista nro 2,13,10,2011,65134134,Intendente de Belleville
+Lista nro 1,24,10,2011,58281550,Gobernador provincia nro 187
+Lista nro 1,21,10,2011,58103842,Intendente de Bellflower
+Lista nro 2,21,10,2011,73208481,Intendente de Bellflower
+Lista nro 1,27,11,2011,79150730,Intendente de Bellingham
+Lista nro 2,27,11,2011,17860808,Intendente de Bellingham
+Lista nro 1,20,11,2011,91613776,Intendente de Beloit
+Lista nro 2,20,11,2011,42612923,Intendente de Beloit
+Lista nro 1,17,10,2011,56577538,Intendente de Belpre
+Lista nro 1,13,12,2011,47028983,Intendente de Bend
+Lista nro 1,27,10,2011,13265063,Gobernador provincia nro 77
+Lista nro 2,27,10,2011,19382074,Gobernador provincia nro 77
+Lista nro 1,18,11,2011,21270419,Intendente de Benton Harbor
+Lista nro 2,18,11,2011,19868585,Intendente de Benton Harbor
+Lista nro 1,10,10,2011,77671545,Gobernador provincia nro 119
+Lista nro 1,18,11,2011,83802872,Intendente de Bentonville
+Lista nro 2,18,11,2011,96647536,Intendente de Bentonville
+Lista nro 1,13,10,2011,56751238,Gobernador provincia nro 87
+Lista nro 1,19,12,2011,34721202,Intendente de Berkeley
+Lista nro 1,22,11,2011,78129475,Gobernador provincia nro 163
+Lista nro 2,22,11,2011,38983136,Gobernador provincia nro 163
+Lista nro 1,23,10,2011,37074275,Intendente de Bessemer
+Lista nro 1,11,11,2011,73562706,Intendente de Bethlehem
+Lista nro 1,21,11,2011,52843459,Gobernador provincia nro 90
+Lista nro 1,28,12,2011,66262222,Intendente de Beverly
+Lista nro 1,25,12,2011,79065432,Gobernador provincia nro 120
+Lista nro 1,25,10,2011,10918585,Intendente de Beverly Hills
+Lista nro 1,20,12,2011,64047074,Gobernador provincia nro 169
+Lista nro 1,13,10,2011,48810038,Intendente de Biddeford
+Lista nro 2,13,10,2011,25335953,Intendente de Biddeford
+Lista nro 1,29,11,2011,59803322,Gobernador provincia nro 179
+Lista nro 2,29,11,2011,26355643,Gobernador provincia nro 179
+Lista nro 1,28,12,2011,59248756,Intendente de Billings
+Lista nro 1,23,12,2011,40528301,Gobernador provincia nro 192
+Lista nro 1,14,10,2011,30982387,Intendente de Biloxi
+Lista nro 2,14,10,2011,40338520,Intendente de Biloxi
+Lista nro 1,10,12,2011,46590765,Gobernador provincia nro 66
+Lista nro 1,15,11,2011,25054776,Intendente de Binghamton
+Lista nro 1,30,12,2011,83709238,Gobernador provincia nro 167
+Lista nro 1,17,10,2011,40020066,Intendente de Birmingham
+Lista nro 1,10,11,2011,57323920,Gobernador provincia nro 141
+Lista nro 2,10,11,2011,14645964,Gobernador provincia nro 141
+Lista nro 1,18,10,2011,47639770,Intendente de Bismarck
+Lista nro 2,18,10,2011,30090211,Intendente de Bismarck
+Lista nro 1,29,12,2011,21493711,Intendente de Blacksburg
+Lista nro 1,15,12,2011,51345793,Gobernador provincia nro 56
+Lista nro 2,15,12,2011,71919327,Gobernador provincia nro 56
+Lista nro 1,10,10,2011,27578125,Intendente de Bloomington
+Lista nro 1,21,10,2011,78618284,Intendente de Blythe
+Lista nro 1,18,10,2011,55827853,Gobernador provincia nro 26
+Lista nro 1,27,12,2011,20294632,Intendente de Boise
+Lista nro 1,30,11,2011,57148519,Intendente de Bossier City
+Lista nro 2,30,11,2011,55682911,Intendente de Bossier City
+Lista nro 1,13,11,2011,68971358,Gobernador provincia nro 165
+Lista nro 1,23,10,2011,21626553,Intendente de Boston
+Lista nro 2,23,10,2011,17104168,Intendente de Boston
+Lista nro 1,29,12,2011,16114580,Gobernador provincia nro 25
+Lista nro 2,29,12,2011,92611166,Gobernador provincia nro 25
+Lista nro 1,16,10,2011,16967970,Intendente de Boulder
+Lista nro 1,19,10,2011,29540862,Intendente de Boulder City
+Lista nro 1,24,12,2011,53303454,Gobernador provincia nro 106
+Lista nro 2,24,12,2011,86350245,Gobernador provincia nro 106
+Lista nro 1,10,10,2011,41622643,Intendente de Bowie
+Lista nro 2,10,10,2011,50512698,Intendente de Bowie
+Lista nro 1,23,11,2011,81472846,Gobernador provincia nro 6
+Lista nro 2,23,11,2011,15800143,Gobernador provincia nro 6
+Lista nro 1,22,11,2011,15316217,Intendente de Bowling Green
+Lista nro 2,22,11,2011,18555872,Intendente de Bowling Green
+Lista nro 1,17,12,2011,27881892,Intendente de Bozeman
+Lista nro 1,27,11,2011,27427114,Gobernador provincia nro 45
+Lista nro 1,23,12,2011,12023141,Intendente de Bradbury
+Lista nro 2,23,12,2011,59257918,Intendente de Bradbury
+Lista nro 1,21,11,2011,42961206,Gobernador provincia nro 143
+Lista nro 1,18,12,2011,64130712,Intendente de Bradford
+Lista nro 2,18,12,2011,53909340,Intendente de Bradford
+Lista nro 1,28,12,2011,27088596,Intendente de Branson
+Lista nro 2,28,12,2011,84777874,Intendente de Branson
+Lista nro 1,25,11,2011,59799983,Gobernador provincia nro 2
+Lista nro 1,22,10,2011,25908810,Intendente de Brea
+Lista nro 1,29,10,2011,60523239,Gobernador provincia nro 30
+Lista nro 2,29,10,2011,83834340,Gobernador provincia nro 30
+Lista nro 1,19,11,2011,85833574,Intendente de Bremerton
+Lista nro 1,10,11,2011,27071726,Gobernador provincia nro 175
+Lista nro 2,10,11,2011,67114268,Gobernador provincia nro 175
+Lista nro 1,10,10,2011,13040000,Intendente de Bridgeport
+Lista nro 1,21,10,2011,17191210,Gobernador provincia nro 28
+Lista nro 2,21,10,2011,46521727,Gobernador provincia nro 28
+Lista nro 1,29,10,2011,73574273,Intendente de Brigham City
+Lista nro 1,19,12,2011,85529850,Intendente de Bristol
+Lista nro 1,22,11,2011,39964948,Gobernador provincia nro 199
+Lista nro 2,22,11,2011,90527738,Gobernador provincia nro 199
+Lista nro 1,15,12,2011,21631661,Intendente de Brockton
+Lista nro 2,15,12,2011,59310725,Intendente de Brockton
+Lista nro 1,12,11,2011,42502377,Gobernador provincia nro 8
+Lista nro 1,23,10,2011,82203995,Intendente de Broken Arrow
+Lista nro 1,28,12,2011,28064325,Intendente de Brookfield
+Lista nro 1,15,12,2011,89548697,Gobernador provincia nro 149
+Lista nro 2,15,12,2011,56120616,Gobernador provincia nro 149
+Lista nro 1,16,11,2011,13678206,Intendente de Brookings
+Lista nro 1,28,10,2011,27880015,Gobernador provincia nro 67
+Lista nro 2,28,10,2011,56928727,Gobernador provincia nro 67
+Lista nro 1,21,11,2011,20965634,Intendente de Brooklyn Park
+Lista nro 1,30,11,2011,76609659,Gobernador provincia nro 145
+Lista nro 1,14,10,2011,24194232,Intendente de Brown Deer
+Lista nro 2,14,10,2011,55844704,Intendente de Brown Deer
+Lista nro 1,15,11,2011,51447210,Gobernador provincia nro 136
+Lista nro 1,15,12,2011,33668579,Intendente de Brownsville
+Lista nro 2,15,12,2011,47304848,Intendente de Brownsville
+Lista nro 1,30,11,2011,55523689,Gobernador provincia nro 122
+Lista nro 1,27,11,2011,87162270,Intendente de Brunswick
+Lista nro 2,27,11,2011,14923554,Intendente de Brunswick
+Lista nro 1,17,12,2011,37051112,Gobernador provincia nro 24
+Lista nro 1,22,11,2011,52305888,Intendente de Buena Park
+Lista nro 1,26,12,2011,63630023,Gobernador provincia nro 74
+Lista nro 2,26,12,2011,13776365,Gobernador provincia nro 74
+Lista nro 1,23,12,2011,84521095,Intendente de Buffalo
+Lista nro 2,23,12,2011,33159201,Intendente de Buffalo
+Lista nro 1,27,10,2011,64195991,Gobernador provincia nro 197
+Lista nro 2,27,10,2011,54615739,Gobernador provincia nro 197
+Lista nro 1,17,11,2011,53432610,Intendente de Burbank
+Lista nro 1,29,11,2011,55353633,Gobernador provincia nro 70
+Lista nro 2,29,11,2011,25743424,Gobernador provincia nro 70
+Lista nro 1,11,10,2011,41971267,Intendente de Burlingame
+Lista nro 2,11,10,2011,63609915,Intendente de Burlingame
+Lista nro 1,16,10,2011,49517600,Intendente de Butler
+Lista nro 1,10,10,2011,16334790,Intendente de Butte
+Lista nro 1,28,12,2011,56035413,Intendente de Caguas
+Lista nro 2,28,12,2011,88128901,Intendente de Caguas
+Lista nro 1,18,10,2011,87611011,Gobernador provincia nro 35
+Lista nro 2,18,10,2011,50222140,Gobernador provincia nro 35
+Lista nro 1,23,12,2011,17235282,Intendente de Cairo
+Lista nro 1,13,10,2011,11792253,Intendente de Calabasas
+Lista nro 1,23,11,2011,76970434,Gobernador provincia nro 151
+Lista nro 1,15,11,2011,47312997,Intendente de Calumet City
+Lista nro 1,20,12,2011,15825383,Intendente de Cambridge
+Lista nro 2,20,12,2011,21532541,Intendente de Cambridge
+Lista nro 1,14,10,2011,52449741,Intendente de Camden
+Lista nro 1,15,11,2011,90259680,Intendente de Canandaigua
+Lista nro 2,15,11,2011,68273619,Intendente de Canandaigua
+Lista nro 1,16,11,2011,33689682,Intendente de Canton
+Lista nro 1,15,12,2011,55921070,Gobernador provincia nro 191
+Lista nro 2,15,12,2011,69982267,Gobernador provincia nro 191
+Lista nro 1,19,11,2011,24619758,Intendente de Cape Coral
+Lista nro 1,18,10,2011,55524268,Gobernador provincia nro 108
+Lista nro 2,18,10,2011,15534212,Gobernador provincia nro 108
+Lista nro 1,12,11,2011,10087929,Intendente de Cape Girardeau
+Lista nro 1,28,11,2011,55069523,Intendente de Cape May
+Lista nro 1,10,11,2011,52117444,Intendente de Carbondale
+Lista nro 1,15,10,2011,82162901,Gobernador provincia nro 89
+Lista nro 2,15,10,2011,61795028,Gobernador provincia nro 89
+Lista nro 1,27,12,2011,17444469,Intendente de Carolina
+Lista nro 2,27,12,2011,16157257,Intendente de Carolina
+Lista nro 1,16,12,2011,48343699,Intendente de Carrollton
+Lista nro 1,16,12,2011,25262924,Gobernador provincia nro 10
+Lista nro 2,16,12,2011,75767121,Gobernador provincia nro 10
+Lista nro 1,15,10,2011,61832464,Intendente de Carson
+Lista nro 2,15,10,2011,57788670,Intendente de Carson
+Lista nro 1,21,10,2011,72538985,Gobernador provincia nro 129
+Lista nro 1,16,12,2011,44927719,Intendente de Carson City
+Lista nro 1,10,11,2011,17165649,Gobernador provincia nro 4
+Lista nro 2,10,11,2011,70614822,Gobernador provincia nro 4
+Lista nro 1,10,10,2011,37717701,Intendente de Cary
+Lista nro 1,16,10,2011,48608583,Gobernador provincia nro 103
+Lista nro 1,25,10,2011,76219361,Intendente de Casper
+Lista nro 1,11,11,2011,25367001,Intendente de Catskill
+Lista nro 2,11,11,2011,93333566,Intendente de Catskill
+Lista nro 1,14,11,2011,82520160,Gobernador provincia nro 186
+Lista nro 2,14,11,2011,66234840,Gobernador provincia nro 186
+Lista nro 1,10,10,2011,13021303,Intendente de Cedar City
+Lista nro 1,30,11,2011,33854988,Intendente de Cedar Falls
+Lista nro 1,22,11,2011,43511504,Intendente de Cedar Rapids
+Lista nro 2,22,11,2011,74708059,Intendente de Cedar Rapids
+Lista nro 1,11,11,2011,53222002,Intendente de Cedarburg
+Lista nro 2,11,11,2011,51555616,Intendente de Cedarburg
+Lista nro 1,21,11,2011,37421230,Gobernador provincia nro 85
+Lista nro 2,21,11,2011,39368710,Gobernador provincia nro 85
+Lista nro 1,18,10,2011,35516991,Intendente de Centennial
+Lista nro 2,18,10,2011,73456333,Intendente de Centennial
+Lista nro 1,18,10,2011,68761493,Intendente de Cerritos
+Lista nro 1,26,10,2011,49165391,Gobernador provincia nro 98
+Lista nro 1,19,11,2011,25756643,Intendente de Champaign
+Lista nro 2,19,11,2011,57365878,Intendente de Champaign
+Lista nro 1,16,11,2011,61202488,Gobernador provincia nro 114
+Lista nro 1,25,11,2011,79929019,Intendente de Chandler
+Lista nro 1,18,12,2011,18979696,Intendente de Charleston
+Lista nro 2,18,12,2011,91197219,Intendente de Charleston
+Lista nro 1,18,10,2011,71626429,Intendente de Charlotte
+Lista nro 1,14,12,2011,52951694,Intendente de Charlotte Amalie
+Lista nro 1,13,12,2011,40254238,Intendente de Charlottesville
+Lista nro 1,14,11,2011,93083080,Gobernador provincia nro 47
+Lista nro 1,11,10,2011,65827580,Intendente de Chelsea
+Lista nro 2,11,10,2011,58736361,Intendente de Chelsea
+Lista nro 1,10,10,2011,89330420,Gobernador provincia nro 38
+Lista nro 2,10,10,2011,88754432,Gobernador provincia nro 38
+Lista nro 1,23,11,2011,79168854,Intendente de Chesapeake
+Lista nro 2,23,11,2011,91085119,Intendente de Chesapeake
+Lista nro 1,24,10,2011,40041140,Gobernador provincia nro 125
+Lista nro 1,25,11,2011,64237917,Intendente de Chester
+Lista nro 1,22,10,2011,40644187,Intendente de Cheyenne
+Lista nro 1,17,12,2011,26288985,Gobernador provincia nro 80
+Lista nro 1,17,11,2011,33962531,Intendente de Chicago
+Lista nro 1,19,11,2011,15758638,Intendente de Chicago Heights
+Lista nro 2,19,11,2011,77924445,Intendente de Chicago Heights
+Lista nro 1,24,10,2011,32868884,Intendente de Chickasha
+Lista nro 1,10,12,2011,68313148,Intendente de Chico
+Lista nro 1,11,12,2011,37575990,Gobernador provincia nro 71
+Lista nro 1,17,10,2011,57951358,Intendente de Chicopee
+Lista nro 1,28,11,2011,46909491,Gobernador provincia nro 57
+Lista nro 1,16,11,2011,81651050,Intendente de Chino
+Lista nro 2,16,11,2011,86757176,Intendente de Chino
+Lista nro 1,25,11,2011,70801825,Intendente de Chino Hills
+Lista nro 1,16,10,2011,23301687,Gobernador provincia nro 146
+Lista nro 1,21,11,2011,85997358,Intendente de Christiansted
+Lista nro 1,13,11,2011,70436523,Gobernador provincia nro 75
+Lista nro 1,10,11,2011,44393524,Intendente de Chula Vista
+Lista nro 2,10,11,2011,47389422,Intendente de Chula Vista
+Lista nro 1,12,11,2011,11396419,Intendente de Cicero
+Lista nro 1,25,10,2011,65047849,Intendente de Cincinnati
+Lista nro 2,25,10,2011,87176791,Intendente de Cincinnati
+Lista nro 1,11,11,2011,52156430,Gobernador provincia nro 49
+Lista nro 1,17,10,2011,65298400,Intendente de Citrus Heights
+Lista nro 1,29,12,2011,28638968,Intendente de City of Industry
+Lista nro 2,29,12,2011,19116183,Intendente de City of Industry
+Lista nro 1,16,12,2011,52582975,Intendente de Clairton
+Lista nro 1,19,12,2011,17427670,Gobernador provincia nro 32
+Lista nro 1,18,10,2011,33339128,Intendente de Claremont
+Lista nro 2,18,10,2011,93412263,Intendente de Claremont
+Lista nro 1,15,12,2011,23821391,Gobernador provincia nro 107
+Lista nro 2,15,12,2011,88595379,Gobernador provincia nro 107
+Lista nro 1,16,12,2011,96463268,Intendente de Claremore
+Lista nro 1,13,12,2011,17892957,Intendente de Clarksburg
+Lista nro 2,13,12,2011,34869527,Intendente de Clarksburg
+Lista nro 1,19,11,2011,27449386,Intendente de Clarksville
+Lista nro 2,19,11,2011,95584066,Intendente de Clarksville
+Lista nro 1,16,11,2011,49805875,Intendente de Clearwater
+Lista nro 1,28,12,2011,10134839,Intendente de Clemson
+Lista nro 1,25,12,2011,86651255,Intendente de Clovis
+Lista nro 2,25,12,2011,30208694,Intendente de Clovis
+Lista nro 1,24,10,2011,86722847,Intendente de Coatesville
+Lista nro 2,24,10,2011,73424593,Intendente de Coatesville
+Lista nro 1,21,12,2011,43769692,Intendente de Cody
+Lista nro 2,21,12,2011,54825404,Intendente de Cody
+Lista nro 1,17,12,2011,81130727,Gobernador provincia nro 104
+Lista nro 2,17,12,2011,54825404,Gobernador provincia nro 104
+Lista nro 1,30,11,2011,39352917,Intendente de Cohoes
+Lista nro 1,14,11,2011,66966241,Gobernador provincia nro 15
+Lista nro 1,27,12,2011,81062045,Intendente de College Park
+Lista nro 2,27,12,2011,87285672,Intendente de College Park
+Lista nro 1,15,10,2011,25313632,Intendente de College Station
+Lista nro 1,16,12,2011,39632873,Intendente de Colorado Springs
+Lista nro 2,16,12,2011,22676325,Intendente de Colorado Springs
+Lista nro 1,23,10,2011,85248465,Intendente de Columbia
+Lista nro 2,23,10,2011,93550041,Intendente de Columbia
+Lista nro 1,17,10,2011,73447575,Gobernador provincia nro 189
+Lista nro 1,28,12,2011,82764938,Intendente de Columbus
+Lista nro 1,15,10,2011,18147136,Intendente de Commerce
+Lista nro 2,15,10,2011,42492834,Intendente de Commerce
+Lista nro 1,27,11,2011,81088871,Gobernador provincia nro 91
+Lista nro 2,27,11,2011,97378111,Gobernador provincia nro 91
+Lista nro 1,28,10,2011,95558307,Intendente de Compton
+Lista nro 1,30,12,2011,91043646,Intendente de Concord
+Lista nro 2,30,12,2011,27508713,Intendente de Concord
+Lista nro 1,23,12,2011,27407956,Intendente de Connellsville
+Lista nro 1,21,12,2011,69088843,Intendente de Coos Bay
+Lista nro 2,21,12,2011,27390577,Intendente de Coos Bay
+Lista nro 1,18,10,2011,28367639,Intendente de Coral Springs
+Lista nro 1,30,10,2011,38251293,Gobernador provincia nro 95
+Lista nro 2,30,10,2011,76307497,Gobernador provincia nro 95
+Lista nro 1,25,10,2011,88074293,Intendente de Corinth
+Lista nro 2,25,10,2011,92155008,Intendente de Corinth
+Lista nro 1,20,11,2011,88596175,Intendente de Corona
+Lista nro 2,20,11,2011,23634494,Intendente de Corona
+Lista nro 1,26,12,2011,37105002,Gobernador provincia nro 190
+Lista nro 1,26,12,2011,34212093,Intendente de Corpus Christi
+Lista nro 1,15,10,2011,52559285,Gobernador provincia nro 54
+Lista nro 2,15,10,2011,26317115,Gobernador provincia nro 54
+Lista nro 1,17,10,2011,87471741,Intendente de Corry
+Lista nro 2,17,10,2011,81571389,Intendente de Corry
+Lista nro 1,12,11,2011,22478792,Intendente de Cortland
+Lista nro 2,12,11,2011,54608612,Intendente de Cortland
+Lista nro 1,30,11,2011,82635607,Gobernador provincia nro 37
+Lista nro 2,30,11,2011,34774713,Gobernador provincia nro 37
+Lista nro 1,17,10,2011,39632127,Intendente de Corvallis
+Lista nro 1,28,10,2011,21103550,Intendente de Costa Mesa
+Lista nro 1,27,10,2011,64057949,Gobernador provincia nro 111
+Lista nro 2,27,10,2011,39900605,Gobernador provincia nro 111
+Lista nro 1,22,10,2011,70110166,Intendente de Council Bluffs
+Lista nro 2,22,10,2011,31028541,Intendente de Council Bluffs
+Lista nro 1,23,10,2011,41548030,Intendente de Covina
+Lista nro 2,23,10,2011,39488956,Intendente de Covina
+Lista nro 1,15,12,2011,36406276,Gobernador provincia nro 21
+Lista nro 2,15,12,2011,37603654,Gobernador provincia nro 21
+Lista nro 1,23,12,2011,96672831,Intendente de Covington
+Lista nro 1,12,11,2011,81039188,Gobernador provincia nro 19
+Lista nro 1,18,12,2011,22282686,Intendente de Cranston
+Lista nro 2,18,12,2011,56683868,Intendente de Cranston
+Lista nro 1,28,11,2011,11283625,Gobernador provincia nro 188
+Lista nro 2,28,11,2011,51560442,Gobernador provincia nro 188
+Lista nro 1,23,10,2011,55837593,Intendente de Cruz Bay
+Lista nro 1,29,10,2011,59595109,Gobernador provincia nro 63
+Lista nro 2,29,10,2011,15118298,Gobernador provincia nro 63
+Lista nro 1,25,11,2011,83993007,Intendente de Cudahy
+Lista nro 1,25,10,2011,26341078,Intendente de Culver City
+Lista nro 2,25,10,2011,34634872,Intendente de Culver City
+Lista nro 1,27,10,2011,28363796,Intendente de Cumberland
+Lista nro 1,20,11,2011,67421645,Gobernador provincia nro 58
+Lista nro 1,28,12,2011,92858741,Intendente de Cypress
+Lista nro 2,28,12,2011,48739639,Intendente de Cypress
+Lista nro 1,25,10,2011,41184517,Gobernador provincia nro 64
+Lista nro 2,25,10,2011,35705930,Gobernador provincia nro 64
+Lista nro 1,25,12,2011,40551779,Intendente de Dallas
+Lista nro 1,30,10,2011,40816814,Gobernador provincia nro 193
+Lista nro 2,30,10,2011,55450263,Gobernador provincia nro 193
+Lista nro 1,26,10,2011,11685419,Intendente de Dalton
+Lista nro 1,20,12,2011,21213309,Gobernador provincia nro 79
+Lista nro 1,11,10,2011,23027863,Intendente de Daly City
+Lista nro 2,11,10,2011,76016911,Intendente de Daly City
+Lista nro 1,19,11,2011,90632219,Intendente de Dana Point
+Lista nro 1,20,12,2011,17604475,Gobernador provincia nro 12
+Lista nro 2,20,12,2011,10577720,Gobernador provincia nro 12
+Lista nro 1,11,12,2011,72677963,Intendente de Danbury
+Lista nro 1,17,10,2011,25071294,Intendente de Danville
+Lista nro 1,19,10,2011,78520253,Intendente de Darlington
+Lista nro 1,21,12,2011,34041027,Intendente de Davenport
+Lista nro 2,21,12,2011,84542496,Intendente de Davenport
+Lista nro 1,29,11,2011,61294716,Intendente de Davis
+Lista nro 2,29,11,2011,94477069,Intendente de Davis
+Lista nro 1,27,10,2011,68869479,Intendente de Dayton
+Lista nro 2,27,10,2011,31777383,Intendente de Dayton
+Lista nro 1,11,10,2011,56195147,Gobernador provincia nro 17
+Lista nro 2,11,10,2011,74095291,Gobernador provincia nro 17
+Lista nro 1,15,10,2011,31221071,Intendente de DeKalb
+Lista nro 2,15,10,2011,72621296,Intendente de DeKalb
+Lista nro 1,13,10,2011,58912023,Gobernador provincia nro 22
+Lista nro 1,11,11,2011,85197737,Intendente de Deadwood
+Lista nro 2,11,11,2011,43104183,Intendente de Deadwood
+Lista nro 1,29,10,2011,15365631,Gobernador provincia nro 113
+Lista nro 2,29,10,2011,97285288,Gobernador provincia nro 113
+Lista nro 1,10,11,2011,85071412,Intendente de Dearborn
+Lista nro 2,10,11,2011,72299541,Intendente de Dearborn
+Lista nro 1,20,12,2011,22930050,Intendente de Decatur
+Lista nro 2,20,12,2011,53925828,Intendente de Decatur
+Lista nro 1,13,11,2011,78335957,Intendente de Del Rio
+Lista nro 2,13,11,2011,76388894,Intendente de Del Rio
+Lista nro 1,10,10,2011,55951771,Gobernador provincia nro 105
+Lista nro 1,24,12,2011,14659315,Intendente de Delta Junction
+Lista nro 1,27,12,2011,94569292,Intendente de Denver
+Lista nro 2,27,12,2011,41711889,Intendente de Denver
+Lista nro 1,11,10,2011,12719107,Intendente de Derby
+Lista nro 1,17,11,2011,16827120,Intendente de Des Moines
+Lista nro 2,17,11,2011,80076109,Intendente de Des Moines
+Lista nro 1,11,10,2011,16753671,Intendente de Detroit
+Lista nro 1,23,11,2011,71866315,Intendente de Diamond Bar
+Lista nro 1,26,12,2011,91146033,Intendente de Dickinson
+Lista nro 1,14,10,2011,55790949,Intendente de Dixon
+Lista nro 1,29,11,2011,50409780,Intendente de Dodge City
+Lista nro 2,29,11,2011,22023934,Intendente de Dodge City
+Lista nro 1,14,10,2011,93935538,Gobernador provincia nro 61
+Lista nro 1,24,10,2011,90472712,Intendente de Dothan
+Lista nro 1,14,12,2011,24880309,Intendente de Douglas
+Lista nro 1,27,10,2011,53741288,Intendente de Dover
+Lista nro 1,27,11,2011,50665879,Intendente de Downey
+Lista nro 2,27,11,2011,44304838,Intendente de Downey
+Lista nro 1,30,12,2011,43587772,Intendente de DuBois
+Lista nro 2,30,12,2011,24787728,Intendente de DuBois
+Lista nro 1,22,11,2011,75868184,Intendente de Duarte
+Lista nro 2,22,11,2011,31278759,Intendente de Duarte
+Lista nro 1,23,10,2011,86360101,Gobernador provincia nro 83
+Lista nro 2,23,10,2011,32311836,Gobernador provincia nro 83
+Lista nro 1,20,10,2011,20127365,Intendente de Dubuque
+Lista nro 1,18,10,2011,45066219,Intendente de Duluth
+Lista nro 1,25,11,2011,46833824,Intendente de Duncan
+Lista nro 2,25,11,2011,50671210,Intendente de Duncan
+Lista nro 1,29,12,2011,67228638,Gobernador provincia nro 46
+Lista nro 1,13,10,2011,90521694,Intendente de Duquesne
+Lista nro 2,13,10,2011,47725350,Intendente de Duquesne
+Lista nro 1,25,11,2011,53555614,Gobernador provincia nro 160
+Lista nro 2,25,11,2011,43597736,Gobernador provincia nro 160
+Lista nro 1,21,11,2011,11158603,Intendente de Durango
+Lista nro 2,21,11,2011,90305892,Intendente de Durango
+Lista nro 1,28,11,2011,38494907,Intendente de Durant
+Lista nro 2,28,11,2011,79704891,Intendente de Durant
+Lista nro 1,14,10,2011,57767153,Intendente de Durham
+Lista nro 1,24,10,2011,18179769,Gobernador provincia nro 161
+Lista nro 1,23,12,2011,62270725,Intendente de East Hartford
+Lista nro 1,19,12,2011,89056673,Intendente de East Lansing
+Lista nro 2,19,12,2011,61813225,Intendente de East Lansing
+Lista nro 1,18,11,2011,39186715,Intendente de East Rutherford
+Lista nro 1,18,10,2011,55403665,Intendente de East St. Louis
+Lista nro 2,18,10,2011,81129970,Intendente de East St. Louis
+Lista nro 1,26,11,2011,57239151,Intendente de Easthampton
+Lista nro 2,26,11,2011,82678735,Intendente de Easthampton
+Lista nro 1,14,10,2011,87414775,Intendente de Easton
+Lista nro 2,14,10,2011,75794898,Intendente de Easton
+Lista nro 1,29,11,2011,38468082,Intendente de Eatontown
+Lista nro 1,18,11,2011,12129576,Gobernador provincia nro 158
+Lista nro 1,13,10,2011,62728467,Intendente de Eau Claire
+Lista nro 2,13,10,2011,30986215,Intendente de Eau Claire
+Lista nro 1,26,10,2011,75660579,Intendente de Eden Prairie
+Lista nro 1,16,10,2011,25608950,Gobernador provincia nro 162
+Lista nro 1,19,12,2011,41968821,Intendente de Edina
+Lista nro 2,19,12,2011,34523344,Intendente de Edina
+Lista nro 1,30,12,2011,90617211,Intendente de Edmond
+Lista nro 1,30,10,2011,51125564,Gobernador provincia nro 7
+Lista nro 1,24,11,2011,48664523,Intendente de Effingham
+Lista nro 1,29,11,2011,68147001,Intendente de Egg Harbor
+Lista nro 2,29,11,2011,13796131,Intendente de Egg Harbor
+Lista nro 1,15,11,2011,91469463,Gobernador provincia nro 110
+Lista nro 2,15,11,2011,54861978,Gobernador provincia nro 110
+Lista nro 1,19,10,2011,59565311,Intendente de El Cerrito
+Lista nro 2,19,10,2011,40279054,Intendente de El Cerrito
+Lista nro 1,29,12,2011,83048200,Gobernador provincia nro 115
+Lista nro 1,14,11,2011,87740936,Intendente de El Paso
+Lista nro 2,14,11,2011,26997223,Intendente de El Paso
+Lista nro 1,23,11,2011,28895453,Intendente de El Segundo
+Lista nro 2,23,11,2011,16178313,Intendente de El Segundo
+Lista nro 1,13,10,2011,20180855,Intendente de Elizabeth City
+Lista nro 2,13,10,2011,66209762,Intendente de Elizabeth City
+Lista nro 1,18,10,2011,68800339,Intendente de Elkhart
+Lista nro 2,18,10,2011,28980000,Intendente de Elkhart
+Lista nro 1,25,10,2011,20460115,Intendente de Elko
+Lista nro 2,25,10,2011,84689445,Intendente de Elko
+Lista nro 1,27,11,2011,33447463,Intendente de Elmira
+Lista nro 2,27,11,2011,61515102,Intendente de Elmira
+Lista nro 1,17,12,2011,11073119,Intendente de Elsmere
+Lista nro 2,17,12,2011,65281193,Intendente de Elsmere
+Lista nro 1,20,11,2011,81284559,Gobernador provincia nro 176
+Lista nro 2,20,11,2011,40135150,Gobernador provincia nro 176
+Lista nro 1,12,10,2011,57029137,Intendente de Enfield
+Lista nro 1,22,10,2011,70415970,Intendente de Enid
+Lista nro 1,19,11,2011,97050168,Intendente de Ephraim
+Lista nro 1,19,11,2011,74962518,Intendente de Erie
+Lista nro 1,19,10,2011,66335588,Gobernador provincia nro 33
+Lista nro 2,19,10,2011,75828025,Gobernador provincia nro 33
+Lista nro 1,21,10,2011,69560735,Intendente de Escondido
+Lista nro 2,21,10,2011,94042768,Intendente de Escondido
+Lista nro 1,16,12,2011,70058558,Intendente de Eufaula
+Lista nro 1,12,10,2011,38073975,Intendente de Eugene
+Lista nro 1,30,12,2011,34800593,Intendente de Eureka
+Lista nro 1,20,11,2011,47253493,Intendente de Evanston
+Lista nro 1,18,10,2011,54054216,Intendente de Evansville
+Lista nro 1,12,12,2011,27748421,Gobernador provincia nro 121
+Lista nro 1,12,11,2011,71261976,Intendente de Everett
+Lista nro 2,12,11,2011,15110612,Intendente de Everett
+Lista nro 1,20,12,2011,94655379,Intendente de Fairbanks
+Lista nro 1,16,10,2011,87666658,Intendente de Fairfield
+Lista nro 1,29,11,2011,17509350,Intendente de Fairmont
+Lista nro 1,24,10,2011,19678099,Gobernador provincia nro 39
+Lista nro 2,24,10,2011,15245653,Gobernador provincia nro 39
+Lista nro 1,25,11,2011,36674058,Intendente de Fajardo
+Lista nro 2,25,11,2011,29457556,Intendente de Fajardo
+Lista nro 1,22,12,2011,80949023,Intendente de Fall River
+Lista nro 2,22,12,2011,66246819,Intendente de Fall River
+Lista nro 1,28,12,2011,57814939,Gobernador provincia nro 154
+Lista nro 1,23,11,2011,81005818,Intendente de Fallon
+Lista nro 1,27,12,2011,81185912,Gobernador provincia nro 43
+Lista nro 2,27,12,2011,42888799,Gobernador provincia nro 43
+Lista nro 1,14,10,2011,91162814,Intendente de Falls Church
+Lista nro 1,17,12,2011,66402768,Intendente de Fargo
+Lista nro 1,24,10,2011,41489780,Intendente de Farmer City
+Lista nro 2,24,10,2011,66931159,Intendente de Farmer City
+Lista nro 1,29,12,2011,16984620,Gobernador provincia nro 81
+Lista nro 1,27,12,2011,32258936,Intendente de Farmington
+Lista nro 1,23,11,2011,27657441,Intendente de Farrell
+Lista nro 1,24,10,2011,87013265,Intendente de Fayetteville
+Lista nro 2,24,10,2011,60668071,Intendente de Fayetteville
+Lista nro 1,24,10,2011,36302797,Gobernador provincia nro 34
+Lista nro 2,24,10,2011,51855330,Gobernador provincia nro 34
+Lista nro 1,11,12,2011,11111078,Intendente de Fernley
+Lista nro 2,11,12,2011,14265332,Intendente de Fernley
+Lista nro 1,27,10,2011,95088245,Gobernador provincia nro 147
+Lista nro 2,27,10,2011,37373328,Gobernador provincia nro 147
+Lista nro 1,30,11,2011,45698076,Intendente de Fitchburg
+Lista nro 2,30,11,2011,57091441,Intendente de Fitchburg
+Lista nro 1,16,12,2011,20216113,Intendente de Flagstaff
+Lista nro 2,16,12,2011,59525063,Intendente de Flagstaff
+Lista nro 1,18,11,2011,95270636,Gobernador provincia nro 195
+Lista nro 2,18,11,2011,72065373,Gobernador provincia nro 195
+Lista nro 1,11,12,2011,73073007,Intendente de Flint
+Lista nro 1,17,12,2011,37878261,Gobernador provincia nro 23
+Lista nro 2,17,12,2011,27808186,Gobernador provincia nro 23
+Lista nro 1,21,11,2011,37972910,Intendente de Florence
+Lista nro 2,21,11,2011,10108763,Intendente de Florence
+Lista nro 1,24,11,2011,35168287,Gobernador provincia nro 27
+Lista nro 2,24,11,2011,74805695,Gobernador provincia nro 27
+Lista nro 1,24,12,2011,24577951,Intendente de Fond du Lac
+Lista nro 1,19,10,2011,69291984,Intendente de Fontana
+Lista nro 1,12,10,2011,77219595,Intendente de Forest Lake
+Lista nro 2,12,10,2011,84103698,Intendente de Forest Lake
+Lista nro 1,18,11,2011,31447374,Intendente de Forrest City
+Lista nro 1,24,10,2011,51242566,Intendente de Fort Collins
+Lista nro 2,24,10,2011,41857471,Intendente de Fort Collins
+Lista nro 1,26,10,2011,58636988,Intendente de Fort Dodge
+Lista nro 2,26,10,2011,75815105,Intendente de Fort Dodge
+Lista nro 1,17,12,2011,83210395,Intendente de Fort Lauderdale
+Lista nro 1,21,10,2011,30397284,Intendente de Fort Smith
+Lista nro 2,21,10,2011,67854589,Intendente de Fort Smith
+Lista nro 1,23,11,2011,52629412,Gobernador provincia nro 20
+Lista nro 1,12,12,2011,60422322,Intendente de Fort Wayne
+Lista nro 2,12,12,2011,54885509,Intendente de Fort Wayne
+Lista nro 1,18,11,2011,50481759,Gobernador provincia nro 69
+Lista nro 2,18,11,2011,88631290,Gobernador provincia nro 69
+Lista nro 1,17,11,2011,75148680,Intendente de Fort Worth
+Lista nro 1,22,11,2011,97214844,Intendente de Fountain Valley
+Lista nro 1,11,10,2011,32122290,Gobernador provincia nro 173
+Lista nro 1,24,12,2011,73333504,Intendente de Frankfort
+Lista nro 1,11,11,2011,61715555,Intendente de Franklin
+Lista nro 2,11,11,2011,51459994,Intendente de Franklin
+Lista nro 1,23,12,2011,54230027,Intendente de Frederick
+Lista nro 1,19,11,2011,49813412,Intendente de Fredericksburg
+Lista nro 2,19,11,2011,67886606,Intendente de Fredericksburg
+Lista nro 1,28,10,2011,87342866,Intendente de Frederiksted
+Lista nro 2,28,10,2011,40370407,Intendente de Frederiksted
+Lista nro 1,30,12,2011,41686560,Intendente de Fremont
+Lista nro 1,13,12,2011,54787449,Intendente de Fresno
+Lista nro 1,15,10,2011,29823820,Intendente de Frisco
+Lista nro 2,15,10,2011,57467649,Intendente de Frisco
+Lista nro 1,30,11,2011,67020189,Intendente de Fullerton
+Lista nro 1,29,12,2011,36073346,Intendente de Fulton
+Lista nro 2,29,12,2011,36073346,Intendente de Fulton
+Lista nro 1,30,11,2011,88236652,Intendente de Gadsden
+Lista nro 1,29,11,2011,82895295,Intendente de Gainesville
+Lista nro 1,10,12,2011,54914863,Gobernador provincia nro 138
+Lista nro 2,10,12,2011,71078059,Gobernador provincia nro 138
+Lista nro 1,27,11,2011,12169443,Intendente de Gaithersburg
+Lista nro 2,27,11,2011,80010833,Intendente de Gaithersburg
+Lista nro 1,17,10,2011,94349937,Gobernador provincia nro 150
+Lista nro 2,17,10,2011,22167682,Gobernador provincia nro 150
+Lista nro 1,15,10,2011,83692169,Intendente de Galesburg
+Lista nro 1,27,12,2011,52349888,Gobernador provincia nro 133
+Lista nro 1,10,10,2011,46934223,Intendente de Gallup
+Lista nro 2,10,10,2011,31215808,Intendente de Gallup
+Lista nro 1,19,12,2011,50342212,Intendente de Galveston
+Lista nro 2,19,12,2011,55702057,Intendente de Galveston
+Lista nro 1,28,11,2011,87098672,Gobernador provincia nro 102
+Lista nro 1,25,11,2011,39205311,Intendente de Garden Grove
+Lista nro 2,25,11,2011,86912271,Intendente de Garden Grove
+Lista nro 1,21,12,2011,15577445,Intendente de Gardena
+Lista nro 1,23,12,2011,55487047,Intendente de Gardner
+Lista nro 1,20,12,2011,61168982,Gobernador provincia nro 164
+Lista nro 2,20,12,2011,84139447,Gobernador provincia nro 164
+Lista nro 1,27,12,2011,13495663,Intendente de Garland
+Lista nro 2,27,12,2011,85706170,Intendente de Garland
+Lista nro 1,27,12,2011,73261364,Intendente de Gary
+Lista nro 2,27,12,2011,31873324,Intendente de Gary
+Lista nro 1,19,11,2011,78262929,Intendente de Gastonia
+Lista nro 1,12,10,2011,47624059,Intendente de Gatlinburg
+Lista nro 2,12,10,2011,23897295,Intendente de Gatlinburg
+Lista nro 1,11,11,2011,29883581,Intendente de Geneva
+Lista nro 1,28,10,2011,23626794,Gobernador provincia nro 51
+Lista nro 2,28,10,2011,37053860,Gobernador provincia nro 51
+Lista nro 1,10,12,2011,91220721,Intendente de Georgetown
+Lista nro 2,10,12,2011,23728345,Intendente de Georgetown
+Lista nro 1,28,11,2011,16174541,Intendente de Gettysburg
+Lista nro 1,15,12,2011,16324978,Intendente de Gilbert
+Lista nro 2,15,12,2011,90798317,Intendente de Gilbert
+Lista nro 1,30,10,2011,20900152,Intendente de Gilette
+Lista nro 1,19,11,2011,51003341,Intendente de Glen Cove
+Lista nro 2,19,11,2011,93468836,Intendente de Glen Cove
+Lista nro 1,24,12,2011,50759477,Intendente de Glendale
+Lista nro 2,24,12,2011,88091817,Intendente de Glendale
+Lista nro 1,12,10,2011,26876012,Intendente de Glendora
+Lista nro 1,22,12,2011,18731441,Intendente de Glens Falls
+Lista nro 2,22,12,2011,57915891,Intendente de Glens Falls
+Lista nro 1,20,11,2011,84156311,Gobernador provincia nro 72
+Lista nro 2,20,11,2011,21702991,Gobernador provincia nro 72
+Lista nro 1,25,12,2011,24130378,Intendente de Gloucester
+Lista nro 1,12,11,2011,59194540,Gobernador provincia nro 82
+Lista nro 2,12,11,2011,76520964,Gobernador provincia nro 82
+Lista nro 1,13,12,2011,55309086,Intendente de Gloversville
+Lista nro 1,13,12,2011,64327928,Gobernador provincia nro 109
+Lista nro 1,23,12,2011,64482295,Intendente de Gold Beach
+Lista nro 1,22,10,2011,40861746,Intendente de Goose Creek
+Lista nro 2,22,10,2011,16240421,Intendente de Goose Creek
+Lista nro 1,28,12,2011,59356978,Intendente de Grafton
+Lista nro 2,28,12,2011,62982509,Intendente de Grafton
+Lista nro 1,30,11,2011,95434162,Intendente de Grambling
+Lista nro 2,30,11,2011,89842945,Intendente de Grambling
+Lista nro 1,30,12,2011,42962093,Intendente de Grand Forks
+Lista nro 2,30,12,2011,40625454,Intendente de Grand Forks
+Lista nro 1,19,10,2011,36969752,Intendente de Grand Island
+Lista nro 1,13,10,2011,28499357,Intendente de Grand Junction
+Lista nro 1,27,10,2011,13780533,Intendente de Grand Rapids
+Lista nro 2,27,10,2011,23767595,Intendente de Grand Rapids
+Lista nro 1,21,12,2011,64504229,Intendente de Grass Valley
+Lista nro 1,17,11,2011,38769556,Intendente de Great Falls
+Lista nro 2,17,11,2011,15991270,Intendente de Great Falls
+Lista nro 1,22,10,2011,83802013,Intendente de Green Bay
+Lista nro 2,22,10,2011,90043722,Intendente de Green Bay
+Lista nro 1,21,12,2011,12849209,Intendente de Green River
+Lista nro 1,23,12,2011,52172485,Intendente de Greenfield
+Lista nro 1,17,10,2011,33641789,Intendente de Greensboro
+Lista nro 2,17,10,2011,56619965,Intendente de Greensboro
+Lista nro 1,30,12,2011,63817329,Intendente de Greensburg
+Lista nro 2,30,12,2011,24628399,Intendente de Greensburg
+Lista nro 1,15,10,2011,56563221,Intendente de Greenville
+Lista nro 2,15,10,2011,32163107,Intendente de Greenville
+Lista nro 1,25,12,2011,87173691,Intendente de Guayama
+Lista nro 1,11,10,2011,17659850,Intendente de Gulfport
+Lista nro 2,11,10,2011,78191425,Intendente de Gulfport
+Lista nro 1,29,10,2011,70211501,Intendente de Guthrie
+Lista nro 1,22,10,2011,35154810,Gobernador provincia nro 157
+Lista nro 2,22,10,2011,24296047,Gobernador provincia nro 157
+Lista nro 1,26,10,2011,67312830,Intendente de Hackensack
+Lista nro 2,26,10,2011,85154901,Intendente de Hackensack
+Lista nro 1,29,10,2011,67650467,Intendente de Half Moon Bay
+Lista nro 1,16,10,2011,31624151,Intendente de Hamilton
+Lista nro 2,16,10,2011,13454053,Intendente de Hamilton
+Lista nro 1,21,12,2011,57853891,Intendente de Hammond
+Lista nro 2,21,12,2011,79239369,Intendente de Hammond
+Lista nro 1,17,10,2011,49504004,Intendente de Hanahan
+Lista nro 1,24,11,2011,48455062,Intendente de Hannibal
+Lista nro 2,24,11,2011,17389936,Intendente de Hannibal
+Lista nro 1,26,12,2011,34175446,Intendente de Harrisburg
+Lista nro 1,18,12,2011,78630221,Gobernador provincia nro 126
+Lista nro 2,18,12,2011,92093496,Gobernador provincia nro 126
+Lista nro 1,19,11,2011,82719194,Intendente de Hartford
+Lista nro 2,19,11,2011,69537826,Intendente de Hartford
+Lista nro 1,10,10,2011,96579048,Intendente de Hartland
+Lista nro 1,11,10,2011,17360573,Intendente de Hastings
+Lista nro 2,11,10,2011,57122061,Intendente de Hastings
+Lista nro 1,10,10,2011,63541330,Intendente de Hattiesburg
+Lista nro 2,10,10,2011,86031919,Intendente de Hattiesburg
+Lista nro 1,20,11,2011,20778230,Intendente de Haverhill
+Lista nro 1,19,12,2011,12062804,Intendente de Hawaiian Gardens
+Lista nro 2,19,12,2011,70951299,Intendente de Hawaiian Gardens
+Lista nro 1,17,11,2011,90289418,Intendente de Hawthorne
+Lista nro 1,11,11,2011,16708176,Intendente de Hayward
+Lista nro 1,29,11,2011,86642970,Gobernador provincia nro 124
+Lista nro 2,29,11,2011,70286699,Gobernador provincia nro 124
+Lista nro 1,28,12,2011,69528082,Intendente de Hazleton
+Lista nro 2,28,12,2011,13097942,Intendente de Hazleton
+Lista nro 1,23,12,2011,84692496,Intendente de Healdsburg
+Lista nro 2,23,12,2011,50160756,Intendente de Healdsburg
+Lista nro 1,13,12,2011,26153830,Gobernador provincia nro 142
+Lista nro 1,15,12,2011,35323272,Intendente de Helena
+Lista nro 2,15,12,2011,60014972,Intendente de Helena
+Lista nro 1,25,12,2011,61523463,Intendente de Henderson
+Lista nro 2,25,12,2011,61523463,Intendente de Henderson
+Lista nro 1,18,12,2011,47276827,Intendente de Hermitage
+Lista nro 1,27,12,2011,21115954,Intendente de Hermosa Beach
+Lista nro 1,25,11,2011,93218595,Intendente de Hickory
+Lista nro 1,29,11,2011,47588370,Intendente de Hidden Hills
+Lista nro 1,22,10,2011,49674817,Intendente de High Point
+Lista nro 2,22,10,2011,18582235,Intendente de High Point
+Lista nro 1,28,10,2011,37296087,Intendente de Highland Park
+Lista nro 2,28,10,2011,91635894,Intendente de Highland Park
+Lista nro 1,26,10,2011,77315734,Gobernador provincia nro 31
+Lista nro 1,13,11,2011,14003928,Intendente de Hilo
+Lista nro 1,22,12,2011,12460460,Intendente de Hoboken
+Lista nro 1,17,12,2011,73057995,Intendente de Hollister
+Lista nro 1,19,11,2011,29030055,Intendente de Hollywood
+Lista nro 2,19,11,2011,35201021,Intendente de Hollywood
+Lista nro 1,30,10,2011,91436740,Intendente de Holyoke
+Lista nro 2,30,10,2011,28995014,Intendente de Holyoke
+Lista nro 1,16,11,2011,40757256,Intendente de Homer
+Lista nro 1,29,11,2011,36514251,Intendente de Honolulu
+Lista nro 2,29,11,2011,77019866,Intendente de Honolulu
+Lista nro 1,23,10,2011,35101823,Intendente de Hoover
+Lista nro 2,23,10,2011,59778350,Intendente de Hoover
+Lista nro 1,27,12,2011,22733518,Gobernador provincia nro 132
+Lista nro 1,22,10,2011,84803172,Intendente de Hope
+Lista nro 2,22,10,2011,90795150,Intendente de Hope
+Lista nro 1,22,11,2011,89637419,Gobernador provincia nro 168
+Lista nro 2,22,11,2011,17998296,Gobernador provincia nro 168
+Lista nro 1,30,11,2011,74772877,Intendente de Hopkinsville
+Lista nro 1,23,10,2011,46271213,Intendente de Hot Springs
+Lista nro 1,13,12,2011,70981245,Intendente de Houston
+Lista nro 2,13,12,2011,30294672,Intendente de Houston
+Lista nro 1,22,12,2011,38851617,Intendente de Hudson
+Lista nro 2,22,12,2011,68962338,Intendente de Hudson
+Lista nro 1,16,11,2011,81965573,Intendente de Huntington
+Lista nro 2,16,11,2011,43568158,Intendente de Huntington
+Lista nro 1,20,12,2011,18710372,Intendente de Huntington Beach
+Lista nro 2,20,12,2011,74645030,Intendente de Huntington Beach
+Lista nro 1,24,12,2011,72766430,Intendente de Huntington Park
+Lista nro 1,16,11,2011,59001079,Intendente de Huntsville
+Lista nro 2,16,11,2011,24486814,Intendente de Huntsville
+Lista nro 1,28,12,2011,37073930,Intendente de Hutchinson
+Lista nro 2,28,12,2011,34295127,Intendente de Hutchinson
+Lista nro 1,17,11,2011,35773240,Intendente de Idabel
+Lista nro 2,17,11,2011,14074950,Intendente de Idabel
+Lista nro 1,28,12,2011,42377043,Intendente de Idaho Falls
+Lista nro 1,27,10,2011,71808053,Intendente de Idaho Springs
+Lista nro 1,27,10,2011,94047624,Intendente de Independence
+Lista nro 2,27,10,2011,76029143,Intendente de Independence
+Lista nro 1,23,11,2011,86825628,Intendente de Indianapolis
+Lista nro 2,23,11,2011,27225357,Intendente de Indianapolis
+Lista nro 1,21,12,2011,55597218,Intendente de Indio
+Lista nro 1,19,11,2011,24042529,Intendente de Inglewood
+Lista nro 1,27,11,2011,54744869,Intendente de International Falls
+Lista nro 2,27,11,2011,27760511,Intendente de International Falls
+Lista nro 1,27,12,2011,51641116,Intendente de Iowa City
+Lista nro 2,27,12,2011,49995391,Intendente de Iowa City
+Lista nro 1,20,12,2011,37091655,Intendente de Irvine
+Lista nro 2,20,12,2011,27269333,Intendente de Irvine
+Lista nro 1,15,11,2011,44185608,Intendente de Irving
+Lista nro 1,24,12,2011,55848669,Intendente de Irwindale
+Lista nro 2,24,12,2011,47775578,Intendente de Irwindale
+Lista nro 1,28,12,2011,35948514,Intendente de Isle of Palms
+Lista nro 1,11,12,2011,64163562,Intendente de Ithaca
+Lista nro 1,22,10,2011,69195556,Intendente de Jackson
+Lista nro 1,15,10,2011,65823247,Gobernador provincia nro 155
+Lista nro 1,17,12,2011,37477021,Intendente de Jamestown
+Lista nro 1,19,10,2011,78828969,Intendente de Janesville
+Lista nro 2,19,10,2011,18311403,Intendente de Janesville
+Lista nro 1,20,11,2011,32455071,Intendente de Jeannette
+Lista nro 2,20,11,2011,73862947,Intendente de Jeannette
+Lista nro 1,18,11,2011,37951313,Intendente de Jefferson City
+Lista nro 2,18,11,2011,86184056,Intendente de Jefferson City
+Lista nro 1,13,10,2011,26132644,Intendente de Jeffersontown
+Lista nro 2,13,10,2011,93354164,Intendente de Jeffersontown
+Lista nro 1,18,10,2011,70317905,Intendente de Jeffersonville
+Lista nro 1,21,12,2011,30084227,Intendente de Jenks
+Lista nro 1,23,11,2011,25182453,Intendente de Jersey City
+Lista nro 2,23,11,2011,21399095,Intendente de Jersey City
+Lista nro 1,30,10,2011,95204261,Intendente de Johnson City
+Lista nro 1,25,12,2011,16296348,Intendente de Johnstown
+Lista nro 1,27,10,2011,26176947,Intendente de Joliet
+Lista nro 2,27,10,2011,47766965,Intendente de Joliet
+Lista nro 1,24,11,2011,44198924,Intendente de Jonesboro
+Lista nro 1,27,10,2011,16379340,Intendente de Joplin
+Lista nro 2,27,10,2011,22367364,Intendente de Joplin
+Lista nro 1,29,11,2011,50082278,Intendente de Jordan Valley
+Lista nro 1,30,12,2011,56431352,Intendente de Juneau
+Lista nro 2,30,12,2011,67525762,Intendente de Juneau
+Lista nro 1,14,12,2011,22986680,Gobernador provincia nro 40
+Lista nro 2,14,12,2011,80337059,Gobernador provincia nro 40
+Lista nro 1,12,12,2011,81199817,Intendente de Kahului
+Lista nro 2,12,12,2011,80995468,Intendente de Kahului
+Lista nro 1,30,10,2011,14423659,Intendente de Kalamazoo
+Lista nro 1,13,11,2011,74038718,Intendente de Kalispell
+Lista nro 2,13,11,2011,61782984,Intendente de Kalispell
+Lista nro 1,25,10,2011,61795028,Intendente de Kankakee
+Lista nro 1,22,12,2011,40193020,Intendente de Kansas City
+Lista nro 1,13,11,2011,90817037,Intendente de Kearney
+Lista nro 1,15,11,2011,23397883,Intendente de Kearns
+Lista nro 1,18,10,2011,97002181,Intendente de Keene
+Lista nro 2,18,10,2011,30004994,Intendente de Keene
+Lista nro 1,15,11,2011,61062210,Intendente de Kemmerer
+Lista nro 1,16,11,2011,22427276,Intendente de Kenner
+Lista nro 1,11,12,2011,18292565,Gobernador provincia nro 96
+Lista nro 2,11,12,2011,88182604,Gobernador provincia nro 96
+Lista nro 1,23,11,2011,37724722,Intendente de Kennesaw
+Lista nro 1,14,10,2011,15852178,Intendente de Kennewick
+Lista nro 2,14,10,2011,36658257,Intendente de Kennewick
+Lista nro 1,28,11,2011,22240387,Gobernador provincia nro 84
+Lista nro 2,28,11,2011,55587062,Gobernador provincia nro 84
+Lista nro 1,27,10,2011,25805233,Intendente de Kenosha
+Lista nro 1,12,12,2011,71277225,Intendente de Kent
+Lista nro 2,12,12,2011,23045136,Intendente de Kent
+Lista nro 1,11,11,2011,90828927,Intendente de Ketchikan
+Lista nro 1,14,10,2011,14653782,Intendente de Kettering
+Lista nro 1,27,11,2011,37369548,Intendente de Kingsport
+Lista nro 2,27,11,2011,92993411,Intendente de Kingsport
+Lista nro 1,17,10,2011,82188082,Gobernador provincia nro 59
+Lista nro 2,17,10,2011,17156348,Gobernador provincia nro 59
+Lista nro 1,12,12,2011,14770505,Intendente de Klamath Falls
+Lista nro 2,12,12,2011,44354842,Intendente de Klamath Falls
+Lista nro 1,18,10,2011,63189993,Intendente de Knoxville
+Lista nro 1,10,12,2011,30932968,Intendente de Kokomo
+Lista nro 2,10,12,2011,67823262,Intendente de Kokomo
+Lista nro 1,24,11,2011,11270253,Gobernador provincia nro 76
+Lista nro 1,13,12,2011,12570321,Intendente de Kona
+Lista nro 1,22,11,2011,76930671,Intendente de La Crosse
+Lista nro 2,22,11,2011,28988464,Intendente de La Crosse
+Lista nro 1,19,11,2011,34274456,Intendente de La Habra
+Lista nro 2,19,11,2011,85592255,Intendente de La Habra
+Lista nro 1,22,11,2011,81710539,Intendente de La Habra Heights
+Lista nro 1,27,12,2011,71446217,Intendente de La Jolla
+Lista nro 2,27,12,2011,78919700,Intendente de La Jolla
+Lista nro 1,14,10,2011,46970636,Intendente de La Mirada
+Lista nro 2,14,10,2011,68603794,Intendente de La Mirada
+Lista nro 1,23,12,2011,78086117,Intendente de La Palma
+Lista nro 1,11,11,2011,40399701,Intendente de La Puente
+Lista nro 2,11,11,2011,48518525,Intendente de La Puente
+Lista nro 1,26,10,2011,11383069,Gobernador provincia nro 156
+Lista nro 2,26,10,2011,55501541,Gobernador provincia nro 156
+Lista nro 1,30,10,2011,75962245,Intendente de La Verne
+Lista nro 1,22,12,2011,60970157,Intendente de LaGrange
+Lista nro 1,17,10,2011,66059922,Intendente de Laconia
+Lista nro 2,17,10,2011,86342338,Intendente de Laconia
+Lista nro 1,12,12,2011,35271751,Intendente de Lafayette
+Lista nro 1,17,10,2011,28279858,Intendente de Laguna Beach
+Lista nro 1,13,10,2011,52692952,Intendente de Laguna Hills
+Lista nro 2,13,10,2011,14000864,Intendente de Laguna Hills
+Lista nro 1,11,11,2011,42866820,Intendente de Laguna Niguel
+Lista nro 1,20,12,2011,32864795,Intendente de Laguna Woods
+Lista nro 1,13,10,2011,60143734,Intendente de Lahaina
+Lista nro 1,20,11,2011,26545445,Intendente de Lake Charles
+Lista nro 1,21,11,2011,26264575,Intendente de Lake Forest
+Lista nro 2,21,11,2011,21740477,Intendente de Lake Forest
+Lista nro 1,18,12,2011,14444528,Intendente de Lakeland
+Lista nro 2,18,12,2011,19020177,Intendente de Lakeland
+Lista nro 1,27,10,2011,79018801,Intendente de Lakewood
+Lista nro 2,27,10,2011,53394580,Intendente de Lakewood
+Lista nro 1,22,11,2011,43770190,Intendente de Lancaster
+Lista nro 1,24,10,2011,26040195,Intendente de Lander
+Lista nro 1,29,11,2011,11379681,Intendente de Lansing
+Lista nro 1,15,12,2011,57820159,Intendente de Laramie
+Lista nro 2,15,12,2011,67857761,Intendente de Laramie
+Lista nro 1,25,10,2011,37897337,Intendente de Laredo
+Lista nro 1,27,11,2011,63841442,Gobernador provincia nro 92
+Lista nro 1,27,12,2011,74308115,Intendente de Las Cruces
+Lista nro 2,27,12,2011,15912093,Intendente de Las Cruces
+Lista nro 1,21,10,2011,65794789,Intendente de Las Vegas
+Lista nro 2,21,10,2011,48636582,Intendente de Las Vegas
+Lista nro 1,30,12,2011,76666122,Intendente de Latrobe
+Lista nro 1,18,11,2011,41443177,Intendente de Laughlin
+Lista nro 2,18,11,2011,59509497,Intendente de Laughlin
+Lista nro 1,23,12,2011,50510361,Intendente de Laurel
+Lista nro 2,23,12,2011,45385599,Intendente de Laurel
+Lista nro 1,15,10,2011,94688609,Intendente de Lawndale
+Lista nro 1,21,11,2011,53555614,Intendente de Lawrence
+Lista nro 1,30,11,2011,16355114,Intendente de Lawton
+Lista nro 1,13,11,2011,15118497,Gobernador provincia nro 178
+Lista nro 2,13,11,2011,13358043,Gobernador provincia nro 178
+Lista nro 1,13,11,2011,78282748,Intendente de Layton
+Lista nro 2,13,11,2011,15830346,Intendente de Layton
+Lista nro 1,20,12,2011,29319156,Intendente de Lebanon
+Lista nro 1,13,12,2011,92077971,Intendente de Leominster
+Lista nro 2,13,12,2011,42675286,Intendente de Leominster
+Lista nro 1,13,10,2011,69749907,Intendente de Lewiston
+Lista nro 2,13,10,2011,69749907,Intendente de Lewiston
+Lista nro 1,30,10,2011,22819246,Intendente de Lexington
+Lista nro 1,19,11,2011,67180692,Intendente de Liberal
+Lista nro 2,19,11,2011,20158779,Intendente de Liberal
+Lista nro 1,25,12,2011,86753784,Intendente de Lima
+Lista nro 1,13,11,2011,78400781,Intendente de Lincoln
+Lista nro 1,19,10,2011,90461313,Intendente de Little Falls
+Lista nro 2,19,10,2011,66258416,Intendente de Little Falls
+Lista nro 1,30,12,2011,62343868,Intendente de Little Rock
+Lista nro 2,30,12,2011,19124042,Intendente de Little Rock
+Lista nro 1,18,10,2011,74199764,Intendente de Littleton
+Lista nro 2,18,10,2011,12447950,Intendente de Littleton
+Lista nro 1,14,10,2011,13703194,Intendente de Livonia
+Lista nro 2,14,10,2011,39472858,Intendente de Livonia
+Lista nro 1,19,12,2011,58182051,Intendente de Lock Haven
+Lista nro 2,19,12,2011,42590385,Intendente de Lock Haven
+Lista nro 1,16,11,2011,36659089,Intendente de Lodi
+Lista nro 2,16,11,2011,44453290,Intendente de Lodi
+Lista nro 1,11,11,2011,76064246,Intendente de Logan
+Lista nro 2,11,11,2011,67659945,Intendente de Logan
+Lista nro 1,16,11,2011,19767473,Intendente de Lomita
+Lista nro 2,16,11,2011,96787373,Intendente de Lomita
+Lista nro 1,18,12,2011,18559349,Intendente de Long Beach
+Lista nro 1,30,12,2011,47021057,Gobernador provincia nro 36
+Lista nro 2,30,12,2011,30866047,Gobernador provincia nro 36
+Lista nro 1,25,12,2011,17665194,Intendente de Longview
+Lista nro 2,25,12,2011,48004004,Intendente de Longview
+Lista nro 1,26,11,2011,19902311,Gobernador provincia nro 159
+Lista nro 1,10,12,2011,94626175,Intendente de Los Alamitos
+Lista nro 1,22,12,2011,55817848,Intendente de Los Angeles
+Lista nro 1,16,12,2011,38782676,Gobernador provincia nro 134
+Lista nro 1,13,12,2011,74320992,Intendente de Loudon
+Lista nro 1,28,12,2011,27538275,Intendente de Louisville
+Lista nro 1,16,10,2011,62489828,Intendente de Lowell
+Lista nro 1,14,10,2011,13448175,Intendente de Lubbock
+Lista nro 1,20,11,2011,36107780,Intendente de Lufkin
+Lista nro 1,28,10,2011,25075309,Intendente de Lynchburg
+Lista nro 2,28,10,2011,13982508,Intendente de Lynchburg
+Lista nro 1,28,10,2011,95509776,Intendente de Lynn
+Lista nro 1,28,10,2011,27624572,Intendente de Lynwood
+Lista nro 1,17,10,2011,54908546,Intendente de Macomb
+Lista nro 2,17,10,2011,91593402,Intendente de Macomb
+Lista nro 1,17,11,2011,47001509,Intendente de Macon
+Lista nro 2,17,11,2011,86231982,Intendente de Macon
+Lista nro 1,17,12,2011,94406998,Gobernador provincia nro 181
+Lista nro 2,17,12,2011,31513352,Gobernador provincia nro 181
+Lista nro 1,13,11,2011,44423099,Intendente de Madison
+Lista nro 2,13,11,2011,63448084,Intendente de Madison
+Lista nro 1,14,10,2011,80013243,Intendente de Malden
+Lista nro 1,18,10,2011,53000603,Intendente de Malibu
+Lista nro 2,18,10,2011,80130631,Intendente de Malibu
+Lista nro 1,20,12,2011,24425511,Intendente de Mandan
+Lista nro 2,20,12,2011,44572048,Intendente de Mandan
+Lista nro 1,28,10,2011,15530718,Intendente de Manhattan
+Lista nro 1,28,10,2011,53086122,Intendente de Manhattan Beach
+Lista nro 1,24,11,2011,83352758,Intendente de Manitowoc
+Lista nro 1,29,10,2011,28604366,Intendente de Mankato
+Lista nro 2,29,10,2011,86286915,Intendente de Mankato
+Lista nro 1,18,12,2011,86578615,Intendente de Marietta
+Lista nro 2,18,12,2011,49180682,Intendente de Marietta
+Lista nro 1,28,10,2011,13230532,Intendente de Marlborough
+Lista nro 1,27,12,2011,12212693,Intendente de Marquette
+Lista nro 2,27,12,2011,55142585,Intendente de Marquette
+Lista nro 1,24,12,2011,25705300,Intendente de Marshall
+Lista nro 1,16,10,2011,72919959,Intendente de Marshfield
+Lista nro 2,16,10,2011,55790313,Intendente de Marshfield
+Lista nro 1,11,10,2011,43651467,Intendente de Martinsburg
+Lista nro 2,11,10,2011,68833629,Intendente de Martinsburg
+Lista nro 1,10,11,2011,24657321,Intendente de Mason City
+Lista nro 2,10,11,2011,50387880,Intendente de Mason City
+Lista nro 1,15,12,2011,29149420,Intendente de Maywood
+Lista nro 2,15,12,2011,29032590,Intendente de Maywood
+Lista nro 1,19,12,2011,76635554,Intendente de McAlester
+Lista nro 2,19,12,2011,39360159,Intendente de McAlester
+Lista nro 1,17,10,2011,44549585,Intendente de McAllen
+Lista nro 2,17,10,2011,40541132,Intendente de McAllen
+Lista nro 1,22,10,2011,85487495,Intendente de McKeesport
+Lista nro 2,22,10,2011,61306895,Intendente de McKeesport
+Lista nro 1,16,12,2011,39840780,Intendente de Meadville
+Lista nro 2,16,12,2011,97197524,Intendente de Meadville
+Lista nro 1,26,11,2011,92681326,Intendente de Mechanicville
+Lista nro 1,21,10,2011,16345031,Intendente de Medford
+Lista nro 1,22,10,2011,42793353,Intendente de Melrose
+Lista nro 2,22,10,2011,15013432,Intendente de Melrose
+Lista nro 1,11,12,2011,66413236,Intendente de Memphis
+Lista nro 1,16,11,2011,80170801,Intendente de Menomonee Falls
+Lista nro 2,16,11,2011,34829594,Intendente de Menomonee Falls
+Lista nro 1,11,11,2011,15604639,Intendente de Mentor
+Lista nro 2,11,11,2011,15604639,Intendente de Mentor
+Lista nro 1,17,11,2011,10176188,Intendente de Merced
+Lista nro 1,13,10,2011,71652902,Intendente de Meriden
+Lista nro 1,13,12,2011,16034914,Intendente de Meridian
+Lista nro 1,12,12,2011,18312310,Intendente de Merizo
+Lista nro 1,15,10,2011,61643824,Intendente de Mesa
+Lista nro 2,15,10,2011,10969328,Intendente de Mesa
+Lista nro 1,27,12,2011,17407904,Intendente de Mesquite
+Lista nro 2,27,12,2011,24124501,Intendente de Mesquite
+Lista nro 1,30,11,2011,66448601,Gobernador provincia nro 88
+Lista nro 2,30,11,2011,46268269,Gobernador provincia nro 88
+Lista nro 1,11,12,2011,20004652,Intendente de Methuen
+Lista nro 1,20,12,2011,27531693,Intendente de Miami
+Lista nro 2,20,12,2011,86443317,Intendente de Miami
+Lista nro 1,13,10,2011,52356391,Intendente de Miami Beach
+Lista nro 1,18,12,2011,11347238,Intendente de Miami Gardens
+Lista nro 1,30,12,2011,44464100,Intendente de Michigan City
+Lista nro 2,30,12,2011,75891505,Intendente de Michigan City
+Lista nro 1,29,11,2011,44899117,Intendente de Middlebury
+Lista nro 2,29,11,2011,30978270,Intendente de Middlebury
+Lista nro 1,21,11,2011,86847793,Intendente de Middletown
+Lista nro 1,25,10,2011,33530006,Intendente de Midland
+Lista nro 2,25,10,2011,60316845,Intendente de Midland
+Lista nro 1,13,12,2011,73790481,Intendente de Midwest City
+Lista nro 2,13,12,2011,52709439,Intendente de Midwest City
+Lista nro 1,19,12,2011,39551518,Intendente de Milford
+Lista nro 2,19,12,2011,40147994,Intendente de Milford
+Lista nro 1,16,12,2011,29710041,Intendente de Minneapolis
+Lista nro 2,16,12,2011,41092099,Intendente de Minneapolis
+Lista nro 1,15,12,2011,71732267,Intendente de Minnetonka
+Lista nro 2,15,12,2011,34032571,Intendente de Minnetonka
+Lista nro 1,17,11,2011,22979051,Intendente de Minot
+Lista nro 1,25,12,2011,29268238,Intendente de Mission Viejo
+Lista nro 2,25,12,2011,43541463,Intendente de Mission Viejo
+Lista nro 1,11,10,2011,28827951,Intendente de Missoula
+Lista nro 2,11,10,2011,56013382,Intendente de Missoula
+Lista nro 1,23,10,2011,17559282,Intendente de Mobile
+Lista nro 2,23,10,2011,54971259,Intendente de Mobile
+Lista nro 1,16,10,2011,61236630,Intendente de Modesto
+Lista nro 2,16,10,2011,56773184,Intendente de Modesto
+Lista nro 1,25,10,2011,66116089,Intendente de Moline
+Lista nro 2,25,10,2011,95972922,Intendente de Moline
+Lista nro 1,14,12,2011,32698906,Intendente de Monongahela
+Lista nro 2,14,12,2011,88415123,Intendente de Monongahela
+Lista nro 1,28,12,2011,93865430,Intendente de Monroe
+Lista nro 2,28,12,2011,79817053,Intendente de Monroe
+Lista nro 1,10,10,2011,67724318,Intendente de Monrovia
+Lista nro 2,10,10,2011,22814184,Intendente de Monrovia
+Lista nro 1,28,10,2011,78845851,Intendente de Monterey
+Lista nro 2,28,10,2011,23472495,Intendente de Monterey
+Lista nro 1,19,10,2011,48957463,Intendente de Monterey Park
+Lista nro 1,20,11,2011,81492146,Intendente de Montgomery
+Lista nro 2,20,11,2011,93634148,Intendente de Montgomery
+Lista nro 1,29,11,2011,97265673,Intendente de Montpelier
+Lista nro 1,17,12,2011,40525788,Intendente de Moore
+Lista nro 1,17,12,2011,82628884,Intendente de Moorhead
+Lista nro 1,21,11,2011,36603187,Intendente de Moraga
+Lista nro 1,24,10,2011,56078700,Intendente de Moreno Valley
+Lista nro 2,24,10,2011,36102388,Intendente de Moreno Valley
+Lista nro 1,10,12,2011,45971352,Intendente de Morgan City
+Lista nro 1,17,11,2011,90426998,Intendente de Morgantown
+Lista nro 1,24,12,2011,20938158,Intendente de Morrison
+Lista nro 1,19,12,2011,26928575,Intendente de Moscow
+Lista nro 2,19,12,2011,29694579,Intendente de Moscow
+Lista nro 1,11,12,2011,21719833,Intendente de Moultrie
+Lista nro 1,17,11,2011,52248388,Intendente de Mount Pleasant
+Lista nro 1,25,10,2011,80282636,Intendente de Mount Vernon
+Lista nro 1,23,11,2011,47107233,Intendente de Murfreesboro
+Lista nro 1,19,11,2011,30252645,Intendente de Murray
+Lista nro 2,19,11,2011,70684277,Intendente de Murray
+Lista nro 1,26,11,2011,83508938,Intendente de Murrieta
+Lista nro 1,23,11,2011,63046281,Intendente de Muskegon
+Lista nro 1,24,12,2011,14506940,Intendente de Muskogee
+Lista nro 1,30,12,2011,33054982,Intendente de Myrtle Beach
+Lista nro 1,14,10,2011,56415930,Intendente de Nampa
+Lista nro 2,14,10,2011,37382349,Intendente de Nampa
+Lista nro 1,27,11,2011,24951646,Intendente de Nanticoke
+Lista nro 2,27,11,2011,78989712,Intendente de Nanticoke
+Lista nro 1,10,11,2011,34687812,Intendente de Naperville
+Lista nro 2,10,11,2011,92477808,Intendente de Naperville
+Lista nro 1,24,11,2011,51331692,Intendente de Narragansett
+Lista nro 1,30,12,2011,41985950,Intendente de Nashua
+Lista nro 1,30,12,2011,87078476,Intendente de Nashville
+Lista nro 2,30,12,2011,81190512,Intendente de Nashville
+Lista nro 1,16,11,2011,79976482,Intendente de Natchez
+Lista nro 2,16,11,2011,50475132,Intendente de Natchez
+Lista nro 1,28,12,2011,55846048,Intendente de Natchitoches
+Lista nro 2,28,12,2011,86132542,Intendente de Natchitoches
+Lista nro 1,26,12,2011,12940191,Intendente de Needham
+Lista nro 2,26,12,2011,35915942,Intendente de Needham
+Lista nro 1,11,11,2011,84518010,Intendente de Nenana
+Lista nro 1,11,11,2011,18091880,Intendente de Nevada City
+Lista nro 2,11,11,2011,58734139,Intendente de Nevada City
+Lista nro 1,19,11,2011,12370180,Intendente de New Albany
+Lista nro 2,19,11,2011,35374473,Intendente de New Albany
+Lista nro 1,20,11,2011,48351248,Intendente de New Bedford
+Lista nro 1,30,10,2011,90525260,Intendente de New Britain
+Lista nro 2,30,10,2011,73293846,Intendente de New Britain
+Lista nro 1,15,10,2011,61407413,Intendente de New Brunswick
+Lista nro 1,27,11,2011,48794815,Intendente de New Castle
+Lista nro 2,27,11,2011,54593821,Intendente de New Castle
+Lista nro 1,20,12,2011,84988977,Intendente de New Haven
+Lista nro 1,15,12,2011,32732422,Intendente de New Iberia
+Lista nro 1,23,10,2011,41058214,Intendente de New Kensington
+Lista nro 2,23,10,2011,76335324,Intendente de New Kensington
+Lista nro 1,13,10,2011,90531605,Intendente de New London
+Lista nro 2,13,10,2011,90531605,Intendente de New London
+Lista nro 1,26,12,2011,79105247,Intendente de New Madrid
+Lista nro 1,29,11,2011,25499510,Intendente de New Orleans
+Lista nro 2,29,11,2011,89044427,Intendente de New Orleans
+Lista nro 1,21,10,2011,47453280,Intendente de New Rochelle
+Lista nro 2,21,10,2011,46440005,Intendente de New Rochelle
+Lista nro 1,18,12,2011,19001760,Intendente de New York
+Lista nro 1,11,11,2011,35912339,Intendente de Newark
+Lista nro 2,11,11,2011,51695995,Intendente de Newark
+Lista nro 1,21,12,2011,14812082,Intendente de Newburgh
+Lista nro 1,28,11,2011,21526762,Intendente de Newburyport
+Lista nro 2,28,11,2011,44591408,Intendente de Newburyport
+Lista nro 1,21,10,2011,15044930,Intendente de Newcastle
+Lista nro 2,21,10,2011,29102096,Intendente de Newcastle
+Lista nro 1,18,11,2011,53556713,Intendente de Newport
+Lista nro 1,25,12,2011,41286148,Intendente de Newport Beach
+Lista nro 1,27,11,2011,84010865,Intendente de Newport News
+Lista nro 2,27,11,2011,77664955,Intendente de Newport News
+Lista nro 1,26,11,2011,68184589,Intendente de Newton
+Lista nro 2,26,11,2011,26665787,Intendente de Newton
+Lista nro 1,26,10,2011,87212734,Intendente de Niagara Falls
+Lista nro 2,26,10,2011,60277981,Intendente de Niagara Falls
+Lista nro 1,15,11,2011,93792701,Intendente de Nichols Hills
+Lista nro 2,15,11,2011,57797728,Intendente de Nichols Hills
+Lista nro 1,19,10,2011,81773528,Intendente de Nogales
+Lista nro 2,19,10,2011,36812831,Intendente de Nogales
+Lista nro 1,26,12,2011,29008308,Intendente de Nome
+Lista nro 2,26,12,2011,15215637,Intendente de Nome
+Lista nro 1,11,12,2011,28853959,Intendente de Norfolk
+Lista nro 2,11,12,2011,62326995,Intendente de Norfolk
+Lista nro 1,16,12,2011,17791052,Intendente de Normal
+Lista nro 1,17,12,2011,77725333,Intendente de Norman
+Lista nro 2,17,12,2011,40113564,Intendente de Norman
+Lista nro 1,30,10,2011,18894754,Intendente de North Adams
+Lista nro 1,15,10,2011,16146966,Intendente de North Charleston
+Lista nro 1,17,10,2011,50335143,Intendente de North Chicago
+Lista nro 2,17,10,2011,39759673,Intendente de North Chicago
+Lista nro 1,11,10,2011,80624486,Intendente de North Little Rock
+Lista nro 2,11,10,2011,80624486,Intendente de North Little Rock
+Lista nro 1,29,12,2011,19687288,Intendente de North Platte
+Lista nro 1,17,12,2011,80214031,Intendente de North Pole
+Lista nro 1,19,12,2011,94496106,Intendente de North Tonawanda
+Lista nro 2,19,12,2011,33890329,Intendente de North Tonawanda
+Lista nro 1,27,12,2011,17414884,Intendente de Northampton
+Lista nro 1,16,12,2011,59794117,Intendente de Norton
+Lista nro 1,29,12,2011,13934770,Intendente de Norwalk
+Lista nro 1,25,11,2011,40827898,Intendente de Norwich
+Lista nro 1,27,10,2011,79067772,Intendente de Oak Ridge
+Lista nro 1,26,11,2011,28993237,Intendente de Oakland
+Lista nro 2,26,11,2011,73761845,Intendente de Oakland
+Lista nro 1,15,12,2011,40343919,Intendente de Ocean City
+Lista nro 2,15,12,2011,51665154,Intendente de Ocean City
+Lista nro 1,12,12,2011,47262595,Intendente de Ogden
+Lista nro 1,23,12,2011,95971548,Intendente de Ogdensburg
+Lista nro 1,24,12,2011,27179240,Intendente de Oil City
+Lista nro 1,12,12,2011,84729537,Intendente de Oklahoma City
+Lista nro 2,12,12,2011,38788276,Intendente de Oklahoma City
+Lista nro 1,21,11,2011,34562655,Intendente de Olean
+Lista nro 2,21,11,2011,14240158,Intendente de Olean
+Lista nro 1,19,10,2011,46755263,Intendente de Olympia
+Lista nro 2,19,10,2011,80259918,Intendente de Olympia
+Lista nro 1,29,12,2011,10358949,Intendente de Omaha
+Lista nro 2,29,12,2011,51364848,Intendente de Omaha
+Lista nro 1,12,11,2011,75111185,Intendente de Oneida
+Lista nro 2,12,11,2011,16818134,Intendente de Oneida
+Lista nro 1,29,10,2011,69482873,Intendente de Oneonta
+Lista nro 1,23,12,2011,67673556,Intendente de Ontario
+Lista nro 1,10,12,2011,31767732,Intendente de Opelousas
+Lista nro 1,29,12,2011,24672243,Intendente de Orange
+Lista nro 1,24,11,2011,30392871,Intendente de Orangeburg
+Lista nro 2,24,11,2011,77236228,Intendente de Orangeburg
+Lista nro 1,14,12,2011,54466186,Intendente de Orem
+Lista nro 1,20,11,2011,48106016,Intendente de Orlando
+Lista nro 2,20,11,2011,76380906,Intendente de Orlando
+Lista nro 1,17,12,2011,74130070,Intendente de Oro Valley
+Lista nro 1,11,12,2011,50394462,Intendente de Oshkosh
+Lista nro 2,11,12,2011,81477801,Intendente de Oshkosh
+Lista nro 1,25,12,2011,85061132,Intendente de Oswego
+Lista nro 2,25,12,2011,23201608,Intendente de Oswego
+Lista nro 1,24,11,2011,65836219,Intendente de Overland Park
+Lista nro 1,19,11,2011,86781057,Intendente de Owensboro
+Lista nro 2,19,11,2011,85637511,Intendente de Owensboro
+Lista nro 1,22,11,2011,66691927,Intendente de Oxford
+Lista nro 2,22,11,2011,69193179,Intendente de Oxford
+Lista nro 1,13,10,2011,66406765,Gobernador provincia nro 123
+Lista nro 1,11,11,2011,37760738,Intendente de Oxnard
+Lista nro 2,11,11,2011,90071080,Intendente de Oxnard
+Lista nro 1,19,10,2011,39246698,Intendente de Paducah
+Lista nro 1,12,12,2011,21308948,Intendente de Palm Springs
+Lista nro 2,12,12,2011,69629139,Intendente de Palm Springs
+Lista nro 1,29,12,2011,14761908,Intendente de Palmdale
+Lista nro 1,24,10,2011,16777370,Intendente de Palo Alto
+Lista nro 1,23,11,2011,77192877,Intendente de Palos Verdes Estates
+Lista nro 2,23,11,2011,70961676,Intendente de Palos Verdes Estates
+Lista nro 1,15,12,2011,34503836,Intendente de Paramount
+Lista nro 2,15,12,2011,42173232,Intendente de Paramount
+Lista nro 1,29,10,2011,47530618,Intendente de Parker
+Lista nro 2,29,10,2011,54861978,Intendente de Parker
+Lista nro 1,25,11,2011,45177691,Intendente de Parkersburg
+Lista nro 1,21,10,2011,49414092,Intendente de Parma
+Lista nro 1,27,11,2011,46625160,Intendente de Pasadena
+Lista nro 1,28,11,2011,65461600,Intendente de Pascagoula
+Lista nro 2,28,11,2011,46856983,Intendente de Pascagoula
+Lista nro 1,26,11,2011,92674928,Intendente de Pasco
+Lista nro 1,27,12,2011,14746817,Intendente de Pass Christian
+Lista nro 2,27,12,2011,96296922,Intendente de Pass Christian
+Lista nro 1,11,11,2011,16960612,Intendente de Passaic
+Lista nro 2,11,11,2011,19346505,Intendente de Passaic
+Lista nro 1,18,12,2011,32159787,Intendente de Paterson
+Lista nro 1,12,12,2011,93625957,Intendente de Pawtucket
+Lista nro 1,21,12,2011,95849323,Intendente de Peabody
+Lista nro 1,12,12,2011,17803980,Intendente de Peekskill
+Lista nro 2,12,12,2011,74123743,Intendente de Peekskill
+Lista nro 1,18,11,2011,37695555,Intendente de Pembroke Pines
+Lista nro 1,27,10,2011,92234073,Intendente de Pendleton
+Lista nro 2,27,10,2011,61021894,Intendente de Pendleton
+Lista nro 1,20,10,2011,65460957,Intendente de Peoria
+Lista nro 1,21,12,2011,53498750,Intendente de Perth Amboy
+Lista nro 2,21,12,2011,85125886,Intendente de Perth Amboy
+Lista nro 1,20,12,2011,78406822,Intendente de Peru
+Lista nro 2,20,12,2011,94812541,Intendente de Peru
+Lista nro 1,20,11,2011,58737204,Intendente de Phenix City
+Lista nro 1,10,10,2011,56059095,Intendente de Philadelphia
+Lista nro 2,10,10,2011,31153164,Intendente de Philadelphia
+Lista nro 1,17,12,2011,32981110,Intendente de Phoenix
+Lista nro 1,19,10,2011,79760091,Intendente de Pico Rivera
+Lista nro 1,15,11,2011,69243832,Intendente de Pierre
+Lista nro 2,15,11,2011,87028925,Intendente de Pierre
+Lista nro 1,15,12,2011,89252449,Intendente de Pittsburgh
+Lista nro 2,15,12,2011,15024472,Intendente de Pittsburgh
+Lista nro 1,11,12,2011,47149663,Intendente de Pittsfield
+Lista nro 2,11,12,2011,44313965,Intendente de Pittsfield
+Lista nro 1,26,11,2011,16264617,Intendente de Pittston
+Lista nro 2,26,11,2011,21351997,Intendente de Pittston
+Lista nro 1,13,12,2011,57014022,Intendente de Placentia
+Lista nro 1,24,11,2011,59795050,Intendente de Plainfield
+Lista nro 1,25,11,2011,27682516,Intendente de Plano
+Lista nro 1,14,10,2011,27840674,Intendente de Plantation
+Lista nro 1,11,10,2011,19755269,Intendente de Plymouth
+Lista nro 2,11,10,2011,56023203,Intendente de Plymouth
+Lista nro 1,15,10,2011,50384347,Intendente de Pocatello
+Lista nro 1,28,11,2011,80204102,Intendente de Pomona
+Lista nro 1,30,12,2011,60529533,Intendente de Ponce
+Lista nro 1,19,12,2011,14104237,Intendente de Port Arthur
+Lista nro 2,19,12,2011,66831923,Intendente de Port Arthur
+Lista nro 1,14,11,2011,22202753,Intendente de Port Huron
+Lista nro 2,14,11,2011,14047019,Intendente de Port Huron
+Lista nro 1,24,11,2011,66022791,Intendente de Port Jervis
+Lista nro 1,11,12,2011,64352011,Intendente de Port Orford
+Lista nro 1,15,11,2011,50407428,Intendente de Port St. Lucie
+Lista nro 2,15,11,2011,59684107,Intendente de Port St. Lucie
+Lista nro 1,13,10,2011,53974266,Intendente de Port Washington
+Lista nro 2,13,10,2011,96653888,Intendente de Port Washington
+Lista nro 1,27,11,2011,17708846,Intendente de Portland
+Lista nro 2,27,11,2011,88226752,Intendente de Portland
+Lista nro 1,13,10,2011,78236627,Intendente de Pottsville
+Lista nro 2,13,10,2011,92880983,Intendente de Pottsville
+Lista nro 1,26,12,2011,52741324,Intendente de Poughkeepsie
+Lista nro 1,13,10,2011,85487246,Intendente de Powell
+Lista nro 1,18,10,2011,63542932,Intendente de Prescott
+Lista nro 1,11,10,2011,31670264,Intendente de Princeton
+Lista nro 1,15,10,2011,11403201,Intendente de Providence
+Lista nro 1,21,10,2011,14632816,Intendente de Provo
+Lista nro 1,11,11,2011,84942975,Intendente de Pueblo
+Lista nro 2,11,11,2011,84942975,Intendente de Pueblo
+Lista nro 1,16,10,2011,84047986,Intendente de Pulaski
+Lista nro 1,27,12,2011,70743129,Intendente de Pullman
+Lista nro 2,27,12,2011,91750013,Intendente de Pullman
+Lista nro 1,28,12,2011,85983177,Intendente de Quincy
+Lista nro 1,21,10,2011,51820510,Intendente de Racine
+Lista nro 2,21,10,2011,25576690,Intendente de Racine
+Lista nro 1,10,11,2011,86180897,Intendente de Radford
+Lista nro 1,23,11,2011,60380932,Intendente de Raleigh
+Lista nro 1,24,11,2011,26362397,Intendente de Rancho Cordova
+Lista nro 2,24,11,2011,47554030,Intendente de Rancho Cordova
+Lista nro 1,30,10,2011,15411599,Intendente de Rancho Palos Verdes
+Lista nro 1,14,11,2011,31562609,Intendente de Rancho Santa Margarita
+Lista nro 1,18,11,2011,95853729,Intendente de Rapid City
+Lista nro 2,18,11,2011,16022944,Intendente de Rapid City
+Lista nro 1,22,12,2011,62832590,Intendente de Rawlins
+Lista nro 2,22,12,2011,27279096,Intendente de Rawlins
+Lista nro 1,10,12,2011,91112830,Intendente de Reading
+Lista nro 2,10,12,2011,27516264,Intendente de Reading
+Lista nro 1,26,12,2011,87391683,Intendente de Redding
+Lista nro 2,26,12,2011,84392615,Intendente de Redding
+Lista nro 1,12,12,2011,21361342,Intendente de Redlands
+Lista nro 2,12,12,2011,91772696,Intendente de Redlands
+Lista nro 1,20,12,2011,68172195,Intendente de Redondo Beach
+Lista nro 2,20,12,2011,70657361,Intendente de Redondo Beach
+Lista nro 1,10,11,2011,81891834,Intendente de Reedsport
+Lista nro 2,10,11,2011,38377706,Intendente de Reedsport
+Lista nro 1,17,12,2011,74797997,Intendente de Rehoboth Beach
+Lista nro 2,17,12,2011,86205228,Intendente de Rehoboth Beach
+Lista nro 1,17,10,2011,23555042,Intendente de Rensselaer
+Lista nro 2,17,10,2011,12190608,Intendente de Rensselaer
+Lista nro 1,23,12,2011,44780172,Intendente de Revere
+Lista nro 2,23,12,2011,61202488,Intendente de Revere
+Lista nro 1,13,12,2011,59213204,Intendente de Rhinelander
+Lista nro 1,20,11,2011,20501088,Intendente de Rialto
+Lista nro 2,20,11,2011,16382674,Intendente de Rialto
+Lista nro 1,21,12,2011,57684679,Intendente de Richland
+Lista nro 2,21,12,2011,90810031,Intendente de Richland
+Lista nro 1,21,10,2011,68667834,Intendente de Richmond
+Lista nro 2,21,10,2011,83320039,Intendente de Richmond
+Lista nro 1,13,12,2011,12189399,Intendente de Riverside
+Lista nro 2,13,12,2011,67619135,Intendente de Riverside
+Lista nro 1,18,12,2011,15625624,Intendente de Riverton
+Lista nro 2,18,12,2011,28133911,Intendente de Riverton
+Lista nro 1,23,11,2011,82869706,Intendente de Roanoke
+Lista nro 2,23,11,2011,84655560,Intendente de Roanoke
+Lista nro 1,11,11,2011,42031206,Intendente de Rochester
+Lista nro 1,14,10,2011,20615631,Intendente de Rock Island
+Lista nro 2,14,10,2011,81867717,Intendente de Rock Island
+Lista nro 1,10,11,2011,42294633,Intendente de Rock Springs
+Lista nro 1,11,11,2011,10994446,Intendente de Rockford
+Lista nro 2,11,11,2011,43666477,Intendente de Rockford
+Lista nro 1,22,11,2011,26330831,Intendente de Rockville
+Lista nro 1,29,11,2011,20976788,Gobernador provincia nro 86
+Lista nro 1,30,12,2011,87628445,Intendente de Rocky Mount
+Lista nro 2,30,12,2011,90701641,Intendente de Rocky Mount
+Lista nro 1,13,10,2011,65697526,Intendente de Rohnert Park
+Lista nro 1,13,12,2011,91486740,Intendente de Rolla
+Lista nro 1,27,11,2011,93754844,Intendente de Rolling Hills
+Lista nro 2,27,11,2011,35129845,Intendente de Rolling Hills
+Lista nro 1,24,10,2011,68518761,Intendente de Rolling Hills Estates
+Lista nro 2,24,10,2011,45800706,Intendente de Rolling Hills Estates
+Lista nro 1,14,10,2011,89455759,Intendente de Rome
+Lista nro 2,14,10,2011,85000992,Intendente de Rome
+Lista nro 1,25,10,2011,24633530,Intendente de Rosemead
+Lista nro 2,25,10,2011,78618166,Intendente de Rosemead
+Lista nro 1,19,11,2011,87123429,Intendente de Roseville
+Lista nro 2,19,11,2011,59115686,Intendente de Roseville
+Lista nro 1,15,10,2011,82265365,Intendente de Roswell
+Lista nro 1,15,12,2011,71280097,Intendente de Ruston
+Lista nro 2,15,12,2011,56508964,Intendente de Ruston
+Lista nro 1,20,10,2011,67494538,Intendente de Rutland
+Lista nro 1,15,12,2011,31380182,Intendente de Rye
+Lista nro 2,15,12,2011,96344411,Intendente de Rye
+Lista nro 1,26,10,2011,92348678,Intendente de Sacramento
+Lista nro 2,26,10,2011,23885362,Intendente de Sacramento
+Lista nro 1,26,11,2011,26950552,Intendente de Saginaw
+Lista nro 1,14,10,2011,65863311,Intendente de Saint Albans
+Lista nro 2,14,10,2011,21298216,Intendente de Saint Albans
+Lista nro 1,13,10,2011,83314686,Intendente de Saint Cloud
+Lista nro 2,13,10,2011,50418505,Intendente de Saint Cloud
+Lista nro 1,14,11,2011,54131877,Intendente de Saint Joseph
+Lista nro 1,14,11,2011,25991092,Intendente de Saint Paul
+Lista nro 2,14,11,2011,17378019,Intendente de Saint Paul
+Lista nro 1,17,10,2011,91548321,Intendente de Saipan
+Lista nro 1,25,10,2011,29480080,Intendente de Salem
+Lista nro 2,25,10,2011,74342898,Intendente de Salem
+Lista nro 1,16,12,2011,21003683,Intendente de Salinas
+Lista nro 2,16,12,2011,52809397,Intendente de Salinas
+Lista nro 1,10,12,2011,45589787,Intendente de Salisbury
+Lista nro 2,10,12,2011,85653613,Intendente de Salisbury
+Lista nro 1,15,10,2011,49476666,Intendente de Salt Lake City
+Lista nro 1,17,12,2011,80577063,Intendente de San Angelo
+Lista nro 1,25,12,2011,84594080,Intendente de San Antonio
+Lista nro 1,18,12,2011,13868543,Intendente de San Bernardino
+Lista nro 2,18,12,2011,93825102,Intendente de San Bernardino
+Lista nro 1,20,12,2011,19576459,Intendente de San Clemente
+Lista nro 2,20,12,2011,15226577,Intendente de San Clemente
+Lista nro 1,11,10,2011,60955476,Intendente de San Diego
+Lista nro 2,11,10,2011,10382530,Intendente de San Diego
+Lista nro 1,27,12,2011,19534054,Intendente de San Dimas
+Lista nro 1,11,10,2011,36012627,Intendente de San Fernando
+Lista nro 1,18,12,2011,84295724,Intendente de San Francisco
+Lista nro 2,18,12,2011,79700117,Intendente de San Francisco
+Lista nro 1,29,12,2011,18457523,Intendente de San Gabriel
+Lista nro 2,29,12,2011,45503078,Intendente de San Gabriel
+Lista nro 1,16,11,2011,15130298,Intendente de San Jose
+Lista nro 1,20,10,2011,36337368,Intendente de San Juan
+Lista nro 1,14,11,2011,30407198,Intendente de San Juan Capistrano
+Lista nro 2,14,11,2011,45905591,Intendente de San Juan Capistrano
+Lista nro 1,14,12,2011,73684439,Intendente de San Luis Obispo
+Lista nro 2,14,12,2011,41488350,Intendente de San Luis Obispo
+Lista nro 1,19,10,2011,25381735,Intendente de San Marino
+Lista nro 2,19,10,2011,67753938,Intendente de San Marino
+Lista nro 1,11,12,2011,47114712,Intendente de San Mateo
+Lista nro 1,12,12,2011,77503076,Intendente de San Rafael
+Lista nro 1,14,10,2011,83509426,Intendente de Sandpoint
+Lista nro 1,15,10,2011,76184675,Intendente de Sandy
+Lista nro 2,15,10,2011,89704285,Intendente de Sandy
+Lista nro 1,16,11,2011,89966335,Intendente de Sandy Springs
+Lista nro 2,16,11,2011,75560982,Intendente de Sandy Springs
+Lista nro 1,29,10,2011,45761525,Intendente de Sanford
+Lista nro 1,29,11,2011,47732646,Intendente de Santa Ana
+Lista nro 2,29,11,2011,25556417,Intendente de Santa Ana
+Lista nro 1,28,11,2011,18054174,Intendente de Santa Barbara
+Lista nro 2,28,11,2011,81925022,Intendente de Santa Barbara
+Lista nro 1,11,10,2011,93948151,Intendente de Santa Clara
+Lista nro 2,11,10,2011,93948151,Intendente de Santa Clara
+Lista nro 1,14,11,2011,52720564,Intendente de Santa Clarita
+Lista nro 2,14,11,2011,79078708,Intendente de Santa Clarita
+Lista nro 1,18,10,2011,53761213,Intendente de Santa Fe Springs
+Lista nro 2,18,10,2011,27242219,Intendente de Santa Fe Springs
+Lista nro 1,19,11,2011,75303913,Intendente de Santa Monica
+Lista nro 2,19,11,2011,81841619,Intendente de Santa Monica
+Lista nro 1,10,12,2011,54019515,Intendente de Santa Rosa
+Lista nro 1,26,10,2011,12757505,Intendente de Saratoga Springs
+Lista nro 1,22,10,2011,67170344,Intendente de Saukville
+Lista nro 2,22,10,2011,21586925,Intendente de Saukville
+Lista nro 1,12,11,2011,11377054,Intendente de Sault Ste. Marie
+Lista nro 2,12,11,2011,10981279,Intendente de Sault Ste. Marie
+Lista nro 1,30,10,2011,69353385,Intendente de Savannah
+Lista nro 2,30,10,2011,50857939,Intendente de Savannah
+Lista nro 1,13,11,2011,34461639,Intendente de Scarborough
+Lista nro 1,18,11,2011,47152999,Intendente de Schaumburg
+Lista nro 2,18,11,2011,69531965,Intendente de Schaumburg
+Lista nro 1,16,10,2011,75802176,Intendente de Schenectady
+Lista nro 1,30,11,2011,54064915,Intendente de Scottsbluff
+Lista nro 1,30,10,2011,57714581,Intendente de Scottsdale
+Lista nro 1,19,10,2011,62355229,Intendente de Scranton
+Lista nro 1,19,11,2011,83503803,Intendente de Seaford
+Lista nro 2,19,11,2011,10853781,Intendente de Seaford
+Lista nro 1,22,11,2011,17650763,Intendente de Seal Beach
+Lista nro 1,21,10,2011,54374796,Intendente de Seattle
+Lista nro 2,21,10,2011,55881535,Intendente de Seattle
+Lista nro 1,17,10,2011,47928728,Intendente de Sedalia
+Lista nro 2,17,10,2011,85511607,Intendente de Sedalia
+Lista nro 1,15,11,2011,57627017,Intendente de Selma
+Lista nro 1,30,10,2011,61233917,Intendente de Seward
+Lista nro 2,30,10,2011,10508527,Intendente de Seward
+Lista nro 1,18,11,2011,81356615,Intendente de Shamokin
+Lista nro 1,18,11,2011,72939493,Intendente de Sharon
+Lista nro 1,26,10,2011,87769000,Intendente de Shawnee
+Lista nro 2,26,10,2011,62712768,Intendente de Shawnee
+Lista nro 1,28,10,2011,61960345,Intendente de Shelton
+Lista nro 1,16,10,2011,17391581,Intendente de Sheridan
+Lista nro 2,16,10,2011,48252454,Intendente de Sheridan
+Lista nro 1,30,11,2011,76635502,Intendente de Sherrill
+Lista nro 1,22,11,2011,88489167,Intendente de Shreveport
+Lista nro 2,22,11,2011,90272953,Intendente de Shreveport
+Lista nro 1,23,10,2011,43365683,Intendente de Sierra Madre
+Lista nro 1,11,12,2011,29133802,Intendente de Sierra Vista
+Lista nro 1,27,11,2011,10736340,Intendente de Signal Hill
+Lista nro 1,11,12,2011,62082204,Intendente de Simi Valley
+Lista nro 2,11,12,2011,54187496,Intendente de Simi Valley
+Lista nro 1,16,10,2011,19015896,Intendente de Sioux City
+Lista nro 2,16,10,2011,84878384,Intendente de Sioux City
+Lista nro 1,15,11,2011,38015289,Intendente de Sioux Falls
+Lista nro 2,15,11,2011,16973428,Intendente de Sioux Falls
+Lista nro 1,26,11,2011,33674940,Intendente de Sister Bay
+Lista nro 2,26,11,2011,33674940,Intendente de Sister Bay
+Lista nro 1,29,11,2011,25573457,Intendente de Sitka
+Lista nro 2,29,11,2011,15761919,Intendente de Sitka
+Lista nro 1,23,11,2011,47615184,Intendente de Slidell
+Lista nro 2,23,11,2011,79199389,Intendente de Slidell
+Lista nro 1,22,12,2011,62073894,Intendente de Somersworth
+Lista nro 1,22,11,2011,45542226,Intendente de Somerville
+Lista nro 2,22,11,2011,68127575,Intendente de Somerville
+Lista nro 1,28,11,2011,67510372,Intendente de Sonoma
+Lista nro 2,28,11,2011,85554971,Intendente de Sonoma
+Lista nro 1,29,11,2011,80185550,Intendente de South Bend
+Lista nro 2,29,11,2011,36876353,Intendente de South Bend
+Lista nro 1,28,12,2011,36185763,Intendente de South Burlington
+Lista nro 1,20,10,2011,11902048,Intendente de South El Monte
+Lista nro 2,20,10,2011,65604734,Intendente de South El Monte
+Lista nro 1,23,10,2011,64199693,Intendente de South Gate
+Lista nro 2,23,10,2011,71670266,Intendente de South Gate
+Lista nro 1,11,12,2011,19279263,Intendente de South Pasadena
+Lista nro 2,11,12,2011,43781036,Intendente de South Pasadena
+Lista nro 1,27,12,2011,91495224,Intendente de South Portland
+Lista nro 1,20,11,2011,49691883,Intendente de Spartanburg
+Lista nro 1,27,12,2011,49534728,Intendente de Spokane
+Lista nro 1,18,12,2011,35391399,Intendente de Spokane Valley
+Lista nro 2,18,12,2011,42992210,Intendente de Spokane Valley
+Lista nro 1,24,10,2011,92688303,Intendente de Springdale
+Lista nro 2,24,10,2011,75797748,Intendente de Springdale
+Lista nro 1,13,12,2011,31850422,Intendente de Springfield
+Lista nro 1,23,12,2011,19371840,Intendente de St. George
+Lista nro 2,23,12,2011,39785290,Intendente de St. George
+Lista nro 1,26,10,2011,48218576,Intendente de St. Marys
+Lista nro 1,28,11,2011,39390325,Intendente de St. Petersburg
+Lista nro 2,28,11,2011,71407736,Intendente de St. Petersburg
+Lista nro 1,11,12,2011,43890678,Intendente de Stamford
+Lista nro 2,11,12,2011,94158521,Intendente de Stamford
+Lista nro 1,23,12,2011,27113951,Intendente de Stanton
+Lista nro 2,23,12,2011,37183083,Intendente de Stanton
+Lista nro 1,10,11,2011,85365914,Intendente de Starkville
+Lista nro 2,10,11,2011,38861248,Intendente de Starkville
+Lista nro 1,21,12,2011,30258375,Intendente de Statesboro
+Lista nro 1,11,12,2011,12143984,Intendente de Staunton
+Lista nro 2,11,12,2011,77099690,Intendente de Staunton
+Lista nro 1,22,10,2011,30609218,Intendente de Steubenville
+Lista nro 2,22,10,2011,19311066,Intendente de Steubenville
+Lista nro 1,12,10,2011,30660792,Intendente de Stevens Point
+Lista nro 2,12,10,2011,49625799,Intendente de Stevens Point
+Lista nro 1,12,10,2011,95428699,Intendente de Stillwater
+Lista nro 1,27,11,2011,17261443,Intendente de Sturgis
+Lista nro 2,27,11,2011,15423570,Intendente de Sturgis
+Lista nro 1,27,10,2011,11759309,Intendente de Suffolk
+Lista nro 2,27,10,2011,10550895,Intendente de Suffolk
+Lista nro 1,21,10,2011,22272531,Intendente de Sugar Land
+Lista nro 1,15,11,2011,28680498,Intendente de Sun Valley
+Lista nro 2,15,11,2011,78127297,Intendente de Sun Valley
+Lista nro 1,12,12,2011,75845452,Intendente de Sunbury
+Lista nro 2,12,12,2011,16929412,Intendente de Sunbury
+Lista nro 1,19,11,2011,32721135,Intendente de Sunnyvale
+Lista nro 2,19,11,2011,85140827,Intendente de Sunnyvale
+Lista nro 1,20,11,2011,31299282,Intendente de Superior
+Lista nro 1,15,11,2011,13166575,Intendente de Sutter Creek
+Lista nro 1,10,12,2011,48698859,Intendente de Syracuse
+Lista nro 1,27,11,2011,46320106,Intendente de Tacoma
+Lista nro 1,12,10,2011,14128135,Intendente de Tallahassee
+Lista nro 1,20,12,2011,32578506,Intendente de Tamuning
+Lista nro 1,16,12,2011,10661711,Intendente de Taunton
+Lista nro 1,11,10,2011,87487515,Intendente de Taylorsville
+Lista nro 2,11,10,2011,95362694,Intendente de Taylorsville
+Lista nro 1,26,10,2011,54882479,Intendente de Temecula
+Lista nro 2,26,10,2011,92612077,Intendente de Temecula
+Lista nro 1,11,12,2011,50239989,Intendente de Tempe
+Lista nro 2,11,12,2011,46216755,Intendente de Tempe
+Lista nro 1,18,11,2011,50165299,Intendente de Temple City
+Lista nro 2,18,11,2011,28410230,Intendente de Temple City
+Lista nro 1,20,10,2011,11122744,Intendente de Terre Haute
+Lista nro 2,20,10,2011,76637984,Intendente de Terre Haute
+Lista nro 1,26,12,2011,13277283,Intendente de Texarkana
+Lista nro 1,11,11,2011,56365326,Intendente de Texas City
+Lista nro 1,28,11,2011,68281019,Intendente de The Dalles
+Lista nro 2,28,11,2011,24991486,Intendente de The Dalles
+Lista nro 1,19,11,2011,15816381,Intendente de Thibodaux
+Lista nro 2,19,11,2011,45588182,Intendente de Thibodaux
+Lista nro 1,24,10,2011,37935493,Intendente de Thiensville
+Lista nro 2,24,10,2011,29075818,Intendente de Thiensville
+Lista nro 1,16,12,2011,79902400,Intendente de Thomasville
+Lista nro 2,16,12,2011,28946567,Intendente de Thomasville
+Lista nro 1,28,10,2011,15580352,Intendente de Thousand Oaks
+Lista nro 1,16,10,2011,90639583,Intendente de Titusville
+Lista nro 2,16,10,2011,33368754,Intendente de Titusville
+Lista nro 1,13,11,2011,94814006,Intendente de Tok
+Lista nro 2,13,11,2011,61394785,Intendente de Tok
+Lista nro 1,23,10,2011,24397978,Intendente de Toledo
+Lista nro 1,26,12,2011,73448658,Intendente de Tonawanda
+Lista nro 2,26,12,2011,81912587,Intendente de Tonawanda
+Lista nro 1,29,11,2011,36053909,Intendente de Topeka
+Lista nro 1,27,10,2011,85719157,Intendente de Torrington
+Lista nro 1,23,12,2011,67978681,Intendente de Trenton
+Lista nro 2,23,12,2011,38669468,Intendente de Trenton
+Lista nro 1,21,10,2011,71679988,Intendente de Troy
+Lista nro 1,19,10,2011,12711696,Intendente de Truth or Consequences
+Lista nro 2,19,10,2011,96816635,Intendente de Truth or Consequences
+Lista nro 1,14,11,2011,69645510,Intendente de Tucson
+Lista nro 2,14,11,2011,78594972,Intendente de Tucson
+Lista nro 1,15,11,2011,80287588,Intendente de Tulsa
+Lista nro 2,15,11,2011,78644728,Intendente de Tulsa
+Lista nro 1,16,11,2011,69254527,Intendente de Tupelo
+Lista nro 2,16,11,2011,83820137,Intendente de Tupelo
+Lista nro 1,28,11,2011,94119877,Intendente de Turlock
+Lista nro 2,28,11,2011,63086796,Intendente de Turlock
+Lista nro 1,17,11,2011,84449678,Intendente de Tuscaloosa
+Lista nro 1,22,11,2011,64723648,Intendente de Tustin
+Lista nro 1,14,10,2011,83304814,Intendente de Twin Falls
+Lista nro 1,29,12,2011,97295000,Intendente de Two Rivers
+Lista nro 2,29,12,2011,67081667,Intendente de Two Rivers
+Lista nro 1,12,12,2011,11626550,Intendente de Tyler
+Lista nro 1,22,10,2011,93625577,Intendente de Uniontown
+Lista nro 1,10,12,2011,94627783,Intendente de Urbana
+Lista nro 2,10,12,2011,33796034,Intendente de Urbana
+Lista nro 1,14,12,2011,48389623,Intendente de Utica
+Lista nro 1,20,12,2011,86863348,Intendente de Vacaville
+Lista nro 2,20,12,2011,36631479,Intendente de Vacaville
+Lista nro 1,21,11,2011,57131584,Intendente de Vail
+Lista nro 2,21,11,2011,60268562,Intendente de Vail
+Lista nro 1,22,10,2011,52870248,Intendente de Valdez
+Lista nro 2,22,10,2011,22463327,Intendente de Valdez
+Lista nro 1,10,11,2011,51039605,Intendente de Valdosta
+Lista nro 1,13,11,2011,78709418,Intendente de Valencia
+Lista nro 1,26,12,2011,17208083,Intendente de Vallejo
+Lista nro 2,26,12,2011,76899283,Intendente de Vallejo
+Lista nro 1,14,12,2011,74781111,Intendente de Valparaiso
+Lista nro 2,14,12,2011,74781111,Intendente de Valparaiso
+Lista nro 1,29,11,2011,41807888,Intendente de Vancouver
+Lista nro 1,14,11,2011,76550816,Intendente de Ventura
+Lista nro 1,20,11,2011,29079050,Intendente de Vergennes
+Lista nro 1,23,12,2011,86373022,Intendente de Vermillion
+Lista nro 2,23,12,2011,17591223,Intendente de Vermillion
+Lista nro 1,14,10,2011,57244128,Intendente de Vernon
+Lista nro 1,29,11,2011,45368855,Intendente de Vicksburg
+Lista nro 1,29,12,2011,83607186,Intendente de Victoria
+Lista nro 2,29,12,2011,66136502,Intendente de Victoria
+Lista nro 1,27,11,2011,48168949,Intendente de Villa Park
+Lista nro 1,25,11,2011,12616954,Intendente de Vincennes
+Lista nro 1,22,11,2011,19846380,Intendente de Vineland
+Lista nro 2,22,11,2011,67441003,Intendente de Vineland
+Lista nro 1,10,11,2011,65759306,Intendente de Virginia Beach
+Lista nro 2,10,11,2011,53044094,Intendente de Virginia Beach
+Lista nro 1,13,11,2011,79089327,Intendente de Visalia
+Lista nro 1,29,10,2011,45594321,Intendente de Waco
+Lista nro 2,29,10,2011,53514901,Intendente de Waco
+Lista nro 1,11,12,2011,69711414,Intendente de Wahoo
+Lista nro 1,14,10,2011,31886023,Intendente de Walla Walla
+Lista nro 1,11,12,2011,12030885,Intendente de Walnut
+Lista nro 2,11,12,2011,84920889,Intendente de Walnut
+Lista nro 1,18,10,2011,20140330,Intendente de Waltham
+Lista nro 2,18,10,2011,85908326,Intendente de Waltham
+Lista nro 1,23,10,2011,42288791,Intendente de Warner Robins
+Lista nro 1,30,12,2011,64069556,Intendente de Warwick
+Lista nro 2,30,12,2011,29006798,Intendente de Warwick
+Lista nro 1,21,10,2011,80341662,Intendente de Washington
+Lista nro 1,21,12,2011,32828087,Intendente de Waterbury
+Lista nro 1,27,12,2011,95038147,Intendente de Waterloo
+Lista nro 1,14,12,2011,74987878,Intendente de Watertown
+Lista nro 2,14,12,2011,77763939,Intendente de Watertown
+Lista nro 1,24,11,2011,82641328,Intendente de Watervliet
+Lista nro 1,27,11,2011,46593324,Intendente de Waukegan
+Lista nro 1,28,12,2011,40586682,Intendente de Wausau
+Lista nro 1,15,10,2011,76812350,Intendente de Waycross
+Lista nro 1,18,12,2011,69041434,Intendente de Webster Groves
+Lista nro 1,27,11,2011,30106324,Intendente de West Allis
+Lista nro 1,20,11,2011,41627254,Intendente de West Bend
+Lista nro 2,20,11,2011,91128824,Intendente de West Bend
+Lista nro 1,29,10,2011,86213365,Intendente de West Covina
+Lista nro 2,29,10,2011,32494435,Intendente de West Covina
+Lista nro 1,26,10,2011,82737206,Intendente de West Hartford
+Lista nro 2,26,10,2011,30802224,Intendente de West Hartford
+Lista nro 1,20,11,2011,57638779,Intendente de West Hollywood
+Lista nro 1,10,10,2011,64115989,Intendente de West Jordan
+Lista nro 2,10,10,2011,87842726,Intendente de West Jordan
+Lista nro 1,12,10,2011,47705275,Intendente de West Lafayette
+Lista nro 1,11,11,2011,11859499,Intendente de West Memphis
+Lista nro 1,23,11,2011,38782904,Intendente de West Palm Beach
+Lista nro 2,23,11,2011,83460145,Intendente de West Palm Beach
+Lista nro 1,23,11,2011,89190558,Intendente de West Sacramento
+Lista nro 2,23,11,2011,10074760,Intendente de West Sacramento
+Lista nro 1,27,10,2011,94527301,Intendente de West Springfield
+Lista nro 1,10,12,2011,49296304,Intendente de West Valley City
+Lista nro 2,10,12,2011,28459599,Intendente de West Valley City
+Lista nro 1,15,11,2011,66399451,Intendente de West Warwick
+Lista nro 2,15,11,2011,31647693,Intendente de West Warwick
+Lista nro 1,27,11,2011,21694327,Intendente de Westlake Village
+Lista nro 2,27,11,2011,60740180,Intendente de Westlake Village
+Lista nro 1,24,10,2011,18828547,Intendente de Westminster
+Lista nro 1,20,11,2011,42242548,Intendente de Weymouth
+Lista nro 1,19,11,2011,19711774,Intendente de Wheaton
+Lista nro 2,19,11,2011,29084475,Intendente de Wheaton
+Lista nro 1,15,12,2011,54632943,Intendente de Wheeling
+Lista nro 2,15,12,2011,72996836,Intendente de Wheeling
+Lista nro 1,30,11,2011,36147575,Intendente de White Plains
+Lista nro 1,19,10,2011,49232433,Intendente de Whittier
+Lista nro 1,27,12,2011,67462138,Intendente de Wichita
+Lista nro 2,27,12,2011,30892277,Intendente de Wichita
+Lista nro 1,21,11,2011,35776411,Intendente de Wichita Falls
+Lista nro 2,21,11,2011,50484557,Intendente de Wichita Falls
+Lista nro 1,12,10,2011,85752991,Intendente de Wilkes-Barre
+Lista nro 2,12,10,2011,40676029,Intendente de Wilkes-Barre
+Lista nro 1,18,10,2011,58422722,Intendente de Williamsburg
+Lista nro 1,18,11,2011,85985610,Intendente de Williamsport
+Lista nro 2,18,11,2011,93381230,Intendente de Williamsport
+Lista nro 1,12,10,2011,48814878,Intendente de Williston
+Lista nro 2,12,10,2011,50431067,Intendente de Williston
+Lista nro 1,29,12,2011,31807868,Intendente de Wilmington
+Lista nro 2,29,12,2011,88715497,Intendente de Wilmington
+Lista nro 1,22,11,2011,55143656,Intendente de Wilson
+Lista nro 2,22,11,2011,50245307,Intendente de Wilson
+Lista nro 1,14,10,2011,85768731,Intendente de Winnemucca
+Lista nro 1,25,11,2011,35900781,Intendente de Winooski
+Lista nro 2,25,11,2011,48229157,Intendente de Winooski
+Lista nro 1,29,10,2011,33350019,Intendente de Winston-Salem
+Lista nro 1,29,11,2011,30589138,Intendente de Wisconsin Dells
+Lista nro 2,29,11,2011,33067002,Intendente de Wisconsin Dells
+Lista nro 1,18,12,2011,84912682,Intendente de Wisconsin Rapids
+Lista nro 2,18,12,2011,62526149,Intendente de Wisconsin Rapids
+Lista nro 1,29,12,2011,43857448,Intendente de Woburn
+Lista nro 2,29,12,2011,97339422,Intendente de Woburn
+Lista nro 1,15,12,2011,91680918,Intendente de Woodruff
+Lista nro 2,15,12,2011,44155922,Intendente de Woodruff
+Lista nro 1,23,11,2011,67574460,Intendente de Woodward
+Lista nro 2,23,11,2011,55855308,Intendente de Woodward
+Lista nro 1,13,11,2011,63935400,Intendente de Woonsocket
+Lista nro 2,13,11,2011,36366440,Intendente de Woonsocket
+Lista nro 1,15,11,2011,13100126,Intendente de Worcester
+Lista nro 2,15,11,2011,32403265,Intendente de Worcester
+Lista nro 1,13,10,2011,69172371,Intendente de Worland
+Lista nro 1,18,10,2011,75629039,Intendente de Wynne
+Lista nro 1,24,10,2011,54983161,Intendente de Yakima
+Lista nro 1,24,12,2011,31545627,Intendente de Yazoo City
+Lista nro 1,30,10,2011,28489189,Intendente de Yigo
+Lista nro 2,30,10,2011,12809327,Intendente de Yigo
+Lista nro 1,21,10,2011,25442445,Intendente de Yonkers
+Lista nro 1,29,11,2011,91237807,Intendente de Yorba Linda
+Lista nro 2,29,11,2011,87508072,Intendente de Yorba Linda
+Lista nro 1,11,12,2011,84272225,Intendente de York
+Lista nro 1,23,10,2011,42371794,Intendente de Youngstown
+Lista nro 1,24,10,2011,21784921,Intendente de Ypsilanti
+Lista nro 2,24,10,2011,35096665,Intendente de Ypsilanti
+Lista nro 1,23,12,2011,21381746,Intendente de Yukon
+Lista nro 1,16,11,2011,52658041,Intendente de Yuma
+Lista nro 1,22,10,2011,61761597,Intendente de Zanesville

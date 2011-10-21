@@ -80,7 +80,7 @@ void Election::setBytes(char* bytes)
 		len = (bytes+i)[0]; i += Constants::FIELD_HEADER_SIZE;
 		char aux[len];
 		memcpy(aux, bytes+i, len); i += len;
-		std::string d = aux;
+		std::string d = string(aux);
 		this->districtList.push_back(d);
 		elements++;
 	}

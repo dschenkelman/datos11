@@ -89,8 +89,9 @@ bool Voting::login(int voterBlockAmount)
         {
         	delete voterRecord;
         }
-
-        cout << "Votando: " << this->voter->getDni() << endl;
+        stringstream dniString;
+        dniString << this->voter->getDni();
+        this->log->write(string("Votando: ").append(dniString.str()), true, true);
         i++;
         this->vote(districtCountsIndex);
 

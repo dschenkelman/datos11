@@ -165,7 +165,7 @@ void DataFileLoader::readCandidateFile(Tree* treeCandidateFile, ConfigurationEnt
 		month = strtok(NULL, ",");
 		year = strtok(NULL, ",");
 		dniVoter = strtok(NULL, ",");
-		cargo = strtok(NULL, ",");
+		cargo = strtok(NULL, ",\r");
 		short yearNumber = atoi(year);
 
 		Candidate cand ((char)atoi(day), (char)atoi(month), yearNumber, string(listName), string(cargo), atoi(dniVoter));

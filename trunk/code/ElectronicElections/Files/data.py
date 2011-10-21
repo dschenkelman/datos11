@@ -1,46 +1,4 @@
-def generate_voter(size):
-	from random import choice, randrange
-	for i in range(size): yield [randrange(10000000,99999999),\
-			choice(first_names)[0]+" "+choice(surnames),\
-			randrange(1000,9999),\
-			choice(counties)[0],\
-			choice(cities)]
-			
-def generate_district(size):
-	from random import choice, randrange
-	for i in range(size): yield [choice(cities)]
-			
-def gen_file(fname, generator, size): # LLAMAR ACA
-	import csv
-	csvout = csv.writer(open(fname, 'wb'), delimiter=',')
-	for row in generator(size): csvout.writerow(row)
-
-def unify_voters(fname):
-	import csv
-	reader = csv.reader(open(fname, 'rb'), delimiter=',')
-	writer = csv.writer(open(fname + 'aux', 'wb'), delimiter=',')
-	entries = {}
-	for row in reader:
-		if (row[0] not in entries):
-			writer.writerow(row)
-		else:
-			print "Duplicated: " + row[0]
-		entries[row[0]]	= 1
-
-def remove_empty_lines(fname):
-	f = open(fname)
-	g = open(fname + ".rel", 'w')
-	i = 0
-	for l in f:
-		i += 1	
-		if len(l) != 1:
-			g.write(l)
-		else:
-			print "Line " + str(i) + " empty."
-
-
-
-#fields = [cities, counties, countries, first_names, provinces, provinces_netherlands, states, surnames]
+#!/usr/bin/env python
 
 cities = [
 "Aberdeen",
@@ -3760,3 +3718,110 @@ surnames = [
 "Zamora",
 "Zimmerman"
 ]
+
+from random import sample
+cities = sample(cities, 1000)
+
+def gen_voter(size):
+	from random import choice, randrange
+	cur_dni = 10000000
+	while size:
+		size-=1
+		cur_dni += randrange(10,20)
+		yield [cur_dni,\
+				choice(first_names)[0]+" "+choice(surnames),\
+				randrange(1000,9999),\
+				choice(counties)[0],\
+				choice(cities)]
+			
+def gen_district(size):
+	from random import choice, randrange
+	for i in range(size): yield [choice(cities)]
+			
+def gen_file(fname, list):
+	import csv
+	csvout = csv.writer(open(fname, 'wb'), delimiter=',')
+	for row in list: csvout.writerow(row)
+	
+voters = [v for v in gen_voter(50000)]
+
+districts = set()
+for v in voters: districts.add((v[4],))
+
+from random import randrange, sample, choice
+charges = []
+for d in districts:
+	newc = ["Intendente de %s"%d[0]]
+	for i in range(1,randrange(1,8)): newc += ["Concejal de %s nro %d"%(d[0],i)]
+	charges.append(newc)
+provinces = {}
+distlist = list(districts)
+useddists = 0
+for i in range(1,201):
+	newc = ["Gobernador provincia nro %d"%i, "ViceGobernador provincia nro %d"%i]
+	charges.append(newc)
+	n = choice([4,4,5,5,5,5])
+	if i == 200: n = len(distlist)-useddists
+	provinces[i] = [a[0] for a in distlist[useddists: useddists+n]] #n dist por provincia
+	useddists += n
+#~ print len(distlist)
+#~ print (i-1)*5
+#~ print provinces[200]
+countries = {}
+for i in range(1,21):
+	newc = ["Presidente nro %d"%i, "VicePresidente nro %d"%i]
+	charges.append(newc)
+	countries[i] = [a[0] for a in distlist[(i-1)*50: (i-1)*50+50]] #50 dist por pais
+
+elections = []
+for d in districts:
+	elections.append((randrange(10,31), randrange(10,13), 2011, "Intendente de %s"%d[0], d[0]))
+for i in range(1,201):
+	#~ print (randrange(1,31), randrange(1,13), 2011, "Gobernador provincia nro %d"%i)+tuple(provinces[i])
+	#~ exit(0)
+	provinces[i].sort()
+	elections.append((randrange(10,31), randrange(10,13), 2011, "Gobernador provincia nro %d"%i)+tuple(provinces[i]))
+for i in range(1,21):
+	countries[i].sort()
+	elections.append((randrange(10,31), randrange(10,13), 2011, "Presidente nro %d"%i)+tuple(countries[i]))
+
+def electionscmp(a,b):
+	return cmp(a[4:],b[4:])
+elections.sort(electionscmp)
+
+
+elist = []
+for e in elections:
+	for i in range(1, randrange(2,4)):
+		elist.append((e[0],e[1],e[2],e[3],"Lista nro %d"%i)+tuple(e[4:]))
+#~ print elist
+
+simple_elist = [a[:5] for a in elist]
+
+import sys
+candidates = []
+selected_dnis = set()
+for el in elist:
+	sys.stdout.write('.')
+	sys.stdout.flush()
+	okdists = el[5:]
+	tries = 10000
+	while tries:
+		tries -= 1
+		cand = choice(voters)
+		if cand[0] in selected_dnis or cand[4] not in okdists: continue
+		break
+	if not tries:
+		print "No se genero candidato para %s"%(str(okdists))
+		print el
+	candidates.append((el[4],el[0],el[1],el[2],cand[0],el[3]))
+
+gen_file("padron.txt", voters)
+gen_file("districts.txt", districts)
+gen_file("charges.txt", charges)
+gen_file("elections.txt", elections)
+gen_file("electionList.txt", simple_elist)
+gen_file("candidates.txt", candidates)
+
+#fields = [cities, counties, countries, first_names, provinces, provinces_netherlands, states, surnames]
+

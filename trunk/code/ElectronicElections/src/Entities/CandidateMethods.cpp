@@ -17,6 +17,11 @@ CandidateMethods::CandidateMethods()
 {
 }
 
+int CandidateMethods::compareKey(const char* key, const char* recordKey, int recordSize)
+{
+	return this->compare(key, recordKey, recordSize);
+}
+
 int CandidateMethods::compare(const char* key, const char* recordBytes, int recordSize)
 {
 	Candidate c(1, 1, 1, "invalid", "invalid", 1);

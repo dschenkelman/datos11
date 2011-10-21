@@ -14,6 +14,7 @@ class AdministratorMethods: public RecordMethods {
 public:
 	AdministratorMethods();
 	virtual int compare(const char* key, const char* recordBytes, int recordSize);
+	virtual int compareKey(const char* key, const char* recordKey, int recordSize);
 	virtual void print(const char* recordBytes, int recordSize);
 	virtual void printKey(const char* key, int recordSize);
 	virtual VariableRecord* getKeyRecord(const char* recordBytes, int recordSize);

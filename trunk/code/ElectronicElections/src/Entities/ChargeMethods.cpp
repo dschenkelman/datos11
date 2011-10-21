@@ -18,6 +18,19 @@ ChargeMethods::ChargeMethods()
 {
 }
 
+int ChargeMethods::compareKey(const char* key, const char* recordKey, int recordSize)
+{
+	char len = key[0];
+	char chargeAux[len];
+	memcpy(chargeAux, key+1, len);
+
+	char recordLen = recordKey[0];
+	char recordCharge[recordLen];
+	memcpy(recordCharge, recordKey+1, recordLen);
+
+	return strcmp(chargeAux, recordCharge);
+}
+
 int ChargeMethods::compare(const char* key, const char* recordBytes, int recordSize)
 {
 	std::vector<std::string> invalidVec;

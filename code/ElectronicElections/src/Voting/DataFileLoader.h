@@ -49,12 +49,14 @@ class DataFileLoader
     std::string chargeFileName;
     int chargeBlockAmount;
     Configuration configuration;
+    void readAdminFile(Tree *treeElectionFile, ConfigurationEntry& entry);
     void readElectionFile(Tree *treeElectionFile, ConfigurationEntry& entry);
     void readListFile(Tree *treeListFile, ConfigurationEntry & entry);
     void readDistrictFile(Tree *treeDistrictFile, ConfigurationEntry & entry);
     void readCandidateFile(Tree *treeCandidateFile, ConfigurationEntry & entry);
     void readVoterFile(HashBlockFile *hashVoterFile, ConfigurationEntry & entry);
     void readChargeFile(HashBlockFile *hashChargeFile, ConfigurationEntry & entry);
+    void loadAdminFile();
     void loadDistrictsFile();
     void loadElectionsFile();
     void loadElectionListsFile();

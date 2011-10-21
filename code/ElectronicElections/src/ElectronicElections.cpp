@@ -182,7 +182,9 @@ int main()
 				}
 				break;
 			case 2:
+				log.write("Comenzando carga archivos.", true, true);
 				dataFiles.loadFiles();
+				log.write("Finalizando carga archivos.", true, true);
 				break;
 			case 3:
 				return 0;

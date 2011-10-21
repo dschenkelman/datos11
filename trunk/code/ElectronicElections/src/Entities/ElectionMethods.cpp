@@ -122,8 +122,16 @@ void ElectionMethods::printKey(const char* key, int recordSize)
 
 VariableRecord* ElectionMethods::getKeyRecord(const char* recordBytes, int recordSize)
 {
+	int keySize = 2 * sizeof(char) + sizeof(short);
+	char chargeLen = 0;
+	memcpy(&chargeLen, recordBytes + keySize, Constants::FIELD_HEADER_SIZE);
+	keySize += Constants::FIELD_HEADER_SIZE + chargeLen;
+
+	char buffer[keySize];
+	memcpy(buffer, recordBytes, keySize);
+
 	VariableRecord* record = new VariableRecord();
-	record->setBytes(recordBytes, recordSize);
+	record->setBytes(buffer, keySize);
 
 	return record;
 }

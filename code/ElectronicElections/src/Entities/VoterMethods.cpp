@@ -53,8 +53,10 @@ void VoterMethods::printKey(const char* key, int recordSize)
 
 VariableRecord* VoterMethods::getKeyRecord(const char* recordBytes, int recordSize)
 {
+	char dni[sizeof(int)];
+	memcpy(dni, recordBytes, sizeof(int));
 	VariableRecord* record = new VariableRecord();
-	record->setBytes(recordBytes, recordSize);
+	record->setBytes(dni, sizeof(int));
 
 	return record;
 }

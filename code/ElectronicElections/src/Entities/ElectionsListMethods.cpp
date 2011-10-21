@@ -17,6 +17,11 @@ ElectionsListMethods::ElectionsListMethods() {
 
 }
 
+int ElectionsListMethods::compareKey(const char* key, const char* recordKey, int recordSize)
+{
+	this->compare(key, recordKey, recordSize);
+}
+
 int ElectionsListMethods::compare(const char* key, const char* recordBytes, int recordSize)
 {
 	ElectionsList list("Lista0", 22, 12, 2000, "Intendente");

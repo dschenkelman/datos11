@@ -18,6 +18,17 @@ VoterMethods::VoterMethods()
 {
 }
 
+int VoterMethods::compareKey(const char* key, const char* recordKey, int recordSize)
+{
+	int dni, recordDni;
+	memcpy(&dni, key, sizeof(int));
+	memcpy(&recordDni, recordKey, sizeof(int));
+
+	if (dni == recordDni) return 0;
+	else if (dni > recordDni) return 1;
+	else return -1;
+}
+
 int VoterMethods::compare(const char* key, const char* recordBytes, int recordSize)
 {
 	std::vector<ElectionKey> list;

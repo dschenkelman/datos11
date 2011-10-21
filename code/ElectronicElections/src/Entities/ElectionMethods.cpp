@@ -19,6 +19,83 @@ ElectionMethods::ElectionMethods()
 {
 }
 
+int ElectionMethods::compareKey(const char* key, const char* recordKey, int recordSize)
+{
+	int i = 0;
+	int j = 0;
+	short year, recordYear;
+	char day, recordDay, month, recordMonth;
+
+	memcpy(&year, key+i, sizeof(short));
+	i += sizeof(short);
+	memcpy(&recordYear, recordKey+j, sizeof(short));
+	j += sizeof(short);
+
+	memcpy(&month, key+i, sizeof(char));
+	i += sizeof(char);
+	memcpy(&recordMonth, recordKey+j, sizeof(char));
+	j+= sizeof(char);
+
+	memcpy(&day, key+i, sizeof(char));
+	i += sizeof(char);
+	memcpy(&recordDay, recordKey+j, sizeof(char));
+	j+= sizeof(char);
+
+	// charge
+	char len = (key+i)[0];
+	i += Constants::FIELD_HEADER_SIZE;
+	char charge[len];
+	memcpy(charge, key+i, len);
+	i+= len;
+
+	char recordLen = (recordKey+j)[0];
+	j+= Constants::FIELD_HEADER_SIZE;
+	char recordCharge[recordLen];
+	memcpy(recordCharge, recordKey+j, recordLen);
+	j+= recordLen;
+
+	if(year > recordYear)
+	{
+		return 1;
+	}
+
+	else
+	{
+		if(year < recordYear)
+		{
+			return -1;
+		}
+
+		if(month > recordMonth)
+		{
+			return 1;
+		}
+
+		else
+		{
+			if(month < recordMonth)
+			{
+				return -1;
+			}
+
+			if(day > recordDay)
+			{
+				return 1;
+			}
+
+			else
+			{
+				if(day < recordDay)
+				{
+					return -1;
+				}
+
+				return strcmp(charge, recordCharge);
+			}
+		}
+	}
+}
+
 int ElectionMethods::compare(const char* key, const char* recordBytes, int recordSize)
 {
 	std::vector<std::string> vector;

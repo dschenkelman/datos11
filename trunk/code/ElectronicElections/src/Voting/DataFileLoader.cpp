@@ -20,6 +20,15 @@ int DataFileLoader::getVoterBlockAmount()
 	return this->voterBlockAmount;
 }
 
+void DataFileLoader::loadAdminFile()
+{
+    cout << "Generando archivo de administradores" << endl;
+    AdministratorMethods adminMethods;
+    ConfigurationEntry entry = this->configuration.getEntry("Administrator");
+    Tree treeAdminFile(entry.getDataFileName(), entry.getBlockSize(), &adminMethods, true);
+    this->readAdminFile(&treeAdminFile, entry);
+}
+
 void DataFileLoader::loadDistrictsFile()
 {
     cout << "Generando archivo de distritos" << endl;
@@ -86,6 +95,7 @@ void DataFileLoader::loadChargesFile()
 
 void DataFileLoader::loadFiles()
 {
+	this->loadAdminFile();
 	this->loadDistrictsFile();
 	this->loadElectionsFile();
 	this->loadElectionListsFile();
@@ -121,6 +131,24 @@ Tree* DataFileLoader::getAdminFile()
 	ConfigurationEntry& entry = this->configuration.getEntry("Administrator");
 	AdministratorMethods am;
 	return new Tree(entry.getDataFileName().c_str(), entry.getBlockSize(), new AdministratorMethods, true);
+}
+
+void DataFileLoader::readAdminFile(Tree* treeAdminFile, ConfigurationEntry& entry)
+{
+	fstream dataFile;
+	dataFile.open(entry.getLoadFileName().c_str(), ios::in |  ios::binary);
+	std::string line;
+	while ( getline(dataFile,line) )
+	{
+		char* user = strtok((char*)line.c_str(), ",");
+		char* pass = strtok(NULL, ",");
+		Administrator a(user,pass);
+
+		VariableRecord record (a.getBytes(), a.getSize());
+		int res = treeAdminFile->insert(&record, &record);
+		Log().write(string("Agregando administrador ").append(a.getName()), res!=5, true);
+	}
+	dataFile.close();
 }
 
 void DataFileLoader::readDistrictFile(Tree* treeDistrictFile, ConfigurationEntry& entry)

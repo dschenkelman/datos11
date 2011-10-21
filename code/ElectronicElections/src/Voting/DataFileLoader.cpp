@@ -115,13 +115,13 @@ Tree* DataFileLoader::createAdminFile()
 	cout << "Generando archivo de administrador" << endl;
 	ConfigurationEntry& entry = this->configuration.getEntry("Administrator");
 	AdministratorMethods am;
-	return new Tree(entry.getDataFileName().c_str(), entry.getBlockSize(), &am, true);
+	return new Tree(entry.getDataFileName().c_str(), entry.getBlockSize(), new AdministratorMethods, true);
 }
 Tree* DataFileLoader::getAdminFile()
 {
 	ConfigurationEntry& entry = this->configuration.getEntry("Administrator");
 	AdministratorMethods am;
-	return new Tree(entry.getDataFileName().c_str(), entry.getBlockSize(), &am, true);
+	return new Tree(entry.getDataFileName().c_str(), entry.getBlockSize(), new AdministratorMethods, true);
 }
 
 void DataFileLoader::readDistrictFile(Tree* treeDistrictFile, ConfigurationEntry& entry)

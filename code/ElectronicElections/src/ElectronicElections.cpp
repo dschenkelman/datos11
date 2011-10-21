@@ -189,18 +189,20 @@ int main()
 			case 1:
 				string user = Menu::raw_input("User");
 				string passwd = Menu::raw_input("Password");
-				Tree *admin_tree;
-				if(!dataFiles.canOpenAdminFile())
-				{
-					admin_tree = dataFiles.createAdminFile();
-				}
-				else
-				{
-					admin_tree = dataFiles.getAdminFile();
-				}
+				ConfigurationEntry& entry = configuration.getEntry("Administrator");
+				Tree admin_tree (entry.getDataFileName(),
+						entry.getBlockSize(), &AdministratorMethods(), false);
+//				if(!dataFiles.canOpenAdminFile())
+//				{
+//					admin_tree = dataFiles.createAdminFile();
+//				}
+//				else
+//				{
+//					admin_tree = dataFiles.getAdminFile();
+//				}
 				Administrator admin (user, passwd);
 				VariableRecord adminrecord;
-				/*if ( admin_tree->get(admin.getKey(), &adminrecord) )
+				if ( admin_tree.get(admin.getKey(), &adminrecord) )
 				{
 //					cout << "admin existe" << endl;
 					Administrator realadmin("","");
@@ -217,16 +219,16 @@ int main()
 					{
 						cout << "Contraseña erronea" <<endl; break;
 					}
-				}*/
-				if (user=="1" && passwd=="1")
+				}
+				else if (user=="1" && passwd=="1")
 				{
 					cout << "Bienvenido al sistema!" <<endl;
 				}
-				else
-				{
-					cout << "Usuario erroneo"<<endl; break;
-				}
-//				else { cout << "no existe el admin"<<endl; }
+//				else
+//				{
+//					cout << "Usuario erroneo"<<endl; break;
+//				}
+				else { cout << "no existe el admin"<<endl; break;}
 				while (1) {
 					option admin_action[11];
 					admin_action[0].label = "Mantener distritos";
@@ -894,26 +896,33 @@ int main()
 					}
 					else if (action==6)
 					{
+//						admin_tree->print();
 						option administrator_action[3];
 						administrator_action[0].label = "Agregar administrador";
 						administrator_action[1].label = "Eliminar administrador";
 						administrator_action[2].label = "Volver";
 						while(1)
 						{
+//							admin_tree->print();
 							action = Menu(administrator_action,3).ask();
 							if (action==0)
 							{
 								Administrator newadmin(Menu::raw_input("Usuario"), Menu::raw_input("Contraseña"));
 								VariableRecord adminkey_vr (newadmin.getKey(), newadmin.getKeySize());
 								VariableRecord admin_vr (newadmin.getBytes(), newadmin.getSize());
-								int res = admin_tree->insert(&adminkey_vr, &admin_vr);
-								cout << "KEY: "<<newadmin.getKey() << endl;
+								int res = admin_tree.insert(&adminkey_vr, &admin_vr);
+//								cout << "KEY: "<<newadmin.getKey() << endl;
+//								cout << "KEY: "<<newadmin.getKeySize() << endl;
+//								cout << "KEY: "<<newadmin.getBytes() << endl;
+//								cout << "KEY: "<<newadmin.getBytes()+5 << endl;
+//								cout << "KEY: "<<newadmin.getSize() << endl;
 								log.write(string("Agregando administrador ").append(newadmin.getName()), res!=5, true);
 							}
 							else if (action==1)
 							{
 								Administrator remadmin(Menu::raw_input("Usuario"), "");
-								int res = admin_tree->remove(remadmin.getKey());
+								cout << remadmin.getKey()<<endl;
+								int res = admin_tree.remove(remadmin.getKey());
 								log.write(string("Eliminando administrador ").append(remadmin.getName()), res!=4, true);
 							}
 							else if (action==2)
@@ -1227,7 +1236,7 @@ int main()
 					}
 
 				}
-				delete admin_tree;
+//				delete admin_tree;
 				break;
 		}
 	}

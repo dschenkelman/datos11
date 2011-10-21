@@ -66,7 +66,7 @@ void Administrator::setBytes(char* bytes)
 	this->name.clear();
 	this->name.append(nameAux);
 
-	char passAux[PASSWORD_SIZE];
+	char passAux[PASSWORD_SIZE+1];
 	memcpy(passAux, bytes+i, PASSWORD_SIZE + 1);
 
 	std::string passStrAux = "";

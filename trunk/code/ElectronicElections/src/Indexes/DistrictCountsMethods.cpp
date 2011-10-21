@@ -17,6 +17,21 @@ DistrictCountsMethods::DistrictCountsMethods()
 {
 }
 
+int DistrictCountsMethods::compareKey(const char* key, const char* recordKey, int recordSize)
+{
+	char keyLength = 0;
+	memcpy(&keyLength, key, sizeof(char));
+	char keyString[keyLength];
+	memcpy(keyString, key + sizeof(char), keyLength);
+
+	char recordKeyLength = 0;
+	memcpy(&recordKeyLength, recordKey, sizeof(char));
+	char recordKeyString[recordKeyLength];
+	memcpy(recordKeyString, recordKey + sizeof(char), recordKeyLength);
+
+	return strcmp(keyString, recordKeyString);
+}
+
 int DistrictCountsMethods::compare(const char *key, const char *recordBytes, int recordSize)
 {
 	DistrictCounts dc;

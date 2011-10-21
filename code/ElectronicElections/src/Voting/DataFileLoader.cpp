@@ -67,8 +67,6 @@ void DataFileLoader::loadCandidatesFile()
 void DataFileLoader::loadVotersFile()
 {
     ConfigurationEntry & entry = this->configuration.getEntry("Voter");
-    int efficientBSize = entry.getBlockSize() * 4 / 5;
-    this->voterBlockAmount = entry.getRegisterCount() * entry.getRegisterSize() / efficientBSize;
     cout << "Generando archivo de votantes" << endl;
     VoterMethods vm;
     VoterHashingFunction vhf;
@@ -82,8 +80,6 @@ void DataFileLoader::loadChargesFile()
     cout << "Generando archivo de cargos" << endl;
     ChargeMethods cm;
     ChargeHashingFunction chf;
-    int efficientBSize = entry.getBlockSize() * 4 / 5;
-    this->chargeBlockAmount = entry.getRegisterCount() * entry.getRegisterSize() / efficientBSize + 1;
     HashBlockFile hashChargeFile(entry.getDataFileName(), entry.getBlockSize(), &cm, &chf, this->chargeBlockAmount, true);
     this->readChargeFile(&hashChargeFile, entry);
 }
@@ -306,6 +302,17 @@ void DataFileLoader::readChargeFile(HashBlockFile* hashChargeFile, Configuration
 int DataFileLoader::getChargeBlockAmount()
 {
 	return this->chargeBlockAmount;
+}
+
+void DataFileLoader::calculateBlockAmounts()
+{
+    ConfigurationEntry & voterEntry = this->configuration.getEntry("Voter");
+    int voterBlockSize = voterEntry.getBlockSize() * 4 / 5;
+    this->voterBlockAmount = voterEntry.getRegisterCount() * voterEntry.getRegisterSize() / voterBlockSize;
+
+    ConfigurationEntry & chargeEntry = this->configuration.getEntry("Charge");
+    int chargeBlockSize = chargeEntry.getBlockSize() * 4 / 5;
+	this->chargeBlockAmount = chargeEntry.getRegisterCount() * chargeEntry.getRegisterSize() / chargeBlockSize + 1;
 }
 
 DataFileLoader::~DataFileLoader()

@@ -70,6 +70,7 @@ public:
 	Tree* getAdminFile();
 	int getVoterBlockAmount();
 	int getChargeBlockAmount();
+	void calculateBlockAmounts();
 	~DataFileLoader();
 };
 

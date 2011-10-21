@@ -113,11 +113,11 @@ void CountMethods::print(const char* recordBytes, int recordSize)
 
 void CountMethods::printKey(const char* key, int recordSize)
 {
-	char bytes[recordSize];
+	char bytes[recordSize + 4];
 	int i = 0;
-	memcpy(bytes, (char*) key, recordSize - sizeof(unsigned int)); i += (recordSize - sizeof(unsigned int));
+	memcpy(bytes, (char*) key, recordSize); i += recordSize;
 	unsigned int q = 1000;
-	memcpy(bytes+i, &q, sizeof(unsigned int));
+	memcpy(bytes+i, &q, sizeof(int));
 
 	Count c(1, 1, 1, "Invalid", "Invalid", "Invalid", 1);
 	c.setBytes(bytes);
@@ -129,8 +129,12 @@ void CountMethods::printKey(const char* key, int recordSize)
 VariableRecord* CountMethods::getKeyRecord(const char* recordBytes, int recordSize)
 {
 	VariableRecord* record = new VariableRecord();
-	record->setBytes(recordBytes, recordSize);
+	int keySize = recordSize - sizeof(int);
+	char bytes[keySize];
+	memset(bytes, 0, keySize);
+	memcpy(bytes, recordBytes, keySize);
 
+	record->setBytes(bytes, keySize);
 	return record;
 }
 

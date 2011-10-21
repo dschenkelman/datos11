@@ -27,6 +27,7 @@ public:
 				TreeBlock::LEVEL_SIZE +
 				TreeBlock::FREE_SPACE_SIZE;
 	IndexTreeBlock(int size, RecordMethods* methods, bool existing);
+	virtual int findRecord(const char* key, VariableRecord** rec);
 	virtual GetResult findEqualOrGreaterRecord(const char *key, VariableRecord **rec);
 	virtual void updateInformation();
 	virtual void clear();

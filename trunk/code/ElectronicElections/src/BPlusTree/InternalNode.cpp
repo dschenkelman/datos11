@@ -44,7 +44,7 @@ void InternalNode::handleOverflowInInternalNode(VariableRecord* keyAux,
     while (bytes < (this->maximumSize / 2) && this->block->getNextRecord(&aux) != NULL && ++index)
 	{
 		if (!keyRecordConsidered &&
-				this->recordMethods->compare(keyAux->getBytes(), aux.getBytes(), aux.getSize()) < 0)
+				this->recordMethods->compareKey(keyAux->getBytes(), aux.getBytes(), aux.getSize()) < 0)
 		{
 			keyRecordConsidered = true;
 			bytes += keyAux->getSize() + Constants::RECORD_HEADER_SIZE + IndexTreeBlock::NODE_POINTER_SIZE;
@@ -60,7 +60,7 @@ void InternalNode::handleOverflowInInternalNode(VariableRecord* keyAux,
 	}
 
     if(!keyRecordConsidered &&
-    		this->recordMethods->compare(keyAux->getBytes(), aux.getBytes(), aux.getSize()) < 0)
+    		this->recordMethods->compareKey(keyAux->getBytes(), aux.getBytes(), aux.getSize()) < 0)
     {
         keyRecordConsidered = true;
         keyIsMiddle = true;
@@ -79,7 +79,7 @@ void InternalNode::handleOverflowInInternalNode(VariableRecord* keyAux,
         while(this->block->getNextRecord(&aux2) != NULL)
         {
         	index++;
-        	if (this->recordMethods->compare(keyAux->getBytes(), aux2.getBytes(), aux2.getSize()) == 0)
+        	if (this->recordMethods->compareKey(keyAux->getBytes(), aux2.getBytes(), aux2.getSize()) == 0)
         	{
         		break;
         	}
@@ -165,7 +165,7 @@ OpResult InternalNode::handleLeafOverflow(VariableRecord* dataRecord,
     this->block->insertRecord(keyAux, keyAux);
     this->block->positionAtBegin();
     int index = 1;
-    while(this->block->getNextRecord(&aux) != NULL && this->recordMethods->compare
+    while(this->block->getNextRecord(&aux) != NULL && this->recordMethods->compareKey
 			(keyAux->getBytes(), aux.getBytes(), aux.getSize()) != 0)
     {
     	index++;
@@ -207,7 +207,7 @@ OpResult InternalNode::handleInternalNodeOverflow(OverflowParameter& overflowPar
     while(overflowBlock->getNextRecord(&aux) != NULL)
     {
         index++;
-        if(this->recordMethods->compare(aux.getBytes(), dataRecord->getBytes(), dataRecord->getSize()) > 0)
+        if(this->recordMethods->compareKey(aux.getBytes(), dataRecord->getBytes(), dataRecord->getSize()) > 0)
         {
             if(!middlePointerAdded)
             {
@@ -256,7 +256,7 @@ OpResult InternalNode::handleInternalNodeOverflow(OverflowParameter& overflowPar
     this->block->insertRecord(dataRecord, dataRecord);
 	index = 1;
 	this->block->positionAtBegin();
-	while(this->block->getNextRecord(&aux) && this->recordMethods->compare(aux.getBytes(), dataRecord->getBytes(), dataRecord->getSize()) != 0)
+	while(this->block->getNextRecord(&aux) && this->recordMethods->compareKey(aux.getBytes(), dataRecord->getBytes(), dataRecord->getSize()) != 0)
 	{
             index++;
 	}
@@ -273,7 +273,7 @@ OpResult InternalNode::insert(VariableRecord *keyRecord, VariableRecord *dataRec
 	int index = 0;
 	while(this->block->getNextRecord(&aux) != NULL)
 	{
-		if(this->recordMethods->compare
+		if(this->recordMethods->compareKey
 				(keyRecord->getBytes(), aux.getBytes(), aux.getSize()) < 0)
 		{
 			break;
@@ -423,7 +423,7 @@ void InternalNode::mergeLeafNodes(int index, TreeBlock *brotherBlock, TreeBlock 
 	this->block->positionAtBegin();
 	while(this->block->getNextRecord(&current))
 	{
-		if (this->recordMethods->compare(keyAux->getBytes(), current.getBytes(), current.getSize()) < 0)
+		if (this->recordMethods->compareKey(keyAux->getBytes(), current.getBytes(), current.getSize()) < 0)
 		{
 			break;
 		}
@@ -599,7 +599,7 @@ OpResult InternalNode::remove(char *key)
 	bool lastChild = true;
 	while(this->block->getNextRecord(&aux) != NULL)
 	{
-		if(this->recordMethods->compare
+		if(this->recordMethods->compareKey
 				(key, aux.getBytes(), aux.getSize()) < 0)
 		{
 			lastChild = false;
@@ -716,7 +716,7 @@ bool InternalNode::balanceLeafUnderflowRight(LeafNode& leftLeaf, LeafNode& right
 	this->block->positionAtBegin();
 	while(this->block->getNextRecord(&current))
 	{
-		if (this->recordMethods->compare(keyAux->getBytes(), current.getBytes(), current.getSize()) < 0)
+		if (this->recordMethods->compareKey(keyAux->getBytes(), current.getBytes(), current.getSize()) < 0)
 		{
 			break;
 		}
@@ -774,7 +774,7 @@ bool InternalNode::balanceLeafUnderflowLeft(LeafNode& leftLeaf, LeafNode& rightL
 	this->block->positionAtBegin();
 	while(this->block->getNextRecord(&current))
 	{
-		if (this->recordMethods->compare(keyAux->getBytes(), current.getBytes(), current.getSize()) < 0)
+		if (this->recordMethods->compareKey(keyAux->getBytes(), current.getBytes(), current.getSize()) < 0)
 		{
 			break;
 		}
@@ -836,7 +836,7 @@ OpResult InternalNode::update(char *key, VariableRecord *r, OverflowParameter& o
 	int index = 0;
 	while(this->block->getNextRecord(&aux) != NULL)
 	{
-		if(this->recordMethods->compare
+		if(this->recordMethods->compareKey
 				(key, aux.getBytes(), aux.getSize()) < 0)
 		{
 			break;
@@ -902,7 +902,7 @@ GetResult InternalNode::get(char* key, VariableRecord* record)
 	this->block->positionAtBegin();
 	while(this->block->getNextRecord(&aux) != NULL)
 	{
-		if(this->recordMethods->compare
+		if(this->recordMethods->compareKey
 				(key, aux.getBytes(), aux.getSize()) < 0)
 		{
 			break;

@@ -147,7 +147,7 @@ void Tree::handleOverflowInInternalRoot(VariableRecord *dataRecord, OverflowPara
 
 	rootBlock->positionAtBegin();
 	while (rootBlock->getNextRecord(&aux) != NULL &&
-			this->methods->compare(dataRecord->getBytes(), aux.getBytes(), aux.getSize()) > 0)
+			this->methods->compareKey(dataRecord->getBytes(), aux.getBytes(), aux.getSize()) > 0)
 	{
 		nodePointer = rootBlock->getNodePointer(index);
 		this->file->getCurrentBlock()->insertNodePointer(index, nodePointer);

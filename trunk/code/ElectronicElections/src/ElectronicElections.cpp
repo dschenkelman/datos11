@@ -158,6 +158,7 @@ int main()
 	Configuration configuration("Files/config.txt");
 	configuration.read();
 	DataFileLoader dataFiles(configuration);
+	dataFiles.calculateBlockAmounts();
 
 	Log log;
 	log.write("Iniciando sistema", true, true);

@@ -54,6 +54,8 @@ bool Voting::login(int voterBlockAmount)
     char line[MAX_LINE_SIZE];
     int i = 0;
 
+    srand(time(NULL));
+
 	ConfigurationEntry& entry = this->config->getEntry("DistrictCounts");
 	DistrictCountsIndex districtCountsIndex(entry.getDataFileName(), entry.getBlockSize(), true);
 
@@ -147,9 +149,9 @@ bool Voting::vote(DistrictCountsIndex& districtCountsIndex)
 	{
 		Election elec(electionsId.at(i).getDay(), electionsId.at(i).getMonth(), electionsId.at(i).getYear(), electionsId.at(i).getCharge());
 		VariableRecord electionRecord;
-		bool electionFounded = electionTree.get(elec.getKey(), &electionRecord);
+		bool electionFound = electionTree.get(elec.getKey(), &electionRecord);
 
-		if(!electionFounded)
+		if(!electionFound)
 		{
 			stringstream logStr;
 			logStr << "No se encontro la eleccion: (" << electionsId.at(i).getDay() << "/" << electionsId.at(i).getMonth()
@@ -175,7 +177,6 @@ bool Voting::vote(DistrictCountsIndex& districtCountsIndex)
 
         if(electionsLists.size() != 0)
         {
-            srand(time(NULL));
             int size = electionsLists.size();
             int listIndex = rand() % size;
 

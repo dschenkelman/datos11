@@ -38,7 +38,7 @@ public:
 	int getSize();
 	int getOccupiedSize();
 	int getFreeSpace();
-	int findRecord(const char* key, VariableRecord** rec);
+	virtual int findRecord(const char* key, VariableRecord** rec);
 	virtual void updateInformation() = 0;
 	virtual void clear() = 0;
 	virtual bool canInsertRecord(int recordSize);

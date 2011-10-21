@@ -111,7 +111,7 @@ bool IndexTreeBlock::insertRecord(VariableRecord* keyRecord, VariableRecord* dat
 		this->position = recordPositions.at(recordPositions.size() - 1);
 		this->getNextRecord(&aux);
 
-		while(this->recordMethods->compare
+		while(this->recordMethods->compareKey
 				(keyRecord->getBytes(),aux.getBytes(), aux.getSize()) < 0)
 		{
 			// swap
@@ -365,6 +365,28 @@ VariableRecord *IndexTreeBlock::popLast()
 GetResult IndexTreeBlock::findEqualOrGreaterRecord(const char *key, VariableRecord **rec)
 {
 	return None;
+}
+
+int IndexTreeBlock::findRecord(const char* key, VariableRecord** rec)
+{
+	this->position = this->recordsOffset;
+	VariableRecord* record = new VariableRecord();
+	int foundPosition = this->position;
+	while(this->getNextRecord(record) != NULL)
+	{
+		if (this->recordMethods->compareKey(key,
+				record->getBytes(), record->getSize()) == 0)
+		{
+			*rec = record;
+			return foundPosition;
+		}
+		delete record;
+		record = new VariableRecord();
+		foundPosition = this->position;
+	}
+
+	delete record;
+	return -1;
 }
 
 IndexTreeBlock::~IndexTreeBlock()

@@ -3740,7 +3740,9 @@ def gen_district(size):
 			
 def gen_file(fname, list):
 	import csv
-	csvout = csv.writer(open(fname, 'wb'), delimiter=',')
+	dialect = csv.Dialect
+	dialect.lineterminator = '\n'
+	csvout = csv.writer(open(fname, mode='w'), delimiter=',', dialect=dialect, quoting=csv.QUOTE_NONE)
 	for row in list: csvout.writerow(row)
 	
 voters = [v for v in gen_voter(50000)]

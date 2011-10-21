@@ -61,8 +61,11 @@ void ChargeMethods::printKey(const char* key, int recordSize)
 
 VariableRecord* ChargeMethods::getKeyRecord(const char* recordBytes, int recordSize)
 {
+	char len = recordBytes[0];
+	char nameAux[len];
+	memcpy(nameAux, recordBytes+Constants::FIELD_HEADER_SIZE, len);
 	VariableRecord* record = new VariableRecord();
-	record->setBytes(recordBytes, recordSize);
+	record->setBytes(nameAux, len);
 
 	return record;
 }

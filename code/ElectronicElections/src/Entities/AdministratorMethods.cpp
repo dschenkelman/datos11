@@ -51,9 +51,9 @@ void AdministratorMethods::printKey(const char* key, int recordSize)
 VariableRecord* AdministratorMethods::getKeyRecord(const char* recordBytes, int recordSize)
 {
 	char len;
-	memcpy(&len, key, Constants::FIELD_HEADER_SIZE);
+	memcpy(&len, recordBytes, Constants::FIELD_HEADER_SIZE);
 	char buffer[len];
-	memcpy(buffer, key + Constants::FIELD_HEADER_SIZE, len);
+	memcpy(buffer, recordBytes + Constants::FIELD_HEADER_SIZE, len);
 	VariableRecord* record = new VariableRecord();
 	record->setBytes(buffer, len);
 

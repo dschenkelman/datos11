@@ -930,6 +930,7 @@ GetResult InternalNode::get(char* key, VariableRecord* record)
 				this->file->pushBlock();
 				this->file->getCurrentBlock()->positionAtBegin();
 				this->file->getCurrentBlock()->getNextRecord(record);
+				this->file->deleteKeptBlock();
 				this->file->popAndKeep();
 				result = Greater;
 			}
@@ -940,6 +941,7 @@ GetResult InternalNode::get(char* key, VariableRecord* record)
 		}
 		else
 		{
+			this->file->deleteKeptBlock();
 			this->file->popAndKeep();
 		}
 
@@ -968,6 +970,7 @@ VariableRecord* InternalNode::returnFirst(VariableRecord* r)
 	{
 		LeafNode leaf(this->file->getCurrentBlock(), this->recordMethods);
 		leaf.returnFirst(r);
+		this->file->deleteKeptBlock();
 		this->file->popAndKeep();
 		return r;
 	}

@@ -7,6 +7,7 @@
 
 #include "DistrictCountsIndex.h"
 #include "DistrictCounts.h"
+#include <iostream>
 
 using namespace std;
 
@@ -77,7 +78,6 @@ void DistrictCountsIndex::unIndexCount(Count & c)
 }
 
 DistrictCountsIndex::~DistrictCountsIndex() {
-	this->file->print();
 	delete this->file;
 	delete this->methods;
 }

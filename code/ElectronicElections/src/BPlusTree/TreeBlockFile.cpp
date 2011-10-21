@@ -177,6 +177,7 @@ TreeBlock *TreeBlockFile::getKeptBlock()
 
 TreeBlockFile::~TreeBlockFile()
 {
+	this->deleteKeptBlock();
 	delete this->currentBlock;
 	this->dataFile.close();
 }

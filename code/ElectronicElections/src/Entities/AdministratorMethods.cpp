@@ -17,6 +17,11 @@ AdministratorMethods::AdministratorMethods()
 {
 }
 
+int AdministratorMethods::compareKey(const char* key, const char* recordKey, int recordSize)
+{
+	return this->compare(key, recordKey, recordSize);
+}
+
 int AdministratorMethods::compare(const char* key, const char* recordBytes, int recordSize)
 {
 	Administrator adm("Adm", "adm");

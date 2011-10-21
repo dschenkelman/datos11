@@ -23,6 +23,11 @@ DistrictMethods::DistrictMethods() {
 DistrictMethods::~DistrictMethods() {
 }
 
+int DistrictMethods::compareKey(const char* key, const char* recordKey, int recordSize)
+{
+	return this->compare(key, recordKey, recordSize);
+}
+
 int DistrictMethods::compare(const char* key, const char* recordBytes, int recordSize)
 {
 	District district("district");

@@ -149,6 +149,7 @@ void DataFileLoader::readCandidateFile(Tree* treeCandidateFile, ConfigurationEnt
 	fstream dataFile;
 	dataFile.open(entry.getLoadFileName().c_str(), ios::in |  ios::binary);
 	std::string line;
+	char* day;
 	char* month;
 	char* year;
 	char* cargo;
@@ -156,12 +157,12 @@ void DataFileLoader::readCandidateFile(Tree* treeCandidateFile, ConfigurationEnt
 	char* dniVoter;
 	while ( getline(dataFile,line) )
 	{
-		char* day = strtok((char*)line.c_str(), ",");
+		listName = strtok((char*)line.c_str(), ",");
+		day = strtok(NULL, ",");
 		month = strtok(NULL, ",");
 		year = strtok(NULL, ",");
-		cargo = strtok(NULL, ",");
-		listName = strtok(NULL, ",");
 		dniVoter = strtok(NULL, ",");
+		cargo = strtok(NULL, ",");
 		short yearNumber = atoi(year);
 
 		Candidate cand ((char)atoi(day), (char)atoi(month), yearNumber, string(listName), string(cargo), atoi(dniVoter));

@@ -65,7 +65,7 @@ bool Voting::login(int voterBlockAmount)
 
         this->voter = new Voter(intDni, "invalid", "invalid", "invalid", "invalid", std::vector<ElectionKey>());
 
-        VariableRecord* voterRecord = new VariableRecord();
+        VariableRecord* voterRecord = NULL;
 
         if(!voterFile.getRecord(this->voter->getKey(), &voterRecord))
         {
@@ -82,12 +82,15 @@ bool Voting::login(int voterBlockAmount)
         }
 
         stringstream logStr;
-        logStr << "El usuario: " << this->voter->getNames() << this->voter->getNames() << " ha ingresado al sistema correctamente";
+        logStr << "El usuario: " << this->voter->getNames() << " ha ingresado al sistema correctamente";
         this->log->operator <<(logStr.str());
 
-        delete voterRecord;
+        if (voterRecord != NULL)
+        {
+        	delete voterRecord;
+        }
 
-        //cout << "Votante: " << i << endl;
+        cout << "Votando: " << this->voter->getDni() << endl;
         i++;
         this->vote(districtCountsIndex);
 

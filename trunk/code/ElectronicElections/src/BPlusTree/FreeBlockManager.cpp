@@ -11,6 +11,7 @@
 using namespace std;
 
 FreeBlockManager::FreeBlockManager(std::string fName, bool createNew)
+:fileName(fName)
 {
 	ios_base::openmode mode = ios::binary | ios::in | ios::out;
 	if (createNew)
@@ -55,13 +56,13 @@ int FreeBlockManager::getNextBlock()
 	if (this->blocks.size() != 1)
 	{
 		this->blocks.pop_back();
+		this->size--;
 	}
 	else
 	{
 		this->blocks[this->blocks.size() - 1] = ++value2;
 	}
 
-	this->size--;
 	this->saveFreeBlocks();
 
 	return value;

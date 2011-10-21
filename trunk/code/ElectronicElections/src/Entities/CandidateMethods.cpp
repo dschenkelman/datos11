@@ -128,7 +128,7 @@ void CandidateMethods::printKey(const char* key, int recordSize)
 	Candidate c(12, 12, 2000, "Invalid", "Invalid", 10101010);
 	c.setBytes((char*)key);
 
-	cout << "(" << c.getYear() << ", " << c.getMonth() << ", " << c.getDay() << ", " << c.getCharge() <<
+	cout << "(" << c.getYear() << "-" << (int)c.getMonth() << "-" << (int)c.getDay() << ", " << c.getCharge() <<
 			", " << c.getListName() << ", " << c.getDni() << ")" << endl;
 }
 

@@ -192,6 +192,7 @@ void Tree::handleOverflowInInternalRoot(VariableRecord *dataRecord, OverflowPara
 
 OpResult Tree::insert(VariableRecord *keyRecord, VariableRecord *dataRecord)
 {
+	this->file->deleteKeptBlock();
 	OverflowParameter overflowParameter;
 	overflowParameter.newBlock = -1;
 	overflowParameter.overflowBlock = -1;
@@ -244,6 +245,7 @@ void Tree::decreaseTreeHeight()
 
 OpResult Tree::remove(char *key)
 {
+	this->file->deleteKeptBlock();
 	OpResult result = this->root->remove(key);
 	VariableRecord aux;
 	this->file->getCurrentBlock()->positionAtBegin();
@@ -260,6 +262,7 @@ OpResult Tree::remove(char *key)
 
 OpResult Tree::update(char *key, VariableRecord *r)
 {
+	this->file->deleteKeptBlock();
 	OverflowParameter overflowParameter;
 	OpResult result = this->root->update(key, r, overflowParameter);
 

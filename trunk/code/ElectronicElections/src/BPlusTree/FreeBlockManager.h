@@ -24,7 +24,7 @@ private:
 public:
 	FreeBlockManager(std::string fName, bool createNew);
 	int getNextBlock();
-	int addFreeBlock(int block);
+	void addFreeBlock(int block);
 	virtual ~FreeBlockManager();
 };
 

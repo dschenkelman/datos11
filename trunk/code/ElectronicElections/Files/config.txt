@@ -1,10 +1,10 @@
-Voter,Files/padron.txt,8192,28000,347,Files/VoterHash.dat
+Voter,Files/padron.txt,16384,50000,347,Files/VoterHash.dat
 Charge,Files/charges.txt,32768,1500,80,Files/ChargeHash.dat
 District,Files/districts.txt,1024,0,0,Files/District.dat
 Candidate,Files/candidates.txt,1024,0,0,Files/Candidate.dat
-ElectionList,Files/electionLists.txt,8192,0,0,Files/ElectionList.dat
+ElectionList,Files/electionList.txt,8192,0,0,Files/ElectionList.dat
 Election,Files/elections.txt,16384,0,0,Files/Election.dat
 Administrator,"",1024,10,20,Files/Administrator.dat
-Count,"",2048,0,0,Files/Count.dat
+Count,"",16384,0,0,Files/Count.dat
 DistrictElections,"",16384,0,0,Files/DistrictElections.ind
 DistrictCounts,"",16384,0,0,Files/DistrictCounts.ind

@@ -3727,7 +3727,7 @@ def gen_voter(size):
 	cur_dni = 10000000
 	while size:
 		size-=1
-		cur_dni += randrange(10,20)
+		cur_dni += randrange(1,20)
 		yield [cur_dni,\
 				choice(first_names)[0]+" "+choice(surnames),\
 				randrange(1000,9999),\
@@ -3754,13 +3754,13 @@ from random import randrange, sample, choice
 charges = []
 for d in districts:
 	newc = ["Intendente de %s"%d[0]]
-	for i in range(1,randrange(1,8)): newc += ["Concejal de %s nro %d"%(d[0],i)]
+	for i in range(1,randrange(1,8)): newc += ["Concejal de %s Nro %d"%(d[0],i)]
 	charges.append(newc)
 provinces = {}
 distlist = list(districts)
 useddists = 0
 for i in range(1,201):
-	newc = ["Gobernador provincia nro %d"%i, "ViceGobernador provincia nro %d"%i]
+	newc = ["Gobernador prov nro %d"%i, "ViceGobernador prov Nro %d"%i]
 	charges.append(newc)
 	n = choice([4,4,5,5,5,5])
 	if i == 200: n = len(distlist)-useddists
@@ -3771,7 +3771,7 @@ for i in range(1,201):
 #~ print provinces[200]
 countries = {}
 for i in range(1,21):
-	newc = ["Presidente nro %d"%i, "VicePresidente nro %d"%i]
+	newc = ["Presidente Nro %d"%i, "VicePresidente Nro %d"%i]
 	charges.append(newc)
 	countries[i] = [a[0] for a in distlist[(i-1)*50: (i-1)*50+50]] #50 dist por pais
 
@@ -3782,10 +3782,10 @@ for i in range(1,201):
 	#~ print (randrange(1,31), randrange(1,13), 2011, "Gobernador provincia nro %d"%i)+tuple(provinces[i])
 	#~ exit(0)
 	provinces[i].sort()
-	elections.append((randrange(10,31), randrange(10,13), 2011, "Gobernador provincia nro %d"%i)+tuple(provinces[i]))
+	elections.append((randrange(10,31), randrange(10,13), 2011, "Gobernador prov nro %d"%i)+tuple(provinces[i]))
 for i in range(1,21):
 	countries[i].sort()
-	elections.append((randrange(10,31), randrange(10,13), 2011, "Presidente nro %d"%i)+tuple(countries[i]))
+	elections.append((randrange(10,31), randrange(10,13), 2011, "Presidente Nro %d"%i)+tuple(countries[i]))
 
 def electionscmp(a,b):
 	return cmp(a[4:],b[4:])
@@ -3794,8 +3794,8 @@ elections.sort(electionscmp)
 
 elist = []
 for e in elections:
-	for i in range(1, randrange(2,4)):
-		elist.append((e[0],e[1],e[2],e[3],"Lista nro %d"%i)+tuple(e[4:]))
+	for i in range(1, randrange(2,6)):
+		elist.append((e[0],e[1],e[2],e[3],"Lista %d"%i)+tuple(e[4:]))
 #~ print elist
 
 simple_elist = [a[:5] for a in elist]

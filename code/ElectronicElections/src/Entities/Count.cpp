@@ -204,6 +204,11 @@ Count::Count(const Count & other)
 	this->district = other.district;
 }
 
+void Count::setQuantity(unsigned int value)
+{
+	this->quantity = value;
+}
+
 void Count::increaseQuantity()
 {
 	this->quantity++;

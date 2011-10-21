@@ -61,6 +61,7 @@ class DataFileLoader
     void loadCountsFile();
     void loadCandidatesFile();
     void loadVotersFile();
+    void loadChargesFile();
 public:
 	DataFileLoader(Configuration& config);
 	void loadFiles();

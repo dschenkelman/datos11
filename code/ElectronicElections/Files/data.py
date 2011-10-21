@@ -3722,12 +3722,28 @@ surnames = [
 from random import sample
 cities = sample(cities, 1000)
 
+def check_empty_lines(fname):
+	f = open(fname)
+	i = 0
+	for l in f:
+		i += 1	
+		if len(l) == 1:
+			print "File: " + fname + ".Line " + str(i) + " empty."
+
+def check_all():
+	check_empty_lines("candidates.txt")
+	check_empty_lines("charges.txt")
+	check_empty_lines("electionList.txt")
+	check_empty_lines("districts.txt")
+	check_empty_lines("elections.txt")
+	check_empty_lines("padron.txt")
+
 def gen_voter(size):
 	from random import choice, randrange
 	cur_dni = 10000000
 	while size:
 		size-=1
-		cur_dni += randrange(1,20)
+		cur_dni += randrange(1,3500)
 		yield [cur_dni,\
 				choice(first_names)[0]+" "+choice(surnames),\
 				randrange(1000,9999),\
@@ -3824,6 +3840,8 @@ gen_file("charges.txt", charges)
 gen_file("elections.txt", elections)
 gen_file("electionList.txt", simple_elist)
 gen_file("candidates.txt", candidates)
+
+check_all()
 
 #fields = [cities, counties, countries, first_names, provinces, provinces_netherlands, states, surnames]
 

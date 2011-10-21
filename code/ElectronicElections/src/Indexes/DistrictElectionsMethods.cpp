@@ -41,6 +41,19 @@ void DistrictElectionsMethods::print(const char *recordBytes, int recordSize)
 	cout << "))";
 }
 
+int DistrictElectionsMethods::compareKey(const char* key, const char* recordKey, int recordSize)
+{
+	char len = key[0];
+	char district[len];
+	memcpy(district, key + Constants::FIELD_HEADER_SIZE, len);
+
+	char recordLen = recordKey[0];
+	char recordDistrict[recordLen];
+	memcpy(recordDistrict, recordKey + Constants::FIELD_HEADER_SIZE, recordLen);
+
+	return strcmp(district, recordDistrict);
+}
+
 int DistrictElectionsMethods::compare(const char *key, const char *recordBytes, int recordSize)
 {
 	DistrictElections de;

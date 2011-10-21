@@ -142,6 +142,7 @@ void updateCountVoteAmount(Configuration & configuration)
             }
         }
         while(cant < 0);
+        c.setQuantity(cant);
         aux.setBytes(c.getBytes(), c.getSize());
         countTree.update(c.getKey(), &aux);
     }
@@ -157,25 +158,21 @@ int main()
 	Configuration configuration("Files/config.txt");
 	configuration.read();
 	DataFileLoader dataFiles(configuration);
-	dataFiles.loadFiles();
 
 	Log log;
 	log.write("Iniciando sistema", true, true);
-	option main[2];
-	main[0].label = "Run main program";
-	main[1].label = "Run tests";
-	if ( Menu(main,2).ask() == 1 ) return run_tests();
 
-	option login_type[3];
-	login_type[0].label = "Vote";
-	login_type[1].label = "Admin";
-	login_type[2].label = "Quit";
+	option login_type[4];
+	login_type[0].label = "Log-In";
+	login_type[1].label = "Generar Votos";
+	login_type[2].label = "Poblar Archivos";
+	login_type[3].label = "Quit";
 	while (1)
 	{
-		int action = Menu(login_type,3).ask();
+		int action = Menu(login_type,4).ask();
 		switch (action)
 		{
-			case 0:
+			case 1:
 				{
 					bool voting = true;
 					Voting vot(&configuration);
@@ -184,14 +181,18 @@ int main()
 				}
 				break;
 			case 2:
+				dataFiles.loadFiles();
+				break;
+			case 3:
 				return 0;
 				break;
-			case 1:
+			case 0:
 				string user = Menu::raw_input("User");
 				string passwd = Menu::raw_input("Password");
 				ConfigurationEntry& entry = configuration.getEntry("Administrator");
+				AdministratorMethods am;
 				Tree admin_tree (entry.getDataFileName(),
-						entry.getBlockSize(), &AdministratorMethods(), false);
+						entry.getBlockSize(), &am, false);
 //				if(!dataFiles.canOpenAdminFile())
 //				{
 //					admin_tree = dataFiles.createAdminFile();
@@ -230,19 +231,18 @@ int main()
 //				}
 				else { cout << "no existe el admin"<<endl; break;}
 				while (1) {
-					option admin_action[11];
+					option admin_action[10];
 					admin_action[0].label = "Mantener distritos";
 					admin_action[1].label = "Mantener votantes";
 					admin_action[2].label = "Mantener elecciones";
 					admin_action[3].label = "Mantener cargos";
 					admin_action[4].label = "Mantener listas";
-					admin_action[10].label = "Actualizar conteo";
 					admin_action[5].label = "Mantener candidatos";
 					admin_action[6].label = "Mantener administradores";
 					admin_action[7].label = "Informar resultados";
-					admin_action[8].label = "Generar archivos vacios";
+					admin_action[8].label = "Actualizar conteo";
 					admin_action[9].label = "Volver";
-					action = Menu(admin_action,11).ask();
+					action = Menu(admin_action,10).ask();
 					if (action == 0)
 					{
 						ConfigurationEntry& entry = configuration.getEntry("District");
@@ -1224,17 +1224,12 @@ int main()
 					}
 					else if (action == 8)
 					{
-						dataFiles.loadFiles();
+						updateCountVoteAmount(configuration);
 					}
 					else if (action == 9)
 					{
 						break;
 					}
-					else if (action == 10)
-					{
-					    updateCountVoteAmount(configuration);
-					}
-
 				}
 //				delete admin_tree;
 				break;

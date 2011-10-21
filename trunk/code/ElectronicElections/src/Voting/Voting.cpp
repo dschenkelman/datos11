@@ -210,7 +210,6 @@ bool Voting::vote(DistrictCountsIndex& districtCountsIndex)
 				countTree.insert(&keyRecord, &record);
 				districtCountsIndex.indexCount(c);
 			}
-
 			else
 			{
 				c.setBytes(record.getBytes());

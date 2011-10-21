@@ -33,7 +33,6 @@ void DataFileLoader::loadElectionsFile()
 {
     ConfigurationEntry & entry = this->configuration.getEntry("Election");
     cout << "Generando archivo de elecciones" << endl;
-    cout << entry.getBlockSize() << endl;
     ElectionMethods em;
     Tree electionTree(entry.getDataFileName(), entry.getBlockSize(), &em, true);
     this->readElectionFile(&electionTree, entry);
@@ -77,6 +76,18 @@ void DataFileLoader::loadVotersFile()
     this->readVoterFile(&hashVoterFile, entry);
 }
 
+void DataFileLoader::loadChargesFile()
+{
+    ConfigurationEntry & entry = this->configuration.getEntry("Charge");
+    cout << "Generando archivo de cargos" << endl;
+    ChargeMethods cm;
+    ChargeHashingFunction chf;
+    int efficientBSize = entry.getBlockSize() * 4 / 5;
+    this->chargeBlockAmount = entry.getRegisterCount() * entry.getRegisterSize() / efficientBSize + 1;
+    HashBlockFile hashChargeFile(entry.getDataFileName(), entry.getBlockSize(), &cm, &chf, this->chargeBlockAmount, true);
+    this->readChargeFile(&hashChargeFile, entry);
+}
+
 void DataFileLoader::loadFiles()
 {
 	this->loadDistrictsFile();
@@ -85,15 +96,7 @@ void DataFileLoader::loadFiles()
     this->loadCountsFile();
     this->loadCandidatesFile();
     this->loadVotersFile();
-
-    ConfigurationEntry& entry = this->configuration.getEntry("Charge");
-	cout << "Generando archivo de cargos" << endl;
-    ChargeMethods cm;
-    ChargeHashingFunction chf;
-    int efficientBSize = entry.getBlockSize() * 4 / 5;
-    this->chargeBlockAmount = entry.getRegisterCount() * entry.getRegisterSize() / efficientBSize +1;
-    HashBlockFile hashChargeFile(entry.getDataFileName(), entry.getBlockSize(), &cm, &chf, this->chargeBlockAmount, true);
-	this->readChargeFile(&hashChargeFile, entry);
+    this->loadChargesFile();
 }
 
 bool DataFileLoader::canOpenAdminFile()
@@ -200,7 +203,6 @@ void DataFileLoader::readElectionFile(Tree* treeElectionFile, ConfigurationEntry
 
 
 		short yearNumber = atoi(year);
-		cout << day <<"-"<< month<<"-"<<yearNumber<<"-"<<cargo<<endl;
 		while((secondDistricts = strtok(NULL, ",")) != NULL)
 		{
 			distlist.push_back(secondDistricts);
@@ -210,7 +212,7 @@ void DataFileLoader::readElectionFile(Tree* treeElectionFile, ConfigurationEntry
 		VariableRecord* record = new VariableRecord();
 		record->setBytes(election.getBytes(), election.getSize());
 		VariableRecord* key = new VariableRecord(election.getKey(), election.getKeySize());
-		cout << treeElectionFile->insert(key, record)<<endl;
+		treeElectionFile->insert(key, record);
 
 		indexFile.indexElection(election);
 		delete record;
@@ -229,7 +231,6 @@ void DataFileLoader::readListFile(Tree* treeListFile, ConfigurationEntry & entry
 	char* cargo;
 	char* listName;
 	char* day;
-	int i = 0;
 	while ( getline(dataFile,line) )
 	{
 		day = strtok((char*)line.c_str(), ",");
@@ -238,7 +239,6 @@ void DataFileLoader::readListFile(Tree* treeListFile, ConfigurationEntry & entry
 		cargo = strtok(NULL, ",");
 		listName = strtok(NULL, ",");
 		short yearNumber = atoi(year);
-		cout << ++i << endl;
 		ElectionsList elist (string(listName), (char)atoi(day), (char)atoi(month), yearNumber, string(cargo));
 		VariableRecord elistkey_vr (elist.getKey(), elist.getKeySize());
 		VariableRecord elist_vr (elist.getBytes(), elist.getSize());

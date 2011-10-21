@@ -39,6 +39,7 @@ public:
 	std::string getListName();
 	std::string getDistrict();
 	unsigned int getQuantity();
+	void setQuantity(unsigned int value);
 	void increaseQuantity();
 };
 

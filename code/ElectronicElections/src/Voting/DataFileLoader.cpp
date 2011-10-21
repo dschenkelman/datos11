@@ -79,9 +79,9 @@ void DataFileLoader::loadVotersFile()
 
 void DataFileLoader::loadFiles()
 {
-    this->loadDistrictsFile();
-    this->loadElectionsFile();
-    this->loadElectionListsFile();
+	this->loadDistrictsFile();
+	this->loadElectionsFile();
+	this->loadElectionListsFile();
     this->loadCountsFile();
     this->loadCandidatesFile();
     this->loadVotersFile();
@@ -170,7 +170,6 @@ void DataFileLoader::readCandidateFile(Tree* treeCandidateFile, ConfigurationEnt
 		VariableRecord cand_vr (cand.getBytes(), cand.getSize());
 		int res = treeCandidateFile->insert(&candkey_vr, &cand_vr);
 		Log().write(string("Agregando candidato ").append(dniVoter), res!=5, true);
-
 	}
 	dataFile.close();
 }
@@ -229,15 +228,17 @@ void DataFileLoader::readListFile(Tree* treeListFile, ConfigurationEntry & entry
 	char* year;
 	char* cargo;
 	char* listName;
-
+	char* day;
+	int i = 0;
 	while ( getline(dataFile,line) )
 	{
-		char* day = strtok((char*)line.c_str(), ",");
+		day = strtok((char*)line.c_str(), ",");
 		month = strtok(NULL, ",");
 		year = strtok(NULL, ",");
 		cargo = strtok(NULL, ",");
 		listName = strtok(NULL, ",");
 		short yearNumber = atoi(year);
+		cout << ++i << endl;
 		ElectionsList elist (string(listName), (char)atoi(day), (char)atoi(month), yearNumber, string(cargo));
 		VariableRecord elistkey_vr (elist.getKey(), elist.getKeySize());
 		VariableRecord elist_vr (elist.getBytes(), elist.getSize());

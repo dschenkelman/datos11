@@ -56,8 +56,47 @@
 #include "Indexes/DistrictCounts.h"
 #include "Indexes/DistrictCountsMethods.h"
 #include "Indexes/CountId.h"
+#include <algorithm>
 
 using namespace std;
+
+bool countIdCmp (CountId c1,CountId c2)
+{
+	if (c1.getYear() < c2.getYear())
+	{
+		return false;
+	}
+	else if (c1.getYear() == c2.getYear())
+	{
+		if (c1.getMonth() < c2.getMonth())
+		{
+			return false;
+		}
+		else if (c1.getMonth() == c2.getMonth())
+		{
+			if (c1.getDay() < c2.getDay())
+			{
+				return false;
+			}
+			else if(c1.getDay() == c2.getDay())
+			{
+				if (c1.getCharge() < c2.getCharge())
+				{
+					return false;
+				}
+				else if(c1.getCharge() == c2.getCharge())
+				{
+					if(c1.getListName() < c2.getListName())
+					{
+						return false;
+					}
+				}
+			}
+		}
+	}
+
+	return true;
+}
 
 int run_tests()
 {
@@ -963,6 +1002,9 @@ int main()
 								}
 								indexDistrict.setBytes(countIdRecord.getBytes());
 								std::vector<CountId> countsId = indexDistrict.getCountIds();
+
+								sort (countsId.begin(), countsId.end(), countIdCmp);
+
 								CountId countId = countsId.at(0);//first count id
 								int totalCountId = countsId.size();
 								Count count(countId.getDay(), countId.getMonth(), countId.getYear(), countId.getCharge(), countId.getListName(), indexDistrict.getDistrict(), 0);
@@ -973,6 +1015,7 @@ int main()
 								std::cout << "Distrito: " << district << endl;
 								logStr << string("Reportando distrito: ").append(district);
 								log.operator <<(logStr.str());
+
 
 								list_count.get(count.getKey(), &countRecord);
 								count.setBytes(countRecord.getBytes());
@@ -1160,13 +1203,11 @@ int main()
 									break;
 								}
 								nextCount.setBytes(countRecord.getBytes());
-								if( strcmp(count.getListName().c_str(), nextCount.getListName().c_str()) != 0 )
-								{
-									//first list name was not found in count tree. no votes
-									std::cout << "Nota: algunas listas pudieron no obtener voto alguno en esta eleccion." << endl;
-									std::cout << "Las mismas no seran especificadas en el reporte." << endl;
 
-								}
+								//first list name was not found in count tree. no votes
+								std::cout << "Nota: algunas listas pudieron no obtener voto alguno en esta eleccion." << endl
+										<< "Las mismas no seran especificadas en el reporte." << endl;
+
 								bool lastRecord = false;
 								while((count.getDay() == nextCount.getDay() )&&( count.getMonth() == nextCount.getMonth() )&&( count.getYear() == nextCount.getYear() )&&( strcmp(count.getCharge().c_str(), nextCount.getCharge().c_str())== 0) )
 								{

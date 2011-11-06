@@ -8,6 +8,9 @@
 #include "VigenereCipherTests.h"
 #include "VigenereCipher.h"
 #include <string>
+#include <iostream>
+
+using namespace std;
 
 VigenereCipherTests::VigenereCipherTests()
 {
@@ -18,8 +21,13 @@ VigenereCipherTests::VigenereCipherTests()
 void VigenereCipherTests::run()
 {
 	VigenereCipher vg;
-	std::string aux("");
-	vg.encript(aux,aux);
+	string tempMessage("Lorem ipsum dolor sit ametconsecteturadipisicingeliseddoeiusmodtemporincididuntutlaboreetdoloremagnaaliquDuisauteiruredolorinreprehenderitinvoluptatevelitessecillumdoloreeufugiatnullapariatur");
+	string tempKey("jihgfedcba");	//long: 10
+
+	cout << "Vigenere Encryption" << endl << "Message: " << tempMessage << endl << "Key: " << tempKey << endl;
+
+	string cryptedMessage = vg.encript(tempMessage,tempKey);
+	cout << "Crypted Message: " << cryptedMessage << endl;
 }
 
 VigenereCipherTests::~VigenereCipherTests() {

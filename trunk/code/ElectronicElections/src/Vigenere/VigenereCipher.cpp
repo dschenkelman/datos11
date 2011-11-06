@@ -15,19 +15,17 @@ VigenereCipher::VigenereCipher() {
 
 string VigenereCipher::encript(string & message, string & key)
 {
-	string tempMessage("Lorem ipsum dolor sit ametconsecteturadipisicingeliseddoeiusmodtemporincididuntutlaboreetdoloremagnaaliquDuisauteiruredolorinreprehenderitinvoluptatevelitessecillumdoloreeufugiatnullapariatur");
-	string tempKey("jihgfedcba");	//long: 10
 	int crypted;
 	string cryptedMessage("");
 	int alphabethLength = 126 - 32;	// 126 - 32 = 92
 
 	int i=0, j=0;
-	while ( i < (tempMessage.length()))
+	while ( i < (message.length()))
 	{
-		if (j == tempKey.length())
+		if (j == key.length())
 			j = 0;
-		int auxM = tempMessage[i] - 32;
-		int auxK = tempKey[j] - 32;
+		int auxM = message[i] - 32;
+		int auxK = key[j] - 32;
 
 		crypted = (auxM + auxK) % alphabethLength;
 
@@ -35,8 +33,8 @@ string VigenereCipher::encript(string & message, string & key)
 		cryptedMessage += (char)crypted;
 		i++; j++;
 	}
-	cout << "Vigenere Encryption" << endl << "Message: " << tempMessage << endl << "Key: " << tempKey << endl;
-	cout << "Crypted Message: " << cryptedMessage << endl;
+
+	return cryptedMessage;
 }
 
 string VigenereCipher::decript(string & message, string & key)

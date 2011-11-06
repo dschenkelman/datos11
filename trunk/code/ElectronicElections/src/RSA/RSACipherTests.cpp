@@ -6,6 +6,7 @@
  */
 
 #include "RSACipherTests.h"
+#include <iostream>
 
 RSACipherTests::RSACipherTests()
 {

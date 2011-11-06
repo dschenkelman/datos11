@@ -7,6 +7,7 @@
 
 #ifndef RSACIPHERTESTS_H_
 #define RSACIPHERTESTS_H_
+#include <string>
 
 class RSACipherTests {
 private:

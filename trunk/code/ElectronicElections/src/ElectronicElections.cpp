@@ -270,17 +270,17 @@ int main()
 	Log log;
 	log.write("Iniciando sistema", true, true);
 
-	option login_type[4];
+	option login_type[2];
 	login_type[0].label = "Log-In";
-	login_type[1].label = "Generar Votos";
-	login_type[2].label = "Poblar Archivos";
-	login_type[3].label = "Quit";
+	//login_type[1].label = "Generar Votos";
+	//login_type[2].label = "Poblar Archivos";
+	login_type[1].label = "Quit";
 	while (1)
 	{
-		int action = Menu(login_type,4).ask();
+		int action = Menu(login_type,2).ask();
 		switch (action)
 		{
-			case 1:
+			/*case 1:
 				{
 					bool voting = true;
 					Voting vot(&configuration);
@@ -292,8 +292,8 @@ int main()
 				log.write("Comenzando carga archivos.", true, true);
 				dataFiles.loadFiles();
 				log.write("Finalizando carga archivos.", true, true);
-				break;
-			case 3:
+				break;*/
+			case 1:
 				return 0;
 				break;
 			case 0:
@@ -341,19 +341,36 @@ int main()
 //				}
 				else { cout << "no existe el admin"<<endl; break;}
 				while (1) {
-					option admin_action[10];
-					admin_action[0].label = "Mantener distritos";
-					admin_action[1].label = "Mantener votantes";
-					admin_action[2].label = "Mantener elecciones";
-					admin_action[3].label = "Mantener cargos";
-					admin_action[4].label = "Mantener listas";
-					admin_action[5].label = "Mantener candidatos";
-					admin_action[6].label = "Mantener administradores";
-					admin_action[7].label = "Informar resultados";
-					admin_action[8].label = "Actualizar conteo";
-					admin_action[9].label = "Volver";
-					action = Menu(admin_action,10).ask();
+					option admin_action[12];
+					admin_action[0].label = "Poblar archivos";
+					admin_action[1].label = "Generar votos";
+					admin_action[2].label = "Mantener distritos";
+					admin_action[3].label = "Mantener votantes";
+					admin_action[4].label = "Mantener elecciones";
+					admin_action[5].label = "Mantener cargos";
+					admin_action[6].label = "Mantener listas";
+					admin_action[7].label = "Mantener candidatos";
+					admin_action[8].label = "Mantener administradores";
+					admin_action[9].label = "Informar resultados";
+					admin_action[10].label = "Actualizar conteo";
+					admin_action[11].label = "Volver";
+					action = Menu(admin_action,12).ask();
 					if (action == 0)
+					{
+						log.write("Comenzando carga archivos.", true, true);
+						dataFiles.loadFiles();
+						log.write("Finalizando carga archivos.", true, true);
+					}
+
+					else if (action == 1)
+					{
+						bool voting = true;
+						Voting vot(&configuration);
+						vot.login(dataFiles.getVoterBlockAmount());
+						voting = false;
+					}
+
+					else if (action == 2)
 					{
 						ConfigurationEntry& entry = configuration.getEntry("District");
 						DistrictMethods dm;
@@ -385,7 +402,7 @@ int main()
 							}
 						}
 					}
-					else if (action == 1)
+					else if (action == 3)
 					{
 						// Hash votantes
 						ConfigurationEntry& entry = configuration.getEntry("Voter");
@@ -513,7 +530,7 @@ int main()
 							}
 						}
 					}
-					else if (action==2)	// Mantener elecciones
+					else if (action==4)	// Mantener elecciones
 					{
 						ConfigurationEntry& districtElectionsEntry = configuration.getEntry("DistrictElections");
 						DistrictElectionsIndex indexFile(districtElectionsEntry.getDataFileName(),
@@ -752,7 +769,7 @@ int main()
 						}
 
 					}
-					else if (action==3)	// Mantener cargo
+					else if (action==5)	// Mantener cargo
 					{
 						// Hash cargos
 						ConfigurationEntry& entry = configuration.getEntry("Charge");
@@ -883,7 +900,7 @@ int main()
 						}
 
 					}
-					else if (action==4)	// Mantener Listas
+					else if (action==6)	// Mantener Listas
 					{
 						// Election Lists
 						ConfigurationEntry& entry = configuration.getEntry("ElectionList");
@@ -949,7 +966,7 @@ int main()
 							}
 						}
 					}
-					else if (action==5)	// Mantener candidatos
+					else if (action==7)	// Mantener candidatos
 					{
 						// Arbol candidatos
 						ConfigurationEntry& entry = configuration.getEntry("Candidate");
@@ -1042,7 +1059,7 @@ int main()
 						}
 
 					}
-					else if (action==6)
+					else if (action==8)
 					{
 //						admin_tree->print();
 						option administrator_action[3];
@@ -1080,7 +1097,7 @@ int main()
 						}
 
 					}
-					else if (action==7)
+					else if (action==9)
 					{
 						option list_action[4];
 						list_action[0].label = "Reporte por Distrito";
@@ -1379,11 +1396,11 @@ int main()
 							}
 						}
 					}
-					else if (action == 8)
+					else if (action == 10)
 					{
 						updateCountVoteAmount(configuration);
 					}
-					else if (action == 9)
+					else if (action == 11)
 					{
 						break;
 					}

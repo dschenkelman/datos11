@@ -25,6 +25,7 @@ public:
 	RSAKeySetTests();
 	void run();
 	bool testGeneration();
+	static int64 negativeModulus(int64 base, int64 modulus);
 	virtual ~RSAKeySetTests();
 };
 

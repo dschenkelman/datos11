@@ -245,6 +245,7 @@ int run_tests()
 
 void enterValidDate(short* year, char* month, char* day)
 {
+	cout << "Se solicita la fecha de la eleccion, en formato numerico; primero dia, luego mes, y finalmente anio." << endl;
 	char auxDay;
 	char auxMonth;
 	short auxYear;
@@ -280,6 +281,7 @@ void updateCountVoteAmount(Configuration & configuration)
     Tree countTree(entry.getDataFileName(), entry.getBlockSize(), &countMethods, false);
     char day; char month; short year;
 
+    cout << "Se solicita la fecha de la eleccion." << endl;
     enterValidDate(&year, &month, &day);
 
     Count c(day,
@@ -947,6 +949,7 @@ int main()
 								char month;
 								short year;
 								string name = Menu::raw_input("Nombre");
+
 								enterValidDate(&year, &month, &day);
 								ElectionsList elist (name, day, month, year, Menu::raw_input("Cargo"));
 

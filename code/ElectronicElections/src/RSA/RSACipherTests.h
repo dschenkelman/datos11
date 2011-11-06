@@ -17,6 +17,8 @@ using namespace std;
 
 using namespace std;
 
+#include <string>
+
 class RSACipherTests {
 private:
 	void printResult(std::string testName, bool result);

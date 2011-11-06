@@ -6,11 +6,10 @@
  */
 
 #include "RSACipherTests.h"
-#include "RSACipher.h"
 #include <iostream>
+#include "RSACipher.h"
 
 using namespace std;
-
 
 RSACipherTests::RSACipherTests()
 {

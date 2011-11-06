@@ -60,6 +60,9 @@
 #include "Indexes/CountId.h"
 #include <algorithm>
 #include <sys/stat.h>
+#include <string.h>
+#include "RSA/RSACipherTests.h"
+#include "Vigenere/VigenereCipher.h"
 
 using namespace std;
 
@@ -101,7 +104,27 @@ bool countIdCmp (CountId c1,CountId c2)
 	return true;
 }
 
-#include "RSA/RSACipherTests.h"
+string askPassword()
+{
+	string password = Menu::raw_input("Password para el archivo. (caracteres imprimibles)");
+
+	bool notPrintable = false;
+	for(unsigned int i = 0; i < password.length(); i++)
+	{
+		notPrintable = !isprint(password[i]);
+	}
+
+	while(notPrintable)
+	{
+		password = Menu::raw_input("Password para el archivo. (caracteres imprimibles)");
+		for(unsigned int i = 0; i < password.length(); i++)
+		{
+			notPrintable = !isprint(password[i]);
+		}
+	}
+
+	return password;
+}
 
 void saveReport(stringstream& report)
 {
@@ -113,17 +136,48 @@ void saveReport(stringstream& report)
 
 	if (answer == "s" || answer == "S")
 	{
+		VigenereCipher cipher;
 		string fileName = Menu::raw_input("Nombre archivo");
+		string password = askPassword();
+		string reportString = report.str();
+		string criptogram = cipher.encript(reportString, password);
 		string directory = "Files/Reports/";
 		mkdir(directory.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
 		string fullName = directory + fileName;
 		filebuf fb;
 		fb.open (fullName.c_str(),ios::out);
 		ostream os(&fb);
-		os << report.str();
+		os << criptogram;
 		fb.close();
 	}
 }
+
+void recoverFile()
+{
+	string fileName = Menu::raw_input("Nombre archivo");
+	string directory = "Files/Reports/";
+	string fullName = directory + fileName;
+	ifstream reportFile(fullName.c_str());
+	if (reportFile.is_open())
+	{
+		VigenereCipher cipher;
+		string password = askPassword();
+		reportFile.seekg(0, std::ios::end);
+		long length = reportFile.tellg();
+		reportFile.seekg(0, std::ios::beg);
+		char buffer[length + 1];
+		memset(buffer, 0, length + 1);
+		reportFile.read(buffer, length);
+		string reportString = buffer;
+		string message = cipher.decript(reportString, password);
+		cout << message << endl;
+	}
+	else
+	{
+		cout << "El reporte no existe." << endl;
+	}
+}
+
 
 int run_tests()
 {
@@ -272,27 +326,12 @@ int main()
 
 	option login_type[2];
 	login_type[0].label = "Log-In";
-	//login_type[1].label = "Generar Votos";
-	//login_type[2].label = "Poblar Archivos";
 	login_type[1].label = "Quit";
 	while (1)
 	{
 		int action = Menu(login_type,2).ask();
 		switch (action)
 		{
-			/*case 1:
-				{
-					bool voting = true;
-					Voting vot(&configuration);
-					vot.login(dataFiles.getVoterBlockAmount());
-					voting = false;
-				}
-				break;
-			case 2:
-				log.write("Comenzando carga archivos.", true, true);
-				dataFiles.loadFiles();
-				log.write("Finalizando carga archivos.", true, true);
-				break;*/
 			case 1:
 				return 0;
 				break;
@@ -303,23 +342,12 @@ int main()
 				AdministratorMethods am;
 				Tree admin_tree (entry.getDataFileName(),
 						entry.getBlockSize(), &am, false);
-//				if(!dataFiles.canOpenAdminFile())
-//				{
-//					admin_tree = dataFiles.createAdminFile();
-//				}
-//				else
-//				{
-//					admin_tree = dataFiles.getAdminFile();
-//				}
 				Administrator admin (user, passwd);
 				VariableRecord adminrecord;
 				if ( admin_tree.get(admin.getKey(), &adminrecord) )
 				{
-//					cout << "admin existe" << endl;
 					Administrator realadmin("","");
 					realadmin.setBytes(adminrecord.getBytes());
-//					cout << admin.getPassword()<<endl;
-//					cout <<realadmin.getPassword()<<endl;
 					int passcmp = strcmp(admin.getPassword().c_str(), realadmin.getPassword().c_str());
 					log.write(string("Logueo de usuario ").append(user), passcmp==0, true);
 					if ( passcmp==0 )
@@ -331,17 +359,9 @@ int main()
 						cout << "Contraseña erronea" <<endl; break;
 					}
 				}
-				else if (user=="1" && passwd=="1")
-				{
-					cout << "Bienvenido al sistema!" <<endl;
-				}
-//				else
-//				{
-//					cout << "Usuario erroneo"<<endl; break;
-//				}
 				else { cout << "no existe el admin"<<endl; break;}
 				while (1) {
-					option admin_action[12];
+					option admin_action[13];
 					admin_action[0].label = "Poblar archivos";
 					admin_action[1].label = "Generar votos";
 					admin_action[2].label = "Mantener distritos";
@@ -353,8 +373,9 @@ int main()
 					admin_action[8].label = "Mantener administradores";
 					admin_action[9].label = "Informar resultados";
 					admin_action[10].label = "Actualizar conteo";
-					admin_action[11].label = "Volver";
-					action = Menu(admin_action,12).ask();
+					admin_action[11].label = "Recuperar reporte";
+					admin_action[12].label = "Volver";
+					action = Menu(admin_action,13).ask();
 					if (action == 0)
 					{
 						log.write("Comenzando carga archivos.", true, true);
@@ -1400,7 +1421,11 @@ int main()
 					{
 						updateCountVoteAmount(configuration);
 					}
-					else if (action == 11)
+					else if(action == 11)
+					{
+						recoverFile();
+					}
+					else if (action == 12)
 					{
 						break;
 					}

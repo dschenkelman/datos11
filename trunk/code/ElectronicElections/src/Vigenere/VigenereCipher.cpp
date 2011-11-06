@@ -9,6 +9,7 @@
 
 using namespace std;
 #include <iostream>;
+#include <string.h>
 
 VigenereCipher::VigenereCipher() {
 }
@@ -24,6 +25,14 @@ string VigenereCipher::encript(string & message, string & key)
 	{
 		if (j == key.length())
 			j = 0;
+
+		if (!isprint(message[i]))
+		{
+			cryptedMessage += message[i];
+			i++;
+			continue;
+		}
+
 		int auxM = message[i] - 32;
 		int auxK = key[j] - 32;
 
@@ -48,6 +57,14 @@ string VigenereCipher::decript(string & cryptedMessage, string & key)
 	{
 		if (j == key.length())
 			j = 0;
+
+		if (!isprint(cryptedMessage[i]))
+		{
+			message += cryptedMessage[i];
+			i++;
+			continue;
+		}
+
 		int auxC = cryptedMessage[i] - 32;
 		int auxK = key[j] - 32;
 

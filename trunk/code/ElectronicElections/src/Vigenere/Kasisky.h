@@ -8,20 +8,18 @@
 #ifndef KASISKY_H_
 #define KASISKY_H_
 #include <string>
+#include <map>
 #include <vector>
-
-using namespace std;
 
 class Kasisky
 {
-	vector<string> repeatedNgrams;
-
-	void determineRepeatedNgrams(string message, int nGram);
-	void calculateDistances(string message, int nGram);
+	std::map<std::string, std::vector<int> > repeatedNgrams;
+	void determineRepeatedNgrams(std::string& message, int nGramLength);
+	void calculateDistances(std::string& message, int nGramLength);
 	void estimateKeyLength();
 public:
 	Kasisky();
-	void attack(string message, int nGram);
+	void attack(std::string& message, int nGram);
 
 	virtual ~Kasisky();
 };

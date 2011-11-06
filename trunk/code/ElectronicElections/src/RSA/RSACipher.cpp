@@ -102,11 +102,11 @@ int64 RSACipher::modularExponentiation(int64 base, int64 exp, int64 mod) {
 	return res;
 }
 
-void RSACipher::cipherMessage(char* message, int expKey, int64 n, char* cipheredMessage)
+void RSACipher::cipherMessage(char* message, int64 expKey, int64 n, char* cipheredMessage)
 {
 	int64 greaterKey = n;
-	int greaterBit = 1;
-	int messageLen = strlen(message);
+	int64 greaterBit = 1;
+	int64 messageLen = strlen(message);
 
 	while(greaterKey != 1)
 	{
@@ -115,9 +115,9 @@ void RSACipher::cipherMessage(char* message, int expKey, int64 n, char* ciphered
 	}
 
 	//tengo el valor de greater bit, divido el message
-	int blocksMessage = messageLen *8 /greaterBit; //tengo la cantidad de divisiones del mensaje en BYTES!!
+	int blocksMessage = messageLen *8 /greaterBit +1; //tengo la cantidad de divisiones del mensaje en BYTES!!
 	int64 crypt;
-	int blockLen = greaterBit/8 +1;
+	int64 blockLen = greaterBit/8 +1;
 	int64 block;
 	char cryptMessage[messageLen];
 	for(int i=0;i< blocksMessage; i++)

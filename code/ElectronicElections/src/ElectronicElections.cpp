@@ -49,6 +49,7 @@
 #include "Voting/Log.h"
 #include "Voting/Configuration.h"
 #include "RSA/RSACipherTests.h"
+#include "RSA/RSAKeySetTests.h"
 #include "Helpers/ValidationTests.h"
 #include "Helpers/Validation.h"
 #include <time.h>
@@ -236,6 +237,10 @@ int run_tests()
 	RSACipherTests rsaCipherTests;
 	rsaCipherTests.run();
 
+	cout << "RSAKeySet Tests" << endl;
+	RSAKeySetTests rsaKeySetTests;
+	rsaKeySetTests.run();
+
 //	cout << "Validation Tests" << endl;
 //	ValidationTests validationTests;
 //	validationTests.run();
@@ -314,7 +319,7 @@ void updateCountVoteAmount(Configuration & configuration)
 
 int main()
 {
-	bool debug = false;
+	bool debug = true;
 
 	if (debug) return run_tests();
 

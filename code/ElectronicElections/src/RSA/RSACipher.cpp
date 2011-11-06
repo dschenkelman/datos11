@@ -61,7 +61,7 @@ int64 RSACipher::getRelativelyPrimeNumber(int64 number)
 	return coprimeNumbers.at(randomNumber);
 }
 
-int64 RSACipher::productInverse(int64 n, int64 d) {
+int64 RSACipher::productInverse(int64 n, int64 d) { // mod, base
 	int64 olda1 = 1;
 	int64 olda2 = 0;
 	int64 olda3 = n;

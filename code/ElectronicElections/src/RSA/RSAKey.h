@@ -13,7 +13,7 @@ typedef long long int64;
 struct RSAKey
 {
 	int64 n;
-	int exp;
+	int64 exp;
 };
 
 

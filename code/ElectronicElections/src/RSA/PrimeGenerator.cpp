@@ -6,8 +6,11 @@
  */
 
 #include "PrimeGenerator.h"
+#include <cstdlib>
+#include <time.h>
 
 PrimeGenerator::PrimeGenerator(int end) {
+	srand( time(NULL) );
 	// two first values are not used for simplicity
 	this->end = end;
 	primes = new bool[end+1];
@@ -43,18 +46,15 @@ void PrimeGenerator::getAllPrimes(int* res) {
 	}
 }
 
-#include <cstdlib>
-#include <time.h>
-
 int PrimeGenerator::getRandomWithMinimum(int minimum) {
 	int total = totalGenerated();
 	int* all = new int[total];
 	getAllPrimes(all);
-	if (all[total-1]>minimum) return -1;
-	srand( time(NULL) );
+	if (all[total-1]<minimum) return -1;
 	int res;
 	do {
-		res = all[rand()%total];
+		int num = rand()%total;
+		res = all[num];
 	} while (res<minimum);
 	delete all;
 	return res;

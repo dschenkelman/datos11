@@ -57,6 +57,7 @@
 #include "Indexes/DistrictCountsMethods.h"
 #include "Indexes/CountId.h"
 #include <algorithm>
+#include <sys/stat.h>
 
 using namespace std;
 
@@ -96,6 +97,28 @@ bool countIdCmp (CountId c1,CountId c2)
 	}
 
 	return true;
+}
+
+void saveReport(stringstream& report)
+{
+	string answer = Menu::raw_input("Guardar el reporte (S|N)");
+	while (answer != "S" && answer != "s" && answer != "n" && answer != "N")
+	{
+		answer = Menu::raw_input("Guardar el reporte (S|N)");
+	}
+
+	if (answer == "s" || answer == "S")
+	{
+		string fileName = Menu::raw_input("Nombre archivo");
+		string directory = "Files/Reports/";
+		mkdir(directory.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+		string fullName = directory + fileName;
+		filebuf fb;
+		fb.open (fullName.c_str(),ios::out);
+		ostream os(&fb);
+		os << report.str();
+		fb.close();
+	}
 }
 
 int run_tests()
@@ -1068,6 +1091,7 @@ int main()
 								logStr << string("Finalizado Reporte por Distrito: ").append(indexDistrict.getDistrict());
 								log.operator <<(logStr.str());
 								std::cout << report.str();
+								saveReport(report);
 							}
 							if(action == 1)
 							{
@@ -1155,6 +1179,7 @@ int main()
 								logStr << string("Finalizado Reporte por Lista ").append(listName+", "+ dia+" "+mes+" "+anio+"-"+charge);
 								log.operator <<(logStr.str());
 								std::cout << report.str();
+								saveReport(report);
 							}
 							if(action == 2)
 							{
@@ -1245,6 +1270,7 @@ int main()
 								logStr << string("Finalizado reporte Eleccion ").append(list.getCharge()+", "+dia +"-"+ mes +"-"+ anio);
 								log.operator <<(logStr.str());
 								std::cout << report.str();
+								saveReport(report);
 							}//close option for election report
 							else if (action==3)
 							{

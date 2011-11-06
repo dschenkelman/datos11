@@ -19,7 +19,15 @@ void RSACipherTests::printResult(std::string testName, bool result)
 
 void RSACipherTests::run()
 {
+	printResult("Producto inverso",testProductInverse());
+}
 
+bool RSACipherTests::testProductInverse() {
+	int64 n = 1759;
+	int64 d = 550;
+	int64 res = RSACipher::productInverse(n,d);
+//	cout << "n"<<n<<"d"<<d<<"e"<<res;
+	return (res==355);
 }
 
 RSACipherTests::~RSACipherTests()

@@ -99,6 +99,8 @@ bool countIdCmp (CountId c1,CountId c2)
 	return true;
 }
 
+#include "RSA/RSACipherTests.h"
+
 void saveReport(stringstream& report)
 {
 	string answer = Menu::raw_input("Guardar el reporte (S|N)");
@@ -128,6 +130,9 @@ int run_tests()
 
 	cout << "***** RUNNING TESTS *****" << endl;
 
+	RSACipherTests rsact;
+	rsact.run();
+
 //	srand(time(NULL));
 //	SimpleVariableBlockFileTests rlvTest;
 //	rlvTest.run();
@@ -150,9 +155,9 @@ int run_tests()
 //	hashTests.run();
 //
 //
-	cout << "Tree Tests" << endl;
-	TreeTests treeTests;
-	treeTests.run();
+//	cout << "Tree Tests" << endl;
+//	TreeTests treeTests;
+//	treeTests.run();
 //
 //	cout << "Elections List Tests" << endl;
 //	ElectionsListTests electionTests;
@@ -213,7 +218,7 @@ void updateCountVoteAmount(Configuration & configuration)
 
 int main()
 {
-	bool debug = false;
+	bool debug = true;
 
 	if (debug) return run_tests();
 

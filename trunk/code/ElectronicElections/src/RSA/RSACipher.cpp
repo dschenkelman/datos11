@@ -10,11 +10,13 @@
 #include <vector>
 #include <ctime>
 #include <cstdlib>
+#include <string.h>
 
 using namespace std;
 
 RSACipher::RSACipher()
 {
+	srand(time(NULL));
 }
 
 int64 RSACipher::GCD(int64 numberOne, int64 numberTwo)
@@ -53,7 +55,6 @@ vector<int64> RSACipher::generateRelativelyPrimeNumbers(int64 number)
 
 int64 RSACipher::getRelativelyPrimeNumber(int64 number)
 {
-	srand(time(NULL));
 	vector<int64> coprimeNumbers = this->generateRelativelyPrimeNumbers(number);
 	int randomNumber = rand() % coprimeNumbers.size();
 
@@ -100,6 +101,36 @@ int64 RSACipher::modularExponentiation(int64 base, int64 exp, int64 mod) {
 	}
 	return res;
 }
+
+void RSACipher::cipherMessage(char* message, int expKey, int64 n, char* cipheredMessage)
+{
+	int64 greaterKey = n;
+	int greaterBit = 1;
+	int messageLen = strlen(message);
+
+	while(greaterKey != 1)
+	{
+		greaterBit++;
+		greaterKey = greaterKey >> 1;
+	}
+
+	//tengo el valor de greater bit, divido el message
+	int blocksMessage = messageLen *8 /greaterBit; //tengo la cantidad de divisiones del mensaje en BYTES!!
+	int64 crypt;
+	int blockLen = greaterBit/8 +1;
+	int64 block;
+	char cryptMessage[messageLen];
+	for(int i=0;i< blocksMessage; i++)
+	{
+		memcpy(&block, message+ (i*blockLen), blockLen);
+		crypt = modularExponentiation(block, expKey, n);
+		memcpy(cryptMessage+ (i*blockLen), &crypt, blockLen);
+	}
+
+	strcpy(cipheredMessage, cryptMessage);
+	return;
+}
+
 
 RSACipher::~RSACipher() {
 }

@@ -28,6 +28,7 @@ public:
 	bool testGenerateRelativelyPrimeNumbers();
 	bool testProductInverse();
 	bool testModularExponentiation();
+	bool testCipherMessage();
 	virtual ~RSACipherTests();
 };
 

@@ -6,8 +6,9 @@
  */
 
 #include "RSACipherTests.h"
+#include "RSAKeySet.h"
 #include <iostream>
-#include "RSACipher.h"
+#include <string.h>
 
 using namespace std;
 
@@ -22,9 +23,10 @@ void RSACipherTests::printResult(std::string testName, bool result)
 
 void RSACipherTests::run()
 {
-	this->printResult("testGenerateRelativelyPrimeNumbers", testGenerateRelativelyPrimeNumbers());
-	this->printResult("Producto inverso",testProductInverse());
-	this->printResult("Multiplicacion exponencial",testModularExponentiation());
+	//this->printResult("testGenerateRelativelyPrimeNumbers", testGenerateRelativelyPrimeNumbers());
+	//this->printResult("Producto inverso",testProductInverse());
+	//this->printResult("Multiplicacion exponencial",testModularExponentiation());
+	this->printResult("Encriptacion",testCipherMessage());
 }
 
 
@@ -57,6 +59,30 @@ bool RSACipherTests::testModularExponentiation() {
 	int mod = 138;
 	int res = RSACipher::modularExponentiation(base,exp,mod);
 	return (res==71);
+}
+
+bool RSACipherTests::testCipherMessage()
+{
+	string message ="abcd";
+	RSACipher rsaCipher;
+	RSAKeySet rsaKey;
+	RSAKey publicKey= rsaKey.getPublicKey();
+	RSAKey privateKey= rsaKey.getPrivateKey();
+
+	int criptKey = publicKey.exp;
+	int decriptKey = privateKey.exp;
+	int64 n = publicKey.n;
+	char* charMessage = (char*)message.c_str();
+	char cipheredMessage[message.length()];
+	char decriptedMessage[message.length()];
+	rsaCipher.cipherMessage(charMessage, criptKey, n, cipheredMessage);
+	rsaCipher.cipherMessage(cipheredMessage, decriptKey, n, decriptedMessage);
+
+	if (strcmp(charMessage, decriptedMessage) ==0 )
+	{
+		return true;
+	}
+	return false;
 }
 
 RSACipherTests::~RSACipherTests()

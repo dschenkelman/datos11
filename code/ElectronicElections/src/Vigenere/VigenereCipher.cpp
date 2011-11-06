@@ -17,7 +17,7 @@ string VigenereCipher::encript(string & message, string & key)
 {
 	int crypted;
 	string cryptedMessage("");
-	int alphabethLength = 126 - 32;	// 126 - 32 = 92
+	int alphabethLength = 126 - 32;
 
 	int i=0, j=0;
 	while ( i < (message.length()))
@@ -37,9 +37,34 @@ string VigenereCipher::encript(string & message, string & key)
 	return cryptedMessage;
 }
 
-string VigenereCipher::decript(string & message, string & key)
+string VigenereCipher::decript(string & cryptedMessage, string & key)
 {
-	return "";
+	int decrypted;
+	string message("");
+	int alphabethLength = 126 - 32;
+
+	int i=0, j=0;
+	while ( i < (cryptedMessage.length()))
+	{
+		if (j == key.length())
+			j = 0;
+		int auxC = cryptedMessage[i] - 32;
+		int auxK = key[j] - 32;
+
+		decrypted = (auxC - auxK);
+		if (decrypted < 0)
+		{
+			decrypted += alphabethLength;
+		}
+
+		decrypted = decrypted % alphabethLength;
+
+		decrypted += 32;
+		message += (char)decrypted;
+		i++; j++;
+	}
+
+	return message;
 }
 
 VigenereCipher::~VigenereCipher() {

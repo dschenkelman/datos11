@@ -80,12 +80,15 @@ src/ElectronicElections.d src/ElectronicElections.o: \
  ../src/Entities/CandidateMethods.h \
  ../src/VariableBlocks/VariableRecord.h ../src/BPlusTree/Tree.h \
  ../src/Voting/Log.h ../src/Voting/Configuration.h \
+ ../src/RSA/RSACipherTests.h ../src/RSA/RSACipher.h ../src/RSA/RSAKey.h \
+ ../src/Helpers/ValidationTests.h ../src/Helpers/Validation.h \
  ../src/Voting/DataFileLoader.h ../src/Indexes/DistrictElectionsIndex.h \
  ../src/Indexes/../BPlusTree/Tree.h ../src/Indexes/../Entities/Election.h \
  ../src/Indexes/DistrictElectionsMethods.h \
  ../src/Indexes/../VariableBlocks/RecordMethods.h \
  ../src/Indexes/DistrictCounts.h ../src/Indexes/CountId.h \
- ../src/Indexes/DistrictCountsMethods.h ../src/Indexes/CountId.h
+ ../src/Indexes/DistrictCountsMethods.h ../src/Indexes/CountId.h \
+ ../src/Vigenere/VigenereCipher.h
 
 ../src/BlocksTests/RLVBlockFileTests.h:
 
@@ -287,6 +290,16 @@ src/ElectronicElections.d src/ElectronicElections.o: \
 
 ../src/Voting/Configuration.h:
 
+../src/RSA/RSACipherTests.h:
+
+../src/RSA/RSACipher.h:
+
+../src/RSA/RSAKey.h:
+
+../src/Helpers/ValidationTests.h:
+
+../src/Helpers/Validation.h:
+
 ../src/Voting/DataFileLoader.h:
 
 ../src/Indexes/DistrictElectionsIndex.h:
@@ -306,3 +319,5 @@ src/ElectronicElections.d src/ElectronicElections.o: \
 ../src/Indexes/DistrictCountsMethods.h:
 
 ../src/Indexes/CountId.h:
+
+../src/Vigenere/VigenereCipher.h:

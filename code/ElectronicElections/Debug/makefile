@@ -10,7 +10,10 @@ RM := rm -rf
 -include sources.mk
 -include subdir.mk
 -include src/Voting/subdir.mk
+-include src/Vigenere/subdir.mk
 -include src/VariableBlocks/subdir.mk
+-include src/RSA/subdir.mk
+-include src/Indexes/subdir.mk
 -include src/Helpers/subdir.mk
 -include src/Hash/subdir.mk
 -include src/EntitiesTests/subdir.mk

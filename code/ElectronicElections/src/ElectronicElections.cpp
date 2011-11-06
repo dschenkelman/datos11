@@ -232,9 +232,9 @@ int run_tests()
 //	ChargeTests chargeTests;
 //	chargeTests.run();
 
-//	cout << "RSA Cipher Tests" << endl;
-//	RSACipherTests rsaCipherTests;
-//	rsaCipherTests.run();
+	cout << "RSA Cipher Tests" << endl;
+	RSACipherTests rsaCipherTests;
+	rsaCipherTests.run();
 
 //	cout << "Validation Tests" << endl;
 //	ValidationTests validationTests;

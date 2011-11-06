@@ -24,7 +24,10 @@ C_UPPER_DEPS :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 src/Voting \
+src/Vigenere \
 src/VariableBlocks \
+src/RSA \
+src/Indexes \
 src/Helpers \
 src/Hash \
 src/EntitiesTests \

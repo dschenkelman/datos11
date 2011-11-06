@@ -13,13 +13,17 @@
 #include <iostream>
 using namespace std;
 
+#include <string>
+
+using namespace std;
+
 class RSACipherTests {
 private:
 	void printResult(std::string testName, bool result);
 public:
 	RSACipherTests();
 	void run();
-	bool testgenerateRelativelyPrimeNumbers();
+	bool testGenerateRelativelyPrimeNumbers();
 	bool testProductInverse();
 	virtual ~RSACipherTests();
 };

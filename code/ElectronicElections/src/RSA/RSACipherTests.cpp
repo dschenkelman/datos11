@@ -6,7 +6,11 @@
  */
 
 #include "RSACipherTests.h"
+#include "RSACipher.h"
 #include <iostream>
+
+using namespace std;
+
 
 RSACipherTests::RSACipherTests()
 {
@@ -19,10 +23,27 @@ void RSACipherTests::printResult(std::string testName, bool result)
 
 void RSACipherTests::run()
 {
-	printResult("Producto inverso",testProductInverse());
+	this->printResult("testGenerateRelativelyPrimeNumbers", testGenerateRelativelyPrimeNumbers());
+	//this->printResult("Producto inverso",testProductInverse());
 }
 
-bool RSACipherTests::testProductInverse() {
+
+bool RSACipherTests::testGenerateRelativelyPrimeNumbers()
+{
+	RSACipher rsaCipher;
+	int64 number = 274877906944;
+	int64 res = rsaCipher.getRelativelyPrimeNumber(number);
+
+	if(rsaCipher.GCD(number, res) != 1)
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool RSACipherTests::testProductInverse()
+{
 	int64 n = 1759;
 	int64 d = 550;
 	int64 res = RSACipher::productInverse(n,d);

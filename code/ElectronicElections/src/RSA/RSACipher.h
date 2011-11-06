@@ -9,10 +9,17 @@
 #define RSACIPHER_H_
 
 #include "RSAKey.h"
+#include <vector>
+
+using namespace std;
 
 class RSACipher {
+private:
+	vector<int64> generateRelativelyPrimeNumbers(int64 number);
 public:
 	RSACipher();
+	int64 GCD(int64 numberOne, int64 numberTwo);
+	int64 getRelativelyPrimeNumber(int64 number);
 	static int64 productInverse(int64 n, int64 d);
 	virtual ~RSACipher();
 };

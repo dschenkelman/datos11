@@ -43,6 +43,23 @@ void PrimeGenerator::getAllPrimes(int* res) {
 	}
 }
 
+#include <cstdlib>
+#include <time.h>
+
+int PrimeGenerator::getRandomWithMinimum(int minimum) {
+	int total = totalGenerated();
+	int* all = new int[total];
+	getAllPrimes(all);
+	if (all[total-1]>minimum) return -1;
+	srand( time(NULL) );
+	int res;
+	do {
+		res = all[rand()%total];
+	} while (res<minimum);
+	delete all;
+	return res;
+}
+
 PrimeGenerator::~PrimeGenerator() {
 	delete primes;
 }

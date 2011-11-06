@@ -24,7 +24,8 @@ void RSACipherTests::printResult(std::string testName, bool result)
 void RSACipherTests::run()
 {
 	this->printResult("testGenerateRelativelyPrimeNumbers", testGenerateRelativelyPrimeNumbers());
-	//this->printResult("Producto inverso",testProductInverse());
+	this->printResult("Producto inverso",testProductInverse());
+	this->printResult("Multiplicacion exponencial",testModularExponentiation());
 }
 
 
@@ -49,6 +50,14 @@ bool RSACipherTests::testProductInverse()
 	int64 res = RSACipher::productInverse(n,d);
 //	cout << "n"<<n<<"d"<<d<<"e"<<res;
 	return (res==355);
+}
+
+bool RSACipherTests::testModularExponentiation() {
+	int base = 77;
+	int exp = 103;
+	int mod = 138;
+	int res = RSACipher::modularExponentiation(base,exp,mod);
+	return (res==71);
 }
 
 RSACipherTests::~RSACipherTests()

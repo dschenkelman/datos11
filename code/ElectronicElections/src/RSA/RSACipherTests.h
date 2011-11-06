@@ -25,6 +25,7 @@ public:
 	void run();
 	bool testGenerateRelativelyPrimeNumbers();
 	bool testProductInverse();
+	bool testModularExponentiation();
 	virtual ~RSACipherTests();
 };
 

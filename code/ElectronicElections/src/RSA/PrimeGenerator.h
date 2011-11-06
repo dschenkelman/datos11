@@ -20,6 +20,7 @@ public:
 	PrimeGenerator(int end);
 	int totalGenerated();
 	void getAllPrimes(int* res);
+	int getRandomWithMinimum(int minimum);
 	virtual ~PrimeGenerator();
 };
 

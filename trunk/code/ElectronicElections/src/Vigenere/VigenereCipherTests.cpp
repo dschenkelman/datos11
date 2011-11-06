@@ -28,6 +28,9 @@ void VigenereCipherTests::run()
 
 	string cryptedMessage = vg.encript(tempMessage,tempKey);
 	cout << "Crypted Message: " << cryptedMessage << endl;
+
+	string decryptedMessage = vg.decript(cryptedMessage,tempKey);
+	cout << endl <<"Decrypted Message: " << decryptedMessage;
 }
 
 VigenereCipherTests::~VigenereCipherTests() {

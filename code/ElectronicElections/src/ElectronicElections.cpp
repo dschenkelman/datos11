@@ -48,9 +48,11 @@
 #include "BPlusTree/Tree.h"
 #include "Voting/Log.h"
 #include "Voting/Configuration.h"
+#include "RSA/RSACipherTests.h"
+#include "Helpers/ValidationTests.h"
+#include "Helpers/Validation.h"
 #include <time.h>
 #include <sstream>
-
 #include "Voting/DataFileLoader.h"
 #include "Indexes/DistrictElectionsIndex.h"
 #include "Indexes/DistrictCounts.h"
@@ -130,9 +132,6 @@ int run_tests()
 
 	cout << "***** RUNNING TESTS *****" << endl;
 
-	RSACipherTests rsact;
-	rsact.run();
-
 //	srand(time(NULL));
 //	SimpleVariableBlockFileTests rlvTest;
 //	rlvTest.run();
@@ -179,18 +178,59 @@ int run_tests()
 //	ChargeTests chargeTests;
 //	chargeTests.run();
 
+//	cout << "RSA Cipher Tests" << endl;
+//	RSACipherTests rsaCipherTests;
+//	rsaCipherTests.run();
+
+//	cout << "Validation Tests" << endl;
+//	ValidationTests validationTests;
+//	validationTests.run();
+
 	return 0;
 }
 
+void enterValidDate(short* year, char* month, char* day)
+{
+	char auxDay;
+	char auxMonth;
+	short auxYear;
+
+	Validation validation;
+
+	bool isValid = true;
+
+	do
+	{
+		auxDay = (char) atoi(Menu::raw_input("Dia").c_str());
+		auxMonth = (char) atoi(Menu::raw_input("Mes").c_str());
+		auxYear = (short) atoi(Menu::raw_input("Anio").c_str());
+
+		isValid = validation.isValidDate(auxYear, auxMonth, auxDay);
+
+		if(!isValid)
+		{
+			cout << "Fecha invalida. Ingrese nuevamente." << endl << endl;
+		}
+
+	} while (!isValid);
+
+	*year = auxYear;
+	*month = auxMonth;
+	*day = auxDay;
+}
 
 void updateCountVoteAmount(Configuration & configuration)
 {
     ConfigurationEntry & entry = configuration.getEntry("Count");
     CountMethods countMethods;
     Tree countTree(entry.getDataFileName(), entry.getBlockSize(), &countMethods, false);
-    Count c((char)(atoi(Menu::raw_input("Dia").c_str())),
-    		(char)(atoi(Menu::raw_input("Mes").c_str())),
-    		(short)(atoi(Menu::raw_input("Anio").c_str())),
+    char day; char month; short year;
+
+    enterValidDate(&year, &month, &day);
+
+    Count c(day,
+    		month,
+    		year,
     		Menu::raw_input("Cargo"),
     		Menu::raw_input("Nombre Lista"),
     		Menu::raw_input("Distrito"),
@@ -567,8 +607,12 @@ int main()
 								}
 								else
 								{
-									Election e ((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()),
-											(short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"), dist_vector);
+									char day;
+									char month;
+									short year;
+
+									enterValidDate(&year, &month, &day);
+									Election e (day, month, year, Menu::raw_input("Cargo"), dist_vector);
 
 									Charge c (e.getCharge(), vector<string>());
 									VariableRecord *r;
@@ -596,8 +640,13 @@ int main()
 							else if (action == 1)
 							{
 								// Modificar eleccion
-								Election updatedElection ((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()),
-										(short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"));
+								char day;
+								char month;
+								short year;
+
+								enterValidDate(&year, &month, &day);
+
+								Election updatedElection (day, month, year, Menu::raw_input("Cargo"));
 								VariableRecord record;
 								bool found = election_tree.get(updatedElection.getKey(),&record);
 								if (!found)
@@ -673,8 +722,13 @@ int main()
 							{
 								// eliminar eleccion
 								std::vector<string> districts;
-								Election e ((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()),
-								(short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"));
+								char day;
+								char month;
+								short year;
+
+								enterValidDate(&year, &month, &day);
+
+								Election e (day, month, year, Menu::raw_input("Cargo"));
 								OpResult res = election_tree.remove(e.getKey());
 								if (res == NotFound)
 								{
@@ -851,7 +905,12 @@ int main()
 							action = Menu(list_action,3).ask();
 							if (action==0)
 							{
-								ElectionsList elist (Menu::raw_input("Nombre de Lista"), (char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()), (short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"));
+								char day;
+								char month;
+								short year;
+								string name = Menu::raw_input("Nombre");
+								enterValidDate(&year, &month, &day);
+								ElectionsList elist (name, day, month, year, Menu::raw_input("Cargo"));
 
 								Election e (elist.getDay(), elist.getMonth(),
 										elist.getYear(), elist.getCharge());
@@ -874,7 +933,13 @@ int main()
 							}
 							else if (action==1)
 							{
-								ElectionsList elist (Menu::raw_input("Nombre"), (char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()), (short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Cargo"));
+								char day;
+								char month;
+								short year;
+
+								enterValidDate(&year, &month, &day);
+
+								ElectionsList elist (Menu::raw_input("Nombre"), day, month, year, Menu::raw_input("Cargo"));
 								int res = electionslist_tree.remove(elist.getKey());
 								log.write("Eliminando lista " + elist.getName(), res!=4, true);
 							}
@@ -920,7 +985,13 @@ int main()
 							{
 								// Check if candidate exists as voter
 								int dni = atoi(Menu::raw_input("DNI").c_str());
-								Candidate cand ((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()), (short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Lista"), Menu::raw_input("Cargo"), dni);
+								char day;
+								char month;
+								short year;
+
+								enterValidDate(&year, &month, &day);
+
+								Candidate cand (day, month, year, Menu::raw_input("Lista"), Menu::raw_input("Cargo"), dni);
 								VariableRecord *record;
 								Voter v(dni, "", "", "", "", std::vector<ElectionKey>());
 								bool voterFound = hash_voter.getRecord(v.getKey(), &record);
@@ -954,8 +1025,13 @@ int main()
 							else if (action==1)
 							{
 								int dni = atoi(Menu::raw_input("DNI").c_str());
+								char day;
+								char month;
+								short year;
 
-								Candidate cand ((char)atoi(Menu::raw_input("Dia").c_str()), (char)atoi(Menu::raw_input("Mes").c_str()), (short)atoi(Menu::raw_input("Anio").c_str()), Menu::raw_input("Nombre"), Menu::raw_input("Cargo"), dni);
+								enterValidDate(&year, &month, &day);
+
+								Candidate cand (day, month, year, Menu::raw_input("Nombre"), Menu::raw_input("Cargo"), dni);
 								int res = candidate_tree.remove(cand.getKey());
 								log.write("Eliminando candidato", res!=4, true);
 							}
@@ -1106,13 +1182,16 @@ int main()
 								ConfigurationEntry& listRprt_candidateEntry = configuration.getEntry("Candidate");
 								CandidateMethods cm;
 								stringstream logStr;
-								std::string dia = Menu::raw_input("Dia");
-								std::string mes = Menu::raw_input("Mes");
-								std::string anio = Menu::raw_input("Anio");
+								char day;
+								char month;
+								short year;
+
+								enterValidDate(&year, &month, &day);
+
 								std::string listName = Menu::raw_input("Lista");
 								std::string charge = Menu::raw_input("Cargo");
 								Tree candidate_tree (listRprt_candidateEntry.getDataFileName(), listRprt_candidateEntry.getBlockSize(), &cm, false);
-								Candidate candidate((char)atoi(dia.c_str()), (char)atoi(mes.c_str()), (short)atoi(anio.c_str()), listName, charge, 0);
+								Candidate candidate(day, month, year, listName, charge, 0);
 								VariableRecord candRecord;
 								candidate_tree.get(candidate.getKey(), &candRecord);
 								if(candRecord.getSize() == 0)
@@ -1123,7 +1202,7 @@ int main()
 								}
 								candidate.setBytes(candRecord.getBytes());//got candidate of list
 
-								if(((char)atoi(dia.c_str())!= candidate.getDay() )||( (char)atoi(mes.c_str())!= candidate.getMonth() )||( (short)atoi(anio.c_str())!= candidate.getYear() )|| (strcmp(listName.c_str(), candidate.getListName().c_str()) !=0)|| (strcmp(charge.c_str(), candidate.getCharge().c_str()) !=0) )
+								if((day != candidate.getDay()) || (month != candidate.getMonth()) || (year != candidate.getYear()) || (strcmp(listName.c_str(), candidate.getListName().c_str()) !=0)|| (strcmp(charge.c_str(), candidate.getCharge().c_str()) !=0) )
 								{
 									report << "Invalid list. List was not found." << endl;
 									log.write(string("Reporte Lista invalida: ").append(listName),false, true );//lista invalida
@@ -1149,7 +1228,11 @@ int main()
 								VariableRecord countRecord;
 								report << "Lista: " << candidate.getCharge() <<", "<< (int)candidate.getDay() <<"-"<< (int)candidate.getMonth() <<"-"<< candidate.getYear() <<", lista: "<< candidate.getListName() << endl;
 								report << "Candidato: " << candidate.getCharge() << ", " << voter.getNames() << endl;
-								logStr << string("Reportando lista ").append(listName+", "+ dia+" "+mes+" "+anio+"-"+charge);
+
+								stringstream strDay; strDay << (int)day;
+								stringstream strMonth; strMonth << (int)month;
+								stringstream strYear; strYear << year;
+								logStr << string("Reportando lista ").append(listName+", "+ strDay.str() +" "+ strMonth.str() + " " + strYear.str()+ "-" + charge);
 								log.operator <<(logStr.str());
 								int totalCount = 0;
 								char votes[sizeof(int)];
@@ -1183,7 +1266,10 @@ int main()
 								char total[sizeof(int)];
 								memcpy(total, &totalCount, sizeof(int));
 								std::cout << "Votos Totales: " << totalCount << endl;
-								logStr << string("Finalizado Reporte por Lista ").append(listName+", "+ dia+" "+mes+" "+anio+"-"+charge);
+								strDay.clear(); strDay << (int)day;
+								strMonth.clear(); strMonth << (int)month;
+								strYear.clear(); strYear << year;
+								logStr << string("Finalizado Reporte por Lista ").append(listName+", "+ strDay.str()+" "+strMonth.str()+" "+strYear.str()+"-"+charge);
 								log.operator <<(logStr.str());
 								std::cout << report.str();
 								saveReport(report);
@@ -1193,29 +1279,37 @@ int main()
 								//report by election
 								stringstream report;
 								stringstream logStr;
-								std::string dia = Menu::raw_input("Dia");
-								std::string mes = Menu::raw_input("Mes");
-								std::string anio = Menu::raw_input("Anio");
+								char day;
+								char month;
+								short year;
+
+								enterValidDate(&year, &month, &day);
+
 								std::string charge = Menu::raw_input("Cargo");
 								ConfigurationEntry& elctnRprt_listEntry = configuration.getEntry("ElectionList");
 								ElectionsListMethods electionsListMethods;
 								Tree list_tree (elctnRprt_listEntry.getDataFileName(), elctnRprt_listEntry.getBlockSize(), &electionsListMethods, false);
-								ElectionsList list("", (char)atoi(dia.c_str()), (char)atoi(mes.c_str()), (short)atoi(anio.c_str()), charge);
-								ElectionsList nextList("", (char)atoi(dia.c_str()), (char)atoi(mes.c_str()), (short)atoi(anio.c_str()), charge);
+								ElectionsList list("", day, month, year, charge);
+								ElectionsList nextList("", day, month, year, charge);
 								VariableRecord listRecord;
+
+								stringstream strDay; strDay << (int)day;
+								stringstream strMonth; strMonth << (int)month;
+								stringstream strYear; strYear << year;
 
 								list_tree.get(list.getKey(), &listRecord);
 								if(listRecord.getSize() == 0)
 								{//reached end of file
 									report << "Invalid Election. Election was not found." << endl;
-									log.write(string("Reporte Eleccion invalida: ").append(charge+", "+dia +"-"+ mes +"-"+ anio),false, true );//lista invalida
+
+									log.write(string("Reporte Eleccion invalida: ").append(charge+", "+strDay.str() +"-"+ strMonth.str() +"-"+ strYear.str()),false, true );//lista invalida
 									break;
 								}
 								list.setBytes(listRecord.getBytes());
 								if((list.getDay() != nextList.getDay() )||( list.getMonth() != nextList.getMonth() )||( list.getYear() != nextList.getYear() )||( strcmp(list.getCharge().c_str(), nextList.getCharge().c_str()) != 0 ))
 								{//got next election
 									report << "Invalid Election. Election was not found." << endl;
-									log.write(string("Reporte Eleccion invalida: ").append(charge+", "+dia +"-"+ mes +"-"+ anio),false, true );//lista invalida
+									log.write(string("Reporte Eleccion invalida: ").append(charge+", "+strDay.str() +"-"+ strMonth.str() +"-"+ strYear.str()),false, true );//lista invalida
 									break;
 								}
 								nextList.setBytes(list.getBytes());
@@ -1226,16 +1320,16 @@ int main()
 								VariableRecord countRecord;
 								Count nextCount(list.getDay(), list.getMonth(), list.getYear(), list.getCharge(), list.getName(),"", 0);
 
-								report << "Eleccion: " << list.getCharge() <<", "<< dia <<"-"<< mes <<"-"<< anio << endl;
-								logStr << string("Reportando Eleccion: ").append(list.getCharge()+", "+dia +"-"+ mes +"-"+ anio);
+								report << "Eleccion: " << list.getCharge() <<", "<< day <<"-"<< month <<"-"<< year << endl;
+								logStr << string("Reportando Eleccion: ").append(list.getCharge()+", "+strDay.str() +"-"+ strMonth.str() +"-"+ strYear.str());
 								log.operator <<(logStr.str());
 								char votos[sizeof(int)];
 								list_count.get(count.getKey(), &countRecord);
 								if(countRecord.getSize() == 0)
 								{
 									//No record, end of file
-									report << "No hay votos registrados para eleccion: " << dia << "-" << mes << "-" << anio << ", " << count.getCharge()<< endl;
-									logStr << string("Eleccion sin votos: ").append(list.getCharge()+", "+dia +"-"+ mes +"-"+ anio);
+									report << "No hay votos registrados para eleccion: " << day << "-" << month << "-" << year << ", " << count.getCharge()<< endl;
+									logStr << string("Eleccion sin votos: ").append(list.getCharge()+", "+strDay.str()+"-"+ strMonth.str() +"-"+ strYear.str());
 									log.operator <<(logStr.str());
 									break;
 								}
@@ -1273,8 +1367,8 @@ int main()
 										break;//no more districts
 									}
 								}
-								report << "Finalizado reporte Eleccion " << count.getCharge() <<", "<< dia << "-" << mes << "-" << anio << endl;
-								logStr << string("Finalizado reporte Eleccion ").append(list.getCharge()+", "+dia +"-"+ mes +"-"+ anio);
+								report << "Finalizado reporte Eleccion " << count.getCharge() <<", "<< day << "-" << month << "-" << year << endl;
+								logStr << string("Finalizado reporte Eleccion ").append(list.getCharge()+", "+strDay.str() +"-"+ strMonth.str() +"-"+ strYear.str());
 								log.operator <<(logStr.str());
 								std::cout << report.str();
 								saveReport(report);

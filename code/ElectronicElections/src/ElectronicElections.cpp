@@ -218,7 +218,7 @@ void updateCountVoteAmount(Configuration & configuration)
 
 int main()
 {
-	bool debug = true;
+	bool debug = false;
 
 	if (debug) return run_tests();
 
@@ -278,8 +278,8 @@ int main()
 //					cout << "admin existe" << endl;
 					Administrator realadmin("","");
 					realadmin.setBytes(adminrecord.getBytes());
-					cout << admin.getPassword()<<endl;
-					cout <<realadmin.getPassword()<<endl;
+//					cout << admin.getPassword()<<endl;
+//					cout <<realadmin.getPassword()<<endl;
 					int passcmp = strcmp(admin.getPassword().c_str(), realadmin.getPassword().c_str());
 					log.write(string("Logueo de usuario ").append(user), passcmp==0, true);
 					if ( passcmp==0 )
@@ -379,9 +379,11 @@ int main()
 								}
 								else
 								{
-									Voter v(atoi(Menu::raw_input("DNI").c_str()), Menu::raw_input("Nombre"), Menu::raw_input("Contraseña"), Menu::raw_input("Direccion"), district.getName(), std::vector<ElectionKey>());
+									string dnistr = Menu::raw_input("DNI").c_str();
+									Voter v(atoi(dnistr.c_str()), Menu::raw_input("Nombre"), Menu::raw_input("Contraseña"), Menu::raw_input("Direccion"), district.getName(), std::vector<ElectionKey>());
 									VariableRecord vr(v.getBytes(), v.getSize());
-									hash_voter.insertRecord(v.getKey(), &vr);
+									bool res = hash_voter.insertRecord(v.getKey(), &vr);
+									log.write(string("Agregando votante ").append(dnistr), res, true);
 								}
 							}
 							else if (action==1)

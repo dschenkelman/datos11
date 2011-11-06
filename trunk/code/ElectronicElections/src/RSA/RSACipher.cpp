@@ -89,7 +89,18 @@ int64 RSACipher::productInverse(int64 n, int64 d) {
 	return -1;
 }
 
-RSACipher::~RSACipher()
-{
+#include <math.h>
+
+int64 RSACipher::powerMultModule(int64 base, int64 exp, int64 mod) {
+	int64 res = 1;
+	while (exp>0) {
+		if ((exp&1) == 1) res = (res*base)%mod;
+		exp = exp >> 1;
+		base = (base*base)%mod;
+	}
+	return res;
+}
+
+RSACipher::~RSACipher() {
 }
 

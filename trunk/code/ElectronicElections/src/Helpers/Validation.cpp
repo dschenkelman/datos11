@@ -6,6 +6,9 @@
  */
 
 #include "Validation.h"
+#include <string>
+
+using namespace std;
 
 Validation::Validation()
 {
@@ -26,11 +29,9 @@ bool Validation::isValidDate(short year, char month, char day)
 			{
 				return true;
 			}
-
-			return this->isValidDay(day, month);
 		}
 
-		else return this->isValidDay(day, month);
+		return this->isValidDay(day, month);
 	}
 
 	return false;

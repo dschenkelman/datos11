@@ -69,8 +69,8 @@ bool RSACipherTests::testCipherMessage()
 	RSAKey publicKey= rsaKey.getPublicKey();
 	RSAKey privateKey= rsaKey.getPrivateKey();
 
-	int criptKey = publicKey.exp;
-	int decriptKey = privateKey.exp;
+	int64 criptKey = publicKey.exp;
+	int64 decriptKey = privateKey.exp;
 	int64 n = publicKey.n;
 	char* charMessage = (char*)message.c_str();
 	char cipheredMessage[message.length()];

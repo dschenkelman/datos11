@@ -81,6 +81,7 @@ src/ElectronicElections.d src/ElectronicElections.o: \
  ../src/VariableBlocks/VariableRecord.h ../src/BPlusTree/Tree.h \
  ../src/Voting/Log.h ../src/Voting/Configuration.h \
  ../src/RSA/RSACipherTests.h ../src/RSA/RSACipher.h ../src/RSA/RSAKey.h \
+ ../src/RSA/RSAKeySetTests.h ../src/RSA/RSAKeySet.h \
  ../src/Helpers/ValidationTests.h ../src/Helpers/Validation.h \
  ../src/Voting/DataFileLoader.h ../src/Indexes/DistrictElectionsIndex.h \
  ../src/Indexes/../BPlusTree/Tree.h ../src/Indexes/../Entities/Election.h \
@@ -295,6 +296,10 @@ src/ElectronicElections.d src/ElectronicElections.o: \
 ../src/RSA/RSACipher.h:
 
 ../src/RSA/RSAKey.h:
+
+../src/RSA/RSAKeySetTests.h:
+
+../src/RSA/RSAKeySet.h:
 
 ../src/Helpers/ValidationTests.h:
 

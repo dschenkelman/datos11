@@ -7,6 +7,8 @@
 
 #include "Kasisky.h"
 #include <string>
+#include <string.h>
+#include <iostream>
 
 using namespace std;
 
@@ -20,6 +22,45 @@ void Kasisky::attack(string& message, int nGramLength)
 
 void Kasisky::determineRepeatedNgrams(string& message, int nGramLength)
 {
+	map<string,vector<int> >::iterator it;
+	vector<map<string,vector<int> >::iterator> nonRepeated;
+	for(unsigned int i = 0; i < message.length()-(nGramLength-1); i++ )
+	{
+		string nGram = message.substr(i,nGramLength);
+
+		it = repeatedNgrams.find(nGram);
+		if (it == repeatedNgrams.end())
+		{
+			// The nGram was not found before
+			this->repeatedNgrams[nGram] = vector<int>();
+		}
+
+		this->repeatedNgrams[nGram].push_back(i);
+
+	}
+
+	for ( it=repeatedNgrams.begin() ; it != repeatedNgrams.end(); it++ )
+	{
+		if ((*it).second.size() == 1)
+		{
+			nonRepeated.push_back(it);
+		}
+	}
+	while (!nonRepeated.empty())
+	{
+		repeatedNgrams.erase(nonRepeated.back());
+		nonRepeated.pop_back();
+	}
+
+	for ( it=repeatedNgrams.begin() ; it != repeatedNgrams.end(); it++ )
+	{
+		cout << (*it).first << " => ";
+		for (unsigned  int i = 0; i < (*it).second.size(); i++)
+		{
+			cout << (*it).second[i] << ", ";
+		}
+		cout << endl;
+	}
 }
 
 void Kasisky::calculateDistances(string& message, int nGramLength)

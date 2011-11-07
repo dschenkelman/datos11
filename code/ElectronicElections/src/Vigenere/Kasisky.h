@@ -10,14 +10,16 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <map>
 
 class Kasisky
 {
 	std::map<std::string, std::vector<int> > repeatedNgrams;
-	void determineRepeatedNgrams(std::string& message, int nGramLength);
+
 	void calculateDistances(std::string& message, int nGramLength);
 	void estimateKeyLength();
 public:
+	void determineRepeatedNgrams(std::string& message, int nGramLength);
 	Kasisky();
 	void attack(std::string& message, int nGram);
 

@@ -20,6 +20,7 @@ class Kasisky
 	void estimateKeyLength();
 public:
 	void determineRepeatedNgrams(std::string& message, int nGramLength);
+	std::map<std::string, std::vector<int> > getRepeatedNgrams();
 	Kasisky();
 	void attack(std::string& message, int nGram);
 

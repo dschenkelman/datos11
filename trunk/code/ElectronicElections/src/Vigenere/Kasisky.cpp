@@ -52,15 +52,6 @@ void Kasisky::determineRepeatedNgrams(string& message, int nGramLength)
 		nonRepeated.pop_back();
 	}
 
-	for ( it=repeatedNgrams.begin() ; it != repeatedNgrams.end(); it++ )
-	{
-		cout << (*it).first << " => ";
-		for (unsigned  int i = 0; i < (*it).second.size(); i++)
-		{
-			cout << (*it).second[i] << ", ";
-		}
-		cout << endl;
-	}
 }
 
 void Kasisky::calculateDistances(string& message, int nGramLength)
@@ -88,6 +79,11 @@ void Kasisky::calculateDistances(string& message, int nGramLength)
 
 void Kasisky::estimateKeyLength()
 {
+}
+
+std::map<std::string,std::vector<int> > Kasisky::getRepeatedNgrams()
+{
+	return this->repeatedNgrams;
 }
 
 Kasisky::~Kasisky()

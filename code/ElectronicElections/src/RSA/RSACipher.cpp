@@ -10,6 +10,7 @@
 #include <vector>
 #include <ctime>
 #include <cstdlib>
+#include <math.h>
 #include <string.h>
 
 using namespace std;
@@ -36,11 +37,11 @@ vector<int64> RSACipher::generateRelativelyPrimeNumbers(int64 number)
 	//if isPrime(number) return number-1;
 	vector<int64> coprimeNumbers;
 
-	for (int64 i = (number - 2); i > 0; i--)
+	for (int64 i = (number - 2); i > 1; i--)
 	{
 		if (this->GCD(number, i) == 1)
 		{
-			if(coprimeNumbers.size() < 500000 || i == 1)
+			if(coprimeNumbers.size() < 500000)
 			{
 				coprimeNumbers.push_back(i);
 			}
@@ -51,6 +52,8 @@ vector<int64> RSACipher::generateRelativelyPrimeNumbers(int64 number)
 			}
 		}
 	}
+
+	return coprimeNumbers;
 }
 
 int64 RSACipher::getRelativelyPrimeNumber(int64 number)
@@ -99,8 +102,6 @@ int64 RSACipher::productInverse(int64 phi, int64 d) { // mod, base
 
 	return -1;
 }
-
-#include <math.h>
 
 int64 RSACipher::modularExponentiation(int base, int64 exp, int64 mod) {
 	int64 res = 1;

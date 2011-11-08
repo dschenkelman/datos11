@@ -102,12 +102,30 @@ int64 RSACipher::productInverse(int64 phi, int64 d) { // mod, base
 
 #include <math.h>
 
-int64 RSACipher::modularExponentiation(int64 base, int64 exp, int64 mod) {
+int64 RSACipher::modularExponentiation(int base, int64 exp, int64 mod) {
 	int64 res = 1;
-	while (exp>0) {
-		if ((exp&1) == 1) res = (res*base)%mod;
+	int64 accumulativeBase = base;
+	int64 auxBase;
+	int64 bitsCount = 0;//active bits count
+	int64 activeBits[64];
+	while (exp > 0)
+	{
 		exp = exp >> 1;
-		base = (base*base)%mod;
+		auxBase = (accumulativeBase*accumulativeBase);
+		accumulativeBase = auxBase % mod;
+		if(exp % 2 == 1)
+		{
+			activeBits[bitsCount] = accumulativeBase;
+			bitsCount++;
+		}
+	}
+	if(bitsCount == 0) return 0; //it shouldn't return
+
+	res = activeBits[0];
+	for(int i= 1; i< bitsCount; i++)
+	{
+		auxBase = activeBits[i] * res;
+		res = auxBase % mod;
 	}
 	return res;
 }
@@ -116,25 +134,35 @@ void RSACipher::cipherMessage(char* message, int64 expKey, int64 n, char* cipher
 {
 	int64 greaterKey = n;
 	int64 greaterBit = 1;
-	int64 messageLen = strlen(message);
+	int64 messageLen = strlen(message)+1;
 
 	while(greaterKey != 1)
 	{
 		greaterBit++;
 		greaterKey = greaterKey >> 1;
 	}
-
+	//check greaterBit to be multiple of 8 in order to not cut bytes
+	if(greaterBit % 8 != 0)
+	{
+		int offset = (greaterBit % 8);
+		greaterBit-= offset;
+	}
 	//tengo el valor de greater bit, divido el message
 	int blocksMessage = messageLen *8 /greaterBit +1; //tengo la cantidad de divisiones del mensaje en BYTES!!
 	int64 crypt;
-	int64 blockLen = greaterBit/8 +1;
-	int64 block;
+	int64 blockLen = greaterBit/8; //len in BYTES!
+	int block;
+
 	char cryptMessage[messageLen];
-	for(int i=0;i< blocksMessage; i++)
+	int messageOffset = (messageLen % blockLen);
+	memcpy(&block, message, messageOffset);
+	crypt = modularExponentiation(block, expKey, n);
+	memcpy(cryptMessage, &crypt, messageOffset);
+	for(int i=0;i< blocksMessage-1; i++)
 	{
-		memcpy(&block, message+ (i*blockLen), blockLen);
+		memcpy(&block, message+ messageOffset+(i*blockLen), blockLen);
 		crypt = modularExponentiation(block, expKey, n);
-		memcpy(cryptMessage+ (i*blockLen), &crypt, blockLen);
+		memcpy(cryptMessage+ messageOffset+(i*blockLen), &crypt, blockLen);
 	}
 
 	strcpy(cipheredMessage, cryptMessage);

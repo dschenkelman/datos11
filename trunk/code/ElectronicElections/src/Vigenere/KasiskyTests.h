@@ -11,6 +11,8 @@
 class KasiskyTests {
 public:
 	KasiskyTests();
+	void estimateKeyLengthTest();
+	void determineRepeatedNgramsTest();
 	void run();
 	virtual ~KasiskyTests();
 };

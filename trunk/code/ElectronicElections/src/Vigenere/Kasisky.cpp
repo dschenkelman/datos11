@@ -9,6 +9,8 @@
 #include <string>
 #include <string.h>
 #include <iostream>
+#include <algorithm>
+#include <math.h>
 
 using namespace std;
 
@@ -18,8 +20,10 @@ Kasisky::Kasisky()
 
 void Kasisky::attack(string& message, int nGramLength)
 {
-	this->determineRepeatedNgrams(message, nGramLength);
+
+	this->determineRepeatedNgrams(message,nGramLength);
 	this->calculateDistances(message, nGramLength);
+	vector<int> keyLength = this->estimateKeyLength();
 }
 
 void Kasisky::determineRepeatedNgrams(string& message, int nGramLength)
@@ -38,7 +42,6 @@ void Kasisky::determineRepeatedNgrams(string& message, int nGramLength)
 		}
 
 		this->repeatedNgrams[nGram].push_back(i);
-
 	}
 
 	for ( it=repeatedNgrams.begin() ; it != repeatedNgrams.end(); it++ )
@@ -58,40 +61,134 @@ void Kasisky::determineRepeatedNgrams(string& message, int nGramLength)
 
 void Kasisky::calculateDistances(string& message, int nGramLength)
 {
-	map<string, vector<int> >::iterator it;
 
+	map<string, vector<int> >::iterator it;
+	map<string, vector<int> > nGramDistances;
 	// go through the list of repeated ngrams and do distance calculations, etc
 	for (it=this->repeatedNgrams.begin() ; it != this->repeatedNgrams.end(); it++ )
 	{
 		string nGram = it->first;
 		cout << "nGram:" << nGram << " . distances:";
+		nGramDistances[nGram] = vector<int>();
 
-		this->distances[nGram] = vector<int>();
 
-		vector<int> indexes = it->second;
+		   vector<int> indexes = it->second;
 
-		// calculate ngrams distance
-		for(unsigned int i = 0; i < indexes.size(); i++)
-		{
-			for(unsigned int j = i+1; j < indexes.size(); j++ )
-			{
-				cout << indexes[j] - indexes[i] << ", ";
-				this->distances[nGram].push_back(indexes[j] - indexes[i]);
-			}
-		}
+		   // calculate ngrams distance
+		   for(unsigned int i = 0; i < indexes.size(); i++)
+		   {
+				   for(unsigned int j = i+1; j < indexes.size(); j++ )
+				   {
+						   cout << indexes[j] - indexes[i] << ", ";
+						   nGramDistances[nGram].push_back(indexes[j] - indexes[i]);
+				   }
+		   }
 
-		cout << endl;
+		   cout << endl;
+	}
+	for (it = nGramDistances.begin(); it != nGramDistances.end(); it++)
+	{
+		this->distances.insert(this->distances.end(),(*it).second.begin(),(*it).second.end());
 	}
 }
 
-void Kasisky::estimateKeyLength()
+
+vector<int> Kasisky::estimateKeyLength()
 {
+	int numberOfCandidates = 3;
+	map<int, int> frequencyOfDistances;
+
+	for (unsigned int i = 0; i < this->distances.size(); i++)
+	{
+		int distance = this->distances[i];
+		if (frequencyOfDistances.count(distance) <= 0)	//The distance does not exists
+		{
+			frequencyOfDistances[distance] = 0;
+		}
+		frequencyOfDistances[distance]++;
+		for (unsigned int j = 2; j <= sqrt(distance); j++)
+		{
+			if (distance % j == 0)
+
+			{
+				if (frequencyOfDistances.count(j) <= 0)
+				{
+					frequencyOfDistances[j] = 0;
+				}
+				if (frequencyOfDistances.count(distance/j) <= 0)
+				{
+					frequencyOfDistances[distance/j] = 0;
+				}
+				frequencyOfDistances[j]++;
+				frequencyOfDistances[distance/j]++;
+			}
+		}
+	}
+
+	map<int,int>::iterator it;
+	for ( it=frequencyOfDistances.begin() ; it != frequencyOfDistances.end(); it++ )
+	{
+		cout<< endl << "Distance: " << (*it).first << "\tCount: " << (*it).second;
+	}
+
+	// Get More Frequent Distance
+	vector<int> moreFrequentDistances;
+
+	for (unsigned int i = 0; i < numberOfCandidates && !frequencyOfDistances.empty(); i++)
+	{
+		int moreFrequentDistance = 0;
+		int maxValue = 0;
+
+		for ( it=frequencyOfDistances.begin() ; it != frequencyOfDistances.end(); it++ )
+		{
+			if (((*it).second) > maxValue)
+			{
+				maxValue = (*it).second;
+				moreFrequentDistance = (*it).first;
+			}
+		}
+		moreFrequentDistances.push_back(moreFrequentDistance);
+		frequencyOfDistances.erase(moreFrequentDistance);
+	}
+
+	return moreFrequentDistances;
 }
 
 std::map<std::string,std::vector<int> > Kasisky::getRepeatedNgrams()
 {
 	return this->repeatedNgrams;
 }
+
+/*
+vector<int> Kasisky::trialDivision(int number)
+{
+	vector<int> prime_numbers;
+	int prime;
+
+	// Generate Prime numbers
+	vector<int> allPrimeNumbers;
+	if (number <= 1)
+	{
+		cerr<<"No se puede factorizar un numero menor o igual a 1";
+		return prime_numbers;
+	}
+
+	for (unsigned int i = 0; i < allPrimeNumbers.size(); i++)
+	{
+		prime = allPrimeNumbers[i];
+		if (prime*prime > number)
+			break;
+		while (number % prime == 0)
+		{
+			prime_numbers.push_back(number);
+			number = number / prime;
+		}
+	}
+	// Let's not include the same number
+	//prime_numbers.push_back(number);
+
+}
+*/
 
 Kasisky::~Kasisky()
 {

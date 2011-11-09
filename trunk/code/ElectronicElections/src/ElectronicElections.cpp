@@ -64,6 +64,7 @@
 #include <string.h>
 #include "RSA/RSACipherTests.h"
 #include "Vigenere/VigenereCipher.h"
+#include "Vigenere/Kasisky.h"
 
 using namespace std;
 
@@ -153,7 +154,7 @@ void saveReport(stringstream& report)
 	}
 }
 
-void recoverFile()
+void recoverReport()
 {
 	string fileName = Menu::raw_input("Nombre archivo");
 	string directory = "Files/Reports/";
@@ -179,6 +180,29 @@ void recoverFile()
 	}
 }
 
+void crackReport()
+{
+	string fileName = Menu::raw_input("Nombre archivo");
+	string directory = "Files/Reports/";
+	string fullName = directory + fileName;
+	ifstream reportFile(fullName.c_str());
+	if (reportFile.is_open())
+	{
+		reportFile.seekg(0, std::ios::end);
+		long length = reportFile.tellg();
+		reportFile.seekg(0, std::ios::beg);
+		char buffer[length + 1];
+		memset(buffer, 0, length + 1);
+		reportFile.read(buffer, length);
+		string reportString = buffer;
+		Kasisky k;
+		k.attack(reportString, 3);
+	}
+	else
+	{
+		cout << "El reporte no existe." << endl;
+	}
+}
 
 int run_tests()
 {
@@ -233,9 +257,9 @@ int run_tests()
 //	ChargeTests chargeTests;
 //	chargeTests.run();
 
-	cout << "RSA Cipher Tests" << endl;
-	RSACipherTests rsaCipherTests;
-	rsaCipherTests.run();
+//	cout << "RSA Cipher Tests" << endl;
+//	RSACipherTests rsaCipherTests;
+//	rsaCipherTests.run();
 
 	cout << "RSAKeySet Tests" << endl;
 	RSAKeySetTests rsaKeySetTests;
@@ -368,7 +392,7 @@ int main()
 				}
 				else { cout << "no existe el admin"<<endl; break;}
 				while (1) {
-					option admin_action[13];
+					option admin_action[14];
 					admin_action[0].label = "Poblar archivos";
 					admin_action[1].label = "Generar votos";
 					admin_action[2].label = "Mantener distritos";
@@ -381,8 +405,9 @@ int main()
 					admin_action[9].label = "Informar resultados";
 					admin_action[10].label = "Actualizar conteo";
 					admin_action[11].label = "Recuperar reporte";
-					admin_action[12].label = "Volver";
-					action = Menu(admin_action,13).ask();
+					admin_action[12].label = "Desencriptar reporte";
+					admin_action[13].label = "Volver";
+					action = Menu(admin_action,14).ask();
 					if (action == 0)
 					{
 						log.write("Comenzando carga archivos.", true, true);
@@ -1431,9 +1456,13 @@ int main()
 					}
 					else if(action == 11)
 					{
-						recoverFile();
+						recoverReport();
 					}
 					else if (action == 12)
+					{
+						crackReport();
+					}
+					else if (action == 13)
 					{
 						break;
 					}

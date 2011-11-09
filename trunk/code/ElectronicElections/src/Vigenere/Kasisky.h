@@ -15,7 +15,7 @@
 class Kasisky
 {
 	std::map<std::string, std::vector<int> > repeatedNgrams;
-
+	std::map<std::string, std::vector<int> > distances;
 	void calculateDistances(std::string& message, int nGramLength);
 	void estimateKeyLength();
 public:

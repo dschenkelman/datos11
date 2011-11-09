@@ -18,6 +18,8 @@ Kasisky::Kasisky()
 
 void Kasisky::attack(string& message, int nGramLength)
 {
+	this->determineRepeatedNgrams(message, nGramLength);
+	this->calculateDistances(message, nGramLength);
 }
 
 void Kasisky::determineRepeatedNgrams(string& message, int nGramLength)
@@ -59,21 +61,26 @@ void Kasisky::calculateDistances(string& message, int nGramLength)
 	map<string, vector<int> >::iterator it;
 
 	// go through the list of repeated ngrams and do distance calculations, etc
-	for ( it=this->repeatedNgrams.begin() ; it != this->repeatedNgrams.end(); it++ )
+	for (it=this->repeatedNgrams.begin() ; it != this->repeatedNgrams.end(); it++ )
 	{
 		string nGram = it->first;
-		vector<int>& indexes = it->second;
+		cout << "nGram:" << nGram << " . distances:";
 
-		map<string, vector<int> > distances;
+		this->distances[nGram] = vector<int>();
+
+		vector<int> indexes = it->second;
 
 		// calculate ngrams distance
 		for(unsigned int i = 0; i < indexes.size(); i++)
 		{
-			for(unsigned int j = j+1; i < indexes.size(); j++ )
+			for(unsigned int j = i+1; j < indexes.size(); j++ )
 			{
-				distances[nGram].push_back(indexes[j] - indexes[i]);
+				cout << indexes[j] - indexes[i] << ", ";
+				this->distances[nGram].push_back(indexes[j] - indexes[i]);
 			}
 		}
+
+		cout << endl;
 	}
 }
 

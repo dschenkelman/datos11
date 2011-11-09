@@ -34,13 +34,13 @@ int64 RSAKeySetTests::negativeModulus(int64 base, int64 modulus) {
 }
 
 bool RSAKeySetTests::testGeneration() {
-//	RSAKeySet rsaks;
-//	RSAKey privateKey = rsaks.getPrivateKey();
-//	RSAKey publicKey = rsaks.getPublicKey();
-//	cout << "phi " << rsaks.phi << endl;
-//	cout << "privateexp " << privateKey.exp << endl;
-//	cout << "publicexp " << publicKey.exp << endl;
-//	cout << negativeModulus(negativeModulus(privateKey.exp,rsaks.phi)*negativeModulus(publicKey.exp,rsaks.phi), rsaks.phi) << endl;
+	RSAKeySet rsaks;
+	RSAKey privateKey = rsaks.getPrivateKey();
+	RSAKey publicKey = rsaks.getPublicKey();
+	cout << "phi " << rsaks.phi << endl;
+	cout << "privateexp " << privateKey.exp << endl;
+	cout << "publicexp " << publicKey.exp << endl;
+	//cout << negativeModulus(negativeModulus(privateKey.exp,rsaks.phi)*negativeModulus(publicKey.exp,rsaks.phi), rsaks.phi) << endl;
 //	return (( ((int64)privateKey.exp) * ((int64)publicKey.exp) )%rsaks.phi)==1;
 	return false;
 }

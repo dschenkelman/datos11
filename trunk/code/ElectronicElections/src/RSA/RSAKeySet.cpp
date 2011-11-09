@@ -9,15 +9,13 @@
 #include "RSAKey.h"
 #include "RSACipher.h"
 #include "PrimeGenerator.h"
-#include <limits.h>
+#include <limits>
 
 RSAKeySet::RSAKeySet() {
 	PrimeGenerator pg(4000000);
-	int64 p = (int64) pg.getRandomWithMinimum(10000);
-	int64 q;
-	do {
-		q = (int64) pg.getRandomWithMinimum(10000);
-	} while (p==q);
+	int64 p = 0;
+	int64 q = 0;
+	pg.getRandomWithMinimum(10000, &p, &q);
 	int64 n = p*q;
 	cout << sizeof(p) << "|" << sizeof(q) << "|" << sizeof(n) << "|"<<endl;
 	phi = (p-1)*(q-1);

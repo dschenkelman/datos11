@@ -19,6 +19,12 @@ KasiskyTests::KasiskyTests()
 
 void KasiskyTests::run()
 {
+	//this->determineRepeatedNgramsTest();
+	this->estimateKeyLengthTest();
+}
+
+void KasiskyTests::determineRepeatedNgramsTest()
+{
 	string message("QCIWYWOCMGWSBULGRLBFVRLSNPIKPWDCEZIKUCVRGGORFXTWSCVRDGSFFKBYMODURGNSMUCSNCIOVVFVRSFJFSEZSFDSJKPUPBUUVDFZCKZGIOJZEWMQZKPGBZCGpSHSEZIKFDIKKMOHRHEIVSRTMEBZVYIKUSVRDGSFFVIJNOEKGAPSEARJJBTURWTHRH");
 	Kasisky k;
 	k.determineRepeatedNgrams(message,3);
@@ -35,6 +41,20 @@ void KasiskyTests::run()
 			cout << (*it).second[i] << ", ";
 		}
 		cout << endl;
+	}
+}
+
+void KasiskyTests::estimateKeyLengthTest()
+{
+	string message("6LSOGgYmOJl(dLRNN]Qv.^MJ`QYK^]c^Ug]mYW]a*u}uc z%v!vu|r)rz7NaWY!m7NaWYe#ucdRlVb%c}z?H]LI]UvKTi*ZH[JXZSl3jLbTISQlLm9W]a*uyiu$n)uz{s}r%r;TXbD2e;TXbDvvyi[]WgZ)iv*YUPOT`a\Lm0QSF[P^Yc7QlL]OJ\W]eSPcADfe<LWWQgqmzvyr(r!yt}n%3X^YO{v3X^YOa+qmaTbRk!mz{");
+	Kasisky k;
+	k.determineRepeatedNgrams(message,3);
+	k.calculateDistances(message, 3);
+	vector<int> keyLengthVector = k.estimateKeyLength();
+	cout << endl << "Estimated Key Length (in descending order of probability): ";
+	for (unsigned int i = 0; i<keyLengthVector.size(); i++)
+	{
+		cout << keyLengthVector[i] << " - ";
 	}
 }
 

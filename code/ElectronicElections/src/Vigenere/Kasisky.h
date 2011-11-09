@@ -15,15 +15,17 @@
 class Kasisky
 {
 	std::map<std::string, std::vector<int> > repeatedNgrams;
-	std::map<std::string, std::vector<int> > distances;
-	void calculateDistances(std::string& message, int nGramLength);
-	void estimateKeyLength();
+	std::vector<int> distances;
+	//std::vector<int> trialDivision(int number);
+
 public:
+	void calculateDistances(std::string& message, int nGramLength);
 	void determineRepeatedNgrams(std::string& message, int nGramLength);
 	std::map<std::string, std::vector<int> > getRepeatedNgrams();
-	Kasisky();
+	std::vector<int> estimateKeyLength();
 	void attack(std::string& message, int nGram);
 
+	Kasisky();
 	virtual ~Kasisky();
 };
 

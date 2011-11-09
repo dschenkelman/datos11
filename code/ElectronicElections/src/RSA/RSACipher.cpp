@@ -36,21 +36,22 @@ vector<int64> RSACipher::generateRelativelyPrimeNumbers(int64 number)
 {
 	//if isPrime(number) return number-1;
 	vector<int64> coprimeNumbers;
+	int64 jump = (int64) rand();
 
-	for (int64 i = (number - 2); i > 1; i--)
+	for (int64 i = (number - 2); i > 1; i-= jump)
 	{
 		if (this->GCD(number, i) == 1)
 		{
-			if(coprimeNumbers.size() < 500000)
+			if(coprimeNumbers.size() < 50000)
 			{
 				coprimeNumbers.push_back(i);
 			}
-
 			else
 			{
 				return coprimeNumbers;
 			}
 		}
+		jump = (int64)rand();
 	}
 
 	return coprimeNumbers;

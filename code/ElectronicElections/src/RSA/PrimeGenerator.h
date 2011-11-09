@@ -9,18 +9,17 @@
 #define PRIMEGENERATOR_H_
 
 #include <iostream>
-using namespace std;
+#include "RSAKey.h"
+#include <vector>
 
 class PrimeGenerator {
 private:
-	bool* primes;
 	int end;
 	int total;
+	std::vector<int> primeNumbers;
 public:
 	PrimeGenerator(int end);
-	int totalGenerated();
-	void getAllPrimes(int* res);
-	int getRandomWithMinimum(int minimum);
+	int getRandomWithMinimum(int minimum, int64* p, int64* q);
 	virtual ~PrimeGenerator();
 };
 

@@ -8,58 +8,76 @@
 #include "PrimeGenerator.h"
 #include <cstdlib>
 #include <time.h>
+#include "../Helpers/ByteOperators.h"
+#include <cstring>
+#include <iostream>
+#include <math.h>
 
-PrimeGenerator::PrimeGenerator(int end) {
+using namespace std;
+
+PrimeGenerator::PrimeGenerator(int end)
+{
 	srand( time(NULL) );
-	// two first values are not used for simplicity
 	this->end = end;
-	primes = new bool[end+1];
+	int byteCount = end/8.0;
+	unsigned char* primes = new unsigned char[byteCount];
 	// initial setup: all true
-	for (int i=2;i<=end;i++) {
-		primes[i] = true;
-	}
+	memset(primes, 255, byteCount);
+
 	this->total = end-1;
 	// starting algorithm
-	for (int i=2;i<=end/2;i++) {
-		if (primes[i] == true) {
-			for (int j=2*i;j<=end;j+=i) {
-				if (primes[j]) this->total--;
-				primes[j] = false;
+	for (int i=2;i<=end/2;i++)
+	{
+		unsigned int byteNumberI = i / 8;
+		char bitNumber = (i - 1) % 8;
+
+		if (ByteOperators::isBitOne(primes[byteNumberI], bitNumber) == true)
+		{
+			for (int j=2*i; (j < end);j+=i)
+			{
+				if (j <= 0)
+				{
+					break;
+				}
+				unsigned int byteNumberJ = j / 8;
+				bitNumber = (j - 1) % 8;
+				if (ByteOperators::isBitOne(primes[byteNumberJ], bitNumber)) this->total--;
+				ByteOperators::setBit((char*)primes + byteNumberJ, bitNumber, 0);
 			}
 		}
 	}
-//	for (int i=0;i<end;i++) {
-//		primes[i]? cout << "true"<<endl : cout << "false"<<endl;
-//	}
-}
 
-int PrimeGenerator::totalGenerated() {
-	return this->total;
-}
-
-void PrimeGenerator::getAllPrimes(int* res) {
-	int position = 0;
-	for (int i=2;i<=end;i++) {
-		if (primes[i]) {
-			res[position++] = i;
+	for (int i=2;i < this->end;i++)
+	{
+		unsigned int byteNumberI = i / 8;
+		char bitNumber = (i - 1) % 8;
+		if (ByteOperators::isBitOne(primes[byteNumberI], bitNumber))
+		{
+			this->primeNumbers.push_back(i);
 		}
 	}
-}
 
-int PrimeGenerator::getRandomWithMinimum(int minimum) {
-	int total = totalGenerated();
-	int* all = new int[total];
-	getAllPrimes(all);
-	if (all[total-1]<minimum) return -1;
-	int res;
-	do {
-		int num = rand()%total;
-		res = all[num];
-	} while (res<minimum);
-	delete all;
-	return res;
-}
-
-PrimeGenerator::~PrimeGenerator() {
 	delete primes;
+}
+
+int PrimeGenerator::getRandomWithMinimum(int minimum, int64* p, int64* q)
+{
+	int max = this->primeNumbers[this->primeNumbers.size() - 1];
+	if (max < minimum) return -1;
+	int num;
+	do
+	{
+		num = rand()%total;
+		*p = this->primeNumbers[num];
+	} while (*p < minimum);
+
+	do
+	{
+		num = rand()%total;
+		*q = this->primeNumbers[num];
+	} while (*q < minimum && *q == *p);
+}
+
+PrimeGenerator::~PrimeGenerator()
+{
 }

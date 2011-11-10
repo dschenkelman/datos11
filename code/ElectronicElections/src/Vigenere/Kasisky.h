@@ -23,6 +23,7 @@ public:
 	void determineRepeatedNgrams(std::string& message, int nGramLength);
 	std::map<std::string, std::vector<int> > getRepeatedNgrams();
 	std::vector<int> estimateKeyLength();
+	std::vector<std::string> separateCryptogramByKey(std::string message, int keyLength);
 	void attack(std::string& message, int nGram);
 
 	Kasisky();

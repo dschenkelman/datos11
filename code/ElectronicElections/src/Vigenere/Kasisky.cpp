@@ -20,10 +20,13 @@ Kasisky::Kasisky()
 
 void Kasisky::attack(string& message, int nGramLength)
 {
-
 	this->determineRepeatedNgrams(message,nGramLength);
 	this->calculateDistances(message, nGramLength);
 	vector<int> keyLength = this->estimateKeyLength();
+	int moreLikely = keyLength[0];
+	vector<string> cryptogramByKey = this->separateCryptogramByKey(message,moreLikely);
+
+
 }
 
 void Kasisky::determineRepeatedNgrams(string& message, int nGramLength)
@@ -152,6 +155,23 @@ vector<int> Kasisky::estimateKeyLength()
 	}
 
 	return moreFrequentDistances;
+}
+
+vector<string> Kasisky::separateCryptogramByKey(string message, int keyLength)
+{
+	vector<string> cryptogramByKey;
+	for (int i = 0; i < keyLength; i++)
+	{
+		int j = i;
+		string subMessage;
+		while (j < message.size() )
+		{
+			subMessage += message[j];
+			j += keyLength;
+		}
+		cryptogramByKey.push_back(subMessage);
+	}
+	return cryptogramByKey;
 }
 
 std::map<std::string,std::vector<int> > Kasisky::getRepeatedNgrams()

@@ -13,6 +13,7 @@ public:
 	KasiskyTests();
 	void estimateKeyLengthTest();
 	void determineRepeatedNgramsTest();
+	void separateCryptogramByKeyTest();
 	void run();
 	virtual ~KasiskyTests();
 };

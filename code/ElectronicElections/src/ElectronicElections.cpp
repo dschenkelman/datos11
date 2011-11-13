@@ -341,6 +341,16 @@ void updateCountVoteAmount(Configuration & configuration)
 
 }
 
+bool file_exists(const char * filename)
+{
+    if (FILE * file = fopen(filename, "r"))
+    {
+        fclose(file);
+        return true;
+    }
+    return false;
+}
+
 int main()
 {
 	bool debug = true;
@@ -354,6 +364,10 @@ int main()
 
 	Log log;
 	log.write("Iniciando sistema", true, true);
+
+	if (!file_exists("Files/Administrator.dat")) {
+		cout << "WARNING: Database not generated. Please contact system administrator." << endl;
+	}
 
 	option login_type[2];
 	login_type[0].label = "Log-In";

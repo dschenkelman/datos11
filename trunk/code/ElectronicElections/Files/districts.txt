@@ -1,69 +1,67 @@
-West Haven
+Auburn
 Stevens Point
 West Springfield
 Houston
 Branson
-Manassas Park
-Hermitage
+Diamond Bar
+Santa Fe Springs
 Allentown
-Sherrill
-Lakewood
-Littleton
+Lakeland
+Phoenix
+Iowa City
 City of Industry
 Athens
-Nampa
-West Allis
+Minot
+Corinth
 Wilkes-Barre
 Needham
-Fernley
+Carson City
 New Madrid
-Forrest City
+Marshall
 Sheboygan
-Rancho Cordova
 Aguadilla
 Springfield
 Wisconsin Rapids
-Farmer City
-Chickasha
-Iowa City
+Pulaski
+Washington
+Bowie
 Kemmerer
-Scottsbluff
-Laurel
-Hammond
-Irvine
-Eureka
-Yakima
+Uniontown
+Lynwood
+Edmond
+Augusta
+Citrus Heights
 Oakland
-Brockton
+Green River
 San Dimas
 Liberal
 El Segundo
 Pine Bluff
 Battle Creek
-Dunkirk
+West Haven
+Cortland
 Missoula
-Ogdensburg
-Sunbury
+Douglas
 San Francisco
 La Crosse
-Carrollton
-Lakeland
+Stafford
+Duncan
+Kearney
 La Habra
 Austin
-Jackson
-Saint Louis
+Bethany
 Kingston
 Calumet City
 Jordan Valley
 Plymouth
-Montpelier
+Fort Worth
 Lockport
 Dana Point
-Phoenix
+Keene
 Rolla
 Rehoboth Beach
-Auburn
-Danville
+Sunnyvale
+Atwater
 Spokane Valley
 Rock Island
 Grand Junction
@@ -71,40 +69,37 @@ Farrell
 White Plains
 Arlington
 Thiensville
-Moline
+Tuscaloosa
 Knoxville
 Rancho Palos Verdes
 Cohoes
-Lima
-Middletown
-Martinsburg
+Buena Park
+Cerritos
+Wheaton
 Rutland
 Myrtle Beach
 Appleton
-Minot
 Eau Claire
-McAlester
-Miami Gardens
-Sheridan
+Elkhart
+Visalia
 Waltham
-Corinth
+Norfolk
 Santa Clara
 Westminster
+Scottsdale
 Covington
 Waukegan
 Fort Smith
+Huntington Beach
 Mentor
 Lowell
 Moreno Valley
 Woodruff
-Citrus Heights
 Covina
-Nichols Hills
-Fairfax
 Guayama
 San Marino
 New Iberia
-Kearney
+Newburyport
 DeKalb
 Flint
 Tustin
@@ -112,10 +107,10 @@ Salisbury
 Lancaster
 Brunswick
 Honolulu
-Davis
-Port Washington
-South Portland
+Ogdensburg
+Watervliet
 Shamokin
+Tempe
 Santa Clarita
 Boston
 Laughlin
@@ -125,217 +120,222 @@ Compton
 Lafayette
 Hialeah
 Eden Prairie
-Fairbanks
 Kenosha
 Saukville
 Florence
 Hazleton
 Bridgeport
-Barre
+Placentia
+Monroe
 Springdale
 Stanton
 Chula Vista
-Lawrence
+Normal
+Chickasha
 Charlotte Amalie
 Agawam
+Brea
 Seaford
 Saint Joseph
 Hastings
+York
 Highland Park
 Woburn
 Oswego
-Altoona
-Rock Springs
+Isle of Palms
 St. Petersburg
 Clairton
-Idaho Falls
-Jacksonville
+Reno
 Macomb
+Mesa
 Olympia
 Erie
 Fort Lauderdale
-Monterey Park
-Rye
-Washington
+Joplin
+Madison
+Fredericksburg
 Morgantown
+Barre
 Areceibo
-South Pasadena
+Long Beach
 Glendora
+Vernon
 Oil City
 New Britain
-Las Vegas
+Rancho Cordova
 Monongahela
 Gilbert
-Uniontown
-Cortland
-Lake Charles
+Oxford
+Dunkirk
+Hermosa Beach
 Chelsea
 Des Moines
 Lawndale
 Wausau
-Peekskill
+Kona
 Sandpoint
-Woonsocket
-Lynwood
+Fairmont
+Laurel
 Yazoo City
 Paducah
 Tucson
 North Platte
 Juneau
 Signal Hill
-Claremore
-Edmond
+Suffolk
+Irvine
 Lahaina
 East Hartford
 Maywood
 Baytown
 Decatur
-Little Rock
 Portsmouth
-Las Cruces
+Orangeburg
 Lander
 Fallon
 Stockton
 Boulder Junction
-Orange
+Phenix City
 Newport Beach
 Fort Dodge
 Hollywood
 Homer
+Chester
 Somersworth
+Lawrence
 Arcadia
 Bozeman
-Independence
-Opelousas
-Loudon
-Fall River
+Brockton
+Bellflower
+Dover
 Jersey City
-Duncan
-Louisville
+Geneva
+Clearwater
 Jonesboro
 Murray
 Milwaukee
 Downey
-Victoria
+North Pole
 Malden
-Williston
 Charlottesville
 Vacaville
 Fontana
 Alpharetta
 Hattiesburg
 San Jose
-Kahului
+Ventura
 Laguna Niguel
+Cincinnati
 North Little Rock
 Meadville
-Baldwin Park
-Centennial
-Dalton
+Mesquite
+Broken Arrow
 Vergennes
-West Sacramento
+Tyler
 Kenner
 Brigham City
+Martinsburg
 Beaumont
 Rapid City
 Alhambra
 Olean
 Batavia
+Wilson
 New Brunswick
 High Point
-Corpus Christi
+Gloversville
 Utica
-Benton Harbor
+Portland
+Goose Creek
 Toledo
 Malibu
 Alexandria
 Johnstown
 Beckley
-Cranston
+Boulder
 Blacksburg
 Concord
-Logan
+Salinas
 West Warwick
 Detroit
 Titusville
-Carson City
-Chicopee
 North Las Vegas
-Syracuse
 Grand Island
+West Covina
 Muskegon
 Ontario
 Torrance
 Sacramento
-Douglas
+Miami Gardens
 Jeannette
 Cumberland
 West Hollywood
 Bloomington
 Kingsport
-Wisconsin Dells
+Rome
+Terre Haute
 Gaithersburg
 Muskogee
 Turlock
 Bell Gardens
 Hampton
 Santa Barbara
-Rhinelander
-Dodge City
+Riverton
 Garden Grove
 Norman
 Roanoke
 West Valley City
-Clearwater
-Ann Arbor
+Louisville
+Beacon
 Statesboro
 Clarksburg
-Shreveport
-Lynchburg
+Great Falls
+Sedalia
 Reading
 Cruz Bay
 Seward
 Sutter Creek
 Mankato
 Fulton
-Fremont
-Cypress
-Durant
+The Dalles
+Manitowoc
+Monrovia
+Kettering
+Santa Monica
 Vineland
 Duluth
 Bandon
+Mobile
 Plano
-Williamsburg
-North Pole
-Huntsville
-Biloxi
-Suffolk
+Victoria
+Nichols Hills
 Monterey
 Brookings
-Wilmington
+Frederick
 Enid
 Moraga
 Aspen
 Elizabeth City
-Carolina
+Rolling Hills
 Johnson City
 Sturgis
 Bandera
+Gatlinburg
 Pass Christian
 Fort Wayne
 Burbank
-Menomonee Falls
 Gallup
 Wynne
 Wheeling
-La Verne
+Darlington
+Camden
+Yigo
 Chico
 Gulfport
 Glens Falls
 Pascagoula
 West Hartford
-Plantation
-Vancouver
+Saint Louis
 San Antonio
 Union City
 Steubenville
@@ -344,17 +344,18 @@ Akron
 Marquette
 Melrose
 Weirton
-Canton
 North Tonawanda
 Midwest City
-Buena Park
+Lima
+Hoboken
 Lower Burrell
 Christiansted
 Tallahassee
 Perth Amboy
 Ocean City
+Rockford
 Forest Lake
-Anderson
+Vancouver
 Lexington
 Port Orford
 Oak Ridge
@@ -362,90 +363,94 @@ Ponce
 Valencia
 Fayetteville
 Bend
-Hermosa Beach
+Ypsilanti
+Lake Charles
 Gary
-Placentia
-Yigo
+Meridian
+Forrest City
+Nenana
 Auburn Hills
-Orangeburg
-Ventura
+Franklin
+Webster Groves
+Kahului
 Elko
-Green River
-New Albany
-Santa Fe Springs
+Dalton
+Cheyenne
 Sierra Madre
 Weymouth
 Ada
-New Orleans
-Frederick
+Roswell
+Davenport
+Pittsfield
+Los Alamitos
 Fresno
 Holyoke
-The Dalles
-Keene
+Littleton
+New Albany
 Mequon
-Rockford
-Fort Worth
+Prescott
+Kennewick
 Peoria
 Rialto
 Vail
 Gloucester
-Kennewick
+Danville
 Oro Valley
 Valdez
 Nashville
-Monrovia
+Farmer City
 Milford
 Plainfield
-Hot Springs
+Kennesaw
 Sault Ste. Marie
 Sioux City
 Twin Falls
 Rockville
-Tacoma
+Altoona
 Peru
 Pembroke Pines
+Bentonville
 Bowling Green
+Laredo
 Tampa
 Wichita Falls
-Yukon
-Thousand Oaks
+Gilette
 Kankakee
-Laguna Woods
+Williamsburg
 Taylorsville
 Owensboro
 Denver
 Carbondale
 Michigan City
 Bethlehem
-Kennesaw
+Hot Springs
 Mandan
 San Clemente
 Commerce
 Temecula
 Pittsburgh
 New Bedford
-Ypsilanti
-Laredo
+Cedarburg
+Carolina
 South Bend
 Omaha
-Tuscaloosa
+Moline
 Northampton
 Merizo
 Alamogordo
 Palm Springs
-Agoura Hills
+West Bend
 New Rochelle
 Butte
 North Chicago
 Council Bluffs
 St. Marys
-Warner Robins
-Scranton
+Pullman
+Pocatello
 Hartland
 Greenfield
 Bessemer
-Roseville
-Ardmore
+Fall River
 Troy
 Clarksville
 Port St. Lucie
@@ -457,101 +462,92 @@ Hidden Hills
 Sugar Land
 Casper
 Overland Park
+Paramount
 Belpre
 Corry
 Redondo Beach
 Baton Rouge
 Atlantic City
-Nome
 Irving
 Grambling
-Miami
 Oxnard
 Moorhead
 Jenks
 Mechanicville
-Reno
-Galveston
-Kent
+Hilo
 Nacogdoches
-Memphis
+La Palma
 Palo Alto
 Indio
 Cary
-Daly City
+Newport News
 Cody
-DuBois
-Derby
+Chicopee
 Mission Viejo
 Cedar Rapids
 Del Rio
 Rocky Mount
 Duarte
-Sun Valley
-Redding
+Peabody
 San Juan
-Middlebury
 Redlands
-Boulder City
-Hanahan
-Gilette
+Buffalo
+Chandler
+West Allis
+Thousand Oaks
 Henderson
-Everett
-Cedar City
-La Jolla
+Claremont
+Newton
 Cape Coral
+Cape Girardeau
 Hutchinson
 Cedar Falls
 Pasadena
-Portland
+West Lafayette
+Williston
 Yuma
-Cedarburg
-Gloversville
+Corpus Christi
 Warwick
-Topeka
+Laguna Woods
 Parker
 Parkersburg
-Stafford
+Idabel
 Egg Harbor
 Costa Mesa
 Urbana
 Staunton
 El Paso
 West Palm Beach
-Norfolk
 Williamsport
 Asheville
-Goose Creek
 Norton
 Deadwood
 La Mirada
-Blythe
+Superior
+Vallejo
 Revere
 Lawrenceville
 Oshkosh
 Champaign
-North Charleston
 El Cerrito
 Nashua
 Kalamazoo
 Newark
 San Diego
 Artesia
+Bossier City
 Pittston
 Kokomo
-Morgan City
-Waycross
+Carrollton
 Seal Beach
 Atlanta
-Radford
-Bethany
+Las Cruces
 Paterson
 Bellingham
 Coos Bay
-Meridian
 Texarkana
-Chicago
-Helena
+Abilene
+Benton Harbor
 Fullerton
 Fond du Lac
 Beverly
@@ -561,30 +557,32 @@ Hamilton
 Lake Forest
 Billings
 Evansville
-Great Falls
+Shreveport
 Sioux Falls
 Niagara Falls
-Santa Monica
-Davenport
-Oxford
+Durant
+Huntsville
+Brownsville
+Scottsbluff
+Chino Hills
 Worland
 Princeton
-Geneva
+Topeka
 Schaumburg
 Schenectady
+Ithaca
 Lodi
 Stillwater
 Sandy
-Baltimore
+Lomita
 Chesapeake
 Moore
-Pittsfield
 Harrisburg
-Salinas
 Shawnee
+Mount Vernon
 Stamford
 Hayward
-Enfield
+Spartanburg
 Georgetown
 Sierra Vista
 Rosemead
@@ -592,28 +590,30 @@ Attleboro
 Natchez
 Thibodaux
 Sister Bay
-Quincy
+Middlebury
+Carson
 Marlborough
-Abilene
+Chicago
 Manchester
+Connellsville
 Minneapolis
 Burlington
 Plattsburgh
-Providence
+Tok
 Winnemucca
 LaGrange
 Montebello
 Bismarck
 Hoover
 Saint Paul
-McKeesport
-West Bend
-Ogden
+Warren
+Agoura Hills
 Methuen
 Gainesville
 Hannibal
 New York
 Saratoga Springs
+Lynchburg
 South El Monte
 Los Angeles
 Vermillion
@@ -621,15 +621,14 @@ Yorba Linda
 San Mateo
 Aliso Viejo
 Natchitoches
-Medford
+Virginia Beach
 Fort Collins
-Rochester
-Colorado Springs
+Jackson
 Saginaw
 Watertown
 Saint Cloud
 Brown Deer
-Waterbury
+Fremont
 Anaheim
 Dubuque
 Rensselaer
@@ -637,144 +636,151 @@ McAllen
 Manhattan Beach
 Shelton
 Laguna Hills
+Hudson
 Greensburg
 Sonoma
 Amesbury
 Farmington
 College Station
-Little Falls
+Laconia
 Berlin
 Coral Springs
 Ruston
+Santa Cruz
 Laguna Beach
 Arvada
 Houma
 Oneida
-Tamuning
+Hollister
 Birmingham
 Fairfield
 Hawaiian Gardens
-Ansonia
-Savannah
-Healdsburg
+Sharon
+Sunbury
+New Orleans
 Santa Fe
 Richmond
+Bradbury
 Hickory
 Youngstown
 Gettysburg
-Leominster
-San Fernando
-Ames
+Sandy Springs
+Boise
 Raleigh
-Pocatello
+Scranton
 Brooklyn Park
 Grand Forks
 Coatesville
 Half Moon Bay
-Kettering
+Easton
 Annapolis
+East St. Louis
 La Habra Heights
-Chino Hills
+Manassas Park
 Passaic
 Tonawanda
 Nanticoke
-Paramount
+Fernley
+South Burlington
 Evanston
 Beaver Falls
-Fredericksburg
-Augusta
+Eureka
+Rancho Santa Margarita
 Ephraim
 Janesville
 Brookfield
 Delta Junction
-Terre Haute
+Wisconsin Dells
 Morrison
-Elkhart
+Aliquippa
 Waco
 Sitka
-Wilson
-Salt Lake City
+Port Washington
 Worcester
-Watervliet
+South Portland
 Calabasas
 Effingham
 Saipan
 Fajardo
 Aberdeen
+Huntington Park
 Columbus
-Mount Vernon
-Mobile
+Jacksonville
+Miami
 Caguas
-Webster Groves
-Reedsport
-Fairmont
-Hudson
+Ardmore
+Woonsocket
+Rye
 Kearns
-Cerritos
-San Luis Obispo
+Little Rock
 Provo
+Rochester
 Butler
 Temple City
-Corvallis
+Scarborough
 La Puente
 St. George
 Norwalk
 Taunton
 Pomona
-West Covina
+Hartford
+Port Arthur
+Waycross
 Guthrie
 Port Huron
-Eatontown
-Modesto
 Starkville
 Midland
-Franklin
+Peekskill
+Middletown
 Seattle
 Santa Rosa
+Quincy
 Lufkin
+Monterey Park
 Longview
-Jeffersonville
+Waterbury
+Dayton
 San Angelo
 Duquesne
-Nenana
-Riverton
-Los Alamitos
-Prescott
+Claremore
+Rhinelander
+Charleston
+Canandaigua
+Menomonee Falls
 Durham
 Jamestown
 Valdosta
 Gardena
-Manhattan
-Greensboro
+Morgan City
 Two Rivers
 Crown Point
 Easthampton
 Aurora
 New Kensington
-Peabody
+Sun Valley
 Gardner
 San Rafael
-Trenton
-Ithaca
-Bossier City
+Hanahan
+San Gabriel
 East Lansing
-Lincoln
+Corvallis
 Mount Pleasant
-Tempe
-Beacon
+Garland
+Ann Arbor
 Bell
 Philadelphia
-Spartanburg
+Enfield
 Hagerstown
-Camden
+Salt Lake City
 Montgomery
 Binghamton
 Galesburg
+Pottsville
 Pasco
 Hope
 Spokane
 Beverly Hills
-Wheaton
+Manassas
 Newburgh
 Clovis
 Avalon
@@ -783,9 +789,7 @@ San Bernardino
 Falls Church
 Pawtucket
 Anchorage
-Monroe
 Rancho Cucamonga
-Lubbock
 Norwich
 Glen Cove
 West Jordan
@@ -793,20 +797,19 @@ Bayamon
 Saint Albans
 Klamath Falls
 Muncie
-Lynn
 Pueblo
-Laconia
+Lynn
+Little Falls
 Simi Valley
+West Memphis
 Fountain Valley
-Woodward
+Beloit
 Odessa
-Visalia
+Slidell
 Rolling Hills Estates
 Apple Valley
 Haverhill
 Latrobe
-Atwater
-Grafton
 Bremerton
 Joliet
 Newport
@@ -815,172 +818,169 @@ Oklahoma City
 Meriden
 Elsmere
 Winooski
-Hopkinsville
+Anderson
 New Haven
-Chicago Heights
+Ogden
 New Castle
-Beloit
-Walla Walla
+Woodward
+Moultrie
 Oneonta
 San Juan Capistrano
 North Adams
-Charleston
-Hilo
+Barrow
+Kent
 Lock Haven
+Biddeford
 Palos Verdes Estates
 Bradford
-Murfreesboro
+College Park
 Albany
-Manitowoc
+Cypress
 Escondido
 Chattanooga
-La Palma
+Memphis
 Racine
 Nogales
 Macon
-Merced
-Slidell
+Derby
 Hornell
-Hollister
+Tamuning
 Inglewood
 Albuquerque
+Greensboro
 Bangor
+Jeffersonville
 Gold Beach
 Palmdale
 Yonkers
 Port Jervis
-Isle of Palms
 Cicero
-Bellflower
-Normal
-Newport News
+Opelousas
+Hermitage
+Davis
 Salem
-Rohnert Park
 Bay City
 Grass Valley
 Cape May
-Frederiksted
-Rolling Hills
+DuBois
 New London
 Alameda
 Eufaula
 Vincennes
-Virginia Beach
 Catskill
-West Lafayette
+Rohnert Park
 Gadsden
 Belleville
-Pierre
+Durango
 Frisco
-Tyler
+West Sacramento
 Narragansett
 Huntington
-Boulder
+Cranston
 Torrington
 Somerville
 Dickinson
-Villa Park
-Murrieta
 Columbia
-Barrow
+Syracuse
 Mason City
 Wichita
-West Memphis
+Yakima
+Biloxi
 Santa Ana
 Grand Rapids
 Corona
+Chicago Heights
 Lansing
-Ashland
+Glendale
 Lewiston
-Livonia
+Lincoln
+Wilmington
 Gastonia
 Lebanon
 Dallas
+Sherrill
+Hopkinsville
 Dothan
 Pendleton
 Culver City
 Naperville
+Centennial
 Ketchikan
-El Monte
+Cedar City
 Agat
 Westlake Village
-Kansas City
 Laramie
-Hartford
+Frederiksted
 Westfield
 Flagstaff
-East St. Louis
+Fairfax
 Anaconda
-Marshall
+Ansonia
 Powell
-Buffalo
-Lomita
+Boulder City
+Livonia
+Baltimore
 Cairo
 Parma
 Eugene
 Winston-Salem
-Frankfort
-Tok
+Providence
 International Falls
-Sandy Springs
+Merced
 Astoria
-Danbury
-Boise
+San Fernando
 Dixon
-Garland
+Minnetonka
 Bristol
 Charlotte
 Nevada City
 Cambridge
 Jeffersontown
-Moultrie
 Elmira
 East Rutherford
 Tulsa
 Orlando
-Roswell
+Reedsport
 Asbury Park
-Fargo
 Guayanilla
-Idaho Springs
+Modesto
 Basin
 Bartlesville
-Canandaigua
-Claremont
+Fitchburg
+Daly City
+Everett
 Berkeley
 Marietta
 Wahoo
-Mesquite
 Richland
 Selma
 Lawton
 Jefferson City
 Valparaiso
-Newton
-Dover
+Orange
 Chino
 Bay St. Louis
-College Park
-Manassas
+Murfreesboro
+La Jolla
+Pierre
 Truth or Consequences
 Kalispell
 Indianapolis
-Newcastle
 Whittier
-Scarborough
+Fairbanks
 Marshfield
 Green Bay
+Montpelier
 Burlingame
 Zanesville
-Glendale
+Ashland
 Clemson
-Diamond Bar
-Thomasville
+El Monte
+La Verne
 Orem
-Broken Arrow
 Cleveland
 Sanford
-Aliquippa
+Loudon
 Miami Beach
 Tupelo
 Irwindale

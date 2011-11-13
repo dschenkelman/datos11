@@ -13,6 +13,7 @@ RM := rm -rf
 -include src/Vigenere/subdir.mk
 -include src/VariableBlocks/subdir.mk
 -include src/RSA/subdir.mk
+-include src/Menu/subdir.mk
 -include src/Indexes/subdir.mk
 -include src/Helpers/subdir.mk
 -include src/Hash/subdir.mk

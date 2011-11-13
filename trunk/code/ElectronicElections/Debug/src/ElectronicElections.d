@@ -89,7 +89,7 @@ src/ElectronicElections.d src/ElectronicElections.o: \
  ../src/Indexes/../VariableBlocks/RecordMethods.h \
  ../src/Indexes/DistrictCounts.h ../src/Indexes/CountId.h \
  ../src/Indexes/DistrictCountsMethods.h ../src/Indexes/CountId.h \
- ../src/Vigenere/VigenereCipher.h
+ ../src/Vigenere/VigenereCipher.h ../src/Vigenere/Kasisky.h
 
 ../src/BlocksTests/RLVBlockFileTests.h:
 
@@ -326,3 +326,5 @@ src/ElectronicElections.d src/ElectronicElections.o: \
 ../src/Indexes/CountId.h:
 
 ../src/Vigenere/VigenereCipher.h:
+
+../src/Vigenere/Kasisky.h:

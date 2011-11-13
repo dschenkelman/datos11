@@ -101,7 +101,8 @@ void ElectionsListMethods::print(const char* recordBytes, int recordSize)
 	ElectionsList list("Lista0", 22, 12, 2000, "Intendente");
 	list.setBytes((char*)recordBytes);
 
-	cout << "(" << list.getName() << ", " << list.getCharge()<< ", " << (short)list.getDay() << "/" << (short)list.getMonth() << "/" << list.getYear() << ")" << endl;
+//	cout << "(" << list.getName() << ", " << list.getCharge()<< ", " << (short)list.getDay() << "/" << (short)list.getMonth() << "/" << list.getYear() << ")" << endl;
+	cout << "Nombre: " << list.getName() << ". Cargo: " << list.getCharge() << ". Fecha: " << (short)list.getDay() << "/" << (short)list.getMonth() << "/" << list.getYear() << endl;
 }
 
 void ElectionsListMethods::printKey(const char* key, int recordSize)

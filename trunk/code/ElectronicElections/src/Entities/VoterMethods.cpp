@@ -51,8 +51,9 @@ void VoterMethods::print(const char* recordBytes, int recordSize)
 
 	v.setBytes((char*) recordBytes);
 
-	cout << "(" << v.getDni() << ", " << v.getNames() << ", " << v.getAddress() << ", "
-			<< v.getDistrict() << ")" << endl;
+//	cout << "(" << v.getDni() << ", " << v.getNames() << ", " << v.getAddress() << ", "
+//			<< v.getDistrict() << ")" << endl;
+	cout << "DNI: " << v.getDni() << endl;
 }
 
 void VoterMethods::printKey(const char* key, int recordSize)

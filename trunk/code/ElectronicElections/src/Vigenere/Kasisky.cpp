@@ -6,6 +6,7 @@
  */
 
 #include "Kasisky.h"
+#include "VigenereCipher.h"
 #include <string>
 #include <string.h>
 #include <iostream>
@@ -23,37 +24,67 @@ void Kasisky::attack(string& message, int nGramLength)
 	this->determineRepeatedNgrams(message,nGramLength);
 	this->calculateDistances(message, nGramLength);
 	vector<int> keyLength = this->estimateKeyLength();
-	int moreLikely = keyLength[0];
-	vector<string> cryptogramByKey = this->separateCryptogramByKey(message,moreLikely);
+
+
 	vector<string> messageByKey;
 
-	for (unsigned int i = 0; i < cryptogramByKey.size(); i++)
+	for (int k = 0; k < 3; k++)
 	{
-		map<char,double> frequencies = this->getFrequencies(cryptogramByKey[i]);
-		map<char,double>::iterator it;
-		map<char,char> dictionary;	// map < crypted , decrypted >
-		string subMessage;
-		for (it = frequencies.begin(); it != frequencies.end(); it++)
-		{
-			dictionary[(*it).first] = this->getCharacterByFrequency((*it).second);
-			//dictionary[(*it).first] = 'f';
-		}
-		for (unsigned int j = 0; j < cryptogramByKey[i].size(); j++)
-		{
-			subMessage.push_back(dictionary[cryptogramByKey[i][j]]);
-		}
-		messageByKey.push_back(subMessage);
-	}
+		int moreLikely = keyLength[k];
+		vector<string> cryptogramByKey = this->separateCryptogramByKey(message,moreLikely);
 
-	string decryptedMessage;
-	for (unsigned int i = 0; i < messageByKey[0].size();i++)
-	{
-		for (int j = 0; j < moreLikely && j < messageByKey[j].size(); j++)
+		for (unsigned int i = 0; i < cryptogramByKey.size(); i++)
 		{
-			decryptedMessage.push_back(messageByKey[j][i]);
+			map<char,double> frequencies = this->getFrequencies(cryptogramByKey[i]);
+			map<char,double>::iterator it;
+			map<char,char> dictionary;	// map < crypted , decrypted >
+			string subMessage;
+			char moreFrequent = 'z';
+			int frequency = 0;
+			// popMoreFrequent
+
+			for (it = frequencies.begin(); it != frequencies.end(); it++)	//get More Frequent from cryptogram
+			{
+				//dictionary[(*it).first] = this->getCharacterByFrequency((*it).second);
+				//dictionary[(*it).first] = 'f';
+				if ((*it).first > frequency)
+				{
+					moreFrequent = (*it).first;
+					frequency = (*it).second;
+				}
+			}
+
+			char moreFrequentSpanish = this->getCharacterByFrequency(frequency);
+			char key = moreFrequent - moreFrequentSpanish;
+			char alphabethLength = 126 - 32;
+			if (key < 0)
+			{
+				key += alphabethLength;
+			}
+			string keyy(&key);
+			VigenereCipher vg;
+			subMessage = vg.decript(cryptogramByKey[i],keyy);
+			/*
+			for (unsigned int j = 0; j < cryptogramByKey[i].size(); j++)
+			{
+				VigenereCipher vg;
+				string keyy(key);
+
+			}*/
+			messageByKey.push_back(subMessage);
 		}
+
+		string decryptedMessage;
+		for (unsigned int i = 0; i < messageByKey[0].size();i++)
+		{
+			for (int j = 0; j < moreLikely && j < messageByKey[j].size(); j++)
+			{
+				decryptedMessage.push_back(messageByKey[j][i]);
+			}
+		}
+		cout << endl << "Using Key Length: " << keyLength[k];
+		cout << endl << "Decrypted: " << decryptedMessage;
 	}
-	cout << endl << "Decrypted: " << decryptedMessage;
 }
 
 void Kasisky::determineRepeatedNgrams(string& message, int nGramLength)

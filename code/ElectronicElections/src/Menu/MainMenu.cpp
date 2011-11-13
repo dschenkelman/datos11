@@ -79,6 +79,13 @@ using namespace std;
 
 MainMenu::MainMenu(string& file) : configuration(file), dataFileLoader(configuration)
 {
+	bool fileExists = this->file_exists(file.c_str());
+
+	if(fileExists)
+	{
+		cout << "WARNING: Database not generated. Please contact system administrator." << endl;
+	}
+
 	this->configuration.read();
 	this->dataFileLoader = DataFileLoader(this->configuration);
 	this->dataFileLoader.calculateBlockAmounts();

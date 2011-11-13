@@ -5,7 +5,6 @@
  *      Author: lejosdelcielo
  */
 
-
 #include "MainMenu.h"
 #include <algorithm>
 #include <sys/stat.h>

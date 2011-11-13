@@ -15,20 +15,20 @@
 
 class Kasisky
 {
+	static const int CANDIDATE_KEYS = 3;
 	std::map<std::string, std::vector<int> > repeatedNgrams;
 	std::vector<int> distances;
-	//std::vector<int> trialDivision(int number);
-
-public:
+	std::vector<int> estimatedKeyLengths;
+	std::vector<std::string> cryptogramsByKey;
 	char getCharacterByFrequency(double frequency);
+public:
 	void calculateDistances(std::string& message, int nGramLength);
 	void determineRepeatedNgrams(std::string& message, int nGramLength);
 	std::map<std::string, std::vector<int> > getRepeatedNgrams();
-	std::vector<int> estimateKeyLength();
-	std::vector<std::string> separateCryptogramByKey(std::string message, int keyLength);
+	void estimateKeyLength();
+	void separateCryptogramByKey(std::string message, int keyLength);
 	std::map<char, double> getFrequencies (std::string cryptogram);
 	void attack(std::string& message, int nGram);
-
 	Kasisky();
 	virtual ~Kasisky();
 };

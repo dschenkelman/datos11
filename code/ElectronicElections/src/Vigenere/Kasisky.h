@@ -26,6 +26,7 @@ public:
 	std::map<std::string, std::vector<int> > getRepeatedNgrams();
 	std::vector<int> estimateKeyLength();
 	std::vector<std::string> separateCryptogramByKey(std::string message, int keyLength);
+	std::map<char, double> getFrequencies (std::string cryptogram);
 	void attack(std::string& message, int nGram);
 
 	Kasisky();

@@ -68,6 +68,34 @@
 
 using namespace std;
 
+/*int main()
+{
+	option menuOption[2];
+	menuOption[0].label = "Run Tests";
+	menuOption[1].label = "Run Aplication";
+
+	int mo = 0;
+	Menu menu = Menu(menuOption, 2);
+	do
+	{
+		mo = menu.ask();
+	} while (mo != 1 && mo != 0);
+
+	string fileName = "Files/config.txt";
+	MainMenu mainMenu(fileName);
+
+	if (mo == 0)
+	{
+		mainMenu.runTests();
+	}
+
+	else if (mo == 1)
+	{
+		mainMenu.runApplication();
+	}
+	return 1;
+}*/
+
 bool countIdCmp (CountId c1,CountId c2)
 {
 	if (c1.getYear() < c2.getYear())

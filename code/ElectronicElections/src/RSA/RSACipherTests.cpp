@@ -72,11 +72,15 @@ bool RSACipherTests::testCipherMessage()
 	int64 criptKey = publicKey.exp;
 	int64 decriptKey = privateKey.exp;
 	int64 n = publicKey.n;
-	char* charMessage = (char*)message.c_str();
-	char cipheredMessage[message.length()];
-	char decriptedMessage[message.length()];
-	rsaCipher.cipherMessage(charMessage, criptKey, n, cipheredMessage);
-	rsaCipher.cipherMessage(cipheredMessage, decriptKey, n, decriptedMessage);
+	char charMessage[message.length()+1];
+	memcpy(charMessage, (char*)message.c_str(), message.length()+1);
+	int len=strlen(charMessage);
+	//memset(charMessage+(message.length()), 0, 1);
+
+	char cipheredMessage[message.length()+1];
+	char decriptedMessage[message.length()+1];
+	rsaCipher.cipherMessage(charMessage, criptKey, n, cipheredMessage, len+1);
+	rsaCipher.cipherMessage(cipheredMessage, decriptKey, n, decriptedMessage, len+1);
 
 	if (strcmp(charMessage, decriptedMessage) ==0 )
 	{

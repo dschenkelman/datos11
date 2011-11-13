@@ -9,6 +9,7 @@
 #define RSAKEY_H_
 
 typedef long long int64;
+typedef unsigned long long uInt64;
 
 struct RSAKey
 {

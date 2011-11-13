@@ -70,6 +70,7 @@ private:
 	void updateCount();
 	void recoverFile();
 	void decryptReport();
+	bool file_exists(const char* filename);
 public:
 	MainMenu(string& configurationFilePath);
 	void runTests();

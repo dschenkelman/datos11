@@ -13,7 +13,7 @@ private:
 	bool isLeapYear(short year);
 	bool isValidMonth(char month);
 	bool isValidDay(char day, char month);
-	bool isInArray(char month, char months[]);
+	bool isInArray(char month, char months[], int arraySize);
 public:
 	Validation();
 	bool isValidDate(short year, char month, char day);

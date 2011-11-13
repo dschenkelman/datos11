@@ -30,4 +30,4 @@ public:
 	virtual ~HashTest();
 };
 
-#endif HASHTEST_H_
+#endif //HASHTEST_H_

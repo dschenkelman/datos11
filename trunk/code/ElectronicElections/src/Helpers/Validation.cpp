@@ -45,9 +45,11 @@ bool Validation::isValidDay(char day, char month)
 	}
 
 	char longMonths[] = {1, 3, 5, 7, 8, 10, 12};
+	int longMonthsSize = 7;
 	char shortMonths[] = {4, 6, 9, 11};
+	int shortMonthsSize = 4;
 
-	if(this->isInArray(month, shortMonths))
+	if(this->isInArray(month, shortMonths, shortMonthsSize))
 	{
 		if(day > 30)
 		{
@@ -57,7 +59,7 @@ bool Validation::isValidDay(char day, char month)
 		return true;
 	}
 
-	if(this->isInArray(month, longMonths))
+	if(this->isInArray(month, longMonths, longMonthsSize))
 	{
 		if(day > 31)
 		{
@@ -80,10 +82,8 @@ bool Validation::isValidDay(char day, char month)
 	return false;
 }
 
-bool Validation::isInArray(char month, char months[])
+bool Validation::isInArray(char month, char* months, int arraySize)
 {
-	int arraySize = sizeof(months)/sizeof(month);
-
 	for(int i = 0; i < arraySize; i++)
 	{
 		if (months[i] == month)

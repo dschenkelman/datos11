@@ -10,6 +10,8 @@
 #include <string>
 #include <sstream>
 
+using namespace std;
+
 Menu::Menu(option *opts, int size) {
 	this->options = opts;
 	this->size = size;

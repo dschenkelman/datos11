@@ -40,7 +40,8 @@ void AdministratorMethods::print(const char* recordBytes, int recordSize)
 	Administrator adm("adm", "adm");
 	adm.setBytes((char*)recordBytes);
 
-	cout << "(" << adm.getName() << "," << adm.getPassword() << ")";
+//	cout << "(" << adm.getName() << "," << adm.getPassword() << ")";
+	cout << "Nombre: " << adm.getName() << " Contraseña: " << adm.getPassword() << endl;
 }
 
 void AdministratorMethods::printKey(const char* key, int recordSize)

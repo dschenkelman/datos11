@@ -120,7 +120,8 @@ void CandidateMethods::print(const char* recordBytes, int recordSize)
 	Candidate c(12, 12, 2000, "Invalid", "Invalid", 10101010);
 	c.setBytes((char*)recordBytes);
 
-	cout << "(" << c.getListName() << " " << c.getCharge() << " " << c.getDni() << ")" << endl;
+//	cout << "(" << c.getListName() << " " << c.getCharge() << " " << c.getDni() << ")" << endl;
+	cout << "Lista: " << c.getListName() << ". Cargo: " << c.getCharge() << ". DNI: " << c.getDni() << endl;
 }
 
 void CandidateMethods::printKey(const char* key, int recordSize)

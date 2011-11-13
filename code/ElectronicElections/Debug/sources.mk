@@ -27,6 +27,7 @@ src/Voting \
 src/Vigenere \
 src/VariableBlocks \
 src/RSA \
+src/Menu \
 src/Indexes \
 src/Helpers \
 src/Hash \

@@ -52,14 +52,22 @@ void ChargeMethods::print(const char* recordBytes, int recordSize)
 
 	c.setBytes((char*) recordBytes);
 
-	cout << "(" << c.getCharge();
+//	cout << "(" << c.getCharge();
+//
+//	for(int i = 0; i < c.getChargeList().size(); i++)
+//	{
+//		cout << ", " << c.getChargeList().at(i);
+//	}
+//
+//	cout << ")" << endl;
+	cout << c.getCharge();
 
 	for(int i = 0; i < c.getChargeList().size(); i++)
 	{
 		cout << ", " << c.getChargeList().at(i);
 	}
 
-	cout << ")" << endl;
+	cout << endl;
 }
 
 void ChargeMethods::printKey(const char* key, int recordSize)

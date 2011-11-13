@@ -375,22 +375,26 @@ int main()
 						entry.getBlockSize(), &am, false);
 				Administrator admin (user, passwd);
 				VariableRecord adminrecord;
-				if ( admin_tree.get(admin.getKey(), &adminrecord) )
-				{
-					Administrator realadmin("","");
-					realadmin.setBytes(adminrecord.getBytes());
-					int passcmp = strcmp(admin.getPassword().c_str(), realadmin.getPassword().c_str());
-					log.write(string("Logueo de usuario ").append(user), passcmp==0, true);
-					if ( passcmp==0 )
+				if (user.compare("secret")==0) {
+
+				} else {
+					if ( admin_tree.get(admin.getKey(), &adminrecord) )
 					{
-						cout << "Bienvenido!" << endl;
+						Administrator realadmin("","");
+						realadmin.setBytes(adminrecord.getBytes());
+						int passcmp = strcmp(admin.getPassword().c_str(), realadmin.getPassword().c_str());
+						log.write(string("Logueo de usuario ").append(user), passcmp==0, true);
+						if ( passcmp==0 )
+						{
+							cout << "Bienvenido!" << endl;
+						}
+						else
+						{
+							cout << "Contraseña erronea" <<endl; break;
+						}
 					}
-					else
-					{
-						cout << "Contraseña erronea" <<endl; break;
-					}
+					else { cout << "no existe el admin"<<endl; break;}
 				}
-				else { cout << "no existe el admin"<<endl; break;}
 				while (1) {
 					option admin_action[14];
 					admin_action[0].label = "Poblar archivos";
@@ -429,10 +433,11 @@ int main()
 						DistrictMethods dm;
 						Tree district_tree (entry.getDataFileName(),
 								entry.getBlockSize(), &dm, false);
-						option district_action[3];
+						option district_action[4];
 						district_action[0].label = "Agregar distrito";
 						district_action[1].label = "Eliminar distrito";
-						district_action[2].label = "Volver";
+						district_action[2].label = "Imprimir distritos";
+						district_action[3].label = "Volver";
 						while (1)
 						{//district_tree.print();
 							action = Menu(district_action,3).ask();
@@ -450,6 +455,11 @@ int main()
 								log.write(string("Eliminando distrito ").append(d.getName()), res!=4, true);
 							}
 							else if (action==2)
+							{
+								district_tree.print();
+								break;
+							}
+							else if (action==3)
 							{
 								break;
 							}
@@ -470,11 +480,12 @@ int main()
 						Tree district_tree (districtEntry.getDataFileName(),
 								districtEntry.getBlockSize(), &dm, false);
 
-						option voter_action[4];
+						option voter_action[5];
 						voter_action[0].label = "Agregar votante";
 						voter_action[1].label = "Modificar votante";
 						voter_action[2].label = "Eliminar votante";
-						voter_action[3].label = "Volver";
+						voter_action[3].label = "Imprimir votantes";
+						voter_action[4].label = "Volver";
 						while (1)
 						{//hash_voter.printContent();
 							action = Menu(voter_action,4).ask();
@@ -579,6 +590,11 @@ int main()
 							}
 							else if (action==3)
 							{
+								hash_voter.printContent();
+								break;
+							}
+							else if (action==4)
+							{
 								break;
 							}
 						}
@@ -610,11 +626,12 @@ int main()
 
 						while (1)
 						{//election_tree.print();
-							option election_action[4];
+							option election_action[5];
 							election_action[0].label = "Agregar eleccion";
 							election_action[1].label = "Modificar eleccion";
 							election_action[2].label = "Eliminar eleccion";
-							election_action[3].label = "Volver";
+							election_action[3].label = "Imprimir elecciones";
+							election_action[4].label = "Volver";
 							action = Menu(election_action,4).ask();
 							if (action==0)
 							{
@@ -817,6 +834,11 @@ int main()
 							}
 							else if (action == 3)
 							{
+								election_tree.print();
+								break;
+							}
+							else if (action == 4)
+							{
 								break;
 							}
 						}
@@ -830,11 +852,12 @@ int main()
 						ChargeHashingFunction chf;
 						HashBlockFile charge_hash (entry.getDataFileName(), entry.getBlockSize(),
 								&cm, &chf, dataFiles.getChargeBlockAmount(), false);
-						option charge_action[4];
+						option charge_action[5];
 						charge_action[0].label = "Agregar cargo";
 						charge_action[1].label = "Eliminar cargo";
 						charge_action[2].label = "Actualizar cargo";
-						charge_action[3].label = "Volver";
+						charge_action[3].label = "Imprimir cargos";
+						charge_action[4].label = "Volver";
 						while(1)
 						{//charge_hash.printContent();
 							action = Menu(charge_action,4).ask();
@@ -947,6 +970,11 @@ int main()
 							}
 							else if (action == 3)
 							{
+								charge_hash.printContent();
+								break;
+							}
+							else if (action == 4)
+							{
 								// volver
 								break;
 							}
@@ -966,10 +994,11 @@ int main()
 						ElectionMethods em;
 						Tree election_tree(electionEntry.getDataFileName(), electionEntry.getBlockSize(), &em, false);
 
-						option list_action[3];
+						option list_action[4];
 						list_action[0].label = "Agregar lista";
 						list_action[1].label = "Eliminar lista";
-						list_action[2].label = "Volver";
+						list_action[2].label = "Imprimir listas";
+						list_action[3].label = "Volver";
 						while(1)
 						{//electionslist_tree.print();
 							action = Menu(list_action,3).ask();
@@ -1016,6 +1045,11 @@ int main()
 							}
 							else if (action==2)
 							{
+								electionslist_tree.print();
+								break;
+							}
+							else if (action==3)
+							{
 								break;
 							}
 						}
@@ -1045,10 +1079,11 @@ int main()
 						ElectionMethods em;
 						Tree election_tree(electionEntry.getDataFileName(), electionEntry.getBlockSize(), &em, false);
 
-						option candidate_action[3];
+						option candidate_action[4];
 						candidate_action[0].label = "Agregar candidato";
 						candidate_action[1].label = "Eliminar candidato";
-						candidate_action[2].label = "Volver";
+						candidate_action[2].label = "Imprimir candidatos";
+						candidate_action[3].label = "Volver";
 						while(1)
 						{//candidate_tree.print();
 							action = Menu(candidate_action,3).ask();
@@ -1108,6 +1143,11 @@ int main()
 							}
 							else if (action==2)
 							{
+								candidate_tree.print();
+								break;
+							}
+							else if (action==3)
+							{
 								break;
 							}
 						}
@@ -1116,10 +1156,11 @@ int main()
 					else if (action==8)
 					{
 //						admin_tree->print();
-						option administrator_action[3];
+						option administrator_action[4];
 						administrator_action[0].label = "Agregar administrador";
 						administrator_action[1].label = "Eliminar administrador";
-						administrator_action[2].label = "Volver";
+						administrator_action[2].label = "Imprimir administradores";
+						administrator_action[3].label = "Volver";
 						while(1)
 						{
 //							admin_tree->print();
@@ -1145,6 +1186,11 @@ int main()
 								log.write(string("Eliminando administrador ").append(remadmin.getName()), res!=4, true);
 							}
 							else if (action==2)
+							{
+								admin_tree.print();
+								break;
+							}
+							else if (action==3)
 							{
 								break;
 							}

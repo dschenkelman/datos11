@@ -203,7 +203,7 @@ void LeafNode::print()
 	VariableRecord r;
 	int i = 0;
 	this->block->positionAtBegin();
-	std::cout << "Leaf Node:";
+//	std::cout << "Leaf Node:";
 	while(this->block->getNextRecord(&r) != NULL)
 	{
 		this->recordMethods->print(r.getBytes(), r.getSize());

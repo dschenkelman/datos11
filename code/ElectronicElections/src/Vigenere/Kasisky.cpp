@@ -95,6 +95,27 @@ void Kasisky::calculateDistances(string& message, int nGramLength)
 	}
 }
 
+char getCharacterByFrequency(double frequency)
+{
+	const LetterFrequencyPair frequencies[] = {{'e', 13.68},{'a', 12.53},
+					{'o', 8.68},{'s', 7.98},{'r', 6.87},{'n', 6.71},{'i', 6.25},
+					{'d', 5.86},{'l', 4.97},{'c', 4.68},{'t', 4.63},{'u', 3.93},
+					{'m', 3.15},{'p', 2.51},{'b', 1.42},{'g', 1.01},{'v', 0.9},
+					{'y', 0.9},{'q', 0.88},{'h', 0.7},{'f', 0.69},{'z', 0.52},
+					{'j', 0.44},{'x', 0.22},{'w', 0.02},{'k', 0.01}
+			};
+
+	LetterFrequencyPair pair = frequencies[0];
+	for (int i=0; i < 26; i++)
+	{
+		if (frequencies[i].frequency > pair.frequency)
+		{
+			pair = frequencies[i];
+		}
+	}
+
+	return pair.letter;
+}
 
 vector<int> Kasisky::estimateKeyLength()
 {

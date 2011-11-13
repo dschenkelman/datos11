@@ -11,6 +11,7 @@
 #include <map>
 #include <vector>
 #include <map>
+#include "LetterFrequencyPair.h"
 
 class Kasisky
 {

@@ -21,7 +21,8 @@ void KasiskyTests::run()
 {
 	//this->determineRepeatedNgramsTest();
 	//this->estimateKeyLengthTest();
-	this->separateCryptogramByKeyTest();
+	//this->separateCryptogramByKeyTest();
+	this->getFrequenciesTest();
 }
 
 void KasiskyTests::determineRepeatedNgramsTest()
@@ -72,9 +73,30 @@ void KasiskyTests::separateCryptogramByKeyTest()
 	vector<string> separatedCryptogram = k.separateCryptogramByKey(message,moreLikely);
 	for (unsigned int i = 0; i<separatedCryptogram.size(); i++)
 	{
-		cout << endl << "-" << i << endl << separatedCryptogram[i] << endl;
+		cout << endl << "Position Key: " << i << endl << separatedCryptogram[i] << endl;
 	}
 
+}
+
+void KasiskyTests::getFrequenciesTest()
+{
+	string message("6LSOGgYmOJl(dLRNN]Qv.^MJ`QYK^]c^Ug]mYW]a*u}uc z%v!vu|r)rz7NaWY!m7NaWYe#ucdRlVb%c}z?H]LI]UvKTi*ZH[JXZSl3jLbTISQlLm9W]a*uyiu$n)uz{s}r%r;TXbD2e;TXbDvvyi[]WgZ)iv*YUPOT`a\Lm0QSF[P^Yc7QlL]OJ\W]eSPcADfe<LWWQgqmzvyr(r!yt}n%3X^YO{v3X^YOa+qmaTbRk!mz{");
+	Kasisky k;
+	k.attack(message,3);
+	/*map<char,double> frequencies = k.getFrequencies(message);
+	map<char,double>::iterator it = frequencies.begin();
+	cout << "Message: " << message << endl << endl;
+	while (it != frequencies.end())
+	{
+		cout << "char: " << (*it).first << "\tfrequency: " << (*it).second << endl;
+		it++;
+	}
+	float sumaTotal = 0.0;
+	for (it = frequencies.begin(); it != frequencies.end(); it++)
+	{
+		sumaTotal += (*it).second;
+	}
+	cout<< endl << "SUMA TOTAL:" << sumaTotal << endl;*/
 }
 
 KasiskyTests::~KasiskyTests()

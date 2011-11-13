@@ -14,6 +14,7 @@ public:
 	void estimateKeyLengthTest();
 	void determineRepeatedNgramsTest();
 	void separateCryptogramByKeyTest();
+	void getFrequenciesTest();
 	void run();
 	virtual ~KasiskyTests();
 };

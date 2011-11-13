@@ -10,10 +10,9 @@
 
 #include <iostream>
 #include <string>
-using namespace std;
 
-typedef struct {
-	string label;
+typedef struct option {
+	std::string label;
 } option;
 
 class Menu {
@@ -24,7 +23,7 @@ public:
 	Menu(option *opts, int size);
 	virtual ~Menu();
 	int ask();
-	static string raw_input(string label);
+	static std::string raw_input(std::string label);
 };
 
 #endif /* MENU_H_ */

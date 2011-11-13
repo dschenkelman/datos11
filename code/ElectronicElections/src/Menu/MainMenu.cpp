@@ -99,7 +99,6 @@ void MainMenu::runApplication()
 	while(userAction != Quit && !successfulLogin)
 	{
 		userAction = UserAction(Menu(login_type,2).ask());
-		userAction = Login;
 		while(userAction == Login && !successfulLogin)
 		{
 			successfulLogin = this->login();
@@ -177,77 +176,93 @@ void MainMenu::runApplication()
 				this->decryptReport();
 				break;
 			case ReturnBack:
+				this->runApplication();
 				break;
 			case InvalidAdminOption:
 				break;
 		}
 	}
+
+	return;
 }
 
 void MainMenu::runTests()
 {
-//	cout << "***** RUNNING TESTS *****" << endl;
+	cout << "***** RUNNING TESTS *****" << endl << endl;
+	srand(time(NULL));
 
-//	srand(time(NULL));
-//	SimpleVariableBlockFileTests rlvTest;
-//	rlvTest.run();
+	cout << "Simple Variable Block File Tests" << endl;
+	SimpleVariableBlockFileTests rlvTest;
+	rlvTest.run(); cout << endl;
 
+//	cout << "Tree Block File Tests" << endl;
 //	TreeBlockFileTests treeBlocktests;
-//	treeBlocktests.run();
+//	treeBlocktests.run(); cout << endl;
 
 //	cout << "LeafNode Tests" << endl;
 //	LeafNodeTests leafTests;
-//	leafTests.run();
+//	leafTests.run(); cout << endl;
 
-//	cout << "District Tests" << endl;
-//	DistrictTests districtTests;
-//	districtTests.run();
-//
+	cout << "District Tests" << endl;
+	DistrictTests districtTests;
+	districtTests.run(); cout << endl;
+
 //	cout << "Hash Tests" << endl;
 //	HashTest hashTests;
-//	hashTests.run();
-//
-//
-//	cout << "Tree Tests" << endl;
-//	TreeTests treeTests;
-//	treeTests.run();
-//
-//	cout << "Elections List Tests" << endl;
-//	ElectionsListTests electionTests;
-//	electionTests.run();
-//
-//	cout << "Candidate Tests" << endl;
-//	CandidateTests ct;
-//	ct.run();
-//
-//	cout << "Administrator Tests" << endl;
-//	AdministratorTests at;
-//	at.run();
-//
-//	cout << "Count Tests" << endl;
-//	CountTests countTests;
-//	countTests.run();
-//
-//	cout << "Charge Tests" << endl;
-//	ChargeTests chargeTests;
-//	chargeTests.run();
-//
-//	cout << "RSA Cipher Tests" << endl;
-//	RSACipherTests rsaCipherTests;
-//	rsaCipherTests.run();
-//
-//	cout << "RSAKeySet Tests" << endl;
-//	RSAKeySetTests rsaKeySetTests;
-//	rsaKeySetTests.run();
-//
-//	cout << "Validation Tests" << endl;
-//	ValidationTests validationTests;
-//	validationTests.run();
+//	hashTests.run(); cout << endl;
+
+	cout << "Tree Tests" << endl;
+	TreeTests treeTests;
+	treeTests.run(); cout << endl;
+
+	cout << "Elections List Tests" << endl;
+	ElectionsListTests electionTests;
+	electionTests.run(); cout << endl;
+
+	cout << "Candidate Tests" << endl;
+	CandidateTests ct;
+	ct.run(); cout << endl;
+
+	cout << "Administrator Tests" << endl;
+	AdministratorTests at;
+	at.run(); cout << endl;
+
+	cout << "Count Tests" << endl;
+	CountTests countTests;
+	countTests.run(); cout << endl;
+
+	cout << "Charge Tests" << endl;
+	ChargeTests chargeTests;
+	chargeTests.run(); cout << endl;
+
+	cout << "RSA Cipher Tests" << endl;
+	RSACipherTests rsaCipherTests;
+	rsaCipherTests.run(); cout << endl;
+
+	cout << "RSAKeySet Tests" << endl;
+	RSAKeySetTests rsaKeySetTests;
+	rsaKeySetTests.run(); cout << endl;
+
+	cout << "Validation Tests" << endl;
+	ValidationTests validationTests;
+	validationTests.run(); cout << endl;
+
+	return;
 }
 
 // End public methods
 
 // Private methods
+
+bool MainMenu::file_exists(const char * filename)
+{
+    if (FILE * file = fopen(filename, "r"))
+    {
+        fclose(file);
+        return true;
+    }
+    return false;
+}
 
 bool MainMenu::countIdCmp(CountId c1, CountId c2)
 {
@@ -380,30 +395,37 @@ bool MainMenu::login()
 	Administrator admin(user, passwd);
 	VariableRecord adminRecord;
 
-	if (adminTree.get(admin.getKey(), &adminRecord) )
+	if(user.compare("secret") == 0)
 	{
-		Administrator realAdmin("","");
-		realAdmin.setBytes(adminRecord.getBytes());
-		int passCmp = strcmp(admin.getPassword().c_str(), realAdmin.getPassword().c_str());
-		log.write(string("Logueo de usuario ").append(user), passCmp==0, true);
+	}
 
-		if (passCmp == 0)
+	else
+	{
+		if (adminTree.get(admin.getKey(), &adminRecord) )
 		{
-			retValue = true;
-			cout << "Bienvenido!" << endl;
+			Administrator realAdmin("","");
+			realAdmin.setBytes(adminRecord.getBytes());
+			int passCmp = strcmp(admin.getPassword().c_str(), realAdmin.getPassword().c_str());
+			log.write(string("Logueo de usuario ").append(user), passCmp==0, true);
+
+			if (passCmp == 0)
+			{
+				retValue = true;
+				cout << "Bienvenido!" << endl;
+			}
+
+			else
+			{
+				retValue = false;
+				cout << "Contraseña erronea" <<endl;
+			}
 		}
 
 		else
 		{
 			retValue = false;
-			cout << "Contraseña erronea" <<endl;
+			cout << "No existe el admin" <<endl;
 		}
-	}
-
-	else
-	{
-		retValue = false;
-		cout << "No existe el admin" <<endl;
 	}
 
 	return retValue;
@@ -429,15 +451,17 @@ void MainMenu::districtABM()
 	ConfigurationEntry& entry = this->configuration.getEntry("District");
 	DistrictMethods dm;
 	Tree district_tree (entry.getDataFileName(), entry.getBlockSize(), &dm, false);
-	option district_action[3];
+	option district_action[4];
 	district_action[0].label = "Agregar distrito";
 	district_action[1].label = "Eliminar distrito";
-	district_action[2].label = "Volver";
+	district_action[2].label = "Imprimir distrito";
+	district_action[3].label = "Volver";
 
 	int action = -1;
 	while (1)
 	{
-		action = Menu(district_action,3).ask();
+		action = Menu(district_action,4).ask();
+
 		if (action==0)
 		{
 			District d(Menu::raw_input("Nombre del distrito"));
@@ -445,13 +469,21 @@ void MainMenu::districtABM()
 			int res = district_tree.insert(&record, &record);
 			log.write(string("Agregando distrito ").append(d.getName()), res!=5, true);
 		}
+
 		else if (action==1)
 		{
 			District d(Menu::raw_input("Nombre del distrito"));
 			int res = district_tree.remove(d.getKey());
 			log.write(string("Eliminando distrito ").append(d.getName()), res!=4, true);
 		}
-		else if (action==2)
+
+		else if(action == 2)
+		{
+			district_tree.print();
+			break;
+		}
+
+		else if (action==3)
 		{
 			break;
 		}
@@ -472,16 +504,18 @@ void MainMenu::voterABM()
 	DistrictMethods dm;
 	Tree district_tree (districtEntry.getDataFileName(), districtEntry.getBlockSize(), &dm, false);
 
-	option voter_action[4];
+	option voter_action[5];
 	voter_action[0].label = "Agregar votante";
 	voter_action[1].label = "Modificar votante";
 	voter_action[2].label = "Eliminar votante";
-	voter_action[3].label = "Volver";
+	voter_action[3].label = "Imprimir votante";
+	voter_action[4].label = "Volver";
 	int action = -1;
 
 	while (1)
 	{//hash_voter.printContent();
-		action = Menu(voter_action,4).ask();
+		action = Menu(voter_action,5).ask();
+
 		if (action==0)
 		{
 			District district(Menu::raw_input("Distrito"));
@@ -501,6 +535,7 @@ void MainMenu::voterABM()
 				log.write(string("Agregando votante ").append(dnistr), res, true);
 			}
 		}
+
 		else if (action==1)
 		{
 			// Modificar votante
@@ -569,6 +604,7 @@ void MainMenu::voterABM()
 				cout << endl << "Votante no encontrado!" << endl;
 			}
 		}
+
 		else if (action==2)
 		{
 			Voter v(atoi(Menu::raw_input("DNI").c_str()), "", "", "", "", std::vector<ElectionKey>());
@@ -582,7 +618,14 @@ void MainMenu::voterABM()
 				cout << endl << "Votante no encontrado!" << endl;
 			}
 		}
-		else if (action==3)
+
+		else if(action == 3)
+		{
+			hash_voter.printContent();
+			break;
+		}
+
+		else if (action==4)
 		{
 			break;
 		}
@@ -615,12 +658,13 @@ void MainMenu::electionABM()
 
 	while (1)
 	{//election_tree.print();
-		option election_action[4];
+		option election_action[5];
 		election_action[0].label = "Agregar eleccion";
 		election_action[1].label = "Modificar eleccion";
 		election_action[2].label = "Eliminar eleccion";
-		election_action[3].label = "Volver";
-		action = Menu(election_action,4).ask();
+		election_action[3].label = "Imprimir eleccion";
+		election_action[4].label = "Volver";
+		action = Menu(election_action,5).ask();
 		if (action==0)
 		{
 			// agregar eleccion
@@ -820,7 +864,14 @@ void MainMenu::electionABM()
 			log.write(string("Eliminado eleccion ").append(elec.str()), res != 4, true);
 
 		}
-		else if (action == 3)
+
+		else if(action == 3)
+		{
+			election_tree.print();
+			break;
+		}
+
+		else if (action == 4)
 		{
 			break;
 		}
@@ -837,17 +888,18 @@ void MainMenu::chargeABM()
 	HashBlockFile charge_hash (entry.getDataFileName(), entry.getBlockSize(),
 			&cm, &chf, this->dataFileLoader.getChargeBlockAmount(), false);
 
-	option charge_action[4];
+	option charge_action[5];
 	charge_action[0].label = "Agregar cargo";
 	charge_action[1].label = "Eliminar cargo";
 	charge_action[2].label = "Actualizar cargo";
-	charge_action[3].label = "Volver";
+	charge_action[3].label = "Imprimir cargos";
+	charge_action[4].label = "Volver";
 
 	int action = -1;
 
 	while(1)
 	{//charge_hash.printContent();
-		action = Menu(charge_action,4).ask();
+		action = Menu(charge_action,5).ask();
 		if (action==0)
 		{
 			std::vector<string> subcharges;
@@ -955,7 +1007,14 @@ void MainMenu::chargeABM()
 				delete r;
 			}
 		}
-		else if (action == 3)
+
+		else if(action == 3)
+		{
+			charge_hash.printContent();
+			break;
+		}
+
+		else if (action == 4)
 		{
 			// volver
 			break;
@@ -976,16 +1035,17 @@ void MainMenu::electionListABM()
 	ElectionMethods em;
 	Tree election_tree(electionEntry.getDataFileName(), electionEntry.getBlockSize(), &em, false);
 
-	option list_action[3];
+	option list_action[4];
 	list_action[0].label = "Agregar lista";
 	list_action[1].label = "Eliminar lista";
-	list_action[2].label = "Volver";
+	list_action[2].label = "Imprimir listas";
+	list_action[3].label = "Volver";
 
 	int action = -1;
 
 	while(1)
 	{//electionslist_tree.print();
-		action = Menu(list_action,3).ask();
+		action = Menu(list_action,4).ask();
 		if (action==0)
 		{
 			char day;
@@ -1027,7 +1087,13 @@ void MainMenu::electionListABM()
 			int res = electionslist_tree.remove(elist.getKey());
 			log.write("Eliminando lista " + elist.getName(), res!=4, true);
 		}
-		else if (action==2)
+
+		else if(action == 2)
+		{
+			electionslist_tree.print();
+			break;
+		}
+		else if (action==3)
 		{
 			break;
 		}
@@ -1059,16 +1125,17 @@ void MainMenu::candidateABM()
 	ElectionMethods em;
 	Tree election_tree(electionEntry.getDataFileName(), electionEntry.getBlockSize(), &em, false);
 
-	option candidate_action[3];
+	option candidate_action[4];
 	candidate_action[0].label = "Agregar candidato";
 	candidate_action[1].label = "Eliminar candidato";
-	candidate_action[2].label = "Volver";
+	candidate_action[2].label = "Imprimir candidatos";
+	candidate_action[3].label = "Volver";
 
 	int action = -1;
 
 	while(1)
-	{//candidate_tree.print();
-		action = Menu(candidate_action,3).ask();
+	{
+		action = Menu(candidate_action,4).ask();
 		if (action==0)
 		{
 			// Check if candidate exists as voter
@@ -1123,7 +1190,13 @@ void MainMenu::candidateABM()
 			int res = candidate_tree.remove(cand.getKey());
 			log.write("Eliminando candidato", res!=4, true);
 		}
-		else if (action==2)
+
+		else if(action == 2)
+		{
+			candidate_tree.print();
+			break;
+		}
+		else if (action == 3)
 		{
 			break;
 		}
@@ -1137,16 +1210,17 @@ void MainMenu::administratorABM()
 	AdministratorMethods am;
 	Tree admin_tree (entry.getDataFileName(), entry.getBlockSize(), &am, false);
 
-	option administrator_action[3];
+	option administrator_action[4];
 	administrator_action[0].label = "Agregar administrador";
 	administrator_action[1].label = "Eliminar administrador";
-	administrator_action[2].label = "Volver";
+	administrator_action[2].label = "Imprimir administradores";
+	administrator_action[3].label = "Volver";
 
 	int action = -1;
 
 	while(1)
 	{
-		action = Menu(administrator_action,3).ask();
+		action = Menu(administrator_action,4).ask();
 		if (action==0)
 		{
 			Administrator newadmin(Menu::raw_input("Usuario"), Menu::raw_input("Contraseña"));
@@ -1162,7 +1236,13 @@ void MainMenu::administratorABM()
 			int res = admin_tree.remove(remadmin.getKey());
 			log.write(string("Eliminando administrador ").append(remadmin.getName()), res!=4, true);
 		}
-		else if (action==2)
+
+		else if(action == 2)
+		{
+			admin_tree.print();
+			break;
+		}
+		else if (action==3)
 		{
 			break;
 		}

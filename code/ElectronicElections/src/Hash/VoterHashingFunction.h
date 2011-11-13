@@ -17,7 +17,7 @@ class VoterHashingFunction : public HashingFunction
 public:
 
 	VoterHashingFunction();
-	~VoterHashingFunction();
+	virtual ~VoterHashingFunction();
 
 	virtual int hashingFunction(const char* keyRecord, int count);
 };

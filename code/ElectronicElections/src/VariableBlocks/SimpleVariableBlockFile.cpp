@@ -201,6 +201,7 @@ bool SimpleVariableBlockFile::updateRecord(const char *key, const char *recordBy
 			case INSUFFICIENT_SPACE:
 				// deleted from block, should insert in another block
 				this->internalInsertRecord(key, recordBytes, size, true);
+				break;
 			case NOT_FOUND:
 			default:
 				break;

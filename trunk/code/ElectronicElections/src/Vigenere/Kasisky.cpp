@@ -23,19 +23,19 @@ void Kasisky::attack(string& message, int nGramLength)
 {
 	this->determineRepeatedNgrams(message,nGramLength);
 	this->calculateDistances(message, nGramLength);
-	vector<int> keyLength = this->estimateKeyLength();
+	this->estimateKeyLength();
 
 
 	vector<string> messageByKey;
 
-	for (int k = 0; k < 3; k++)
+	for (int k = 0; k < 1; k++)
 	{
-		int moreLikely = keyLength[k];
-		vector<string> cryptogramByKey = this->separateCryptogramByKey(message,moreLikely);
+		int moreLikely = this->estimatedKeyLengths[k];
+		this->separateCryptogramByKey(message,moreLikely);
 
-		for (unsigned int i = 0; i < cryptogramByKey.size(); i++)
+		for (unsigned int i = 0; i < this->cryptogramsByKey.size(); i++)
 		{
-			map<char,double> frequencies = this->getFrequencies(cryptogramByKey[i]);
+			map<char,double> frequencies = this->getFrequencies(this->cryptogramsByKey[i]);
 			map<char,double>::iterator it;
 			map<char,char> dictionary;	// map < crypted , decrypted >
 			string subMessage;
@@ -47,7 +47,7 @@ void Kasisky::attack(string& message, int nGramLength)
 			{
 				//dictionary[(*it).first] = this->getCharacterByFrequency((*it).second);
 				//dictionary[(*it).first] = 'f';
-				if ((*it).first > frequency)
+				if ((*it).second > frequency)
 				{
 					moreFrequent = (*it).first;
 					frequency = (*it).second;
@@ -55,15 +55,23 @@ void Kasisky::attack(string& message, int nGramLength)
 			}
 
 			char moreFrequentSpanish = this->getCharacterByFrequency(frequency);
-			char key = moreFrequent - moreFrequentSpanish;
-			char alphabethLength = 126 - 32;
-			if (key < 0)
+			char b[2];
+			b[0] = moreFrequentSpanish;
+			b[1] = 0;
+			std::cout << "Most frequent:" << string(b) << endl;
+			char keyLetter = (moreFrequent - 'A') - moreFrequentSpanish;
+			while (keyLetter < 'A')
 			{
-				key += alphabethLength;
+				keyLetter += ('Z' - 'A' + 1);
 			}
-			string keyy(&key);
+
+			char a[2];
+			a[0] = keyLetter;
+			a[1] = 0;
+			std::cout << "Key:" << string(a) << endl;
+			string keyy(a);
 			VigenereCipher vg;
-			subMessage = vg.decript(cryptogramByKey[i],keyy);
+			subMessage = vg.decript(this->cryptogramsByKey[i],keyy);
 			/*
 			for (unsigned int j = 0; j < cryptogramByKey[i].size(); j++)
 			{
@@ -82,7 +90,7 @@ void Kasisky::attack(string& message, int nGramLength)
 				decryptedMessage.push_back(messageByKey[j][i]);
 			}
 		}
-		cout << endl << "Using Key Length: " << keyLength[k];
+		cout << endl << "Using Key Length: " << this->estimatedKeyLengths[k];
 		cout << endl << "Decrypted: " << decryptedMessage;
 	}
 }
@@ -155,12 +163,12 @@ void Kasisky::calculateDistances(string& message, int nGramLength)
 
 char Kasisky::getCharacterByFrequency(double frequency)
 {
-	const LetterFrequencyPair frequencies[] = {{'e', 13.68},{'a', 12.53},
-					{'o', 8.68},{'s', 7.98},{'r', 6.87},{'n', 6.71},{'i', 6.25},
-					{'d', 5.86},{'l', 4.97},{'c', 4.68},{'t', 4.63},{'u', 3.93},
-					{'m', 3.15},{'p', 2.51},{'b', 1.42},{'g', 1.01},{'v', 0.9},
-					{'y', 0.9},{'q', 0.88},{'h', 0.7},{'f', 0.69},{'z', 0.52},
-					{'j', 0.44},{'x', 0.22},{'w', 0.02},{'k', 0.01}
+	const LetterFrequencyPair frequencies[] = {{'E', 13.68},{'A', 12.53},
+					{'O', 8.68},{'S', 7.98},{'R', 6.87},{'N', 6.71},{'I', 6.25},
+					{'D', 5.86},{'L', 4.97},{'C', 4.68},{'T', 4.63},{'U', 3.93},
+					{'M', 3.15},{'P', 2.51},{'B', 1.42},{'G', 1.01},{'V', 0.9},
+					{'Y', 0.9},{'Q', 0.88},{'H', 0.7},{'F', 0.69},{'Z', 0.52},
+					{'J', 0.44},{'X', 0.22},{'W', 0.02},{'K', 0.01}
 			};
 
 	LetterFrequencyPair pair = frequencies[0];
@@ -175,9 +183,8 @@ char Kasisky::getCharacterByFrequency(double frequency)
 	return pair.letter;
 }
 
-vector<int> Kasisky::estimateKeyLength()
+void Kasisky::estimateKeyLength()
 {
-	int numberOfCandidates = 3;
 	map<int, int> frequencyOfDistances;
 	map<int, int>::iterator it;
 	for (unsigned int i = 0; i < this->distances.size(); i++)
@@ -212,10 +219,7 @@ vector<int> Kasisky::estimateKeyLength()
 		cout<< endl << "Distance: " << (*it).first << "\tCount: " << (*it).second;
 	}
 
-	// Get More Frequent Distance
-	vector<int> moreFrequentDistances;
-
-	for (int i = 0; i < numberOfCandidates && !frequencyOfDistances.empty(); i++)
+	for (int i = 0; i < Kasisky::CANDIDATE_KEYS && !frequencyOfDistances.empty(); i++)
 	{
 		int moreFrequentDistance = 0;
 		int maxValue = 0;
@@ -228,28 +232,24 @@ vector<int> Kasisky::estimateKeyLength()
 				moreFrequentDistance = (*it).first;
 			}
 		}
-		moreFrequentDistances.push_back(moreFrequentDistance);
+		this->estimatedKeyLengths.push_back(moreFrequentDistance);
 		frequencyOfDistances.erase(moreFrequentDistance);
 	}
-
-	return moreFrequentDistances;
 }
 
-vector<string> Kasisky::separateCryptogramByKey(string message, int keyLength)
+void Kasisky::separateCryptogramByKey(string message, int keyLength)
 {
-	vector<string> cryptogramByKey;
 	for (int i = 0; i < keyLength; i++)
 	{
-		int j = i;
+		unsigned int j = i;
 		string subMessage;
 		while (j < message.size() )
 		{
 			subMessage += message[j];
 			j += keyLength;
 		}
-		cryptogramByKey.push_back(subMessage);
+		this->cryptogramsByKey.push_back(subMessage);
 	}
-	return cryptogramByKey;
 }
 
 map<string,vector<int> > Kasisky::getRepeatedNgrams()

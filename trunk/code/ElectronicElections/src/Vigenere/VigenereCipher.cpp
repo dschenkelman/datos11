@@ -18,7 +18,7 @@ string VigenereCipher::encript(string & message, string & key)
 {
 	int crypted;
 	string cryptedMessage("");
-	int alphabethLength = 126 - 32;
+	int alphabethLength = 'Z' - 'A' + 1;
 
 	int i=0, j=0;
 	while ( i < (message.length()))
@@ -26,19 +26,15 @@ string VigenereCipher::encript(string & message, string & key)
 		if (j == key.length())
 			j = 0;
 
-		if (!isprint(message[i]))
+		if (!isalpha((message[i])))
 		{
 			cryptedMessage += message[i];
 			i++;
 			continue;
 		}
 
-		int auxM = message[i] - 32;
-		int auxK = key[j] - 32;
+		crypted = ((message[i] + key[j]) % alphabethLength) + 'A';
 
-		crypted = (auxM + auxK) % alphabethLength;
-
-		crypted += 32;
 		cryptedMessage += (char)crypted;
 		i++; j++;
 	}
@@ -48,9 +44,9 @@ string VigenereCipher::encript(string & message, string & key)
 
 string VigenereCipher::decript(string & cryptedMessage, string & key)
 {
-	int decrypted;
+	int decrypted = 0;
 	string message("");
-	int alphabethLength = 126 - 32;
+	int alphabethLength = 'Z' - 'A' + 1;
 
 	int i=0, j=0;
 	while ( i < (cryptedMessage.length()))
@@ -58,25 +54,19 @@ string VigenereCipher::decript(string & cryptedMessage, string & key)
 		if (j == key.length())
 			j = 0;
 
-		if (!isprint(cryptedMessage[i]))
+		if (!isalpha(cryptedMessage[i]))
 		{
 			message += cryptedMessage[i];
 			i++;
 			continue;
 		}
 
-		int auxC = cryptedMessage[i] - 32;
-		int auxK = key[j] - 32;
-
-		decrypted = (auxC - auxK);
-		if (decrypted < 0)
+		decrypted = (cryptedMessage[i] - 'A') - key[j];
+		while (decrypted < 'A')
 		{
 			decrypted += alphabethLength;
 		}
 
-		decrypted = decrypted % alphabethLength;
-
-		decrypted += 32;
 		message += (char)decrypted;
 		i++; j++;
 	}

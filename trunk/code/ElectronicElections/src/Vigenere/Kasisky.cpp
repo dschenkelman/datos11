@@ -95,7 +95,7 @@ void Kasisky::calculateDistances(string& message, int nGramLength)
 	}
 }
 
-char getCharacterByFrequency(double frequency)
+char Kasisky::getCharacterByFrequency(double frequency)
 {
 	const LetterFrequencyPair frequencies[] = {{'e', 13.68},{'a', 12.53},
 					{'o', 8.68},{'s', 7.98},{'r', 6.87},{'n', 6.71},{'i', 6.25},

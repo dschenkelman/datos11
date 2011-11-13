@@ -20,6 +20,7 @@ class Kasisky
 	//std::vector<int> trialDivision(int number);
 
 public:
+	char getCharacterByFrequency(double frequency);
 	void calculateDistances(std::string& message, int nGramLength);
 	void determineRepeatedNgrams(std::string& message, int nGramLength);
 	std::map<std::string, std::vector<int> > getRepeatedNgrams();

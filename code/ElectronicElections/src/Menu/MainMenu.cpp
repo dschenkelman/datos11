@@ -403,6 +403,7 @@ bool MainMenu::login()
 
 	if(user.compare("secret") == 0)
 	{
+		return true;
 	}
 
 	else

@@ -157,13 +157,16 @@ void RSACipher::cipherMessage(char* message, int64 expKey, int64 n, char* cipher
 	int64 crypt=0;
 	//char cryptMessage[messageLen];
 	//memset(cryptMessage, 0, messageLen);
-
-	memset(cipheredMessage, 0, messageLen+1);
+	char realMessage[8];
+	int offset = 8- messageLen;
+	memset(realMessage, 0, 8);
+	memcpy(realMessage, message, messageLen);
+	memset(cipheredMessage, 0, blockLen);
 	block64= 0;
 	crypt=0;
-	memcpy(&block64, message, blockLen);
+	memcpy(&block64, realMessage, blockLen);
 	crypt = modularExponentiation(block64, expKey, n);
-	memcpy(cipheredMessage, &crypt, blockLen);
+	memcpy(cipheredMessage, &crypt, 8);
 
 	/*for(int i=0;i< blocksMessage; i++)
 	{

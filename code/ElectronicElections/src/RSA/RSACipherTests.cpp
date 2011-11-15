@@ -63,7 +63,7 @@ bool RSACipherTests::testModularExponentiation() {
 
 bool RSACipherTests::testCipherMessage()
 {
-	string message ="pass";
+	string message ="zxyw";
 	RSACipher rsaCipher;
 	RSAKeySet rsaKey;
 	RSAKey publicKey= rsaKey.getPublicKey();
@@ -76,12 +76,14 @@ bool RSACipherTests::testCipherMessage()
 	memcpy(charMessage, (char*)message.c_str(), message.length()+1);
 	int len=strlen(charMessage)+1;
 
-	char cipheredMessage[message.length()+2];
-	char decriptedMessage[message.length()+2];
+	char cipheredMessage[8];
+	char decriptedMessage[8];
 	rsaCipher.cipherMessage(charMessage, criptKey, n, cipheredMessage, len);
-	rsaCipher.cipherMessage(cipheredMessage, decriptKey, n, decriptedMessage, len);
+	rsaCipher.cipherMessage(cipheredMessage, decriptKey, n, decriptedMessage, 8);
 
-	if (strcmp(charMessage, decriptedMessage) ==0 )
+	char newMessage[len];
+	memcpy(newMessage, decriptedMessage, len);
+	if (strcmp(charMessage, newMessage) ==0 )
 	{
 		return true;
 	}

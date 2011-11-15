@@ -104,7 +104,7 @@ int64 RSACipher::productInverse(int64 phi, int64 d) { // mod, base
 	return -1;
 }
 
-int64 mulsame64modulingMod(int64 a, int64 b, int64 c)
+int64 mul64modulingMod(int64 a, int64 b, int64 c)
 {
 	int64 x = 0,y=a%c;
 	while(b > 0){
@@ -115,95 +115,20 @@ int64 mulsame64modulingMod(int64 a, int64 b, int64 c)
 		b /= 2;
 	}
 	return x%c;
-
-	/*uInt64 auxBase;
-
-	unsigned int hi1, hi2, low1, low2;
-	unsigned int a, b, c, d; //number of 128 bits divided
-	unsigned int secondLow, secondHi, thirdLow, thirdHi, fourthLow, fourthHi;
-	uInt64 firstMul,secondMul, thirdMul, fourthMul;
-	uInt64 b64, c64, d64; //hi piece goes to the next number. d64 doesn't have hi piece.
-	uInt64 baseHi, baseLow; // low = a|b; hi = c|d;
-	uInt64 aux64L1 = 1;
-	uInt64 maxInt64 = 0xffffffffffffffff;
-
-	low1 = (int)(op1);
-	low2 = (int)(op2);
-	hi1 = (int)(op1 >> 32);
-	hi2 =(int)(op2 >> 32);
-	//firstMul = 0;
-	firstMul = aux64L1* low1 * low2;
-	a = (int) firstMul; //first low number of 128 bits
-	b64 = (firstMul>>32);
-	//secondMul = 0;
-	secondMul = aux64L1* low1 * hi2;
-	secondLow = (int)secondMul;
-	secondHi = (int)(secondMul>> 32);//to add it in c number, and check overflow
-	//thirdMul = 0;
-	thirdMul = aux64L1* low2 * hi1;
-	thirdLow = (int)thirdMul;
-	thirdHi = (int)(thirdMul>> 32);//to add it in c number, and check overflow
-	//fourthMul = 0;
-	fourthMul = aux64L1* hi1 * hi2;
-	fourthLow = (int)fourthMul;
-	fourthHi = (int)(fourthMul>> 32);//to add it in d number, no overflow
-
-	//add and find b and c
-	b64+= secondLow;
-	b64+= thirdLow;
-	b = (int)b64;
-	c64 = (b64>> 32);
-	c64+= secondHi;
-	c64+= thirdHi;
-	c64+= fourthLow;
-	c = (int)c64;
-	d64 = (c64>> 32);
-	//find d
-	d64+= fourthHi;
-	d = (int)d64;
-
-	//check overflow in 128 bits
-	baseLow = b;
-	baseLow = baseLow<< 32;
-	baseLow = baseLow | a;
-	baseHi = d;
-	baseHi = baseHi<< 32;
-	baseHi = baseHi | c;
-
-	//erase overflow decreasing mod
-	while(baseHi > 0)
-	{
-		if(baseLow < mod)
-		{
-			baseHi--;
-			baseLow+= ((maxInt64) % mod);
-		}
-		else
-		{
-			baseLow = baseLow - mod;
-		}
-	}
-	return baseLow % mod;*/
 }
 
 int64 RSACipher::modularExponentiation(int64 base, int64 exp, int64 mod) {
-	cout << "start modexp" << endl << "base " << base << " exp " << exp << " mod " << mod << endl;
 	int64 res = 1;
-	//uInt64 bitsCount = 0;//active bits count
-	//uInt64 activeBits[64];
 	int64 accumulativeBase = base;
 	while (exp > 0)
 	{
 		if((exp & 1) == 1)
 		{
-			cout << "start mult" << " a " << accumulativeBase << " b " << res << " mod " << mod << endl;
-			res = mulsame64modulingMod(accumulativeBase, res, mod);
-			cout << "end mult res " << res << endl;
+			res = mul64modulingMod(accumulativeBase, res, mod);
 		}
 		exp = exp >> 1;
-		accumulativeBase = mulsame64modulingMod(accumulativeBase, accumulativeBase, mod);
+		accumulativeBase = mul64modulingMod(accumulativeBase, accumulativeBase, mod);
 	}
-	cout << "end modexp res " << res << endl;
 	return res;
 }
 
@@ -211,7 +136,6 @@ void RSACipher::cipherMessage(char* message, int64 expKey, int64 n, char* cipher
 {
 	int64 greaterKey = n;
 	int64 greaterBit = 1;
-
 	while(greaterKey != 1)
 	{
 		greaterBit++;
@@ -224,33 +148,35 @@ void RSACipher::cipherMessage(char* message, int64 expKey, int64 n, char* cipher
 		greaterBit-= offset;
 	}
 	//tengo el valor de greater bit, divido el message
-	int blocksMessage = messageLen *8 /greaterBit +1; //tengo la cantidad de divisiones del mensaje en BYTES!!
-	int64 crypt=0;
-	int64 truncCrypt = 0;
-	int64 blockLen = greaterBit/8; //len in BYTES!
-	int64 block64=0;
+	int blocksMessage = messageLen *8 /greaterBit; //tengo la cantidad de divisiones del mensaje en BYTES!!
+	//if (blocksMessage < greaterBit) blocksMessage++;
+	int blockLen = greaterBit/8; //len in BYTES!
+	blockLen= messageLen;//HARDCODEEEEEEE!!!
 
-	char cryptMessage[messageLen];
-	memset(cryptMessage, 0, messageLen);
-	int messageOffset = (messageLen % blockLen);
-	char block[messageOffset];
-	memcpy(block, message, messageOffset);
-	block64 = *( (int64*)block );
+	int64 block64=0;
+	int64 crypt=0;
+	//char cryptMessage[messageLen];
+	//memset(cryptMessage, 0, messageLen);
+
+	memset(cipheredMessage, 0, messageLen+1);
+	block64= 0;
+	crypt=0;
+	memcpy(&block64, message, blockLen);
 	crypt = modularExponentiation(block64, expKey, n);
-	//strncpy(cryptMessage, (char*)crypt,messageOffset);
-	memcpy(&truncCrypt, &crypt, messageOffset);
-	memcpy(cryptMessage, &crypt, messageOffset);
-	for(int i=0;i< blocksMessage-1; i++)
+	memcpy(cipheredMessage, &crypt, blockLen);
+
+	/*for(int i=0;i< blocksMessage; i++)
 	{
 		block64= 0;
 		crypt=0;
-		memset(cryptMessage, 0, messageLen);
-		memcpy(&block64, message+ messageOffset+(i*blockLen), blockLen);
+		memcpy(&block64, message+(i*blockLen), blockLen);
+		//memcpy(&block64, message+ messageOffset+(i*blockLen), blockLen);
 		crypt = modularExponentiation(block64, expKey, n);
-		memcpy(cryptMessage+ messageOffset+(i*blockLen), &crypt, blockLen);
+		memcpy(cryptMessage+(i*blockLen), &crypt, blockLen);
+		//0memcpy(cryptMessage+ messageOffset+(i*blockLen), &crypt, blockLen);
 	}
 	//cryptMessage[messageLen+1] = '\0';
-	strcpy(cipheredMessage, cryptMessage);
+	memcpy(cipheredMessage, cryptMessage, blockLen);*/
 	return;
 }
 

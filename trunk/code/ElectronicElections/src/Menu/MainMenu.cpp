@@ -197,9 +197,9 @@ void MainMenu::runTests()
 	cout << "***** RUNNING TESTS *****" << endl << endl;
 	srand(time(NULL));
 
-	cout << "Simple Variable Block File Tests" << endl;
-	SimpleVariableBlockFileTests rlvTest;
-	rlvTest.run(); cout << endl;
+//	cout << "Simple Variable Block File Tests" << endl;
+//	SimpleVariableBlockFileTests rlvTest;
+//	rlvTest.run(); cout << endl;
 
 //	cout << "Tree Block File Tests" << endl;
 //	TreeBlockFileTests treeBlocktests;
@@ -209,49 +209,49 @@ void MainMenu::runTests()
 //	LeafNodeTests leafTests;
 //	leafTests.run(); cout << endl;
 
-	cout << "District Tests" << endl;
-	DistrictTests districtTests;
-	districtTests.run(); cout << endl;
+//	cout << "District Tests" << endl;
+//	DistrictTests districtTests;
+//	districtTests.run(); cout << endl;
 
 //	cout << "Hash Tests" << endl;
 //	HashTest hashTests;
 //	hashTests.run(); cout << endl;
 
-	cout << "Tree Tests" << endl;
-	TreeTests treeTests;
-	treeTests.run(); cout << endl;
+//	cout << "Tree Tests" << endl;
+//	TreeTests treeTests;
+//	treeTests.run(); cout << endl;
 
-	cout << "Elections List Tests" << endl;
-	ElectionsListTests electionTests;
-	electionTests.run(); cout << endl;
+//	cout << "Elections List Tests" << endl;
+//	ElectionsListTests electionTests;
+//	electionTests.run(); cout << endl;
 
-	cout << "Candidate Tests" << endl;
-	CandidateTests ct;
-	ct.run(); cout << endl;
+//	cout << "Candidate Tests" << endl;
+//	CandidateTests ct;
+//	ct.run(); cout << endl;
 
-	cout << "Administrator Tests" << endl;
-	AdministratorTests at;
-	at.run(); cout << endl;
+//	cout << "Administrator Tests" << endl;
+//	AdministratorTests at;
+//	at.run(); cout << endl;
 
-	cout << "Count Tests" << endl;
-	CountTests countTests;
-	countTests.run(); cout << endl;
+//	cout << "Count Tests" << endl;
+//	CountTests countTests;
+//	countTests.run(); cout << endl;
 
-	cout << "Charge Tests" << endl;
-	ChargeTests chargeTests;
-	chargeTests.run(); cout << endl;
+//	cout << "Charge Tests" << endl;
+//	ChargeTests chargeTests;
+//	chargeTests.run(); cout << endl;
 
 	cout << "RSA Cipher Tests" << endl;
 	RSACipherTests rsaCipherTests;
 	rsaCipherTests.run(); cout << endl;
 
-	cout << "RSAKeySet Tests" << endl;
-	RSAKeySetTests rsaKeySetTests;
-	rsaKeySetTests.run(); cout << endl;
+//	cout << "RSAKeySet Tests" << endl;
+//	RSAKeySetTests rsaKeySetTests;
+//	rsaKeySetTests.run(); cout << endl;
 
-	cout << "Validation Tests" << endl;
-	ValidationTests validationTests;
-	validationTests.run(); cout << endl;
+//	cout << "Validation Tests" << endl;
+//	ValidationTests validationTests;
+//	validationTests.run(); cout << endl;
 
 	return;
 }

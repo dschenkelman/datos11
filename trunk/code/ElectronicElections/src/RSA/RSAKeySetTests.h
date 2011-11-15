@@ -11,6 +11,7 @@
 
 #include "RSAKeySet.h"
 #include "RSAKey.h"
+#include "RSACipher.h"
 #include <iostream>
 using namespace std;
 

@@ -8,6 +8,7 @@
 #include "RSAKeySetTests.h"
 #include <iostream>
 
+
 using namespace std;
 
 
@@ -41,7 +42,7 @@ bool RSAKeySetTests::testGeneration() {
 	cout << "privateexp " << privateKey.exp << endl;
 	cout << "publicexp " << publicKey.exp << endl;
 	//cout << negativeModulus(negativeModulus(privateKey.exp,rsaks.phi)*negativeModulus(publicKey.exp,rsaks.phi), rsaks.phi) << endl;
-//	return (( ((int64)privateKey.exp) * ((int64)publicKey.exp) )%rsaks.phi)==1;
+	return (mul64modulingMod((int64)privateKey.exp, (int64)publicKey.exp, rsaks.phi)==1);
 	return false;
 }
 

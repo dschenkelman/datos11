@@ -24,6 +24,9 @@ public:
 	static int64 modularExponentiation(int64 a, int64 b, int64 q); // a^b mod q
 	void cipherMessage(char* message, int64 expKey, int64 n, char* cipheredMessage, int64 messageLen);
 	virtual ~RSACipher();
+
 };
+
+int64 mul64modulingMod(int64 a, int64 b, int64 c);
 
 #endif /* RSACIPHER_H_ */

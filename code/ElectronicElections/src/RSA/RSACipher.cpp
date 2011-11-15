@@ -134,25 +134,6 @@ int64 RSACipher::modularExponentiation(int64 base, int64 exp, int64 mod) {
 
 void RSACipher::cipherMessage(char* message, int64 expKey, int64 n, char* cipheredMessage, int64 messageLen)
 {
-	int64 greaterKey = n;
-	int64 greaterBit = 1;
-	while(greaterKey != 1)
-	{
-		greaterBit++;
-		greaterKey = greaterKey >> 1;
-	}
-	//check greaterBit to be multiple of 8 in order to not cut bytes
-	if(greaterBit % 8 != 0)
-	{
-		int offset = (greaterBit % 8);
-		greaterBit-= offset;
-	}
-	//tengo el valor de greater bit, divido el message
-	int blocksMessage = messageLen *8 /greaterBit; //tengo la cantidad de divisiones del mensaje en BYTES!!
-	//if (blocksMessage < greaterBit) blocksMessage++;
-	int blockLen = greaterBit/8; //len in BYTES!
-	blockLen= messageLen;//HARDCODEEEEEEE!!!
-
 	int64 block64=0;
 	int64 crypt=0;
 	//char cryptMessage[messageLen];
@@ -161,12 +142,14 @@ void RSACipher::cipherMessage(char* message, int64 expKey, int64 n, char* cipher
 	int offset = 8- messageLen;
 	memset(realMessage, 0, 8);
 	memcpy(realMessage, message, messageLen);
-	memset(cipheredMessage, 0, blockLen);
+	memset(cipheredMessage, 0, messageLen);
 	block64= 0;
 	crypt=0;
-	memcpy(&block64, realMessage, blockLen);
+	memcpy(&block64, realMessage, messageLen);
 	crypt = modularExponentiation(block64, expKey, n);
 	memcpy(cipheredMessage, &crypt, 8);
+	return;
+
 
 	/*for(int i=0;i< blocksMessage; i++)
 	{
@@ -180,7 +163,6 @@ void RSACipher::cipherMessage(char* message, int64 expKey, int64 n, char* cipher
 	}
 	//cryptMessage[messageLen+1] = '\0';
 	memcpy(cipheredMessage, cryptMessage, blockLen);*/
-	return;
 }
 
 

@@ -63,7 +63,6 @@ bool RSACipherTests::testModularExponentiation() {
 
 bool RSACipherTests::testCipherMessage()
 {
-	string message ="zxyw";
 	RSACipher rsaCipher;
 	RSAKeySet rsaKey;
 	RSAKey publicKey= rsaKey.getPublicKey();
@@ -72,22 +71,30 @@ bool RSACipherTests::testCipherMessage()
 	int64 criptKey = publicKey.exp;
 	int64 decriptKey = privateKey.exp;
 	int64 n = publicKey.n;
-	char charMessage[message.length()+1];
-	memcpy(charMessage, (char*)message.c_str(), message.length()+1);
-	int len=strlen(charMessage)+1;
-
+	int len = 5;
+	char passess[10][5] = {"asdf", "qwer", "abcd", "efgh", "dami", "gaby", "juan", "alet", "pass", "pas2"};
+	char crypts[10][8];
+	char charMessage[len];
 	char cipheredMessage[8];
 	char decriptedMessage[8];
-	rsaCipher.cipherMessage(charMessage, criptKey, n, cipheredMessage, len);
-	rsaCipher.cipherMessage(cipheredMessage, decriptKey, n, decriptedMessage, 8);
-
-	char newMessage[len];
-	memcpy(newMessage, decriptedMessage, len);
-	if (strcmp(charMessage, newMessage) ==0 )
-	{
-		return true;
+	for(int i=0;i<10;i++){
+		memcpy(charMessage, passess[i], len);
+		rsaCipher.cipherMessage(charMessage, criptKey, n, cipheredMessage, len);
+		memset(crypts[i], 0, 8);
+		memcpy(crypts[i], cipheredMessage,8);
 	}
-	return false;
+	char newMessage[len];
+	for(int i=0;i<10;i++){
+		rsaCipher.cipherMessage(crypts[i], decriptKey, n, decriptedMessage, 8);
+		memset(newMessage, 0, len);
+		memcpy(newMessage, decriptedMessage, len);
+		if (strcmp(passess[i], newMessage) !=0 )
+		{
+			return false;
+		}
+
+	}
+	return true;
 }
 
 RSACipherTests::~RSACipherTests()

@@ -15,6 +15,7 @@ Administrator::Administrator(std::string name, std::string password)
 	this->password.append(password, 0, PASSWORD_SIZE);
 	this->bytes = NULL;
 	this->key = NULL;
+	//NECESITO LA RSA KEY
 }
 
 int Administrator::getSize()
@@ -23,6 +24,7 @@ int Administrator::getSize()
 
 	size += this->name.size() + 1 + Constants::FIELD_HEADER_SIZE;
 	size += PASSWORD_SIZE + 1;
+	//size+= 8; //SIZE OF ENCRYPTED PASSWORD
 
 	return size;
 }
@@ -49,8 +51,14 @@ char* Administrator::getBytes()
 	memcpy(this->bytes+i, &len, Constants::FIELD_HEADER_SIZE); i += Constants::FIELD_HEADER_SIZE;
 	memcpy(this->bytes+i, this->name.c_str(), len); i+= len;
 	len = this->password.size() + 1;
+	//len= 8; SIZE OF CRYPTED PASSWORD!
+	//char ciphered[8];
+	//RSACypher.cipherMessage(this->password.c_str(), cryptKey, n, ciphered, 8);
 	memcpy(this->bytes+i, this->password.c_str(), len); i+= len;
+	//memcpy(this->bytes+i, ciphered, len); i+= len;
 	memset(this->bytes+i, 0, PASSWORD_SIZE + 1 - len);
+	//memset(this->bytes+i, 0, 8- len);//SIRVE PARA ALGOO?
+
 
 	return this->bytes;
 }
@@ -68,9 +76,15 @@ void Administrator::setBytes(char* bytes)
 
 	char passAux[PASSWORD_SIZE+1];
 	memcpy(passAux, bytes+i, PASSWORD_SIZE + 1);
+	//char passAux[8]; DECRYPTION PART FOR PASSWORD!!!
+	//memcpy(passAux, bytes+i, 8);
+	//RSACypher.cipherMessage(passAux,decryptKey,n,pass,8); NEEDED CYPHER CLASS AND PRIVATE KEY
+	//char newPass[PASSWORD_SIZE+1];
+	//memcpy(newPass,pass,PASSWORD_SIZE+1);
 
 	std::string passStrAux = "";
 	passStrAux.append(passAux);
+	//passStrAux.append(newPass);
 	this->password.clear();
 	this->password.append(passStrAux.substr(0, 4));
 }
@@ -132,6 +146,7 @@ Administrator::Administrator(const Administrator & other)
 	this->key = NULL;
 	this->password = other.password;
 	this->name = other.name;
+
 }
 
 void Administrator::setPassword(std::string & value)

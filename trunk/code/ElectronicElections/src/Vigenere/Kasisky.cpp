@@ -28,7 +28,7 @@ void Kasisky::attack(string& message, int nGramLength)
 
 	vector<string> messageByKey;
 
-	for (int k = 0; k < 1; k++)
+	for (int k = 0; k < 3; k++)
 	{
 		int keyLength = this->estimatedKeyLengths[k];
 		this->separateCryptogramByKey(message,keyLength);
@@ -63,8 +63,8 @@ void Kasisky::attack(string& message, int nGramLength)
 
 			for (uInt64 j = 0; j < keyCombinations; j++)
 			{
-				// of course this does not work
-				if ((j / pow(2, i + 1)) == 0)
+				// of course this does work
+				if (((j >> i) & 1) == 0)
 				{
 					keys[j].push_back(keyLetter1);
 				}
@@ -84,6 +84,7 @@ void Kasisky::attack(string& message, int nGramLength)
 			{
 				cout << endl << "Proposed Key:" << keys[j];
 				cout << endl << "Decrypted: " << decrypted << endl;
+				return;
 			}
 		}
 	}

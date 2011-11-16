@@ -56,7 +56,6 @@ class DataFileLoader
     void readCandidateFile(Tree *treeCandidateFile, ConfigurationEntry & entry);
     void readVoterFile(HashBlockFile *hashVoterFile, ConfigurationEntry & entry);
     void readChargeFile(HashBlockFile *hashChargeFile, ConfigurationEntry & entry);
-    void loadAdminFile();
     void loadDistrictsFile();
     void loadElectionsFile();
     void loadElectionListsFile();
@@ -66,6 +65,7 @@ class DataFileLoader
     void loadChargesFile();
 public:
 	DataFileLoader(Configuration& config);
+    void loadAdminFile();
 	void loadFiles();
 	bool canOpenAdminFile();
 	Tree* createAdminFile();

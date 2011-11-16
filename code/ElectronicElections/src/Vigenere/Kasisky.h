@@ -15,14 +15,15 @@
 
 class Kasisky
 {
+	typedef unsigned long long uInt64;
 	static const int CANDIDATE_KEYS = 3;
 	std::map<std::string, std::vector<int> > repeatedNgrams;
 	std::vector<int> distances;
 	std::vector<int> estimatedKeyLengths;
 	std::vector<std::string> cryptogramsByKey;
-	char getCharacterByFrequency(double frequency);
+	char getKeyLetterConsideringAsCharacter(char mostFrequent, char letter);
 public:
-	void calculateDistances(std::string& message, int nGramLength);
+	void calculateDistances(int nGramLength);
 	void determineRepeatedNgrams(std::string& message, int nGramLength);
 	std::map<std::string, std::vector<int> > getRepeatedNgrams();
 	void estimateKeyLength();

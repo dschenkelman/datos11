@@ -73,6 +73,8 @@
 #include "../Voting/Menu.h"
 #include "../Voting/ConfigurationEntry.h"
 #include "../Voting/DataFileLoader.h"
+#include "../Vigenere/KasiskyTests.h"
+#include "../Helpers/StringHelpers.h"
 
 using namespace std;
 
@@ -88,6 +90,7 @@ MainMenu::MainMenu(string& file) : configuration(file), dataFileLoader(configura
 	this->configuration.read();
 	this->dataFileLoader = DataFileLoader(this->configuration);
 	this->dataFileLoader.calculateBlockAmounts();
+	this->dataFileLoader.loadAdminFile();
 }
 
 // Public methods
@@ -201,6 +204,13 @@ void MainMenu::runTests()
 //	SimpleVariableBlockFileTests rlvTest;
 //	rlvTest.run(); cout << endl;
 
+	KasiskyTests kTests;
+	kTests.run();
+
+//	cout << "Simple Variable Block File Tests" << endl;
+//	SimpleVariableBlockFileTests rlvTest;
+//	rlvTest.run(); cout << endl;
+
 //	cout << "Tree Block File Tests" << endl;
 //	TreeBlockFileTests treeBlocktests;
 //	treeBlocktests.run(); cout << endl;
@@ -220,39 +230,30 @@ void MainMenu::runTests()
 //	cout << "Tree Tests" << endl;
 //	TreeTests treeTests;
 //	treeTests.run(); cout << endl;
-
+//
 //	cout << "Elections List Tests" << endl;
 //	ElectionsListTests electionTests;
 //	electionTests.run(); cout << endl;
-
+//
 //	cout << "Candidate Tests" << endl;
 //	CandidateTests ct;
 //	ct.run(); cout << endl;
-
+//
 //	cout << "Administrator Tests" << endl;
 //	AdministratorTests at;
 //	at.run(); cout << endl;
-
+//
 //	cout << "Count Tests" << endl;
 //	CountTests countTests;
 //	countTests.run(); cout << endl;
-
+//
 //	cout << "Charge Tests" << endl;
 //	ChargeTests chargeTests;
 //	chargeTests.run(); cout << endl;
-
-	cout << "RSA Cipher Tests" << endl;
-	RSACipherTests rsaCipherTests;
-	rsaCipherTests.run(); cout << endl;
-
-//	cout << "RSAKeySet Tests" << endl;
-//	RSAKeySetTests rsaKeySetTests;
-//	rsaKeySetTests.run(); cout << endl;
-
-//	cout << "Validation Tests" << endl;
-//	ValidationTests validationTests;
-//	validationTests.run(); cout << endl;
-
+//
+//	cout << "RSA Cipher Tests" << endl;
+//	RSACipherTests rsaCipherTests;
+//	rsaCipherTests.run(); cout << endl;
 	return;
 }
 
@@ -1298,7 +1299,7 @@ void MainMenu::reportResults()
 			CountMethods countMethods;
 			Tree list_count(disRprt_entry.getDataFileName(), disRprt_entry.getBlockSize(), &countMethods, false);
 			VariableRecord countRecord;
-			std::cout << "Distrito: " << district << endl;
+			report << "DISTRITO: " << StringHelpers::toUpper(district) << endl;
 			logStr << string("Reportando distrito: ").append(district);
 			log.operator <<(logStr.str());
 
@@ -1332,11 +1333,11 @@ void MainMenu::reportResults()
 				else
 				{
 					//change of election. print previous one
-					report << "GANADOR DE ELECCION:  " << count.getCharge()<<", "<< (int)count.getDay()<<"-"<< (int)count.getMonth()<<"-"<< count.getYear() << endl;
+					report << "GANADOR DE ELECCION:  " << StringHelpers::toUpper(count.getCharge()) <<", "<< (int)count.getDay()<<"-"<< (int)count.getMonth()<<"-"<< count.getYear() << endl;
 					//log.write(string("Eleccion: ").append(indexDistrict.getDistrict()), true, true);
 					for(int j=0;j< listNames.size();j++)
 					{
-						report << "--LISTA: " << listNames.at(j) << ", votos: " << listVotes << endl;
+						report << "LISTA: " << StringHelpers::toUpper(listNames.at(j)) << " VOTOS: " << listVotes << endl;
 					}
 					listNames.clear();
 					count.setBytes(nextCount.getBytes());//saving new election
@@ -1345,10 +1346,10 @@ void MainMenu::reportResults()
 				}
 			}
 			//print last election
-			report << "GANADOR DE ELECCION: " << count.getCharge()<<", FECHA: "<< (int)count.getDay()<<"-"<< (int)count.getMonth()<<"-"<< count.getYear() << endl;
+			report << "GANADOR DE ELECCION: " << StringHelpers::toUpper(count.getCharge()) << " FECHA: "<< (int)count.getDay()<<"-"<< (int)count.getMonth()<<"-"<< count.getYear() << endl;
 			for(int j=0;j< listNames.size();j++)
 			{
-				report << "--LISTA: " << listNames.at(j) << ", VOTOS: " << listVotes << endl;
+				report << "LISTA: " << StringHelpers::toUpper(listNames.at(j)) << " VOTOS: " << listVotes << endl;
 			}
 			logStr << string("Finalizado Reporte por Distrito: ").append(indexDistrict.getDistrict());
 			log.operator <<(logStr.str());
@@ -1406,8 +1407,8 @@ void MainMenu::reportResults()
 			CountMethods countMethods;
 			Tree list_count(listRprt_countEntry.getDataFileName(), listRprt_countEntry.getBlockSize(),&countMethods, false);
 			VariableRecord countRecord;
-			report << "LISTA: " << candidate.getCharge() <<", FECHA: "<< (int)candidate.getDay() <<"-"<< (int)candidate.getMonth() <<"-"<< candidate.getYear() <<", lista: "<< candidate.getListName() << endl;
-			report << "CANDIDATO: " << candidate.getCharge() << ", " << voter.getNames() << endl;
+			report << "LISTA: " << StringHelpers::toUpper(candidate.getCharge()) <<" FECHA: "<< (int)candidate.getDay() <<"-"<< (int)candidate.getMonth() <<"-"<< candidate.getYear() <<" LISTA: "<< StringHelpers::toUpper(candidate.getListName()) << endl;
+			report << "CANDIDATO: " << StringHelpers::toUpper(candidate.getCharge()) << " " << StringHelpers::toUpper(voter.getNames()) << endl;
 
 			stringstream strDay; strDay << (int)day;
 			stringstream strMonth; strMonth << (int)month;
@@ -1422,7 +1423,7 @@ void MainMenu::reportResults()
 			list_count.get(count.getKey(),&countRecord );
 			if(countRecord.getSize() == 0)
 			{
-				report << "NO HAY VOTOS REGISTRADOS PARA LISTA: " << count.getListName() << endl;
+				report << "NO HAY VOTOS REGISTRADOS PARA LISTA: " << StringHelpers::toUpper(count.getListName()) << endl;
 				log.write(string("Lista sin votos: ").append(candidate.getListName()), false, true);
 				break;
 			}
@@ -1433,7 +1434,7 @@ void MainMenu::reportResults()
 				count.setBytes(nextCount.getBytes());
 				std::string district = count.getDistrict();
 				countVotes = count.getQuantity();
-				report << "DISTRITO: " << district << endl;
+				report << "DISTRITO: " << StringHelpers::toUpper(district) << endl;
 				report << "VOTOS: " << countVotes << endl;
 				memcpy(votes, &(countVotes), sizeof(int));
 				totalCount+= countVotes;
@@ -1445,7 +1446,7 @@ void MainMenu::reportResults()
 			}
 			char total[sizeof(int)];
 			memcpy(total, &totalCount, sizeof(int));
-			std::cout << "Votos Totales: " << totalCount << endl;
+			report << "VOTOS TOTALES: " << totalCount << endl;
 			strDay.clear(); strDay << (int)day;
 			strMonth.clear(); strMonth << (int)month;
 			strYear.clear(); strYear << year;
@@ -1500,7 +1501,7 @@ void MainMenu::reportResults()
 			VariableRecord countRecord;
 			Count nextCount(list.getDay(), list.getMonth(), list.getYear(), list.getCharge(), list.getName(),"", 0);
 
-			report << "ELECCION: " << list.getCharge() <<", "<< day <<"-"<< month <<"-"<< year << endl;
+			report << "ELECCION: " << StringHelpers::toUpper(list.getCharge()) <<" "<< day <<"-"<< month <<"-"<< year << endl;
 			logStr << string("Reportando Eleccion: ").append(list.getCharge()+", "+strDay.str() +"-"+ strMonth.str() +"-"+ strYear.str());
 			log.operator <<(logStr.str());
 			char votos[sizeof(int)];
@@ -1541,13 +1542,13 @@ void MainMenu::reportResults()
 
 				}
 				memcpy(votos, &listVotes, sizeof(int));
-				std::cout << "Lista: " << count.getListName() << ", Votos: " << listVotes << endl;
+				report << "LISTA: " << StringHelpers::toUpper(count.getListName()) << " VOTOS: " << listVotes << endl;
 				if(lastRecord)
 				{
 					break;//no more districts
 				}
 			}
-			report << "FINALIZANDO REPORTE ELECCION " << count.getCharge() <<", "<< day << "-" << month << "-" << year << endl;
+			report << "FINALIZANDO REPORTE ELECCION " << StringHelpers::toUpper(count.getCharge()) <<" "<< day << "-" << month << "-" << year << endl;
 			logStr << string("Finalizado reporte Eleccion ").append(list.getCharge()+", "+strDay.str() +"-"+ strMonth.str() +"-"+ strYear.str());
 			log.operator <<(logStr.str());
 			std::cout << report.str();

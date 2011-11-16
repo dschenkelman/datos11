@@ -95,7 +95,6 @@ void DataFileLoader::loadChargesFile()
 
 void DataFileLoader::loadFiles()
 {
-	this->loadAdminFile();
 	this->loadDistrictsFile();
 	this->loadElectionsFile();
 	this->loadElectionListsFile();

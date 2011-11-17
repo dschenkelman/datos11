@@ -43,7 +43,8 @@ enum AdminAction
 	UpdateCount = 10,
 	ReportBack = 11,
 	DecryptReport = 12,
-	ReturnBack = 13
+	BreakRSA = 13,
+	ReturnBack = 14
 };
 
 class MainMenu
@@ -70,6 +71,7 @@ private:
 	void updateCount();
 	void recoverFile();
 	void decryptReport();
+	void breakRSA();
 	bool file_exists(const char* filename);
 public:
 	MainMenu(string& configurationFilePath);

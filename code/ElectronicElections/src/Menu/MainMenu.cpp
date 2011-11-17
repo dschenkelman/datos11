@@ -62,6 +62,7 @@
 #include "../RSA/RSACipherTests.h"
 #include "../RSA/RSACipherTests.h"
 #include "../RSA/RSAKeySetTests.h"
+#include "../RSA/KeyManagerTests.h"
 #include "../VariableBlocks/VariableRecord.h"
 #include "../VariableBlocks/VariableRecord.h"
 #include "../Vigenere/VigenereCipher.h"
@@ -121,7 +122,7 @@ void MainMenu::runApplication()
 
 	if (userAction == Quit) return;
 
-	option admin_action[14];
+	option admin_action[15];
 	admin_action[0].label = "Poblar archivos";
 	admin_action[1].label = "Generar votos";
 	admin_action[2].label = "Mantener distritos";
@@ -135,13 +136,14 @@ void MainMenu::runApplication()
 	admin_action[10].label = "Actualizar conteo";
 	admin_action[11].label = "Recuperar reporte";
 	admin_action[12].label = "Desencriptar reporte";
-	admin_action[13].label = "Volver";
+	admin_action[13].label = "Romper RSA";
+	admin_action[14].label = "Volver";
 
 	AdminAction adminAction = InvalidAdminOption;
 
 	while(adminAction != ReturnBack)
 	{
-		adminAction = AdminAction(Menu(admin_action,14).ask());
+		adminAction = AdminAction(Menu(admin_action,15).ask());
 
 		switch(adminAction)
 		{
@@ -183,6 +185,9 @@ void MainMenu::runApplication()
 				break;
 			case DecryptReport:
 				this->decryptReport();
+				break;
+			case BreakRSA:
+				this->breakRSA();
 				break;
 			case ReturnBack:
 				this->runApplication();
@@ -254,6 +259,11 @@ void MainMenu::runTests()
 //	cout << "RSA Cipher Tests" << endl;
 //	RSACipherTests rsaCipherTests;
 //	rsaCipherTests.run(); cout << endl;
+
+//	cout << "Key Manager Tests" << endl;
+//	KeyManagerTests keyManagerTests;
+//	keyManagerTests.run();
+
 	return;
 }
 
@@ -1255,6 +1265,11 @@ void MainMenu::administratorABM()
 			break;
 		}
 	}
+}
+
+void MainMenu::breakRSA()
+{
+
 }
 
 void MainMenu::reportResults()

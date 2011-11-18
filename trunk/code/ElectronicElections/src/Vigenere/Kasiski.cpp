@@ -5,7 +5,7 @@
  *      Author: juanma
  */
 
-#include "Kasisky.h"
+#include "Kasiski.h"
 #include "VigenereCipher.h"
 #include <string>
 #include <string.h>
@@ -15,11 +15,11 @@
 
 using namespace std;
 
-Kasisky::Kasisky()
+Kasiski::Kasiski()
 {
 }
 
-void Kasisky::attack(string& message, int nGramLength)
+void Kasiski::attack(string& message, int nGramLength)
 {
 	this->determineRepeatedNgrams(message,nGramLength);
 	this->calculateDistances(nGramLength);
@@ -77,20 +77,27 @@ void Kasisky::attack(string& message, int nGramLength)
 
 		VigenereCipher vg;
 		cout << endl << "Using Key Length: " << keyLength;
+		bool found = false;
 		for (uInt64 j = 0; j < keyCombinations; j++)
 		{
 			string decrypted = vg.decript(message,keys[j]);
-			if (decrypted.find("DISTRITO", 0) != decrypted.npos)
+			if (decrypted.find("DISTRITO", 0) != decrypted.npos &&
+					decrypted.find("VOTOS", 0) != decrypted.npos)
 			{
 				cout << endl << "Proposed Key:" << keys[j];
 				cout << endl << "Decrypted: " << decrypted << endl;
-				return;
+				found = true;
 			}
+		}
+
+		if (found)
+		{
+			return;
 		}
 	}
 }
 
-void Kasisky::determineRepeatedNgrams(string& message, int nGramLength)
+void Kasiski::determineRepeatedNgrams(string& message, int nGramLength)
 {
 	string copy(message);
 	int length = copy.length();
@@ -136,7 +143,7 @@ void Kasisky::determineRepeatedNgrams(string& message, int nGramLength)
 
 }
 
-void Kasisky::calculateDistances(int nGramLength)
+void Kasiski::calculateDistances(int nGramLength)
 {
 	map<string, vector<int> >::iterator it;
 	map<string, vector<int> > nGramDistances;
@@ -164,7 +171,7 @@ void Kasisky::calculateDistances(int nGramLength)
 	}
 }
 
-void Kasisky::estimateKeyLength()
+void Kasiski::estimateKeyLength()
 {
 	map<int, int> frequencyOfDistances;
 	map<int, int>::iterator it;
@@ -195,7 +202,7 @@ void Kasisky::estimateKeyLength()
 		}
 	}
 
-	for (int i = 0; i < Kasisky::CANDIDATE_KEYS && !frequencyOfDistances.empty(); i++)
+	for (int i = 0; i < Kasiski::CANDIDATE_KEYS && !frequencyOfDistances.empty(); i++)
 	{
 		int moreFrequentDistance = 0;
 		int maxValue = 0;
@@ -213,7 +220,7 @@ void Kasisky::estimateKeyLength()
 	}
 }
 
-void Kasisky::separateCryptogramByKey(string message, int keyLength)
+void Kasiski::separateCryptogramByKey(string message, int keyLength)
 {
 	for (int i = 0; i < keyLength; i++)
 	{
@@ -232,12 +239,12 @@ void Kasisky::separateCryptogramByKey(string message, int keyLength)
 	}
 }
 
-map<string,vector<int> > Kasisky::getRepeatedNgrams()
+map<string,vector<int> > Kasiski::getRepeatedNgrams()
 {
 	return this->repeatedNgrams;
 }
 
-map<char, double> Kasisky::getFrequencies (string cryptogram)
+map<char, double> Kasiski::getFrequencies (string cryptogram)
 {
 	map<char, double> frequencies;
 	map<char, double>::iterator it;
@@ -262,15 +269,10 @@ map<char, double> Kasisky::getFrequencies (string cryptogram)
 		frequencies[(*it).first] = (*it).second * 100.0 / letters;
 	}
 
-	cout << endl;
-	for (it = frequencies.begin(); it != frequencies.end(); it++)
-	{
-		cout  << "char: " << (*it).first << "\tfreq: " << (*it).second << endl;
-	}
 	return frequencies;
 }
 
-char Kasisky::getKeyLetterConsideringAsCharacter(char mostFrequent, char letter)
+char Kasiski::getKeyLetterConsideringAsCharacter(char mostFrequent, char letter)
 {
 	char keyLetter = (mostFrequent - 'A') - letter;
 	while (keyLetter < 'A')
@@ -281,6 +283,6 @@ char Kasisky::getKeyLetterConsideringAsCharacter(char mostFrequent, char letter)
 	return keyLetter;
 }
 
-Kasisky::~Kasisky()
+Kasiski::~Kasiski()
 {
 }

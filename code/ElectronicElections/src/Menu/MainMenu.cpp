@@ -63,6 +63,8 @@
 #include "../RSA/RSACipherTests.h"
 #include "../RSA/RSAKeySetTests.h"
 #include "../RSA/KeyManagerTests.h"
+#include "../RSA/KeyManager.h"
+#include "../RSA/RSAAttacker.h"
 #include "../VariableBlocks/VariableRecord.h"
 #include "../VariableBlocks/VariableRecord.h"
 #include "../Vigenere/VigenereCipher.h"
@@ -209,8 +211,8 @@ void MainMenu::runTests()
 //	SimpleVariableBlockFileTests rlvTest;
 //	rlvTest.run(); cout << endl;
 
-	KasiskyTests kTests;
-	kTests.run();
+//	KasiskyTests kTests;
+//	kTests.run();
 
 //	cout << "Simple Variable Block File Tests" << endl;
 //	SimpleVariableBlockFileTests rlvTest;
@@ -260,9 +262,9 @@ void MainMenu::runTests()
 //	RSACipherTests rsaCipherTests;
 //	rsaCipherTests.run(); cout << endl;
 
-//	cout << "Key Manager Tests" << endl;
-//	KeyManagerTests keyManagerTests;
-//	keyManagerTests.run();
+	cout << "Key Manager Tests" << endl;
+	KeyManagerTests keyManagerTests;
+	keyManagerTests.run();
 
 	return;
 }
@@ -1269,7 +1271,17 @@ void MainMenu::administratorABM()
 
 void MainMenu::breakRSA()
 {
+	RSAAttacker rsaAttacker;
+	KeyManager keyManager;
+	RSAKey publicKey = keyManager.getPublicKey();
 
+	cout << "Rompiendo RSA" << endl;
+	cout << "Clave Publica -> " << "n: " << publicKey.n << " e: " << publicKey.exp << endl;
+
+	RSAKey privateKey = rsaAttacker.attack(publicKey);
+
+	cout << "Clave privada descifrada" << endl;
+	cout << "n: " << privateKey.n << " d: " << privateKey.exp << endl;
 }
 
 void MainMenu::reportResults()

@@ -5,15 +5,15 @@
  *      Author: juanma
  */
 
-#ifndef KASISKY_H_
-#define KASISKY_H_
+#ifndef KASISKI_H_
+#define KASISKI_H_
 #include <string>
 #include <map>
 #include <vector>
 #include <map>
 #include "LetterFrequencyPair.h"
 
-class Kasisky
+class Kasiski
 {
 	typedef unsigned long long uInt64;
 	static const int CANDIDATE_KEYS = 3;
@@ -30,8 +30,8 @@ public:
 	void separateCryptogramByKey(std::string message, int keyLength);
 	std::map<char, double> getFrequencies (std::string cryptogram);
 	void attack(std::string& message, int nGram);
-	Kasisky();
-	virtual ~Kasisky();
+	Kasiski();
+	virtual ~Kasiski();
 };
 
-#endif /* KASISKY_H_ */
+#endif /* KASISKI_H_ */

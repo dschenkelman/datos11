@@ -66,7 +66,7 @@
 #include "../VariableBlocks/VariableRecord.h"
 #include "../VariableBlocks/VariableRecord.h"
 #include "../Vigenere/VigenereCipher.h"
-#include "../Vigenere/Kasisky.h"
+#include "../Vigenere/Kasiski.h"
 #include "../Vigenere/VigenereCipher.h"
 #include "../Voting/Configuration.h"
 #include "../Voting/Voting.h"
@@ -135,7 +135,7 @@ void MainMenu::runApplication()
 	admin_action[9].label = "Informar resultados";
 	admin_action[10].label = "Actualizar conteo";
 	admin_action[11].label = "Recuperar reporte";
-	admin_action[12].label = "Desencriptar reporte";
+	admin_action[12].label = "Atacar reporte (Kasiski)";
 	admin_action[13].label = "Romper RSA";
 	admin_action[14].label = "Volver";
 
@@ -1654,7 +1654,7 @@ void MainMenu::decryptReport()
 		memset(buffer, 0, length + 1);
 		reportFile.read(buffer, length);
 		string reportString = buffer;
-		Kasisky k;
+		Kasiski k;
 		k.attack(reportString, 3);
 	}
 	else

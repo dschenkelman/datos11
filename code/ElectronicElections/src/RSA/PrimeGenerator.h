@@ -19,7 +19,7 @@ private:
 	std::vector<int> primeNumbers;
 public:
 	PrimeGenerator(int end);
-	int getRandomWithMinimum(int minimum, int64* p, int64* q);
+	int getRandomInRange(int64 minimum, int64 maximum, int64* p, int64* q);
 	virtual ~PrimeGenerator();
 };
 

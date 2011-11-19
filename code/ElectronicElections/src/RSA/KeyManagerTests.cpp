@@ -25,13 +25,13 @@ void KeyManagerTests::run()
 
 bool KeyManagerTests::testGenerate()
 {
-	KeyManager keyManager;
+	KeyManager keyManager(8);
 	keyManager.generate();
 
 	RSAKey publicKey = keyManager.getPublicKey();
 	RSAKey privateKey = keyManager.getPrivateKey();
 
-	KeyManager keyManagerTwo;
+	KeyManager keyManagerTwo(8);
 
 	bool conditionOne = (publicKey.n == keyManagerTwo.getPublicKey().n);
 	bool conditionTwo = (publicKey.exp == keyManagerTwo.getPublicKey().exp);

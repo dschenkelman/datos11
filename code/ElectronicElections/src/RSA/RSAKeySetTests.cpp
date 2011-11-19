@@ -35,7 +35,7 @@ int64 RSAKeySetTests::negativeModulus(int64 base, int64 modulus) {
 }
 
 bool RSAKeySetTests::testGeneration() {
-	RSAKeySet rsaks;
+	RSAKeySet rsaks(8);
 	RSAKey privateKey = rsaks.getPrivateKey();
 	RSAKey publicKey = rsaks.getPublicKey();
 	cout << "phi " << rsaks.phi << endl;

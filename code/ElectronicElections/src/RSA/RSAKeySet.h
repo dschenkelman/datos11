@@ -17,7 +17,6 @@ private:
 	RSAKey publicKey;
 public:
 	int64 phi; // for testing purposes
-	RSAKeySet();
 	RSAKeySet(int keySize);
 	RSAKey getPrivateKey();
 	RSAKey getPublicKey();

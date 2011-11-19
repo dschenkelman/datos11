@@ -1,1212 +1,1211 @@
-26,12,2011,Intendente de Aberdeen,Aberdeen
-13,11,2011,Presidente Nro 15,Aberdeen,Ardmore,Butler,Caguas,Calabasas,Canandaigua,Charleston,Claremore,Columbus,Dayton,Duquesne,Durham,Effingham,Fajardo,Guthrie,Hartford,Huntington Park,Jacksonville,Kearns,La Puente,Little Rock,Longview,Lufkin,Menomonee Falls,Miami,Middletown,Midland,Monterey Park,Norwalk,Peekskill,Pomona,Port Arthur,Port Huron,Provo,Quincy,Rhinelander,Rochester,Rye,Saipan,San Angelo,Santa Rosa,Scarborough,Seattle,St. George,Starkville,Taunton,Temple City,Waterbury,Waycross,Woonsocket
-16,11,2011,Gobernador prov nro 150,Aberdeen,Columbus,Huntington Park,Jacksonville
-18,10,2011,Intendente de Abilene,Abilene
-20,12,2011,Presidente Nro 11,Abilene,Artesia,Asheville,Atlanta,Bellingham,Benton Harbor,Bossier City,Cape Coral,Cape Girardeau,Carrollton,Cedar Falls,Champaign,Coos Bay,Corpus Christi,Costa Mesa,Deadwood,Egg Harbor,El Cerrito,El Paso,Hutchinson,Idabel,Kalamazoo,Kokomo,La Mirada,Laguna Woods,Las Cruces,Lawrenceville,Nashua,Newark,Norton,Oshkosh,Parker,Parkersburg,Pasadena,Paterson,Pittston,Revere,San Diego,Seal Beach,Staunton,Superior,Texarkana,Urbana,Vallejo,Warwick,West Lafayette,West Palm Beach,Williamsport,Williston,Yuma
-26,11,2011,Gobernador prov nro 117,Abilene,Bellingham,Benton Harbor,Coos Bay,Texarkana
-28,11,2011,Intendente de Ada,Ada
-27,10,2011,Presidente Nro 8,Ada,Auburn Hills,Bend,Cheyenne,Christiansted,Dalton,Danville,Davenport,Elko,Fayetteville,Forest Lake,Forrest City,Franklin,Fresno,Gary,Gloucester,Holyoke,Kahului,Kennewick,Lake Charles,Lexington,Littleton,Los Alamitos,Lower Burrell,Mequon,Meridian,Nashville,Nenana,New Albany,Oak Ridge,Ocean City,Oro Valley,Peoria,Perth Amboy,Pittsfield,Ponce,Port Orford,Prescott,Rialto,Rockford,Roswell,Sierra Madre,Tallahassee,Vail,Valdez,Valencia,Vancouver,Webster Groves,Weymouth,Ypsilanti
-21,10,2011,Gobernador prov nro 81,Ada,Roswell,Sierra Madre,Weymouth
-20,10,2011,Intendente de Agat,Agat
-15,11,2011,Presidente Nro 19,Agat,Anaconda,Ansonia,Asbury Park,Astoria,Baltimore,Bartlesville,Basin,Boulder City,Bristol,Cairo,Cambridge,Cedar City,Centennial,Charlotte,Culver City,Daly City,Dixon,Dothan,East Rutherford,Elmira,Eugene,Fairfax,Fitchburg,Flagstaff,Frederiksted,Guayanilla,Hopkinsville,International Falls,Jeffersontown,Ketchikan,Laramie,Livonia,Merced,Minnetonka,Modesto,Naperville,Nevada City,Orlando,Parma,Pendleton,Powell,Providence,Reedsport,San Fernando,Sherrill,Tulsa,Westfield,Westlake Village,Winston-Salem
-11,10,2011,Gobernador prov nro 195,Agat,Frederiksted,Laramie,Westfield,Westlake Village
-27,10,2011,Intendente de Agawam,Agawam
-17,12,2011,Presidente Nro 3,Agawam,Boston,Brea,Bridgeport,Brunswick,Charlotte Amalie,Chickasha,Chula Vista,Clairton,Compton,DeKalb,Eden Prairie,Flint,Florence,Hackensack,Hastings,Hazleton,Hialeah,Highland Park,Honolulu,Isle of Palms,Kenosha,Lafayette,Lancaster,Laughlin,Macomb,Mesa,Monroe,New Iberia,Newburyport,Normal,Ogdensburg,Oswego,Placentia,Reno,Saint Joseph,Salisbury,Santa Clarita,Saukville,Seaford,Shamokin,Springdale,St. Petersburg,Stanton,Tempe,Tustin,Waterloo,Watervliet,Woburn,York
-18,10,2011,Gobernador prov nro 29,Agawam,Brea,Charlotte Amalie,Chickasha,Seaford
-19,10,2011,Intendente de Agoura Hills,Agoura Hills
-12,11,2011,Presidente Nro 13,Agoura Hills,Aliso Viejo,Amesbury,Anaheim,Berlin,Bismarck,Brown Deer,College Station,Coral Springs,Dubuque,Farmington,Fort Collins,Fremont,Gainesville,Greensburg,Hannibal,Hoover,Hudson,Jackson,LaGrange,Laconia,Laguna Beach,Laguna Hills,Los Angeles,Lynchburg,Manhattan Beach,McAllen,Methuen,Montebello,Natchitoches,New York,Plattsburgh,Rensselaer,Ruston,Saginaw,Saint Cloud,Saint Paul,San Mateo,Santa Cruz,Saratoga Springs,Shelton,Sonoma,South El Monte,Tok,Vermillion,Virginia Beach,Warren,Watertown,Winnemucca,Yorba Linda
-28,12,2011,Gobernador prov nro 130,Agoura Hills,Gainesville,Hannibal,Methuen,New York
-12,11,2011,Intendente de Aguadilla,Aguadilla
-19,12,2011,Presidente Nro 1,Aguadilla,Allentown,Athens,Auburn,Augusta,Battle Creek,Bowie,Branson,Carson City,Citrus Heights,City of Industry,Corinth,Cortland,Diamond Bar,Douglas,Duncan,Edmond,El Segundo,Green River,Houston,Iowa City,Kearney,Kemmerer,La Crosse,La Habra,Lakeland,Liberal,Lynwood,Marshall,Minot,Missoula,Needham,New Madrid,Oakland,Phoenix,Pine Bluff,Pulaski,San Dimas,San Francisco,Santa Fe Springs,Sheboygan,Springfield,Stafford,Stevens Point,Uniontown,Washington,West Haven,West Springfield,Wilkes-Barre,Wisconsin Rapids
-27,10,2011,Gobernador prov nro 5,Aguadilla,Carson City,Marshall,New Madrid,Sheboygan
-20,11,2011,Intendente de Akron,Akron
-10,10,2011,Presidente Nro 7,Akron,Aspen,Bandera,Bandon,Brookings,Burbank,Camden,Chico,Darlington,Duluth,Elizabeth City,Enid,Fort Wayne,Frederick,Gallup,Gatlinburg,Glens Falls,Gulfport,Hawthorne,Hoboken,Johnson City,Kettering,Lima,Manitowoc,Marquette,Melrose,Midwest City,Mobile,Monrovia,Monterey,Moraga,Nichols Hills,North Tonawanda,Pascagoula,Pass Christian,Plano,Rolling Hills,Saint Louis,San Antonio,Santa Monica,Steubenville,Sturgis,Union City,Victoria,Vineland,Weirton,West Hartford,Wheeling,Wynne,Yigo
-16,12,2011,Gobernador prov nro 73,Akron,Hawthorne,San Antonio,Steubenville,Union City
-18,11,2011,Intendente de Alameda,Alameda
-21,11,2011,Presidente Nro 18,Alameda,Bangor,Bay City,Belleville,Biloxi,Cape May,Catskill,Chicago Heights,Cicero,Columbia,Corona,Cranston,Dallas,Davis,Dickinson,DuBois,Durango,Eufaula,Frisco,Gadsden,Gastonia,Glendale,Gold Beach,Grand Rapids,Grass Valley,Hermitage,Huntington,Jeffersonville,Lansing,Lebanon,Lewiston,Lincoln,Mason City,Narragansett,New London,Opelousas,Palmdale,Port Jervis,Rohnert Park,Salem,Santa Ana,Somerville,Syracuse,Torrington,Vincennes,West Sacramento,Wichita,Wilmington,Yakima,Yonkers
-10,10,2011,Gobernador prov nro 185,Alameda,DuBois,Eufaula,New London,Vincennes
-24,11,2011,Intendente de Alamogordo,Alamogordo
-14,10,2011,Presidente Nro 9,Alamogordo,Altoona,Bentonville,Bethlehem,Bowling Green,Butte,Carbondale,Carolina,Cedarburg,Commerce,Council Bluffs,Denver,Farmer City,Gilette,Hartland,Hot Springs,Kankakee,Kennesaw,Laredo,Mandan,Merizo,Michigan City,Milford,Moline,New Bedford,New Rochelle,North Chicago,Northampton,Omaha,Owensboro,Palm Springs,Pembroke Pines,Peru,Pittsburgh,Plainfield,Pocatello,Pullman,Rockville,San Clemente,Sault Ste. Marie,Sioux City,South Bend,St. Marys,Tampa,Taylorsville,Temecula,Twin Falls,West Bend,Wichita Falls,Williamsburg
-24,12,2011,Gobernador prov nro 94,Alamogordo,Merizo,New Rochelle,Palm Springs,West Bend
-11,12,2011,Intendente de Albany,Albany
-14,11,2011,Presidente Nro 17,Albany,Albuquerque,Anderson,Apple Valley,Barrow,Beloit,Biddeford,Bradford,Bremerton,Chattanooga,College Park,Cypress,Derby,Elsmere,Escondido,Fountain Valley,Greensboro,Haverhill,Hornell,Inglewood,Joliet,Kent,Latrobe,Layton,Little Falls,Lock Haven,Lynn,Macon,Memphis,Meriden,Moultrie,New Castle,New Haven,Newport,Nogales,North Adams,Odessa,Ogden,Oklahoma City,Oneonta,Palos Verdes Estates,Racine,Rolling Hills Estates,San Juan Capistrano,Simi Valley,Slidell,Tamuning,West Memphis,Winooski,Woodward
-22,12,2011,Gobernador prov nro 179,Albany,Chattanooga,Cypress,Escondido
-25,11,2011,Intendente de Albuquerque,Albuquerque
-29,10,2011,Gobernador prov nro 181,Albuquerque,Derby,Hornell,Inglewood,Tamuning
-10,12,2011,Intendente de Alexandria,Alexandria
-25,12,2011,Presidente Nro 6,Alexandria,Beacon,Beckley,Bell Gardens,Blacksburg,Bloomington,Boulder,Clarksburg,Concord,Cruz Bay,Cumberland,Detroit,Fulton,Gaithersburg,Garden Grove,Grand Island,Great Falls,Hampton,Jeannette,Johnstown,Kingsport,Louisville,Malibu,Mankato,Miami Gardens,Muskegon,Muskogee,Norman,North Las Vegas,Ontario,Reading,Riverton,Roanoke,Rome,Sacramento,Salinas,Santa Barbara,Sedalia,Seward,Statesboro,Sutter Creek,Terre Haute,The Dalles,Titusville,Torrance,Turlock,West Covina,West Hollywood,West Valley City,West Warwick
-15,10,2011,Gobernador prov nro 54,Alexandria,Beckley,Boulder,Johnstown
-24,11,2011,Intendente de Alhambra,Alhambra
-12,11,2011,Presidente Nro 5,Alhambra,Alpharetta,Arcadia,Batavia,Beaumont,Bellflower,Bozeman,Brigham City,Brockton,Broken Arrow,Charlottesville,Chester,Cincinnati,Clearwater,Dover,Downey,Fontana,Geneva,Gloversville,Goose Creek,Hattiesburg,High Point,Hollywood,Homer,Jersey City,Jonesboro,Kenner,Laguna Niguel,Lawrence,Malden,Martinsburg,Meadville,Mesquite,Milwaukee,Murray,New Brunswick,North Little Rock,North Pole,Olean,Portland,Rapid City,San Jose,Somersworth,Toledo,Tyler,Utica,Vacaville,Ventura,Vergennes,Wilson
-11,11,2011,Gobernador prov nro 51,Alhambra,Batavia,Beaumont,Olean,Rapid City
-24,10,2011,Intendente de Aliquippa,Aliquippa
-21,11,2011,Presidente Nro 14,Aliquippa,Annapolis,Arvada,Beaver Falls,Birmingham,Boise,Bradbury,Brookfield,Brooklyn Park,Coatesville,Delta Junction,East St. Louis,Easton,Ephraim,Eureka,Evanston,Fairfield,Fernley,Gettysburg,Grand Forks,Half Moon Bay,Hawaiian Gardens,Hickory,Hollister,Houma,Janesville,La Habra Heights,Manassas Park,Morrison,Nanticoke,New Orleans,Oneida,Passaic,Port Washington,Raleigh,Rancho Santa Margarita,Richmond,Sandy Springs,Santa Fe,Scranton,Sharon,Sitka,South Burlington,South Portland,Sunbury,Tonawanda,Waco,Wisconsin Dells,Worcester,Youngstown
-15,10,2011,Gobernador prov nro 147,Aliquippa,Delta Junction,Morrison,Wisconsin Dells
-27,11,2011,Intendente de Aliso Viejo,Aliso Viejo
-24,10,2011,Gobernador prov nro 132,Aliso Viejo,Natchitoches,San Mateo,Virginia Beach,Yorba Linda
-17,11,2011,Intendente de Allentown,Allentown
-15,12,2011,Gobernador prov nro 2,Allentown,Branson,Diamond Bar,Lakeland,Santa Fe Springs
-21,12,2011,Intendente de Alpharetta,Alpharetta
-13,11,2011,Gobernador prov nro 47,Alpharetta,Charlottesville,Fontana,Vacaville
-29,11,2011,Intendente de Altoona,Altoona
-18,10,2011,Gobernador prov nro 87,Altoona,Pembroke Pines,Peru,Rockville,Twin Falls
-27,11,2011,Intendente de Amesbury,Amesbury
-16,12,2011,Gobernador prov nro 136,Amesbury,College Station,Farmington,Greensburg,Sonoma
-19,11,2011,Intendente de Anaconda,Anaconda
-12,10,2011,Gobernador prov nro 196,Anaconda,Ansonia,Fairfax,Flagstaff,Powell
-12,11,2011,Intendente de Anaheim,Anaheim
-24,11,2011,Gobernador prov nro 134,Anaheim,Brown Deer,Dubuque,Fremont,Rensselaer
-23,10,2011,Intendente de Anchorage,Anchorage
-24,12,2011,Presidente Nro 16,Anchorage,Ann Arbor,Aurora,Avalon,Azusa,Bayamon,Bell,Beverly Hills,Binghamton,Clovis,Corvallis,Crown Point,East Lansing,Easthampton,Enfield,Falls Church,Galesburg,Gardena,Gardner,Garland,Glen Cove,Hagerstown,Hanahan,Hope,Jamestown,Klamath Falls,Manassas,Montgomery,Morgan City,Mount Pleasant,Muncie,New Kensington,Newburgh,Norwich,Pasco,Pawtucket,Philadelphia,Pottsville,Pueblo,Rancho Cucamonga,Saint Albans,Salt Lake City,San Bernardino,San Gabriel,San Rafael,Spokane,Sun Valley,Two Rivers,Valdosta,West Jordan
-24,10,2011,Gobernador prov nro 169,Anchorage,Falls Church,Norwich,Pawtucket,Rancho Cucamonga
-21,11,2011,Intendente de Anderson,Anderson
-26,11,2011,Gobernador prov nro 175,Anderson,Elsmere,Meriden,Oklahoma City,Winooski
-16,11,2011,Intendente de Ann Arbor,Ann Arbor
-26,12,2011,Gobernador prov nro 164,Ann Arbor,Bell,Garland,Mount Pleasant
-22,11,2011,Intendente de Annapolis,Annapolis
-17,11,2011,Gobernador prov nro 143,Annapolis,East St. Louis,Easton,Half Moon Bay,La Habra Heights
-29,10,2011,Intendente de Ansonia,Ansonia
-21,10,2011,Intendente de Apple Valley,Apple Valley
-11,12,2011,Gobernador prov nro 173,Apple Valley,Haverhill,Odessa,Rolling Hills Estates,Slidell
-17,10,2011,Intendente de Appleton,Appleton
-30,11,2011,Presidente Nro 2,Appleton,Arlington,Atwater,Austin,Bethany,Buena Park,Calumet City,Cerritos,Cohoes,Covina,Covington,Dana Point,Eau Claire,Elkhart,Farrell,Fort Smith,Fort Worth,Grand Junction,Guayama,Huntington Beach,Jordan Valley,Keene,Kingston,Knoxville,Lockport,Lowell,Mentor,Moreno Valley,Myrtle Beach,Norfolk,Plymouth,Rancho Palos Verdes,Rehoboth Beach,Rock Island,Rolla,Rutland,San Marino,Santa Clara,Scottsdale,Spokane Valley,Sunnyvale,Thiensville,Tuscaloosa,Visalia,Waltham,Waukegan,Westminster,Wheaton,White Plains,Woodruff
-22,12,2011,Gobernador prov nro 18,Appleton,Eau Claire,Elkhart,Myrtle Beach,Visalia
-17,10,2011,Intendente de Arcadia,Arcadia
-12,11,2011,Gobernador prov nro 43,Arcadia,Chester,Homer,Lawrence,Somersworth
-23,12,2011,Intendente de Ardmore,Ardmore
-16,11,2011,Gobernador prov nro 151,Ardmore,Caguas,Miami,Woonsocket
-18,10,2011,Intendente de Areceibo,Areceibo
-29,10,2011,Presidente Nro 4,Areceibo,Barre,Baytown,Boulder Junction,Chelsea,Decatur,Des Moines,Dunkirk,East Hartford,Erie,Fairmont,Fallon,Fort Dodge,Fort Lauderdale,Fredericksburg,Gilbert,Glendora,Hermosa Beach,Irvine,Joplin,Juneau,Kona,Lahaina,Lander,Laurel,Lawndale,Long Beach,Madison,Maywood,Monongahela,Morgantown,New Britain,Newport Beach,North Platte,Oil City,Olympia,Orangeburg,Oxford,Paducah,Phenix City,Portsmouth,Rancho Cordova,Sandpoint,Signal Hill,Stockton,Suffolk,Tucson,Vernon,Wausau,Yazoo City
-25,11,2011,Gobernador prov nro 34,Areceibo,Barre,Glendora,Long Beach,Morgantown
-15,10,2011,Intendente de Arlington,Arlington
-15,10,2011,Gobernador prov nro 15,Arlington,Farrell,Thiensville,White Plains
-20,10,2011,Intendente de Artesia,Artesia
-29,11,2011,Gobernador prov nro 115,Artesia,Bossier City,Kokomo,Pittston,San Diego
-24,11,2011,Intendente de Arvada,Arvada
-29,11,2011,Gobernador prov nro 138,Arvada,Houma,Laguna Beach,Oneida,Santa Cruz
-26,12,2011,Intendente de Asbury Park,Asbury Park
-27,11,2011,Gobernador prov nro 200,Asbury Park,Ashland,Bartlesville,Basin,Bay St. Louis,Berkeley,Bristol,Burlingame,Cambridge,Charlotte,Chino,Clemson,Cleveland,Cudahy,Daly City,Dearborn,East Rutherford,El Monte,Elmira,Everett,Fairbanks,Fitchburg,Green Bay,Guayanilla,Indianapolis,Irwindale,Jefferson City,Jeffersontown,Kalispell,La Jolla,La Verne,Lawton,Loudon,Marietta,Marshfield,Miami Beach,Modesto,Montpelier,Moscow,Murfreesboro,Nevada City,Orange,Orem,Orlando,Pierre,Rawlins,Reedsport,Richland,Sanford,Selma,South Gate,Truth or Consequences,Tulsa,Tupelo,Valparaiso,Vicksburg,Wahoo,Whittier,Zanesville
-23,10,2011,Intendente de Asheville,Asheville
-27,12,2011,Gobernador prov nro 111,Asheville,El Paso,Norton,West Palm Beach,Williamsport
-21,11,2011,Intendente de Ashland,Ashland
-21,11,2011,Presidente Nro 20,Ashland,Bay St. Louis,Berkeley,Burlingame,Chino,Clemson,Cleveland,Cudahy,Dearborn,El Monte,Everett,Fairbanks,Green Bay,Indianapolis,Irwindale,Jefferson City,Kalispell,La Jolla,La Verne,Lawton,Loudon,Marietta,Marshfield,Miami Beach,Montpelier,Moscow,Murfreesboro,Orange,Orem,Pierre,Rawlins,Richland,Sanford,Selma,South Gate,Truth or Consequences,Tupelo,Valparaiso,Vicksburg,Wahoo,Whittier,Zanesville
-27,12,2011,Intendente de Aspen,Aspen
-14,10,2011,Gobernador prov nro 68,Aspen,Elizabeth City,Moraga,Rolling Hills
-30,10,2011,Intendente de Astoria,Astoria
-15,11,2011,Gobernador prov nro 199,Astoria,Dixon,Merced,Minnetonka,San Fernando
-14,12,2011,Intendente de Athens,Athens
-22,10,2011,Gobernador prov nro 3,Athens,City of Industry,Iowa City,Phoenix
-23,11,2011,Intendente de Atlanta,Atlanta
-11,12,2011,Gobernador prov nro 116,Atlanta,Carrollton,Las Cruces,Paterson,Seal Beach
-10,12,2011,Intendente de Atlantic City,Atlantic City
-30,10,2011,Presidente Nro 10,Atlantic City,Baton Rouge,Belpre,Bessemer,Buffalo,Cary,Casper,Cedar Rapids,Chandler,Chicopee,Claremont,Clarksville,Cody,Corry,Del Rio,Duarte,Fall River,Grambling,Greenfield,Greenville,Henderson,Hidden Hills,Hilo,Indio,Irving,Jenks,La Palma,Mechanicville,Mission Viejo,Moorhead,Nacogdoches,Newport News,Newton,Overland Park,Oxnard,Palo Alto,Paramount,Peabody,Port St. Lucie,Poughkeepsie,Redlands,Redondo Beach,Riverside,Rocky Mount,San Juan,Sugar Land,Thousand Oaks,Troy,Walnut,West Allis
-26,12,2011,Gobernador prov nro 100,Atlantic City,Baton Rouge,Corry,Redondo Beach
-14,12,2011,Intendente de Attleboro,Attleboro
-30,12,2011,Presidente Nro 12,Attleboro,Beverly,Billings,Brownsville,Burlington,Carson,Chesapeake,Chicago,Chino Hills,Connellsville,Durant,Evansville,Fond du Lac,Fullerton,Georgetown,Hamilton,Harrisburg,Hayward,Huntsville,Ithaca,Lake Forest,Lodi,Lomita,Manchester,Marlborough,Middlebury,Minneapolis,Moore,Mount Vernon,Natchez,Niagara Falls,Pico Rivera,Princeton,Rosemead,Sandy,Schaumburg,Schenectady,Scottsbluff,Shawnee,Shreveport,Sierra Vista,Sioux Falls,Sister Bay,Spartanburg,Stamford,Stillwater,Texas City,Thibodaux,Topeka,Worland
-30,10,2011,Gobernador prov nro 125,Attleboro,Georgetown,Rosemead,Sierra Vista,Spartanburg
-30,10,2011,Intendente de Atwater,Atwater
-22,11,2011,Gobernador prov nro 14,Atwater,Grand Junction,Rock Island,Spokane Valley,Sunnyvale
-25,10,2011,Intendente de Auburn,Auburn
-27,11,2011,Gobernador prov nro 1,Auburn,Houston,Stevens Point,West Springfield
-12,11,2011,Intendente de Auburn Hills,Auburn Hills
-21,12,2011,Gobernador prov nro 79,Auburn Hills,Forrest City,Franklin,Meridian,Nenana
-30,12,2011,Intendente de Augusta,Augusta
-17,12,2011,Gobernador prov nro 7,Augusta,Edmond,Kemmerer,Lynwood,Uniontown
-18,12,2011,Intendente de Aurora,Aurora
-13,11,2011,Gobernador prov nro 161,Aurora,Crown Point,Easthampton,Morgan City,Two Rivers
-24,12,2011,Intendente de Austin,Austin
-16,11,2011,Gobernador prov nro 11,Austin,Bethany,Duncan,Kearney,La Habra
-14,12,2011,Intendente de Avalon,Avalon
-25,12,2011,Gobernador prov nro 168,Avalon,Azusa,Clovis,San Bernardino
-26,12,2011,Intendente de Azusa,Azusa
-22,10,2011,Intendente de Baltimore,Baltimore
-14,10,2011,Gobernador prov nro 197,Baltimore,Boulder City,Cairo,Livonia
-22,10,2011,Intendente de Bandera,Bandera
-15,12,2011,Gobernador prov nro 69,Bandera,Gatlinburg,Johnson City,Pass Christian,Sturgis
-17,11,2011,Intendente de Bandon,Bandon
-13,11,2011,Gobernador prov nro 66,Bandon,Mobile,Plano,Victoria
-18,10,2011,Intendente de Bangor,Bangor
-27,10,2011,Gobernador prov nro 182,Bangor,Gold Beach,Greensboro,Jeffersonville,Palmdale
-10,11,2011,Intendente de Barre,Barre
-12,11,2011,Intendente de Barrow,Barrow
-23,12,2011,Gobernador prov nro 177,Barrow,Kent,North Adams,Oneonta,San Juan Capistrano
-19,10,2011,Intendente de Bartlesville,Bartlesville
-30,11,2011,Intendente de Basin,Basin
-24,12,2011,Intendente de Batavia,Batavia
-26,10,2011,Intendente de Baton Rouge,Baton Rouge
-12,11,2011,Intendente de Battle Creek,Battle Creek
-18,11,2011,Gobernador prov nro 9,Battle Creek,Cortland,El Segundo,Pine Bluff,West Haven
-21,12,2011,Intendente de Bay City,Bay City
-14,12,2011,Gobernador prov nro 184,Bay City,Cape May,Davis,Grass Valley,Salem
+23,10,2011,Intendente de Aberdeen,Aberdeen
+16,12,2011,Presidente Nro 15,Aberdeen,Areceibo,Bloomington,Burlingame,Butler,Calabasas,Columbus,Eatontown,Effingham,Fajardo,Fall River,Falls Church,Guthrie,Huntington Park,Idaho Springs,Jacksonville,Kearns,Lawrence,Little Rock,Longview,Lufkin,Medford,Miami,Middletown,Midwest City,Muskogee,Nenana,Norwalk,Peekskill,Pomona,Port Arthur,Port Huron,Provo,Quincy,Riverton,Rye,Salt Lake City,San Bernardino,Santa Rosa,Scarborough,Seattle,South Portland,St. George,Starkville,Tacoma,Taunton,Temple City,Vancouver,Woodruff,Worcester
+13,10,2011,Gobernador prov nro 153,Aberdeen,Columbus,Fajardo,Huntington Park
+17,11,2011,Intendente de Abilene,Abilene
+14,12,2011,Presidente Nro 12,Abilene,Alexandria,Baltimore,Benton Harbor,Beverly,Brownsville,Camden,Carolina,Chesapeake,Chicago,Connellsville,Coos Bay,Detroit,Enfield,Evansville,Fullerton,Garland,Great Falls,Hamilton,Harrisburg,Huntsville,Ithaca,Lake Forest,Lodi,Logan,Lowell,Mandan,Marlborough,Middlebury,Moore,Mount Vernon,Niagara Falls,Omaha,Pico Rivera,Princeton,Roanoke,Rosemead,Sandy,Santa Monica,Schaumburg,Scottsbluff,Sierra Vista,Sioux Falls,Sister Bay,Stillwater,Texarkana,Texas City,Thibodaux,Worland,Ypsilanti
+20,11,2011,Gobernador prov nro 129,Abilene,Camden,Connellsville,Marlborough
+17,11,2011,Intendente de Ada,Ada
+30,11,2011,Presidente Nro 8,Ada,Anderson,Auburn Hills,Bend,Buena Park,Cheyenne,Christiansted,Claremont,Elko,Forest Lake,Franklin,Frederick,Fresno,Gary,Gloucester,Green River,Hoboken,Holyoke,International Falls,Jeffersonville,Joplin,Keene,Kennewick,Lake Charles,Lexington,Lower Burrell,Menomonee Falls,Mequon,Meridian,Morgantown,New Albany,North Tonawanda,Oak Ridge,Orangeburg,Perth Amboy,Pittsfield,Ponce,Port Orford,Rialto,Rockford,Roswell,Sierra Madre,Stevens Point,Tallahassee,Vail,Valencia,Ventura,Weymouth,Woodward,Yigo
+11,10,2011,Gobernador prov nro 83,Ada,Cheyenne,Sierra Madre,Stevens Point,Weymouth
+24,12,2011,Intendente de Agat,Agat
+13,11,2011,Presidente Nro 10,Agat,Ardmore,Atlantic City,Baton Rouge,Beaumont,Belpre,Berlin,Bessemer,Cary,Casper,Charlotte Amalie,Chicopee,Clarksville,Cody,Corry,Duarte,Grambling,Greenfield,Greensboro,Greenville,Hidden Hills,Indio,Irving,Kent,La Palma,Moorhead,Nacogdoches,Narragansett,Newport News,Nome,Olean,Overland Park,Oxnard,Paramount,Peru,Port St. Lucie,Poughkeepsie,Pullman,Redding,Redondo Beach,Riverside,Rocky Mount,Roseville,San Luis Obispo,Scranton,St. Marys,Sugar Land,Topeka,Walnut,Warner Robins
+25,10,2011,Gobernador prov nro 105,Agat,Indio,La Palma,Nacogdoches
+11,12,2011,Intendente de Agawam,Agawam
+26,10,2011,Presidente Nro 3,Agawam,Boston,Brea,Bridgeport,Brunswick,Chicago Heights,Chula Vista,Claremore,Compton,Covina,Dayton,DeKalb,Eden Prairie,El Monte,Fairbanks,Fairfax,Fernley,Flint,Florence,Guayama,Hazleton,Hialeah,Highland Park,Honolulu,Kenosha,Lafayette,Lancaster,Laughlin,Monroe,New Iberia,Newburyport,Normal,Ocean City,Ogdensburg,Oswego,Saipan,Salisbury,San Marino,Santa Clarita,Saukville,Seaford,Shamokin,Springdale,Stanton,Tempe,Vallejo,Waterloo,Watervliet,Woburn,York
+24,11,2011,Gobernador prov nro 31,Agawam,Brea,Chicago Heights,El Monte,Seaford
+22,12,2011,Intendente de Agoura Hills,Agoura Hills
+23,10,2011,Presidente Nro 13,Agoura Hills,Aliso Viejo,Amesbury,Anaheim,Bismarck,Burlington,College Station,Council Bluffs,Del Rio,Dubuque,Farmington,Fort Collins,Gainesville,Greensburg,Hannibal,Hoover,Hudson,Jackson,LaGrange,Laconia,Laguna Hills,Los Angeles,McAllen,McKeesport,Methuen,Midland,Minneapolis,Montebello,Natchitoches,New York,Placentia,Rensselaer,Ruston,Saginaw,Saint Cloud,Saint Paul,San Mateo,Saratoga Springs,Shelton,Sonoma,South El Monte,Tok,Vermillion,Virginia Beach,Visalia,Warren,Waterbury,Watertown,Winnemucca,Yorba Linda
+20,12,2011,Gobernador prov nro 132,Agoura Hills,Greensburg,Hannibal,Methuen,New York
+26,12,2011,Intendente de Aguadilla,Aguadilla
+22,12,2011,Presidente Nro 1,Aguadilla,Allentown,Athens,Auburn,Bowie,Branson,Brockton,Carson City,Chickasha,Chino Hills,City of Industry,Corinth,Dunkirk,El Segundo,Eureka,Forrest City,Gold Beach,Hawthorne,Houston,Irvine,Kearney,Kemmerer,La Crosse,La Habra,Lakeland,Lakewood,Laurel,Liberal,Littleton,Manhattan Beach,Merced,Missoula,Nampa,Needham,New Madrid,Oakland,Oxford,Pine Bluff,Plantation,Rancho Cordova,San Dimas,San Francisco,Sheboygan,Springfield,Stafford,West Allis,West Haven,West Springfield,Wilkes-Barre,Wisconsin Rapids
+16,12,2011,Gobernador prov nro 5,Aguadilla,Merced,Rancho Cordova,Sheboygan,Springfield
+25,12,2011,Intendente de Akron,Akron
+10,11,2011,Presidente Nro 7,Akron,Aspen,Bandera,Bandon,Boise,Brookings,Burbank,Canton,Chico,Cruz Bay,Cypress,Darlington,Durant,Elizabeth City,Fulton,Gallup,Gatlinburg,Glens Falls,Gulfport,Johnson City,La Verne,Mankato,Marietta,Marquette,Melrose,Mobile,Moraga,Naperville,Nichols Hills,Pascagoula,Pass Christian,Plano,Pulaski,Reading,Seward,Steubenville,Sturgis,Suffolk,Sunbury,Sutter Creek,Syracuse,The Dalles,Union City,Victoria,Vineland,Weirton,West Hartford,Wheeling,Wilmington,Wynne
+22,11,2011,Gobernador prov nro 75,Akron,Marquette,Melrose,Sunbury
+29,11,2011,Intendente de Alamogordo,Alamogordo
+16,10,2011,Presidente Nro 9,Alamogordo,Altoona,Attleboro,Atwater,Azusa,Bentonville,Bethlehem,Butte,Carbondale,Commerce,Coral Springs,Denver,Farmer City,Fond du Lac,Grand Junction,Hot Springs,Kankakee,Kennesaw,La Puente,Laguna Woods,Laredo,Lebanon,Merizo,Michigan City,Milford,Monrovia,Nashville,New Bedford,New Rochelle,North Chicago,Northampton,Oro Valley,Owensboro,Pembroke Pines,Pittsburgh,Plainfield,Sault Ste. Marie,Shawnee,Sioux City,South Bend,Tampa,Taylorsville,Temecula,Thousand Oaks,Tuscaloosa,Twin Falls,Valdez,West Bend,Wichita Falls,Yukon
+24,12,2011,Gobernador prov nro 95,Alamogordo,Attleboro,Merizo,Northampton,Tuscaloosa
+30,12,2011,Intendente de Albany,Albany
+11,10,2011,Presidente Nro 17,Albany,Apple Valley,Bakersfield,Bay St. Louis,Beloit,Biddeford,Bremerton,Charleston,Chattanooga,Citrus Heights,College Park,Colorado Springs,Danbury,Derby,Edina,Escondido,Fountain Valley,Green Bay,Hilo,Hopkinsville,Hornell,Inglewood,Joliet,Las Cruces,Latrobe,Layton,Little Falls,Lynn,Macon,Manitowoc,Memphis,Meriden,Monterey Park,Muncie,New Haven,Newport,Nogales,North Adams,Odessa,Ogden,Oklahoma City,Oneonta,Palos Verdes Estates,Racine,Rolling Hills Estates,Simi Valley,Slidell,Walla Walla,West Memphis,Winooski
+30,11,2011,Gobernador prov nro 182,Albany,Chattanooga,College Park,Escondido,Manitowoc
+29,11,2011,Intendente de Albuquerque,Albuquerque
+19,10,2011,Presidente Nro 18,Albuquerque,Ashland,Bangor,Bay City,Belleville,Bellflower,Biloxi,Broken Arrow,Cape May,Catskill,Cedarburg,Cicero,Columbia,Corona,Cranston,Davis,Dickinson,Durango,Elsmere,Eufaula,Frederiksted,Gadsden,Gastonia,Grafton,Grand Rapids,Grass Valley,Hermitage,Huntington,Lansing,Lewiston,Lincoln,Lynchburg,Mason City,Mission Viejo,Murrieta,Palmdale,Pueblo,Rohnert Park,Rolling Hills,Saint Joseph,Salem,San Gabriel,Santa Ana,Somerville,Torrington,Villa Park,Webster Groves,West Sacramento,Wichita,Yonkers
+11,12,2011,Gobernador prov nro 184,Albuquerque,Bangor,Hornell,Inglewood,Saint Joseph
+29,11,2011,Intendente de Alexandria,Alexandria
+19,11,2011,Gobernador prov nro 119,Alexandria,Chicago,Coos Bay,Paterson,Texarkana
+10,12,2011,Intendente de Alhambra,Alhambra
+28,12,2011,Presidente Nro 5,Alhambra,Alpharetta,Arcadia,Baldwin Park,Boulder Junction,Bozeman,Brigham City,Cedar Rapids,Centennial,Charlottesville,Cincinnati,Dover,Downey,Duncan,East Hartford,Fontana,Fort Dodge,Frisco,Hattiesburg,Hollywood,Homer,Independence,Jersey City,Kahului,Kenner,Klamath Falls,Laguna Niguel,Lander,Louisville,Malden,Martinsburg,Milwaukee,Murray,New Orleans,Newport Beach,North Little Rock,North Pole,Orange,Palm Springs,Phenix City,Pierre,Radford,Rapid City,San Jose,Stockton,Tonawanda,Vacaville,Vergennes,Vincennes,Williston
+12,10,2011,Gobernador prov nro 54,Alhambra,Batavia,Cedar Rapids,New Brunswick,Rapid City
+23,12,2011,Intendente de Aliquippa,Aliquippa
+19,12,2011,Presidente Nro 2,Aliquippa,Arlington,Barrow,Cerritos,Cohoes,Covington,Dana Point,Danville,Eau Claire,Elkhart,Farrell,Fort Smith,Huntington Beach,Jordan Valley,Kingston,Knoxville,Lima,Lockport,Marshall,McAlester,Mentor,Minot,Moline,Montpelier,Moreno Valley,Morrison,Myrtle Beach,Norfolk,Phoenix,Plymouth,Rancho Palos Verdes,Rehoboth Beach,Rockville,Rolla,Rutland,Saint Louis,San Antonio,San Clemente,Santa Clara,Scottsdale,Sheridan,Spokane Valley,Sunnyvale,Thiensville,Waco,Waltham,Waukegan,Westminster,Wheaton,White Plains
+25,11,2011,Gobernador prov nro 20,Aliquippa,Covington,Scottsdale,Waukegan
+12,11,2011,Intendente de Aliso Viejo,Aliso Viejo
+23,12,2011,Gobernador prov nro 134,Aliso Viejo,San Mateo,Vermillion,Yorba Linda
+28,12,2011,Intendente de Allentown,Allentown
+29,10,2011,Gobernador prov nro 2,Allentown,Chino Hills,Lakeland,Lakewood,Littleton
+28,10,2011,Intendente de Alpharetta,Alpharetta
+17,11,2011,Gobernador prov nro 50,Alpharetta,Hattiesburg,Homer,San Jose
+25,11,2011,Intendente de Altoona,Altoona
+29,11,2011,Gobernador prov nro 89,Altoona,Grand Junction,Monrovia,Pembroke Pines,Twin Falls
+22,11,2011,Intendente de Ames,Ames
+30,10,2011,Presidente Nro 14,Ames,Annapolis,Appleton,Arvada,Asbury Park,Asheville,Augusta,Beaver Falls,Birmingham,Brookfield,Coatesville,Cumberland,Delta Junction,East St. Louis,Easton,Ephraim,Evanston,Fairfield,Fredericksburg,Gettysburg,Grand Forks,Half Moon Bay,Hartland,Hawaiian Gardens,Hickory,Houma,Janesville,La Habra Heights,Laguna Beach,Manassas Park,Miami Gardens,Nanticoke,Oneida,Pocatello,Raleigh,Rancho Santa Margarita,Richmond,San Fernando,San Juan Capistrano,Sandy Springs,Santa Cruz,Savannah,Sharon,Sherrill,Sitka,South Burlington,Tamuning,Terre Haute,West Lafayette,Youngstown
+14,12,2011,Gobernador prov nro 145,Ames,Asbury Park,Grand Forks,Pocatello,Raleigh
+19,10,2011,Intendente de Amesbury,Amesbury
+25,10,2011,Gobernador prov nro 139,Amesbury,College Station,Farmington,Laconia,Sonoma
+10,11,2011,Intendente de Anaconda,Anaconda
+20,10,2011,Presidente Nro 19,Anaconda,Ansonia,Astoria,Bartlesville,Basin,Billings,Bowling Green,Bristol,Brooklyn Park,Buffalo,Cairo,Cambridge,Canandaigua,Cedar City,Charlotte,Culver City,Dallas,Davenport,Dixon,Dothan,East Rutherford,Easthampton,Elmira,Enid,Eugene,Fargo,Frankfort,Guayanilla,Hartford,Jeffersontown,Kansas City,Ketchikan,Laramie,Livonia,Lomita,Minnetonka,Modesto,Moultrie,Nevada City,Orlando,Parma,Pendleton,Powell,Providence,Reedsport,Rochester,Tulsa,Westfield,Westlake Village,Winston-Salem
+30,11,2011,Gobernador prov nro 198,Anaconda,Davenport,Hartford,Westfield
+25,11,2011,Intendente de Anaheim,Anaheim
+19,10,2011,Gobernador prov nro 137,Anaheim,Dubuque,McAllen,Placentia,Rensselaer
+14,10,2011,Intendente de Anderson,Anderson
+18,11,2011,Gobernador prov nro 78,Anderson,Forest Lake,International Falls,Rockford
+16,12,2011,Intendente de Ann Arbor,Ann Arbor
+11,11,2011,Presidente Nro 16,Ann Arbor,Aurora,Avalon,Battle Creek,Bell,Beverly Hills,Bossier City,Clovis,Crown Point,DuBois,East Lansing,Fitchburg,Galesburg,Gardena,Gardner,Geneva,Glen Cove,Hagerstown,Hanahan,Hope,Idaho Falls,Iowa City,Jamestown,Lubbock,Manassas,Manchester,Manhattan,Montgomery,Morgan City,Mount Pleasant,New Britain,New Kensington,Newburgh,Norwich,Palo Alto,Pasco,Pawtucket,Philadelphia,Pottsville,Prescott,Rancho Cucamonga,Saint Albans,Sedalia,Spartanburg,Sun Valley,Trenton,Two Rivers,Valdosta,Waycross,West Jordan
+28,10,2011,Gobernador prov nro 167,Ann Arbor,Bell,Philadelphia,Spartanburg
+11,12,2011,Intendente de Annapolis,Annapolis
+15,11,2011,Gobernador prov nro 146,Annapolis,Coatesville,East St. Louis,Easton,Half Moon Bay
+28,10,2011,Intendente de Ansonia,Ansonia
+19,12,2011,Gobernador prov nro 199,Ansonia,Buffalo,Livonia,Powell
+19,11,2011,Intendente de Apple Valley,Apple Valley
+18,11,2011,Gobernador prov nro 176,Apple Valley,Bremerton,Latrobe,Rolling Hills Estates,Slidell
+30,10,2011,Intendente de Appleton,Appleton
+10,10,2011,Gobernador prov nro 150,Appleton,Brookfield,Delta Junction,Miami Gardens,Terre Haute
+19,10,2011,Intendente de Arcadia,Arcadia
+21,12,2011,Gobernador prov nro 46,Arcadia,Bozeman,Independence,Orange,Vincennes
+12,10,2011,Intendente de Ardmore,Ardmore
+28,10,2011,Gobernador prov nro 99,Ardmore,Clarksville,Roseville,San Luis Obispo
+20,11,2011,Intendente de Areceibo,Areceibo
+22,11,2011,Gobernador prov nro 154,Areceibo,Bloomington,Jacksonville,Medford,Miami
+16,11,2011,Intendente de Arlington,Arlington
+14,11,2011,Gobernador prov nro 15,Arlington,Knoxville,Moline,Thiensville,White Plains
+20,11,2011,Intendente de Artesia,Artesia
+13,11,2011,Presidente Nro 11,Artesia,Atlanta,Bethany,Boulder City,Cape Coral,Cape Girardeau,Carrollton,Cedar Falls,Champaign,Chester,Deadwood,Egg Harbor,El Cerrito,El Paso,Everett,Georgetown,Gilette,Gloversville,Hackensack,Henderson,Hutchinson,Idabel,Kokomo,La Mirada,Lawrenceville,Nashua,Newark,Newton,North Charleston,Norton,Oshkosh,Parker,Parkersburg,Pasadena,Paterson,Pittston,Portland,Redlands,San Diego,San Juan,Seal Beach,Staunton,Superior,Tyler,Urbana,Warwick,West Palm Beach,Williamsburg,Williamsport,Yuma
+13,12,2011,Gobernador prov nro 117,Artesia,Carrollton,Kokomo,Pittston,San Diego
+25,12,2011,Intendente de Arvada,Arvada
+12,10,2011,Gobernador prov nro 141,Arvada,Houma,Laguna Beach,Oneida,Tamuning
+25,12,2011,Intendente de Asbury Park,Asbury Park
+25,12,2011,Intendente de Asheville,Asheville
+15,10,2011,Gobernador prov nro 147,Asheville,La Habra Heights,Manassas Park,Sherrill
+10,12,2011,Intendente de Ashland,Ashland
+11,12,2011,Gobernador prov nro 193,Ashland,Corona,Grand Rapids,Lansing,Lewiston
+21,11,2011,Intendente de Aspen,Aspen
+22,10,2011,Gobernador prov nro 70,Aspen,Elizabeth City,Johnson City,Moraga,Sturgis
+26,11,2011,Intendente de Astoria,Astoria
+16,10,2011,Gobernador prov nro 200,Astoria,Bartlesville,Basin,Berkeley,Bradford,Bristol,Brooklyn Park,Cairo,Cambridge,Canandaigua,Charlotte,Chino,Clemson,Cleveland,Corvallis,Cudahy,Dalton,Dearborn,Diamond Bar,Dixon,East Rutherford,Easthampton,Elmira,Eugene,Fargo,Flagstaff,Fort Wayne,Frankfort,Glendale,Glendora,Guayanilla,Indianapolis,Irwindale,Jefferson City,Jeffersontown,Kalispell,Kettering,La Jolla,Lawton,Lomita,Loudon,Marshfield,Mesquite,Miami Beach,Minnetonka,Modesto,Moultrie,Murfreesboro,Nevada City,New Castle,Newcastle,Orlando,Parma,Peoria,Providence,Rawlins,Reedsport,Richland,Sanford,South Gate,Thomasville,Truth or Consequences,Tulsa,Tupelo,Valparaiso,Vicksburg,Wahoo,Winston-Salem,Yakima,Zanesville
+17,10,2011,Intendente de Athens,Athens
+17,12,2011,Gobernador prov nro 3,Athens,City of Industry,Nampa,West Allis
+19,10,2011,Intendente de Atlanta,Atlanta
+25,10,2011,Gobernador prov nro 118,Atlanta,Bethany,Chester,Georgetown,Seal Beach
+27,11,2011,Intendente de Atlantic City,Atlantic City
+12,12,2011,Gobernador prov nro 103,Atlantic City,Baton Rouge,Beaumont,Nome,Topeka
+12,12,2011,Intendente de Attleboro,Attleboro
+28,11,2011,Intendente de Atwater,Atwater
+27,10,2011,Gobernador prov nro 87,Atwater,Farmer City,Nashville,Oro Valley,Valdez
+29,11,2011,Intendente de Auburn,Auburn
+22,10,2011,Gobernador prov nro 1,Auburn,Branson,Houston,West Haven,West Springfield
+17,11,2011,Intendente de Auburn Hills,Auburn Hills
+18,10,2011,Gobernador prov nro 81,Auburn Hills,Claremont,Franklin,Meridian,Yigo
+22,10,2011,Intendente de Augusta,Augusta
+15,12,2011,Gobernador prov nro 149,Augusta,Ephraim,Fredericksburg,Janesville,Rancho Santa Margarita
+23,12,2011,Intendente de Aurora,Aurora
+27,10,2011,Gobernador prov nro 164,Aurora,Crown Point,Manhattan,Morgan City,Two Rivers
+27,11,2011,Intendente de Avalon,Avalon
+25,12,2011,Gobernador prov nro 170,Avalon,Battle Creek,Clovis,New Britain
+16,12,2011,Intendente de Azusa,Azusa
+23,12,2011,Gobernador prov nro 94,Azusa,New Bedford,Pittsburgh,Shawnee,South Bend
+10,10,2011,Intendente de Bakersfield,Bakersfield
+16,10,2011,Gobernador prov nro 173,Bakersfield,Colorado Springs,Muncie,Saint Albans
+28,12,2011,Intendente de Baldwin Park,Baldwin Park
+23,10,2011,Gobernador prov nro 52,Baldwin Park,Centennial,East Hartford,Frisco,Vergennes
+30,10,2011,Intendente de Baltimore,Baltimore
+11,10,2011,Gobernador prov nro 125,Baltimore,Chesapeake,Harrisburg,Moore,Sandy
+10,11,2011,Intendente de Bandera,Bandera
+27,10,2011,Gobernador prov nro 71,Bandera,Gatlinburg,Marietta,Pass Christian
+10,12,2011,Intendente de Bandon,Bandon
+28,12,2011,Gobernador prov nro 68,Bandon,Mobile,Nichols Hills,Plano,Victoria
+10,12,2011,Intendente de Bangor,Bangor
+18,12,2011,Intendente de Barre,Barre
+19,11,2011,Presidente Nro 4,Barre,Baytown,Caguas,Chelsea,Clairton,Cortland,Decatur,Des Moines,Edmond,Erie,Fairmont,Fayetteville,Fort Lauderdale,Gilbert,Hammond,Isle of Palms,Juneau,Kona,Lahaina,Las Vegas,Lawndale,Long Beach,Macomb,Madison,Maywood,Mesa,Monongahela,North Platte,Oil City,Olympia,Paducah,Passaic,Port Washington,Portsmouth,Reno,Rock Springs,Sandpoint,Santa Fe Springs,Signal Hill,Somersworth,South Pasadena,St. Petersburg,Tucson,Uniontown,Vernon,Washington,Wausau,Whittier,Woonsocket,Yazoo City
+20,10,2011,Gobernador prov nro 36,Barre,Caguas,Washington,Whittier
+24,11,2011,Intendente de Barrow,Barrow
+29,10,2011,Gobernador prov nro 19,Barrow,Norfolk,Santa Clara,Westminster
+24,10,2011,Intendente de Bartlesville,Bartlesville
+13,12,2011,Intendente de Basin,Basin
+17,12,2011,Intendente de Batavia,Batavia
+12,12,2011,Presidente Nro 6,Batavia,Beacon,Beckley,Bell Gardens,Bellingham,Blacksburg,Boulder,Clarksburg,Clearwater,Concord,Corpus Christi,Dodge City,Douglas,Fremont,Gaithersburg,Garden Grove,Goose Creek,Grand Island,Hampton,Healdsburg,High Point,Jeannette,Johnstown,Kalamazoo,Leominster,Los Alamitos,Malibu,Muskegon,Natchez,New Brunswick,Norman,North Las Vegas,Ontario,Rhinelander,Rome,Sacramento,Salinas,Santa Barbara,Shreveport,Statesboro,Titusville,Toledo,Torrance,Turlock,Utica,West Covina,West Hollywood,West Valley City,West Warwick,Wisconsin Dells
+15,11,2011,Intendente de Baton Rouge,Baton Rouge
+29,11,2011,Intendente de Battle Creek,Battle Creek
+29,11,2011,Intendente de Bay City,Bay City
+27,12,2011,Gobernador prov nro 186,Bay City,Cape May,Davis,Grass Valley,Salem
 24,12,2011,Intendente de Bay St. Louis,Bay St. Louis
-10,10,2011,Intendente de Bayamon,Bayamon
-28,12,2011,Gobernador prov nro 170,Bayamon,Glen Cove,Saint Albans,West Jordan
-12,11,2011,Intendente de Baytown,Baytown
-29,12,2011,Gobernador prov nro 40,Baytown,Decatur,East Hartford,Lahaina,Maywood
-18,12,2011,Intendente de Beacon,Beacon
-12,11,2011,Gobernador prov nro 62,Beacon,Clarksburg,Great Falls,Louisville,Statesboro
-15,10,2011,Intendente de Beaumont,Beaumont
-13,11,2011,Intendente de Beaver Falls,Beaver Falls
-30,10,2011,Gobernador prov nro 145,Beaver Falls,Eureka,Evanston,South Burlington
+19,12,2011,Gobernador prov nro 179,Bay St. Louis,Danbury,New Haven,Ogden
+15,12,2011,Intendente de Baytown,Baytown
+15,11,2011,Gobernador prov nro 43,Baytown,Decatur,Lahaina,Maywood,Somersworth
+25,12,2011,Intendente de Beacon,Beacon
+30,12,2011,Gobernador prov nro 64,Beacon,Clearwater,Norman,West Valley City
+27,10,2011,Intendente de Beaumont,Beaumont
+21,10,2011,Intendente de Beaver Falls,Beaver Falls
+12,10,2011,Gobernador prov nro 148,Beaver Falls,Evanston,Hartland,Nanticoke,South Burlington
 29,11,2011,Intendente de Beckley,Beckley
-17,10,2011,Intendente de Bell,Bell
-27,10,2011,Intendente de Bell Gardens,Bell Gardens
-29,10,2011,Gobernador prov nro 60,Bell Gardens,Hampton,Muskogee,Santa Barbara,Turlock
-16,10,2011,Intendente de Belleville,Belleville
-17,10,2011,Gobernador prov nro 186,Belleville,Catskill,Durango,Gadsden,Rohnert Park
-17,11,2011,Intendente de Bellflower,Bellflower
-19,11,2011,Gobernador prov nro 44,Bellflower,Bozeman,Brockton,Dover
-10,11,2011,Intendente de Bellingham,Bellingham
-15,11,2011,Intendente de Beloit,Beloit
-12,10,2011,Gobernador prov nro 172,Beloit,Fountain Valley,Simi Valley,West Memphis
-19,12,2011,Intendente de Belpre,Belpre
-15,12,2011,Gobernador prov nro 99,Belpre,Casper,Overland Park,Paramount,Sugar Land
-21,12,2011,Intendente de Bend,Bend
-19,12,2011,Gobernador prov nro 78,Bend,Fayetteville,Gary,Lake Charles,Ypsilanti
-19,10,2011,Intendente de Benton Harbor,Benton Harbor
-20,10,2011,Intendente de Bentonville,Bentonville
-15,10,2011,Gobernador prov nro 88,Bentonville,Bowling Green,Laredo,Tampa,Wichita Falls
-12,12,2011,Intendente de Berkeley,Berkeley
-16,12,2011,Intendente de Berlin,Berlin
-22,11,2011,Gobernador prov nro 137,Berlin,Coral Springs,Laconia,Ruston
+27,12,2011,Gobernador prov nro 56,Beckley,Bellingham,Boulder,Johnstown,Malibu
+24,12,2011,Intendente de Bell,Bell
+18,11,2011,Intendente de Bell Gardens,Bell Gardens
+22,12,2011,Gobernador prov nro 62,Bell Gardens,Fremont,Hampton,Turlock
+20,11,2011,Intendente de Belleville,Belleville
+23,12,2011,Gobernador prov nro 188,Belleville,Catskill,Durango,Gadsden,Rohnert Park
+11,10,2011,Intendente de Bellflower,Bellflower
+14,10,2011,Gobernador prov nro 185,Bellflower,Cicero,Hermitage,Palmdale,Yonkers
+12,11,2011,Intendente de Bellingham,Bellingham
+21,12,2011,Intendente de Beloit,Beloit
+23,10,2011,Gobernador prov nro 175,Beloit,Fountain Valley,Odessa,West Memphis
+15,11,2011,Intendente de Belpre,Belpre
+19,11,2011,Gobernador prov nro 102,Belpre,Corry,Overland Park,Paramount,Redondo Beach
+24,12,2011,Intendente de Bend,Bend
+28,10,2011,Gobernador prov nro 80,Bend,Gary,Joplin,Lake Charles,Valencia
+20,10,2011,Intendente de Benton Harbor,Benton Harbor
+26,11,2011,Gobernador prov nro 120,Benton Harbor,Beverly,Fullerton,Mandan,Texas City
+10,12,2011,Intendente de Bentonville,Bentonville
+24,10,2011,Gobernador prov nro 90,Bentonville,Laredo,Lebanon,Tampa
+30,12,2011,Intendente de Berkeley,Berkeley
+29,11,2011,Presidente Nro 20,Berkeley,Bradford,Chino,Clemson,Cleveland,Corvallis,Cudahy,Dalton,Dearborn,Diamond Bar,Flagstaff,Fort Wayne,Glendale,Glendora,Indianapolis,Irwindale,Jefferson City,Kalispell,Kettering,La Jolla,Lawton,Loudon,Marshfield,Mesquite,Miami Beach,Murfreesboro,New Castle,Newcastle,Peoria,Rawlins,Richland,Sanford,South Gate,Thomasville,Truth or Consequences,Tupelo,Valparaiso,Vicksburg,Wahoo,Yakima,Zanesville
+25,12,2011,Intendente de Berlin,Berlin
+11,12,2011,Gobernador prov nro 107,Berlin,Duarte,Narragansett,Olean,Rocky Mount
 10,12,2011,Intendente de Bessemer,Bessemer
-27,10,2011,Gobernador prov nro 96,Bessemer,Fall River,Greenfield,Hartland,Pocatello
-26,11,2011,Intendente de Bethany,Bethany
-13,11,2011,Intendente de Bethlehem,Bethlehem
-12,11,2011,Gobernador prov nro 90,Bethlehem,Carbondale,Denver,Michigan City
-16,11,2011,Intendente de Beverly,Beverly
-29,10,2011,Gobernador prov nro 118,Beverly,Fond du Lac,Fullerton,Pico Rivera,Texas City
-26,11,2011,Intendente de Beverly Hills,Beverly Hills
-21,11,2011,Gobernador prov nro 167,Beverly Hills,Hope,Manassas,Newburgh,Spokane
-26,10,2011,Intendente de Biddeford,Biddeford
-19,12,2011,Gobernador prov nro 178,Biddeford,Bradford,College Park,Lock Haven,Palos Verdes Estates
-21,12,2011,Intendente de Billings,Billings
-23,10,2011,Gobernador prov nro 119,Billings,Evansville,Hamilton,Lake Forest,Shreveport
-30,10,2011,Intendente de Biloxi,Biloxi
-27,11,2011,Gobernador prov nro 189,Biloxi,Mason City,Syracuse,Wichita,Yakima
-14,10,2011,Intendente de Binghamton,Binghamton
-16,11,2011,Gobernador prov nro 166,Binghamton,Galesburg,Montgomery,Pasco,Pottsville
-13,12,2011,Intendente de Birmingham,Birmingham
-27,10,2011,Gobernador prov nro 139,Birmingham,Fairfield,Hawaiian Gardens,Hollister,Sharon
-21,12,2011,Intendente de Bismarck,Bismarck
-30,12,2011,Gobernador prov nro 129,Bismarck,Hoover,Montebello,Saint Paul,Warren
-22,12,2011,Intendente de Blacksburg,Blacksburg
-14,11,2011,Gobernador prov nro 55,Blacksburg,Concord,Detroit,Salinas,West Warwick
-23,10,2011,Intendente de Bloomington,Bloomington
-19,10,2011,Gobernador prov nro 58,Bloomington,Cumberland,Jeannette,West Hollywood
-19,11,2011,Intendente de Boise,Boise
-17,10,2011,Gobernador prov nro 141,Boise,Gettysburg,Hickory,Sandy Springs,Youngstown
-14,11,2011,Intendente de Bossier City,Bossier City
-15,11,2011,Intendente de Boston,Boston
-15,12,2011,Gobernador prov nro 25,Boston,Hackensack,Laughlin,Santa Clarita,Waterloo
-15,10,2011,Intendente de Boulder,Boulder
-28,10,2011,Intendente de Boulder City,Boulder City
-22,11,2011,Intendente de Boulder Junction,Boulder Junction
-12,12,2011,Gobernador prov nro 42,Boulder Junction,Fort Dodge,Hollywood,Newport Beach,Phenix City
-22,10,2011,Intendente de Bowie,Bowie
-26,12,2011,Gobernador prov nro 6,Bowie,Pulaski,Springfield,Washington,Wisconsin Rapids
-14,12,2011,Intendente de Bowling Green,Bowling Green
-28,11,2011,Intendente de Bozeman,Bozeman
-24,11,2011,Intendente de Bradbury,Bradbury
-28,12,2011,Gobernador prov nro 140,Bradbury,New Orleans,Richmond,Santa Fe,Sunbury
-23,12,2011,Intendente de Bradford,Bradford
-17,11,2011,Intendente de Branson,Branson
-28,10,2011,Intendente de Brea,Brea
-21,12,2011,Intendente de Bremerton,Bremerton
-21,12,2011,Gobernador prov nro 174,Bremerton,Joliet,Latrobe,Layton,Newport
-12,12,2011,Intendente de Bridgeport,Bridgeport
-15,12,2011,Gobernador prov nro 27,Bridgeport,Florence,Hazleton,Placentia,Saukville
-16,10,2011,Intendente de Brigham City,Brigham City
-11,12,2011,Gobernador prov nro 50,Brigham City,Kenner,Martinsburg,Tyler,Vergennes
-14,11,2011,Intendente de Bristol,Bristol
-30,12,2011,Intendente de Brockton,Brockton
-16,11,2011,Intendente de Broken Arrow,Broken Arrow
-22,12,2011,Gobernador prov nro 49,Broken Arrow,Cincinnati,Meadville,Mesquite,North Little Rock
-20,10,2011,Intendente de Brookfield,Brookfield
-19,11,2011,Gobernador prov nro 146,Brookfield,Ephraim,Janesville,Rancho Santa Margarita
-14,10,2011,Intendente de Brookings,Brookings
-27,10,2011,Gobernador prov nro 67,Brookings,Enid,Frederick,Monterey,Nichols Hills
-23,10,2011,Intendente de Brooklyn Park,Brooklyn Park
-28,10,2011,Gobernador prov nro 142,Brooklyn Park,Coatesville,Grand Forks,Raleigh,Scranton
-29,10,2011,Intendente de Brown Deer,Brown Deer
-23,12,2011,Intendente de Brownsville,Brownsville
-12,12,2011,Gobernador prov nro 121,Brownsville,Chino Hills,Princeton,Scottsbluff,Worland
-19,12,2011,Intendente de Brunswick,Brunswick
-15,11,2011,Gobernador prov nro 23,Brunswick,Flint,Lancaster,Salisbury,Tustin
-10,11,2011,Intendente de Buena Park,Buena Park
-29,12,2011,Gobernador prov nro 17,Buena Park,Cerritos,Rutland,Wheaton
-10,11,2011,Intendente de Buffalo,Buffalo
-27,10,2011,Gobernador prov nro 105,Buffalo,Chandler,Peabody,Redlands,San Juan
-27,11,2011,Intendente de Burbank,Burbank
-18,10,2011,Gobernador prov nro 70,Burbank,Fort Wayne,Gallup,Wheeling,Wynne
-13,11,2011,Intendente de Burlingame,Burlingame
-23,11,2011,Intendente de Burlington,Burlington
-22,10,2011,Gobernador prov nro 128,Burlington,LaGrange,Plattsburgh,Tok,Winnemucca
-30,12,2011,Intendente de Butler,Butler
-29,10,2011,Gobernador prov nro 153,Butler,La Puente,Rochester,Scarborough,Temple City
-29,10,2011,Intendente de Butte,Butte
-26,11,2011,Gobernador prov nro 95,Butte,Council Bluffs,North Chicago,Pullman,St. Marys
-30,10,2011,Intendente de Caguas,Caguas
-16,10,2011,Intendente de Cairo,Cairo
-18,12,2011,Intendente de Calabasas,Calabasas
-14,10,2011,Gobernador prov nro 149,Calabasas,Effingham,Fajardo,Saipan,South Portland
-25,11,2011,Intendente de Calumet City,Calumet City
-28,10,2011,Gobernador prov nro 12,Calumet City,Fort Worth,Jordan Valley,Kingston,Plymouth
-22,11,2011,Intendente de Cambridge,Cambridge
-29,12,2011,Intendente de Camden,Camden
-23,10,2011,Gobernador prov nro 71,Camden,Chico,Darlington,Gulfport,Yigo
-14,10,2011,Intendente de Canandaigua,Canandaigua
-29,12,2011,Gobernador prov nro 159,Canandaigua,Charleston,Claremore,Rhinelander
-26,12,2011,Intendente de Cape Coral,Cape Coral
-21,12,2011,Gobernador prov nro 107,Cape Coral,Cape Girardeau,Hutchinson,Newton
-21,12,2011,Intendente de Cape Girardeau,Cape Girardeau
-21,10,2011,Intendente de Cape May,Cape May
-12,12,2011,Intendente de Carbondale,Carbondale
-30,10,2011,Intendente de Carolina,Carolina
-25,10,2011,Gobernador prov nro 92,Carolina,Cedarburg,New Bedford,Pittsburgh,Temecula
-23,12,2011,Intendente de Carrollton,Carrollton
-26,10,2011,Intendente de Carson,Carson
-22,10,2011,Gobernador prov nro 126,Carson,Middlebury,Natchez,Sister Bay,Thibodaux
-25,11,2011,Intendente de Carson City,Carson City
-27,12,2011,Intendente de Cary,Cary
-29,11,2011,Gobernador prov nro 103,Cary,Chicopee,Cody,Indio,Newport News
-10,10,2011,Intendente de Casper,Casper
-12,12,2011,Intendente de Catskill,Catskill
-13,12,2011,Intendente de Cedar City,Cedar City
-11,12,2011,Gobernador prov nro 194,Cedar City,Centennial,Ketchikan,Naperville
-18,11,2011,Intendente de Cedar Falls,Cedar Falls
-21,10,2011,Gobernador prov nro 108,Cedar Falls,Pasadena,West Lafayette,Williston,Yuma
-28,10,2011,Intendente de Cedar Rapids,Cedar Rapids
-28,12,2011,Gobernador prov nro 104,Cedar Rapids,Del Rio,Duarte,Mission Viejo,Rocky Mount
-11,11,2011,Intendente de Cedarburg,Cedarburg
-18,11,2011,Intendente de Centennial,Centennial
-12,11,2011,Intendente de Cerritos,Cerritos
-21,10,2011,Intendente de Champaign,Champaign
-25,12,2011,Gobernador prov nro 113,Champaign,Lawrenceville,Oshkosh,Revere
-14,12,2011,Intendente de Chandler,Chandler
-16,12,2011,Intendente de Charleston,Charleston
-13,12,2011,Intendente de Charlotte,Charlotte
-29,10,2011,Intendente de Charlotte Amalie,Charlotte Amalie
-30,10,2011,Intendente de Charlottesville,Charlottesville
-10,10,2011,Intendente de Chattanooga,Chattanooga
-24,12,2011,Intendente de Chelsea,Chelsea
-23,12,2011,Gobernador prov nro 36,Chelsea,Dunkirk,Gilbert,Hermosa Beach,Oxford
-25,12,2011,Intendente de Chesapeake,Chesapeake
-12,11,2011,Gobernador prov nro 123,Chesapeake,Lomita,Moore,Sandy,Stillwater
-30,10,2011,Intendente de Chester,Chester
-22,11,2011,Intendente de Cheyenne,Cheyenne
-24,11,2011,Gobernador prov nro 80,Cheyenne,Dalton,Elko,Kahului,Webster Groves
-20,10,2011,Intendente de Chicago,Chicago
-10,11,2011,Gobernador prov nro 127,Chicago,Connellsville,Manchester,Marlborough,Minneapolis
+19,10,2011,Gobernador prov nro 98,Bessemer,Greenfield,Greensboro,Scranton
+22,12,2011,Intendente de Bethany,Bethany
+25,11,2011,Intendente de Bethlehem,Bethlehem
+15,10,2011,Gobernador prov nro 93,Bethlehem,Commerce,Fond du Lac,Kennesaw,Temecula
+23,12,2011,Intendente de Beverly,Beverly
+30,12,2011,Intendente de Beverly Hills,Beverly Hills
+24,11,2011,Gobernador prov nro 169,Beverly Hills,Hope,Manassas,Newburgh,Pasco
+19,11,2011,Intendente de Biddeford,Biddeford
+13,11,2011,Gobernador prov nro 181,Biddeford,Charleston,Green Bay,Hilo,Palos Verdes Estates
+17,11,2011,Intendente de Billings,Billings
+26,12,2011,Gobernador prov nro 195,Billings,Bowling Green,Dallas,Rochester
+24,10,2011,Intendente de Biloxi,Biloxi
+15,10,2011,Gobernador prov nro 192,Biloxi,Elsmere,Mason City,Santa Ana,Wichita
+18,12,2011,Intendente de Birmingham,Birmingham
+27,11,2011,Gobernador prov nro 142,Birmingham,Fairfield,Hawaiian Gardens,Sharon,West Lafayette
+24,10,2011,Intendente de Bismarck,Bismarck
+13,11,2011,Gobernador prov nro 131,Bismarck,Hoover,Montebello,Saint Paul,Warren
+18,11,2011,Intendente de Blacksburg,Blacksburg
+21,11,2011,Gobernador prov nro 57,Blacksburg,Concord,Natchez,Salinas,West Warwick
+21,10,2011,Intendente de Bloomington,Bloomington
+20,11,2011,Intendente de Boise,Boise
+26,12,2011,Gobernador prov nro 74,Boise,Pulaski,Steubenville,Union City,West Hartford
+15,11,2011,Intendente de Bossier City,Bossier City
+26,12,2011,Gobernador prov nro 166,Bossier City,East Lansing,Geneva,Hanahan,Mount Pleasant
+14,11,2011,Intendente de Boston,Boston
+28,10,2011,Gobernador prov nro 26,Boston,Laughlin,Santa Clarita,Tempe,Waterloo
+18,12,2011,Intendente de Boulder,Boulder
+26,12,2011,Intendente de Boulder City,Boulder City
+22,12,2011,Gobernador prov nro 109,Boulder City,Everett,Gilette,Henderson
+11,12,2011,Intendente de Boulder Junction,Boulder Junction
+13,12,2011,Gobernador prov nro 44,Boulder Junction,Lander,Portsmouth,Radford,Stockton
+29,12,2011,Intendente de Bowie,Bowie
+16,12,2011,Gobernador prov nro 6,Bowie,Chickasha,Kemmerer,Plantation,Wisconsin Rapids
+11,12,2011,Intendente de Bowling Green,Bowling Green
+10,11,2011,Intendente de Bozeman,Bozeman
+30,12,2011,Intendente de Bradford,Bradford
+22,12,2011,Intendente de Branson,Branson
+13,11,2011,Intendente de Brea,Brea
+26,11,2011,Intendente de Bremerton,Bremerton
+12,11,2011,Intendente de Bridgeport,Bridgeport
+20,10,2011,Gobernador prov nro 29,Bridgeport,Hazleton,Monroe,Normal,Springdale
+19,12,2011,Intendente de Brigham City,Brigham City
+29,11,2011,Gobernador prov nro 53,Brigham City,Kenner,Martinsburg,New Orleans,Palm Springs
+17,11,2011,Intendente de Bristol,Bristol
+29,11,2011,Intendente de Brockton,Brockton
+14,10,2011,Gobernador prov nro 8,Brockton,Forrest City,Liberal,Manhattan Beach,San Dimas
+13,10,2011,Intendente de Broken Arrow,Broken Arrow
+13,12,2011,Gobernador prov nro 189,Broken Arrow,Huntington,Mission Viejo,West Sacramento
+27,12,2011,Intendente de Brookfield,Brookfield
+23,10,2011,Intendente de Brookings,Brookings
+26,10,2011,Gobernador prov nro 69,Brookings,Naperville,Suffolk,Wilmington
+14,12,2011,Intendente de Brooklyn Park,Brooklyn Park
+19,11,2011,Intendente de Brownsville,Brownsville
+25,11,2011,Gobernador prov nro 123,Brownsville,Huntsville,Princeton,Scottsbluff,Worland
+12,11,2011,Intendente de Brunswick,Brunswick
+25,10,2011,Gobernador prov nro 24,Brunswick,DeKalb,Flint,Lancaster,Salisbury
+29,11,2011,Intendente de Buena Park,Buena Park
+26,10,2011,Gobernador prov nro 76,Buena Park,Canton,Jeffersonville,North Tonawanda,Weirton
+28,10,2011,Intendente de Buffalo,Buffalo
+22,11,2011,Intendente de Burbank,Burbank
+12,10,2011,Gobernador prov nro 72,Burbank,Darlington,Gallup,Wheeling,Wynne
+16,11,2011,Intendente de Burlingame,Burlingame
+13,12,2011,Gobernador prov nro 152,Burlingame,Calabasas,Effingham,South Portland,Tacoma
+17,10,2011,Intendente de Burlington,Burlington
+16,11,2011,Gobernador prov nro 130,Burlington,LaGrange,Minneapolis,Tok,Winnemucca
+22,11,2011,Intendente de Butler,Butler
+24,12,2011,Gobernador prov nro 156,Butler,Provo,Scarborough,Temple City
+23,10,2011,Intendente de Butte,Butte
+21,10,2011,Gobernador prov nro 96,Butte,Coral Springs,New Rochelle,North Chicago,West Bend
+12,10,2011,Intendente de Caguas,Caguas
+19,12,2011,Intendente de Cairo,Cairo
+19,12,2011,Intendente de Calabasas,Calabasas
+26,11,2011,Intendente de Cambridge,Cambridge
+19,11,2011,Intendente de Camden,Camden
+19,10,2011,Intendente de Canandaigua,Canandaigua
+25,10,2011,Intendente de Canton,Canton
+13,11,2011,Intendente de Cape Coral,Cape Coral
+13,10,2011,Gobernador prov nro 110,Cape Coral,Cape Girardeau,Cedar Falls,Hutchinson,Newton
+11,10,2011,Intendente de Cape Girardeau,Cape Girardeau
+25,11,2011,Intendente de Cape May,Cape May
+11,11,2011,Intendente de Carbondale,Carbondale
+19,10,2011,Gobernador prov nro 92,Carbondale,Denver,Michigan City,Owensboro,Taylorsville
+21,10,2011,Intendente de Carolina,Carolina
+30,11,2011,Gobernador prov nro 126,Carolina,Logan,Mount Vernon,Ypsilanti
+20,10,2011,Intendente de Carrollton,Carrollton
+28,11,2011,Intendente de Carson City,Carson City
+22,11,2011,Gobernador prov nro 4,Carson City,Needham,New Madrid,Wilkes-Barre
+28,11,2011,Intendente de Cary,Cary
+11,10,2011,Gobernador prov nro 106,Cary,Chicopee,Cody,Newport News
+26,11,2011,Intendente de Casper,Casper
+25,12,2011,Gobernador prov nro 101,Casper,Hidden Hills,Riverside,Sugar Land
+27,11,2011,Intendente de Catskill,Catskill
+18,12,2011,Intendente de Cedar City,Cedar City
+14,12,2011,Gobernador prov nro 197,Cedar City,Kansas City,Laramie,Westlake Village
+16,11,2011,Intendente de Cedar Falls,Cedar Falls
+10,10,2011,Intendente de Cedar Rapids,Cedar Rapids
+15,12,2011,Intendente de Cedarburg,Cedarburg
+20,10,2011,Gobernador prov nro 187,Cedarburg,Eufaula,Frederiksted,Grafton,Rolling Hills
+25,10,2011,Intendente de Centennial,Centennial
+17,10,2011,Intendente de Cerritos,Cerritos
+15,10,2011,Gobernador prov nro 16,Cerritos,Cohoes,Lima,Rancho Palos Verdes,Wheaton
+20,10,2011,Intendente de Champaign,Champaign
+27,10,2011,Gobernador prov nro 115,Champaign,Hackensack,Lawrenceville,Oshkosh
+11,12,2011,Intendente de Charleston,Charleston
+16,12,2011,Intendente de Charlotte,Charlotte
+29,12,2011,Intendente de Charlotte Amalie,Charlotte Amalie
+20,10,2011,Gobernador prov nro 108,Charlotte Amalie,Redding,Redlands,San Juan
+25,10,2011,Intendente de Charlottesville,Charlottesville
+25,10,2011,Gobernador prov nro 49,Charlottesville,Fontana,Malden,Vacaville,Williston
+28,11,2011,Intendente de Chattanooga,Chattanooga
+16,12,2011,Intendente de Chelsea,Chelsea
+21,12,2011,Gobernador prov nro 39,Chelsea,Cortland,Des Moines,Lawndale,Uniontown
+22,10,2011,Intendente de Chesapeake,Chesapeake
+14,10,2011,Intendente de Chester,Chester
+18,11,2011,Intendente de Cheyenne,Cheyenne
+19,10,2011,Intendente de Chicago,Chicago
 10,12,2011,Intendente de Chicago Heights,Chicago Heights
-28,10,2011,Gobernador prov nro 190,Chicago Heights,Corona,Grand Rapids,Lansing,Santa Ana
-10,11,2011,Intendente de Chickasha,Chickasha
-15,11,2011,Intendente de Chico,Chico
-26,10,2011,Intendente de Chicopee,Chicopee
-12,11,2011,Intendente de Chino,Chino
-20,10,2011,Intendente de Chino Hills,Chino Hills
-28,10,2011,Intendente de Christiansted,Christiansted
-16,11,2011,Gobernador prov nro 75,Christiansted,Hoboken,Lima,Lower Burrell,Tallahassee
-26,11,2011,Intendente de Chula Vista,Chula Vista
-20,12,2011,Gobernador prov nro 28,Chula Vista,Monroe,Normal,Springdale,Stanton
-23,12,2011,Intendente de Cicero,Cicero
-12,12,2011,Gobernador prov nro 183,Cicero,Hermitage,Opelousas,Port Jervis,Yonkers
-22,12,2011,Intendente de Cincinnati,Cincinnati
-22,11,2011,Intendente de Citrus Heights,Citrus Heights
-18,12,2011,Gobernador prov nro 8,Citrus Heights,Green River,Liberal,Oakland,San Dimas
-16,10,2011,Intendente de City of Industry,City of Industry
-10,10,2011,Intendente de Clairton,Clairton
-15,12,2011,Gobernador prov nro 31,Clairton,Isle of Palms,Oswego,St. Petersburg
-18,10,2011,Intendente de Claremont,Claremont
-24,12,2011,Gobernador prov nro 106,Claremont,Henderson,Thousand Oaks,West Allis
-15,10,2011,Intendente de Claremore,Claremore
-24,11,2011,Intendente de Clarksburg,Clarksburg
-19,12,2011,Intendente de Clarksville,Clarksville
-13,11,2011,Gobernador prov nro 97,Clarksville,Port St. Lucie,Poughkeepsie,Troy
-12,12,2011,Intendente de Clearwater,Clearwater
-23,10,2011,Gobernador prov nro 45,Clearwater,Geneva,Jersey City,Jonesboro
-30,12,2011,Intendente de Clemson,Clemson
-20,10,2011,Intendente de Cleveland,Cleveland
-19,10,2011,Intendente de Clovis,Clovis
-15,12,2011,Intendente de Coatesville,Coatesville
-18,11,2011,Intendente de Cody,Cody
-23,11,2011,Intendente de Cohoes,Cohoes
-13,12,2011,Gobernador prov nro 16,Cohoes,Knoxville,Rancho Palos Verdes,Tuscaloosa
-30,11,2011,Intendente de College Park,College Park
+11,12,2011,Intendente de Chickasha,Chickasha
+27,12,2011,Intendente de Chico,Chico
+20,12,2011,Gobernador prov nro 73,Chico,Glens Falls,Gulfport,La Verne,Pascagoula
+15,11,2011,Intendente de Chicopee,Chicopee
+27,10,2011,Intendente de Chino,Chino
+21,10,2011,Intendente de Chino Hills,Chino Hills
+21,11,2011,Intendente de Christiansted,Christiansted
+29,12,2011,Gobernador prov nro 77,Christiansted,Hoboken,Lower Burrell,Perth Amboy,Tallahassee
+26,10,2011,Intendente de Chula Vista,Chula Vista
+26,11,2011,Gobernador prov nro 30,Chula Vista,Dayton,Saipan,Stanton
+21,12,2011,Intendente de Cicero,Cicero
+30,12,2011,Intendente de Cincinnati,Cincinnati
+21,11,2011,Gobernador prov nro 51,Cincinnati,Kahului,Laguna Niguel,North Little Rock,Pierre
+10,12,2011,Intendente de Citrus Heights,Citrus Heights
+11,12,2011,Gobernador prov nro 174,Citrus Heights,Edina,Little Falls,Lynn
+13,11,2011,Intendente de City of Industry,City of Industry
+11,12,2011,Intendente de Clairton,Clairton
+25,12,2011,Gobernador prov nro 33,Clairton,Hammond,Rock Springs,St. Petersburg
+21,11,2011,Intendente de Claremont,Claremont
+27,12,2011,Intendente de Claremore,Claremore
+14,11,2011,Gobernador prov nro 22,Claremore,Covina,Moreno Valley,Ocean City,San Clemente
+22,10,2011,Intendente de Clarksburg,Clarksburg
+10,12,2011,Gobernador prov nro 65,Clarksburg,Shreveport,Statesboro,Syracuse
+27,12,2011,Intendente de Clarksville,Clarksville
+17,11,2011,Intendente de Clearwater,Clearwater
+22,10,2011,Intendente de Clemson,Clemson
+22,10,2011,Intendente de Cleveland,Cleveland
+28,10,2011,Intendente de Clovis,Clovis
+20,12,2011,Intendente de Coatesville,Coatesville
+30,11,2011,Intendente de Cody,Cody
+11,12,2011,Intendente de Cohoes,Cohoes
+14,10,2011,Intendente de College Park,College Park
 13,12,2011,Intendente de College Station,College Station
-30,11,2011,Intendente de Columbia,Columbia
-26,12,2011,Gobernador prov nro 188,Columbia,Cranston,Dickinson,Somerville,Torrington
-15,10,2011,Intendente de Columbus,Columbus
-13,10,2011,Intendente de Commerce,Commerce
-29,10,2011,Gobernador prov nro 91,Commerce,Hot Springs,Mandan,San Clemente
-28,12,2011,Intendente de Compton,Compton
-26,12,2011,Gobernador prov nro 26,Compton,Eden Prairie,Hialeah,Kenosha,Lafayette
-24,12,2011,Intendente de Concord,Concord
-29,11,2011,Intendente de Connellsville,Connellsville
-23,10,2011,Intendente de Coos Bay,Coos Bay
-15,10,2011,Intendente de Coral Springs,Coral Springs
-23,11,2011,Intendente de Corinth,Corinth
-28,11,2011,Gobernador prov nro 4,Corinth,Minot,Needham,Wilkes-Barre
-28,12,2011,Intendente de Corona,Corona
+21,10,2011,Intendente de Colorado Springs,Colorado Springs
+26,12,2011,Intendente de Columbia,Columbia
+17,10,2011,Gobernador prov nro 191,Columbia,Lynchburg,Murrieta,Villa Park
+14,12,2011,Intendente de Columbus,Columbus
+26,12,2011,Intendente de Commerce,Commerce
+22,11,2011,Intendente de Compton,Compton
+22,12,2011,Gobernador prov nro 27,Compton,Fernley,Hialeah,Lafayette,Vallejo
+22,11,2011,Intendente de Concord,Concord
+10,12,2011,Intendente de Connellsville,Connellsville
+11,10,2011,Intendente de Coos Bay,Coos Bay
+25,10,2011,Intendente de Coral Springs,Coral Springs
+17,10,2011,Intendente de Corinth,Corinth
+17,12,2011,Gobernador prov nro 11,Corinth,Kearney,Kingston,La Habra,Saint Louis
+14,12,2011,Intendente de Corona,Corona
 20,12,2011,Intendente de Corpus Christi,Corpus Christi
-24,12,2011,Gobernador prov nro 109,Corpus Christi,Laguna Woods,Parker,Parkersburg,Warwick
-21,11,2011,Intendente de Corry,Corry
-21,10,2011,Intendente de Cortland,Cortland
-14,12,2011,Intendente de Corvallis,Corvallis
-15,12,2011,Gobernador prov nro 163,Corvallis,East Lansing,Hanahan,San Gabriel
-15,12,2011,Intendente de Costa Mesa,Costa Mesa
-28,10,2011,Gobernador prov nro 110,Costa Mesa,Egg Harbor,Idabel,Staunton,Urbana
-27,11,2011,Intendente de Council Bluffs,Council Bluffs
-28,11,2011,Intendente de Covina,Covina
-21,10,2011,Gobernador prov nro 21,Covina,Lowell,Mentor,Moreno Valley,Woodruff
-19,10,2011,Intendente de Covington,Covington
-11,11,2011,Gobernador prov nro 20,Covington,Fort Smith,Huntington Beach,Scottsdale,Waukegan
-15,10,2011,Intendente de Cranston,Cranston
-10,12,2011,Intendente de Crown Point,Crown Point
-10,12,2011,Intendente de Cruz Bay,Cruz Bay
-12,11,2011,Gobernador prov nro 63,Cruz Bay,Reading,Sedalia,Seward,Sutter Creek
-13,11,2011,Intendente de Cudahy,Cudahy
-23,10,2011,Intendente de Culver City,Culver City
-17,12,2011,Gobernador prov nro 193,Culver City,Dothan,Hopkinsville,Pendleton
-16,11,2011,Intendente de Cumberland,Cumberland
-26,10,2011,Intendente de Cypress,Cypress
-19,10,2011,Intendente de Dallas,Dallas
-21,12,2011,Gobernador prov nro 192,Dallas,Gastonia,Lebanon,Sherrill
-10,10,2011,Intendente de Dalton,Dalton
-12,10,2011,Intendente de Daly City,Daly City
-17,11,2011,Intendente de Dana Point,Dana Point
-18,11,2011,Gobernador prov nro 13,Dana Point,Keene,Lockport,Rehoboth Beach,Rolla
-23,10,2011,Intendente de Danville,Danville
-18,12,2011,Gobernador prov nro 85,Danville,Farmer City,Nashville,Oro Valley,Valdez
-27,11,2011,Intendente de Darlington,Darlington
-16,11,2011,Intendente de Davenport,Davenport
-12,10,2011,Gobernador prov nro 82,Davenport,Fresno,Los Alamitos,Pittsfield
-30,11,2011,Intendente de Davis,Davis
-22,12,2011,Intendente de Dayton,Dayton
-21,11,2011,Gobernador prov nro 158,Dayton,Duquesne,Longview,San Angelo,Waterbury
-14,12,2011,Intendente de DeKalb,DeKalb
-11,11,2011,Gobernador prov nro 22,DeKalb,Guayama,New Iberia,Newburyport,San Marino
-21,10,2011,Intendente de Deadwood,Deadwood
-17,12,2011,Gobernador prov nro 112,Deadwood,La Mirada,Superior,Vallejo
-12,11,2011,Intendente de Dearborn,Dearborn
-22,10,2011,Intendente de Decatur,Decatur
-12,10,2011,Intendente de Del Rio,Del Rio
-16,12,2011,Intendente de Delta Junction,Delta Junction
-19,12,2011,Intendente de Denver,Denver
-18,10,2011,Intendente de Derby,Derby
-28,12,2011,Intendente de Des Moines,Des Moines
-22,10,2011,Gobernador prov nro 37,Des Moines,Kona,Lawndale,Sandpoint,Wausau
-26,12,2011,Intendente de Detroit,Detroit
-16,12,2011,Intendente de Diamond Bar,Diamond Bar
-30,10,2011,Intendente de Dickinson,Dickinson
-21,10,2011,Intendente de Dixon,Dixon
-13,12,2011,Intendente de Dothan,Dothan
-26,11,2011,Intendente de Douglas,Douglas
-25,11,2011,Gobernador prov nro 10,Douglas,La Crosse,Missoula,San Francisco,Stafford
-11,10,2011,Intendente de Dover,Dover
-29,12,2011,Intendente de Downey,Downey
-27,12,2011,Gobernador prov nro 46,Downey,Malden,Milwaukee,Murray,North Pole
-30,12,2011,Intendente de DuBois,DuBois
-23,10,2011,Intendente de Duarte,Duarte
-28,10,2011,Intendente de Dubuque,Dubuque
-12,11,2011,Intendente de Duluth,Duluth
-11,10,2011,Gobernador prov nro 65,Duluth,Kettering,Santa Monica,Vineland
-18,12,2011,Intendente de Duncan,Duncan
-22,12,2011,Intendente de Dunkirk,Dunkirk
-19,10,2011,Intendente de Duquesne,Duquesne
-20,12,2011,Intendente de Durango,Durango
-14,12,2011,Intendente de Durant,Durant
-21,11,2011,Gobernador prov nro 120,Durant,Huntsville,Niagara Falls,Sioux Falls
-15,11,2011,Intendente de Durham,Durham
-27,11,2011,Gobernador prov nro 160,Durham,Gardena,Jamestown,Menomonee Falls,Valdosta
-14,12,2011,Intendente de East Hartford,East Hartford
-22,10,2011,Intendente de East Lansing,East Lansing
-26,11,2011,Intendente de East Rutherford,East Rutherford
-22,10,2011,Intendente de East St. Louis,East St. Louis
-27,10,2011,Intendente de Easthampton,Easthampton
-24,12,2011,Intendente de Easton,Easton
-14,11,2011,Intendente de Eau Claire,Eau Claire
-17,11,2011,Intendente de Eden Prairie,Eden Prairie
-21,12,2011,Intendente de Edmond,Edmond
-19,11,2011,Intendente de Effingham,Effingham
-14,12,2011,Intendente de Egg Harbor,Egg Harbor
-14,10,2011,Intendente de El Cerrito,El Cerrito
-26,10,2011,Gobernador prov nro 114,El Cerrito,Kalamazoo,Nashua,Newark
-11,11,2011,Intendente de El Monte,El Monte
-30,12,2011,Intendente de El Paso,El Paso
-22,11,2011,Intendente de El Segundo,El Segundo
-21,11,2011,Intendente de Elizabeth City,Elizabeth City
+22,12,2011,Gobernador prov nro 55,Corpus Christi,Goose Creek,High Point,Toledo,Utica
+19,12,2011,Intendente de Corry,Corry
+17,10,2011,Intendente de Cortland,Cortland
+17,11,2011,Intendente de Corvallis,Corvallis
+21,10,2011,Intendente de Council Bluffs,Council Bluffs
+27,11,2011,Gobernador prov nro 138,Council Bluffs,Gainesville,Hudson,Laguna Hills,Shelton
+17,12,2011,Intendente de Covina,Covina
+17,12,2011,Intendente de Covington,Covington
+28,12,2011,Intendente de Cranston,Cranston
+12,10,2011,Gobernador prov nro 190,Cranston,Dickinson,Somerville,Torrington
+18,12,2011,Intendente de Crown Point,Crown Point
+10,11,2011,Intendente de Cruz Bay,Cruz Bay
+11,11,2011,Gobernador prov nro 66,Cruz Bay,Mankato,Reading,Seward,Sutter Creek
+11,12,2011,Intendente de Cudahy,Cudahy
+10,10,2011,Intendente de Culver City,Culver City
+28,10,2011,Gobernador prov nro 196,Culver City,Dothan,Enid,Ketchikan,Pendleton
+24,11,2011,Intendente de Cumberland,Cumberland
+18,10,2011,Gobernador prov nro 143,Cumberland,Hickory,Richmond,Savannah
+13,10,2011,Intendente de Cypress,Cypress
+23,12,2011,Gobernador prov nro 67,Cypress,Durant,Fulton,The Dalles,Vineland
+27,11,2011,Intendente de Dallas,Dallas
+20,11,2011,Intendente de Dalton,Dalton
+17,12,2011,Intendente de Dana Point,Dana Point
+14,10,2011,Gobernador prov nro 12,Dana Point,Jordan Valley,Lockport,Montpelier,Plymouth
+21,10,2011,Intendente de Danbury,Danbury
+18,10,2011,Intendente de Danville,Danville
+28,10,2011,Gobernador prov nro 14,Danville,Farrell,Rockville,San Antonio,Spokane Valley
+19,12,2011,Intendente de Darlington,Darlington
+24,12,2011,Intendente de Davenport,Davenport
+24,12,2011,Intendente de Davis,Davis
+20,12,2011,Intendente de Dayton,Dayton
+23,12,2011,Intendente de DeKalb,DeKalb
+23,12,2011,Intendente de Deadwood,Deadwood
+17,11,2011,Gobernador prov nro 114,Deadwood,La Mirada,Norton,Superior,Williamsport
+29,10,2011,Intendente de Dearborn,Dearborn
+14,12,2011,Intendente de Decatur,Decatur
+12,12,2011,Intendente de Del Rio,Del Rio
+19,10,2011,Gobernador prov nro 140,Del Rio,Ruston,Santa Cruz,Visalia
+27,10,2011,Intendente de Delta Junction,Delta Junction
+17,11,2011,Intendente de Denver,Denver
+15,11,2011,Intendente de Derby,Derby
+14,10,2011,Gobernador prov nro 183,Derby,Macon,Memphis,Nogales,Racine
+30,11,2011,Intendente de Des Moines,Des Moines
+30,11,2011,Intendente de Detroit,Detroit
+12,12,2011,Gobernador prov nro 128,Detroit,Middlebury,Sister Bay,Thibodaux
+21,11,2011,Intendente de Diamond Bar,Diamond Bar
+16,12,2011,Intendente de Dickinson,Dickinson
+19,11,2011,Intendente de Dixon,Dixon
+18,10,2011,Intendente de Dodge City,Dodge City
+18,11,2011,Gobernador prov nro 63,Dodge City,Garden Grove,Rhinelander,Santa Barbara
+20,11,2011,Intendente de Dothan,Dothan
+26,10,2011,Intendente de Douglas,Douglas
+21,12,2011,Gobernador prov nro 60,Douglas,Healdsburg,Jeannette,Sacramento,West Hollywood
+12,10,2011,Intendente de Dover,Dover
+29,10,2011,Gobernador prov nro 47,Dover,Duncan,Jersey City,Klamath Falls,Louisville
+14,12,2011,Intendente de Downey,Downey
+26,10,2011,Gobernador prov nro 48,Downey,Milwaukee,Murray,North Pole
+29,12,2011,Intendente de DuBois,DuBois
+29,12,2011,Gobernador prov nro 163,DuBois,Gardena,Jamestown,Valdosta
+15,11,2011,Intendente de Duarte,Duarte
+11,11,2011,Intendente de Dubuque,Dubuque
+16,11,2011,Intendente de Duncan,Duncan
+28,10,2011,Intendente de Dunkirk,Dunkirk
+13,12,2011,Gobernador prov nro 9,Dunkirk,El Segundo,Gold Beach,Missoula,Pine Bluff
+20,11,2011,Intendente de Durango,Durango
+28,11,2011,Intendente de Durant,Durant
+11,10,2011,Intendente de East Hartford,East Hartford
+26,12,2011,Intendente de East Lansing,East Lansing
+16,12,2011,Intendente de East Rutherford,East Rutherford
+28,11,2011,Intendente de East St. Louis,East St. Louis
+24,10,2011,Intendente de Easthampton,Easthampton
+26,12,2011,Intendente de Easton,Easton
+29,10,2011,Intendente de Eatontown,Eatontown
+27,11,2011,Gobernador prov nro 158,Eatontown,Falls Church,Guthrie,Idaho Springs,Port Huron
+27,12,2011,Intendente de Eau Claire,Eau Claire
+20,11,2011,Gobernador prov nro 17,Eau Claire,Minot,Morrison,Myrtle Beach,Rutland
+25,10,2011,Intendente de Eden Prairie,Eden Prairie
+15,11,2011,Gobernador prov nro 28,Eden Prairie,Fairbanks,Florence,Kenosha,Saukville
+18,10,2011,Intendente de Edina,Edina
+11,10,2011,Intendente de Edmond,Edmond
+23,11,2011,Gobernador prov nro 42,Edmond,Juneau,Passaic,Signal Hill
+23,12,2011,Intendente de Effingham,Effingham
+22,12,2011,Intendente de Egg Harbor,Egg Harbor
+16,11,2011,Gobernador prov nro 113,Egg Harbor,El Paso,Staunton,Urbana,West Palm Beach
+25,10,2011,Intendente de El Cerrito,El Cerrito
+11,10,2011,Gobernador prov nro 116,El Cerrito,Nashua,Newark,North Charleston
+23,10,2011,Intendente de El Monte,El Monte
+21,11,2011,Intendente de El Paso,El Paso
+24,11,2011,Intendente de El Segundo,El Segundo
+23,11,2011,Intendente de Elizabeth City,Elizabeth City
 28,11,2011,Intendente de Elkhart,Elkhart
-10,11,2011,Intendente de Elko,Elko
-20,12,2011,Intendente de Elmira,Elmira
-24,12,2011,Intendente de Elsmere,Elsmere
-29,11,2011,Intendente de Enfield,Enfield
-18,10,2011,Gobernador prov nro 165,Enfield,Hagerstown,Philadelphia,Salt Lake City
-14,10,2011,Intendente de Enid,Enid
-30,10,2011,Intendente de Ephraim,Ephraim
-26,11,2011,Intendente de Erie,Erie
-18,10,2011,Gobernador prov nro 32,Erie,Macomb,Mesa,Olympia,Reno
-12,12,2011,Intendente de Escondido,Escondido
-16,12,2011,Intendente de Eufaula,Eufaula
-12,12,2011,Intendente de Eugene,Eugene
-21,12,2011,Gobernador prov nro 198,Eugene,International Falls,Parma,Providence,Winston-Salem
-29,12,2011,Intendente de Eureka,Eureka
-30,10,2011,Intendente de Evanston,Evanston
-11,11,2011,Intendente de Evansville,Evansville
-14,12,2011,Intendente de Everett,Everett
-20,11,2011,Intendente de Fairbanks,Fairbanks
-15,10,2011,Intendente de Fairfax,Fairfax
-10,10,2011,Intendente de Fairfield,Fairfield
-30,10,2011,Intendente de Fairmont,Fairmont
-27,10,2011,Gobernador prov nro 38,Fairmont,Laurel,Paducah,Tucson,Yazoo City
-15,10,2011,Intendente de Fajardo,Fajardo
-10,12,2011,Intendente de Fall River,Fall River
-11,11,2011,Intendente de Fallon,Fallon
-19,10,2011,Gobernador prov nro 41,Fallon,Lander,Orangeburg,Portsmouth,Stockton
-13,10,2011,Intendente de Falls Church,Falls Church
-29,12,2011,Intendente de Farmer City,Farmer City
-11,12,2011,Intendente de Farmington,Farmington
-29,12,2011,Intendente de Farrell,Farrell
-24,12,2011,Intendente de Fayetteville,Fayetteville
-23,10,2011,Intendente de Fernley,Fernley
-22,11,2011,Gobernador prov nro 144,Fernley,Manassas Park,Nanticoke,Passaic,Tonawanda
-23,11,2011,Intendente de Fitchburg,Fitchburg
-16,10,2011,Intendente de Flagstaff,Flagstaff
-10,12,2011,Intendente de Flint,Flint
-28,10,2011,Intendente de Florence,Florence
-25,10,2011,Intendente de Fond du Lac,Fond du Lac
-21,12,2011,Intendente de Fontana,Fontana
-12,10,2011,Intendente de Forest Lake,Forest Lake
-17,11,2011,Gobernador prov nro 76,Forest Lake,Ocean City,Perth Amboy,Rockford,Vancouver
-27,10,2011,Intendente de Forrest City,Forrest City
-10,12,2011,Intendente de Fort Collins,Fort Collins
-18,11,2011,Gobernador prov nro 133,Fort Collins,Jackson,Saginaw,Saint Cloud,Watertown
-10,10,2011,Intendente de Fort Dodge,Fort Dodge
-27,11,2011,Intendente de Fort Lauderdale,Fort Lauderdale
-12,10,2011,Gobernador prov nro 33,Fort Lauderdale,Fredericksburg,Joplin,Madison
-22,12,2011,Intendente de Fort Smith,Fort Smith
-15,10,2011,Intendente de Fort Wayne,Fort Wayne
-10,12,2011,Intendente de Fort Worth,Fort Worth
-14,11,2011,Intendente de Fountain Valley,Fountain Valley
-21,10,2011,Intendente de Franklin,Franklin
-24,11,2011,Intendente de Frederick,Frederick
-23,11,2011,Intendente de Fredericksburg,Fredericksburg
-20,10,2011,Intendente de Frederiksted,Frederiksted
-28,10,2011,Intendente de Fremont,Fremont
-13,11,2011,Intendente de Fresno,Fresno
-23,11,2011,Intendente de Frisco,Frisco
-27,12,2011,Gobernador prov nro 187,Frisco,Huntington,Narragansett,West Sacramento
-24,12,2011,Intendente de Fullerton,Fullerton
-21,11,2011,Intendente de Fulton,Fulton
-25,12,2011,Gobernador prov nro 64,Fulton,Manitowoc,Mankato,Monrovia,The Dalles
-11,11,2011,Intendente de Gadsden,Gadsden
-18,12,2011,Intendente de Gainesville,Gainesville
-15,10,2011,Intendente de Gaithersburg,Gaithersburg
-14,10,2011,Gobernador prov nro 59,Gaithersburg,Kingsport,Rome,Terre Haute
-30,11,2011,Intendente de Galesburg,Galesburg
-22,11,2011,Intendente de Gallup,Gallup
-24,10,2011,Intendente de Garden Grove,Garden Grove
-12,10,2011,Gobernador prov nro 61,Garden Grove,Norman,Riverton,Roanoke,West Valley City
-26,10,2011,Intendente de Gardena,Gardena
-14,10,2011,Intendente de Gardner,Gardner
-20,12,2011,Gobernador prov nro 162,Gardner,New Kensington,San Rafael,Sun Valley
-30,12,2011,Intendente de Garland,Garland
-16,12,2011,Intendente de Gary,Gary
-15,11,2011,Intendente de Gastonia,Gastonia
-14,11,2011,Intendente de Gatlinburg,Gatlinburg
-30,11,2011,Intendente de Geneva,Geneva
-16,10,2011,Intendente de Georgetown,Georgetown
-27,10,2011,Intendente de Gettysburg,Gettysburg
-17,10,2011,Intendente de Gilbert,Gilbert
-16,10,2011,Intendente de Gilette,Gilette
-17,11,2011,Gobernador prov nro 89,Gilette,Kankakee,Owensboro,Taylorsville,Williamsburg
-13,12,2011,Intendente de Glen Cove,Glen Cove
-10,10,2011,Intendente de Glendale,Glendale
-14,12,2011,Gobernador prov nro 191,Glendale,Lewiston,Lincoln,Wilmington
-22,10,2011,Intendente de Glendora,Glendora
-12,10,2011,Intendente de Glens Falls,Glens Falls
-24,11,2011,Gobernador prov nro 72,Glens Falls,Pascagoula,Saint Louis,West Hartford
-28,11,2011,Intendente de Gloucester,Gloucester
-13,12,2011,Gobernador prov nro 84,Gloucester,Kennewick,Peoria,Rialto,Vail
-14,12,2011,Intendente de Gloversville,Gloversville
-29,12,2011,Gobernador prov nro 52,Gloversville,High Point,New Brunswick,Wilson
-10,10,2011,Intendente de Gold Beach,Gold Beach
-29,10,2011,Intendente de Goose Creek,Goose Creek
-27,12,2011,Gobernador prov nro 53,Goose Creek,Malibu,Portland,Toledo,Utica
-23,12,2011,Intendente de Grambling,Grambling
-19,11,2011,Gobernador prov nro 101,Grambling,Irving,Jenks,Moorhead,Oxnard
-22,10,2011,Intendente de Grand Forks,Grand Forks
-21,11,2011,Intendente de Grand Island,Grand Island
-18,12,2011,Gobernador prov nro 56,Grand Island,North Las Vegas,Titusville,West Covina
-29,10,2011,Intendente de Grand Junction,Grand Junction
-14,10,2011,Intendente de Grand Rapids,Grand Rapids
-14,10,2011,Intendente de Grass Valley,Grass Valley
-26,12,2011,Intendente de Great Falls,Great Falls
-10,10,2011,Intendente de Green Bay,Green Bay
-27,11,2011,Intendente de Green River,Green River
-21,12,2011,Intendente de Greenfield,Greenfield
-18,11,2011,Intendente de Greensboro,Greensboro
-19,10,2011,Intendente de Greensburg,Greensburg
-15,12,2011,Intendente de Greenville,Greenville
-16,10,2011,Gobernador prov nro 98,Greenville,Hidden Hills,Riverside,Walnut
-21,11,2011,Intendente de Guayama,Guayama
-30,12,2011,Intendente de Guayanilla,Guayanilla
-12,10,2011,Intendente de Gulfport,Gulfport
-12,11,2011,Intendente de Guthrie,Guthrie
-23,11,2011,Gobernador prov nro 155,Guthrie,Port Arthur,Port Huron,Starkville,Waycross
-14,10,2011,Intendente de Hackensack,Hackensack
-17,10,2011,Intendente de Hagerstown,Hagerstown
-25,12,2011,Intendente de Half Moon Bay,Half Moon Bay
-18,10,2011,Intendente de Hamilton,Hamilton
-27,12,2011,Intendente de Hampton,Hampton
-29,11,2011,Intendente de Hanahan,Hanahan
-15,12,2011,Intendente de Hannibal,Hannibal
-27,10,2011,Intendente de Harrisburg,Harrisburg
-10,11,2011,Gobernador prov nro 124,Harrisburg,Hayward,Mount Vernon,Shawnee,Stamford
-15,11,2011,Intendente de Hartford,Hartford
-16,12,2011,Gobernador prov nro 154,Hartford,Norwalk,Pomona,St. George,Taunton
-10,12,2011,Intendente de Hartland,Hartland
-16,11,2011,Intendente de Hastings,Hastings
-24,12,2011,Gobernador prov nro 30,Hastings,Highland Park,Saint Joseph,Woburn,York
-26,12,2011,Intendente de Hattiesburg,Hattiesburg
-28,11,2011,Gobernador prov nro 48,Hattiesburg,Laguna Niguel,San Jose,Ventura
-15,10,2011,Intendente de Haverhill,Haverhill
-26,10,2011,Intendente de Hawaiian Gardens,Hawaiian Gardens
-28,11,2011,Intendente de Hawthorne,Hawthorne
-13,12,2011,Intendente de Hayward,Hayward
-29,12,2011,Intendente de Hazleton,Hazleton
-14,10,2011,Intendente de Henderson,Henderson
-10,11,2011,Intendente de Hermitage,Hermitage
-22,11,2011,Intendente de Hermosa Beach,Hermosa Beach
-20,12,2011,Intendente de Hialeah,Hialeah
-15,12,2011,Intendente de Hickory,Hickory
-22,12,2011,Intendente de Hidden Hills,Hidden Hills
-19,12,2011,Intendente de High Point,High Point
-23,11,2011,Intendente de Highland Park,Highland Park
-30,11,2011,Intendente de Hilo,Hilo
-11,10,2011,Gobernador prov nro 102,Hilo,La Palma,Mechanicville,Nacogdoches,Palo Alto
-27,11,2011,Intendente de Hoboken,Hoboken
-14,10,2011,Intendente de Hollister,Hollister
-19,12,2011,Intendente de Hollywood,Hollywood
-28,10,2011,Intendente de Holyoke,Holyoke
-28,12,2011,Gobernador prov nro 83,Holyoke,Littleton,Mequon,New Albany,Prescott
-18,11,2011,Intendente de Homer,Homer
-25,12,2011,Intendente de Honolulu,Honolulu
-17,10,2011,Gobernador prov nro 24,Honolulu,Ogdensburg,Shamokin,Tempe,Watervliet
-16,12,2011,Intendente de Hoover,Hoover
-13,12,2011,Intendente de Hope,Hope
-20,10,2011,Intendente de Hopkinsville,Hopkinsville
-29,11,2011,Intendente de Hornell,Hornell
-18,11,2011,Intendente de Hot Springs,Hot Springs
-11,10,2011,Intendente de Houma,Houma
-28,10,2011,Intendente de Houston,Houston
-28,12,2011,Intendente de Hudson,Hudson
-30,12,2011,Gobernador prov nro 135,Hudson,Laguna Hills,Manhattan Beach,McAllen,Shelton
-17,12,2011,Intendente de Huntington,Huntington
-12,11,2011,Intendente de Huntington Beach,Huntington Beach
-23,10,2011,Intendente de Huntington Park,Huntington Park
-17,11,2011,Intendente de Huntsville,Huntsville
-20,12,2011,Intendente de Hutchinson,Hutchinson
-13,11,2011,Intendente de Idabel,Idabel
-25,10,2011,Intendente de Indianapolis,Indianapolis
-14,11,2011,Intendente de Indio,Indio
-11,12,2011,Intendente de Inglewood,Inglewood
-22,12,2011,Intendente de International Falls,International Falls
-26,10,2011,Intendente de Iowa City,Iowa City
-19,11,2011,Intendente de Irvine,Irvine
-16,11,2011,Gobernador prov nro 39,Irvine,Juneau,North Platte,Signal Hill,Suffolk
-23,12,2011,Intendente de Irving,Irving
-20,12,2011,Intendente de Irwindale,Irwindale
-26,12,2011,Intendente de Isle of Palms,Isle of Palms
-25,10,2011,Intendente de Ithaca,Ithaca
-26,11,2011,Gobernador prov nro 122,Ithaca,Lodi,Schaumburg,Schenectady,Topeka
-11,11,2011,Intendente de Jackson,Jackson
-10,11,2011,Intendente de Jacksonville,Jacksonville
-30,12,2011,Intendente de Jamestown,Jamestown
-22,11,2011,Intendente de Janesville,Janesville
-30,12,2011,Intendente de Jeannette,Jeannette
-22,12,2011,Intendente de Jefferson City,Jefferson City
-14,12,2011,Intendente de Jeffersontown,Jeffersontown
-30,11,2011,Intendente de Jeffersonville,Jeffersonville
-27,12,2011,Intendente de Jenks,Jenks
-21,12,2011,Intendente de Jersey City,Jersey City
-17,11,2011,Intendente de Johnson City,Johnson City
-15,11,2011,Intendente de Johnstown,Johnstown
-18,10,2011,Intendente de Joliet,Joliet
-27,12,2011,Intendente de Jonesboro,Jonesboro
-28,11,2011,Intendente de Joplin,Joplin
-11,11,2011,Intendente de Jordan Valley,Jordan Valley
-25,12,2011,Intendente de Juneau,Juneau
-25,10,2011,Intendente de Kahului,Kahului
-30,10,2011,Intendente de Kalamazoo,Kalamazoo
-11,12,2011,Intendente de Kalispell,Kalispell
-15,10,2011,Intendente de Kankakee,Kankakee
-27,11,2011,Intendente de Kearney,Kearney
-27,10,2011,Intendente de Kearns,Kearns
-22,11,2011,Gobernador prov nro 152,Kearns,Little Rock,Provo,Rye
-22,12,2011,Intendente de Keene,Keene
-10,10,2011,Intendente de Kemmerer,Kemmerer
-16,12,2011,Intendente de Kenner,Kenner
-12,11,2011,Intendente de Kennesaw,Kennesaw
-26,11,2011,Gobernador prov nro 86,Kennesaw,Milford,Plainfield,Sault Ste. Marie,Sioux City
-17,10,2011,Intendente de Kennewick,Kennewick
-27,12,2011,Intendente de Kenosha,Kenosha
-16,10,2011,Intendente de Kent,Kent
-15,10,2011,Intendente de Ketchikan,Ketchikan
-21,11,2011,Intendente de Kettering,Kettering
-27,12,2011,Intendente de Kingsport,Kingsport
-30,12,2011,Intendente de Kingston,Kingston
-16,11,2011,Intendente de Klamath Falls,Klamath Falls
-29,11,2011,Gobernador prov nro 171,Klamath Falls,Little Falls,Lynn,Muncie,Pueblo
-21,10,2011,Intendente de Knoxville,Knoxville
-24,10,2011,Intendente de Kokomo,Kokomo
-21,11,2011,Intendente de Kona,Kona
-13,11,2011,Intendente de La Crosse,La Crosse
-15,11,2011,Intendente de La Habra,La Habra
-30,11,2011,Intendente de La Habra Heights,La Habra Heights
-26,11,2011,Intendente de La Jolla,La Jolla
-18,11,2011,Intendente de La Mirada,La Mirada
-21,10,2011,Intendente de La Palma,La Palma
-27,10,2011,Intendente de La Puente,La Puente
-11,10,2011,Intendente de La Verne,La Verne
-17,10,2011,Intendente de LaGrange,LaGrange
-28,12,2011,Intendente de Laconia,Laconia
-18,12,2011,Intendente de Lafayette,Lafayette
-10,11,2011,Intendente de Laguna Beach,Laguna Beach
-18,10,2011,Intendente de Laguna Hills,Laguna Hills
-18,11,2011,Intendente de Laguna Niguel,Laguna Niguel
-28,10,2011,Intendente de Laguna Woods,Laguna Woods
-25,10,2011,Intendente de Lahaina,Lahaina
-26,12,2011,Intendente de Lake Charles,Lake Charles
-11,12,2011,Intendente de Lake Forest,Lake Forest
-10,12,2011,Intendente de Lakeland,Lakeland
-24,10,2011,Intendente de Lancaster,Lancaster
-14,12,2011,Intendente de Lander,Lander
-23,10,2011,Intendente de Lansing,Lansing
-30,12,2011,Intendente de Laramie,Laramie
-19,10,2011,Intendente de Laredo,Laredo
-21,10,2011,Intendente de Las Cruces,Las Cruces
-30,11,2011,Intendente de Latrobe,Latrobe
-26,11,2011,Intendente de Laughlin,Laughlin
-12,11,2011,Intendente de Laurel,Laurel
-19,11,2011,Intendente de Lawndale,Lawndale
-14,12,2011,Intendente de Lawrence,Lawrence
-25,12,2011,Intendente de Lawrenceville,Lawrenceville
-23,12,2011,Intendente de Lawton,Lawton
-25,10,2011,Intendente de Layton,Layton
-16,11,2011,Intendente de Lebanon,Lebanon
-18,12,2011,Intendente de Lewiston,Lewiston
-16,10,2011,Intendente de Lexington,Lexington
-26,12,2011,Gobernador prov nro 77,Lexington,Oak Ridge,Ponce,Port Orford,Valencia
-14,12,2011,Intendente de Liberal,Liberal
-15,12,2011,Intendente de Lima,Lima
-21,11,2011,Intendente de Lincoln,Lincoln
-30,11,2011,Intendente de Little Falls,Little Falls
-17,10,2011,Intendente de Little Rock,Little Rock
-30,12,2011,Intendente de Littleton,Littleton
-19,11,2011,Intendente de Livonia,Livonia
-18,10,2011,Intendente de Lock Haven,Lock Haven
-28,12,2011,Intendente de Lockport,Lockport
-15,12,2011,Intendente de Lodi,Lodi
-24,12,2011,Intendente de Lomita,Lomita
-28,12,2011,Intendente de Long Beach,Long Beach
-22,10,2011,Intendente de Longview,Longview
-27,11,2011,Intendente de Los Alamitos,Los Alamitos
-10,10,2011,Intendente de Los Angeles,Los Angeles
-11,11,2011,Gobernador prov nro 131,Los Angeles,Lynchburg,Saratoga Springs,South El Monte,Vermillion
-18,12,2011,Intendente de Loudon,Loudon
-16,12,2011,Intendente de Louisville,Louisville
-27,10,2011,Intendente de Lowell,Lowell
-18,10,2011,Intendente de Lower Burrell,Lower Burrell
-13,11,2011,Intendente de Lufkin,Lufkin
-21,10,2011,Gobernador prov nro 157,Lufkin,Monterey Park,Quincy,Santa Rosa
-24,10,2011,Intendente de Lynchburg,Lynchburg
-18,10,2011,Intendente de Lynn,Lynn
-25,12,2011,Intendente de Lynwood,Lynwood
-16,12,2011,Intendente de Macomb,Macomb
-20,10,2011,Intendente de Macon,Macon
-18,12,2011,Gobernador prov nro 180,Macon,Memphis,Nogales,Racine
-16,11,2011,Intendente de Madison,Madison
-30,12,2011,Intendente de Malden,Malden
-15,10,2011,Intendente de Malibu,Malibu
-14,12,2011,Intendente de Manassas,Manassas
-14,10,2011,Intendente de Manassas Park,Manassas Park
-16,11,2011,Intendente de Manchester,Manchester
-10,10,2011,Intendente de Mandan,Mandan
-28,10,2011,Intendente de Manhattan Beach,Manhattan Beach
-28,10,2011,Intendente de Manitowoc,Manitowoc
-11,10,2011,Intendente de Mankato,Mankato
-13,11,2011,Intendente de Marietta,Marietta
-28,12,2011,Intendente de Marlborough,Marlborough
-23,10,2011,Intendente de Marquette,Marquette
-26,11,2011,Gobernador prov nro 74,Marquette,Melrose,Midwest City,North Tonawanda,Weirton
-24,10,2011,Intendente de Marshall,Marshall
-25,12,2011,Intendente de Marshfield,Marshfield
-20,10,2011,Intendente de Martinsburg,Martinsburg
-12,10,2011,Intendente de Mason City,Mason City
-11,12,2011,Intendente de Maywood,Maywood
-28,10,2011,Intendente de McAllen,McAllen
-13,11,2011,Intendente de Meadville,Meadville
-21,10,2011,Intendente de Mechanicville,Mechanicville
-20,12,2011,Intendente de Melrose,Melrose
-11,10,2011,Intendente de Memphis,Memphis
-26,11,2011,Intendente de Menomonee Falls,Menomonee Falls
-24,12,2011,Intendente de Mentor,Mentor
-12,12,2011,Intendente de Mequon,Mequon
-24,11,2011,Intendente de Merced,Merced
-15,12,2011,Intendente de Meriden,Meriden
-22,11,2011,Intendente de Meridian,Meridian
-17,10,2011,Intendente de Merizo,Merizo
-20,11,2011,Intendente de Mesa,Mesa
-16,11,2011,Intendente de Mesquite,Mesquite
-20,10,2011,Intendente de Methuen,Methuen
-21,11,2011,Intendente de Miami,Miami
-19,10,2011,Intendente de Miami Beach,Miami Beach
-20,10,2011,Intendente de Miami Gardens,Miami Gardens
-28,12,2011,Gobernador prov nro 57,Miami Gardens,Muskegon,Ontario,Sacramento,Torrance
-24,11,2011,Intendente de Michigan City,Michigan City
-11,11,2011,Intendente de Middlebury,Middlebury
-18,10,2011,Intendente de Middletown,Middletown
-18,12,2011,Gobernador prov nro 156,Middletown,Midland,Peekskill,Seattle
-15,11,2011,Intendente de Midland,Midland
-25,11,2011,Intendente de Midwest City,Midwest City
-14,12,2011,Intendente de Milford,Milford
-27,12,2011,Intendente de Milwaukee,Milwaukee
-12,11,2011,Intendente de Minneapolis,Minneapolis
-11,11,2011,Intendente de Minnetonka,Minnetonka
-18,12,2011,Intendente de Minot,Minot
-16,11,2011,Intendente de Mission Viejo,Mission Viejo
-21,12,2011,Intendente de Missoula,Missoula
-28,12,2011,Intendente de Mobile,Mobile
-10,11,2011,Intendente de Modesto,Modesto
-14,10,2011,Intendente de Moline,Moline
-10,12,2011,Gobernador prov nro 93,Moline,Northampton,Omaha,South Bend
-11,12,2011,Intendente de Monongahela,Monongahela
-14,10,2011,Gobernador prov nro 35,Monongahela,New Britain,Oil City,Rancho Cordova,Vernon
-17,11,2011,Intendente de Monroe,Monroe
-17,11,2011,Intendente de Monrovia,Monrovia
-18,12,2011,Intendente de Montebello,Montebello
-22,12,2011,Intendente de Monterey,Monterey
-13,12,2011,Intendente de Monterey Park,Monterey Park
-28,10,2011,Intendente de Montgomery,Montgomery
-27,10,2011,Intendente de Montpelier,Montpelier
-14,10,2011,Intendente de Moore,Moore
-28,10,2011,Intendente de Moorhead,Moorhead
+19,12,2011,Gobernador prov nro 18,Elkhart,McAlester,Sheridan,Waltham
+13,11,2011,Intendente de Elko,Elko
+17,11,2011,Gobernador prov nro 82,Elko,Green River,New Albany,Orangeburg,Ventura
+13,10,2011,Intendente de Elmira,Elmira
+27,12,2011,Intendente de Elsmere,Elsmere
+15,12,2011,Intendente de Enfield,Enfield
+28,11,2011,Gobernador prov nro 127,Enfield,Lowell,Omaha,Rosemead,Sierra Vista
+22,11,2011,Intendente de Enid,Enid
+12,12,2011,Intendente de Ephraim,Ephraim
+14,12,2011,Intendente de Erie,Erie
+25,10,2011,Gobernador prov nro 35,Erie,Fayetteville,Fort Lauderdale,Madison
+15,11,2011,Intendente de Escondido,Escondido
+25,12,2011,Intendente de Eufaula,Eufaula
+27,10,2011,Intendente de Eugene,Eugene
+10,10,2011,Intendente de Eureka,Eureka
+17,10,2011,Gobernador prov nro 7,Eureka,Irvine,Laurel,Oakland,Oxford
+21,12,2011,Intendente de Evanston,Evanston
+22,11,2011,Intendente de Evansville,Evansville
+18,10,2011,Gobernador prov nro 122,Evansville,Great Falls,Niagara Falls,Santa Monica,Sioux Falls
+16,11,2011,Intendente de Everett,Everett
+23,11,2011,Intendente de Fairbanks,Fairbanks
+17,11,2011,Intendente de Fairfax,Fairfax
+11,12,2011,Gobernador prov nro 23,Fairfax,Guayama,New Iberia,Newburyport,San Marino
+13,12,2011,Intendente de Fairfield,Fairfield
+18,10,2011,Intendente de Fairmont,Fairmont
+22,11,2011,Gobernador prov nro 40,Fairmont,Kona,Sandpoint,Wausau,Woonsocket
+24,10,2011,Intendente de Fajardo,Fajardo
+21,10,2011,Intendente de Fall River,Fall River
+19,11,2011,Gobernador prov nro 155,Fall River,Kearns,Little Rock,Muskogee,Rye
+20,10,2011,Intendente de Falls Church,Falls Church
+16,11,2011,Intendente de Fargo,Fargo
+23,10,2011,Intendente de Farmer City,Farmer City
+30,11,2011,Intendente de Farmington,Farmington
+11,12,2011,Intendente de Farrell,Farrell
+26,10,2011,Intendente de Fayetteville,Fayetteville
+15,11,2011,Intendente de Fernley,Fernley
+22,11,2011,Intendente de Fitchburg,Fitchburg
+25,12,2011,Gobernador prov nro 162,Fitchburg,Idaho Falls,Nenana,Prescott,Riverton
+12,11,2011,Intendente de Flagstaff,Flagstaff
+27,10,2011,Intendente de Flint,Flint
+24,11,2011,Intendente de Florence,Florence
+27,12,2011,Intendente de Fond du Lac,Fond du Lac
+27,10,2011,Intendente de Fontana,Fontana
+25,12,2011,Intendente de Forest Lake,Forest Lake
+13,11,2011,Intendente de Forrest City,Forrest City
+15,11,2011,Intendente de Fort Collins,Fort Collins
+27,12,2011,Gobernador prov nro 135,Fort Collins,Jackson,Natchitoches,Virginia Beach
+15,11,2011,Intendente de Fort Dodge,Fort Dodge
+16,10,2011,Gobernador prov nro 45,Fort Dodge,Hollywood,Newport Beach,Phenix City,Tonawanda
+19,11,2011,Intendente de Fort Lauderdale,Fort Lauderdale
+10,12,2011,Intendente de Fort Smith,Fort Smith
+18,12,2011,Gobernador prov nro 21,Fort Smith,Huntington Beach,Mentor,Waco
+11,10,2011,Intendente de Fort Wayne,Fort Wayne
+20,10,2011,Intendente de Fountain Valley,Fountain Valley
+23,11,2011,Intendente de Frankfort,Frankfort
+18,11,2011,Intendente de Franklin,Franklin
+27,12,2011,Intendente de Frederick,Frederick
+10,12,2011,Gobernador prov nro 84,Frederick,Fresno,Holyoke,Pittsfield,Roswell
+16,12,2011,Intendente de Fredericksburg,Fredericksburg
+14,10,2011,Intendente de Frederiksted,Frederiksted
+10,11,2011,Intendente de Fremont,Fremont
+27,10,2011,Intendente de Fresno,Fresno
+15,12,2011,Intendente de Frisco,Frisco
+21,12,2011,Intendente de Fullerton,Fullerton
+30,12,2011,Intendente de Fulton,Fulton
+26,11,2011,Intendente de Gadsden,Gadsden
+19,12,2011,Intendente de Gainesville,Gainesville
+15,12,2011,Intendente de Gaithersburg,Gaithersburg
+18,11,2011,Gobernador prov nro 61,Gaithersburg,Kalamazoo,Leominster,Rome,Wisconsin Dells
+15,11,2011,Intendente de Galesburg,Galesburg
+24,11,2011,Gobernador prov nro 168,Galesburg,Hagerstown,Manchester,Montgomery,Pottsville
+12,12,2011,Intendente de Gallup,Gallup
+27,10,2011,Intendente de Garden Grove,Garden Grove
+20,11,2011,Intendente de Gardena,Gardena
+24,12,2011,Intendente de Gardner,Gardner
+14,10,2011,Gobernador prov nro 165,Gardner,Iowa City,New Kensington,Sun Valley,Trenton
+18,10,2011,Intendente de Garland,Garland
+19,12,2011,Gobernador prov nro 124,Garland,Ithaca,Lodi,Schaumburg,Stillwater
+21,10,2011,Intendente de Gary,Gary
+13,12,2011,Intendente de Gastonia,Gastonia
+15,11,2011,Gobernador prov nro 194,Gastonia,Lincoln,Pueblo,San Gabriel,Webster Groves
+14,10,2011,Intendente de Gatlinburg,Gatlinburg
+14,10,2011,Intendente de Geneva,Geneva
+11,12,2011,Intendente de Georgetown,Georgetown
+16,10,2011,Intendente de Gettysburg,Gettysburg
+17,11,2011,Gobernador prov nro 144,Gettysburg,San Fernando,Sandy Springs,Youngstown
+15,10,2011,Intendente de Gilbert,Gilbert
+15,10,2011,Gobernador prov nro 38,Gilbert,Las Vegas,Monongahela,Oil City,Port Washington
+11,11,2011,Intendente de Gilette,Gilette
+22,10,2011,Intendente de Glen Cove,Glen Cove
+16,12,2011,Gobernador prov nro 172,Glen Cove,Lubbock,Norwich,Palo Alto,West Jordan
+29,10,2011,Intendente de Glendale,Glendale
+21,11,2011,Intendente de Glendora,Glendora
+11,12,2011,Intendente de Glens Falls,Glens Falls
+22,11,2011,Intendente de Gloucester,Gloucester
+20,12,2011,Gobernador prov nro 85,Gloucester,Mequon,Morgantown,Woodward
+21,11,2011,Intendente de Gloversville,Gloversville
+20,12,2011,Gobernador prov nro 111,Gloversville,Pasadena,Portland,Tyler,Yuma
+24,10,2011,Intendente de Gold Beach,Gold Beach
+18,11,2011,Intendente de Goose Creek,Goose Creek
+25,12,2011,Intendente de Grafton,Grafton
+14,11,2011,Intendente de Grambling,Grambling
+13,12,2011,Gobernador prov nro 104,Grambling,Irving,Kent,Moorhead,Oxnard
+18,10,2011,Intendente de Grand Forks,Grand Forks
+29,12,2011,Intendente de Grand Island,Grand Island
+21,10,2011,Gobernador prov nro 58,Grand Island,Los Alamitos,North Las Vegas,Titusville
+16,11,2011,Intendente de Grand Junction,Grand Junction
+18,10,2011,Intendente de Grand Rapids,Grand Rapids
+11,12,2011,Intendente de Grass Valley,Grass Valley
+11,11,2011,Intendente de Great Falls,Great Falls
+19,11,2011,Intendente de Green Bay,Green Bay
+29,12,2011,Intendente de Green River,Green River
+10,10,2011,Intendente de Greenfield,Greenfield
+19,11,2011,Intendente de Greensboro,Greensboro
+28,10,2011,Intendente de Greensburg,Greensburg
+13,10,2011,Intendente de Greenville,Greenville
+25,12,2011,Gobernador prov nro 100,Greenville,Peru,Port St. Lucie,Poughkeepsie,Walnut
+18,11,2011,Intendente de Guayama,Guayama
+12,11,2011,Intendente de Guayanilla,Guayanilla
+19,12,2011,Intendente de Gulfport,Gulfport
+30,11,2011,Intendente de Guthrie,Guthrie
+29,12,2011,Intendente de Hackensack,Hackensack
+10,11,2011,Intendente de Hagerstown,Hagerstown
+17,11,2011,Intendente de Half Moon Bay,Half Moon Bay
+30,12,2011,Intendente de Hamilton,Hamilton
+21,12,2011,Gobernador prov nro 121,Hamilton,Lake Forest,Pico Rivera,Roanoke
+12,11,2011,Intendente de Hammond,Hammond
+21,11,2011,Intendente de Hampton,Hampton
+19,11,2011,Intendente de Hanahan,Hanahan
+10,11,2011,Intendente de Hannibal,Hannibal
+28,12,2011,Intendente de Harrisburg,Harrisburg
+18,11,2011,Intendente de Hartford,Hartford
+30,11,2011,Intendente de Hartland,Hartland
+25,11,2011,Intendente de Hattiesburg,Hattiesburg
+23,10,2011,Intendente de Hawaiian Gardens,Hawaiian Gardens
+30,12,2011,Intendente de Hawthorne,Hawthorne
+16,12,2011,Gobernador prov nro 10,Hawthorne,La Crosse,San Francisco,Stafford
+28,10,2011,Intendente de Hazleton,Hazleton
+26,12,2011,Intendente de Healdsburg,Healdsburg
+18,12,2011,Intendente de Henderson,Henderson
+18,10,2011,Intendente de Hermitage,Hermitage
+28,11,2011,Intendente de Hialeah,Hialeah
+16,11,2011,Intendente de Hickory,Hickory
+11,11,2011,Intendente de Hidden Hills,Hidden Hills
+22,12,2011,Intendente de High Point,High Point
+23,10,2011,Intendente de Highland Park,Highland Park
+13,12,2011,Gobernador prov nro 32,Highland Park,Isle of Palms,Oswego,Woburn,York
+23,12,2011,Intendente de Hilo,Hilo
+27,12,2011,Intendente de Hoboken,Hoboken
+29,11,2011,Intendente de Hollywood,Hollywood
+17,12,2011,Intendente de Holyoke,Holyoke
+23,11,2011,Intendente de Homer,Homer
+20,10,2011,Intendente de Honolulu,Honolulu
+18,10,2011,Gobernador prov nro 25,Honolulu,Ogdensburg,Shamokin,Watervliet
+28,10,2011,Intendente de Hoover,Hoover
+12,11,2011,Intendente de Hope,Hope
+12,12,2011,Intendente de Hopkinsville,Hopkinsville
+17,11,2011,Gobernador prov nro 178,Hopkinsville,Meriden,Simi Valley,Winooski
+14,11,2011,Intendente de Hornell,Hornell
+27,12,2011,Intendente de Hot Springs,Hot Springs
+22,11,2011,Gobernador prov nro 88,Hot Springs,Milford,Plainfield,Sault Ste. Marie,Sioux City
+11,12,2011,Intendente de Houma,Houma
+10,12,2011,Intendente de Houston,Houston
+30,12,2011,Intendente de Hudson,Hudson
+26,10,2011,Intendente de Huntington,Huntington
+24,12,2011,Intendente de Huntington Beach,Huntington Beach
+24,10,2011,Intendente de Huntington Park,Huntington Park
+17,12,2011,Intendente de Huntsville,Huntsville
+27,12,2011,Intendente de Hutchinson,Hutchinson
+18,11,2011,Intendente de Idabel,Idabel
+26,11,2011,Gobernador prov nro 112,Idabel,Parker,Parkersburg,Warwick,Williamsburg
+11,12,2011,Intendente de Idaho Falls,Idaho Falls
+11,11,2011,Intendente de Idaho Springs,Idaho Springs
+25,12,2011,Intendente de Independence,Independence
+13,11,2011,Intendente de Indianapolis,Indianapolis
+11,12,2011,Intendente de Indio,Indio
+26,12,2011,Intendente de Inglewood,Inglewood
+20,10,2011,Intendente de International Falls,International Falls
+18,12,2011,Intendente de Iowa City,Iowa City
+10,12,2011,Intendente de Irvine,Irvine
+23,11,2011,Intendente de Irving,Irving
+16,12,2011,Intendente de Irwindale,Irwindale
+28,12,2011,Intendente de Isle of Palms,Isle of Palms
+29,10,2011,Intendente de Ithaca,Ithaca
+24,11,2011,Intendente de Jackson,Jackson
+29,11,2011,Intendente de Jacksonville,Jacksonville
+21,11,2011,Intendente de Jamestown,Jamestown
+20,10,2011,Intendente de Janesville,Janesville
+14,11,2011,Intendente de Jeannette,Jeannette
+29,11,2011,Intendente de Jefferson City,Jefferson City
+17,10,2011,Intendente de Jeffersontown,Jeffersontown
+29,12,2011,Intendente de Jeffersonville,Jeffersonville
+27,12,2011,Intendente de Jersey City,Jersey City
+19,11,2011,Intendente de Johnson City,Johnson City
+11,11,2011,Intendente de Johnstown,Johnstown
+22,11,2011,Intendente de Joliet,Joliet
+30,11,2011,Gobernador prov nro 177,Joliet,Las Cruces,Layton,Newport,Oklahoma City
+20,11,2011,Intendente de Joplin,Joplin
+17,12,2011,Intendente de Jordan Valley,Jordan Valley
+26,12,2011,Intendente de Juneau,Juneau
+15,10,2011,Intendente de Kahului,Kahului
+23,10,2011,Intendente de Kalamazoo,Kalamazoo
+23,12,2011,Intendente de Kalispell,Kalispell
+11,11,2011,Intendente de Kankakee,Kankakee
+16,10,2011,Gobernador prov nro 91,Kankakee,Laguna Woods,Thousand Oaks,Wichita Falls,Yukon
+20,12,2011,Intendente de Kansas City,Kansas City
+13,12,2011,Intendente de Kearney,Kearney
+13,10,2011,Intendente de Kearns,Kearns
+16,12,2011,Intendente de Keene,Keene
+13,11,2011,Gobernador prov nro 86,Keene,Kennewick,Menomonee Falls,Rialto,Vail
+15,10,2011,Intendente de Kemmerer,Kemmerer
+27,11,2011,Intendente de Kenner,Kenner
+15,10,2011,Intendente de Kennesaw,Kennesaw
+21,10,2011,Intendente de Kennewick,Kennewick
+15,12,2011,Intendente de Kenosha,Kenosha
+26,12,2011,Intendente de Kent,Kent
+18,12,2011,Intendente de Ketchikan,Ketchikan
+24,11,2011,Intendente de Kettering,Kettering
+12,10,2011,Intendente de Kingston,Kingston
+25,12,2011,Intendente de Klamath Falls,Klamath Falls
+14,10,2011,Intendente de Knoxville,Knoxville
+23,12,2011,Intendente de Kokomo,Kokomo
+10,11,2011,Intendente de Kona,Kona
+29,12,2011,Intendente de La Crosse,La Crosse
+22,11,2011,Intendente de La Habra,La Habra
+29,10,2011,Intendente de La Habra Heights,La Habra Heights
+10,11,2011,Intendente de La Jolla,La Jolla
+16,12,2011,Intendente de La Mirada,La Mirada
+16,12,2011,Intendente de La Palma,La Palma
+24,11,2011,Intendente de La Puente,La Puente
+24,11,2011,Gobernador prov nro 97,La Puente,Pullman,St. Marys,Warner Robins
+19,10,2011,Intendente de La Verne,La Verne
+29,12,2011,Intendente de LaGrange,LaGrange
+23,11,2011,Intendente de Laconia,Laconia
+26,11,2011,Intendente de Lafayette,Lafayette
+24,12,2011,Intendente de Laguna Beach,Laguna Beach
+23,10,2011,Intendente de Laguna Hills,Laguna Hills
+22,10,2011,Intendente de Laguna Niguel,Laguna Niguel
+10,12,2011,Intendente de Laguna Woods,Laguna Woods
+14,11,2011,Intendente de Lahaina,Lahaina
+25,11,2011,Intendente de Lake Charles,Lake Charles
+29,10,2011,Intendente de Lake Forest,Lake Forest
+27,11,2011,Intendente de Lakeland,Lakeland
+14,11,2011,Intendente de Lakewood,Lakewood
+21,12,2011,Intendente de Lancaster,Lancaster
+28,11,2011,Intendente de Lander,Lander
+19,11,2011,Intendente de Lansing,Lansing
+27,12,2011,Intendente de Laramie,Laramie
+22,12,2011,Intendente de Laredo,Laredo
+26,12,2011,Intendente de Las Cruces,Las Cruces
+12,12,2011,Intendente de Las Vegas,Las Vegas
+16,10,2011,Intendente de Latrobe,Latrobe
+20,11,2011,Intendente de Laughlin,Laughlin
+18,12,2011,Intendente de Laurel,Laurel
+30,12,2011,Intendente de Lawndale,Lawndale
+11,10,2011,Intendente de Lawrence,Lawrence
+14,10,2011,Gobernador prov nro 161,Lawrence,Longview,Lufkin,Midwest City
+11,12,2011,Intendente de Lawrenceville,Lawrenceville
+30,12,2011,Intendente de Lawton,Lawton
+12,12,2011,Intendente de Layton,Layton
+30,12,2011,Intendente de Lebanon,Lebanon
+26,10,2011,Intendente de Leominster,Leominster
+30,12,2011,Intendente de Lewiston,Lewiston
+16,11,2011,Intendente de Lexington,Lexington
+12,12,2011,Gobernador prov nro 79,Lexington,Oak Ridge,Ponce,Port Orford
+18,11,2011,Intendente de Liberal,Liberal
+21,12,2011,Intendente de Lima,Lima
+17,12,2011,Intendente de Lincoln,Lincoln
+14,11,2011,Intendente de Little Falls,Little Falls
+10,12,2011,Intendente de Little Rock,Little Rock
+26,12,2011,Intendente de Littleton,Littleton
+10,10,2011,Intendente de Livonia,Livonia
+29,12,2011,Intendente de Lockport,Lockport
+26,10,2011,Intendente de Lodi,Lodi
+19,11,2011,Intendente de Logan,Logan
+18,11,2011,Intendente de Lomita,Lomita
+23,10,2011,Intendente de Long Beach,Long Beach
+18,12,2011,Gobernador prov nro 37,Long Beach,Santa Fe Springs,South Pasadena,Vernon
+30,12,2011,Intendente de Longview,Longview
+12,10,2011,Intendente de Los Alamitos,Los Alamitos
+11,12,2011,Intendente de Los Angeles,Los Angeles
+18,12,2011,Gobernador prov nro 133,Los Angeles,McKeesport,Saratoga Springs,South El Monte
+23,11,2011,Intendente de Loudon,Loudon
+30,11,2011,Intendente de Louisville,Louisville
+29,10,2011,Intendente de Lowell,Lowell
+24,12,2011,Intendente de Lower Burrell,Lower Burrell
+26,10,2011,Intendente de Lubbock,Lubbock
+19,12,2011,Intendente de Lufkin,Lufkin
+27,11,2011,Intendente de Lynchburg,Lynchburg
+23,12,2011,Intendente de Lynn,Lynn
+14,10,2011,Intendente de Macomb,Macomb
+25,10,2011,Gobernador prov nro 34,Macomb,Mesa,Olympia,Reno
+25,10,2011,Intendente de Macon,Macon
+15,10,2011,Intendente de Madison,Madison
+11,10,2011,Intendente de Malden,Malden
+10,10,2011,Intendente de Malibu,Malibu
+16,12,2011,Intendente de Manassas,Manassas
+13,12,2011,Intendente de Manassas Park,Manassas Park
+18,10,2011,Intendente de Manchester,Manchester
+19,12,2011,Intendente de Mandan,Mandan
+22,10,2011,Intendente de Manhattan,Manhattan
+29,11,2011,Intendente de Manhattan Beach,Manhattan Beach
+15,11,2011,Intendente de Manitowoc,Manitowoc
+15,12,2011,Intendente de Mankato,Mankato
+18,12,2011,Intendente de Marietta,Marietta
+10,11,2011,Intendente de Marlborough,Marlborough
+12,11,2011,Intendente de Marquette,Marquette
+15,11,2011,Intendente de Marshall,Marshall
+22,11,2011,Gobernador prov nro 13,Marshall,Phoenix,Rehoboth Beach,Rolla,Sunnyvale
+12,12,2011,Intendente de Marshfield,Marshfield
+17,12,2011,Intendente de Martinsburg,Martinsburg
+18,11,2011,Intendente de Mason City,Mason City
+26,12,2011,Intendente de Maywood,Maywood
+16,12,2011,Intendente de McAlester,McAlester
+23,10,2011,Intendente de McAllen,McAllen
+20,11,2011,Intendente de McKeesport,McKeesport
+15,11,2011,Intendente de Medford,Medford
+18,12,2011,Intendente de Melrose,Melrose
+13,12,2011,Intendente de Memphis,Memphis
+27,12,2011,Intendente de Menomonee Falls,Menomonee Falls
+12,10,2011,Intendente de Mentor,Mentor
+16,12,2011,Intendente de Mequon,Mequon
+20,12,2011,Intendente de Merced,Merced
+20,12,2011,Intendente de Meriden,Meriden
+29,10,2011,Intendente de Meridian,Meridian
+12,10,2011,Intendente de Merizo,Merizo
+18,10,2011,Intendente de Mesa,Mesa
+24,10,2011,Intendente de Mesquite,Mesquite
+22,10,2011,Intendente de Methuen,Methuen
+10,11,2011,Intendente de Miami,Miami
+11,12,2011,Intendente de Miami Beach,Miami Beach
+28,11,2011,Intendente de Miami Gardens,Miami Gardens
+30,10,2011,Intendente de Michigan City,Michigan City
+12,12,2011,Intendente de Middlebury,Middlebury
+19,10,2011,Intendente de Middletown,Middletown
+21,11,2011,Gobernador prov nro 159,Middletown,Peekskill,Starkville,Vancouver
+26,11,2011,Intendente de Midland,Midland
+25,10,2011,Gobernador prov nro 136,Midland,Saginaw,Saint Cloud,Waterbury,Watertown
+29,12,2011,Intendente de Midwest City,Midwest City
+24,12,2011,Intendente de Milford,Milford
+10,10,2011,Intendente de Milwaukee,Milwaukee
+30,10,2011,Intendente de Minneapolis,Minneapolis
+26,10,2011,Intendente de Minnetonka,Minnetonka
+15,10,2011,Intendente de Minot,Minot
+29,10,2011,Intendente de Mission Viejo,Mission Viejo
+23,12,2011,Intendente de Missoula,Missoula
+28,11,2011,Intendente de Mobile,Mobile
+17,11,2011,Intendente de Modesto,Modesto
+20,10,2011,Intendente de Moline,Moline
+22,12,2011,Intendente de Monongahela,Monongahela
+20,10,2011,Intendente de Monroe,Monroe
+16,10,2011,Intendente de Monrovia,Monrovia
+12,12,2011,Intendente de Montebello,Montebello
+17,11,2011,Intendente de Monterey Park,Monterey Park
+20,12,2011,Gobernador prov nro 180,Monterey Park,North Adams,Oneonta,Walla Walla
+15,10,2011,Intendente de Montgomery,Montgomery
+18,10,2011,Intendente de Montpelier,Montpelier
+13,12,2011,Intendente de Moore,Moore
+15,11,2011,Intendente de Moorhead,Moorhead
 26,11,2011,Intendente de Moraga,Moraga
-26,11,2011,Intendente de Moreno Valley,Moreno Valley
-11,11,2011,Intendente de Morgan City,Morgan City
-21,10,2011,Intendente de Morgantown,Morgantown
-27,12,2011,Intendente de Morrison,Morrison
-29,11,2011,Intendente de Moscow,Moscow
-26,12,2011,Intendente de Moultrie,Moultrie
-19,10,2011,Gobernador prov nro 176,Moultrie,New Castle,New Haven,Ogden,Woodward
-22,10,2011,Intendente de Mount Pleasant,Mount Pleasant
-14,11,2011,Intendente de Mount Vernon,Mount Vernon
-15,11,2011,Intendente de Muncie,Muncie
-28,12,2011,Intendente de Murfreesboro,Murfreesboro
-12,10,2011,Intendente de Murray,Murray
-30,12,2011,Intendente de Muskegon,Muskegon
-21,11,2011,Intendente de Muskogee,Muskogee
-23,12,2011,Intendente de Myrtle Beach,Myrtle Beach
-19,11,2011,Intendente de Nacogdoches,Nacogdoches
-30,10,2011,Intendente de Nanticoke,Nanticoke
+27,12,2011,Intendente de Moreno Valley,Moreno Valley
+12,10,2011,Intendente de Morgan City,Morgan City
+25,11,2011,Intendente de Morgantown,Morgantown
+11,10,2011,Intendente de Morrison,Morrison
+27,12,2011,Intendente de Moultrie,Moultrie
+21,10,2011,Intendente de Mount Pleasant,Mount Pleasant
+15,11,2011,Intendente de Mount Vernon,Mount Vernon
+24,10,2011,Intendente de Muncie,Muncie
+12,11,2011,Intendente de Murfreesboro,Murfreesboro
+20,10,2011,Intendente de Murray,Murray
+22,12,2011,Intendente de Murrieta,Murrieta
+30,11,2011,Intendente de Muskegon,Muskegon
+11,12,2011,Gobernador prov nro 59,Muskegon,Ontario,Torrance,West Covina
+20,12,2011,Intendente de Muskogee,Muskogee
+28,12,2011,Intendente de Myrtle Beach,Myrtle Beach
+20,10,2011,Intendente de Nacogdoches,Nacogdoches
+13,10,2011,Intendente de Nampa,Nampa
+12,10,2011,Intendente de Nanticoke,Nanticoke
 25,12,2011,Intendente de Naperville,Naperville
-14,11,2011,Intendente de Narragansett,Narragansett
-14,12,2011,Intendente de Nashua,Nashua
-16,10,2011,Intendente de Nashville,Nashville
-24,11,2011,Intendente de Natchez,Natchez
-21,12,2011,Intendente de Natchitoches,Natchitoches
-25,10,2011,Intendente de Needham,Needham
-27,10,2011,Intendente de Nenana,Nenana
-30,11,2011,Intendente de Nevada City,Nevada City
-20,12,2011,Intendente de New Albany,New Albany
-11,11,2011,Intendente de New Bedford,New Bedford
-18,12,2011,Intendente de New Britain,New Britain
-29,11,2011,Intendente de New Brunswick,New Brunswick
-23,10,2011,Intendente de New Castle,New Castle
-24,11,2011,Intendente de New Haven,New Haven
-14,12,2011,Intendente de New Iberia,New Iberia
-25,12,2011,Intendente de New Kensington,New Kensington
-19,10,2011,Intendente de New London,New London
-26,12,2011,Intendente de New Madrid,New Madrid
+21,10,2011,Intendente de Narragansett,Narragansett
+15,12,2011,Intendente de Nashua,Nashua
+27,12,2011,Intendente de Nashville,Nashville
+20,11,2011,Intendente de Natchez,Natchez
+19,12,2011,Intendente de Natchitoches,Natchitoches
+14,11,2011,Intendente de Needham,Needham
+11,12,2011,Intendente de Nenana,Nenana
+16,11,2011,Intendente de Nevada City,Nevada City
+17,12,2011,Intendente de New Albany,New Albany
+15,11,2011,Intendente de New Bedford,New Bedford
+21,11,2011,Intendente de New Britain,New Britain
+23,12,2011,Intendente de New Brunswick,New Brunswick
+19,11,2011,Intendente de New Castle,New Castle
+30,11,2011,Intendente de New Haven,New Haven
+22,11,2011,Intendente de New Iberia,New Iberia
+20,11,2011,Intendente de New Kensington,New Kensington
+27,11,2011,Intendente de New Madrid,New Madrid
 11,12,2011,Intendente de New Orleans,New Orleans
-14,11,2011,Intendente de New Rochelle,New Rochelle
-27,12,2011,Intendente de New York,New York
-27,12,2011,Intendente de Newark,Newark
-14,11,2011,Intendente de Newburgh,Newburgh
-23,10,2011,Intendente de Newburyport,Newburyport
-29,11,2011,Intendente de Newport,Newport
-29,10,2011,Intendente de Newport Beach,Newport Beach
-18,11,2011,Intendente de Newport News,Newport News
-17,11,2011,Intendente de Newton,Newton
-15,11,2011,Intendente de Niagara Falls,Niagara Falls
-10,12,2011,Intendente de Nichols Hills,Nichols Hills
-23,12,2011,Intendente de Nogales,Nogales
-28,11,2011,Intendente de Norfolk,Norfolk
-16,12,2011,Gobernador prov nro 19,Norfolk,Santa Clara,Waltham,Westminster
-10,12,2011,Intendente de Normal,Normal
-23,10,2011,Intendente de Norman,Norman
-25,12,2011,Intendente de North Adams,North Adams
-11,10,2011,Intendente de North Chicago,North Chicago
-11,11,2011,Intendente de North Las Vegas,North Las Vegas
-25,11,2011,Intendente de North Little Rock,North Little Rock
-14,12,2011,Intendente de North Platte,North Platte
-25,10,2011,Intendente de North Pole,North Pole
-21,10,2011,Intendente de North Tonawanda,North Tonawanda
-15,10,2011,Intendente de Northampton,Northampton
-12,10,2011,Intendente de Norton,Norton
-25,12,2011,Intendente de Norwalk,Norwalk
-11,11,2011,Intendente de Norwich,Norwich
-15,10,2011,Intendente de Oak Ridge,Oak Ridge
-19,12,2011,Intendente de Oakland,Oakland
-24,10,2011,Intendente de Ocean City,Ocean City
-11,12,2011,Intendente de Odessa,Odessa
-20,12,2011,Intendente de Ogden,Ogden
-12,11,2011,Intendente de Ogdensburg,Ogdensburg
-30,12,2011,Intendente de Oil City,Oil City
-23,11,2011,Intendente de Oklahoma City,Oklahoma City
-11,12,2011,Intendente de Olean,Olean
-26,10,2011,Intendente de Olympia,Olympia
-20,11,2011,Intendente de Omaha,Omaha
-29,12,2011,Intendente de Oneida,Oneida
-10,10,2011,Intendente de Oneonta,Oneonta
-15,12,2011,Intendente de Ontario,Ontario
-17,11,2011,Intendente de Opelousas,Opelousas
-21,12,2011,Intendente de Orange,Orange
-19,11,2011,Intendente de Orangeburg,Orangeburg
-26,12,2011,Intendente de Orem,Orem
-25,10,2011,Intendente de Orlando,Orlando
-23,10,2011,Intendente de Oro Valley,Oro Valley
-14,11,2011,Intendente de Oshkosh,Oshkosh
-16,12,2011,Intendente de Oswego,Oswego
-10,10,2011,Intendente de Overland Park,Overland Park
-16,10,2011,Intendente de Owensboro,Owensboro
-30,10,2011,Intendente de Oxford,Oxford
-20,11,2011,Intendente de Oxnard,Oxnard
-19,12,2011,Intendente de Paducah,Paducah
-11,12,2011,Intendente de Palm Springs,Palm Springs
-20,10,2011,Intendente de Palmdale,Palmdale
-12,10,2011,Intendente de Palo Alto,Palo Alto
-21,11,2011,Intendente de Palos Verdes Estates,Palos Verdes Estates
-10,10,2011,Intendente de Paramount,Paramount
-29,12,2011,Intendente de Parker,Parker
-21,12,2011,Intendente de Parkersburg,Parkersburg
-16,10,2011,Intendente de Parma,Parma
-29,12,2011,Intendente de Pasadena,Pasadena
-29,10,2011,Intendente de Pascagoula,Pascagoula
+27,11,2011,Intendente de New Rochelle,New Rochelle
+26,12,2011,Intendente de New York,New York
+22,12,2011,Intendente de Newark,Newark
+24,12,2011,Intendente de Newburgh,Newburgh
+21,11,2011,Intendente de Newburyport,Newburyport
+24,12,2011,Intendente de Newcastle,Newcastle
+25,12,2011,Intendente de Newport,Newport
+11,11,2011,Intendente de Newport Beach,Newport Beach
+24,11,2011,Intendente de Newport News,Newport News
+19,11,2011,Intendente de Newton,Newton
+22,12,2011,Intendente de Niagara Falls,Niagara Falls
+11,11,2011,Intendente de Nichols Hills,Nichols Hills
+14,12,2011,Intendente de Nogales,Nogales
+10,10,2011,Intendente de Nome,Nome
+21,11,2011,Intendente de Norfolk,Norfolk
+18,12,2011,Intendente de Normal,Normal
+29,11,2011,Intendente de Norman,Norman
+27,10,2011,Intendente de North Adams,North Adams
+13,10,2011,Intendente de North Charleston,North Charleston
+28,11,2011,Intendente de North Chicago,North Chicago
+23,12,2011,Intendente de North Las Vegas,North Las Vegas
+11,10,2011,Intendente de North Little Rock,North Little Rock
+12,10,2011,Intendente de North Platte,North Platte
+10,11,2011,Gobernador prov nro 41,North Platte,Paducah,Tucson,Yazoo City
+12,10,2011,Intendente de North Pole,North Pole
+23,11,2011,Intendente de North Tonawanda,North Tonawanda
+20,11,2011,Intendente de Northampton,Northampton
+22,11,2011,Intendente de Norton,Norton
+17,11,2011,Intendente de Norwalk,Norwalk
+11,12,2011,Gobernador prov nro 157,Norwalk,Pomona,Port Arthur,St. George,Taunton
+30,11,2011,Intendente de Norwich,Norwich
+28,12,2011,Intendente de Oak Ridge,Oak Ridge
+19,11,2011,Intendente de Oakland,Oakland
+27,12,2011,Intendente de Ocean City,Ocean City
+10,12,2011,Intendente de Odessa,Odessa
+27,11,2011,Intendente de Ogden,Ogden
+21,11,2011,Intendente de Ogdensburg,Ogdensburg
+26,12,2011,Intendente de Oil City,Oil City
+15,11,2011,Intendente de Oklahoma City,Oklahoma City
+30,10,2011,Intendente de Olean,Olean
+15,12,2011,Intendente de Olympia,Olympia
+29,12,2011,Intendente de Omaha,Omaha
+27,11,2011,Intendente de Oneida,Oneida
+23,10,2011,Intendente de Oneonta,Oneonta
+14,11,2011,Intendente de Ontario,Ontario
+26,11,2011,Intendente de Orange,Orange
+15,11,2011,Intendente de Orangeburg,Orangeburg
+26,10,2011,Intendente de Orlando,Orlando
+10,10,2011,Intendente de Oro Valley,Oro Valley
+15,11,2011,Intendente de Oshkosh,Oshkosh
+18,11,2011,Intendente de Oswego,Oswego
+23,10,2011,Intendente de Overland Park,Overland Park
+18,11,2011,Intendente de Owensboro,Owensboro
+10,10,2011,Intendente de Oxford,Oxford
+18,12,2011,Intendente de Oxnard,Oxnard
+23,11,2011,Intendente de Paducah,Paducah
+12,12,2011,Intendente de Palm Springs,Palm Springs
+16,12,2011,Intendente de Palmdale,Palmdale
+18,12,2011,Intendente de Palo Alto,Palo Alto
+21,12,2011,Intendente de Palos Verdes Estates,Palos Verdes Estates
+29,10,2011,Intendente de Paramount,Paramount
+24,12,2011,Intendente de Parker,Parker
+29,11,2011,Intendente de Parkersburg,Parkersburg
+13,10,2011,Intendente de Parma,Parma
+30,10,2011,Intendente de Pasadena,Pasadena
+18,11,2011,Intendente de Pascagoula,Pascagoula
 21,11,2011,Intendente de Pasco,Pasco
-27,11,2011,Intendente de Pass Christian,Pass Christian
-11,10,2011,Intendente de Passaic,Passaic
-29,11,2011,Intendente de Paterson,Paterson
-25,11,2011,Intendente de Pawtucket,Pawtucket
-22,10,2011,Intendente de Peabody,Peabody
-25,12,2011,Intendente de Peekskill,Peekskill
-29,12,2011,Intendente de Pembroke Pines,Pembroke Pines
-17,12,2011,Intendente de Pendleton,Pendleton
-23,12,2011,Intendente de Peoria,Peoria
-23,10,2011,Intendente de Perth Amboy,Perth Amboy
-23,12,2011,Intendente de Peru,Peru
-24,11,2011,Intendente de Phenix City,Phenix City
-13,12,2011,Intendente de Philadelphia,Philadelphia
-29,11,2011,Intendente de Phoenix,Phoenix
-25,10,2011,Intendente de Pico Rivera,Pico Rivera
-15,11,2011,Intendente de Pierre,Pierre
-28,11,2011,Intendente de Pine Bluff,Pine Bluff
-26,11,2011,Intendente de Pittsburgh,Pittsburgh
+20,10,2011,Intendente de Pass Christian,Pass Christian
+29,11,2011,Intendente de Passaic,Passaic
+15,11,2011,Intendente de Paterson,Paterson
+19,12,2011,Intendente de Pawtucket,Pawtucket
+20,11,2011,Gobernador prov nro 171,Pawtucket,Rancho Cucamonga,Sedalia,Waycross
+22,11,2011,Intendente de Peekskill,Peekskill
+12,10,2011,Intendente de Pembroke Pines,Pembroke Pines
+21,11,2011,Intendente de Pendleton,Pendleton
+27,10,2011,Intendente de Peoria,Peoria
+30,12,2011,Intendente de Perth Amboy,Perth Amboy
+22,10,2011,Intendente de Peru,Peru
+18,10,2011,Intendente de Phenix City,Phenix City
+11,10,2011,Intendente de Philadelphia,Philadelphia
+25,11,2011,Intendente de Phoenix,Phoenix
+19,10,2011,Intendente de Pico Rivera,Pico Rivera
+20,10,2011,Intendente de Pierre,Pierre
+11,12,2011,Intendente de Pine Bluff,Pine Bluff
+21,12,2011,Intendente de Pittsburgh,Pittsburgh
 17,11,2011,Intendente de Pittsfield,Pittsfield
-26,11,2011,Intendente de Pittston,Pittston
-17,11,2011,Intendente de Placentia,Placentia
-13,12,2011,Intendente de Plainfield,Plainfield
-19,10,2011,Intendente de Plano,Plano
-21,12,2011,Intendente de Plattsburgh,Plattsburgh
-26,10,2011,Intendente de Plymouth,Plymouth
-12,10,2011,Intendente de Pocatello,Pocatello
-27,10,2011,Intendente de Pomona,Pomona
-24,11,2011,Intendente de Ponce,Ponce
-15,11,2011,Intendente de Port Arthur,Port Arthur
-11,10,2011,Intendente de Port Huron,Port Huron
-19,10,2011,Intendente de Port Jervis,Port Jervis
-11,12,2011,Intendente de Port Orford,Port Orford
-10,11,2011,Intendente de Port St. Lucie,Port St. Lucie
-15,12,2011,Intendente de Port Washington,Port Washington
-15,12,2011,Gobernador prov nro 148,Port Washington,Sitka,Waco,Worcester
-21,12,2011,Intendente de Portland,Portland
-18,11,2011,Intendente de Portsmouth,Portsmouth
-12,10,2011,Intendente de Pottsville,Pottsville
-19,10,2011,Intendente de Poughkeepsie,Poughkeepsie
-19,12,2011,Intendente de Powell,Powell
-12,12,2011,Intendente de Prescott,Prescott
-11,12,2011,Intendente de Princeton,Princeton
-14,10,2011,Intendente de Providence,Providence
-17,12,2011,Intendente de Provo,Provo
-25,11,2011,Intendente de Pueblo,Pueblo
-20,10,2011,Intendente de Pulaski,Pulaski
-18,11,2011,Intendente de Pullman,Pullman
-29,10,2011,Intendente de Quincy,Quincy
-13,12,2011,Intendente de Racine,Racine
-25,12,2011,Intendente de Raleigh,Raleigh
-24,10,2011,Intendente de Rancho Cordova,Rancho Cordova
-22,10,2011,Intendente de Rancho Cucamonga,Rancho Cucamonga
-14,11,2011,Intendente de Rancho Palos Verdes,Rancho Palos Verdes
-21,12,2011,Intendente de Rancho Santa Margarita,Rancho Santa Margarita
-15,12,2011,Intendente de Rapid City,Rapid City
-25,11,2011,Intendente de Rawlins,Rawlins
-28,12,2011,Intendente de Reading,Reading
-28,10,2011,Intendente de Redlands,Redlands
-19,12,2011,Intendente de Redondo Beach,Redondo Beach
-13,11,2011,Intendente de Reedsport,Reedsport
-29,10,2011,Intendente de Rehoboth Beach,Rehoboth Beach
-28,12,2011,Intendente de Reno,Reno
-14,11,2011,Intendente de Rensselaer,Rensselaer
-27,12,2011,Intendente de Revere,Revere
-11,12,2011,Intendente de Rhinelander,Rhinelander
-12,11,2011,Intendente de Rialto,Rialto
-25,10,2011,Intendente de Richland,Richland
-15,10,2011,Intendente de Richmond,Richmond
-10,12,2011,Intendente de Riverside,Riverside
-28,11,2011,Intendente de Riverton,Riverton
-26,12,2011,Intendente de Roanoke,Roanoke
-17,12,2011,Intendente de Rochester,Rochester
-14,11,2011,Intendente de Rock Island,Rock Island
-29,10,2011,Intendente de Rockford,Rockford
-11,11,2011,Intendente de Rockville,Rockville
-11,11,2011,Intendente de Rocky Mount,Rocky Mount
-25,12,2011,Intendente de Rohnert Park,Rohnert Park
-25,11,2011,Intendente de Rolla,Rolla
-24,12,2011,Intendente de Rolling Hills,Rolling Hills
-27,12,2011,Intendente de Rolling Hills Estates,Rolling Hills Estates
-22,10,2011,Intendente de Rome,Rome
-10,10,2011,Intendente de Rosemead,Rosemead
-16,10,2011,Intendente de Roswell,Roswell
-27,11,2011,Intendente de Ruston,Ruston
-11,10,2011,Intendente de Rutland,Rutland
-13,11,2011,Intendente de Rye,Rye
-10,11,2011,Intendente de Sacramento,Sacramento
-24,10,2011,Intendente de Saginaw,Saginaw
-12,12,2011,Intendente de Saint Albans,Saint Albans
-25,10,2011,Intendente de Saint Cloud,Saint Cloud
-12,11,2011,Intendente de Saint Joseph,Saint Joseph
-26,11,2011,Intendente de Saint Louis,Saint Louis
-12,10,2011,Intendente de Saint Paul,Saint Paul
-15,10,2011,Intendente de Saipan,Saipan
-30,12,2011,Intendente de Salem,Salem
-25,12,2011,Intendente de Salinas,Salinas
-14,10,2011,Intendente de Salisbury,Salisbury
-22,12,2011,Intendente de Salt Lake City,Salt Lake City
-15,12,2011,Intendente de San Angelo,San Angelo
-25,11,2011,Intendente de San Antonio,San Antonio
-13,12,2011,Intendente de San Bernardino,San Bernardino
-23,11,2011,Intendente de San Clemente,San Clemente
-15,11,2011,Intendente de San Diego,San Diego
-17,12,2011,Intendente de San Dimas,San Dimas
-20,11,2011,Intendente de San Fernando,San Fernando
-28,11,2011,Intendente de San Francisco,San Francisco
-13,10,2011,Intendente de San Gabriel,San Gabriel
-24,11,2011,Intendente de San Jose,San Jose
-23,12,2011,Intendente de San Juan,San Juan
-13,12,2011,Intendente de San Juan Capistrano,San Juan Capistrano
-26,12,2011,Intendente de San Marino,San Marino
-11,10,2011,Intendente de San Mateo,San Mateo
-30,10,2011,Intendente de San Rafael,San Rafael
-20,12,2011,Intendente de Sandpoint,Sandpoint
-12,12,2011,Intendente de Sandy,Sandy
-15,11,2011,Intendente de Sandy Springs,Sandy Springs
-15,12,2011,Intendente de Sanford,Sanford
-10,11,2011,Intendente de Santa Ana,Santa Ana
-17,12,2011,Intendente de Santa Barbara,Santa Barbara
-26,10,2011,Intendente de Santa Clara,Santa Clara
-14,10,2011,Intendente de Santa Clarita,Santa Clarita
-27,10,2011,Intendente de Santa Cruz,Santa Cruz
-29,10,2011,Intendente de Santa Fe,Santa Fe
-12,12,2011,Intendente de Santa Fe Springs,Santa Fe Springs
-26,11,2011,Intendente de Santa Monica,Santa Monica
-13,11,2011,Intendente de Santa Rosa,Santa Rosa
-22,11,2011,Intendente de Saratoga Springs,Saratoga Springs
-14,12,2011,Intendente de Saukville,Saukville
-22,10,2011,Intendente de Sault Ste. Marie,Sault Ste. Marie
-18,11,2011,Intendente de Scarborough,Scarborough
-15,12,2011,Intendente de Schaumburg,Schaumburg
-30,12,2011,Intendente de Schenectady,Schenectady
-19,12,2011,Intendente de Scottsbluff,Scottsbluff
-13,11,2011,Intendente de Scottsdale,Scottsdale
-17,11,2011,Intendente de Scranton,Scranton
-29,10,2011,Intendente de Seaford,Seaford
-17,10,2011,Intendente de Seal Beach,Seal Beach
-25,10,2011,Intendente de Seattle,Seattle
-24,12,2011,Intendente de Sedalia,Sedalia
-11,12,2011,Intendente de Selma,Selma
-20,12,2011,Intendente de Seward,Seward
-21,10,2011,Intendente de Shamokin,Shamokin
-16,11,2011,Intendente de Sharon,Sharon
-10,10,2011,Intendente de Shawnee,Shawnee
-28,12,2011,Intendente de Sheboygan,Sheboygan
-27,10,2011,Intendente de Shelton,Shelton
-26,10,2011,Intendente de Sherrill,Sherrill
-30,11,2011,Intendente de Shreveport,Shreveport
-26,12,2011,Intendente de Sierra Madre,Sierra Madre
-27,12,2011,Intendente de Sierra Vista,Sierra Vista
-21,11,2011,Intendente de Signal Hill,Signal Hill
-26,11,2011,Intendente de Simi Valley,Simi Valley
-14,11,2011,Intendente de Sioux City,Sioux City
-20,11,2011,Intendente de Sioux Falls,Sioux Falls
-30,10,2011,Intendente de Sister Bay,Sister Bay
-27,11,2011,Intendente de Sitka,Sitka
-17,12,2011,Intendente de Slidell,Slidell
-23,12,2011,Intendente de Somersworth,Somersworth
-22,12,2011,Intendente de Somerville,Somerville
-24,10,2011,Intendente de Sonoma,Sonoma
-12,11,2011,Intendente de South Bend,South Bend
-29,10,2011,Intendente de South Burlington,South Burlington
-20,10,2011,Intendente de South El Monte,South El Monte
-30,12,2011,Intendente de South Gate,South Gate
-12,11,2011,Intendente de South Portland,South Portland
+23,10,2011,Intendente de Pittston,Pittston
+22,11,2011,Intendente de Placentia,Placentia
+20,11,2011,Intendente de Plainfield,Plainfield
+11,10,2011,Intendente de Plano,Plano
+20,12,2011,Intendente de Plantation,Plantation
+22,12,2011,Intendente de Plymouth,Plymouth
+22,10,2011,Intendente de Pocatello,Pocatello
+15,12,2011,Intendente de Pomona,Pomona
+30,11,2011,Intendente de Ponce,Ponce
+19,10,2011,Intendente de Port Arthur,Port Arthur
+26,12,2011,Intendente de Port Huron,Port Huron
+26,12,2011,Intendente de Port Orford,Port Orford
+12,10,2011,Intendente de Port St. Lucie,Port St. Lucie
+15,10,2011,Intendente de Port Washington,Port Washington
+12,11,2011,Intendente de Portland,Portland
+23,11,2011,Intendente de Portsmouth,Portsmouth
+26,11,2011,Intendente de Pottsville,Pottsville
+30,11,2011,Intendente de Poughkeepsie,Poughkeepsie
+25,12,2011,Intendente de Powell,Powell
+14,11,2011,Intendente de Prescott,Prescott
+23,10,2011,Intendente de Princeton,Princeton
+24,12,2011,Intendente de Providence,Providence
+28,11,2011,Intendente de Provo,Provo
+18,12,2011,Intendente de Pueblo,Pueblo
+30,11,2011,Intendente de Pulaski,Pulaski
+25,11,2011,Intendente de Pullman,Pullman
+18,11,2011,Intendente de Quincy,Quincy
+18,10,2011,Gobernador prov nro 160,Quincy,San Bernardino,Santa Rosa,Seattle
+10,10,2011,Intendente de Racine,Racine
+26,10,2011,Intendente de Radford,Radford
+25,11,2011,Intendente de Raleigh,Raleigh
+15,11,2011,Intendente de Rancho Cordova,Rancho Cordova
+10,10,2011,Intendente de Rancho Cucamonga,Rancho Cucamonga
+29,12,2011,Intendente de Rancho Palos Verdes,Rancho Palos Verdes
+12,11,2011,Intendente de Rancho Santa Margarita,Rancho Santa Margarita
+25,11,2011,Intendente de Rapid City,Rapid City
+20,12,2011,Intendente de Rawlins,Rawlins
+29,10,2011,Intendente de Reading,Reading
+14,11,2011,Intendente de Redding,Redding
+25,12,2011,Intendente de Redlands,Redlands
+24,10,2011,Intendente de Redondo Beach,Redondo Beach
+28,11,2011,Intendente de Reedsport,Reedsport
+26,12,2011,Intendente de Rehoboth Beach,Rehoboth Beach
+24,10,2011,Intendente de Reno,Reno
+29,11,2011,Intendente de Rensselaer,Rensselaer
+17,10,2011,Intendente de Rhinelander,Rhinelander
+14,10,2011,Intendente de Rialto,Rialto
+25,12,2011,Intendente de Richland,Richland
+24,10,2011,Intendente de Richmond,Richmond
+10,10,2011,Intendente de Riverside,Riverside
+17,12,2011,Intendente de Riverton,Riverton
+30,12,2011,Intendente de Roanoke,Roanoke
+26,10,2011,Intendente de Rochester,Rochester
+26,12,2011,Intendente de Rock Springs,Rock Springs
+29,11,2011,Intendente de Rockford,Rockford
+17,12,2011,Intendente de Rockville,Rockville
+23,11,2011,Intendente de Rocky Mount,Rocky Mount
+22,11,2011,Intendente de Rohnert Park,Rohnert Park
+11,12,2011,Intendente de Rolla,Rolla
+19,10,2011,Intendente de Rolling Hills,Rolling Hills
+29,10,2011,Intendente de Rolling Hills Estates,Rolling Hills Estates
+23,11,2011,Intendente de Rome,Rome
+21,11,2011,Intendente de Rosemead,Rosemead
+20,10,2011,Intendente de Roseville,Roseville
+27,11,2011,Intendente de Roswell,Roswell
+29,10,2011,Intendente de Ruston,Ruston
+20,11,2011,Intendente de Rutland,Rutland
+23,12,2011,Intendente de Rye,Rye
+22,10,2011,Intendente de Sacramento,Sacramento
+22,10,2011,Intendente de Saginaw,Saginaw
+15,11,2011,Intendente de Saint Albans,Saint Albans
+24,12,2011,Intendente de Saint Cloud,Saint Cloud
+29,12,2011,Intendente de Saint Joseph,Saint Joseph
+11,11,2011,Intendente de Saint Louis,Saint Louis
+28,10,2011,Intendente de Saint Paul,Saint Paul
+28,11,2011,Intendente de Saipan,Saipan
+12,12,2011,Intendente de Salem,Salem
+28,11,2011,Intendente de Salinas,Salinas
+12,12,2011,Intendente de Salisbury,Salisbury
+28,12,2011,Intendente de Salt Lake City,Salt Lake City
+10,10,2011,Gobernador prov nro 151,Salt Lake City,San Juan Capistrano,Sitka,Woodruff,Worcester
+29,11,2011,Intendente de San Antonio,San Antonio
+22,12,2011,Intendente de San Bernardino,San Bernardino
+10,12,2011,Intendente de San Clemente,San Clemente
+19,11,2011,Intendente de San Diego,San Diego
+18,10,2011,Intendente de San Dimas,San Dimas
+28,12,2011,Intendente de San Fernando,San Fernando
+19,10,2011,Intendente de San Francisco,San Francisco
+20,12,2011,Intendente de San Gabriel,San Gabriel
+29,10,2011,Intendente de San Jose,San Jose
+26,12,2011,Intendente de San Juan,San Juan
+13,11,2011,Intendente de San Juan Capistrano,San Juan Capistrano
+20,11,2011,Intendente de San Luis Obispo,San Luis Obispo
+26,10,2011,Intendente de San Marino,San Marino
+29,11,2011,Intendente de San Mateo,San Mateo
+27,10,2011,Intendente de Sandpoint,Sandpoint
+13,12,2011,Intendente de Sandy,Sandy
+10,10,2011,Intendente de Sandy Springs,Sandy Springs
+13,12,2011,Intendente de Sanford,Sanford
+25,12,2011,Intendente de Santa Ana,Santa Ana
+15,11,2011,Intendente de Santa Barbara,Santa Barbara
+18,11,2011,Intendente de Santa Clara,Santa Clara
+25,11,2011,Intendente de Santa Clarita,Santa Clarita
+12,10,2011,Intendente de Santa Cruz,Santa Cruz
+29,11,2011,Intendente de Santa Fe Springs,Santa Fe Springs
+30,12,2011,Intendente de Santa Monica,Santa Monica
+21,11,2011,Intendente de Santa Rosa,Santa Rosa
+12,12,2011,Intendente de Saratoga Springs,Saratoga Springs
+13,11,2011,Intendente de Saukville,Saukville
+28,12,2011,Intendente de Sault Ste. Marie,Sault Ste. Marie
+12,12,2011,Intendente de Savannah,Savannah
+29,10,2011,Intendente de Scarborough,Scarborough
+26,11,2011,Intendente de Schaumburg,Schaumburg
+21,12,2011,Intendente de Scottsbluff,Scottsbluff
+26,10,2011,Intendente de Scottsdale,Scottsdale
+12,10,2011,Intendente de Scranton,Scranton
+18,10,2011,Intendente de Seaford,Seaford
+27,10,2011,Intendente de Seal Beach,Seal Beach
+24,10,2011,Intendente de Seattle,Seattle
+25,10,2011,Intendente de Sedalia,Sedalia
+18,12,2011,Intendente de Seward,Seward
+19,11,2011,Intendente de Shamokin,Shamokin
+29,12,2011,Intendente de Sharon,Sharon
+12,10,2011,Intendente de Shawnee,Shawnee
+25,11,2011,Intendente de Sheboygan,Sheboygan
+30,12,2011,Intendente de Shelton,Shelton
+23,10,2011,Intendente de Sheridan,Sheridan
+18,10,2011,Intendente de Sherrill,Sherrill
+30,10,2011,Intendente de Shreveport,Shreveport
+10,12,2011,Intendente de Sierra Madre,Sierra Madre
+28,12,2011,Intendente de Sierra Vista,Sierra Vista
+11,12,2011,Intendente de Signal Hill,Signal Hill
+11,11,2011,Intendente de Simi Valley,Simi Valley
+20,12,2011,Intendente de Sioux City,Sioux City
+28,11,2011,Intendente de Sioux Falls,Sioux Falls
+20,10,2011,Intendente de Sister Bay,Sister Bay
+13,11,2011,Intendente de Sitka,Sitka
+10,12,2011,Intendente de Slidell,Slidell
+16,10,2011,Intendente de Somersworth,Somersworth
+21,11,2011,Intendente de Somerville,Somerville
+16,10,2011,Intendente de Sonoma,Sonoma
+28,11,2011,Intendente de South Bend,South Bend
+11,10,2011,Intendente de South Burlington,South Burlington
+14,11,2011,Intendente de South El Monte,South El Monte
+18,12,2011,Intendente de South Gate,South Gate
+20,11,2011,Intendente de South Pasadena,South Pasadena
+28,11,2011,Intendente de South Portland,South Portland
 18,10,2011,Intendente de Spartanburg,Spartanburg
-13,12,2011,Intendente de Spokane,Spokane
-18,10,2011,Intendente de Spokane Valley,Spokane Valley
-16,12,2011,Intendente de Springdale,Springdale
-14,12,2011,Intendente de Springfield,Springfield
-13,12,2011,Intendente de St. George,St. George
-20,11,2011,Intendente de St. Marys,St. Marys
-16,11,2011,Intendente de St. Petersburg,St. Petersburg
-27,10,2011,Intendente de Stafford,Stafford
-26,11,2011,Intendente de Stamford,Stamford
-15,12,2011,Intendente de Stanton,Stanton
-20,12,2011,Intendente de Starkville,Starkville
-23,12,2011,Intendente de Statesboro,Statesboro
-27,11,2011,Intendente de Staunton,Staunton
-19,10,2011,Intendente de Steubenville,Steubenville
-13,12,2011,Intendente de Stevens Point,Stevens Point
-12,11,2011,Intendente de Stillwater,Stillwater
-23,12,2011,Intendente de Stockton,Stockton
-28,10,2011,Intendente de Sturgis,Sturgis
-19,11,2011,Intendente de Suffolk,Suffolk
-14,11,2011,Intendente de Sugar Land,Sugar Land
-13,11,2011,Intendente de Sun Valley,Sun Valley
+12,12,2011,Intendente de Spokane Valley,Spokane Valley
+10,12,2011,Intendente de Springdale,Springdale
+27,10,2011,Intendente de Springfield,Springfield
+19,10,2011,Intendente de St. George,St. George
+27,12,2011,Intendente de St. Marys,St. Marys
+21,10,2011,Intendente de St. Petersburg,St. Petersburg
+29,10,2011,Intendente de Stafford,Stafford
+29,10,2011,Intendente de Stanton,Stanton
+27,10,2011,Intendente de Starkville,Starkville
+30,11,2011,Intendente de Statesboro,Statesboro
+24,10,2011,Intendente de Staunton,Staunton
+21,12,2011,Intendente de Steubenville,Steubenville
+29,12,2011,Intendente de Stevens Point,Stevens Point
+27,11,2011,Intendente de Stillwater,Stillwater
+17,10,2011,Intendente de Stockton,Stockton
+23,10,2011,Intendente de Sturgis,Sturgis
+11,11,2011,Intendente de Suffolk,Suffolk
+21,12,2011,Intendente de Sugar Land,Sugar Land
+27,11,2011,Intendente de Sun Valley,Sun Valley
 21,11,2011,Intendente de Sunbury,Sunbury
-17,10,2011,Intendente de Sunnyvale,Sunnyvale
-25,11,2011,Intendente de Superior,Superior
-17,10,2011,Intendente de Sutter Creek,Sutter Creek
-14,10,2011,Intendente de Syracuse,Syracuse
-26,11,2011,Intendente de Tallahassee,Tallahassee
-26,11,2011,Intendente de Tampa,Tampa
-16,10,2011,Intendente de Tamuning,Tamuning
-27,10,2011,Intendente de Taunton,Taunton
-10,10,2011,Intendente de Taylorsville,Taylorsville
-19,10,2011,Intendente de Temecula,Temecula
-10,11,2011,Intendente de Tempe,Tempe
-20,11,2011,Intendente de Temple City,Temple City
-29,10,2011,Intendente de Terre Haute,Terre Haute
-26,11,2011,Intendente de Texarkana,Texarkana
-27,10,2011,Intendente de Texas City,Texas City
-20,10,2011,Intendente de The Dalles,The Dalles
-18,10,2011,Intendente de Thibodaux,Thibodaux
-13,12,2011,Intendente de Thiensville,Thiensville
-24,11,2011,Intendente de Thousand Oaks,Thousand Oaks
-20,12,2011,Intendente de Titusville,Titusville
-11,10,2011,Intendente de Tok,Tok
-10,11,2011,Intendente de Toledo,Toledo
-21,10,2011,Intendente de Tonawanda,Tonawanda
-18,12,2011,Intendente de Topeka,Topeka
-22,10,2011,Intendente de Torrance,Torrance
-20,12,2011,Intendente de Torrington,Torrington
-23,10,2011,Intendente de Troy,Troy
-22,11,2011,Intendente de Truth or Consequences,Truth or Consequences
-19,12,2011,Intendente de Tucson,Tucson
-18,12,2011,Intendente de Tulsa,Tulsa
-28,11,2011,Intendente de Tupelo,Tupelo
-22,11,2011,Intendente de Turlock,Turlock
-26,11,2011,Intendente de Tuscaloosa,Tuscaloosa
-13,11,2011,Intendente de Tustin,Tustin
-30,11,2011,Intendente de Twin Falls,Twin Falls
-10,10,2011,Intendente de Two Rivers,Two Rivers
-12,10,2011,Intendente de Tyler,Tyler
-12,12,2011,Intendente de Union City,Union City
-20,10,2011,Intendente de Uniontown,Uniontown
-18,12,2011,Intendente de Urbana,Urbana
-30,10,2011,Intendente de Utica,Utica
-16,10,2011,Intendente de Vacaville,Vacaville
-20,11,2011,Intendente de Vail,Vail
-19,12,2011,Intendente de Valdez,Valdez
-21,12,2011,Intendente de Valdosta,Valdosta
-16,11,2011,Intendente de Valencia,Valencia
-28,10,2011,Intendente de Vallejo,Vallejo
-23,10,2011,Intendente de Valparaiso,Valparaiso
-25,10,2011,Intendente de Vancouver,Vancouver
-20,12,2011,Intendente de Ventura,Ventura
-22,11,2011,Intendente de Vergennes,Vergennes
-23,11,2011,Intendente de Vermillion,Vermillion
-17,11,2011,Intendente de Vernon,Vernon
-17,10,2011,Intendente de Vicksburg,Vicksburg
-11,11,2011,Intendente de Victoria,Victoria
-23,11,2011,Intendente de Vincennes,Vincennes
-26,11,2011,Intendente de Vineland,Vineland
-30,12,2011,Intendente de Virginia Beach,Virginia Beach
-18,12,2011,Intendente de Visalia,Visalia
-20,11,2011,Intendente de Waco,Waco
-10,10,2011,Intendente de Wahoo,Wahoo
-24,10,2011,Intendente de Walnut,Walnut
-16,10,2011,Intendente de Waltham,Waltham
-12,11,2011,Intendente de Warren,Warren
-14,10,2011,Intendente de Warwick,Warwick
-19,11,2011,Intendente de Washington,Washington
-19,12,2011,Intendente de Waterbury,Waterbury
-19,11,2011,Intendente de Waterloo,Waterloo
-24,12,2011,Intendente de Watertown,Watertown
-15,10,2011,Intendente de Watervliet,Watervliet
-27,10,2011,Intendente de Waukegan,Waukegan
-16,10,2011,Intendente de Wausau,Wausau
-22,12,2011,Intendente de Waycross,Waycross
-30,12,2011,Intendente de Webster Groves,Webster Groves
-11,10,2011,Intendente de Weirton,Weirton
-22,10,2011,Intendente de West Allis,West Allis
-23,12,2011,Intendente de West Bend,West Bend
-26,10,2011,Intendente de West Covina,West Covina
-29,12,2011,Intendente de West Hartford,West Hartford
-21,10,2011,Intendente de West Haven,West Haven
-19,11,2011,Intendente de West Hollywood,West Hollywood
-26,11,2011,Intendente de West Jordan,West Jordan
-27,12,2011,Intendente de West Lafayette,West Lafayette
-28,12,2011,Intendente de West Memphis,West Memphis
-16,12,2011,Intendente de West Palm Beach,West Palm Beach
-16,10,2011,Intendente de West Sacramento,West Sacramento
-15,11,2011,Intendente de West Springfield,West Springfield
-26,12,2011,Intendente de West Valley City,West Valley City
-19,11,2011,Intendente de West Warwick,West Warwick
-14,10,2011,Intendente de Westfield,Westfield
-11,10,2011,Intendente de Westlake Village,Westlake Village
-11,10,2011,Intendente de Westminster,Westminster
-10,10,2011,Intendente de Weymouth,Weymouth
-12,12,2011,Intendente de Wheaton,Wheaton
-29,11,2011,Intendente de Wheeling,Wheeling
-23,11,2011,Intendente de White Plains,White Plains
-17,12,2011,Intendente de Whittier,Whittier
-22,11,2011,Intendente de Wichita,Wichita
-16,11,2011,Intendente de Wichita Falls,Wichita Falls
-12,12,2011,Intendente de Wilkes-Barre,Wilkes-Barre
-24,10,2011,Intendente de Williamsburg,Williamsburg
-26,10,2011,Intendente de Williamsport,Williamsport
-26,12,2011,Intendente de Williston,Williston
-23,11,2011,Intendente de Wilmington,Wilmington
-30,11,2011,Intendente de Wilson,Wilson
-13,12,2011,Intendente de Winnemucca,Winnemucca
-18,11,2011,Intendente de Winooski,Winooski
-12,12,2011,Intendente de Winston-Salem,Winston-Salem
-12,11,2011,Intendente de Wisconsin Dells,Wisconsin Dells
-10,10,2011,Intendente de Wisconsin Rapids,Wisconsin Rapids
-14,10,2011,Intendente de Woburn,Woburn
-10,11,2011,Intendente de Woodruff,Woodruff
-14,10,2011,Intendente de Woodward,Woodward
-23,10,2011,Intendente de Woonsocket,Woonsocket
-29,12,2011,Intendente de Worcester,Worcester
-11,11,2011,Intendente de Worland,Worland
-28,11,2011,Intendente de Wynne,Wynne
-11,10,2011,Intendente de Yakima,Yakima
-16,11,2011,Intendente de Yazoo City,Yazoo City
-29,10,2011,Intendente de Yigo,Yigo
-19,12,2011,Intendente de Yonkers,Yonkers
-18,10,2011,Intendente de Yorba Linda,Yorba Linda
-17,11,2011,Intendente de York,York
-28,12,2011,Intendente de Youngstown,Youngstown
-25,12,2011,Intendente de Ypsilanti,Ypsilanti
-17,12,2011,Intendente de Yuma,Yuma
-28,11,2011,Intendente de Zanesville,Zanesville
+28,10,2011,Intendente de Sunnyvale,Sunnyvale
+24,10,2011,Intendente de Superior,Superior
+26,10,2011,Intendente de Sutter Creek,Sutter Creek
+16,12,2011,Intendente de Syracuse,Syracuse
+18,11,2011,Intendente de Tacoma,Tacoma
+12,10,2011,Intendente de Tallahassee,Tallahassee
+21,11,2011,Intendente de Tampa,Tampa
+27,12,2011,Intendente de Tamuning,Tamuning
+17,12,2011,Intendente de Taunton,Taunton
+10,12,2011,Intendente de Taylorsville,Taylorsville
+26,11,2011,Intendente de Temecula,Temecula
+19,12,2011,Intendente de Tempe,Tempe
+10,10,2011,Intendente de Temple City,Temple City
+12,12,2011,Intendente de Terre Haute,Terre Haute
+19,10,2011,Intendente de Texarkana,Texarkana
+22,12,2011,Intendente de Texas City,Texas City
+22,11,2011,Intendente de The Dalles,The Dalles
+26,10,2011,Intendente de Thibodaux,Thibodaux
+27,11,2011,Intendente de Thiensville,Thiensville
+20,10,2011,Intendente de Thomasville,Thomasville
+27,12,2011,Intendente de Thousand Oaks,Thousand Oaks
+30,11,2011,Intendente de Titusville,Titusville
+16,11,2011,Intendente de Tok,Tok
+12,12,2011,Intendente de Toledo,Toledo
+11,10,2011,Intendente de Tonawanda,Tonawanda
+24,12,2011,Intendente de Topeka,Topeka
+22,12,2011,Intendente de Torrance,Torrance
+19,12,2011,Intendente de Torrington,Torrington
+20,11,2011,Intendente de Trenton,Trenton
+15,12,2011,Intendente de Truth or Consequences,Truth or Consequences
+16,12,2011,Intendente de Tucson,Tucson
+29,11,2011,Intendente de Tulsa,Tulsa
+25,12,2011,Intendente de Tupelo,Tupelo
+15,10,2011,Intendente de Turlock,Turlock
+21,12,2011,Intendente de Tuscaloosa,Tuscaloosa
+25,12,2011,Intendente de Twin Falls,Twin Falls
+16,12,2011,Intendente de Two Rivers,Two Rivers
+12,12,2011,Intendente de Tyler,Tyler
+17,11,2011,Intendente de Union City,Union City
+14,10,2011,Intendente de Uniontown,Uniontown
+21,10,2011,Intendente de Urbana,Urbana
+14,12,2011,Intendente de Utica,Utica
+30,11,2011,Intendente de Vacaville,Vacaville
+14,11,2011,Intendente de Vail,Vail
+16,12,2011,Intendente de Valdez,Valdez
+29,11,2011,Intendente de Valdosta,Valdosta
+26,12,2011,Intendente de Valencia,Valencia
+30,10,2011,Intendente de Vallejo,Vallejo
+10,11,2011,Intendente de Valparaiso,Valparaiso
+26,12,2011,Intendente de Vancouver,Vancouver
+25,12,2011,Intendente de Ventura,Ventura
+20,11,2011,Intendente de Vergennes,Vergennes
+17,12,2011,Intendente de Vermillion,Vermillion
+12,11,2011,Intendente de Vernon,Vernon
+18,10,2011,Intendente de Vicksburg,Vicksburg
+11,10,2011,Intendente de Victoria,Victoria
+24,12,2011,Intendente de Villa Park,Villa Park
+27,11,2011,Intendente de Vincennes,Vincennes
+21,11,2011,Intendente de Vineland,Vineland
+29,11,2011,Intendente de Virginia Beach,Virginia Beach
+16,12,2011,Intendente de Visalia,Visalia
+22,11,2011,Intendente de Waco,Waco
+10,11,2011,Intendente de Wahoo,Wahoo
+18,10,2011,Intendente de Walla Walla,Walla Walla
+19,11,2011,Intendente de Walnut,Walnut
+28,12,2011,Intendente de Waltham,Waltham
+13,11,2011,Intendente de Warner Robins,Warner Robins
+21,10,2011,Intendente de Warren,Warren
+22,10,2011,Intendente de Warwick,Warwick
+10,10,2011,Intendente de Washington,Washington
+15,10,2011,Intendente de Waterbury,Waterbury
+25,11,2011,Intendente de Waterloo,Waterloo
+17,11,2011,Intendente de Watertown,Watertown
+16,11,2011,Intendente de Watervliet,Watervliet
+28,11,2011,Intendente de Waukegan,Waukegan
+25,12,2011,Intendente de Wausau,Wausau
+19,12,2011,Intendente de Waycross,Waycross
+30,10,2011,Intendente de Webster Groves,Webster Groves
+10,11,2011,Intendente de Weirton,Weirton
+11,11,2011,Intendente de West Allis,West Allis
+15,10,2011,Intendente de West Bend,West Bend
+14,10,2011,Intendente de West Covina,West Covina
+22,12,2011,Intendente de West Hartford,West Hartford
+30,10,2011,Intendente de West Haven,West Haven
+17,10,2011,Intendente de West Hollywood,West Hollywood
+12,12,2011,Intendente de West Jordan,West Jordan
+19,12,2011,Intendente de West Lafayette,West Lafayette
+24,12,2011,Intendente de West Memphis,West Memphis
+12,12,2011,Intendente de West Palm Beach,West Palm Beach
+23,11,2011,Intendente de West Sacramento,West Sacramento
+12,12,2011,Intendente de West Springfield,West Springfield
+22,10,2011,Intendente de West Valley City,West Valley City
+15,11,2011,Intendente de West Warwick,West Warwick
+20,11,2011,Intendente de Westfield,Westfield
+26,12,2011,Intendente de Westlake Village,Westlake Village
+22,12,2011,Intendente de Westminster,Westminster
+10,11,2011,Intendente de Weymouth,Weymouth
+24,11,2011,Intendente de Wheaton,Wheaton
+24,11,2011,Intendente de Wheeling,Wheeling
+29,12,2011,Intendente de White Plains,White Plains
+18,11,2011,Intendente de Whittier,Whittier
+27,12,2011,Intendente de Wichita,Wichita
+18,11,2011,Intendente de Wichita Falls,Wichita Falls
+21,11,2011,Intendente de Wilkes-Barre,Wilkes-Barre
+11,12,2011,Intendente de Williamsburg,Williamsburg
+10,11,2011,Intendente de Williamsport,Williamsport
+20,11,2011,Intendente de Williston,Williston
+28,11,2011,Intendente de Wilmington,Wilmington
+25,11,2011,Intendente de Winnemucca,Winnemucca
+28,12,2011,Intendente de Winooski,Winooski
+30,12,2011,Intendente de Winston-Salem,Winston-Salem
+15,11,2011,Intendente de Wisconsin Dells,Wisconsin Dells
+12,12,2011,Intendente de Wisconsin Rapids,Wisconsin Rapids
+27,12,2011,Intendente de Woburn,Woburn
+26,11,2011,Intendente de Woodruff,Woodruff
+29,12,2011,Intendente de Woodward,Woodward
+20,12,2011,Intendente de Woonsocket,Woonsocket
+14,12,2011,Intendente de Worcester,Worcester
+12,11,2011,Intendente de Worland,Worland
+12,11,2011,Intendente de Wynne,Wynne
+18,11,2011,Intendente de Yakima,Yakima
+28,10,2011,Intendente de Yazoo City,Yazoo City
+25,11,2011,Intendente de Yigo,Yigo
+17,12,2011,Intendente de Yonkers,Yonkers
+13,12,2011,Intendente de Yorba Linda,Yorba Linda
+23,12,2011,Intendente de York,York
+15,10,2011,Intendente de Youngstown,Youngstown
+21,12,2011,Intendente de Ypsilanti,Ypsilanti
+18,10,2011,Intendente de Yukon,Yukon
+19,10,2011,Intendente de Yuma,Yuma
+10,10,2011,Intendente de Zanesville,Zanesville

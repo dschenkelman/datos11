@@ -9,6 +9,7 @@
 #define RSAKEYSET_H_
 
 #include "RSAKey.h"
+#include <math.h>
 
 class RSAKeySet {
 private:
@@ -17,6 +18,7 @@ private:
 public:
 	int64 phi; // for testing purposes
 	RSAKeySet();
+	RSAKeySet(int keySize);
 	RSAKey getPrivateKey();
 	RSAKey getPublicKey();
 	virtual ~RSAKeySet();

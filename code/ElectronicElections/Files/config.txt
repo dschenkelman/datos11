@@ -8,3 +8,4 @@ Administrator,Files/admin.txt,1024,10,20,Files/Administrator.dat
 Count,"",16384,0,0,Files/Count.dat
 DistrictElections,"",16384,0,0,Files/DistrictElections.ind
 DistrictCounts,"",16384,0,0,Files/DistrictCounts.ind
+KeySize,8,0,0,0

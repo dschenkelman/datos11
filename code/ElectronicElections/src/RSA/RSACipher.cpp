@@ -165,6 +165,47 @@ void RSACipher::cipherMessage(char* message, int64 expKey, int64 n, char* cipher
 	memcpy(cipheredMessage, cryptMessage, blockLen);*/
 }
 
+void RSACipher::decryptMessage(char* cipheredMessage, int64 expKey, int64 n, char* decryptedMessage, int64 messageLen)
+{
+	int chunkSize = 0;
+	/*int i = 0;
+	int64 shifter = 1;
+	for (int i = 0; i < sizeof(int64) * 8; i++)
+	{
+		if ((n & (shifter << i)) != 0)
+		{
+			chunkSize = i / 8;
+		}
+	}
+	*/
+	//int chunkSize = getChunkSize();
+
+	chunkSize-=1;
+	int64 chunks = ceil(messageLen / (float)chunkSize);
+	int i = 0;
+	while (i < messageLen)
+	{
+		char chunk[chunkSize];
+		memset(chunk, 0, chunkSize);
+
+		if (chunkSize + i > messageLen)
+		{
+			memcpy(chunk, cipheredMessage, messageLen-i);
+		}
+		else
+		{
+			memcpy(chunk, cipheredMessage, chunkSize);
+		}
+
+		int64 messageNumber = 0;
+		memcpy(&messageNumber, chunk, chunkSize);
+		int64 crypt = modularExponentiation(messageNumber, expKey, n);
+		memcpy(decryptedMessage + i, &crypt, chunkSize + 1);
+
+		i += chunkSize;
+	}
+}
+
 
 RSACipher::~RSACipher() {
 }

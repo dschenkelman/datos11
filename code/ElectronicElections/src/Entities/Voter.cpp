@@ -5,7 +5,7 @@
  *      Author: lejosdelcielo
  */
 
-static int PASSWORD_SIZE = 4;
+static int PASSWORD_SIZE = 8; //sizeof int64 for crypted passwords
 
 #include "Voter.h"
 #include "../VariableBlocks/Constants.h"
@@ -22,7 +22,6 @@ Voter::Voter(int dni, std::string names, std::string password, std::string addre
 	this->electionKeyList = electionKeyList;
 	this->bytes = NULL;
 	this->key = NULL;
-	//NECESITO LA RSA KEY
 }
 
 
@@ -36,7 +35,6 @@ Voter::Voter(int dni, std::string names, std::string password, std::string addre
 	this->electionKeyList = electionKeyList;
 	this->bytes = NULL;
 	this->key = NULL;
-	//NECESITO LA RSA KEY..en un unico constructor
 }
 
 int Voter::getSize()
@@ -45,7 +43,6 @@ int Voter::getSize()
 	size += sizeof(this->dni);
 	size += Constants::FIELD_HEADER_SIZE + 1 + this->names.size();
 	size += 1 + this->password.size();
-	//size+= 8;//SIZE FOR CRYPTED PASSWORD!!
 
 	size += Constants::FIELD_HEADER_SIZE + 1 + this->address.size();
 	size += Constants::FIELD_HEADER_SIZE + 1+ this->district.size();
@@ -96,11 +93,6 @@ void Voter::setBytes(char* bytes)
 	char pass[PASSWORD_SIZE+1];
 	memset(pass, 0, PASSWORD_SIZE+1);
 	memcpy(pass, bytes+i, PASSWORD_SIZE+1); i += PASSWORD_SIZE+1;
-	//char passAux[8]; DECRYPTION PART FOR PASSWORD!!!
-	//memcpy(passAux, bytes+i, 8);
-	//RSACypher.cipherMessage(passAux,decryptKey,n,pass,8); NEEDED CYPHER CLASS AND PRIVATE KEY
-	//char newPass[PASSWORD_SIZE+1];
-	//memcpy(newPass,pass,PASSWORD_SIZE+1);
 
 	this->password.clear();
 	std::string passStrAux = "";
@@ -164,10 +156,7 @@ char* Voter::getBytes()
 	memcpy(this->bytes+i, &len, Constants::FIELD_HEADER_SIZE); i += Constants::FIELD_HEADER_SIZE;
 	memcpy(this->bytes+i, this->names.c_str(), len); i += len;
 
-	//char ciphered[8]; //CRYPT PASSWORD!!
-	//RSACypher.cipherMessage(this->password.c_str(), cryptKey, n, ciphered, 8);
 	memcpy(this->bytes+i, this->password.c_str(), PASSWORD_SIZE+1); i += PASSWORD_SIZE+1;
-	//memcpy(this->bytes+i, ciphered, 8); i += 8;
 
 
 	len = this->address.size() + 1;

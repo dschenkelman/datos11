@@ -72,23 +72,27 @@ bool RSACipherTests::testCipherMessage()
 	int64 decriptKey = privateKey.exp;
 	int64 n = publicKey.n;
 	int len = 5;
-	char passess[10][5] = {"asdf", "qwer", "abcd", "efgh", "dami", "gaby", "juan", "alet", "pass", "pas2"};
-	char crypts[10][8];
+	char passwords[10][5] = {"asdf", "qwer", "abcd", "efgh", "dami", "gaby", "juan", "alet", "pass", "pas2"};
+	int chunkSize = rsaCipher.getChunkSize(n) + 1;
+	int chunks = ceil(len / (float)(chunkSize - 1));
+
+	char crypts[10][chunks * chunkSize];
 	char charMessage[len];
-	char cipheredMessage[8];
-	char decriptedMessage[8];
+	char cipheredMessage[100];
+	char decriptedMessage[100];
+
 	for(int i=0;i<10;i++){
-		memcpy(charMessage, passess[i], len);
+		memcpy(charMessage, passwords[i], len);
 		rsaCipher.cipherMessage(charMessage, criptKey, n, cipheredMessage, len);
-		memset(crypts[i], 0, 8);
-		memcpy(crypts[i], cipheredMessage,8);
+		memset(crypts[i], 0, chunkSize);
+		memcpy(crypts[i], cipheredMessage, chunks * chunkSize);
 	}
 	char newMessage[len];
 	for(int i=0;i<10;i++){
-		rsaCipher.cipherMessage(crypts[i], decriptKey, n, decriptedMessage, 8);
+		rsaCipher.decryptMessage(crypts[i], decriptKey, n, decriptedMessage, chunks * chunkSize);
 		memset(newMessage, 0, len);
 		memcpy(newMessage, decriptedMessage, len);
-		if (strcmp(passess[i], newMessage) !=0 )
+		if (strcmp(passwords[i], newMessage) !=0 )
 		{
 			return false;
 		}

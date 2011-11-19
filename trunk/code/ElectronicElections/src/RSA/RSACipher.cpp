@@ -132,81 +132,81 @@ int64 RSACipher::modularExponentiation(int64 base, int64 exp, int64 mod) {
 	return res;
 }
 
-void RSACipher::cipherMessage(char* message, int64 expKey, int64 n, char* cipheredMessage, int64 messageLen)
-{
-	int64 block64=0;
-	int64 crypt=0;
-	//char cryptMessage[messageLen];
-	//memset(cryptMessage, 0, messageLen);
-	char realMessage[8];
-	int offset = 8- messageLen;
-	memset(realMessage, 0, 8);
-	memcpy(realMessage, message, messageLen);
-	memset(cipheredMessage, 0, messageLen);
-	block64= 0;
-	crypt=0;
-	memcpy(&block64, realMessage, messageLen);
-	crypt = modularExponentiation(block64, expKey, n);
-	memcpy(cipheredMessage, &crypt, 8);
-	return;
-
-
-	/*for(int i=0;i< blocksMessage; i++)
-	{
-		block64= 0;
-		crypt=0;
-		memcpy(&block64, message+(i*blockLen), blockLen);
-		//memcpy(&block64, message+ messageOffset+(i*blockLen), blockLen);
-		crypt = modularExponentiation(block64, expKey, n);
-		memcpy(cryptMessage+(i*blockLen), &crypt, blockLen);
-		//0memcpy(cryptMessage+ messageOffset+(i*blockLen), &crypt, blockLen);
-	}
-	//cryptMessage[messageLen+1] = '\0';
-	memcpy(cipheredMessage, cryptMessage, blockLen);*/
-}
-
-void RSACipher::decryptMessage(char* cipheredMessage, int64 expKey, int64 n, char* decryptedMessage, int64 messageLen)
+int RSACipher::getChunkSize(int64 n)
 {
 	int chunkSize = 0;
-	/*int i = 0;
 	int64 shifter = 1;
-	for (int i = 0; i < sizeof(int64) * 8; i++)
+	for (unsigned int i = 0; i < sizeof(int64) * 8; i++)
 	{
 		if ((n & (shifter << i)) != 0)
 		{
 			chunkSize = i / 8;
 		}
 	}
-	*/
-	//int chunkSize = getChunkSize();
 
-	chunkSize-=1;
-	int64 chunks = ceil(messageLen / (float)chunkSize);
+	return chunkSize;
+}
+
+void RSACipher::cipherMessage(char* message, int64 expKey, int64 n, char* cipheredMessage, int64 messageLen)
+{
+	int chunkSize = this->getChunkSize(n);
 	int i = 0;
-	while (i < messageLen)
+	int position = 0;
+	int chunks = ceil(messageLen / (float)chunkSize);
+	while (i < chunks)
 	{
 		char chunk[chunkSize];
 		memset(chunk, 0, chunkSize);
 
-		if (chunkSize + i > messageLen)
+		if (chunkSize + position > messageLen)
 		{
-			memcpy(chunk, cipheredMessage, messageLen-i);
+			memcpy(chunk, message + position, messageLen-position);
 		}
 		else
 		{
-			memcpy(chunk, cipheredMessage, chunkSize);
+			memcpy(chunk, message + position, chunkSize);
 		}
 
 		int64 messageNumber = 0;
 		memcpy(&messageNumber, chunk, chunkSize);
 		int64 crypt = modularExponentiation(messageNumber, expKey, n);
-		memcpy(decryptedMessage + i, &crypt, chunkSize + 1);
+		memcpy(cipheredMessage + position + i, &crypt, chunkSize + 1);
 
-		i += chunkSize;
+		position += chunkSize;
+		i++;
+	}
+	return;
+}
+
+void RSACipher::decryptMessage(char* cipheredMessage, int64 expKey, int64 n, char* decryptedMessage, int64 messageLen)
+{
+	int chunkSize = this->getChunkSize(n);
+	chunkSize += 1;
+	int i = 0;
+	int position = 0;
+	while (position < messageLen)
+	{
+		char chunk[chunkSize];
+		memset(chunk, 0, chunkSize);
+
+		if (chunkSize + position > messageLen)
+		{
+			memcpy(chunk, cipheredMessage + position, messageLen-position);
+		}
+		else
+		{
+			memcpy(chunk, cipheredMessage + position, chunkSize);
+		}
+
+		int64 messageNumber = 0;
+		memcpy(&messageNumber, chunk, chunkSize);
+		int64 crypt = modularExponentiation(messageNumber, expKey, n);
+		memcpy(decryptedMessage + position - i, &crypt, chunkSize);
+
+		position += chunkSize;
+		i++;
 	}
 }
 
-
 RSACipher::~RSACipher() {
 }
-

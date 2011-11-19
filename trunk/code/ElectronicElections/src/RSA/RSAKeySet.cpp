@@ -12,9 +12,9 @@
 #include <limits>
 
 RSAKeySet::RSAKeySet(int keySize) {
-	PrimeGenerator pg(50000000);
+	PrimeGenerator pg(100000000);
 	int64 p = 0;
-	int64 q = 0; // pow(2, keySize/2)
+	int64 q = 0;
 
 	pg.getRandomInRange(pow(2, (keySize/2-1)*8), pow(2, (keySize/2)*8), &p, &q);
 	int64 n = p*q;

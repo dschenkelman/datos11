@@ -37,9 +37,18 @@ void Configuration::read()
 			fields[i] = strtok(NULL, ",\r");
 		}
 
-		ConfigurationEntry entry(fields[0], fields[4], atoi(fields[1]), atoi(fields[2]), atoi(fields[3]));
-		string entryName = fileType;
-		this->entries[entryName] = entry;
+		if (strcmp(fileType, "KeySize") == 0) { // si no es entidad
+			this->keySize = atoi(fields[0]);
+			if (this->keySize > 8) {
+				cout << "WARNING: Key Size exceeds 8 bytes" << endl;
+			} else if (this->keySize < 2) {
+				cout << "WARNING: Key Size too small" << endl;
+			}
+		} else { // si es entidad
+			ConfigurationEntry entry(fields[0], fields[4], atoi(fields[1]), atoi(fields[2]), atoi(fields[3]));
+			string entryName = fileType;
+			this->entries[entryName] = entry;
+		}
 	}
 	configFile.close();
 }

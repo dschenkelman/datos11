@@ -12,7 +12,11 @@
 #include <limits>
 
 RSAKeySet::RSAKeySet() {
-	PrimeGenerator pg(4000000);
+	RSAKeySet(8);
+}
+
+RSAKeySet::RSAKeySet(int keySize) {
+	PrimeGenerator pg(pow(2, keySize/2));
 	int64 p = 0;
 	int64 q = 0;
 	pg.getRandomWithMinimum(10000, &p, &q);

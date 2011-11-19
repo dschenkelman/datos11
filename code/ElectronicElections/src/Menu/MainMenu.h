@@ -73,7 +73,6 @@ private:
 	void decryptReport();
 	void breakRSA();
 	bool file_exists(const char* filename);
-	void mkdir(string name);
 public:
 	MainMenu(string& configurationFilePath);
 	void runTests();

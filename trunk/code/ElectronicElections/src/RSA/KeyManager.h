@@ -17,8 +17,9 @@ private:
 	RSAKey privateKey;
 	RSAKey publicKey;
 	bool fileExists;
+	int keySize;
 public:
-	KeyManager();
+	KeyManager(int keySize);
 	void generate();
 	RSAKey getPrivateKey();
 	RSAKey getPublicKey();

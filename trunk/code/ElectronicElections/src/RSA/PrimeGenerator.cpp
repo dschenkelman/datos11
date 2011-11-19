@@ -60,7 +60,7 @@ PrimeGenerator::PrimeGenerator(int end)
 	delete primes;
 }
 
-int PrimeGenerator::getRandomWithMinimum(int minimum, int64* p, int64* q)
+int PrimeGenerator::getRandomInRange(int64 minimum, int64 maximum, int64* p, int64* q)
 {
 	int max = this->primeNumbers[this->primeNumbers.size() - 1];
 	if (max < minimum) return -1;
@@ -69,13 +69,13 @@ int PrimeGenerator::getRandomWithMinimum(int minimum, int64* p, int64* q)
 	{
 		num = rand()%total;
 		*p = this->primeNumbers[num];
-	} while (*p < minimum);
+	} while (*p < minimum || *p > maximum);
 
 	do
 	{
 		num = rand()%total;
 		*q = this->primeNumbers[num];
-	} while (*q < minimum && *q == *p);
+	} while (*q < minimum || *q == *p || *q > maximum);
 }
 
 PrimeGenerator::~PrimeGenerator()

@@ -1272,7 +1272,7 @@ void MainMenu::administratorABM()
 void MainMenu::breakRSA()
 {
 	RSAAttacker rsaAttacker;
-	KeyManager keyManager;
+	KeyManager keyManager(configuration.keySize);
 	RSAKey publicKey = keyManager.getPublicKey();
 
 	cout << "Rompiendo RSA" << endl;

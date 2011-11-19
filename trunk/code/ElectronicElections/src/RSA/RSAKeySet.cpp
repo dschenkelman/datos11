@@ -11,15 +11,12 @@
 #include "PrimeGenerator.h"
 #include <limits>
 
-RSAKeySet::RSAKeySet() {
-	RSAKeySet(8);
-}
-
 RSAKeySet::RSAKeySet(int keySize) {
-	PrimeGenerator pg(pow(2, keySize/2));
+	PrimeGenerator pg(50000000);
 	int64 p = 0;
-	int64 q = 0;
-	pg.getRandomWithMinimum(10000, &p, &q);
+	int64 q = 0; // pow(2, keySize/2)
+
+	pg.getRandomInRange(pow(2, (keySize/2-1)*8), pow(2, (keySize/2)*8), &p, &q);
 	int64 n = p*q;
 	cout << sizeof(p) << "|" << sizeof(q) << "|" << sizeof(n) << "|"<<endl;
 	phi = (p-1)*(q-1);

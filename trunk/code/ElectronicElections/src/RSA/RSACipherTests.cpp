@@ -64,7 +64,7 @@ bool RSACipherTests::testModularExponentiation() {
 bool RSACipherTests::testCipherMessage()
 {
 	RSACipher rsaCipher;
-	RSAKeySet rsaKey;
+	RSAKeySet rsaKey(8);
 	RSAKey publicKey= rsaKey.getPublicKey();
 	RSAKey privateKey= rsaKey.getPrivateKey();
 

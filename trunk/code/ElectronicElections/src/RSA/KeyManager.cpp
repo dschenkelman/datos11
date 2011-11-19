@@ -15,13 +15,14 @@
 
 using namespace std;
 
-KeyManager::KeyManager()
+KeyManager::KeyManager(int keySize)
 {
 	ifstream file;
 	string fileName = "./Files/Keys/keys.txt";
 	file.open(fileName.c_str(), ios::in);
 
 	this->fileExists = file.is_open();
+	this->keySize = keySize;
 
 	if(this->fileExists)
 	{
@@ -53,7 +54,7 @@ void KeyManager::generate()
 {
 	if(!this->fileExists)
 	{
-		RSAKeySet rsaKeySet;
+		RSAKeySet rsaKeySet(this->keySize);
 		this->privateKey = rsaKeySet.getPrivateKey();
 		this->publicKey = rsaKeySet.getPublicKey();
 		stringstream publicStream, privateStream;

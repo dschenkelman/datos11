@@ -16,10 +16,10 @@ class Configuration
 {
 	std::string fileName;
 	std::map<std::string, ConfigurationEntry> entries;
-	int keySize;
 public:
 	Configuration(std::string fName);
 	void read();
+	int keySize;
 	ConfigurationEntry& getEntry(std::string name);
 	virtual ~Configuration();
 };

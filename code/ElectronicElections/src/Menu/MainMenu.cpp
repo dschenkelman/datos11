@@ -53,13 +53,11 @@
 #include "../Hash/ChargeHashingFunction.h"
 #include "../Helpers/ValidationTests.h"
 #include "../Helpers/Validation.h"
-#include "../Helpers/Validation.h"
 #include "../Indexes/DistrictElectionsIndex.h"
 #include "../Indexes/DistrictCounts.h"
 #include "../Indexes/DistrictCountsMethods.h"
 #include "../Indexes/CountId.h"
 #include "../RSA/RSAAttackerTests.h"
-#include "../RSA/RSACipherTests.h"
 #include "../RSA/RSACipherTests.h"
 #include "../RSA/RSAKeySetTests.h"
 #include "../RSA/KeyManagerTests.h"
@@ -69,15 +67,15 @@
 #include "../VariableBlocks/VariableRecord.h"
 #include "../Vigenere/VigenereCipher.h"
 #include "../Vigenere/Kasiski.h"
-#include "../Vigenere/VigenereCipher.h"
+#include "../Vigenere/KasiskyTests.h"
 #include "../Voting/Configuration.h"
 #include "../Voting/Voting.h"
 #include "../Voting/Log.h"
 #include "../Voting/Menu.h"
 #include "../Voting/ConfigurationEntry.h"
 #include "../Voting/DataFileLoader.h"
-#include "../Vigenere/KasiskyTests.h"
 #include "../Helpers/StringHelpers.h"
+
 
 using namespace std;
 
@@ -96,7 +94,19 @@ MainMenu::MainMenu(string& file) : configuration(file), dataFileLoader(configura
 	this->dataFileLoader.loadAdminFile();
 }
 
+
 // Public methods
+
+
+void MainMenu::mkdir(string name)
+{
+	#ifdef linux
+		mkdir(name.c_str() , S_IRWXU | S_IRWXG | S_IRWXO);
+	#endif
+	#ifdef windows
+		mkdir(name.c_str());
+	#endif
+}
 
 void MainMenu::runApplication()
 {
@@ -359,7 +369,7 @@ void MainMenu::saveReport(stringstream& report)
 		string reportString = report.str();
 		string criptogram = cipher.encript(reportString, password);
 		string directory = "Files/Reports/";
-		mkdir(directory.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+		this->mkdir(directory.c_str());
 		string fullName = directory + fileName;
 		filebuf fb;
 		fb.open (fullName.c_str(),ios::out);
@@ -1362,7 +1372,7 @@ void MainMenu::reportResults()
 					//change of election. print previous one
 					report << "GANADOR DE ELECCION:  " << StringHelpers::toUpper(count.getCharge()) <<", "<< (int)count.getDay()<<"-"<< (int)count.getMonth()<<"-"<< count.getYear() << endl;
 					//log.write(string("Eleccion: ").append(indexDistrict.getDistrict()), true, true);
-					for(int j=0;j< listNames.size();j++)
+					for(unsigned int j=0;j< listNames.size();j++)
 					{
 						report << "LISTA: " << StringHelpers::toUpper(listNames.at(j)) << " VOTOS: " << listVotes << endl;
 					}
@@ -1374,7 +1384,7 @@ void MainMenu::reportResults()
 			}
 			//print last election
 			report << "GANADOR DE ELECCION: " << StringHelpers::toUpper(count.getCharge()) << " FECHA: "<< (int)count.getDay()<<"-"<< (int)count.getMonth()<<"-"<< count.getYear() << endl;
-			for(int j=0;j< listNames.size();j++)
+			for(unsigned int j=0;j< listNames.size();j++)
 			{
 				report << "LISTA: " << StringHelpers::toUpper(listNames.at(j)) << " VOTOS: " << listVotes << endl;
 			}
@@ -1551,7 +1561,7 @@ void MainMenu::reportResults()
 			while((count.getDay() == nextCount.getDay() )&&( count.getMonth() == nextCount.getMonth() )&&( count.getYear() == nextCount.getYear() )&&( strcmp(count.getCharge().c_str(), nextCount.getCharge().c_str())== 0) )
 			{
 				int listVotes = 0;
-				bool votedList = false;
+				//bool votedList = false;	UNUSED
 				lastRecord = false;
 				count.setBytes(nextCount.getBytes());
 

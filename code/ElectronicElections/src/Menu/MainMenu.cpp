@@ -83,9 +83,9 @@ using namespace std;
 
 MainMenu::MainMenu(string& file) : configuration(file), dataFileLoader(configuration)
 {
-	bool fileExists = this->file_exists(file.c_str());
+	bool fileExists = this->file_exists( "Files/VoterHash.dat" );
 
-	if(fileExists)
+	if(!fileExists)
 	{
 		cout << "WARNING: Database not generated. Please contact system administrator." << endl;
 	}

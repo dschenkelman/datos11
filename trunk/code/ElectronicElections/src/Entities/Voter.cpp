@@ -5,7 +5,7 @@
  *      Author: lejosdelcielo
  */
 
-static int PASSWORD_SIZE = 8; //sizeof int64 for crypted passwords
+static int PASSWORD_SIZE = 4; //sizeof int64 for crypted passwords
 
 #include "Voter.h"
 #include "../VariableBlocks/Constants.h"

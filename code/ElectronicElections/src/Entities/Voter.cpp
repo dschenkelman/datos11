@@ -271,6 +271,17 @@ std::vector<ElectionKey>& Voter::getElectionKeyList()
 	return this->electionKeyList;
 }
 
+void Voter::setEncBytes(char* encBytes, RSAKey privateKey) {
+	RSACipher rsac;
+	char* tmpBytes = new char[this->getSize()];
+	rsac.decryptMessage(encBytes, privateKey.exp, privateKey.n, tmpBytes, this->getSize());
+	this->setBytes(tmpBytes);
+}
+void Voter::getEncBytes(char* encBytes, RSAKey publicKey) {
+	RSACipher rsac;
+	rsac.cipherMessage(this->getBytes(), publicKey.exp, publicKey.n, encBytes, this->getSize());
+}
+
 Voter::~Voter()
 {
 	if(this->key != NULL)

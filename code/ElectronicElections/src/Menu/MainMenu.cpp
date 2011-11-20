@@ -46,6 +46,7 @@
 #include "../EntitiesTests/AdministratorTests.h"
 #include "../EntitiesTests/CountTests.h"
 #include "../EntitiesTests/ChargeTests.h"
+#include "../EntitiesTests/VoterTests.h"
 #include "../Hash/HashTest.h"
 #include "../Hash/HashBlockFile.h"
 #include "../Hash/DistrictHashingFunction.h"
@@ -265,6 +266,10 @@ void MainMenu::runTests()
 	cout << "Key Manager Tests" << endl;
 	KeyManagerTests keyManagerTests;
 	keyManagerTests.run();
+
+	cout << "Voter Tests" << endl;
+	VoterTests vt;
+	vt.run();
 
 	return;
 }

@@ -90,6 +90,8 @@ bool VoterTests::testGetKeySize()
 	return true;
 }
 
+#include "../Helpers/base64.h"
+
 bool VoterTests::testEncryption() {
 	RSAKeySet rsaks(8);
 
@@ -105,8 +107,16 @@ bool VoterTests::testEncryption() {
 //	cout.flush();
 
 	Voter v(123456, "ale", "1234", "address", "district");
+	/* BINARY DEBUG PRINT */
+	cout << "ORIGINAL:  " << base64_encode((const unsigned char*)v.getBytes(), 20) << endl;
+	cout.flush();
+	/* END BINARY DEBUG PRINT */
 	char* encrypted = new char[v.getSize()*40];
 	v.getEncBytes(encrypted, rsaks.getPublicKey());
+	/* BINARY DEBUG PRINT */
+	cout << "ENCRYPTED: " << base64_encode((const unsigned char*)encrypted, 20) << endl;
+	cout.flush();
+	/* END BINARY DEBUG PRINT */
 	Voter v2(0, "", "", "", "");
 	v2.setEncBytes(encrypted, rsaks.getPrivateKey());
 	return v.getNames().compare(v2.getNames()) == 0;

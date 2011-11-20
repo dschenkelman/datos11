@@ -17,36 +17,34 @@ using namespace std;
 
 KeyManager::KeyManager(int keySize)
 {
-	ifstream file;
-	string fileName = "./Files/Keys/keys.txt";
-	file.open(fileName.c_str(), ios::in);
+	string fileName = "./Files/Keys/key.pri";
+	ifstream privateKeysFile(fileName.c_str(), ifstream::binary);
 
-	this->fileExists = file.is_open();
+	fileName = "./Files/Keys/key.pub";
+	ifstream publicKeysFile(fileName.c_str(), ifstream::binary);
+
+	this->fileExists = privateKeysFile.is_open() && publicKeysFile.is_open();
 	this->keySize = keySize;
 
 	if(this->fileExists)
 	{
-		char* stringN;
-		char* stringExp;
+		char buffer[sizeof(int64)];
 
-		char line[MAX_LENGHT];
-		file.getline(line, MAX_LENGHT);
+		privateKeysFile.read(buffer, sizeof(int64));
+		memcpy(&(this->privateKey.n), buffer, sizeof(int64));
 
-		stringN = strtok(line, ",");
-		stringExp = strtok(NULL, ",");
+		privateKeysFile.read(buffer, sizeof(int64));
+		memcpy(&(this->privateKey.exp), buffer, sizeof(int64));
 
-		this->privateKey.n = (long long) atol(stringN);
-		this->privateKey.exp = (long long) atol(stringExp);
+		privateKeysFile.close();
 
-		file.getline(line, MAX_LENGHT);
+		publicKeysFile.read(buffer, sizeof(int64));
+		memcpy(&(this->publicKey.n), buffer, sizeof(int64));
 
-		stringN = strtok(line, ",");
-		stringExp = strtok(NULL, ",");
+		publicKeysFile.read(buffer, sizeof(int64));
+		memcpy(&(this->publicKey.exp), buffer, sizeof(int64));
 
-		this->publicKey.n = (int64) atol(stringN);
-		this->publicKey.exp = (int64) atol(stringExp);
-
-		file.close();
+		publicKeysFile.close();
 	}
 }
 
@@ -57,23 +55,31 @@ void KeyManager::generate()
 		RSAKeySet rsaKeySet(this->keySize);
 		this->privateKey = rsaKeySet.getPrivateKey();
 		this->publicKey = rsaKeySet.getPublicKey();
-		stringstream publicStream, privateStream;
-		publicStream << this->publicKey.n << "," << this->publicKey.exp;
-		privateStream << this->privateKey.n << "," << this->privateKey.exp;
 
-		ofstream file;
+		string fileName = "./Files/Keys/key.pri";
+		ofstream privateKeysFile(fileName.c_str(), ofstream::binary);
 
-		string fileName = "./Files/Keys/keys.txt";
-		file.open(fileName.c_str(), ios::out);
+		char buffer[sizeof(int64)];
 
-		file.write(privateStream.str().c_str(), privateStream.str().size());
+		memcpy(buffer, &(this->privateKey.n), sizeof(int64));
+		privateKeysFile.write(buffer, sizeof(int64));
 
-		string endLine = "\n";
-		file.write(endLine.c_str(), endLine.size());
+		memcpy(buffer, &(this->privateKey.exp), sizeof(int64));
+		privateKeysFile.write(buffer, sizeof(int64));
 
-		file.write(publicStream.str().c_str(), publicStream.str().size());
+		privateKeysFile.close();
 
-		file.close();
+		fileName = "./Files/Keys/key.pub";
+
+		ofstream publicKeysFile(fileName.c_str(), ofstream::binary);
+
+		memcpy(buffer, &(this->publicKey.n), sizeof(int64));
+		publicKeysFile.write(buffer, sizeof(int64));
+
+		memcpy(buffer, &(this->publicKey.exp), sizeof(int64));
+		publicKeysFile.write(buffer, sizeof(int64));
+
+		publicKeysFile.close();
 	}
 }
 

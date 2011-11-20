@@ -9,6 +9,9 @@
 #define VOTERTESTS_H_
 
 #include <string>
+#include "../RSA/RSAKeySet.h"
+#include "../RSA/RSAKey.h"
+#include "../RSA/RSACipher.h"
 
 using namespace std;
 
@@ -23,6 +26,7 @@ public:
 	bool testGetBytes();
 	bool testSetBytes();
 	bool testGetKey();
+	bool testEncryption();
 	virtual ~VoterTests();
 };
 

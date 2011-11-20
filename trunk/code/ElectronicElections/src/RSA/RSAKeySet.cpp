@@ -12,7 +12,7 @@
 #include <limits>
 
 RSAKeySet::RSAKeySet(int keySize) {
-	PrimeGenerator pg(100000000);
+	PrimeGenerator pg(35000000);
 	int64 p = 0;
 	int64 q = 0;
 

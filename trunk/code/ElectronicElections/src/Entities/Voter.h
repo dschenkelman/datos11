@@ -10,6 +10,8 @@
 
 #include <string>
 #include <vector>
+#include "../RSA/RSACipher.h"
+#include "../RSA/RSAKey.h"
 
 using namespace std;
 
@@ -43,6 +45,10 @@ public:
 	char* getKey();
 	int getKeySize();
 	void setBytes(char* bytes);
+	/* ENCRYPTION */
+	void setEncBytes(char* bytes, RSAKey privateKey);
+	void getEncBytes(char* encBytes, RSAKey publicKey);
+	/* END ENCRYPTION */
 	virtual ~Voter();
 	//getters
 	int getDni();

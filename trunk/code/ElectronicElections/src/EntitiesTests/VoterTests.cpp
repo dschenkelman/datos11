@@ -27,6 +27,7 @@ void VoterTests::printResult(std::string testName, bool result)
 
 void VoterTests::run()
 {
+	printResult("testEncryption", testEncryption());
 	printResult("testGetSize", testGetSize());
 	printResult("testGetKeySize", testGetKeySize());
 	printResult("testGetKey", testGetKey());
@@ -87,6 +88,28 @@ bool VoterTests::testGetKeySize()
 	}
 
 	return true;
+}
+
+bool VoterTests::testEncryption() {
+	RSAKeySet rsaks(8);
+
+//	RSACipher rsac;
+//	char* test = "qwerty";
+//	char* encTest = new char[100];
+//	char* test2 = new char[100];
+//	RSAKey publicKey = rsaks.getPublicKey();
+//	RSAKey privateKey = rsaks.getPrivateKey();
+//	rsac.cipherMessage(test,publicKey.exp, publicKey.n, encTest, 7);
+//	rsac.decryptMessage(encTest, privateKey.exp, privateKey.n, test2, 7);
+//	cout << test2 << endl;
+//	cout.flush();
+
+	Voter v(123456, "ale", "1234", "address", "district");
+	char* encrypted = new char[v.getSize()*40];
+	v.getEncBytes(encrypted, rsaks.getPublicKey());
+	Voter v2(0, "", "", "", "");
+	v2.setEncBytes(encrypted, rsaks.getPrivateKey());
+	return v.getNames().compare(v2.getNames()) == 0;
 }
 
 bool VoterTests::testGetKey()

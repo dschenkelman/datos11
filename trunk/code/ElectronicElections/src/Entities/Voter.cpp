@@ -271,10 +271,17 @@ std::vector<ElectionKey>& Voter::getElectionKeyList()
 	return this->electionKeyList;
 }
 
+#include <iostream>
+#include "../Helpers/base64.h"
+
 void Voter::setEncBytes(char* encBytes, RSAKey privateKey) {
 	RSACipher rsac;
 	char* tmpBytes = new char[this->getSize()];
 	rsac.decryptMessage(encBytes, privateKey.exp, privateKey.n, tmpBytes, this->getSize());
+	/* BINARY DEBUG PRINT */
+	cout << "DECRYPTED: " << base64_encode((const unsigned char*)tmpBytes, 20) << endl;
+	cout.flush();
+	/* END BINARY DEBUG PRINT */
 	this->setBytes(tmpBytes);
 }
 void Voter::getEncBytes(char* encBytes, RSAKey publicKey) {

@@ -94,31 +94,61 @@ bool VoterTests::testGetKeySize()
 
 bool VoterTests::testEncryption() {
 	RSAKeySet rsaks(8);
+	RSAKey publicKey = rsaks.getPublicKey();
+	RSAKey privateKey = rsaks.getPrivateKey();
+	RSACipher rsac;
 
-//	RSACipher rsac;
+//	/* esto anda */
+//	Voter v(1, "ale", "1234", "address", "district");
+//	char* ori = new char[400];
+//	memcpy(ori, v.getBytes(), v.getSize());
+//	/* BINARY DEBUG PRINT */
+//	cout << "ORIGINAL:  " << base64_encode((const unsigned char*)ori, 20) << endl;
+//	cout.flush();
+//	/* END BINARY DEBUG PRINT */
+//	int len = 26+26+1;
+//	char* enc = new char[400];
+//	char* dec = new char[400];
+//	rsac.cipherMessage(ori,publicKey.exp,publicKey.n,enc,len);
+//	/* BINARY DEBUG PRINT */
+//	cout << "ENCRYPTED: " << base64_encode((const unsigned char*)enc, 20) << endl;
+//	cout.flush();
+//	/* END BINARY DEBUG PRINT */
+//	int chunkSize = rsac.getChunkSize(privateKey.n) + 1;
+//	int chunks = ceil(len / (float)(chunkSize - 1));
+//	rsac.decryptMessage(enc,privateKey.exp,privateKey.n,dec,chunks * chunkSize);
+//	/* BINARY DEBUG PRINT */
+//	cout << "DECRYPTED: " << base64_encode((const unsigned char*)dec, 20) << endl;
+//	cout.flush();
+//	/* END BINARY DEBUG PRINT */
+//	return false;
+//	/* fin esto anda */
+
+
+
 //	char* test = "qwerty";
 //	char* encTest = new char[100];
 //	char* test2 = new char[100];
-//	RSAKey publicKey = rsaks.getPublicKey();
-//	RSAKey privateKey = rsaks.getPrivateKey();
 //	rsac.cipherMessage(test,publicKey.exp, publicKey.n, encTest, 7);
 //	rsac.decryptMessage(encTest, privateKey.exp, privateKey.n, test2, 7);
 //	cout << test2 << endl;
 //	cout.flush();
 
-	Voter v(123456, "ale", "1234", "address", "district");
+	Voter v(1, "ale", "1234", "address", "district");
+	char* ori = new char[1024];
+	memcpy(ori,v.getBytes(),v.getSize());
 	/* BINARY DEBUG PRINT */
-	cout << "ORIGINAL:  " << base64_encode((const unsigned char*)v.getBytes(), 20) << endl;
+	cout << "ORIGINAL:  " << base64_encode((const unsigned char*)ori, 20) << endl;
 	cout.flush();
 	/* END BINARY DEBUG PRINT */
-	char* encrypted = new char[v.getSize()*40];
+	char* encrypted = new char[2048];
 	v.getEncBytes(encrypted, rsaks.getPublicKey());
 	/* BINARY DEBUG PRINT */
 	cout << "ENCRYPTED: " << base64_encode((const unsigned char*)encrypted, 20) << endl;
 	cout.flush();
 	/* END BINARY DEBUG PRINT */
 	Voter v2(0, "", "", "", "");
-	v2.setEncBytes(encrypted, rsaks.getPrivateKey());
+	v2.setEncBytes(encrypted, rsaks.getPrivateKey(), v.getSize());
 	return v.getNames().compare(v2.getNames()) == 0;
 }
 

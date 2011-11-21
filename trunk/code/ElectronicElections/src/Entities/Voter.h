@@ -46,7 +46,7 @@ public:
 	int getKeySize();
 	void setBytes(char* bytes);
 	/* ENCRYPTION */
-	void setEncBytes(char* bytes, RSAKey privateKey);
+	void setEncBytes(char* bytes, RSAKey privateKey, int originalSize);
 	void getEncBytes(char* encBytes, RSAKey publicKey);
 	/* END ENCRYPTION */
 	virtual ~Voter();

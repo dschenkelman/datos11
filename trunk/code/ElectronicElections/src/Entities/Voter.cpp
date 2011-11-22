@@ -42,7 +42,7 @@ int Voter::getSize()
 	int size = 0;
 	size += sizeof(this->dni);
 	size += Constants::FIELD_HEADER_SIZE + 1 + this->names.size();
-	size += 1 + this->password.size();
+	size += Constants::FIELD_HEADER_SIZE + 1 + this->password.size();
 
 	size += Constants::FIELD_HEADER_SIZE + 1 + this->address.size();
 	size += Constants::FIELD_HEADER_SIZE + 1+ this->district.size();
@@ -90,19 +90,23 @@ void Voter::setBytes(char* bytes)
 	memcpy(nameAux, bytes+i, len); i += len;
 	this->names.clear(); this->names.append(nameAux);
 
-	char pass[PASSWORD_SIZE+1];
-	memset(pass, 0, PASSWORD_SIZE+1);
-	memcpy(pass, bytes+i, PASSWORD_SIZE+1); i += PASSWORD_SIZE+1;
+	int passwdSize = (int) *(bytes+i);
+	char pass[passwdSize]; i += Constants::FIELD_HEADER_SIZE;
+//	memset(pass, 0, PASSWORD_SIZE+1);
+	memcpy(pass, bytes+i, passwdSize); i += passwdSize;
 
 	this->password.clear();
-	std::string passStrAux = "";
-	if (pass != '\0')
-	{
-		passStrAux = pass;
-	}
+	this->password.append(pass);
 
-	this->password.clear();
-	this->password.append(passStrAux.substr(0, 4));
+//	this->password.clear();
+//	std::string passStrAux = "";
+//	if (pass != '\0')
+//	{
+//		passStrAux = pass;
+//	}
+//
+//	this->password.clear();
+//	this->password.append(passStrAux.substr(0, 4));
 
 	len = (bytes+i)[0]; i += Constants::FIELD_HEADER_SIZE;
 	char address[len];
@@ -156,7 +160,11 @@ char* Voter::getBytes()
 	memcpy(this->bytes+i, &len, Constants::FIELD_HEADER_SIZE); i += Constants::FIELD_HEADER_SIZE;
 	memcpy(this->bytes+i, this->names.c_str(), len); i += len;
 
-	memcpy(this->bytes+i, this->password.c_str(), PASSWORD_SIZE+1); i += PASSWORD_SIZE+1;
+	len = this->password.size() + 1;
+	memcpy(this->bytes+i, &len, Constants::FIELD_HEADER_SIZE); i += Constants::FIELD_HEADER_SIZE;
+	memcpy(this->bytes+i, this->password.c_str(), len); i += len;
+
+//	memcpy(this->bytes+i, this->password.c_str(), PASSWORD_SIZE+1); i += PASSWORD_SIZE+1;
 
 
 	len = this->address.size() + 1;

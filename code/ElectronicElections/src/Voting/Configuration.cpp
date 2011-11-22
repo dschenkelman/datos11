@@ -58,6 +58,11 @@ ConfigurationEntry & Configuration::getEntry(std::string name)
 	return this->entries[name];
 }
 
+int Configuration::getKeySize()
+{
+	return this->keySize;
+}
+
 Configuration::~Configuration()
 {
 }

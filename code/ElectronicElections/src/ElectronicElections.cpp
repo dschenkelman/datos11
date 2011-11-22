@@ -15,9 +15,6 @@ using namespace std;
 
 int main()
 {
-	KeyManager keyManager(8);
-	keyManager.generate();
-
 	option menuOption[2];
 	menuOption[0].label = "Run Tests";
 	menuOption[1].label = "Run Aplication";

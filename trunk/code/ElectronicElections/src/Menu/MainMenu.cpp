@@ -92,6 +92,9 @@ MainMenu::MainMenu(string& file) : configuration(file), dataFileLoader(configura
 	}
 
 	this->configuration.read();
+	KeyManager keyManager(this->configuration.getKeySize());
+	keyManager.generate();
+
 	this->dataFileLoader = DataFileLoader(this->configuration);
 	this->dataFileLoader.calculateBlockAmounts();
 	this->dataFileLoader.loadAdminFile();
@@ -259,13 +262,13 @@ void MainMenu::runTests()
 //	ChargeTests chargeTests;
 //	chargeTests.run(); cout << endl;
 //
-//	cout << "RSA Cipher Tests" << endl;
-//	RSACipherTests rsaCipherTests;
-//	rsaCipherTests.run(); cout << endl;
+	cout << "RSA Cipher Tests" << endl;
+	RSACipherTests rsaCipherTests;
+	rsaCipherTests.run(); cout << endl;
 
-	cout << "Key Manager Tests" << endl;
-	KeyManagerTests keyManagerTests;
-	keyManagerTests.run();
+//	cout << "Key Manager Tests" << endl;
+//	KeyManagerTests keyManagerTests;
+//	keyManagerTests.run();
 
 	cout << "Voter Tests" << endl;
 	VoterTests vt;
@@ -1277,7 +1280,7 @@ void MainMenu::administratorABM()
 void MainMenu::breakRSA()
 {
 	RSAAttacker rsaAttacker;
-	KeyManager keyManager(configuration.keySize);
+	KeyManager keyManager(configuration.getKeySize());
 	RSAKey publicKey = keyManager.getPublicKey();
 
 	cout << "Rompiendo RSA" << endl;

@@ -283,6 +283,9 @@ void DataFileLoader::readVoterFile(HashBlockFile* hashVoterFile, ConfigurationEn
 
 	int i = 0;
 
+	KeyManager km(this->configuration.keySize);
+	RSACipher rsac;
+
 	while (getline(dataFile,line) )
 	{
 		char* dni = strtok((char*)line.c_str(), ",");
@@ -290,7 +293,19 @@ void DataFileLoader::readVoterFile(HashBlockFile* hashVoterFile, ConfigurationEn
 		pass = strtok(NULL, ",");
 		domicilio = strtok(NULL, ",");
 		district = strtok(NULL, ",");
-		Voter* voter = new Voter(atoi(dni), string(nombre), string(pass), string(domicilio), string(district));
+		/* BEGIN ENCRYPTION */
+		int n = km.getPublicKey().n;
+		string strPass = string(pass);
+		int len = strPass.size();
+		int chunkSize = rsac.getChunkSize(n) + 1;
+		int chunks = ceil(len / (float)(chunkSize - 1));
+		char encPass[chunks * chunkSize + 1];
+		memset(encPass,0,chunks * chunkSize + 1);
+		rsac.cipherMessage(pass,km.getPublicKey().exp,km.getPublicKey().n,encPass,len);
+		string strEncPass(encPass);
+		/* END ENCRYPTION */
+		Voter* voter = new Voter(atoi(dni), string(nombre), encPass, string(domicilio), string(district));
+		cout << "encPass " << voter->getPassword() << endl;
 		VariableRecord* record = new VariableRecord();
 		record->setBytes(voter->getBytes(), voter->getSize());
 		hashVoterFile->insertRecord(voter->getKey(), record);

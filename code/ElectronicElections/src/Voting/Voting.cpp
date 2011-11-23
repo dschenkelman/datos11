@@ -59,11 +59,15 @@ bool Voting::login(int voterBlockAmount)
 	ConfigurationEntry& entry = this->config->getEntry("DistrictCounts");
 	DistrictCountsIndex districtCountsIndex(entry.getDataFileName(), entry.getBlockSize(), true);
 
+	KeyManager km(this->config->keySize);
+	RSACipher rsac;
+
     while(voterFileTxt.getline(line, MAX_LINE_SIZE))
     {
         string dni = strtok(line, ","); strtok(NULL, ",");
         string pass = strtok(NULL, ",");
-        int intDni = atoi(dni.c_str());
+
+		int intDni = atoi(dni.c_str());
 
         this->voter = new Voter(intDni, "invalid", "invalid", "invalid", "invalid", std::vector<ElectionKey>());
 
@@ -76,7 +80,21 @@ bool Voting::login(int voterBlockAmount)
 
         this->voter->setBytes((char*) voterRecord->getBytes());
 
-        if(strcmp(this->voter->getPassword().c_str(), pass.c_str()) != 0)
+        /* BEGIN DECRYPTION */
+		int n = km.getPublicKey().n;
+		string strPass = this->voter->getPassword();
+		int len = strPass.size();
+		int chunkSize = rsac.getChunkSize(n) + 1;
+		int chunks = ceil(len / (float)(chunkSize - 1));
+		char decPass[len+1];
+		memset(decPass,0,len + 1);
+		rsac.decryptMessage((char*)this->voter->getPassword().c_str(), km.getPrivateKey().exp, km.getPrivateKey().n, decPass, chunks * chunkSize);
+		/* END DECRYPTION */
+
+//		cout << "ori " << pass << endl;
+//		cout << "enc " << this->voter->getPassword() << endl;
+//		cout << "dec " << decPass << endl<<endl;
+        if(strcmp(pass.c_str(), decPass) != 0)
         {
         	stringstream logStr; logStr << "No existe el votante en el arbol de votantes";
         	this->log->operator <<(logStr.str());

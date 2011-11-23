@@ -35,6 +35,9 @@
 #include "Log.h"
 #include "Configuration.h"
 
+#include "../RSA/KeyManager.h"
+#include <math.h>
+
 
 class DataFileLoader
 {

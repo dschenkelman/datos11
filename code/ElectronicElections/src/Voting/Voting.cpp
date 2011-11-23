@@ -59,7 +59,7 @@ bool Voting::login(int voterBlockAmount)
 	ConfigurationEntry& entry = this->config->getEntry("DistrictCounts");
 	DistrictCountsIndex districtCountsIndex(entry.getDataFileName(), entry.getBlockSize(), true);
 
-	KeyManager km(this->config->keySize);
+	KeyManager km(this->config->getKeySize());
 	RSACipher rsac;
 
     while(voterFileTxt.getline(line, MAX_LINE_SIZE))

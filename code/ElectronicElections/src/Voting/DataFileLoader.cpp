@@ -137,11 +137,29 @@ void DataFileLoader::readAdminFile(Tree* treeAdminFile, ConfigurationEntry& entr
 	fstream dataFile;
 	dataFile.open(entry.getLoadFileName().c_str(), ios::in |  ios::binary);
 	std::string line;
+
+	KeyManager km(this->configuration.getKeySize());
+	RSACipher rsac;
+
 	while ( getline(dataFile,line) )
 	{
 		char* user = strtok((char*)line.c_str(), ",");
 		char* pass = strtok(NULL, ",");
-		Administrator a(user,pass);
+
+		/* BEGIN ENCRYPTION */
+		int n = km.getPublicKey().n;
+		string strPass = string(pass);
+		int len = strPass.size();
+		int chunkSize = rsac.getChunkSize(n) + 1;
+		int chunks = ceil(len / (float)(chunkSize - 1));
+		char encPass[chunks * chunkSize + 1];
+		memset(encPass,0,chunks * chunkSize + 1);
+		rsac.cipherMessage(pass,km.getPublicKey().exp,km.getPublicKey().n,encPass,len);
+		string strEncPass(encPass);
+		/* END ENCRYPTION */
+
+
+		Administrator a(user,strEncPass);
 
 		VariableRecord record (a.getBytes(), a.getSize());
 		int res = treeAdminFile->insert(&record, &record);
@@ -283,7 +301,7 @@ void DataFileLoader::readVoterFile(HashBlockFile* hashVoterFile, ConfigurationEn
 
 	int i = 0;
 
-	KeyManager km(this->configuration.keySize);
+	KeyManager km(this->configuration.getKeySize());
 	RSACipher rsac;
 
 	while (getline(dataFile,line) )

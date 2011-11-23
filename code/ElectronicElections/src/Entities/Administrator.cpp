@@ -12,7 +12,7 @@
 Administrator::Administrator(std::string name, std::string password)
 {
 	this->name = name;
-	this->password.append(password, 0, PASSWORD_SIZE);
+	this->password = password;
 	this->bytes = NULL;
 	this->key = NULL;
 }
@@ -22,7 +22,7 @@ int Administrator::getSize()
 	int size = 0;
 
 	size += this->name.size() + 1 + Constants::FIELD_HEADER_SIZE;
-	size += PASSWORD_SIZE + 1;
+	size += this->password.size() + 1 + Constants::FIELD_HEADER_SIZE;
 
 	return size;
 }
@@ -49,8 +49,8 @@ char* Administrator::getBytes()
 	memcpy(this->bytes+i, &len, Constants::FIELD_HEADER_SIZE); i += Constants::FIELD_HEADER_SIZE;
 	memcpy(this->bytes+i, this->name.c_str(), len); i+= len;
 	len = this->password.size() + 1;
+	memcpy(this->bytes+i, &len, Constants::FIELD_HEADER_SIZE); i += Constants::FIELD_HEADER_SIZE;
 	memcpy(this->bytes+i, this->password.c_str(), len); i+= len;
-	memset(this->bytes+i, 0, PASSWORD_SIZE + 1 - len);
 
 
 	return this->bytes;
@@ -67,13 +67,11 @@ void Administrator::setBytes(char* bytes)
 	this->name.clear();
 	this->name.append(nameAux);
 
-	char passAux[PASSWORD_SIZE+1];
-	memcpy(passAux, bytes+i, PASSWORD_SIZE + 1);
-
-	std::string passStrAux = "";
-	passStrAux.append(passAux);
+	len = (bytes+i)[0]; i += Constants::FIELD_HEADER_SIZE;
+	char passAux[len];
+	memcpy(nameAux, bytes+i, len); i+= len;
 	this->password.clear();
-	this->password.append(passStrAux.substr(0, 4));
+	this->password.append(nameAux);
 }
 
 char* Administrator::getKey()

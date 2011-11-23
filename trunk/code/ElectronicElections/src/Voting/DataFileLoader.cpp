@@ -305,7 +305,7 @@ void DataFileLoader::readVoterFile(HashBlockFile* hashVoterFile, ConfigurationEn
 		string strEncPass(encPass);
 		/* END ENCRYPTION */
 		Voter* voter = new Voter(atoi(dni), string(nombre), encPass, string(domicilio), string(district));
-		cout << "encPass " << voter->getPassword() << endl;
+//		cout << "encPass " << voter->getPassword() << endl;
 		VariableRecord* record = new VariableRecord();
 		record->setBytes(voter->getBytes(), voter->getSize());
 		hashVoterFile->insertRecord(voter->getKey(), record);

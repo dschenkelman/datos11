@@ -433,7 +433,22 @@ bool MainMenu::login()
 		{
 			Administrator realAdmin("","");
 			realAdmin.setBytes(adminRecord.getBytes());
-			int passCmp = strcmp(admin.getPassword().c_str(), realAdmin.getPassword().c_str());
+
+			KeyManager km(configuration.getKeySize());
+			RSACipher rsac;
+	        /* BEGIN DECRYPTION */
+			int n = km.getPublicKey().n;
+			string strPass = realAdmin.getPassword();
+			int len = strPass.size();
+			int chunkSize = rsac.getChunkSize(n) + 1;
+			int chunks = ceil(len / (float)(chunkSize - 1));
+			char decPass[len+1];
+			memset(decPass,0,len + 1);
+			rsac.decryptMessage((char*)strPass.c_str(), km.getPrivateKey().exp, km.getPrivateKey().n, decPass, chunks * chunkSize);
+			/* END DECRYPTION */
+
+
+			int passCmp = strcmp(admin.getPassword().c_str(), decPass);
 			log.write(string("Logueo de usuario ").append(user), passCmp==0, true);
 
 			if (passCmp == 0)

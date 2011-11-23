@@ -1305,6 +1305,35 @@ void MainMenu::breakRSA()
 
 	cout << "Clave privada descifrada" << endl;
 	cout << "n: " << privateKey.n << " d: " << privateKey.exp << endl;
+
+	cout << "Desencriptando el archivo de admins.." << endl;
+
+	ConfigurationEntry& entry = configuration.getEntry("Administrator");
+	AdministratorMethods am;
+	Tree admin_tree (entry.getDataFileName(), entry.getBlockSize(), &am, false);
+
+	VariableRecord record;
+	RSACipher rsaCipher;
+	Administrator adm("invalid", "invalid");
+	admin_tree.returnFirst(&record);
+
+	do
+	{
+		adm.setBytes(record.getBytes());
+		string cipheredPass = adm.getPassword();
+		char decryptedPass[100];
+
+		int chunkSize = rsaCipher.getChunkSize(privateKey.n) + 1;
+		int chunks = ceil((cipheredPass.size() + 1)/float(chunkSize - 1));
+
+		rsaCipher.decryptMessage((char*)cipheredPass.c_str(), privateKey.exp, privateKey.n, decryptedPass, (int64) (chunkSize * chunks));
+
+		cout << "Admin: " << adm.getName() << endl;
+		cout << "Pass: " << string(decryptedPass) << endl << endl;
+
+		admin_tree.getNext(&record);
+	}
+	while (record.getBytes() != NULL);
 }
 
 void MainMenu::reportResults()

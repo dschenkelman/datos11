@@ -18,6 +18,9 @@
 #include "ConfigurationEntry.h"
 #include "../Indexes/DistrictCountsIndex.h"
 
+#include "../RSA/KeyManager.h"
+#include "../RSA/RSACipher.h"
+
 using namespace std;
 
 class Voting {

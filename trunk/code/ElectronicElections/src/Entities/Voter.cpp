@@ -16,7 +16,7 @@ Voter::Voter(int dni, std::string names, std::string password, std::string addre
 {
 	this->dni = dni;
 	this->names = names;
-	this->password.append(password, 0, PASSWORD_SIZE);
+	this->password = password;
 	this->address = address;
 	this->district = district;
 	this->electionKeyList = electionKeyList;
@@ -29,7 +29,7 @@ Voter::Voter(int dni, std::string names, std::string password, std::string addre
 {
 	this->dni = dni;
 	this->names = names;
-	this->password.append(password, 0, PASSWORD_SIZE);
+	this->password = password;
 	this->address = address;
 	this->district = district;
 	this->electionKeyList = electionKeyList;

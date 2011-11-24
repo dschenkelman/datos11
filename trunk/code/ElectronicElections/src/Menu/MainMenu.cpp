@@ -105,6 +105,7 @@ MainMenu::MainMenu(string& file) : configuration(file), dataFileLoader(configura
 void MainMenu::runApplication()
 {
 	this->log.write("Iniciando sistema", true, true);
+
 	option login_type[2];
 	login_type[0].label = "Log-In";
 	login_type[1].label = "Quit";
@@ -1266,9 +1267,28 @@ void MainMenu::administratorABM()
 		action = Menu(administrator_action,4).ask();
 		if (action==0)
 		{
-			Administrator newadmin(Menu::raw_input("Usuario"), Menu::raw_input("Contraseña"));
+			KeyManager km(this->configuration.getKeySize());
+			RSACipher rsac;
+
+			string user = Menu::raw_input("Usuario");
+			string strPass = Menu::raw_input("Contraseña");
+
+			/* BEGIN ENCRYPTION */
+			int n = km.getPublicKey().n;
+			char* pass = (char*) strPass.c_str();
+			int len = strPass.size();
+			int chunkSize = rsac.getChunkSize(n) + 1;
+			int chunks = ceil(len / (float)(chunkSize - 1));
+			char encPass[chunks * chunkSize + 1];
+			memset(encPass,0,chunks * chunkSize + 1);
+			rsac.cipherMessage(pass,km.getPublicKey().exp,km.getPublicKey().n,encPass,len);
+			string strEncPass(encPass);
+			/* END ENCRYPTION */
+
+			Administrator newadmin(user, strEncPass);
 			VariableRecord adminkey_vr (newadmin.getKey(), newadmin.getKeySize());
 			VariableRecord admin_vr (newadmin.getBytes(), newadmin.getSize());
+
 			int res = admin_tree.insert(&adminkey_vr, &admin_vr);
 			log.write(string("Agregando administrador ").append(newadmin.getName()), res!=5, true);
 		}

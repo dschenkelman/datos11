@@ -1314,8 +1314,8 @@ void MainMenu::breakRSA()
 
 	VariableRecord record;
 	RSACipher rsaCipher;
-	Administrator adm("invalid", "invalid");
-	admin_tree.returnFirst(&record);
+	Administrator adm("", "");
+	admin_tree.get("", &record);
 
 	do
 	{
@@ -1330,10 +1330,8 @@ void MainMenu::breakRSA()
 
 		cout << "Admin: " << adm.getName() << endl;
 		cout << "Pass: " << string(decryptedPass) << endl << endl;
-
-		admin_tree.getNext(&record);
 	}
-	while (record.getBytes() != NULL);
+	while (admin_tree.getNext(&record) != NULL);
 }
 
 void MainMenu::reportResults()

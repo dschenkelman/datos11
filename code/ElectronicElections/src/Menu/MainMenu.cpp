@@ -1357,7 +1357,7 @@ void MainMenu::breakRSA()
 	cout << "Rompiendo RSA" << endl;
 	cout << "Clave Publica -> " << "n: " << publicKey.n << " e: " << publicKey.exp << endl;
 
-	RSAKey privateKey = rsaAttacker.attack(publicKey);
+	RSAKey privateKey = rsaAttacker.attack(publicKey, configuration.getKeySize());
 
 	cout << "Clave privada descifrada" << endl;
 	cout << "n: " << privateKey.n << " d: " << privateKey.exp << endl;

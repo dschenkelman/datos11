@@ -32,11 +32,24 @@ int64 RSACipher::GCD(int64 numberOne, int64 numberTwo)
 	return GCD(numberTwo, mod);
 }
 
-vector<int64> RSACipher::generateRelativelyPrimeNumbers(int64 number)
+vector<int64> RSACipher::generateRelativelyPrimeNumbers(int64 number, int keySize)
 {
 	//if isPrime(number) return number-1;
 	vector<int64> coprimeNumbers;
-	int64 jump = (int64) rand();
+	int64 jump = 0;
+	if (keySize >= 6)
+	{
+		jump = (int64) rand();
+	}
+	else if (keySize >= 4 && keySize < 6)
+	{
+		jump = (int64) rand() % 65536;
+	}
+	else
+	{
+		jump = 1;
+	}
+
 
 	for (int64 i = (number - 2); i > 1; i-= jump)
 	{
@@ -51,15 +64,27 @@ vector<int64> RSACipher::generateRelativelyPrimeNumbers(int64 number)
 				return coprimeNumbers;
 			}
 		}
-		jump = (int64)rand();
+
+		if (keySize >= 6)
+		{
+			jump = (int64) rand();
+		}
+		else if (keySize >= 4 && keySize < 6)
+		{
+			jump = (int64) rand() % 65536;
+		}
+		else
+		{
+			jump = 1;
+		}
 	}
 
 	return coprimeNumbers;
 }
 
-int64 RSACipher::getRelativelyPrimeNumber(int64 number)
+int64 RSACipher::getRelativelyPrimeNumber(int64 number, int keySize)
 {
-	vector<int64> coprimeNumbers = this->generateRelativelyPrimeNumbers(number);
+	vector<int64> coprimeNumbers = this->generateRelativelyPrimeNumbers(number, keySize);
 	int randomNumber = rand() % coprimeNumbers.size();
 
 	return coprimeNumbers.at(randomNumber);

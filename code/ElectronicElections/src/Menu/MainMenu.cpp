@@ -575,7 +575,21 @@ void MainMenu::voterABM()
 			else
 			{
 				string dnistr = Menu::raw_input("DNI").c_str();
-				Voter v(atoi(dnistr.c_str()), Menu::raw_input("Nombre"), Menu::raw_input("Contraseña"),
+				string pass = Menu::raw_input("Contraseña");
+				/* BEGIN ENCRYPTION */
+				KeyManager km(this->configuration.getKeySize());
+				RSACipher rsac;
+				int n = km.getPublicKey().n;
+				string strPass = pass;
+				int len = strPass.size();
+				int chunkSize = rsac.getChunkSize(n) + 1;
+				int chunks = ceil(len / (float)(chunkSize - 1));
+				char encPass[chunks * chunkSize + 1];
+				memset(encPass,0,chunks * chunkSize + 1);
+				rsac.cipherMessage((char*)pass.c_str(),km.getPublicKey().exp,km.getPublicKey().n,encPass,len);
+				string strEncPass(encPass);
+				/* END ENCRYPTION */
+				Voter v(atoi(dnistr.c_str()), Menu::raw_input("Nombre"), strEncPass,
 						Menu::raw_input("Direccion"), district.getName(), std::vector<ElectionKey>());
 				VariableRecord vr(v.getBytes(), v.getSize());
 				bool res = hash_voter.insertRecord(v.getKey(), &vr);
@@ -636,7 +650,21 @@ void MainMenu::voterABM()
 					else if (action==3)
 					{
 						v.setBytes(record->getBytes());
-						v.setPassword(Menu::raw_input("Nueva contraseña"));
+						string pass = Menu::raw_input("Nueva contraseña");
+						/* BEGIN ENCRYPTION */
+						KeyManager km(this->configuration.getKeySize());
+						RSACipher rsac;
+						int n = km.getPublicKey().n;
+						string strPass = pass;
+						int len = strPass.size();
+						int chunkSize = rsac.getChunkSize(n) + 1;
+						int chunks = ceil(len / (float)(chunkSize - 1));
+						char encPass[chunks * chunkSize + 1];
+						memset(encPass,0,chunks * chunkSize + 1);
+						rsac.cipherMessage((char*)pass.c_str(),km.getPublicKey().exp,km.getPublicKey().n,encPass,len);
+						string strEncPass(encPass);
+						/* END ENCRYPTION */
+						v.setPassword(encPass);
 						record->setBytes(v.getBytes(), v.getSize());
 						hash_voter.updateRecord(v.getKey(), record);
 					}

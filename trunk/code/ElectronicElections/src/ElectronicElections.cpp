@@ -22,10 +22,11 @@ int main()
 	int menuAction = 0;
 	Menu menu = Menu(menuOption, 2);
 
-	do
-	{
-		menuAction = menu.ask();
-	} while (menuAction != 1 && menuAction != 0);
+//	do
+//	{
+//		menuAction = menu.ask();
+//	} while (menuAction != 1 && menuAction != 0);
+	menuAction = 1;
 
 	string fileName = "Files/config.txt";
 	MainMenu mainMenu(fileName);

@@ -97,7 +97,10 @@ MainMenu::MainMenu(string& file) : configuration(file), dataFileLoader(configura
 
 	this->dataFileLoader = DataFileLoader(this->configuration);
 	this->dataFileLoader.calculateBlockAmounts();
-	this->dataFileLoader.loadAdminFile();
+	if (!file_exists("Administrator.dat"))
+	{
+		this->dataFileLoader.loadAdminFile();
+	}
 }
 
 // Public methods

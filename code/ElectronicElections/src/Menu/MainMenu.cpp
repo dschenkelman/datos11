@@ -1601,7 +1601,7 @@ void MainMenu::reportResults()
 			VariableRecord countRecord;
 			Count nextCount(list.getDay(), list.getMonth(), list.getYear(), list.getCharge(), list.getName(),"", 0);
 
-			report << "ELECCION: " << StringHelpers::toUpper(list.getCharge()) <<" "<< day <<"-"<< month <<"-"<< year << endl;
+			report << "ELECCION: " << StringHelpers::toUpper(list.getCharge()) <<" "<< (int)day <<"-"<< (int)month <<"-"<< year << endl;
 			logStr << string("Reportando Eleccion: ").append(list.getCharge()+", "+strDay.str() +"-"+ strMonth.str() +"-"+ strYear.str());
 			log.operator <<(logStr.str());
 			char votos[sizeof(int)];
@@ -1609,7 +1609,7 @@ void MainMenu::reportResults()
 			if(countRecord.getSize() == 0)
 			{
 				//No record, end of file
-				report << "NO HAY VOTOS REGISTRADOS PARA ELECCION: " << day << "-" << month << "-" << year << ", " << count.getCharge()<< endl;
+				report << "NO HAY VOTOS REGISTRADOS PARA ELECCION: " << (int)day << "-" << (int)month << "-" << year << ", " << count.getCharge()<< endl;
 				logStr << string("Eleccion sin votos: ").append(list.getCharge()+", "+strDay.str()+"-"+ strMonth.str() +"-"+ strYear.str());
 				log.operator <<(logStr.str());
 				break;
@@ -1648,7 +1648,7 @@ void MainMenu::reportResults()
 					break;//no more districts
 				}
 			}
-			report << "FINALIZANDO REPORTE ELECCION " << StringHelpers::toUpper(count.getCharge()) <<" "<< day << "-" << month << "-" << year << endl;
+			report << "FINALIZANDO REPORTE ELECCION " << StringHelpers::toUpper(count.getCharge()) <<" "<< (int)day << "-" << (int)month << "-" << year << endl;
 			logStr << string("Finalizado reporte Eleccion ").append(list.getCharge()+", "+strDay.str() +"-"+ strMonth.str() +"-"+ strYear.str());
 			log.operator <<(logStr.str());
 			std::cout << report.str();

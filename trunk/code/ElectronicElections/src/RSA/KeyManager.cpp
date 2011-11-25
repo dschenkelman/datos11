@@ -15,19 +15,18 @@
 
 using namespace std;
 
-KeyManager::KeyManager(int keySize)
+KeyManager::KeyManager(int keySize):fileExists(false)
 {
-	string fileName = "./Files/Keys/key.pri";
-	ifstream privateKeysFile(fileName.c_str(), ifstream::binary);
+	string privateKey = "./Files/Keys/key.pri";
+	string publicKey = "./Files/Keys/key.pub";
 
-	fileName = "./Files/Keys/key.pub";
-	ifstream publicKeysFile(fileName.c_str(), ifstream::binary);
-
-	this->fileExists = privateKeysFile.is_open() && publicKeysFile.is_open();
+	this->fileExists = this->file_exists(privateKey.c_str()) && this->file_exists(publicKey.c_str());
 	this->keySize = keySize;
 
 	if(this->fileExists)
 	{
+		ifstream privateKeysFile(privateKey.c_str(), ifstream::binary);
+		ifstream publicKeysFile(publicKey.c_str(), ifstream::binary);
 		char buffer[sizeof(int64)];
 
 		privateKeysFile.read(buffer, sizeof(int64));
@@ -48,7 +47,17 @@ KeyManager::KeyManager(int keySize)
 	}
 }
 
-void KeyManager::generate()
+bool KeyManager::file_exists(const char * filename)
+{
+    if (FILE * file = fopen(filename, "r"))
+    {
+        fclose(file);
+        return true;
+    }
+    return false;
+}
+
+bool KeyManager::generate()
 {
 	if(!this->fileExists)
 	{
@@ -80,7 +89,11 @@ void KeyManager::generate()
 		publicKeysFile.write(buffer, sizeof(int64));
 
 		publicKeysFile.close();
+
+		return true;
 	}
+
+	return false;
 }
 
 RSAKey KeyManager::getPrivateKey()

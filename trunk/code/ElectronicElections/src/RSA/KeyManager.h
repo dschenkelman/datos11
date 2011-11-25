@@ -18,9 +18,10 @@ private:
 	RSAKey publicKey;
 	bool fileExists;
 	int keySize;
+	bool file_exists(const char* name);
 public:
 	KeyManager(int keySize);
-	void generate();
+	bool generate();
 	RSAKey getPrivateKey();
 	RSAKey getPublicKey();
 	virtual ~KeyManager();

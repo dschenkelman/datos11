@@ -16,10 +16,10 @@ using namespace std;
 
 class RSAAttacker {
 	int intMaxValue;
-	void getPrimeNumbers(int64 n, int64* p, int64* q);
+	void getPrimeNumbers(int64 n, int64* p, int64* q, int keySize);
 public:
 	RSAAttacker();
-	RSAKey attack(RSAKey& publicKey);
+	RSAKey attack(RSAKey& publicKey, int keySize);
 	virtual ~RSAAttacker();
 };
 

@@ -21,7 +21,7 @@ RSAKeySet::RSAKeySet(int keySize) {
 	cout << sizeof(p) << "|" << sizeof(q) << "|" << sizeof(n) << "|"<<endl;
 	phi = (p-1)*(q-1);
 	RSACipher rcac;
-	int64 d = rcac.getRelativelyPrimeNumber(phi);
+	int64 d = rcac.getRelativelyPrimeNumber(phi, keySize);
 	if (rcac.GCD(d, phi)!=1) cout << "WARNING: error generando RSA"<<endl;
 	int64 e = RSACipher::productInverse(phi, d);
 	cout << " p " << p << " q " << q << " n " << n << " phi " << phi << " d " << d << " e " << e << endl;

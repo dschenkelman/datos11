@@ -26,7 +26,7 @@ bool RSAAttackerTests::testAttack()
 {
 	RSAAttacker rsaAttacker;
 	RSAKey publicKey = {6939446675467, 6939440249215};
-	RSAKey privateKey = rsaAttacker.attack(publicKey);
+	RSAKey privateKey = rsaAttacker.attack(publicKey, 8);
 	return true;
 }
 

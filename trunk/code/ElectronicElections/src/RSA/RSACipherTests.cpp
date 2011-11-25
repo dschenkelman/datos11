@@ -34,7 +34,7 @@ bool RSACipherTests::testGenerateRelativelyPrimeNumbers()
 {
 	RSACipher rsaCipher;
 	int64 number = 274877906944;
-	int64 res = rsaCipher.getRelativelyPrimeNumber(number);
+	int64 res = rsaCipher.getRelativelyPrimeNumber(number,  8);
 
 	if(rsaCipher.GCD(number, res) != 1)
 	{

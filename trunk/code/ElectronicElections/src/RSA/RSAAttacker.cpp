@@ -17,9 +17,11 @@ RSAAttacker::RSAAttacker()
 	this->intMaxValue = numeric_limits<int>::max();
 }
 
-void RSAAttacker::getPrimeNumbers(int64 n, int64* p, int64* q)
+void RSAAttacker::getPrimeNumbers(int64 n, int64* p, int64* q, int keySize)
 {
-	for(int i = this->intMaxValue; i > 0; i--)
+	int limit = this->intMaxValue >> (32 - keySize * 4);
+
+	for(int i = limit; i > 0; i--)
 	{
 		if ((n % i) == 0)
 		{
@@ -30,10 +32,10 @@ void RSAAttacker::getPrimeNumbers(int64 n, int64* p, int64* q)
 	}
 }
 
-RSAKey RSAAttacker::attack(RSAKey& publicKey)
+RSAKey RSAAttacker::attack(RSAKey& publicKey, int keySize)
 {
 	int64 p, q;
-	this->getPrimeNumbers(publicKey.n, &p, &q);
+	this->getPrimeNumbers(publicKey.n, &p, &q, keySize);
 	int64 phi = (q - 1) * (p - 1);
 
 	int64 e = publicKey.exp;

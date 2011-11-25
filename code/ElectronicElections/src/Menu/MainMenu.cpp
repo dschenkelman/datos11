@@ -93,11 +93,16 @@ MainMenu::MainMenu(string& file) : configuration(file), dataFileLoader(configura
 
 	this->configuration.read();
 	KeyManager keyManager(this->configuration.getKeySize());
-	keyManager.generate();
+	bool generatedKeys = keyManager.generate();
+
+	if(generatedKeys)
+	{
+		cout << "WARNING: Key set was generated. Generate files after logging-in." << endl;
+	}
 
 	this->dataFileLoader = DataFileLoader(this->configuration);
 	this->dataFileLoader.calculateBlockAmounts();
-	if (!file_exists("Administrator.dat"))
+	if (!file_exists("Administrator.dat") || generatedKeys)
 	{
 		this->dataFileLoader.loadAdminFile();
 	}

@@ -19,9 +19,9 @@ RSAAttacker::RSAAttacker()
 
 void RSAAttacker::getPrimeNumbers(int64 n, int64* p, int64* q, int keySize)
 {
-	int limit = this->intMaxValue >> (32 - keySize * 4);
+	unsigned int limit = this->intMaxValue >> (32 - keySize * 4);
 
-	for(int i = limit; i > 0; i--)
+	for(unsigned int i = limit; i > 0; i--)
 	{
 		if ((n % i) == 0)
 		{

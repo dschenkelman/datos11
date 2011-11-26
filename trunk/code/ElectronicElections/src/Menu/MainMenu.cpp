@@ -102,7 +102,7 @@ MainMenu::MainMenu(string& file) : configuration(file), dataFileLoader(configura
 
 	this->dataFileLoader = DataFileLoader(this->configuration);
 	this->dataFileLoader.calculateBlockAmounts();
-	if (!file_exists("Administrator.dat") || generatedKeys)
+	if (!file_exists("Files/Administrator.dat") || generatedKeys)
 	{
 		this->dataFileLoader.loadAdminFile();
 	}

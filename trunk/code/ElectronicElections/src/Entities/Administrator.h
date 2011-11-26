@@ -11,15 +11,16 @@
 static const int PASSWORD_SIZE = 4;
 
 #include <string>
+#include <vector>
 
 class Administrator {
 private:
 	std::string name;
-	std::string password;
+	std::vector<char> password;
 	char* bytes;
 	char* key;
 public:
-	Administrator(std::string name, std::string password);
+	Administrator(std::string name, std::vector<char> password);
 	Administrator(const Administrator& other);
 	Administrator& operator=(const Administrator& other);
 	char* getBytes();
@@ -30,8 +31,8 @@ public:
 	virtual ~Administrator();
 	// getters
 	std::string getName();
-	std::string getPassword();
-	void setPassword(std::string& value);
+	std::vector<char> getPassword();
+	void setPassword(std::vector<char>& value);
 };
 
 #endif /* ADMINISTRATOR_H_ */

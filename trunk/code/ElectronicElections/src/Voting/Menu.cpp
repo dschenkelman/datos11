@@ -41,8 +41,8 @@ int Menu::ask() {
 string Menu::raw_input(string label) {
 	cout << label << "? ";
 
-	char ret_value[64];
-	cin.getline (ret_value,64,'\n');
+	char ret_value[512];
+	cin.getline (ret_value,512,'\n');
 	string ret (ret_value);
 	return ret;
 }

@@ -24,7 +24,8 @@ int AdministratorMethods::compareKey(const char* key, const char* recordKey, int
 
 int AdministratorMethods::compare(const char* key, const char* recordBytes, int recordSize)
 {
-	Administrator adm("Adm", "adm");
+	vector<char> passVector;
+	Administrator adm("Adm", passVector);
 	adm.setBytes((char*)recordBytes);
 
 	int size = strlen(key + Constants::FIELD_HEADER_SIZE) + 1;
@@ -37,11 +38,21 @@ int AdministratorMethods::compare(const char* key, const char* recordBytes, int 
 
 void AdministratorMethods::print(const char* recordBytes, int recordSize)
 {
-	Administrator adm("adm", "adm");
+	vector<char> passVector;
+	Administrator adm("adm", passVector);
 	adm.setBytes((char*)recordBytes);
 
 //	cout << "(" << adm.getName() << "," << adm.getPassword() << ")";
-	cout << "Nombre: " << adm.getName() << " Contraseña: " << adm.getPassword() << endl;
+	vector<char> passwordVector = adm.getPassword();
+	char aux[passwordVector.size() + 1];
+	for (int i = 0; i < passwordVector.size(); i++)
+	{
+		aux[i] = passwordVector[i];
+	}
+
+	aux[passwordVector.size()] = '\0';
+
+	cout << "Nombre: " << adm.getName() << " Contraseña: " << aux << endl;
 }
 
 void AdministratorMethods::printKey(const char* key, int recordSize)

@@ -9,7 +9,7 @@
 #include "../VariableBlocks/Constants.h"
 #include <cstring>
 
-Administrator::Administrator(std::string name, std::string password)
+Administrator::Administrator(std::string name, std::vector<char> password)
 {
 	this->name = name;
 	this->password = password;
@@ -22,7 +22,7 @@ int Administrator::getSize()
 	int size = 0;
 
 	size += this->name.size() + 1 + Constants::FIELD_HEADER_SIZE;
-	size += this->password.size() + 1 + Constants::FIELD_HEADER_SIZE;
+	size += this->password.size()+ Constants::FIELD_HEADER_SIZE;
 
 	return size;
 }
@@ -48,10 +48,15 @@ char* Administrator::getBytes()
 	char len = this->name.size() + 1;
 	memcpy(this->bytes+i, &len, Constants::FIELD_HEADER_SIZE); i += Constants::FIELD_HEADER_SIZE;
 	memcpy(this->bytes+i, this->name.c_str(), len); i+= len;
-	len = this->password.size() + 1;
+	len = this->password.size();
 	memcpy(this->bytes+i, &len, Constants::FIELD_HEADER_SIZE); i += Constants::FIELD_HEADER_SIZE;
-	memcpy(this->bytes+i, this->password.c_str(), len); i+= len;
 
+	char buffer[len];
+	for (int i = 0; i < len; i++)
+	{
+		buffer[i] = this->password[i];
+	}
+	memcpy(this->bytes+i, buffer, len); i+= len;
 
 	return this->bytes;
 }
@@ -69,9 +74,12 @@ void Administrator::setBytes(char* bytes)
 
 	len = (bytes+i)[0]; i += Constants::FIELD_HEADER_SIZE;
 	char passAux[len];
-	memcpy(nameAux, bytes+i, len); i+= len;
+	memcpy(passAux, bytes+i, len); i+= len;
 	this->password.clear();
-	this->password.append(nameAux);
+	for (int i = 0; i < len; i++)
+	{
+		this->password.push_back(passAux[i]);
+	}
 }
 
 char* Administrator::getKey()
@@ -90,7 +98,7 @@ char* Administrator::getKey()
 	return this->key;
 }
 
-std::string Administrator::getPassword()
+std::vector<char> Administrator::getPassword()
 {
 	return this->password;
 }
@@ -134,7 +142,7 @@ Administrator::Administrator(const Administrator & other)
 
 }
 
-void Administrator::setPassword(std::string & value)
+void Administrator::setPassword(std::vector<char>& value)
 {
 	this->password = value;
 }

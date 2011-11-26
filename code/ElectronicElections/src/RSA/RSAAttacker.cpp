@@ -14,7 +14,7 @@ using namespace std;
 
 RSAAttacker::RSAAttacker()
 {
-	this->intMaxValue = numeric_limits<int>::max();
+	this->intMaxValue = numeric_limits<unsigned int>::max();
 }
 
 void RSAAttacker::getPrimeNumbers(int64 n, int64* p, int64* q, int keySize)

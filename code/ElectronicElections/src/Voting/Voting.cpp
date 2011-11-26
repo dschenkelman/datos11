@@ -68,8 +68,8 @@ bool Voting::login(int voterBlockAmount)
         string pass = strtok(NULL, ",");
 
 		int intDni = atoi(dni.c_str());
-
-        this->voter = new Voter(intDni, "invalid", "invalid", "invalid", "invalid", std::vector<ElectionKey>());
+		std::vector<char> emptyPass;
+        this->voter = new Voter(intDni, "invalid", emptyPass, "invalid", "invalid", std::vector<ElectionKey>());
 
         VariableRecord* voterRecord = NULL;
 
@@ -82,13 +82,19 @@ bool Voting::login(int voterBlockAmount)
 
         /* BEGIN DECRYPTION */
 		int n = km.getPublicKey().n;
-		string strPass = this->voter->getPassword();
+		std::vector<char> strPass = this->voter->getPassword();
 		int len = strPass.size();
 		int chunkSize = rsac.getChunkSize(n) + 1;
 		int chunks = ceil(len / (float)(chunkSize - 1));
 		char decPass[len+1];
 		memset(decPass,0,len + 1);
-		rsac.decryptMessage((char*)this->voter->getPassword().c_str(), km.getPrivateKey().exp, km.getPrivateKey().n, decPass, chunks * chunkSize);
+		char encPass[strPass.size()];
+		memset(encPass, 0, strPass.size());
+		for(int i = 0; i<strPass.size(); i++)
+		{
+			encPass[i] = strPass[i];
+		}
+		rsac.decryptMessage(encPass, km.getPrivateKey().exp, km.getPrivateKey().n, decPass, chunks * chunkSize);
 		/* END DECRYPTION */
 
 //		cout << "ori " << pass << endl;

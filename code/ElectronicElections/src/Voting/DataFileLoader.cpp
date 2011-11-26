@@ -320,9 +320,13 @@ void DataFileLoader::readVoterFile(HashBlockFile* hashVoterFile, ConfigurationEn
 		char encPass[chunks * chunkSize + 1];
 		memset(encPass,0,chunks * chunkSize + 1);
 		rsac.cipherMessage(pass,km.getPublicKey().exp,km.getPublicKey().n,encPass,len);
-		string strEncPass(encPass);
+		std::vector<char> vecEncPass;
+		for(int i=0;i< strlen(encPass); i++)
+		{
+			vecEncPass.push_back(encPass[i]);
+		}
 		/* END ENCRYPTION */
-		Voter* voter = new Voter(atoi(dni), string(nombre), encPass, string(domicilio), string(district));
+		Voter* voter = new Voter(atoi(dni), string(nombre), vecEncPass, string(domicilio), string(district));
 //		cout << "encPass " << voter->getPassword() << endl;
 		VariableRecord* record = new VariableRecord();
 		record->setBytes(voter->getBytes(), voter->getSize());

@@ -592,7 +592,11 @@ void MainMenu::voterABM()
 				char encPass[chunks * chunkSize + 1];
 				memset(encPass,0,chunks * chunkSize + 1);
 				rsac.cipherMessage((char*)pass.c_str(),km.getPublicKey().exp,km.getPublicKey().n,encPass,len);
-				string strEncPass(encPass);
+				std::vector<char> strEncPass;
+				for(int i=0;i<strlen(encPass); i++)
+				{
+					strEncPass.push_back(encPass[i]);
+				}
 				/* END ENCRYPTION */
 				Voter v(atoi(dnistr.c_str()), Menu::raw_input("Nombre"), strEncPass,
 						Menu::raw_input("Direccion"), district.getName(), std::vector<ElectionKey>());
@@ -606,7 +610,7 @@ void MainMenu::voterABM()
 		{
 			// Modificar votante
 			VariableRecord *record;
-			Voter v(atoi(Menu::raw_input("DNI").c_str()), "", "", "", "", std::vector<ElectionKey>());
+			Voter v(atoi(Menu::raw_input("DNI").c_str()), "", std::vector<char>(), "", "", std::vector<ElectionKey>());
 			bool found = hash_voter.getRecord(v.getKey(), &record);
 			if (found)
 			{
@@ -667,9 +671,13 @@ void MainMenu::voterABM()
 						char encPass[chunks * chunkSize + 1];
 						memset(encPass,0,chunks * chunkSize + 1);
 						rsac.cipherMessage((char*)pass.c_str(),km.getPublicKey().exp,km.getPublicKey().n,encPass,len);
-						string strEncPass(encPass);
+						std::vector<char> strEncPass;
+						for(int i=0;i<strlen(encPass); i++)
+						{
+							strEncPass.push_back(encPass[i]);
+						}
 						/* END ENCRYPTION */
-						v.setPassword(encPass);
+						v.setPassword(strEncPass);
 						record->setBytes(v.getBytes(), v.getSize());
 						hash_voter.updateRecord(v.getKey(), record);
 					}
@@ -687,7 +695,7 @@ void MainMenu::voterABM()
 
 		else if (action==2)
 		{
-			Voter v(atoi(Menu::raw_input("DNI").c_str()), "", "", "", "", std::vector<ElectionKey>());
+			Voter v(atoi(Menu::raw_input("DNI").c_str()), "", std::vector<char>(), "", "", std::vector<ElectionKey>());
 			bool removed = hash_voter.removeRecord(v.getKey());
 			if (removed)
 			{
@@ -1228,7 +1236,7 @@ void MainMenu::candidateABM()
 
 			Candidate cand (day, month, year, Menu::raw_input("Lista"), Menu::raw_input("Cargo"), dni);
 			VariableRecord *record;
-			Voter v(dni, "", "", "", "", std::vector<ElectionKey>());
+			Voter v(dni, "", std::vector<char>(), "", "", std::vector<ElectionKey>());
 			bool voterFound = hash_voter.getRecord(v.getKey(), &record);
 			if (!voterFound)
 			{
@@ -1528,7 +1536,7 @@ void MainMenu::reportResults()
 			HashBlockFile hash_voter(listRprt_voterEntry.getDataFileName(), listRprt_voterEntry.getBlockSize(),&vm,
 					&vhf,this->dataFileLoader.getVoterBlockAmount(), false);
 			VariableRecord* voterRecord = NULL;
-			Voter voter(0, "invalid", "invalid", "invalid", "invalid", std::vector<ElectionKey>());
+			Voter voter(0, "invalid", std::vector<char>(), "invalid", "invalid", std::vector<ElectionKey>());
 			int dni = candidate.getDni();
 			char keyDni[sizeof(int)];
 			memcpy(keyDni, &dni, sizeof(int));

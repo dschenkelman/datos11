@@ -152,10 +152,15 @@ void DataFileLoader::readAdminFile(Tree* treeAdminFile, ConfigurationEntry& entr
 		int len = strPass.size();
 		int chunkSize = rsac.getChunkSize(n) + 1;
 		int chunks = ceil(len / (float)(chunkSize - 1));
-		char encPass[chunks * chunkSize + 1];
-		memset(encPass,0,chunks * chunkSize + 1);
+		int cryptSize = chunks * chunkSize;
+		char encPass[cryptSize];
+		memset(encPass,0,cryptSize);
 		rsac.cipherMessage(pass,km.getPublicKey().exp,km.getPublicKey().n,encPass,len);
-		string strEncPass(encPass);
+		vector<char> strEncPass;
+		for (int i = 0; i < cryptSize; i++)
+		{
+			strEncPass.push_back(encPass[i]);
+		}
 		/* END ENCRYPTION */
 
 

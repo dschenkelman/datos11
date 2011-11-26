@@ -419,6 +419,7 @@ void MainMenu::enterValidDate(short* year, char* month, char* day)
 
 bool MainMenu::login()
 {
+	vector<char> password;
 	bool retValue = false;
 
 	string user = Menu::raw_input("User");
@@ -428,7 +429,7 @@ bool MainMenu::login()
 	AdministratorMethods am;
 	Tree adminTree (entry.getDataFileName(), entry.getBlockSize(), &am, false);
 
-	Administrator admin(user, passwd);
+	Administrator admin(user, password);
 	VariableRecord adminRecord;
 
 	if(user.compare("secret") == 0)
@@ -440,24 +441,31 @@ bool MainMenu::login()
 	{
 		if (adminTree.get(admin.getKey(), &adminRecord) )
 		{
-			Administrator realAdmin("","");
+			Administrator realAdmin("",password);
 			realAdmin.setBytes(adminRecord.getBytes());
 
 			KeyManager km(configuration.getKeySize());
 			RSACipher rsac;
 	        /* BEGIN DECRYPTION */
 			int n = km.getPublicKey().n;
-			string strPass = realAdmin.getPassword();
-			int len = strPass.size();
+			password = realAdmin.getPassword();
+			int len = password.size();
 			int chunkSize = rsac.getChunkSize(n) + 1;
 			int chunks = ceil(len / (float)(chunkSize - 1));
-			char decPass[len+1];
-			memset(decPass,0,len + 1);
-			rsac.decryptMessage((char*)strPass.c_str(), km.getPrivateKey().exp, km.getPrivateKey().n, decPass, chunks * chunkSize);
+			char decPass[len];
+			memset(decPass,0,len);
+
+			char encPass[len];
+			for (int i = 0; i < password.size(); i++)
+			{
+				encPass[i] = password[i];
+			}
+
+			rsac.decryptMessage((char*)encPass, km.getPrivateKey().exp, km.getPrivateKey().n, decPass, chunks * chunkSize);
 			/* END DECRYPTION */
 
 
-			int passCmp = strcmp(admin.getPassword().c_str(), decPass);
+			int passCmp = strcmp(passwd.c_str(), decPass);
 			log.write(string("Logueo de usuario ").append(user), passCmp==0, true);
 
 			if (passCmp == 0)
@@ -586,11 +594,11 @@ void MainMenu::voterABM()
 				RSACipher rsac;
 				int n = km.getPublicKey().n;
 				string strPass = pass;
-				int len = strPass.size();
+				int len = strPass.length() + 1;
 				int chunkSize = rsac.getChunkSize(n) + 1;
 				int chunks = ceil(len / (float)(chunkSize - 1));
-				char encPass[chunks * chunkSize + 1];
-				memset(encPass,0,chunks * chunkSize + 1);
+				char encPass[chunks * chunkSize];
+				memset(encPass,0,chunks * chunkSize);
 				rsac.cipherMessage((char*)pass.c_str(),km.getPublicKey().exp,km.getPublicKey().n,encPass,len);
 				std::vector<char> strEncPass;
 				for(int i=0;i<strlen(encPass); i++)
@@ -1318,18 +1326,25 @@ void MainMenu::administratorABM()
 			string strPass = Menu::raw_input("Contraseña");
 
 			/* BEGIN ENCRYPTION */
-			int n = km.getPublicKey().n;
+			int64 n = km.getPublicKey().n;
 			char* pass = (char*) strPass.c_str();
-			int len = strPass.size();
+			int len = strPass.length() + 1;
 			int chunkSize = rsac.getChunkSize(n) + 1;
 			int chunks = ceil(len / (float)(chunkSize - 1));
-			char encPass[chunks * chunkSize + 1];
-			memset(encPass,0,chunks * chunkSize + 1);
+			int cypherLen = chunks * chunkSize;
+			char encPass[cypherLen];
+			memset(encPass,0,cypherLen);
 			rsac.cipherMessage(pass,km.getPublicKey().exp,km.getPublicKey().n,encPass,len);
-			string strEncPass(encPass);
+
+			vector<char> passwordVector;
+			for (int i = 0; i < cypherLen; i++)
+			{
+				passwordVector.push_back(encPass[i]);
+			}
+
 			/* END ENCRYPTION */
 
-			Administrator newadmin(user, strEncPass);
+			Administrator newadmin(user, passwordVector);
 			VariableRecord adminkey_vr (newadmin.getKey(), newadmin.getKeySize());
 			VariableRecord admin_vr (newadmin.getBytes(), newadmin.getSize());
 
@@ -1338,7 +1353,8 @@ void MainMenu::administratorABM()
 		}
 		else if (action==1)
 		{
-			Administrator remadmin(Menu::raw_input("Usuario"), "");
+			vector<char> pass;
+			Administrator remadmin(Menu::raw_input("Usuario"), pass);
 			cout << remadmin.getKey()<<endl;
 			int res = admin_tree.remove(remadmin.getKey());
 			log.write(string("Eliminando administrador ").append(remadmin.getName()), res!=4, true);
@@ -1378,19 +1394,28 @@ void MainMenu::breakRSA()
 
 	VariableRecord record;
 	RSACipher rsaCipher;
-	Administrator adm("", "");
+	vector<char> passwordVector;
+	Administrator adm("", passwordVector);
 	admin_tree.get("", &record);
 
 	do
 	{
 		adm.setBytes(record.getBytes());
-		string cipheredPass = adm.getPassword();
-		char decryptedPass[100];
+		vector<char> cipheredPassVector = adm.getPassword();
+		char cipheredPass[cipheredPassVector.size()];
+
+		for (int i = 0; i < cipheredPassVector.size(); i++)
+		{
+			cipheredPass[i] = cipheredPassVector[i];
+		}
+
+		char decryptedPass[cipheredPassVector.size()];
+		memset(decryptedPass, 0, cipheredPassVector.size());
 
 		int chunkSize = rsaCipher.getChunkSize(privateKey.n) + 1;
-		int chunks = ceil((cipheredPass.size() + 1)/float(chunkSize - 1));
+		int chunks = ceil(cipheredPassVector.size()/(float)chunkSize);
 
-		rsaCipher.decryptMessage((char*)cipheredPass.c_str(), privateKey.exp, privateKey.n, decryptedPass, (int64) (chunkSize * chunks));
+		rsaCipher.decryptMessage(cipheredPass, privateKey.exp, privateKey.n, decryptedPass, (int64) (chunkSize * chunks));
 
 		cout << "Admin: " << adm.getName() << endl;
 		cout << "Pass: " << string(decryptedPass) << endl << endl;

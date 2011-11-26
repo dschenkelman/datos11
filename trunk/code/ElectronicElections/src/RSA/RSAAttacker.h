@@ -15,7 +15,7 @@
 using namespace std;
 
 class RSAAttacker {
-	int intMaxValue;
+	int64 intMaxValue;
 	void getPrimeNumbers(int64 n, int64* p, int64* q, int keySize);
 public:
 	RSAAttacker();

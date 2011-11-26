@@ -451,7 +451,7 @@ bool MainMenu::login()
 			password = realAdmin.getPassword();
 			int len = password.size();
 			int chunkSize = rsac.getChunkSize(n) + 1;
-			int chunks = ceil(len / (float)(chunkSize - 1));
+			int chunks = ceil(len / (float)(chunkSize));
 			char decPass[len];
 			memset(decPass,0,len);
 

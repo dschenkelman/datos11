@@ -24,6 +24,9 @@ src/ElectronicElections.d src/ElectronicElections.o: \
  ../src/Menu/../Voting/../BPlusTree/Node.h \
  ../src/Menu/../Voting/../BPlusTree/OverflowParameter.h \
  ../src/Menu/../Voting/../Entities/Voter.h \
+ ../src/Menu/../Voting/../Entities/../RSA/RSACipher.h \
+ ../src/Menu/../Voting/../Entities/../RSA/RSAKey.h \
+ ../src/Menu/../Voting/../Entities/../RSA/RSAKey.h \
  ../src/Menu/../Voting/../Hash/VoterHashingFunction.h \
  ../src/Menu/../Voting/../Entities/VoterMethods.h \
  ../src/Menu/../Voting/../Entities/../VariableBlocks/RecordMethods.h \
@@ -44,7 +47,9 @@ src/ElectronicElections.d src/ElectronicElections.o: \
  ../src/Menu/../Voting/../Entities/Election.h \
  ../src/Menu/../Voting/../Entities/ElectionMethods.h \
  ../src/Menu/../Voting/Log.h ../src/Menu/../Voting/Configuration.h \
- ../src/Voting/Menu.h
+ ../src/Menu/../Voting/../RSA/KeyManager.h \
+ ../src/Menu/../Voting/../RSA/RSAKey.h ../src/Voting/Menu.h \
+ ../src/RSA/KeyManager.h
 
 ../src/Menu/MainMenu.h:
 
@@ -98,6 +103,12 @@ src/ElectronicElections.d src/ElectronicElections.o: \
 
 ../src/Menu/../Voting/../Entities/Voter.h:
 
+../src/Menu/../Voting/../Entities/../RSA/RSACipher.h:
+
+../src/Menu/../Voting/../Entities/../RSA/RSAKey.h:
+
+../src/Menu/../Voting/../Entities/../RSA/RSAKey.h:
+
 ../src/Menu/../Voting/../Hash/VoterHashingFunction.h:
 
 ../src/Menu/../Voting/../Entities/VoterMethods.h:
@@ -140,4 +151,10 @@ src/ElectronicElections.d src/ElectronicElections.o: \
 
 ../src/Menu/../Voting/Configuration.h:
 
+../src/Menu/../Voting/../RSA/KeyManager.h:
+
+../src/Menu/../Voting/../RSA/RSAKey.h:
+
 ../src/Voting/Menu.h:
+
+../src/RSA/KeyManager.h:

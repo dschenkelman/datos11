@@ -27,16 +27,16 @@ class Voter {
 private:
 	int dni;
 	std::string names;
-	std::string password;
+	std::vector<char> password;
 	std::string address;
 	std::string district;
 	std::vector<ElectionKey> electionKeyList;
 	char* bytes;
 	char* key;
 public:
-	Voter(int dni, std::string names, std::string password, std::string address,
+	Voter(int dni, std::string names, std::vector<char> password, std::string address,
 			std::string district, std::vector<ElectionKey> electionKeyList);
-	Voter(int dni, std::string names, std::string password, std::string address,
+	Voter(int dni, std::string names, std::vector<char> password, std::string address,
 				std::string district);
 	Voter(const Voter& other);
 	Voter& operator=(const Voter& other);
@@ -54,8 +54,8 @@ public:
 	int getDni();
 	std::string getNames();
 	void setNames(std::string names);
-	std::string getPassword();
-	void setPassword(std::string password);
+	std::vector<char> getPassword();
+	void setPassword(std::vector<char> password);
 	std::string getAddress();
 	void setAddress(std::string address);
 	std::string getDistrict();

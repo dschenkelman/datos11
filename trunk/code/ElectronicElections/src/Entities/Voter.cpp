@@ -11,11 +11,12 @@ static int PASSWORD_SIZE = 4; //sizeof int64 for crypted passwords
 #include "../VariableBlocks/Constants.h"
 #include <cstring>
 
-Voter::Voter(int dni, std::string names, std::string password, std::string address,
+Voter::Voter(int dni, std::string names, std::vector<char> password, std::string address,
 		std::string district, std::vector<ElectionKey> electionKeyList)
 {
 	this->dni = dni;
 	this->names = names;
+
 	this->password = password;
 	this->address = address;
 	this->district = district;
@@ -25,7 +26,7 @@ Voter::Voter(int dni, std::string names, std::string password, std::string addre
 }
 
 
-Voter::Voter(int dni, std::string names, std::string password, std::string address, std::string district)
+Voter::Voter(int dni, std::string names, std::vector<char> password, std::string address, std::string district)
 {
 	this->dni = dni;
 	this->names = names;
@@ -96,7 +97,10 @@ void Voter::setBytes(char* bytes)
 	memcpy(pass, bytes+i, passwdSize); i += passwdSize;
 
 	this->password.clear();
-	this->password.append(pass);
+	for(int i=0;i< passwdSize;i++)
+	{
+		this->password.push_back(pass[i]);
+	}
 
 //	this->password.clear();
 //	std::string passStrAux = "";
@@ -162,7 +166,12 @@ char* Voter::getBytes()
 
 	len = this->password.size() + 1;
 	memcpy(this->bytes+i, &len, Constants::FIELD_HEADER_SIZE); i += Constants::FIELD_HEADER_SIZE;
-	memcpy(this->bytes+i, this->password.c_str(), len); i += len;
+	char charPass[len-1];
+	for(int j=0; j<this->password.size();j++)
+	{
+		*(charPass+j) = this->password.at(j);
+	}
+	memcpy(this->bytes+i, charPass, len); i += len;
 
 //	memcpy(this->bytes+i, this->password.c_str(), PASSWORD_SIZE+1); i += PASSWORD_SIZE+1;
 
@@ -206,12 +215,12 @@ void Voter::setNames(std::string names) {
 	this->names = names;
 }
 
-std::string Voter::getPassword()
+std::vector<char> Voter::getPassword()
 {
 	return this->password;
 }
 
-void Voter::setPassword(std::string password) {
+void Voter::setPassword(std::vector<char> password) {
 	this->password = password;
 }
 

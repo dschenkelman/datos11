@@ -47,8 +47,12 @@ bool VoterTests::testGetSize()
 
 	std::vector<ElectionKey> list;
 	list.push_back(electOne); list.push_back(electTwo);
-
-	Voter v(dni, names, pass, address, district, list);
+	std::vector<char> vecPass;
+	for(int i=0; i< pass.size(); i++)
+	{
+		vecPass.at(i)= pass.at(i);
+	}
+	Voter v(dni, names, vecPass, address, district, list);
 
 	int size = sizeof(dni);
 	size += names.size() + 1 + Constants::FIELD_HEADER_SIZE;
@@ -79,8 +83,12 @@ bool VoterTests::testGetKeySize()
 
 	std::vector<ElectionKey> list;
 	list.push_back(electOne); list.push_back(electTwo);
-
-	Voter v(dni, names, pass, address, district, list);
+	std::vector<char> vecPass;
+	for(int i=0; i< pass.size(); i++)
+	{
+		vecPass.at(i)= pass.at(i);
+	}
+	Voter v(dni, names, vecPass, address, district, list);
 
 	if(v.getKeySize() != sizeof(dni))
 	{
@@ -133,8 +141,13 @@ bool VoterTests::testEncryption() {
 //	rsac.decryptMessage(encTest, privateKey.exp, privateKey.n, test2, 7);
 //	cout << test2 << endl;
 //	cout.flush();
-
-	Voter v(1, "ale", "1234", "address", "district");
+	std::vector<char> testvecPass;
+	string testPass = "1234";
+	for(int i=0; i< testPass.size(); i++)
+	{
+		testvecPass.at(i)= testPass.at(i);
+	}
+	Voter v(1, "ale", testvecPass, "address", "district");
 	char* ori = new char[1024];
 	memcpy(ori,v.getBytes(),v.getSize());
 	/* BINARY DEBUG PRINT */
@@ -147,7 +160,7 @@ bool VoterTests::testEncryption() {
 	cout << "ENCRYPTED: " << base64_encode((const unsigned char*)encrypted, 20) << endl;
 	cout.flush();
 	/* END BINARY DEBUG PRINT */
-	Voter v2(0, "", "", "", "");
+	Voter v2(0, "", std::vector<char>(), "", "");
 	v2.setEncBytes(encrypted, rsaks.getPrivateKey(), v.getSize());
 	return v.getNames().compare(v2.getNames()) == 0;
 }
@@ -165,7 +178,12 @@ bool VoterTests::testGetKey()
 	std::vector<ElectionKey> list;
 	list.push_back(electOne); list.push_back(electTwo);
 
-	Voter v(dni, names, pass, address, district, list);
+	std::vector<char> vecPass;
+	for(int i=0; i< pass.size(); i++)
+	{
+		vecPass.at(i)= pass.at(i);
+	}
+	Voter v(dni, names, vecPass, address, district, list);
 
 	char k[4];
 	memcpy(k, &dni, sizeof(int));
@@ -181,7 +199,14 @@ bool VoterTests::testGetKey()
 bool VoterTests::testSetBytes()
 {
 	std::vector<ElectionKey> list;
-	Voter v(11111111, "Fernando Gago", "1234", "Cordoba 900", "Neuquen", list);
+
+	std::vector<char> testvecPass;
+	string testPass = "1234";
+	for(int i=0; i< testPass.size(); i++)
+	{
+		testvecPass.at(i)= testPass.at(i);
+	}
+	Voter vTwo(11111111, "Fernando Gago", testvecPass, "Cordoba 900", "Neuquen", list);
 
 	int dni = 35094006;
 	std::string names = "Juan Roman Riquelme";
@@ -240,9 +265,8 @@ bool VoterTests::testSetBytes()
 	len = ekTwo.charge.size() + 1;
 	memcpy(bytes+i, &len, Constants::FIELD_HEADER_SIZE); i += Constants::FIELD_HEADER_SIZE;
 	memcpy(bytes+i, ekTwo.charge.c_str(), len); i += len;
-
+	Voter v(0, "", std::vector<char>(), "", "" , std::vector<ElectionKey>());
 	v.setBytes(bytes);
-
 	if(v.getAddress() != address)
 	{
 		return false;
@@ -263,7 +287,12 @@ bool VoterTests::testSetBytes()
 		return false;
 	}
 
-	if(v.getPassword() != pass)
+	char getPass[v.getPassword().size()];
+	for(int i=0;i< v.getPassword().size(); i++)
+	{
+		getPass[i]= v.getPassword().at(i);
+	}
+	if(strcmp(getPass, pass.c_str()) != 0)
 	{
 		return false;
 	}
@@ -324,10 +353,21 @@ bool VoterTests::testGetBytes()
 	std::vector<ElectionKey> list;
 	list.push_back(electOne); list.push_back(electTwo);
 
-	Voter vOne(dni, names, pass, address, district, list);
+	std::vector<char> vecPass;
+	for(int i=0; i< pass.size(); i++)
+	{
+		vecPass.at(i)= pass.at(i);
+	}
+	Voter vOne(dni, names, vecPass, address, district, list);
 
 	std::vector<ElectionKey> listTwo;
-	Voter vTwo(11111111, "Fernando Gago", "1234", "Cordoba 900", "Neuquen", listTwo);
+	std::vector<char> testvecPass;
+	string testPass = "1234";
+	for(int i=0; i< testPass.size(); i++)
+	{
+		testvecPass.at(i)= testPass.at(i);
+	}
+	Voter vTwo(11111111, "Fernando Gago", testvecPass, "Cordoba 900", "Neuquen", listTwo);
 
 	vTwo.setBytes(vOne.getBytes());
 

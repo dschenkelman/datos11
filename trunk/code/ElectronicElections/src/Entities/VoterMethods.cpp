@@ -32,7 +32,13 @@ int VoterMethods::compareKey(const char* key, const char* recordKey, int recordS
 int VoterMethods::compare(const char* key, const char* recordBytes, int recordSize)
 {
 	std::vector<ElectionKey> list;
-	Voter v(0, "Invalid", "1234", "Invalid", "Invalid", list);
+	std::vector<char> testvecPass;
+	string testPass = "1234";
+	for(int i=0; i< testPass.size(); i++)
+	{
+		testvecPass.push_back(testPass.at(i));
+	}
+	Voter v(0, "Invalid", testvecPass, "Invalid", "Invalid", list);
 
 	v.setBytes((char*) recordBytes);
 
@@ -47,7 +53,13 @@ int VoterMethods::compare(const char* key, const char* recordBytes, int recordSi
 void VoterMethods::print(const char* recordBytes, int recordSize)
 {
 	std::vector<ElectionKey> list;
-	Voter v(0, "Invalid", "1234", "Invalid", "Invalid", list);
+	std::vector<char> testvecPass;
+	string testPass = "1234";
+	for(int i=0; i< testPass.size(); i++)
+	{
+		testvecPass.push_back(testPass.at(i));
+	}
+	Voter v(0, "Invalid", testvecPass, "Invalid", "Invalid", list);
 
 	v.setBytes((char*) recordBytes);
 
